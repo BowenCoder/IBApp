@@ -1,0 +1,17 @@
+//
+//  PrefixHeader.pch
+//  IBApplication
+//
+//  Created by Bowen on 2018/6/21.
+//  Copyright © 2018年 BowenCoder. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+#import "IBMacros.h"
+#import "SDKMacros.h"
+#import "UIMacros.h"
+#import "URLMacros.h"
+
+#endif /* PrefixHeader_pch */

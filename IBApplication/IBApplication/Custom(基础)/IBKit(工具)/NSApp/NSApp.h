@@ -1,0 +1,178 @@
+//
+//  NSApp.h
+//  IBApplication
+//
+//  Created by Bowen on 2018/6/24.
+//  Copyright © 2018年 BowenCoder. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+/**
+ *  Get App name
+ */
+#define APP_NAME [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleDisplayName"]
+
+/**
+ *  Get App build
+ */
+#define APP_BUILD [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"]
+
+/**
+ *  Get App version
+ */
+#define APP_VERSION [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]
+
+/**
+ *  Get App bundleIdentifier
+ */
+#define APP_BundleID [[NSBundle mainBundle] bundleIdentifier]
+
+/**
+ *  Get App system version
+ */
+#define APPSystemVersion [[[UIDevice currentDevice] systemVersion] floatValue]
+
+/**
+ *  Get App current language
+ */
+#define APPLanguage [[NSLocale preferredLanguages] firstObject]
+
+
+@interface NSApp : NSObject
+
+/**
+ 获取随机 UUID 例如 E621E1F8-C36C-495A-93FC-0C247A3E6E5F
+
+ @return 随机 UUID
+ */
++ (NSString *)UUID;
+
+/**
+ APP图标
+ 
+ @return 图片
+ */
++ (UIImage *)appIcon;
+
+/**
+ 震动设备
+ */
++ (void)shakeDevice;
+
+/**
+ APP缓存(document, caches, temp)
+
+ @return 缓存大小
+ */
++ (NSString *)cacheSize;
+
+/**
+ 将APNS的NSData类型token格式化成字符串
+
+ @param tokenData token
+ @return token字符串
+ */
++ (NSString *)APNSToken:(NSData *)tokenData;
+
+/**
+ *  截屏
+ *
+ *  @return 返回截取的屏幕的图像
+ */
++ (UIImage *)screenShot;
+
+/**
+ *  截取想要的view生成一张图片
+ *
+ *  @param view 要截的view
+ *
+ *  @return 生成的图片
+ */
++ (UIImage *)shotView:(UIView *)view bounds:(CGRect)bounds;
+
+/**
+ 判断是否首次启动，不修改
+ 
+ @param version app版本号，默认为当前版本号
+ */
++ (BOOL)isFirstStartForVersion:(NSString * _Nonnull)version;
+
+/**
+ 判断是否首次启动，修改当前版本号
+
+ @param version app版本号，默认为当前版本号
+ @param block 结果回调
+ */
++ (void)onFirstStartForVersion:(NSString *)version block:(void (^)(BOOL isFirstStartForVersion))block;
+
+@end
+
+@interface NSApp (Open)
+
+/** 打开一个URL */
++ (void)openURL:(NSURL *)url;
+
+/** 发送邮件 */
++ (void)sendMail:(NSString *)mail;
+
+/** 发送短信 */
++ (void)sendSMS:(NSString *)number;
+
+/** 打电话 */
++ (void)callNumber:(NSString *)number;
+
+@end
+
+@interface NSApp (Path)
+
+/** Home路径 */
++ (NSString *)homePath;
+
+/** bundle路径 */
++ (NSString *)bundlePath:(NSString *)fileName;
+
+/** temp路径 */
++ (NSString *)tempPath:(NSString *)fileName;
+
+/** document路径 */
++ (NSString *)documentPath:(NSString *)fileName;
+
+/** library路径 */
++ (NSString *)libraryPath:(NSString *)fileName;
+
+/** caches路径 */
++ (NSString *)cachesPath:(NSString *)fileName;
+
+@end
+
+@interface NSApp (Device)
+
+/** CPU使用率 */
++ (CGFloat)cpuUsage;
+
+/** CPU频率 */
++ (NSUInteger)cpuFrequency;
+
+/** 总线频率 */
++ (NSUInteger)busFrequency;
+
+/** ram的size */
++ (NSUInteger)ramSize;
+
+/** cpu个数 */
++ (NSUInteger)cpuNumber;
+
+/** 获取手机内存总量, 返回的是字节数 */
++ (NSUInteger)totalMemoryBytes;
+
+/** 获取手机可用内存, 返回的是字节数 */
++ (NSUInteger)freeMemoryBytes;
+
+/** 获取手机硬盘总空间, 返回的是字节数 */
++ (NSUInteger)totalDiskSpaceBytes;
+
+/** 获取手机硬盘空闲空间, 返回的是字节数 */
++ (NSUInteger)freeDiskSpaceBytes;
+
+@end
