@@ -29,7 +29,6 @@ typedef NS_ENUM(NSInteger, IBTimeOption) {
 
 @interface NSDate (Ext)
 
-
 /**
  获取日期详细信息
 
@@ -70,7 +69,6 @@ typedef NS_ENUM(NSInteger, IBTimeOption) {
  */
 + (NSDate *)dateWithString:(NSString *)dateString formatter:(NSString *)format;
 
-
 /**
  显示上下午+时分
 
@@ -79,7 +77,6 @@ typedef NS_ENUM(NSInteger, IBTimeOption) {
  @return 上下午+时分的字符串
  */
 + (NSString *)displayHalfDay:(NSDate *)date formatter:(NSString *)format;
-
 
 /**
  显示星期几
@@ -183,7 +180,6 @@ typedef NS_ENUM(NSInteger, IBTimeOption) {
  @return 是否相等
  */
 - (BOOL)isEqualTime:(NSDate *)date interval:(NSInteger)interval option:(IBTimeOption)option;
-
 
 @end
 
