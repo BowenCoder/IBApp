@@ -27,8 +27,6 @@
 		4ACC562720DD66CB001352AE /* NSString+Regex.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC562620DD66CB001352AE /* NSString+Regex.m */; };
 		4ACC563C20DD6C62001352AE /* UIBarButtonItem+Ext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC563B20DD6C62001352AE /* UIBarButtonItem+Ext.m */; };
 		4ACC564020DD6E0B001352AE /* UIColor+Ext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC563F20DD6E0B001352AE /* UIColor+Ext.m */; };
-		4ACC564320DD72CD001352AE /* UIImage+Ext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC564220DD72CD001352AE /* UIImage+Ext.m */; };
-		4ACC564720DD7448001352AE /* UIImage+Merge.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC564620DD7448001352AE /* UIImage+Merge.m */; };
 		4ACC564E20DD75AB001352AE /* UIButton+Ext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC564D20DD75AB001352AE /* UIButton+Ext.m */; };
 		4ACC566020DD7FF9001352AE /* UIViewController+MJPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC565E20DD7FF8001352AE /* UIViewController+MJPopupViewController.m */; };
 		4ACC567520DE5E29001352AE /* UIThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC567420DE5E29001352AE /* UIThemeManager.m */; };
@@ -42,6 +40,7 @@
 		4ACC56A420DF7A89001352AE /* UIView+Effect.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC56A320DF7A89001352AE /* UIView+Effect.m */; };
 		4ACC56A820DFC7AC001352AE /* UITextField+Ext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC56A720DFC7AC001352AE /* UITextField+Ext.m */; };
 		4ACC56B020E0001E001352AE /* NSDate+Ext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC56AF20E0001E001352AE /* NSDate+Ext.m */; };
+		F3E79EEC20E2A217000AC50A /* NSImage.m in Sources */ = {isa = PBXBuildFile; fileRef = F3E79EEB20E2A217000AC50A /* NSImage.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -89,10 +88,6 @@
 		4ACC563B20DD6C62001352AE /* UIBarButtonItem+Ext.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+Ext.m"; sourceTree = "<group>"; };
 		4ACC563E20DD6E0B001352AE /* UIColor+Ext.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+Ext.h"; sourceTree = "<group>"; };
 		4ACC563F20DD6E0B001352AE /* UIColor+Ext.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Ext.m"; sourceTree = "<group>"; };
-		4ACC564120DD72CD001352AE /* UIImage+Ext.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+Ext.h"; sourceTree = "<group>"; };
-		4ACC564220DD72CD001352AE /* UIImage+Ext.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Ext.m"; sourceTree = "<group>"; };
-		4ACC564520DD7448001352AE /* UIImage+Merge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+Merge.h"; sourceTree = "<group>"; };
-		4ACC564620DD7448001352AE /* UIImage+Merge.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Merge.m"; sourceTree = "<group>"; };
 		4ACC564C20DD75AB001352AE /* UIButton+Ext.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIButton+Ext.h"; sourceTree = "<group>"; };
 		4ACC564D20DD75AB001352AE /* UIButton+Ext.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Ext.m"; sourceTree = "<group>"; };
 		4ACC565E20DD7FF8001352AE /* UIViewController+MJPopupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+MJPopupViewController.m"; sourceTree = "<group>"; };
@@ -119,6 +114,8 @@
 		4ACC56A720DFC7AC001352AE /* UITextField+Ext.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITextField+Ext.m"; sourceTree = "<group>"; };
 		4ACC56AE20E0001E001352AE /* NSDate+Ext.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDate+Ext.h"; sourceTree = "<group>"; };
 		4ACC56AF20E0001E001352AE /* NSDate+Ext.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Ext.m"; sourceTree = "<group>"; };
+		F3E79EEA20E2A217000AC50A /* NSImage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSImage.h; sourceTree = "<group>"; };
+		F3E79EEB20E2A217000AC50A /* NSImage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSImage.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -389,7 +386,6 @@
 				4ACC563620DD6C3C001352AE /* UIBarButtonItem */,
 				4ACC564820DD7589001352AE /* UIButton */,
 				4ACC563D20DD6DF2001352AE /* UIColor */,
-				4ACC564420DD72D2001352AE /* UIImage */,
 				4ACC565620DD7D47001352AE /* UIView */,
 				4ACC565D20DD7FD6001352AE /* UIViewController */,
 			);
@@ -412,17 +408,6 @@
 				4ACC563F20DD6E0B001352AE /* UIColor+Ext.m */,
 			);
 			path = UIColor;
-			sourceTree = "<group>";
-		};
-		4ACC564420DD72D2001352AE /* UIImage */ = {
-			isa = PBXGroup;
-			children = (
-				4ACC564120DD72CD001352AE /* UIImage+Ext.h */,
-				4ACC564220DD72CD001352AE /* UIImage+Ext.m */,
-				4ACC564520DD7448001352AE /* UIImage+Merge.h */,
-				4ACC564620DD7448001352AE /* UIImage+Merge.m */,
-			);
-			path = UIImage;
 			sourceTree = "<group>";
 		};
 		4ACC564820DD7589001352AE /* UIButton */ = {
@@ -486,9 +471,10 @@
 		4ACC569C20DF4D9C001352AE /* IBKit(工具) */ = {
 			isa = PBXGroup;
 			children = (
+				4ACC569820DEC678001352AE /* NSApp */,
 				4A6F197320E26B2300EAF1A7 /* NSCrypto */,
 				4A6F196F20E23F9000EAF1A7 /* NSEncode */,
-				4ACC569820DEC678001352AE /* NSApp */,
+				F3E79EE920E2A1F2000AC50A /* NSImage */,
 				4ACC569320DEC47D001352AE /* NSPassword */,
 				4ACC569420DEC59D001352AE /* NSTouchID */,
 			);
@@ -512,6 +498,15 @@
 				4A6F196B20E0923000EAF1A7 /* NSDateTimeAgo.bundle */,
 			);
 			path = NSDate;
+			sourceTree = "<group>";
+		};
+		F3E79EE920E2A1F2000AC50A /* NSImage */ = {
+			isa = PBXGroup;
+			children = (
+				F3E79EEA20E2A217000AC50A /* NSImage.h */,
+				F3E79EEB20E2A217000AC50A /* NSImage.m */,
+			);
+			path = NSImage;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -594,6 +589,7 @@
 				4ACC55EA20DB5F3E001352AE /* AppDelegate.m in Sources */,
 				4ACC567B20DE6679001352AE /* NSNotificationNameManager.m in Sources */,
 				4A6F197620E26B3800EAF1A7 /* NSCrypto.m in Sources */,
+				F3E79EEC20E2A217000AC50A /* NSImage.m in Sources */,
 				4A6F197220E23FB900EAF1A7 /* NSEncode.m in Sources */,
 				4ACC56B020E0001E001352AE /* NSDate+Ext.m in Sources */,
 				4ACC564020DD6E0B001352AE /* UIColor+Ext.m in Sources */,
@@ -602,12 +598,10 @@
 				4ACC55EB20DB5F3E001352AE /* AppDelegate+AppService.m in Sources */,
 				4ACC55E320DB5F3E001352AE /* ViewController.m in Sources */,
 				4ACC569B20DEC694001352AE /* NSApp.m in Sources */,
-				4ACC564320DD72CD001352AE /* UIImage+Ext.m in Sources */,
 				4ACC562020DD5BEE001352AE /* NSDictionary+Ext.m in Sources */,
 				4ACC566020DD7FF9001352AE /* UIViewController+MJPopupViewController.m in Sources */,
 				4ACC562420DD6232001352AE /* NSString+Ext.m in Sources */,
 				4ACC562720DD66CB001352AE /* NSString+Regex.m in Sources */,
-				4ACC564720DD7448001352AE /* UIImage+Merge.m in Sources */,
 				4ACC567E20DE6744001352AE /* UIPopupManager.m in Sources */,
 				4ACC560620DCBC33001352AE /* NSData+Ext.m in Sources */,
 				4ACC55EC20DB5F3E001352AE /* AppDelegate+AppLifeCircle.m in Sources */,

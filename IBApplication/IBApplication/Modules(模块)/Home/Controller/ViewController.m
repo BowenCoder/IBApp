@@ -9,7 +9,6 @@
 #import "ViewController.h"
 #import "IBMacros.h"
 #import "NSString+Ext.h"
-#import "UIImage+Ext.h"
 #import "UIColor+Ext.h"
 #import "UIPopupManager.h"
 #import "UIViewController+Alert.h"
@@ -86,7 +85,7 @@
 
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-
+    
 //    NSLog(@"%@", [NSApp cacheSize]);
 
 //    [NSApp shakeDevice];

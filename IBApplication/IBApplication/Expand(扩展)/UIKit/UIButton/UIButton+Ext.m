@@ -7,8 +7,8 @@
 //
 
 #import "UIButton+Ext.h"
-#import "UIImage+Ext.h"
 #import <objc/runtime.h>
+#import "NSImage.h"
 
 // Associative reference keys.
 static NSString *const kIndicatorViewKey = @"indicatorView";
@@ -46,7 +46,7 @@ static NSString *const kButtonTextObjectKey = @"buttonTextObject";
  */
 - (void)setBackgroundColor:(UIColor *)backgroundColor forState:(UIControlState)state {
     
-    [self setBackgroundImage:[UIImage imageWithColor:backgroundColor] forState:state];
+    [self setBackgroundImage:[NSImage imageWithColor:backgroundColor] forState:state];
 }
 
 - (void)startTime:(NSInteger )timeout title:(NSString *)tittle waitTittle:(NSString *)waitTittle {

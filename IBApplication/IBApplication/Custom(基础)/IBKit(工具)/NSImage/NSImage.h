@@ -1,35 +1,30 @@
 //
-//  UIImage+Ext.h
+//  NSImage.h
 //  IBApplication
 //
-//  Created by Bowen on 2018/6/23.
+//  Created by BowenCoder on 2018/6/27.
 //  Copyright © 2018年 BowenCoder. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@interface UIImage (Ext)
-
 /**
- *  @brief 图片翻转 :YES,水平翻转，NO，垂直翻转
- *
- *  @return 翻转后的图片
+ *  水印方向
  */
-- (UIImage *)flip:(BOOL)isHorizontal;
+typedef NS_ENUM(NSInteger, ImageWaterDirect) {
+    //左上
+    ImageWaterDirectTopLeft = 0,
+    //右上
+    ImageWaterDirectTopRight,
+    //左下
+    ImageWaterDirectBottomLeft,
+    //右下
+    ImageWaterDirectBottomRight,
+    //正中
+    ImageWaterDirectCenter
+};
 
-/**
- *  @brief 图片解码
- *
- *  @return 解码后的图片
- */
-- (UIImage *)decodeImage;
-
-/**
-*  @brief 修正拍照图片方向
-*
-*  @return 修正后的图片
-*/
-- (UIImage *)fixOrientation;
+@interface NSImage : NSObject
 
 /**
  *  @brief  根据bundle中的文件名读取图片
@@ -98,6 +93,37 @@
  */
 + (UIImage *)resizedImageName:(NSString *)name size:(CGSize)newSize;
 
+@end
+
+@interface NSImage (Special)
+
+/**
+ *  @brief 图片翻转 :YES,水平翻转，NO，垂直翻转
+ *
+ *  @param image 要翻转的图片
+ *
+ *  @return 翻转后的图片
+ */
++ (UIImage *)flip:(UIImage *)image horizontal:(BOOL)horizontal;
+
+/**
+ *  @brief 图片解码
+ *
+ *  @param image 要解码的图片
+ *
+ *  @return 解码后的图片
+ */
++ (UIImage *)decodeImage:(UIImage *)image;
+
+/**
+ *  @brief 修正拍照图片方向
+ *
+ *  @param image 要修改方向的图片
+ *
+ *  @return 修正后的图片
+ */
++ (UIImage *)fixOrientation:(UIImage *)image;
+
 /**
  *  根据image返回一个圆形的头像
  *
@@ -119,5 +145,29 @@
  */
 + (UIImage *)blurredImage:(UIImage *)image blurValue:(CGFloat)blurValue;
 
+
+@end
+
+@interface NSImage (Merge)
+
+/**
+ *  @brief  合并两个图片
+ *
+ *  @param firstImage  一个图片
+ *  @param secondImage 二个图片
+ *
+ *  @return 合并后图片
+ */
++ (UIImage*)mergeImage:(UIImage*)firstImage withImage:(UIImage*)secondImage;
+
+/**
+ *  加文字水印
+ */
++ (UIImage *)water:(UIImage *)image text:(NSString *)text direction:(ImageWaterDirect)direction fontColor:(UIColor *)fontColor fontPoint:(CGFloat)fontPoint marginXY:(CGPoint)marginXY;
+
+/**
+ *  加图片水印
+ */
++ (UIImage *)water:(UIImage *)image waterImage:(UIImage *)waterImage direction:(ImageWaterDirect)direction waterSize:(CGSize)waterSize marginXY:(CGPoint)marginXY;
 
 @end
