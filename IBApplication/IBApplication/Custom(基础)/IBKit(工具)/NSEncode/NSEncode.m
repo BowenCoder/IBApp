@@ -482,7 +482,7 @@ done:
     if([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) {
         return [string stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLPathAllowedCharacterSet]];
     } else {
-        NSString *encoded = (NSString*)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,(CFStringRef)self,NULL,CFSTR("!*'();:@&=+$,/?%#[]"),kCFStringEncodingUTF8));
+        NSString *encoded = (NSString*)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,(CFStringRef)string,NULL,CFSTR("!*'();:@&=+$,/?%#[]"),kCFStringEncodingUTF8));
         return encoded;
     }
 }
@@ -502,7 +502,7 @@ done:
     if([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) {
         return [string stringByRemovingPercentEncoding];
     } else {
-        NSString *decoded =(__bridge NSString *)CFURLCreateStringByReplacingPercentEscapesUsingEncoding(kCFAllocatorDefault,(CFStringRef)self,CFSTR(""),kCFStringEncodingUTF8);
+        NSString *decoded =(__bridge NSString *)CFURLCreateStringByReplacingPercentEscapesUsingEncoding(kCFAllocatorDefault,(CFStringRef)string,CFSTR(""),kCFStringEncodingUTF8);
         return decoded;
     }
 

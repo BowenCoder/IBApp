@@ -139,7 +139,7 @@ void match(NSEncryptOption option,CCAlgorithm *algorithm, size_t *keyLength) {
  */
 + (NSData *)decryptRSA:(NSData *)data key:(NSString *)key option:(NSEncryptRSA)option {
     
-    if(!self || !key) {
+    if(!data || !key) {
         return nil;
     }
     
