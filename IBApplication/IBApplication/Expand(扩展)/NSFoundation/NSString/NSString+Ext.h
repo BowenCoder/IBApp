@@ -11,27 +11,6 @@
 @interface NSString (Ext)
 
 /**
- *  对url进行编码
- *
- *  @return 编码好的字符串
- */
-- (NSString *)URLEncode;
-
-/**
- *  对url进行解码
- *
- *  @return 解码好的字符串
- */
-- (NSString *)URLDecode;
-
-/**
- *  @brief  Unicode编码的字符串转成NSString
- *
- *  @return Unicode编码的字符串转成NSString
- */
-- (NSString *)makeUnicodeToString;
-
-/**
  *  是否空字符串
  *
  *  @return 如果字符串为nil或者长度为0返回YES

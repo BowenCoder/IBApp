@@ -8,11 +8,7 @@
 
 #import "ViewController.h"
 #import "IBMacros.h"
-#import "NSData+Encrypt.h"
-#import "NSData+Hash.h"
-#import "NSData+Base64.h"
 #import "NSString+Ext.h"
-#import "NSString+Encode.h"
 #import "UIImage+Ext.h"
 #import "UIColor+Ext.h"
 #import "UIPopupManager.h"
@@ -23,6 +19,7 @@
 #import "NSApp.h"
 #import "UITextField+Ext.h"
 #import "NSDate+Ext.h"
+#import "NSEncode.h"
 
 @interface ViewController ()
 
@@ -144,8 +141,8 @@
     NSString *string = @"https://www.baidu.com/s?wd=我测试中文";
 //    NSLog(@"%@",[string URLEncode]);
 //    NSLog(@"%@",[string URLDecode]);
-    NSString *str = [string base64Encode];
-    NSString *str1 = [str base64Decode];
+    NSString *str = [NSEncode base64Encode:string];
+    NSString *str1 = [NSEncode base64Decode:str];
     NSLog(@"%@---%@", str, str1);
     
     [self.btn startTime:10 title:@"重新发送" waitTittle:@"s"];
@@ -153,7 +150,7 @@
 
 - (void)test2 {
 //    NSString *str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    NSLog(@"%@",@"abc".sha1String);
+    NSLog(@"%@",[NSEncode sha1:@"abc"]);
 }
 
 - (void)test1 {
@@ -161,13 +158,13 @@
     NSString *privkey = @"-----BEGIN PRIVATE KEY-----\nMIICdwIBADANBgkqhkiG9w0BAQEFAASCAmEwggJdAgEAAoGBAMMjZu9UtVitvgHS\ntpmAU/rRVdhy9GaT2rnpCJOYSb0deVI+rXPKHI9Aca2LkWiRgkzM1wqbRvAvWrqK\ngm4PgQUjnoNr7vRd1HPUKNA9ATfJetddW86yar0ux3FMVaxUFN6F0KatqkplVXHo\n8qXubKHRx9dCbK95P96rJkrWBiO9AgMBAAECgYBO1UKEdYg9pxMX0XSLVtiWf3Na\n2jX6Ksk2Sfp5BhDkIcAdhcy09nXLOZGzNqsrv30QYcCOPGTQK5FPwx0mMYVBRAdo\nOLYp7NzxW/File//169O3ZFpkZ7MF0I2oQcNGTpMCUpaY6xMmxqN22INgi8SHp3w\nVU+2bRMLDXEc/MOmAQJBAP+Sv6JdkrY+7WGuQN5O5PjsB15lOGcr4vcfz4vAQ/uy\nEGYZh6IO2Eu0lW6sw2x6uRg0c6hMiFEJcO89qlH/B10CQQDDdtGrzXWVG457vA27\nkpduDpM6BQWTX6wYV9zRlcYYMFHwAQkE0BTvIYde2il6DKGyzokgI6zQyhgtRJ1x\nL6fhAkB9NvvW4/uWeLw7CHHVuVersZBmqjb5LWJU62v3L2rfbT1lmIqAVr+YT9CK\n2fAhPPtkpYYo5d4/vd1sCY1iAQ4tAkEAm2yPrJzjMn2G/ry57rzRzKGqUChOFrGs\nlm7HF6CQtAs4HC+2jC0peDyg97th37rLmPLB9txnPl50ewpkZuwOAQJBAM/eJnFw\nF5QAcL4CYDbfBKocx82VX/pFXng50T7FODiWbbL4UnxICE0UBFInNNiWJxNEb6jL\n5xd0pcy9O2DOeso=\n-----END PRIVATE KEY-----";
     NSString *originString = @"hello world!";
     NSData *data = [originString dataUsingEncoding:NSUTF8StringEncoding];
-    NSData *pubData = [data encryptRSA:pubkey option:IBCEncryptRSAPublicKey];
-    NSData *priData = [pubData decryptRSA:privkey option:IBCEncryptRSAPrivateKey];
-    NSLog(@"%@", [[NSString alloc] initWithData:priData encoding:NSUTF8StringEncoding]);
-    
-    NSData *des = [data encrypt:@"123456789" option:IBCEncryptAlgorithmAES];
-    NSData *desData = [des decrypt:@"123456789" option:IBCEncryptAlgorithmAES];
-    NSLog(@"%@", [[NSString alloc] initWithData:desData encoding:NSUTF8StringEncoding]);
+//    NSData *pubData = [data encryptRSA:pubkey option:IBCEncryptRSAPublicKey];
+//    NSData *priData = [pubData decryptRSA:privkey option:IBCEncryptRSAPrivateKey];
+//    NSLog(@"%@", [[NSString alloc] initWithData:priData encoding:NSUTF8StringEncoding]);
+//    
+//    NSData *des = [data encrypt:@"123456789" option:IBCEncryptAlgorithmAES];
+//    NSData *desData = [des decrypt:@"123456789" option:IBCEncryptAlgorithmAES];
+//    NSLog(@"%@", [[NSString alloc] initWithData:desData encoding:NSUTF8StringEncoding]);
 
 }
 

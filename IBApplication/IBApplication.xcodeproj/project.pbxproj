@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		4A6F196C20E0923000EAF1A7 /* NSDateTimeAgo.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4A6F196B20E0923000EAF1A7 /* NSDateTimeAgo.bundle */; };
 		4A6F197220E23FB900EAF1A7 /* NSEncode.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6F197120E23FB900EAF1A7 /* NSEncode.m */; };
+		4A6F197620E26B3800EAF1A7 /* NSCrypto.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6F197520E26B3800EAF1A7 /* NSCrypto.m */; };
 		4ACC55E320DB5F3E001352AE /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC55CC20DB5F3E001352AE /* ViewController.m */; };
 		4ACC55E420DB5F3E001352AE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4ACC55D320DB5F3E001352AE /* Assets.xcassets */; };
 		4ACC55E520DB5F3E001352AE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4ACC55D420DB5F3E001352AE /* LaunchScreen.storyboard */; };
@@ -19,10 +20,7 @@
 		4ACC55EB20DB5F3E001352AE /* AppDelegate+AppService.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC55E120DB5F3E001352AE /* AppDelegate+AppService.m */; };
 		4ACC55EC20DB5F3E001352AE /* AppDelegate+AppLifeCircle.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC55E220DB5F3E001352AE /* AppDelegate+AppLifeCircle.m */; };
 		4ACC55EF20DB6203001352AE /* IBController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC55EE20DB6203001352AE /* IBController.m */; };
-		4ACC560620DCBC33001352AE /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC560520DCBC33001352AE /* NSData+Base64.m */; };
-		4ACC560920DCBF29001352AE /* NSData+Encrypt.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC560820DCBF29001352AE /* NSData+Encrypt.m */; };
-		4ACC560C20DCD26C001352AE /* NSData+Gzip.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC560B20DCD26C001352AE /* NSData+Gzip.m */; };
-		4ACC560F20DCD775001352AE /* NSData+Hash.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC560E20DCD775001352AE /* NSData+Hash.m */; };
+		4ACC560620DCBC33001352AE /* NSData+Ext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC560520DCBC33001352AE /* NSData+Ext.m */; };
 		4ACC561920DD59F5001352AE /* NSArray+Ext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC561820DD59F5001352AE /* NSArray+Ext.m */; };
 		4ACC562020DD5BEE001352AE /* NSDictionary+Ext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC561F20DD5BEE001352AE /* NSDictionary+Ext.m */; };
 		4ACC562420DD6232001352AE /* NSString+Ext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC562320DD6232001352AE /* NSString+Ext.m */; };
@@ -33,7 +31,6 @@
 		4ACC564720DD7448001352AE /* UIImage+Merge.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC564620DD7448001352AE /* UIImage+Merge.m */; };
 		4ACC564E20DD75AB001352AE /* UIButton+Ext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC564D20DD75AB001352AE /* UIButton+Ext.m */; };
 		4ACC566020DD7FF9001352AE /* UIViewController+MJPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC565E20DD7FF8001352AE /* UIViewController+MJPopupViewController.m */; };
-		4ACC566620DE0C83001352AE /* NSString+Encode.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC566520DE0C83001352AE /* NSString+Encode.m */; };
 		4ACC567520DE5E29001352AE /* UIThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC567420DE5E29001352AE /* UIThemeManager.m */; };
 		4ACC567B20DE6679001352AE /* NSNotificationNameManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC567A20DE6679001352AE /* NSNotificationNameManager.m */; };
 		4ACC567E20DE6744001352AE /* UIPopupManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC567D20DE6744001352AE /* UIPopupManager.m */; };
@@ -53,6 +50,8 @@
 		4A6F196E20E093E700EAF1A7 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		4A6F197020E23FB900EAF1A7 /* NSEncode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSEncode.h; sourceTree = "<group>"; };
 		4A6F197120E23FB900EAF1A7 /* NSEncode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSEncode.m; sourceTree = "<group>"; };
+		4A6F197420E26B3800EAF1A7 /* NSCrypto.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSCrypto.h; sourceTree = "<group>"; };
+		4A6F197520E26B3800EAF1A7 /* NSCrypto.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSCrypto.m; sourceTree = "<group>"; };
 		4ACC55AB20DB5100001352AE /* IBApplication.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IBApplication.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4ACC55CC20DB5F3E001352AE /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		4ACC55CD20DB5F3E001352AE /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
@@ -76,14 +75,8 @@
 		4ACC55F620DBC4F4001352AE /* SDKMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SDKMacros.h; sourceTree = "<group>"; };
 		4ACC55F720DBC5B5001352AE /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		4ACC55F820DBC6BA001352AE /* IBMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBMacros.h; sourceTree = "<group>"; };
-		4ACC560420DCBC33001352AE /* NSData+Base64.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSData+Base64.h"; sourceTree = "<group>"; };
-		4ACC560520DCBC33001352AE /* NSData+Base64.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64.m"; sourceTree = "<group>"; };
-		4ACC560720DCBF29001352AE /* NSData+Encrypt.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSData+Encrypt.h"; sourceTree = "<group>"; };
-		4ACC560820DCBF29001352AE /* NSData+Encrypt.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSData+Encrypt.m"; sourceTree = "<group>"; };
-		4ACC560A20DCD26C001352AE /* NSData+Gzip.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSData+Gzip.h"; sourceTree = "<group>"; };
-		4ACC560B20DCD26C001352AE /* NSData+Gzip.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSData+Gzip.m"; sourceTree = "<group>"; };
-		4ACC560D20DCD775001352AE /* NSData+Hash.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSData+Hash.h"; sourceTree = "<group>"; };
-		4ACC560E20DCD775001352AE /* NSData+Hash.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSData+Hash.m"; sourceTree = "<group>"; };
+		4ACC560420DCBC33001352AE /* NSData+Ext.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSData+Ext.h"; sourceTree = "<group>"; };
+		4ACC560520DCBC33001352AE /* NSData+Ext.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSData+Ext.m"; sourceTree = "<group>"; };
 		4ACC561720DD59F5001352AE /* NSArray+Ext.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSArray+Ext.h"; sourceTree = "<group>"; };
 		4ACC561820DD59F5001352AE /* NSArray+Ext.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Ext.m"; sourceTree = "<group>"; };
 		4ACC561E20DD5BEE001352AE /* NSDictionary+Ext.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Ext.h"; sourceTree = "<group>"; };
@@ -104,8 +97,6 @@
 		4ACC564D20DD75AB001352AE /* UIButton+Ext.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Ext.m"; sourceTree = "<group>"; };
 		4ACC565E20DD7FF8001352AE /* UIViewController+MJPopupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+MJPopupViewController.m"; sourceTree = "<group>"; };
 		4ACC565F20DD7FF8001352AE /* UIViewController+MJPopupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+MJPopupViewController.h"; sourceTree = "<group>"; };
-		4ACC566420DE0C83001352AE /* NSString+Encode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+Encode.h"; sourceTree = "<group>"; };
-		4ACC566520DE0C83001352AE /* NSString+Encode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+Encode.m"; sourceTree = "<group>"; };
 		4ACC567320DE5E28001352AE /* UIThemeManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIThemeManager.h; sourceTree = "<group>"; };
 		4ACC567420DE5E29001352AE /* UIThemeManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UIThemeManager.m; sourceTree = "<group>"; };
 		4ACC567920DE6679001352AE /* NSNotificationNameManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSNotificationNameManager.h; sourceTree = "<group>"; };
@@ -148,6 +139,15 @@
 				4A6F197120E23FB900EAF1A7 /* NSEncode.m */,
 			);
 			path = NSEncode;
+			sourceTree = "<group>";
+		};
+		4A6F197320E26B2300EAF1A7 /* NSCrypto */ = {
+			isa = PBXGroup;
+			children = (
+				4A6F197420E26B3800EAF1A7 /* NSCrypto.h */,
+				4A6F197520E26B3800EAF1A7 /* NSCrypto.m */,
+			);
+			path = NSCrypto;
 			sourceTree = "<group>";
 		};
 		4ACC55A220DB50FF001352AE = {
@@ -356,14 +356,8 @@
 		4ACC560020DCBA15001352AE /* NSData */ = {
 			isa = PBXGroup;
 			children = (
-				4ACC560420DCBC33001352AE /* NSData+Base64.h */,
-				4ACC560520DCBC33001352AE /* NSData+Base64.m */,
-				4ACC560720DCBF29001352AE /* NSData+Encrypt.h */,
-				4ACC560820DCBF29001352AE /* NSData+Encrypt.m */,
-				4ACC560D20DCD775001352AE /* NSData+Hash.h */,
-				4ACC560E20DCD775001352AE /* NSData+Hash.m */,
-				4ACC560A20DCD26C001352AE /* NSData+Gzip.h */,
-				4ACC560B20DCD26C001352AE /* NSData+Gzip.m */,
+				4ACC560420DCBC33001352AE /* NSData+Ext.h */,
+				4ACC560520DCBC33001352AE /* NSData+Ext.m */,
 			);
 			path = NSData;
 			sourceTree = "<group>";
@@ -384,8 +378,6 @@
 				4ACC562320DD6232001352AE /* NSString+Ext.m */,
 				4ACC562520DD66CB001352AE /* NSString+Regex.h */,
 				4ACC562620DD66CB001352AE /* NSString+Regex.m */,
-				4ACC566420DE0C83001352AE /* NSString+Encode.h */,
-				4ACC566520DE0C83001352AE /* NSString+Encode.m */,
 			);
 			path = NSString;
 			sourceTree = "<group>";
@@ -494,6 +486,7 @@
 		4ACC569C20DF4D9C001352AE /* IBKit(工具) */ = {
 			isa = PBXGroup;
 			children = (
+				4A6F197320E26B2300EAF1A7 /* NSCrypto */,
 				4A6F196F20E23F9000EAF1A7 /* NSEncode */,
 				4ACC569820DEC678001352AE /* NSApp */,
 				4ACC569320DEC47D001352AE /* NSPassword */,
@@ -596,17 +589,15 @@
 				4ACC561920DD59F5001352AE /* NSArray+Ext.m in Sources */,
 				4ACC564E20DD75AB001352AE /* UIButton+Ext.m in Sources */,
 				4ACC568420DE72BA001352AE /* UIViewController+Alert.m in Sources */,
-				4ACC560C20DCD26C001352AE /* NSData+Gzip.m in Sources */,
 				4ACC55EF20DB6203001352AE /* IBController.m in Sources */,
 				4ACC569720DEC5B7001352AE /* NSTouchID.m in Sources */,
 				4ACC55EA20DB5F3E001352AE /* AppDelegate.m in Sources */,
 				4ACC567B20DE6679001352AE /* NSNotificationNameManager.m in Sources */,
+				4A6F197620E26B3800EAF1A7 /* NSCrypto.m in Sources */,
 				4A6F197220E23FB900EAF1A7 /* NSEncode.m in Sources */,
 				4ACC56B020E0001E001352AE /* NSDate+Ext.m in Sources */,
 				4ACC564020DD6E0B001352AE /* UIColor+Ext.m in Sources */,
-				4ACC566620DE0C83001352AE /* NSString+Encode.m in Sources */,
 				4ACC55E720DB5F3E001352AE /* main.m in Sources */,
-				4ACC560F20DCD775001352AE /* NSData+Hash.m in Sources */,
 				4ACC567520DE5E29001352AE /* UIThemeManager.m in Sources */,
 				4ACC55EB20DB5F3E001352AE /* AppDelegate+AppService.m in Sources */,
 				4ACC55E320DB5F3E001352AE /* ViewController.m in Sources */,
@@ -618,10 +609,9 @@
 				4ACC562720DD66CB001352AE /* NSString+Regex.m in Sources */,
 				4ACC564720DD7448001352AE /* UIImage+Merge.m in Sources */,
 				4ACC567E20DE6744001352AE /* UIPopupManager.m in Sources */,
-				4ACC560620DCBC33001352AE /* NSData+Base64.m in Sources */,
+				4ACC560620DCBC33001352AE /* NSData+Ext.m in Sources */,
 				4ACC55EC20DB5F3E001352AE /* AppDelegate+AppLifeCircle.m in Sources */,
 				4ACC56A420DF7A89001352AE /* UIView+Effect.m in Sources */,
-				4ACC560920DCBF29001352AE /* NSData+Encrypt.m in Sources */,
 				4ACC56A820DFC7AC001352AE /* UITextField+Ext.m in Sources */,
 				4ACC569220DEC463001352AE /* NSPassword.m in Sources */,
 				4ACC55E920DB5F3E001352AE /* AppDelegate+AppController.m in Sources */,

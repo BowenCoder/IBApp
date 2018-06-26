@@ -8,9 +8,6 @@
 
 #import "NSString+Ext.h"
 
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-
 @implementation NSString (Ext)
 
 + (BOOL)isEmpty:(id)string {
@@ -58,7 +55,6 @@
     return NO;
 }
 
-
 - (BOOL)containsaString:(NSString *)string {
     
     NSRange rang = [self rangeOfString:string];
@@ -66,47 +62,6 @@
         return NO;
     } else {
         return YES;
-    }
-}
-
-- (NSString *)makeUnicodeToString {
-    
-    NSString *tempStr1 = [self stringByReplacingOccurrencesOfString:@"\\u"withString:@"\\U"];
-    NSString *tempStr2 = [tempStr1 stringByReplacingOccurrencesOfString:@"\""withString:@"\\\""];
-    NSString *tempStr3 = [[@"\""stringByAppendingString:tempStr2] stringByAppendingString:@"\""];
-    NSData *tempData = [tempStr3 dataUsingEncoding:NSUTF8StringEncoding];
-    
-    NSString *returnStr = [NSPropertyListSerialization propertyListWithData:tempData options:NSPropertyListMutableContainersAndLeaves format:NULL error:NULL];
-    
-    return [returnStr stringByReplacingOccurrencesOfString:@"\\r\\n"withString:@"\n"];
-}
-
-- (NSString *)URLEncode {
-    
-    if ([self isKindOfClass:[NSNull class]]) {
-        return @"";
-    }
-    
-    if([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) {
-        return [self stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLPathAllowedCharacterSet]];
-    } else {
-
-        NSString *encoded = (NSString*)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,(CFStringRef)self,NULL,CFSTR("!*'();:@&=+$,/?%#[]"),kCFStringEncodingUTF8));
-
-        return encoded;
-    }
-}
-
-- (NSString *)URLDecode {
-    
-    if ([self isKindOfClass:[NSNull class]]) {
-        return @"";
-    }
-    if([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) {
-        return [self stringByRemovingPercentEncoding];
-    } else {
-        NSString *decoded =(__bridge NSString *)CFURLCreateStringByReplacingPercentEscapesUsingEncoding(kCFAllocatorDefault,(CFStringRef)self,CFSTR(""),kCFStringEncodingUTF8);
-        return decoded;
     }
 }
 
@@ -264,5 +219,4 @@
 
 @end
 
-#pragma clang diagnostic pop
 

@@ -7,11 +7,50 @@
 //
 
 #import "NSEncode.h"
-#import <CommonCrypto/CommonDigest.h>
+
+#import <zlib.h>
+#import <Availability.h>
+#include <CommonCrypto/CommonCrypto.h>
 
 #define FileHashDefaultChunkSizeForReadingData 1024*8 // 8K
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+
 @implementation NSEncode
+
+@end
+
+@implementation NSEncode (MD5)
+
+/**
+ *  返回md5编码的字符串
+ */
++ (NSString *)md5WithString:(NSString *)string {
+    
+    if(!string){
+        return nil;//判断sourceString如果为空则直接返回nil。
+    }
+    //MD5加密都是通过C级别的函数来计算，所以需要将加密的字符串转换为C语言的字符串
+    const char *cString = string.UTF8String;
+    //创建一个C语言的字符数组，用来接收加密结束之后的字符
+    unsigned char result[CC_MD5_DIGEST_LENGTH];
+    //MD5计算（也就是加密）
+    //第一个参数：需要加密的字符串
+    //第二个参数：需要加密的字符串的长度
+    //第三个参数：加密完成之后的字符串存储的地方
+    CC_MD5(cString, (CC_LONG)strlen(cString), result);
+    //将加密完成的字符拼接起来使用（16进制的）。
+    //声明一个可变字符串类型，用来拼接转换好的字符
+    NSMutableString *resultString = [[NSMutableString alloc]init];
+    //遍历所有的result数组，取出所有的字符来拼接
+    for (int i = 0;i < CC_MD5_DIGEST_LENGTH; i++) {
+        [resultString  appendFormat:@"%02x",result[i]];
+        //%02x：x 表示以十六进制形式输出，02 表示不足两位，前面补0输出；超出两位，不影响。当x小写的时候，返回的密文中的字母就是小写的，当X大写的时候返回的密文中的字母是大写的。
+    }
+    return [resultString lowercaseString];
+
+}
 
 + (NSString*)md5WithData:(NSData *)data{
     
@@ -37,6 +76,9 @@
 
 + (NSString*)md5WithFile:(NSString*)path {
     
+    if (!path) {
+        return nil;
+    }
     CFStringRef strRef = (__bridge CFStringRef)path;
     return (__bridge NSString *)FileMD5HashCreateWithPath(strRef,FileHashDefaultChunkSizeForReadingData);
 }
@@ -122,5 +164,423 @@ done:
 }
 
 
+@end
+
+
+@implementation NSEncode (NSDataBase64)
+
+/**
+ *  @brief  base64字符串解码
+ *
+ *  @param string base64字符串
+ *
+ *  @return 返回解码后的data
+ */
++ (NSData *)decodeBase64:(NSString *)string {
+    
+    if (![string length]) return nil;
+    NSData *decoded = nil;
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) {
+        decoded = [[self alloc] initWithBase64EncodedString:string options:NSDataBase64DecodingIgnoreUnknownCharacters];
+    } else {
+        decoded = [[self alloc] initWithBase64Encoding:[string stringByReplacingOccurrencesOfString:@"[^A-Za-z0-9+/=]" withString:@"" options:NSRegularExpressionSearch range:NSMakeRange(0, [string length])]];
+    }
+    return decoded;
+}
+
+/**
+ *  @brief  NSData转string 换行长度默认64
+ *
+ *  @return base64后的字符串
+ */
++ (NSString *)encodeBase64:(NSData *)data {
+    
+    return [self _base64EncodedStringWithData:data width:0];
+}
+
+/**
+ *  @brief  NSData转string
+ *
+ *  @param data  二进制数据
+ *  @param width 换行长度  76  64
+ *
+ *  @return base64后的字符串
+ */
++ (NSString *)_base64EncodedStringWithData:(NSData *)data width:(NSUInteger)width {
+    
+    if (![data length]) return nil;
+    NSString *encoded = nil;
+    
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] <= 7.0) {
+        encoded = [data base64Encoding];
+    } else {
+        switch (width) {
+            case 64: {
+                return [data base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
+            }
+            case 76: {
+                return [data base64EncodedStringWithOptions:NSDataBase64Encoding76CharacterLineLength];
+            }
+            default: {
+                encoded = [data base64EncodedStringWithOptions:(NSDataBase64EncodingOptions)0];
+            }
+        }
+    }
+    
+    if (!width || width >= [encoded length]) {
+        return encoded;
+    }
+    width = (width / 4) * 4;
+    NSMutableString *result = [NSMutableString string];
+    for (NSUInteger i = 0; i < [encoded length]; i+= width) {
+        if (i + width >= [encoded length]) {
+            [result appendString:[encoded substringFromIndex:i]];
+            break;
+        }
+        [result appendString:[encoded substringWithRange:NSMakeRange(i, width)]];
+        [result appendString:@"\r\n"];
+    }
+    return result;
+}
+
 
 @end
+
+@implementation NSEncode (NSDataHash)
+
+/**
+ *  @brief           键控哈希算法
+ *
+ *  @param data      二进制
+ *  @param key       密钥
+ *  @param option    算法类型
+ *
+ *  @return          结果
+ */
++ (NSData *)hmac:(NSData *)data key:(NSString *)key option:(NSEncodeHmacOption)option {
+    
+    NSData *keyData = [key dataUsingEncoding:NSUTF8StringEncoding];
+    CCHmacAlgorithm rule;
+    size_t digestLength;
+    
+    switch (option) {
+        case NSEncodeHmacOptionSHA1:
+            rule         = kCCHmacAlgSHA1;
+            digestLength = CC_SHA1_DIGEST_LENGTH;
+            break;
+        case NSEncodeHmacOptionMD5:
+            rule         = kCCHmacAlgMD5;
+            digestLength = CC_MD5_DIGEST_LENGTH;
+            break;
+        case NSEncodeHmacOptionSHA256:
+            rule         = kCCHmacAlgSHA256;
+            digestLength = CC_SHA256_DIGEST_LENGTH;
+            break;
+        case NSEncodeHmacOptionSHA384:
+            rule         = kCCHmacAlgSHA384;
+            digestLength = CC_SHA384_DIGEST_LENGTH;
+            break;
+        case NSEncodeHmacOptionSHA512:
+            rule         = kCCHmacAlgSHA512;
+            digestLength = CC_SHA512_DIGEST_LENGTH;
+            break;
+        case NSEncodeHmacOptionSHA224:
+            rule         = kCCHmacAlgSHA224;
+            digestLength = CC_SHA224_DIGEST_LENGTH;
+            break;
+            
+        default:
+            break;
+    }
+    
+    unsigned char result[digestLength];
+    CCHmac(rule, [keyData bytes], key.length, data.bytes, data.length, result);
+    return [NSData dataWithBytes:result length:digestLength];
+}
+
+/**
+ *  @brief           哈希算法
+ *
+ *  @param data      二进制
+ *  @param option    算法类型
+ *
+ *  @return          结果
+ */
++ (NSData *)hash:(NSData *)data option:(NSEncodeHashOption)option {
+    
+    NSData *newData;
+    switch (option) {
+        case NSEncodeHashOptionSHA1: {
+            unsigned char bytes[CC_SHA1_DIGEST_LENGTH];
+            CC_SHA1(data.bytes, (CC_LONG)data.length, bytes);
+            newData =[NSData dataWithBytes:bytes length:CC_SHA1_DIGEST_LENGTH];
+        }
+            break;
+        case NSEncodeHashOptionMD5: {
+            unsigned char bytes[CC_MD5_DIGEST_LENGTH];
+            CC_MD5(data.bytes, (CC_LONG)data.length, bytes);
+            newData = [NSData dataWithBytes:bytes length:CC_MD5_DIGEST_LENGTH];
+        }
+            break;
+        case NSEncodeHashOptionSHA256: {
+            unsigned char bytes[CC_SHA256_DIGEST_LENGTH];
+            CC_SHA256(data.bytes, (CC_LONG)data.length, bytes);
+            newData = [NSData dataWithBytes:bytes length:CC_SHA256_DIGEST_LENGTH];
+        }
+            break;
+        case NSEncodeHashOptionSHA384: {
+            unsigned char bytes[CC_SHA384_DIGEST_LENGTH];
+            CC_SHA384(data.bytes, (CC_LONG)data.length, bytes);
+            newData = [NSData dataWithBytes:bytes length:CC_SHA384_DIGEST_LENGTH];
+        }
+            break;
+        case NSEncodeHashOptionSHA512: {
+            unsigned char bytes[CC_SHA512_DIGEST_LENGTH];
+            CC_SHA512(data.bytes, (CC_LONG)data.length, bytes);
+            newData = [NSData dataWithBytes:bytes length:CC_SHA512_DIGEST_LENGTH];
+        }
+            break;
+        case NSEncodeHashOptionSHA224: {
+            unsigned char bytes[CC_SHA224_DIGEST_LENGTH];
+            CC_SHA512(data.bytes, (CC_LONG)data.length, bytes);
+            newData = [NSData dataWithBytes:bytes length:CC_SHA224_DIGEST_LENGTH];
+        }
+            break;
+        default:
+            break;
+    }
+    
+    return newData;
+}
+
+@end
+
+
+@implementation NSEncode (NSDataGzip)
+
+#define SCFW_CHUNK_SIZE 16384
+
+/**
+ *  @brief  compressedData 压缩后的数据
+ *
+ *  @return 是否压缩
+ */
++ (BOOL)isGzippedData:(NSData *)compressedData {
+    
+    const UInt8 *bytes = (const UInt8 *)compressedData.bytes;
+    return (compressedData.length >= 2 && bytes[0] == 0x1f && bytes[1] == 0x8b);
+}
+
+/**
+ *  @brief  GZIP压缩 压缩级别 默认-1
+ *
+ *  @param  data      二进制
+ *
+ *  @return 压缩后的数据
+ */
++ (NSData *)gzippedData:(NSData *)data {
+    
+    return [NSEncode gzippedData:data compressionLevel:-1.0f];
+}
+
+/**
+ *  @brief  GZIP解压
+ *
+ *  @param  data      二进制
+ *
+ *  @return 解压后数据
+ */
++ (NSData *)gunzippedData:(NSData *)data {
+    
+    if ([data length]) {
+        z_stream stream;
+        stream.zalloc = Z_NULL;
+        stream.zfree = Z_NULL;
+        stream.avail_in = (uint)[data length];
+        stream.next_in = (Bytef *)[data bytes];
+        stream.total_out = 0;
+        stream.avail_out = 0;
+        
+        NSMutableData *newData = [NSMutableData dataWithLength: [data length] * 1.5];
+        if (inflateInit2(&stream, 47) == Z_OK) {
+            int status = Z_OK;
+            while (status == Z_OK) {
+                if (stream.total_out >= [newData length]) {
+                    newData.length += [data length] * 0.5;
+                }
+                stream.next_out = [newData mutableBytes] + stream.total_out;
+                stream.avail_out = (uint)([newData length] - stream.total_out);
+                status = inflate (&stream, Z_SYNC_FLUSH);
+            }
+            if (inflateEnd(&stream) == Z_OK) {
+                if (status == Z_STREAM_END) {
+                    newData.length = stream.total_out;
+                    return newData;
+                }
+            }
+        }
+    }
+    return nil;
+}
+
+
+
+/**
+ *  @brief  GZIP压缩
+ *
+ *  @param level 压缩级别
+ *
+ *  @return 压缩后的数据
+ */
++ (NSData *)gzippedData:(NSData *)data compressionLevel:(float)level {
+    
+    if ([data length]) {
+        z_stream stream;
+        stream.zalloc = Z_NULL;
+        stream.zfree = Z_NULL;
+        stream.opaque = Z_NULL;
+        stream.avail_in = (uint)[data length];
+        stream.next_in = (Bytef *)[data bytes];
+        stream.total_out = 0;
+        stream.avail_out = 0;
+        
+        int compression = (level < 0.0f) ? Z_DEFAULT_COMPRESSION : (int)roundf(level * 9);
+        if (deflateInit2(&stream, compression, Z_DEFLATED, 31, 8, Z_DEFAULT_STRATEGY) == Z_OK) {
+            NSMutableData *data = [NSMutableData dataWithLength:SCFW_CHUNK_SIZE];
+            while (stream.avail_out == 0) {
+                if (stream.total_out >= [data length]) {
+                    data.length += SCFW_CHUNK_SIZE;
+                }
+                stream.next_out = [data mutableBytes] + stream.total_out;
+                stream.avail_out = (uint)([data length] - stream.total_out);
+                deflate(&stream, Z_FINISH);
+            }
+            deflateEnd(&stream);
+            data.length = stream.total_out;
+            return data;
+        }
+    }
+    return nil;
+}
+
+@end
+
+@implementation NSEncode (NSStringEncode)
+
+/**
+ *  对url进行编码
+ *
+ *  @param  string url字符串
+ *
+ *  @return 编码好的字符串
+ */
++ (NSString *)URLEncode:(NSString *)string {
+    
+    if ([string isKindOfClass:[NSNull class]]) {
+        return @"";
+    }
+    if([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) {
+        return [string stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLPathAllowedCharacterSet]];
+    } else {
+        NSString *encoded = (NSString*)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,(CFStringRef)self,NULL,CFSTR("!*'();:@&=+$,/?%#[]"),kCFStringEncodingUTF8));
+        return encoded;
+    }
+}
+
+/**
+ *  对url进行解码
+ *
+ *  @param  string url字符串
+ *
+ *  @return 解码好的字符串
+ */
++ (NSString *)URLDecode:(NSString *)string {
+    
+    if ([string isKindOfClass:[NSNull class]]) {
+        return @"";
+    }
+    if([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) {
+        return [string stringByRemovingPercentEncoding];
+    } else {
+        NSString *decoded =(__bridge NSString *)CFURLCreateStringByReplacingPercentEscapesUsingEncoding(kCFAllocatorDefault,(CFStringRef)self,CFSTR(""),kCFStringEncodingUTF8);
+        return decoded;
+    }
+
+}
+
+/**
+ *  @brief  Unicode字符串转成NSString
+ *
+ *  @param  string Unicode字符串
+ *
+ *  @return Unicode字符串转成NSString
+ */
++ (NSString *)transformUnicode:(NSString *)string {
+    
+    NSString *tempStr1 = [string stringByReplacingOccurrencesOfString:@"\\u"withString:@"\\U"];
+    NSString *tempStr2 = [tempStr1 stringByReplacingOccurrencesOfString:@"\""withString:@"\\\""];
+    NSString *tempStr3 = [[@"\""stringByAppendingString:tempStr2] stringByAppendingString:@"\""];
+    NSData *tempData = [tempStr3 dataUsingEncoding:NSUTF8StringEncoding];
+    
+    NSString *returnStr = [NSPropertyListSerialization propertyListWithData:tempData options:NSPropertyListMutableContainersAndLeaves format:NULL error:NULL];
+    
+    return [returnStr stringByReplacingOccurrencesOfString:@"\\r\\n"withString:@"\n"];
+}
+
++ (NSString *)base64Encode:(NSString *)string {
+    
+    NSData *data = [string dataUsingEncoding:NSUTF8StringEncoding];
+    return [NSEncode encodeBase64:data];
+}
+
++ (NSString *)base64Decode:(NSString *)string {
+    
+    NSData *data = [NSEncode decodeBase64:string];
+    return [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+}
+
+
+/**
+ *  返回sha1编码的字符串
+ */
++ (NSString *)sha1:(NSString *)string {
+    
+    NSData *data = [string dataUsingEncoding:NSUTF8StringEncoding];
+    data = [NSEncode hash:data option:NSEncodeHashOptionSHA1];
+    return [self _convertByte:(unsigned char *)data.bytes length:data.length];
+}
+
+/**
+ *  返回sha256编码的字符串
+ */
++ (NSString *)sha256:(NSString *)string {
+    
+    NSData *data = [string dataUsingEncoding:NSUTF8StringEncoding];
+    data = [NSEncode hash:data option:NSEncodeHashOptionSHA256];
+    return [self _convertByte:(unsigned char *)data.bytes length:data.length];
+}
+
+/**
+ *  返回sha512编码的字符串
+ */
++ (NSString *)sha512:(NSString *)string {
+    
+    NSData *data = [string dataUsingEncoding:NSUTF8StringEncoding];
+    data = [NSEncode hash:data option:NSEncodeHashOptionSHA512];
+    return [self _convertByte:(unsigned char *)data.bytes length:data.length];
+}
+
++ (NSString *)_convertByte:(unsigned char *)bytes length:(NSUInteger)length{
+    
+    NSMutableString *string = [[NSMutableString alloc] init];
+    for(int i = 0; i< length; i++) {
+        [string appendFormat:@"%02x", bytes[i]];
+    }
+    return string;
+}
+
+@end
+
+
+#pragma clang diagnostic pop
+

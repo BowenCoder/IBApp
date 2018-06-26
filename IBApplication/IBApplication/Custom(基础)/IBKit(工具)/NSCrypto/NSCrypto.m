@@ -1,59 +1,57 @@
 //
-//  NSData+Encrypt.m
+//  NSCrypto.m
 //  IBApplication
 //
-//  Created by Bowen on 2018/6/22.
+//  Created by Bowen on 2018/6/26.
 //  Copyright © 2018年 BowenCoder. All rights reserved.
 //
 
-#import "NSData+Encrypt.h"
-#import "NSData+Base64.h"
+#import "NSCrypto.h"
 #import <CommonCrypto/CommonCryptor.h>
+#import "NSEncode.h"
 
-@implementation NSData (Encrypt)
+@implementation NSCrypto
 
-#pragma mark - 对称加密
+#pragma mark - 对称加密(只有一个秘钥)
 
-- (NSData *)encrypt:(NSString *)key option:(IBCEncryptAlgorithm)option {
+/**
+ *  对称加密
+ *
+ *  @param data 二进制数据
+ *  @param key 秘钥
+ *  @param option 选择加密一种类型
+ *
+ *  @return data
+ */
++ (NSData *)encrypt:(NSData *)data key:(NSString *)key option:(NSEncryptOption)option {
     
     NSData *keyData = [key dataUsingEncoding:NSUTF8StringEncoding];
-    return [self execute:keyData option:option encrypt:YES];
+    return [self execute:data key:keyData option:option encrypt:YES];
 }
 
-- (NSData *)decrypt:(NSString *)key option:(IBCEncryptAlgorithm)option {
+/**
+ *  对称解密
+ *
+ *  @param data 二进制数据
+ *  @param key 秘钥
+ *  @param option 选择加密一种类型
+ *
+ *  @return data
+ */
++ (NSData *)decrypt:(NSData *)data key:(NSString *)key option:(NSEncryptOption)option {
     
     NSData *keyData = [key dataUsingEncoding:NSUTF8StringEncoding];
-    return [self execute:keyData option:option encrypt:NO];
+    return [self execute:data key:keyData option:option encrypt:NO];
 }
 
-void match(IBCEncryptAlgorithm option,CCAlgorithm *algorithm, size_t *keyLength) {
-    
-    switch (option) {
-        case IBCEncryptAlgorithmAES:
-            *algorithm = kCCAlgorithmAES;
-            *keyLength = kCCKeySizeAES128;
-            break;
-        case IBCEncryptAlgorithmDES:
-            *algorithm = kCCAlgorithmDES;
-            *keyLength = kCCKeySizeDES;
-            break;
-        case IBCEncryptAlgorithm3DES:
-            *algorithm = kCCAlgorithm3DES;
-            *keyLength = kCCKeySize3DES;
-            break;
-        default:
-            break;
-    }
-}
-
-- (NSData *)execute:(NSData *)keyData option:(IBCEncryptAlgorithm)option encrypt:(BOOL)encrypt{
++ (NSData *)execute:(NSData *)data key:(NSData *)keyData option:(NSEncryptOption)option encrypt:(BOOL)encrypt{
     
     CCAlgorithm algorithm = 0;
     size_t keyLength = 0;
     match(option, &algorithm, &keyLength);
     
     size_t dataMoved = 0;
-    size_t bufferSize = self.length + keyLength;
+    size_t bufferSize = data.length + keyLength;
     NSMutableData *decryptedData = [NSMutableData dataWithLength:bufferSize];
     
     CCOperation operation;
@@ -69,8 +67,8 @@ void match(IBCEncryptAlgorithm option,CCAlgorithm *algorithm, size_t *keyLength)
                                      keyData.bytes,
                                      keyLength,
                                      NULL,
-                                     self.bytes,
-                                     self.length,
+                                     data.bytes,
+                                     data.length,
                                      decryptedData.mutableBytes,             // encrypted data out
                                      bufferSize,
                                      &dataMoved);                           // total data moved
@@ -79,16 +77,44 @@ void match(IBCEncryptAlgorithm option,CCAlgorithm *algorithm, size_t *keyLength)
         decryptedData.length = dataMoved;
         return decryptedData;
     }
-
+    
     return nil;
 }
 
-
-#pragma mark - 非对称加密
-
-- (NSData *)encryptRSA:(NSString *)key option:(IBCEncryptRSA)option {
+void match(NSEncryptOption option,CCAlgorithm *algorithm, size_t *keyLength) {
     
-    if(!self || !key) {
+    switch (option) {
+        case NSEncryptOptionAES:
+            *algorithm = kCCAlgorithmAES;
+            *keyLength = kCCKeySizeAES128;
+            break;
+        case NSEncryptOptionDES:
+            *algorithm = kCCAlgorithmDES;
+            *keyLength = kCCKeySizeDES;
+            break;
+        case NSEncryptOption3DES:
+            *algorithm = kCCAlgorithm3DES;
+            *keyLength = kCCKeySize3DES;
+            break;
+        default:
+            break;
+    }
+}
+
+#pragma mark - 非对称加密(公钥和私钥)
+
+/**
+ *  非对称加密
+ *
+ *  @param data 二进制数据
+ *  @param key 秘钥
+ *  @param option 选择一种加密秘钥
+ *
+ *  @return data
+ */
++ (NSData *)encryptRSA:(NSData *)data key:(NSString *)key option:(NSEncryptRSA)option {
+    
+    if(!data || !key) {
         return nil;
     }
     
@@ -96,15 +122,22 @@ void match(IBCEncryptAlgorithm option,CCAlgorithm *algorithm, size_t *keyLength)
     if(!keyRef) {
         return nil;
     }
-    if (option == IBCEncryptRSAPublicKey) {//公钥加密
-        return [self encryptUsingKeyRef:keyRef isSign:NO];
+    if (option == NSEncryptRSAPublicKey) {//公钥加密
+        return [self encrypt:data keyRef:keyRef isSign:NO];
     } else { //私钥加密
-        return [self encryptUsingKeyRef:keyRef isSign:YES];
+        return [self encrypt:data keyRef:keyRef isSign:YES];
     }
-    
 }
-
-- (NSData *)decryptRSA:(NSString *)key option:(IBCEncryptRSA)option {
+/**
+ *  非对称解密
+ *
+ *  @param data 二进制数据
+ *  @param key 秘钥
+ *  @param option 选择一种解密秘钥
+ *
+ *  @return data
+ */
++ (NSData *)decryptRSA:(NSData *)data key:(NSString *)key option:(NSEncryptRSA)option {
     
     if(!self || !key) {
         return nil;
@@ -114,21 +147,21 @@ void match(IBCEncryptAlgorithm option,CCAlgorithm *algorithm, size_t *keyLength)
     if(!keyRef) {
         return nil;
     }
-    return [self decryptUsingKeyRef:keyRef];
+    return [self decrypt:data keyRef:keyRef];
 }
 
-- (SecKeyRef)fetchSecKeyRef:(NSString *)key option:(IBCEncryptRSA)option{
++ (SecKeyRef)fetchSecKeyRef:(NSString *)key option:(NSEncryptRSA)option {
     
     NSRange spos;
     NSRange epos;
-    if (option == IBCEncryptRSAPublicKey) { //区分公钥私钥
+    if (option == NSEncryptRSAPublicKey) { //区分公钥私钥
         spos = [key rangeOfString:@"-----BEGIN PUBLIC KEY-----"];
         epos = [key rangeOfString:@"-----END PUBLIC KEY-----"];
     } else {
         spos = [key rangeOfString:@"-----BEGIN PRIVATE KEY-----"];
         epos = [key rangeOfString:@"-----END PRIVATE KEY-----"];
     }
-
+    
     if(spos.location != NSNotFound && epos.location != NSNotFound) {
         NSUInteger s = spos.location + spos.length;
         NSUInteger e = epos.location;
@@ -141,10 +174,10 @@ void match(IBCEncryptAlgorithm option,CCAlgorithm *algorithm, size_t *keyLength)
     key = [key stringByReplacingOccurrencesOfString:@" "  withString:@""];
     
     // This will be base64 encoded, decode it.
-    NSData *data = [NSData decodeBase64:key];
+    NSData *data = [NSEncode decodeBase64:key];
     //a tag to read/write keychain storage
     NSString *tag;
-    if (option == IBCEncryptRSAPublicKey) { //区分公钥私钥
+    if (option == NSEncryptRSAPublicKey) { //区分公钥私钥
         data = [self publicKeyHeader:data];
         tag = @"RSAPublicKey";
     } else {
@@ -155,7 +188,7 @@ void match(IBCEncryptAlgorithm option,CCAlgorithm *algorithm, size_t *keyLength)
     if(!data){
         return nil;
     }
-
+    
     NSData *d_tag = [NSData dataWithBytes:[tag UTF8String] length:[tag length]];
     
     // Delete any old lingering key with the same tag
@@ -170,7 +203,7 @@ void match(IBCEncryptAlgorithm option,CCAlgorithm *algorithm, size_t *keyLength)
     [query setObject:(__bridge id) kSecAttrKeyClassPublic forKey:(__bridge id)
      kSecAttrKeyClass];
     
-    if (option == IBCEncryptRSAPublicKey) { //区分公钥私钥
+    if (option == NSEncryptRSAPublicKey) { //区分公钥私钥
         [query setObject:[NSNumber numberWithBool:YES] forKey:(__bridge id)
          kSecReturnPersistentRef];
     } else {
@@ -201,46 +234,10 @@ void match(IBCEncryptAlgorithm option,CCAlgorithm *algorithm, size_t *keyLength)
     return keyRef;
 }
 
-- (NSData *)publicKeyHeader:(NSData *)keyData{
++ (NSData *)encrypt:(NSData *)data keyRef:(SecKeyRef)keyRef isSign:(BOOL)isSign {
     
-    // Skip ASN.1 public key header
-    if (keyData == nil) return(nil);
-    
-    unsigned long len = [keyData length];
-    if (!len) return(nil);
-    
-    unsigned char *c_key = (unsigned char *)[keyData bytes];
-    unsigned int  idx     = 0;
-    
-    if (c_key[idx++] != 0x30) return(nil);
-    
-    if (c_key[idx] > 0x80) idx += c_key[idx] - 0x80 + 1;
-    else idx++;
-    
-    // PKCS #1 rsaEncryption szOID_RSA_RSA
-    static unsigned char seqiod[] =
-    { 0x30,   0x0d, 0x06, 0x09, 0x2a, 0x86, 0x48, 0x86, 0xf7, 0x0d, 0x01, 0x01,
-        0x01, 0x05, 0x00 };
-    if (memcmp(&c_key[idx], seqiod, 15)) return(nil);
-    
-    idx += 15;
-    
-    if (c_key[idx++] != 0x03) return(nil);
-    
-    if (c_key[idx] > 0x80) idx += c_key[idx] - 0x80 + 1;
-    else idx++;
-    
-    if (c_key[idx++] != '\0') return(nil);
-    
-    // Now make a new NSData from this buffer
-    return([NSData dataWithBytes:&c_key[idx] length:len - idx]);
-}
-
-
-- (NSData *)encryptUsingKeyRef:(SecKeyRef) keyRef isSign:(BOOL)isSign {
-    
-    const uint8_t *srcbuf = (const uint8_t *)[self bytes];
-    size_t srclen = (size_t)self.length;
+    const uint8_t *srcbuf = (const uint8_t *)[data bytes];
+    size_t srclen = (size_t)data.length;
     
     size_t block_size = SecKeyGetBlockSize(keyRef) * sizeof(uint8_t);
     void *outbuf = malloc(block_size);
@@ -288,49 +285,10 @@ void match(IBCEncryptAlgorithm option,CCAlgorithm *algorithm, size_t *keyLength)
     return ret;
 }
 
-- (NSData *)privateKeyHeader:(NSData *)d_key{
++ (NSData *)decrypt:(NSData *)data keyRef:(SecKeyRef)keyRef {
     
-    // Skip ASN.1 private key header
-    if (d_key == nil) return(nil);
-    
-    unsigned long len = [d_key length];
-    if (!len) return(nil);
-    
-    unsigned char *c_key = (unsigned char *)[d_key bytes];
-    unsigned int  idx     = 22; //magic byte at offset 22
-    
-    if (0x04 != c_key[idx++]) return nil;
-    
-    //calculate length of the key
-    unsigned int c_len = c_key[idx++];
-    int det = c_len & 0x80;
-    if (!det) {
-        c_len = c_len & 0x7f;
-    } else {
-        int byteCount = c_len & 0x7f;
-        if (byteCount + idx > len) {
-            //rsa length field longer than buffer
-            return nil;
-        }
-        unsigned int accum = 0;
-        unsigned char *ptr = &c_key[idx];
-        idx += byteCount;
-        while (byteCount) {
-            accum = (accum << 8) + *ptr;
-            ptr++;
-            byteCount--;
-        }
-        c_len = accum;
-    }
-    
-    // Now make a new NSData from this buffer
-    return [d_key subdataWithRange:NSMakeRange(idx, c_len)];
-}
-
-- (NSData *)decryptUsingKeyRef:(SecKeyRef)keyRef {
-    
-    const uint8_t *srcbuf = (const uint8_t *)[self bytes];
-    size_t srclen = (size_t)self.length;
+    const uint8_t *srcbuf = (const uint8_t *)[data bytes];
+    size_t srclen = (size_t)data.length;
     
     size_t block_size = SecKeyGetBlockSize(keyRef) * sizeof(uint8_t);
     UInt8 *outbuf = malloc(block_size);
@@ -381,6 +339,78 @@ void match(IBCEncryptAlgorithm option,CCAlgorithm *algorithm, size_t *keyLength)
     return ret;
 }
 
++ (NSData *)publicKeyHeader:(NSData *)keyData {
+    
+    // Skip ASN.1 public key header
+    if (keyData == nil) return(nil);
+    
+    unsigned long len = [keyData length];
+    if (!len) return(nil);
+    
+    unsigned char *c_key = (unsigned char *)[keyData bytes];
+    unsigned int  idx     = 0;
+    
+    if (c_key[idx++] != 0x30) return(nil);
+    
+    if (c_key[idx] > 0x80) idx += c_key[idx] - 0x80 + 1;
+    else idx++;
+    
+    // PKCS #1 rsaEncryption szOID_RSA_RSA
+    static unsigned char seqiod[] =
+    { 0x30,   0x0d, 0x06, 0x09, 0x2a, 0x86, 0x48, 0x86, 0xf7, 0x0d, 0x01, 0x01,
+        0x01, 0x05, 0x00 };
+    if (memcmp(&c_key[idx], seqiod, 15)) return(nil);
+    
+    idx += 15;
+    
+    if (c_key[idx++] != 0x03) return(nil);
+    
+    if (c_key[idx] > 0x80) idx += c_key[idx] - 0x80 + 1;
+    else idx++;
+    
+    if (c_key[idx++] != '\0') return(nil);
+    
+    // Now make a new NSData from this buffer
+    return([NSData dataWithBytes:&c_key[idx] length:len - idx]);
+}
 
++ (NSData *)privateKeyHeader:(NSData *)d_key{
+    
+    // Skip ASN.1 private key header
+    if (d_key == nil) return(nil);
+    
+    unsigned long len = [d_key length];
+    if (!len) return(nil);
+    
+    unsigned char *c_key = (unsigned char *)[d_key bytes];
+    unsigned int  idx     = 22; //magic byte at offset 22
+    
+    if (0x04 != c_key[idx++]) return nil;
+    
+    //calculate length of the key
+    unsigned int c_len = c_key[idx++];
+    int det = c_len & 0x80;
+    if (!det) {
+        c_len = c_len & 0x7f;
+    } else {
+        int byteCount = c_len & 0x7f;
+        if (byteCount + idx > len) {
+            //rsa length field longer than buffer
+            return nil;
+        }
+        unsigned int accum = 0;
+        unsigned char *ptr = &c_key[idx];
+        idx += byteCount;
+        while (byteCount) {
+            accum = (accum << 8) + *ptr;
+            ptr++;
+            byteCount--;
+        }
+        c_len = accum;
+    }
+    
+    // Now make a new NSData from this buffer
+    return [d_key subdataWithRange:NSMakeRange(idx, c_len)];
+}
 
 @end
