@@ -124,28 +124,6 @@
 
 @end
 
-@interface NSApp (Path)
-
-/** Home路径 */
-+ (NSString *)homePath;
-
-/** bundle路径 */
-+ (NSString *)bundlePath:(NSString *)fileName;
-
-/** temp路径 */
-+ (NSString *)tempPath:(NSString *)fileName;
-
-/** document路径 */
-+ (NSString *)documentPath:(NSString *)fileName;
-
-/** library路径 */
-+ (NSString *)libraryPath:(NSString *)fileName;
-
-/** caches路径 */
-+ (NSString *)cachesPath:(NSString *)fileName;
-
-@end
-
 @interface NSApp (Device)
 
 /** CPU使用率 */

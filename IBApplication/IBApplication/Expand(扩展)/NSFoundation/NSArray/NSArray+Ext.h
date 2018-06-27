@@ -12,7 +12,7 @@
 
 
 /** 数组判空 */
-+ (BOOL)isEmpty:(id)array;
++ (BOOL)isEmptyArray:(NSArray *)array;
 
 /**
  *  获取index的元素

@@ -8,8 +8,6 @@
 
 #import "ViewController.h"
 #import "IBMacros.h"
-#import "NSString+Ext.h"
-#import "UIColor+Ext.h"
 #import "UIPopupManager.h"
 #import "UIViewController+Alert.h"
 #import "UIView+Ext.h"
@@ -20,7 +18,7 @@
 #import "NSDate+Ext.h"
 #import "NSEncode.h"
 #import "NSCrypto.h"
-#import "NSData+Ext.h"
+#import "NSColor.h"
 
 @interface ViewController ()
 
@@ -98,7 +96,7 @@
 ////    [manager addCustomView:self.imageView type:UIPopupAnimationCenter duration:0.25];
     UITouch *touch = [touches anyObject];
     CGPoint point = [touch locationInView:self.view];
-    UIColor *color = [UIColor randomColor];
+    UIColor *color = [NSColor randomColor];
     __weak typeof(self) weakself = self;
     [self.view addAnimationAtPoint:point duration:0.25 type:UIViewAnimationTypeOpen color:color completion:^(BOOL finished) {
         weakself.view.backgroundColor = color;
@@ -162,7 +160,7 @@
     NSData *data = [originString dataUsingEncoding:NSUTF8StringEncoding];
     NSData *pubData = [NSCrypto encryptRSA:data key:privkey option:NSEncryptRSAPrivateKey];
     NSData *priData = [NSCrypto decryptRSA:pubData key:pubkey option:NSEncryptRSAPublicKey];
-    NSLog(@"%@", priData.UTF8String);
+    NSLog(@"%@", [NSEncode UTF8String:priData]);
 //
 //    NSData *des = [data encrypt:@"123456789" option:IBCEncryptAlgorithmAES];
 //    NSData *desData = [des decrypt:@"123456789" option:IBCEncryptAlgorithmAES];

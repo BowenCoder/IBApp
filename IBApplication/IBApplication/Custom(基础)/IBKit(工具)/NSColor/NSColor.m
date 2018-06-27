@@ -1,14 +1,14 @@
 //
-//  UIColor+Ext.m
+//  NSColor.m
 //  IBApplication
 //
-//  Created by Bowen on 2018/6/23.
+//  Created by Bowen on 2018/6/27.
 //  Copyright © 2018年 BowenCoder. All rights reserved.
 //
 
-#import "UIColor+Ext.h"
+#import "NSColor.h"
 
-@implementation UIColor (Ext)
+@implementation NSColor
 
 + (UIColor *)randomColor {
     
@@ -97,6 +97,5 @@ CGFloat colorComponentFrom(NSString *string, NSUInteger start, NSUInteger length
     [[NSScanner scannerWithString: fullHex] scanHexInt: &hexComponent];
     return hexComponent / 255.0;
 }
-
 
 @end

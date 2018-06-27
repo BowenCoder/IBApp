@@ -1,14 +1,14 @@
 //
-//  UIColor+Ext.h
+//  NSColor.h
 //  IBApplication
 //
-//  Created by Bowen on 2018/6/23.
+//  Created by Bowen on 2018/6/27.
 //  Copyright © 2018年 BowenCoder. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@interface UIColor (Ext)
+@interface NSColor : NSObject
 
 /**
  *  @brief  随机颜色
@@ -19,7 +19,7 @@
 
 /**
  设置十六进制颜色
-
+ 
  @param hexString 十六进制颜色字符
  @return 颜色
  */

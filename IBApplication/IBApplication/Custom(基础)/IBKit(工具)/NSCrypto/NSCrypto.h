@@ -34,6 +34,7 @@ typedef NS_ENUM(NSInteger, NSEncryptRSA) {
  *  @return data
  */
 + (NSData *)encrypt:(NSData *)data key:(NSString *)key option:(NSEncryptOption)option;
+
 /**
  *  对称解密
  *
@@ -57,6 +58,7 @@ typedef NS_ENUM(NSInteger, NSEncryptRSA) {
  *  @return data
  */
 + (NSData *)encryptRSA:(NSData *)data key:(NSString *)key option:(NSEncryptRSA)option;
+
 /**
  *  非对称解密
  *

@@ -10,7 +10,7 @@
 
 @implementation NSArray (Ext)
 
-+ (BOOL)isEmpty:(id)array {
++ (BOOL)isEmptyArray:(NSArray *)array {
     
     if (array != nil && ![array isKindOfClass:[NSNull class]] &&
         [array isKindOfClass:[NSArray class]] && [array count] != 0) {

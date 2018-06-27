@@ -7,7 +7,8 @@
 //
 
 #import "NSApp.h"
-#import "NSString+Ext.h"
+#import "NSHelper.h"
+#import "NSFile.h"
 
 #import <AudioToolbox/AudioToolbox.h>
 #include <sys/types.h>
@@ -50,9 +51,9 @@
 
 + (NSString *)cacheSize {
     
-    unsigned long long docSize   =  [self _sizeOfFolder:[self documentPath:nil] resetSize:YES];
-    unsigned long long cacheSize =  [self _sizeOfFolder:[self cachesPath:nil] resetSize:YES];
-    unsigned long long tempSize  =  [self _sizeOfFolder:[self tempPath:nil] resetSize:YES];
+    unsigned long long docSize   =  [self _sizeOfFolder:[NSFile pathForDocumentsDirectory] resetSize:YES];
+    unsigned long long cacheSize =  [self _sizeOfFolder:[NSFile pathForCachesDirectory] resetSize:YES];
+    unsigned long long tempSize  =  [self _sizeOfFolder:[NSFile pathForTemporaryDirectory] resetSize:YES];
     
     unsigned long long total = docSize + cacheSize + tempSize;
     
@@ -127,7 +128,7 @@
     NSString *versionKey = [NSString stringWithFormat:@"NSApp_v%@", version];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *oldVersion = [defaults valueForKey:versionKey];
-    if ([NSString isEmpty:oldVersion]) {
+    if ([NSHelper isEmptyString:oldVersion]) {
         return YES;
     } else {
         return NO;
@@ -136,7 +137,7 @@
 
 + (void)onFirstStartForVersion:(NSString *)version block:(void (^)(BOOL isFirstStartForVersion))block {
     
-    if ([NSString isEmpty:version]) {
+    if ([NSHelper isEmptyString:version]) {
         version = APP_VERSION;
     }
     NSString *versionKey = [NSString stringWithFormat:@"NSApp_v%@", version];
@@ -209,60 +210,6 @@
     
     NSString *url = [NSString stringWithFormat:@"tel://%@", number];
     [self openURL:[NSURL URLWithString:url]];
-}
-
-@end
-
-@implementation NSApp (Path)
-
-+ (NSString *)homePath {
-    
-    return NSHomeDirectory();
-}
-
-+ (NSString *)tempPath:(NSString *)fileName {
-    
-    NSString *path = NSTemporaryDirectory();
-    if ([NSString isEmpty:fileName]) {
-        return path;
-    } else {
-        return [path stringByAppendingPathComponent:[NSString stringWithFormat:@"%@/", fileName]];
-    }
-}
-
-+ (NSString *)bundlePath:(NSString *)fileName {
-    
-    return [[NSBundle mainBundle] pathForResource:fileName ofType:nil];
-}
-
-+ (NSString *)documentPath:(NSString *)fileName {
-    
-    NSString *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject;
-    if ([NSString isEmpty:fileName]) {
-        return path;
-    } else {
-        return [path stringByAppendingPathComponent:[NSString stringWithFormat:@"%@/", fileName]];
-    }
-}
-
-+ (NSString *)libraryPath:(NSString *)fileName {
-    
-    NSString *path = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES).firstObject;
-    if ([NSString isEmpty:fileName]) {
-        return path;
-    } else {
-        return [path stringByAppendingPathComponent:[NSString stringWithFormat:@"%@/", fileName]];
-    }
-}
-
-+ (NSString *)cachesPath:(NSString *)fileName {
-    
-    NSString *path = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES).firstObject;
-    if ([NSString isEmpty:fileName]) {
-        return path;
-    } else {
-        return [path stringByAppendingPathComponent:[NSString stringWithFormat:@"%@/", fileName]];
-    }
 }
 
 @end
