@@ -10,10 +10,6 @@
 
 @interface NSArray (Ext)
 
-
-/** 数组判空 */
-+ (BOOL)isEmptyArray:(NSArray *)array;
-
 /**
  *  获取index的元素
  *

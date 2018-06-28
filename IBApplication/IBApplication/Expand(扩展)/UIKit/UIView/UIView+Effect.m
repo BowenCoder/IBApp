@@ -30,12 +30,57 @@
     [self.layer setBorderColor:color.CGColor];
 }
 
-- (void)setShadowColor:(UIColor *)color opacity:(CGFloat)opacity offset:(CGSize)offset radius:(CGFloat)radius {
+- (void)setShadowColor:(UIColor *)color opacity:(CGFloat)opacity offset:(CGSize)offset radius:(CGFloat)radius type:(NSString *)type {
     
     [self.layer setShadowColor:color.CGColor];
     [self.layer setShadowOpacity:opacity];
     [self.layer setShadowOffset:offset];
     [self.layer setShadowRadius:radius];
+    
+    CGSize size = self.bounds.size;
+    if ([type isEqualToString:@"Trapezoidal"]){
+        
+        UIBezierPath *path = [UIBezierPath bezierPath];
+        [path moveToPoint:CGPointMake(size.width * 0.33f, size.height * 0.66f)];
+        [path addLineToPoint:CGPointMake(size.width * 0.66f, size.height * 0.66f)];
+        [path addLineToPoint:CGPointMake(size.width * 1.15f, size.height * 1.15f)];
+        [path addLineToPoint:CGPointMake(size.width * -0.15f, size.height * 1.15f)];
+        self.layer.shadowPath = path.CGPath;
+        
+    } else if ([type isEqualToString:@"Elliptical"]){
+        
+        CGRect ovalRect = CGRectMake(0.0f, size.height + 5, size.width - 10, 15);
+        UIBezierPath *path = [UIBezierPath bezierPathWithOvalInRect:ovalRect];
+        self.layer.shadowPath = path.CGPath;
+        
+    } else if ([type isEqualToString:@"Curl"]) { //Curl is not working !!
+        
+        CGFloat offset = 10.0;
+        CGFloat curve = 5.0;
+        UIBezierPath *path = [UIBezierPath bezierPath];
+        
+        CGRect rect = self.bounds;
+        CGPoint topLeft         = rect.origin;
+        CGPoint bottomLeft     = CGPointMake(0.0, CGRectGetHeight(rect)+offset);
+        CGPoint bottomMiddle = CGPointMake(CGRectGetWidth(rect)/2, CGRectGetHeight(rect)-curve);
+        CGPoint bottomRight     = CGPointMake(CGRectGetWidth(rect), CGRectGetHeight(rect)+offset);
+        CGPoint topRight     = CGPointMake(CGRectGetWidth(rect), 0.0);
+        
+        [path moveToPoint:topLeft];
+        [path addLineToPoint:bottomLeft];
+        [path addQuadCurveToPoint:bottomRight
+                     controlPoint:bottomMiddle];
+        [path addLineToPoint:topRight];
+        [path addLineToPoint:topLeft];
+        [path closePath];
+        self.layer.borderColor = [UIColor colorWithWhite:1.0 alpha:1.0].CGColor;
+        self.layer.borderWidth = 5.0;
+        self.layer.shadowOffset = CGSizeMake(0, 3);
+        self.layer.shadowOpacity = 0.7;
+        self.layer.shouldRasterize = YES;
+        self.layer.shadowPath = path.CGPath;
+        
+    }
 }
 
 @end
@@ -137,6 +182,94 @@
     }
     return radius * 2.0;
 }
+
++ (void)zoom:(UIView *)view duration:(float)duration isIn:(BOOL)isIn {
+    
+    if (isIn) {
+        view.transform = CGAffineTransformMakeScale(0, 0);
+        [UIView animateWithDuration:duration animations:^{
+            view.transform = CGAffineTransformIdentity;
+        } completion:^(BOOL finished) {
+            
+        }];
+    } else {
+        view.transform = CGAffineTransformIdentity;
+        [UIView animateWithDuration:duration animations:^{
+            view.transform = CGAffineTransformMakeScale(0, 0);
+        } completion:^(BOOL finished) {
+            
+        }];
+    }
+
+}
+
++ (void)fade:(UIView *)view duration:(float)duration isIn:(BOOL)isIn {
+    
+    if (isIn) {
+        [view setAlpha:0.0];
+        [UIView animateWithDuration:duration animations:^{
+            [view setAlpha:1.0];
+        } completion:^(BOOL finished) {
+            
+        }];
+    } else {
+        [view setAlpha:1.0];
+        [UIView animateWithDuration:duration animations:^{
+            [view setAlpha:0.0];
+        } completion:^(BOOL finished) {
+            
+        }];
+    }
+}
+
++ (void)move:(UIView *)view duration:(float)duration distance:(CGFloat)distance direction:(UIViewAnimationDirection)direction {
+    
+    switch (direction) {
+        case UIViewAnimationDirectionLeft: {
+            [UIView animateWithDuration:duration animations:^{
+                view.center = CGPointMake(view.center.x - distance, view.center.y);
+            } completion:^(BOOL finished) {
+                
+            }];
+        }
+            break;
+        case UIViewAnimationDirectionRight: {
+            [UIView animateWithDuration:duration animations:^{
+                view.center = CGPointMake(view.center.x + distance, view.center.y);
+            } completion:^(BOOL finished) {
+                
+            }];
+        }
+        case UIViewAnimationDirectionTop: {
+            [UIView animateWithDuration:duration animations:^{
+                view.center = CGPointMake(view.center.x, view.center.y - distance);
+            } completion:^(BOOL finished) {
+                
+            }];
+        }
+            break;
+        case UIViewAnimationDirectionBottom: {
+            [UIView animateWithDuration:duration animations:^{
+                view.center = CGPointMake(view.center.x, view.center.y + distance);
+            } completion:^(BOOL finished) {
+                
+            }];
+        }
+            break;
+        default:
+            break;
+    }
+}
+
++ (void)rotate:(UIView *)view duration:(float)duration angle:(int)angle {
+    
+    [UIView animateWithDuration:duration animations:^{
+        view.layer.transform = CATransform3DRotate(view.layer.transform, M_PI*angle/180.0, 0, 0, 1);
+    } completion:^(BOOL finished) {
+        
+    }];
+}
+
 
 @end
 

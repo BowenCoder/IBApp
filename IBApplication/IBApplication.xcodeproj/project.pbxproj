@@ -13,6 +13,19 @@
 		4A6F197B20E3332000EAF1A7 /* NSColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6F197A20E3332000EAF1A7 /* NSColor.m */; };
 		4A6F197F20E345F500EAF1A7 /* NSHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6F197E20E345F500EAF1A7 /* NSHelper.m */; };
 		4A6F198720E35E3600EAF1A7 /* NSFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6F198620E35E3600EAF1A7 /* NSFile.m */; };
+		4A6F198C20E3A61400EAF1A7 /* NSCharacters.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6F198B20E3A61400EAF1A7 /* NSCharacters.m */; };
+		4A6F199120E3AAB200EAF1A7 /* NSSocketByte.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6F199020E3AAB200EAF1A7 /* NSSocketByte.m */; };
+		4A6F199620E3AC7F00EAF1A7 /* NSSocketPacket.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6F199520E3AC7F00EAF1A7 /* NSSocketPacket.m */; };
+		4A6F199B20E3B37200EAF1A7 /* NSSocketPacketDecode.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6F199A20E3B37200EAF1A7 /* NSSocketPacketDecode.m */; };
+		4A6F199E20E3B56C00EAF1A7 /* NSSocketPacketEncode.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6F199D20E3B56C00EAF1A7 /* NSSocketPacketEncode.m */; };
+		4A6F19A520E3F0D700EAF1A7 /* NSSocketConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6F19A420E3F0D700EAF1A7 /* NSSocketConfig.m */; };
+		4A6F19A920E3F3D700EAF1A7 /* NSSocketConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6F19A820E3F3D700EAF1A7 /* NSSocketConnection.m */; };
+		4A6F19AD20E3F40C00EAF1A7 /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6F19AC20E3F40C00EAF1A7 /* GCDAsyncSocket.m */; };
+		4A6F19B020E3FB7700EAF1A7 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6F19AF20E3FB7700EAF1A7 /* Reachability.m */; };
+		4A6F19B420E3FBDE00EAF1A7 /* NSNetworkStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6F19B320E3FBDE00EAF1A7 /* NSNetworkStatus.m */; };
+		4A6F19B720E3FE9600EAF1A7 /* NSSocketService.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6F19B620E3FE9600EAF1A7 /* NSSocketService.m */; };
+		4A6F19BA20E401CC00EAF1A7 /* NSSocketChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6F19B920E401CC00EAF1A7 /* NSSocketChannel.m */; };
+		4A6F19C020E407A700EAF1A7 /* NSSocketClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6F19BF20E407A700EAF1A7 /* NSSocketClient.m */; };
 		4ACC55E320DB5F3E001352AE /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC55CC20DB5F3E001352AE /* ViewController.m */; };
 		4ACC55E420DB5F3E001352AE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4ACC55D320DB5F3E001352AE /* Assets.xcassets */; };
 		4ACC55E520DB5F3E001352AE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4ACC55D420DB5F3E001352AE /* LaunchScreen.storyboard */; };
@@ -55,6 +68,35 @@
 		4A6F197E20E345F500EAF1A7 /* NSHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSHelper.m; sourceTree = "<group>"; };
 		4A6F198520E35E3600EAF1A7 /* NSFile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSFile.h; sourceTree = "<group>"; };
 		4A6F198620E35E3600EAF1A7 /* NSFile.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSFile.m; sourceTree = "<group>"; };
+		4A6F198A20E3A61400EAF1A7 /* NSCharacters.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSCharacters.h; sourceTree = "<group>"; };
+		4A6F198B20E3A61400EAF1A7 /* NSCharacters.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSCharacters.m; sourceTree = "<group>"; };
+		4A6F198F20E3AAB200EAF1A7 /* NSSocketByte.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSSocketByte.h; sourceTree = "<group>"; };
+		4A6F199020E3AAB200EAF1A7 /* NSSocketByte.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSSocketByte.m; sourceTree = "<group>"; };
+		4A6F199320E3AC0000EAF1A7 /* NSSocketCMDType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSSocketCMDType.h; sourceTree = "<group>"; };
+		4A6F199420E3AC7F00EAF1A7 /* NSSocketPacket.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSSocketPacket.h; sourceTree = "<group>"; };
+		4A6F199520E3AC7F00EAF1A7 /* NSSocketPacket.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSSocketPacket.m; sourceTree = "<group>"; };
+		4A6F199820E3B15E00EAF1A7 /* NSSocketEncodeProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSSocketEncodeProtocol.h; sourceTree = "<group>"; };
+		4A6F199920E3B37200EAF1A7 /* NSSocketPacketDecode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSSocketPacketDecode.h; sourceTree = "<group>"; };
+		4A6F199A20E3B37200EAF1A7 /* NSSocketPacketDecode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSSocketPacketDecode.m; sourceTree = "<group>"; };
+		4A6F199C20E3B56C00EAF1A7 /* NSSocketPacketEncode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSSocketPacketEncode.h; sourceTree = "<group>"; };
+		4A6F199D20E3B56C00EAF1A7 /* NSSocketPacketEncode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSSocketPacketEncode.m; sourceTree = "<group>"; };
+		4A6F19A320E3F0D700EAF1A7 /* NSSocketConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSSocketConfig.h; sourceTree = "<group>"; };
+		4A6F19A420E3F0D700EAF1A7 /* NSSocketConfig.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSSocketConfig.m; sourceTree = "<group>"; };
+		4A6F19A620E3F30400EAF1A7 /* NSSocketDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSSocketDelegate.h; sourceTree = "<group>"; };
+		4A6F19A720E3F3D700EAF1A7 /* NSSocketConnection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSSocketConnection.h; sourceTree = "<group>"; };
+		4A6F19A820E3F3D700EAF1A7 /* NSSocketConnection.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSSocketConnection.m; sourceTree = "<group>"; };
+		4A6F19AB20E3F40C00EAF1A7 /* GCDAsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDAsyncSocket.h; sourceTree = "<group>"; };
+		4A6F19AC20E3F40C00EAF1A7 /* GCDAsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDAsyncSocket.m; sourceTree = "<group>"; };
+		4A6F19AE20E3FB7600EAF1A7 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		4A6F19AF20E3FB7700EAF1A7 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		4A6F19B220E3FBDE00EAF1A7 /* NSNetworkStatus.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSNetworkStatus.h; sourceTree = "<group>"; };
+		4A6F19B320E3FBDE00EAF1A7 /* NSNetworkStatus.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSNetworkStatus.m; sourceTree = "<group>"; };
+		4A6F19B520E3FE9600EAF1A7 /* NSSocketService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSSocketService.h; sourceTree = "<group>"; };
+		4A6F19B620E3FE9600EAF1A7 /* NSSocketService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSSocketService.m; sourceTree = "<group>"; };
+		4A6F19B820E401CB00EAF1A7 /* NSSocketChannel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSSocketChannel.h; sourceTree = "<group>"; };
+		4A6F19B920E401CC00EAF1A7 /* NSSocketChannel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSSocketChannel.m; sourceTree = "<group>"; };
+		4A6F19BE20E407A700EAF1A7 /* NSSocketClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSSocketClient.h; sourceTree = "<group>"; };
+		4A6F19BF20E407A700EAF1A7 /* NSSocketClient.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSSocketClient.m; sourceTree = "<group>"; };
 		4ACC55AB20DB5100001352AE /* IBApplication.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IBApplication.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4ACC55CC20DB5F3E001352AE /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		4ACC55CD20DB5F3E001352AE /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
@@ -166,6 +208,97 @@
 				4A6F198620E35E3600EAF1A7 /* NSFile.m */,
 			);
 			path = NSFile;
+			sourceTree = "<group>";
+		};
+		4A6F198920E3A5DD00EAF1A7 /* NSCharacters */ = {
+			isa = PBXGroup;
+			children = (
+				4A6F198A20E3A61400EAF1A7 /* NSCharacters.h */,
+				4A6F198B20E3A61400EAF1A7 /* NSCharacters.m */,
+			);
+			path = NSCharacters;
+			sourceTree = "<group>";
+		};
+		4A6F198D20E3A84600EAF1A7 /* NSSocket */ = {
+			isa = PBXGroup;
+			children = (
+				4A6F19B120E3FB9E00EAF1A7 /* NetworkStatus */,
+				4A6F199F20E3EECF00EAF1A7 /* Connection */,
+				4A6F19AA20E3F3E900EAF1A7 /* Core */,
+				4A6F199720E3B0FA00EAF1A7 /* Encode */,
+				4A6F199220E3ABC300EAF1A7 /* Service */,
+				4A6F198E20E3AA5B00EAF1A7 /* Packet */,
+			);
+			path = NSSocket;
+			sourceTree = "<group>";
+		};
+		4A6F198E20E3AA5B00EAF1A7 /* Packet */ = {
+			isa = PBXGroup;
+			children = (
+				4A6F198F20E3AAB200EAF1A7 /* NSSocketByte.h */,
+				4A6F199020E3AAB200EAF1A7 /* NSSocketByte.m */,
+				4A6F199420E3AC7F00EAF1A7 /* NSSocketPacket.h */,
+				4A6F199520E3AC7F00EAF1A7 /* NSSocketPacket.m */,
+			);
+			path = Packet;
+			sourceTree = "<group>";
+		};
+		4A6F199220E3ABC300EAF1A7 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				4A6F199320E3AC0000EAF1A7 /* NSSocketCMDType.h */,
+				4A6F19B520E3FE9600EAF1A7 /* NSSocketService.h */,
+				4A6F19B620E3FE9600EAF1A7 /* NSSocketService.m */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		4A6F199720E3B0FA00EAF1A7 /* Encode */ = {
+			isa = PBXGroup;
+			children = (
+				4A6F199820E3B15E00EAF1A7 /* NSSocketEncodeProtocol.h */,
+				4A6F199920E3B37200EAF1A7 /* NSSocketPacketDecode.h */,
+				4A6F199A20E3B37200EAF1A7 /* NSSocketPacketDecode.m */,
+				4A6F199C20E3B56C00EAF1A7 /* NSSocketPacketEncode.h */,
+				4A6F199D20E3B56C00EAF1A7 /* NSSocketPacketEncode.m */,
+			);
+			path = Encode;
+			sourceTree = "<group>";
+		};
+		4A6F199F20E3EECF00EAF1A7 /* Connection */ = {
+			isa = PBXGroup;
+			children = (
+				4A6F19A620E3F30400EAF1A7 /* NSSocketDelegate.h */,
+				4A6F19A320E3F0D700EAF1A7 /* NSSocketConfig.h */,
+				4A6F19A420E3F0D700EAF1A7 /* NSSocketConfig.m */,
+				4A6F19A720E3F3D700EAF1A7 /* NSSocketConnection.h */,
+				4A6F19A820E3F3D700EAF1A7 /* NSSocketConnection.m */,
+				4A6F19B820E401CB00EAF1A7 /* NSSocketChannel.h */,
+				4A6F19B920E401CC00EAF1A7 /* NSSocketChannel.m */,
+				4A6F19BE20E407A700EAF1A7 /* NSSocketClient.h */,
+				4A6F19BF20E407A700EAF1A7 /* NSSocketClient.m */,
+			);
+			path = Connection;
+			sourceTree = "<group>";
+		};
+		4A6F19AA20E3F3E900EAF1A7 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				4A6F19AB20E3F40C00EAF1A7 /* GCDAsyncSocket.h */,
+				4A6F19AC20E3F40C00EAF1A7 /* GCDAsyncSocket.m */,
+				4A6F19AE20E3FB7600EAF1A7 /* Reachability.h */,
+				4A6F19AF20E3FB7700EAF1A7 /* Reachability.m */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		4A6F19B120E3FB9E00EAF1A7 /* NetworkStatus */ = {
+			isa = PBXGroup;
+			children = (
+				4A6F19B220E3FBDE00EAF1A7 /* NSNetworkStatus.h */,
+				4A6F19B320E3FBDE00EAF1A7 /* NSNetworkStatus.m */,
+			);
+			path = NetworkStatus;
 			sourceTree = "<group>";
 		};
 		4ACC55A220DB50FF001352AE = {
@@ -451,6 +584,7 @@
 			isa = PBXGroup;
 			children = (
 				4ACC569820DEC678001352AE /* NSApp */,
+				4A6F198920E3A5DD00EAF1A7 /* NSCharacters */,
 				4A6F197820E3323A00EAF1A7 /* NSColor */,
 				4A6F197320E26B2300EAF1A7 /* NSCrypto */,
 				4A6F196F20E23F9000EAF1A7 /* NSEncode */,
@@ -458,6 +592,7 @@
 				4A6F197C20E345A100EAF1A7 /* NSHelper */,
 				F3E79EE920E2A1F2000AC50A /* NSImage */,
 				4ACC569320DEC47D001352AE /* NSPassword */,
+				4A6F198D20E3A84600EAF1A7 /* NSSocket */,
 				4ACC569420DEC59D001352AE /* NSTouchID */,
 			);
 			path = "IBKit(工具)";
@@ -563,33 +698,46 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4A6F19C020E407A700EAF1A7 /* NSSocketClient.m in Sources */,
 				4ACC561920DD59F5001352AE /* NSArray+Ext.m in Sources */,
 				4ACC564E20DD75AB001352AE /* UIButton+Ext.m in Sources */,
 				4ACC568420DE72BA001352AE /* UIViewController+Alert.m in Sources */,
 				4A6F197F20E345F500EAF1A7 /* NSHelper.m in Sources */,
 				4ACC55EF20DB6203001352AE /* IBController.m in Sources */,
 				4ACC569720DEC5B7001352AE /* NSTouchID.m in Sources */,
+				4A6F19B020E3FB7700EAF1A7 /* Reachability.m in Sources */,
 				4ACC55EA20DB5F3E001352AE /* AppDelegate.m in Sources */,
 				4A6F197B20E3332000EAF1A7 /* NSColor.m in Sources */,
 				4ACC567B20DE6679001352AE /* NSNotificationNameManager.m in Sources */,
 				4A6F197620E26B3800EAF1A7 /* NSCrypto.m in Sources */,
 				F3E79EEC20E2A217000AC50A /* NSImage.m in Sources */,
+				4A6F19A520E3F0D700EAF1A7 /* NSSocketConfig.m in Sources */,
 				4A6F197220E23FB900EAF1A7 /* NSEncode.m in Sources */,
 				4ACC56B020E0001E001352AE /* NSDate+Ext.m in Sources */,
+				4A6F19B720E3FE9600EAF1A7 /* NSSocketService.m in Sources */,
 				4ACC55E720DB5F3E001352AE /* main.m in Sources */,
 				4ACC567520DE5E29001352AE /* UIThemeManager.m in Sources */,
 				4ACC55EB20DB5F3E001352AE /* AppDelegate+AppService.m in Sources */,
 				4A6F198720E35E3600EAF1A7 /* NSFile.m in Sources */,
 				4ACC55E320DB5F3E001352AE /* ViewController.m in Sources */,
+				4A6F199E20E3B56C00EAF1A7 /* NSSocketPacketEncode.m in Sources */,
 				4ACC569B20DEC694001352AE /* NSApp.m in Sources */,
 				4ACC566020DD7FF9001352AE /* UIViewController+MJPopupViewController.m in Sources */,
 				4ACC567E20DE6744001352AE /* UIPopupManager.m in Sources */,
 				4ACC55EC20DB5F3E001352AE /* AppDelegate+AppLifeCircle.m in Sources */,
+				4A6F19AD20E3F40C00EAF1A7 /* GCDAsyncSocket.m in Sources */,
 				4ACC56A420DF7A89001352AE /* UIView+Effect.m in Sources */,
+				4A6F199B20E3B37200EAF1A7 /* NSSocketPacketDecode.m in Sources */,
+				4A6F199620E3AC7F00EAF1A7 /* NSSocketPacket.m in Sources */,
+				4A6F19B420E3FBDE00EAF1A7 /* NSNetworkStatus.m in Sources */,
+				4A6F19BA20E401CC00EAF1A7 /* NSSocketChannel.m in Sources */,
 				4ACC56A820DFC7AC001352AE /* UITextField+Ext.m in Sources */,
 				4ACC569220DEC463001352AE /* NSPassword.m in Sources */,
 				4ACC55E920DB5F3E001352AE /* AppDelegate+AppController.m in Sources */,
 				4ACC563C20DD6C62001352AE /* UIBarButtonItem+Ext.m in Sources */,
+				4A6F19A920E3F3D700EAF1A7 /* NSSocketConnection.m in Sources */,
+				4A6F199120E3AAB200EAF1A7 /* NSSocketByte.m in Sources */,
+				4A6F198C20E3A61400EAF1A7 /* NSCharacters.m in Sources */,
 				4ACC56A120DF72D9001352AE /* UIView+Ext.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

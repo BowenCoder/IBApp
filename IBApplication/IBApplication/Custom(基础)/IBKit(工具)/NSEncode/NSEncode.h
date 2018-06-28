@@ -33,41 +33,6 @@ typedef NS_ENUM(NSInteger, NSEncodeHashOption) {
  */
 @interface NSEncode : NSObject
 
-/**
- *  @brief  NSData 转成UTF8 字符串
- *
- *  @param data 二进制
- *
- *  @return 转成UTF8 字符串
- */
-+ (NSString *)UTF8String:(NSData *)data;
-
-/**
- *  @brief NSDictionary转换成JSON字符串
- *
- *  @param dict 字典
- *
- *  @return  JSON字符串
- */
-+ (NSString *)JSONString:(NSDictionary *)dict;
-
-/**
- *  @brief  将url参数转换成NSDictionary
- *
- *  @param query url参数
- *
- *  @return NSDictionary
- */
-+ (NSDictionary *)dictionaryWithURLQuery:(NSString *)query;
-
-/**
- *  @brief  将NSDictionary转换成url参数字符串
- *
- *  @param  params url参数
- *
- *  @return url 参数字符串
- */
-+ (NSString *)URLQueryString:(NSDictionary *)params;
 
 @end
 

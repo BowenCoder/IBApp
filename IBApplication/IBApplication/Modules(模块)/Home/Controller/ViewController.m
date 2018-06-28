@@ -19,6 +19,7 @@
 #import "NSEncode.h"
 #import "NSCrypto.h"
 #import "NSColor.h"
+#import "NSHelper.h"
 
 @interface ViewController ()
 
@@ -38,12 +39,13 @@
     [data base64EncodedDataWithOptions:NSDataBase64Encoding64CharacterLineLength];
     
     self.imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 50, self.view.frame.size.width, 200)];
+    
 //    self.imageView.contentMode = UIViewContentModeCenter;
-    UIImage *img = [UIImage imageNamed:@"bg"];
+    UIImage *img = [UIImage imageNamed:@"test"];
     self.imageView.image = img;
     self.imageView.backgroundColor = [UIColor lightGrayColor];
     [self.view addSubview:self.imageView];
-    
+    [self.imageView setShadowColor:[UIColor blackColor] opacity:0.7 offset:CGSizeMake(10, 10) radius:5 type:@"Trapezoidal"];
 //    self.imageView.effectGroup = [[UIMotionEffectGroup alloc] init];
 //    [self.imageView moveAxis:100 dy:100];
 //    [self.view setBackgroundImage:img pattern:YES];
@@ -84,6 +86,10 @@
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     
+//    [UIView fade:self.imageView duration:0.25 isIn:YES];
+//    [UIView move:self.imageView duration:0.25 distance:100 direction:UIViewAnimationDirectionBottom];
+    [UIView rotate:self.imageView duration:0.25 angle:90];
+    
 //    NSLog(@"%@", [NSApp cacheSize]);
 
 //    [NSApp shakeDevice];
@@ -94,13 +100,13 @@
 //    [self test3];
 ////    UIPopupManager *manager = [[UIPopupManager alloc] init];
 ////    [manager addCustomView:self.imageView type:UIPopupAnimationCenter duration:0.25];
-    UITouch *touch = [touches anyObject];
-    CGPoint point = [touch locationInView:self.view];
-    UIColor *color = [NSColor randomColor];
-    __weak typeof(self) weakself = self;
-    [self.view addAnimationAtPoint:point duration:0.25 type:UIViewAnimationTypeOpen color:color completion:^(BOOL finished) {
-        weakself.view.backgroundColor = color;
-    }];
+//    UITouch *touch = [touches anyObject];
+//    CGPoint point = [touch locationInView:self.view];
+//    UIColor *color = [NSColor randomColor];
+//    __weak typeof(self) weakself = self;
+//    [self.view addAnimationAtPoint:point duration:0.25 type:UIViewAnimationTypeOpen color:color completion:^(BOOL finished) {
+//        weakself.view.backgroundColor = color;
+//    }];
 //
 ////    [self test4];
 //    [self test5];
@@ -160,7 +166,7 @@
     NSData *data = [originString dataUsingEncoding:NSUTF8StringEncoding];
     NSData *pubData = [NSCrypto encryptRSA:data key:privkey option:NSEncryptRSAPrivateKey];
     NSData *priData = [NSCrypto decryptRSA:pubData key:pubkey option:NSEncryptRSAPublicKey];
-    NSLog(@"%@", [NSEncode UTF8String:priData]);
+    NSLog(@"%@", [NSHelper UTF8String:priData]);
 //
 //    NSData *des = [data encrypt:@"123456789" option:IBCEncryptAlgorithmAES];
 //    NSData *desData = [des decrypt:@"123456789" option:IBCEncryptAlgorithmAES];

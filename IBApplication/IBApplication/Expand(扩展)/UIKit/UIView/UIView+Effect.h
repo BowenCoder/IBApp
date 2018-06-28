@@ -20,6 +20,14 @@ typedef NS_ENUM(NSInteger, UIViewShakeDirection) {
     UIViewShakeDirectionVertical
 };
 
+/** 移动方向 */
+typedef NS_ENUM(NSInteger, UIViewAnimationDirection) {
+    UIViewAnimationDirectionTop,
+    UIViewAnimationDirectionRight,
+    UIViewAnimationDirectionBottom,
+    UIViewAnimationDirectionLeft
+};
+
 @interface UIView (Effect)
 
 /**
@@ -46,8 +54,10 @@ typedef NS_ENUM(NSInteger, UIViewShakeDirection) {
  @param opacity 阴影的透明度，默认是0   范围 0-1 越大越不透明
  @param offset 阴影偏移量
  @param radius 阴影圆角半径
+ @param type 阴影类型
+
  */
-- (void)setShadowColor:(UIColor *)color opacity:(CGFloat)opacity offset:(CGSize)offset radius:(CGFloat)radius;
+- (void)setShadowColor:(UIColor *)color opacity:(CGFloat)opacity offset:(CGSize)offset radius:(CGFloat)radius type:(NSString *)type;
 
 @end
 
@@ -68,6 +78,16 @@ typedef NS_ENUM(NSInteger, UIViewShakeDirection) {
  *  @param completion 动画结束后的代码快
  */
 - (void)addAnimationAtPoint:(CGPoint)point duration:(NSTimeInterval)duration type:(UIViewAnimationType)type color:(UIColor *)color completion:(void (^)(BOOL finished))completion;
+
++ (void)zoom:(UIView *)view duration:(float)duration isIn:(BOOL)isIn;
+
++ (void)fade:(UIView *)view duration:(float)duration isIn:(BOOL)isIn;
+
++ (void)move:(UIView *)view duration:(float)duration distance:(CGFloat)distance direction:(UIViewAnimationDirection)direction;
+
++ (void)rotate:(UIView *)view duration:(float)duration angle:(int)angle;
+
+
 
 @end
 

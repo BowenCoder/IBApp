@@ -10,16 +10,6 @@
 
 @implementation NSArray (Ext)
 
-+ (BOOL)isEmptyArray:(NSArray *)array {
-    
-    if (array != nil && ![array isKindOfClass:[NSNull class]] &&
-        [array isKindOfClass:[NSArray class]] && [array count] != 0) {
-        return NO;
-    } else {
-        return YES;
-    }
-}
-
 - (id)objectOrNilAtIndex:(NSUInteger)index {
     
     return [self containsIndex:index] ? [self objectAtIndex:index] : nil;
