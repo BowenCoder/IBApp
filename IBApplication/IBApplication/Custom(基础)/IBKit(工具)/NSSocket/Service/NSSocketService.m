@@ -15,10 +15,9 @@ NSString * const kNSSocketErrorConnectedNotification = @"kNSSocketErrorConnected
 
 static NSSocketService *service = nil;
 
-@interface NSSocketService ()<NSSocketChannelDelegate> {
-    BOOL _hostRequesting;
-}
+@interface NSSocketService () <NSSocketClientDelegate>
 
+@property (nonatomic, assign) BOOL hostRequesting;
 @property (nonatomic, strong) NSSocketClient *socketClient;
 @property (nonatomic, strong) NSSocketConfig *connectConfig;
 
@@ -26,7 +25,8 @@ static NSSocketService *service = nil;
 
 @implementation NSSocketService
 
-+ (instancetype)sharedSocketService {
++ (instancetype)sharedService {
+    
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         service = [[NSSocketService alloc] init];
@@ -38,8 +38,8 @@ static NSSocketService *service = nil;
     
     [self removeNetworkingStatusNotification];
     [self removeAppStatusNotification];
-    _connectConfig = nil;
-    _hostRequesting = NO;
+    self.connectConfig = nil;
+    self.hostRequesting = NO;
     [self closeConnection];
 }
 
@@ -52,9 +52,9 @@ static NSSocketService *service = nil;
 
 - (void)closeConnection {
     
-    if (_socketClient) {
-        [_socketClient closeConnection];
-        _socketClient = nil;
+    if (self.socketClient) {
+        [self.socketClient closeConnection];
+        self.socketClient = nil;
     }
 }
 
@@ -74,7 +74,7 @@ static NSSocketService *service = nil;
         [self.socketClient openConnection];
     } else {
         //从服务器请求端口...
-        if (!_hostRequesting) {
+        if (!self.hostRequesting) {
             NSLog(@"请求socket host...");
             [self requestSocketHostAddress];
         }
@@ -89,7 +89,7 @@ static NSSocketService *service = nil;
     /*
      if(用户已经登录)
      {
-     _hostRequesting = YES;
+     self.hostRequesting = YES;
      网络请求成功的回调{
      
      self.connectParam = [[FGSocketConnectParam alloc] init];
@@ -108,24 +108,26 @@ static NSSocketService *service = nil;
     
     //如果失败了,5秒后再请求一次
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5. * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        self->_hostRequesting = NO;
+        self.hostRequesting = NO;
         [self startConnectSocket];
     });
 }
 
-#pragma mark -FGSocketChannelDelegate
+#pragma mark - NSSocketClientDelegate
 
-- (void)channelOpened:(NSSocketChannel *)channel host:(NSString *)host port:(int)port {
+- (void)clientOpened:(NSSocketClient *)client host:(NSString *)host port:(int)port {
     /* 连接成功的逻辑 */
+
 }
 
-- (void)channelClosed:(NSSocketChannel *)channel error:(NSError *)error {
+- (void)clientClosed:(NSSocketClient *)client error:(NSError *)error {
     /* 连接失败的逻辑 */
+
 }
 
-
-- (void)channel:(NSSocketChannel *)channel received:(NSDownloadDataPacket *)packet {
+- (void)client:(NSSocketClient *)client receiveData:(NSDownloadDataPacket *)packet {
     /* 在这里,根据协议号处理具体的业务逻辑... */
+
 }
 
 #pragma mark - Notification

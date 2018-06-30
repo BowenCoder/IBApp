@@ -14,13 +14,13 @@
 extern NSString * const kNSSocketAuthSuccessNotification;
 extern NSString * const kNSSocketErrorConnectedNotification;
 
-@protocol NSRoomSocketProtocol<NSObject>
+@protocol NSRoomSocketProtocol <NSObject>
 
 - (void)roomReceivePacket:(NSDownloadDataPacket *)packet;
 
 @end
 
-@protocol NSChannelSocketProtocol<NSObject>
+@protocol NSChannelSocketProtocol <NSObject>
 
 - (void)socketChannelReceivePacket:(NSDownloadDataPacket *)packet;
 
@@ -28,19 +28,15 @@ extern NSString * const kNSSocketErrorConnectedNotification;
 
 @interface NSSocketService : NSObject
 
-/* 我在这里采用不同业务逻辑-对应-不同代理 */
+/** 我在这里采用不同业务逻辑-对应-不同代理 */
 
-/**
- room代理
- */
+/** room代理 */
 @property (nonatomic, weak) id<NSRoomSocketProtocol> roomDelegate;
 
-/**
- channel代理
- */
+/** channel代理 */
 @property (nonatomic, weak) id<NSChannelSocketProtocol> channelDelegate;
 
-+ (instancetype)sharedSocketService;
++ (instancetype)sharedService;
 
 - (void)appLogin;
 

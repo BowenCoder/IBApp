@@ -20,6 +20,8 @@
 #import "NSCrypto.h"
 #import "NSColor.h"
 #import "NSHelper.h"
+#import "UIViewAnimation.h"
+#import "UIView+draggable.h"
 
 @interface ViewController ()
 
@@ -38,14 +40,17 @@
     NSData *data = [NSData data];
     [data base64EncodedDataWithOptions:NSDataBase64Encoding64CharacterLineLength];
     
-    self.imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 50, self.view.frame.size.width, 200)];
+    self.imageView = [[UIImageView alloc] initWithFrame:CGRectMake(50, 100, self.view.frame.size.width - 100, 200)];
     
 //    self.imageView.contentMode = UIViewContentModeCenter;
     UIImage *img = [UIImage imageNamed:@"test"];
     self.imageView.image = img;
     self.imageView.backgroundColor = [UIColor lightGrayColor];
-    [self.view addSubview:self.imageView];
-    [self.imageView setShadowColor:[UIColor blackColor] opacity:0.7 offset:CGSizeMake(10, 10) radius:5 type:@"Trapezoidal"];
+//    [self.view addSubview:self.imageView];
+    self.imageView.userInteractionEnabled = YES;
+    self.imageView.cagingArea = self.view.frame;
+    [self.imageView enableDragging];
+//    [self.imageView setShadowColor:[UIColor blackColor] opacity:0.7 offset:CGSizeMake(10, 10) radius:5 type:@"Trapezoidal"];
 //    self.imageView.effectGroup = [[UIMotionEffectGroup alloc] init];
 //    [self.imageView moveAxis:100 dy:100];
 //    [self.view setBackgroundImage:img pattern:YES];
@@ -81,14 +86,66 @@
         NSLog(@"不是昨天");
 
     }
+    
+}
+
+- (void)test6 {
+
+//    [container setViews:@[view1, view2, self.imageView]];
+    
+    
 }
 
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     
-//    [UIView fade:self.imageView duration:0.25 isIn:YES];
+    UIViewAnimation *animation = [[UIViewAnimation alloc] init];
+    animation.removeAnimation = YES;
+//    [animation flyoutAnimation:self.imageView duration:0.25 start:nil end:^(CAAnimation *animation) {
+//        [self.imageView removeFromSuperview];
+//    }];
+//    [animation fallAnimation:self.imageView duration:0.25 start:nil end:^(CAAnimation *animation) {
+//                [self.imageView removeFromSuperview];
+//    } isIn:NO];
+//    [self.imageView removeFromSuperview];
+    
+//    [animation popAnimation:self.imageView duration:0.4 start:^(CAAnimation *animation) {
+//    }  end:^(CAAnimation *animation) {
+//        [self.view addSubview:self.imageView];
+////        [self.imageView removeFromSuperview];
+//
+//    } isIn:YES];
+    
+//    [animation backAnimation:self.imageView inView:self.view direction:UIViewAnimationTop duration:1 start:^(CAAnimation *animation) {
+//
+//    } end:^(CAAnimation *animation) {
+////        [self.imageView removeFromSuperview];
+//        [self.view addSubview:self.imageView];
+//    } fade:YES isIn:YES];
+    
+//    [animation fadeAnimation:self.imageView duration:0.25 start:nil end:^(CAAnimation *animation) {
+//        [self.imageView removeFromSuperview];
+//    } isIn:NO];
+    
+    [animation slideAnimation:self.imageView inView:nil direction:UIViewAnimationBottom duration:0.25 start:^(CAAnimation *animation) {
+
+    } end:^(CAAnimation *animation) {
+//            [self.imageView removeFromSuperview];
+        [self.view addSubview:self.imageView];
+
+    } isIn:YES];
+    
+//    NSLog(@"123");
+//    [self test6];
+//    [UIViewAnimation zoom:self.imageView duration:0.25 isIn:NO completion:^{
+////        [self.view addSubview:self.imageView];
+//        [self.imageView removeFromSuperview];
+//    }];
+//    [UIView fade:self.imageView duration:0.25 isIn:YES completion:^{
+//        [self.view addSubview:self.imageView];
+//    }];
 //    [UIView move:self.imageView duration:0.25 distance:100 direction:UIViewAnimationDirectionBottom];
-    [UIView rotate:self.imageView duration:0.25 angle:90];
+//    [UIView rotate:self.imageView duration:0.25 angle:90];
     
 //    NSLog(@"%@", [NSApp cacheSize]);
 
@@ -100,13 +157,16 @@
 //    [self test3];
 ////    UIPopupManager *manager = [[UIPopupManager alloc] init];
 ////    [manager addCustomView:self.imageView type:UIPopupAnimationCenter duration:0.25];
+    
 //    UITouch *touch = [touches anyObject];
 //    CGPoint point = [touch locationInView:self.view];
 //    UIColor *color = [NSColor randomColor];
 //    __weak typeof(self) weakself = self;
-//    [self.view addAnimationAtPoint:point duration:0.25 type:UIViewAnimationTypeOpen color:color completion:^(BOOL finished) {
-//        weakself.view.backgroundColor = color;
-//    }];
+////    [UIViewAnimation spread:self.view startPoint:point duration:0.25 type:UIViewAnimationTypeOpen color:color completion:^(BOOL finished) {
+////        weakself.view.backgroundColor = color;
+////    }];
+    
+//    [UIViewAnimation shake:self.imageView];
 //
 ////    [self test4];
 //    [self test5];

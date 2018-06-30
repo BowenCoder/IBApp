@@ -8,26 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-/** 动画效果类型 */
-typedef NS_ENUM(NSInteger, UIViewAnimationType) {
-    UIViewAnimationTypeOpen,
-    UIViewAnimationTypeClose
-};
-
-/** 震动方向 */
-typedef NS_ENUM(NSInteger, UIViewShakeDirection) {
-    UIViewShakeDirectionHorizontal = 0,
-    UIViewShakeDirectionVertical
-};
-
-/** 移动方向 */
-typedef NS_ENUM(NSInteger, UIViewAnimationDirection) {
-    UIViewAnimationDirectionTop,
-    UIViewAnimationDirectionRight,
-    UIViewAnimationDirectionBottom,
-    UIViewAnimationDirectionLeft
-};
-
 @interface UIView (Effect)
 
 /**
@@ -60,37 +40,6 @@ typedef NS_ENUM(NSInteger, UIViewAnimationDirection) {
 - (void)setShadowColor:(UIColor *)color opacity:(CGFloat)opacity offset:(CGSize)offset radius:(CGFloat)radius type:(NSString *)type;
 
 @end
-
-@interface UIView (Animation)
-
-/**
- 视图震动效果
- */
-- (void)shake;
-
-/**
- *  扩散动画(点击视图水波纹扩散效果)
- *
- *  @param point      动画开始的点
- *  @param duration   动画时间
- *  @param type       动画的类型
- *  @param color      动画的颜色
- *  @param completion 动画结束后的代码快
- */
-- (void)addAnimationAtPoint:(CGPoint)point duration:(NSTimeInterval)duration type:(UIViewAnimationType)type color:(UIColor *)color completion:(void (^)(BOOL finished))completion;
-
-+ (void)zoom:(UIView *)view duration:(float)duration isIn:(BOOL)isIn;
-
-+ (void)fade:(UIView *)view duration:(float)duration isIn:(BOOL)isIn;
-
-+ (void)move:(UIView *)view duration:(float)duration distance:(CGFloat)distance direction:(UIViewAnimationDirection)direction;
-
-+ (void)rotate:(UIView *)view duration:(float)duration angle:(int)angle;
-
-
-
-@end
-
 
 @interface UIView (MotionEffect)
 

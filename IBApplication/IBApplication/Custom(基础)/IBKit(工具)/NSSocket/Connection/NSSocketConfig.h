@@ -19,9 +19,9 @@
  */
 @property (nonatomic, assign) NSInteger port;
 /**
- imToken,验证身份,默认nil
+ token,验证身份,默认nil
  */
-@property (nonatomic, copy) NSString *imToken;
+@property (nonatomic, copy) NSString *token;
 /**
  连接服务器的超时时间（单位秒s），默认为15秒
  */

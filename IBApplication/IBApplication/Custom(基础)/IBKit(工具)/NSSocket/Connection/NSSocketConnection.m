@@ -11,7 +11,9 @@
 
 @interface NSSocketConnection () <GCDAsyncSocketDelegate>
 
+/** 第三方socket */
 @property (nonatomic, strong) GCDAsyncSocket *asyncSocket;
+/** socket队列 */
 @property (nonatomic, strong) dispatch_queue_t socketQueue;
 
 @end
@@ -72,7 +74,7 @@ static const NSUInteger TimeOut = -1;
     });
 }
 
-#pragma connect
+#pragma mark - NSSocketDelegate
 
 - (void)contect {
     
@@ -116,12 +118,9 @@ static const NSUInteger TimeOut = -1;
     return result;
 }
 
-#pragma mark - NSSocketDelegate
-
 - (void)didConnect:(id<NSSocketDelegate>)delegate toHost:(NSString *)host port:(uint16_t)port {
     
 }
-
 
 - (void)didDisconnect:(id<NSSocketDelegate>)delegate withError:(NSError *)err {
     
@@ -130,8 +129,6 @@ static const NSUInteger TimeOut = -1;
 - (void)didRead:(id<NSSocketDelegate>)delegate withData:(NSData *)data tag:(long)tag {
     
 }
-
-#pragma mark - write
 
 - (void)writeData:(NSData *)data timeout:(NSTimeInterval)timeout {
     

@@ -17,6 +17,7 @@
  */
 @interface NSSocketConnection : NSObject <NSSocketDelegate>
 
+/** 连接参数配置 */
 @property (nonatomic, strong) NSSocketConfig *connectConfig;
 
 - (instancetype)initWithConnectConfig:(NSSocketConfig *)connectConfig;

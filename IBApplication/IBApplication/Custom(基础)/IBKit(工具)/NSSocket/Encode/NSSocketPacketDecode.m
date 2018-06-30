@@ -24,8 +24,8 @@
 
 @implementation NSSocketPacketDecode
 
-- (instancetype)init
-{
+- (instancetype)init {
+    
     if (self = [super init]) {
         _countOMMengthByte = 2;
         _maxFrameSize = 65536;

@@ -15,7 +15,7 @@
     if (self = [super init]) {
         _host = nil;
         _port = 0;
-        _imToken = nil;
+        _token = nil;
         _timeout = 15;
         _heartbeatEnabled = YES;
         _heartbeatInterval = 30;

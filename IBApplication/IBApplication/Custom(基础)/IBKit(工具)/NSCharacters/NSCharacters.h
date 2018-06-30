@@ -192,5 +192,24 @@
      otherCharacter:(NSString *)otherCharacter
      firstNotDigtal:(BOOL)firstNotDigtal;
 
+#pragma mark - Emoji
+/**
+ *  将十六进制的编码整形转为emoji字符
+ */
++ (NSString *)emojiWithIntCode:(int)intCode;
+
+/**
+ *  将十六进制的编码字符串转为emoji字符
+ */
++ (NSString *)emojiWithStringCode:(NSString *)stringCode;
+
+/**
+ *  是否为emoji字符
+ */
++ (BOOL)isEmoji:(NSString *)emoji;
+
+/** 去掉 表情符号 可能漏了一些 */
++ (NSString *)disableEmoji:(NSString *)text;
+
 
 @end

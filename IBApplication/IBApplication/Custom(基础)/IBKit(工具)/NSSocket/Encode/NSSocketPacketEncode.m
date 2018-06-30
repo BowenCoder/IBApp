@@ -16,8 +16,8 @@
 
 @implementation NSSocketPacketEncode
 
-- (instancetype)init
-{
+- (instancetype)init {
+    
     if (self = [super init]) {
         _timeout = -1;
     }

@@ -50,7 +50,6 @@
         //%02x：x 表示以十六进制形式输出，02 表示不足两位，前面补0输出；超出两位，不影响。当x小写的时候，返回的密文中的字母就是小写的，当X大写的时候返回的密文中的字母是大写的。
     }
     return [resultString lowercaseString];
-
 }
 
 + (NSString*)md5WithData:(NSData *)data{
