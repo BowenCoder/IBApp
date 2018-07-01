@@ -1,15 +1,15 @@
 //
-//  NSImage.m
+//  UIImageHelper.m
 //  IBApplication
 //
 //  Created by BowenCoder on 2018/6/27.
 //  Copyright © 2018年 BowenCoder. All rights reserved.
 //
 
-#import "NSImage.h"
+#import "UIImageHelper.h"
 #import <Accelerate/Accelerate.h>
 
-@implementation NSImage
+@implementation UIImageHelper
 
 + (UIImage *)imageWithFileName:(NSString *)name {
     
@@ -110,7 +110,7 @@
 
 @end
 
-@implementation NSImage (Special)
+@implementation UIImageHelper (Special)
 
 + (UIImage *)flip:(UIImage *)image horizontal:(BOOL)horizontal {
     
@@ -352,7 +352,7 @@
 
 @end
 
-@implementation NSImage (Merge)
+@implementation UIImageHelper (Merge)
 
 /**
  *  @brief  合并两个图片

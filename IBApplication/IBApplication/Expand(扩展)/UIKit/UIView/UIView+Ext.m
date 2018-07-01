@@ -7,7 +7,7 @@
 //
 
 #import "UIView+Ext.h"
-#import "NSImage.h"
+#import "UIImageHelper.h"
 
 @implementation UIView (Ext)
 
@@ -48,7 +48,7 @@
         return;
     }
     if (pattern) {
-        UIImage *img = [NSImage resizedImage:image size:self.frame.size]; //重绘图片，不然出现平铺效果
+        UIImage *img = [UIImageHelper resizedImage:image size:self.frame.size]; //重绘图片，不然出现平铺效果
         [self setBackgroundColor:[UIColor colorWithPatternImage:img]];
     } else {
         self.layer.contents = (__bridge id _Nullable)(image.CGImage);

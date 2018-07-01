@@ -22,6 +22,7 @@
 #import "NSHelper.h"
 #import "UIViewAnimation.h"
 #import "UIView+draggable.h"
+#import "NSHTTPClient.h"
 
 @interface ViewController ()
 
@@ -96,6 +97,7 @@
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     
+    NSLog(@"%ld", [NSHTTPClient shareInstance].networkStatus);
     UIViewAnimation *animation = [[UIViewAnimation alloc] init];
     animation.removeAnimation = YES;
 //    [animation flyoutAnimation:self.imageView duration:0.25 start:nil end:^(CAAnimation *animation) {
