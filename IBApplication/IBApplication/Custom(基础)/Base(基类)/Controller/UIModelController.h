@@ -1,14 +1,14 @@
 //
-//  IBController.h
+//  UIModelController.h
 //  IBApplication
 //
-//  Created by Bowen on 2018/6/21.
+//  Created by Bowen on 2018/7/1.
 //  Copyright © 2018年 BowenCoder. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@interface IBController : UIViewController
+@interface UIModelController : UIViewController
 
 - (void)goLogin;
 

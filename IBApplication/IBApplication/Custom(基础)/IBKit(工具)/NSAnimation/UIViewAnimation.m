@@ -576,7 +576,6 @@ NSString *const UIViewAnimationFlyoutName = @"UIViewAnimationFlyoutName";
     if ([self.currentView.layer animationForKey:UIViewAnimationFlyoutName]) {
         [self.currentView.layer removeAnimationForKey:UIViewAnimationFlyoutName];
     }
-
 }
 
 @end

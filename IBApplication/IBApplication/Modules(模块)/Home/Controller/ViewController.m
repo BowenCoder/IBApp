@@ -107,9 +107,9 @@
 //    [self.imageView removeFromSuperview];
 //    [self.view addSubview:self.imageView];
 
-    [animation popAnimation:self.imageView duration:4 start:^(CAAnimation *animation) {
-    }  end:^(CAAnimation *animation) {
+    [animation popAnimation:self.imageView duration:0.1 start:^(CAAnimation *animation) {
         [self.view addSubview:self.imageView];
+    }  end:^(CAAnimation *animation) {
 //        [self.imageView removeFromSuperview];
 
     } isIn:YES];
