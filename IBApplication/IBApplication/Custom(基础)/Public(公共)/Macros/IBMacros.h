@@ -31,47 +31,37 @@
 #endif
 
 
-#ifndef    weakify
-#if __has_feature(objc_arc)
-
-#define weakify( x ) \
-_Pragma("clang diagnostic push") \
-_Pragma("clang diagnostic ignored \"-Wshadow\"") \
-autoreleasepool{} __weak __typeof__(x) __weak_##x##__ = x; \
-_Pragma("clang diagnostic pop")
-
-#else
-
-
-#define weakify( x ) \
-_Pragma("clang diagnostic push") \
-_Pragma("clang diagnostic ignored \"-Wshadow\"") \
-autoreleasepool{} __block __typeof__(x) __block_##x##__ = x; \
-_Pragma("clang diagnostic pop")
-
-#endif
+#ifndef weakify
+    #if DEBUG
+        #if __has_feature(objc_arc)
+        #define weakify(object) autoreleasepool{} __weak __typeof__(object) weak##_##object = object;
+        #else
+        #define weakify(object) autoreleasepool{} __block __typeof__(object) block##_##object = object;
+        #endif
+    #else
+        #if __has_feature(objc_arc)
+        #define weakify(object) try{} @finally{} {} __weak __typeof__(object) weak##_##object = object;
+        #else
+        #define weakify(object) try{} @finally{} {} __block __typeof__(object) block##_##object = object;
+        #endif
+    #endif
 #endif
 
-#ifndef    strongify
-#if __has_feature(objc_arc)
-
-#define strongify( x ) \
-_Pragma("clang diagnostic push") \
-_Pragma("clang diagnostic ignored \"-Wshadow\"") \
-try{} @finally{} __typeof__(x) x = __weak_##x##__; \
-_Pragma("clang diagnostic pop")
-
-#else
-
-#define strongify( x ) \
-_Pragma("clang diagnostic push") \
-_Pragma("clang diagnostic ignored \"-Wshadow\"") \
-try{} @finally{} __typeof__(x) x = __block_##x##__; \
-_Pragma("clang diagnostic pop")
-
+#ifndef strongify
+    #if DEBUG
+        #if __has_feature(objc_arc)
+        #define strongify(object) autoreleasepool{} __typeof__(object) object = weak##_##object;
+        #else
+        #define strongify(object) autoreleasepool{} __typeof__(object) object = block##_##object;
+        #endif
+    #else
+        #if __has_feature(objc_arc)
+        #define strongify(object) try{} @finally{} __typeof__(object) object = weak##_##object;
+        #else
+        #define strongify(object) try{} @finally{} __typeof__(object) object = block##_##object;
+        #endif
+    #endif
 #endif
-#endif
-
 
 
 #endif /* IBMacros_h */

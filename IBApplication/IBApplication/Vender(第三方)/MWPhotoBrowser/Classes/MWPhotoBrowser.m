@@ -13,6 +13,9 @@
 #import "SDImageCache.h"
 #import "UIImage+MWPhotoBrowser.h"
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+
 #define PADDING                  10
 
 static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
@@ -1666,3 +1669,5 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
 }
 
 @end
+
+

@@ -12,6 +12,9 @@
 #import "MWGridViewController.h"
 #import "MWZoomingScrollView.h"
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+
 // Declare private methods of browser
 @interface MWPhotoBrowser () {
     
@@ -133,4 +136,6 @@
 - (void)releaseAllUnderlyingPhotos:(BOOL)preserveCurrent;
 
 @end
+
+#pragma clang diagnostic pop
 
