@@ -8,11 +8,19 @@
 
 #import "UIViewAnimation.h"
 
+NSString *const UIViewAnimationSlideName  = @"UIViewAnimationSlideName";
+NSString *const UIViewAnimationFadeName   = @"UIViewAnimationFadeName";
+NSString *const UIViewAnimationBackName   = @"UIViewAnimationBackName";
+NSString *const UIViewAnimationPopName    = @"UIViewAnimationPopName";
+NSString *const UIViewAnimationFallName   = @"UIViewAnimationFallName";
+NSString *const UIViewAnimationFlyoutName = @"UIViewAnimationFlyoutName";
+
 @interface UIViewAnimation () <CAAnimationDelegate>
 
 @property (nonatomic, copy) UIViewAnimationHandle startHandle;
 @property (nonatomic, copy) UIViewAnimationHandle endHandle;
 @property (nonatomic, strong) UIView *currentView;
+@property (nonatomic, assign) NSTimeInterval duration;
 
 @end
 
@@ -332,7 +340,7 @@
                           start:(UIViewAnimationHandle)startHandle
                             end:(UIViewAnimationHandle)endHandle
                            isIn:(BOOL)isIn {
-    self.currentView = view;
+    
     CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"position"];
     NSValue *fromValue;
     NSValue *toValue;
@@ -354,8 +362,8 @@
 
     animation.fromValue = fromValue;
     animation.toValue = toValue;
-    CAAnimationGroup *group = [self animationGroup:@[animation] duration:duration start:startHandle end:endHandle];
-    [view.layer addAnimation:group forKey:nil];
+    CAAnimationGroup *group = [self animationGroup:view animations:@[animation] duration:duration start:startHandle end:endHandle];
+    [view.layer addAnimation:group forKey:UIViewAnimationSlideName];
     return group;
 }
 
@@ -364,7 +372,7 @@
                          start:(UIViewAnimationHandle)startHandle
                            end:(UIViewAnimationHandle)endHandle
                           isIn:(BOOL)isIn {
-    self.currentView = view;
+
     CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"opacity"];
     if (isIn) {
         animation.fromValue = @0.0;
@@ -374,9 +382,8 @@
         animation.toValue = @0.0;
     }
     
-    CAAnimationGroup *group = [self animationGroup:@[animation] duration:duration start:startHandle end:endHandle];
-    group.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
-    [view.layer addAnimation:group forKey:nil];
+    CAAnimationGroup *group = [self animationGroup:view animations:@[animation] duration:duration start:startHandle end:endHandle];
+    [view.layer addAnimation:group forKey:UIViewAnimationFadeName];
     return group;
 }
 
@@ -389,7 +396,7 @@
                            end:(UIViewAnimationHandle)endHandle
                           fade:(BOOL)fade
                           isIn:(BOOL)isIn {
-    self.currentView = view;
+
     CGPoint centerPoint;
     if (enclosingView) {
         centerPoint = [UIViewAnimation viewCenter:enclosingView.frame viewFrame:view.frame viewCenter:view.center direction:direction];
@@ -419,8 +426,8 @@
     } else {
         animations = @[animation];
     }
-    CAAnimationGroup *group = [self animationGroup:animations duration:duration start:startHandle end:endHandle];
-    [view.layer addAnimation:group forKey:nil];
+    CAAnimationGroup *group = [self animationGroup:view animations:animations duration:duration start:startHandle end:endHandle];
+    [view.layer addAnimation:group forKey:UIViewAnimationBackName];
     return nil;
 }
 
@@ -429,7 +436,6 @@
                         start:(UIViewAnimationHandle)startHandle
                           end:(UIViewAnimationHandle)endHandle
                          isIn:(BOOL)isIn {
-    self.currentView = view;
     
     CAKeyframeAnimation *scale = [CAKeyframeAnimation animationWithKeyPath:@"transform.scale"];
     if (isIn) {
@@ -447,8 +453,8 @@
         fade.toValue = @0.0;
     }
     
-    CAAnimationGroup *group = [self animationGroup:@[scale, fade] duration:duration start:startHandle end:endHandle];
-    [view.layer addAnimation:group forKey:nil];
+    CAAnimationGroup *group = [self animationGroup:view animations:@[scale, fade] duration:duration start:startHandle end:endHandle];
+    [view.layer addAnimation:group forKey:UIViewAnimationPopName];
     
     return group;
 }
@@ -458,9 +464,7 @@
                          start:(UIViewAnimationHandle)startHandle
                            end:(UIViewAnimationHandle)endHandle
                           isIn:(BOOL)isIn {
-    
-    self.currentView = view;
-    
+
     CABasicAnimation *fall = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
     if (isIn) {
         fall.fromValue = @2.0;
@@ -479,8 +483,8 @@
         fade.toValue = @0.0;
     }
     
-    CAAnimationGroup *group = [self animationGroup:@[fall, fade] duration:duration start:startHandle end:endHandle];
-    [view.layer addAnimation:group forKey:nil];
+    CAAnimationGroup *group = [self animationGroup:view animations:@[fall, fade] duration:duration start:startHandle end:endHandle];
+    [view.layer addAnimation:group forKey:UIViewAnimationFallName];
     return group;
 }
 
@@ -488,25 +492,27 @@
                         duration:(NSTimeInterval)duration
                            start:(UIViewAnimationHandle)startHandle
                              end:(UIViewAnimationHandle)endHandle {
-    
     self.currentView = view;
-    
+
     CABasicAnimation *fly = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
     fly.toValue = @2.0;
     
     CABasicAnimation *fade = [CABasicAnimation animationWithKeyPath:@"opacity"];
     fade.toValue = @0.0;
     
-    CAAnimationGroup *group = [self animationGroup:@[fly, fade] duration:duration start:startHandle end:endHandle];
-    [view.layer addAnimation:group forKey:nil];
+    CAAnimationGroup *group = [self animationGroup:view animations:@[fly, fade] duration:duration start:startHandle end:endHandle];
+    [view.layer addAnimation:group forKey:UIViewAnimationFlyoutName];
     return group;
 
 }
 
-- (CAAnimationGroup *)animationGroup:(NSArray *)animations
+- (CAAnimationGroup *)animationGroup:(UIView *)view
+                          animations:(NSArray *)animations
                             duration:(NSTimeInterval)duration
                                start:(UIViewAnimationHandle)startHandle
                                  end:(UIViewAnimationHandle)endHandle {
+    self.currentView = view;
+    self.duration = duration;
     
     CAAnimationGroup *group = [CAAnimationGroup animation];
     group.animations = [NSArray arrayWithArray:animations];
@@ -517,7 +523,7 @@
     self.startHandle = startHandle;
     self.endHandle = endHandle;
     group.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-                                        
+    
     return group;
 }
 
@@ -531,20 +537,46 @@
 }
 
 - (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag {
-    
+
+    if (self.endHandle) {
+        self.endHandle(anim);
+    }
+
     if (self.moveModelLayer && self.currentView) {
         CGPoint position = self.currentView.layer.presentationLayer.position;
         self.currentView.layer.modelLayer.position = position;
     }
     
-    if (self.endHandle) {
-        self.endHandle(anim);
+    if (self.removeAnimation && self.currentView && flag) {
+        [self _removeAnimations];
+    } else { //解决视图没有被添加，执行动画提前结束，在真正结束时移除动画
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(self.duration * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self _removeAnimations];
+        });
     }
-    
-    if (self.removeAnimation && self.currentView) {
-        [self.currentView.layer removeAllAnimations];
+}
+
+- (void)_removeAnimations {
+
+    if ([self.currentView.layer animationForKey:UIViewAnimationSlideName]) {
+        [self.currentView.layer removeAnimationForKey:UIViewAnimationSlideName];
     }
-    
+    if ([self.currentView.layer animationForKey:UIViewAnimationFadeName]) {
+        [self.currentView.layer removeAnimationForKey:UIViewAnimationFadeName];
+    }
+    if ([self.currentView.layer animationForKey:UIViewAnimationBackName]) {
+        [self.currentView.layer removeAnimationForKey:UIViewAnimationBackName];
+    }
+    if ([self.currentView.layer animationForKey:UIViewAnimationPopName]) {
+        [self.currentView.layer removeAnimationForKey:UIViewAnimationPopName];
+    }
+    if ([self.currentView.layer animationForKey:UIViewAnimationFallName]) {
+        [self.currentView.layer removeAnimationForKey:UIViewAnimationFallName];
+    }
+    if ([self.currentView.layer animationForKey:UIViewAnimationFlyoutName]) {
+        [self.currentView.layer removeAnimationForKey:UIViewAnimationFlyoutName];
+    }
+
 }
 
 @end

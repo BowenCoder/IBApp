@@ -46,7 +46,6 @@
     UIImage *img = [UIImage imageNamed:@"test"];
     self.imageView.image = img;
     self.imageView.backgroundColor = [UIColor lightGrayColor];
-//    [self.view addSubview:self.imageView];
     self.imageView.userInteractionEnabled = YES;
     self.imageView.cagingArea = self.view.frame;
     [self.imageView enableDragging];
@@ -86,14 +85,12 @@
         NSLog(@"不是昨天");
 
     }
-    
+//    [self.view addSubview:self.imageView];
+
 }
 
 - (void)test6 {
-
 //    [container setViews:@[view1, view2, self.imageView]];
-    
-    
 }
 
 
@@ -108,13 +105,14 @@
 //                [self.imageView removeFromSuperview];
 //    } isIn:NO];
 //    [self.imageView removeFromSuperview];
-    
-//    [animation popAnimation:self.imageView duration:0.4 start:^(CAAnimation *animation) {
-//    }  end:^(CAAnimation *animation) {
-//        [self.view addSubview:self.imageView];
-////        [self.imageView removeFromSuperview];
-//
-//    } isIn:YES];
+//    [self.view addSubview:self.imageView];
+
+    [animation popAnimation:self.imageView duration:4 start:^(CAAnimation *animation) {
+    }  end:^(CAAnimation *animation) {
+        [self.view addSubview:self.imageView];
+//        [self.imageView removeFromSuperview];
+
+    } isIn:YES];
     
 //    [animation backAnimation:self.imageView inView:self.view direction:UIViewAnimationTop duration:1 start:^(CAAnimation *animation) {
 //
@@ -126,14 +124,13 @@
 //    [animation fadeAnimation:self.imageView duration:0.25 start:nil end:^(CAAnimation *animation) {
 //        [self.imageView removeFromSuperview];
 //    } isIn:NO];
-    
-    [animation slideAnimation:self.imageView inView:nil direction:UIViewAnimationBottom duration:0.25 start:^(CAAnimation *animation) {
 
-    } end:^(CAAnimation *animation) {
-//            [self.imageView removeFromSuperview];
-        [self.view addSubview:self.imageView];
-
-    } isIn:YES];
+//    [animation slideAnimation:self.imageView inView:nil direction:UIViewAnimationBottom duration:4 start:^(CAAnimation *animation) {
+//
+//    } end:^(CAAnimation *animation) {
+//        [self.view addSubview:self.imageView];
+////        [self.imageView removeFromSuperview];
+//    } isIn:YES];
     
 //    NSLog(@"123");
 //    [self test6];

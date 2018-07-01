@@ -36,10 +36,10 @@ typedef void(^UIViewAnimationHandle)(CAAnimation *animation);
 
 @interface UIViewAnimation : NSObject
 
-/** 是否移除动画 */
-@property (nonatomic, assign) BOOL removeAnimation;
 /** 真实移动视图（解决移动后的视图是否响应问题） */
 @property (nonatomic, assign) BOOL moveModelLayer;
+/** 移除动画 */
+@property (nonatomic, assign) BOOL removeAnimation;
 
 + (CGPoint)viewCenter:(CGRect)enclosingViewFrame viewFrame:(CGRect)viewFrame viewCenter:(CGPoint)viewCenter direction:(UIViewAnimationDirection)direction;
 
@@ -123,7 +123,6 @@ typedef void(^UIViewAnimationHandle)(CAAnimation *animation);
                           fade:(BOOL)fade
                           isIn:(BOOL)isIn;
 
-//不能把removeAnimation设置为yes
 - (CAAnimation *)popAnimation:(UIView *)view
                      duration:(NSTimeInterval)duration
                         start:(UIViewAnimationHandle)startHandle
@@ -141,7 +140,8 @@ typedef void(^UIViewAnimationHandle)(CAAnimation *animation);
                            start:(UIViewAnimationHandle)startHandle
                              end:(UIViewAnimationHandle)endHandle;
 
-- (CAAnimationGroup *)animationGroup:(NSArray *)animations
+- (CAAnimationGroup *)animationGroup:(UIView *)view
+                          animations:(NSArray *)animations
                             duration:(NSTimeInterval)duration
                                start:(UIViewAnimationHandle)startHandle
                                  end:(UIViewAnimationHandle)endHandle;
