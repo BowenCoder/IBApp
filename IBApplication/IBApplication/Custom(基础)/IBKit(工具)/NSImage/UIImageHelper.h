@@ -27,13 +27,23 @@ typedef NS_ENUM(NSInteger, ImageWaterDirect) {
 @interface UIImageHelper : NSObject
 
 /**
- *  @brief  根据bundle中的文件名读取图片
+ *  @brief  根据mainBundle中的文件名读取图片
  *
  *  @param name 图片名
  *
  *  @return 无缓存的图片
  */
 + (UIImage *)imageWithFileName:(NSString *)name;
+
+/**
+ *  @brief  根据自定义bundle中的文件名读取图片，注意imageWithContentsOfFile无法读取Assets中图片
+ *
+ *  @param name 图片名
+ *  @param bundleName 自定义bundle的名字
+ *
+ *  @return 无缓存的图片
+ */
++ (UIImage *)imageWithName:(NSString *)name inBundle:(NSString *)bundleName;
 
 /**
  *  @brief  根据颜色生成纯色图片
@@ -105,15 +115,6 @@ typedef NS_ENUM(NSInteger, ImageWaterDirect) {
  *  @return 翻转后的图片
  */
 + (UIImage *)flip:(UIImage *)image horizontal:(BOOL)horizontal;
-
-/**
- *  @brief 图片解码
- *
- *  @param image 要解码的图片
- *
- *  @return 解码后的图片
- */
-+ (UIImage *)decodeImage:(UIImage *)image;
 
 /**
  *  @brief 修正拍照图片方向

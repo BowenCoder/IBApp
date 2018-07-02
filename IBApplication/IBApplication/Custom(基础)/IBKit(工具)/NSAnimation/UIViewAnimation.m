@@ -536,23 +536,32 @@ NSString *const UIViewAnimationFlyoutName = @"UIViewAnimationFlyoutName";
     }
 }
 
+/**
+ 此方法返回动画不一定结束
+ */
 - (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag {
 
-    if (self.endHandle) {
-        self.endHandle(anim);
+    if (flag) { //标志动画是否结束
+        [self _animationRealStop:anim];
+    } else {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(self.duration * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self _animationRealStop:anim];
+        });
     }
+}
 
+- (void)_animationRealStop:(CAAnimation *)anim {
+    
     if (self.moveModelLayer && self.currentView) {
         CGPoint position = self.currentView.layer.presentationLayer.position;
         self.currentView.layer.modelLayer.position = position;
     }
-    
-    if (self.removeAnimation && self.currentView && flag) {
+    if (self.removeAnimation && self.currentView) {
         [self _removeAnimations];
-    } else { //解决视图没有被添加，执行动画提前结束，在真正结束时移除动画
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(self.duration * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [self _removeAnimations];
-        });
+    }
+    
+    if (self.endHandle) {
+        self.endHandle(anim);
     }
 }
 

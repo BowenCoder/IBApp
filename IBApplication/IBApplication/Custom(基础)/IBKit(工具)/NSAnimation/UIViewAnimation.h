@@ -85,6 +85,7 @@ typedef void(^UIViewAnimationHandle)(CAAnimation *animation);
 
 /**
  核心动画操作的是呈现图层，实际上模型图层没有变
+ 注意点，载入屏幕，视图需要在开始时添加上去；移出屏幕，视图需要在结束时移除
  */
 @interface UIViewAnimation (CoreAnimation)
 

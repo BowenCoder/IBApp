@@ -23,11 +23,17 @@
 #import "UIViewAnimation.h"
 #import "UIView+draggable.h"
 #import "NSHTTPClient.h"
+#import "NSFile.h"
+#import "UIImageHelper.h"
+#import "MBProgressHUD+Ext.h"
+#import "SDWebImage.h"
+//#import "FLAnimatedImageView.h"
 
 @interface ViewController ()
 
 @property (nonatomic, strong) UIImageView *imageView;
 @property (nonatomic, strong) UIButton *btn;
+@property (nonatomic, strong) UIView *testView;
 
 @end
 
@@ -87,6 +93,10 @@
 
     }
 //    [self.view addSubview:self.imageView];
+    
+    self.testView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 60, 60)];
+    self.testView.backgroundColor = [UIColor redColor];
+    [self.view addSubview:self.testView];
 
 }
 
@@ -94,9 +104,44 @@
 //    [container setViews:@[view1, view2, self.imageView]];
 }
 
-
+- (void)doSomeWorkWithProgress:(MBProgressHUD *)hub {
+    float progress = 0.0f;
+    while (progress < 1.0f) {
+        progress += 0.01f;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            hub.progress = progress;
+            hub.detailsLabel.text = NSStringFormat(@"%.2f", progress);
+        });
+        usleep(50000);
+    }
+}
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    NSData *data = [[NSData alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"niconiconi@2x" ofType:@"gif"]];
+//    UIImage *image = [UIImage sd_animatedGIFWithData:data];
+//    [MBProgressHUD showCustomView:self.view view:[[UIImageView alloc] initWithImage:image] text:nil mask:YES];
+    MBProgressHUD *hud = [MBProgressHUD showLoadingGif:self.view gif:data text:nil];
+    NSLog(@"123");
+//    FLAnimatedImage *image1 = [FLAnimatedImage animatedImageWithGIFData:data];
+//    FLAnimatedImageView *imgview = [[FLAnimatedImageView alloc] initWithFrame:CGRectMake(0, 0, 50, 50)];
+//    imgview.animatedImage = image1;
+//    [MBProgressHUD showCustomView:self.view custom:imgview text:@"加载中..."];
+
+//    [MBProgressHUD showProgress:self.view title:@"正在上传" detail:@"0.00" progress:^(MBProgressHUD *hud) {
+//        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), ^{
+//            [self doSomeWorkWithProgress:hud];
+//            dispatch_async(dispatch_get_main_queue(), ^{
+//                [hud hideAnimated:YES];
+//            });
+//        });
+//    } mode:MBProgressModeDeterminate];
     
+//    [MBProgressHUD showSuccess:self.view title:@"上传成功"];
+//    [MBProgressHUD showError:self.view title:@"上传失败"];
+//    [MBProgressHUD showText:self.view title:@"错误操作" detail:nil position:MBPositionBottom];
+
+//    [MBProgressHUD showCustomView:self.view custom:self.testView text:@"活动中"];
+//    [MBProgressHUD showLoading:self.view text:@"执行中"];
+//    [MBProgressHUD showLoading:self.view text:@"加载中" background:nil];
     NSLog(@"%ld", [NSHTTPClient shareInstance].networkStatus);
     UIViewAnimation *animation = [[UIViewAnimation alloc] init];
     animation.removeAnimation = YES;
@@ -109,12 +154,12 @@
 //    [self.imageView removeFromSuperview];
 //    [self.view addSubview:self.imageView];
 
-    [animation popAnimation:self.imageView duration:0.1 start:^(CAAnimation *animation) {
-        [self.view addSubview:self.imageView];
-    }  end:^(CAAnimation *animation) {
+//    [animation popAnimation:self.imageView duration:4 start:^(CAAnimation *animation) {
+//        [self.view addSubview:self.imageView];
+//    }  end:^(CAAnimation *animation) {
 //        [self.imageView removeFromSuperview];
-
-    } isIn:YES];
+//
+//    } isIn:YES];
     
 //    [animation backAnimation:self.imageView inView:self.view direction:UIViewAnimationTop duration:1 start:^(CAAnimation *animation) {
 //

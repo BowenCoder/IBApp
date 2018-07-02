@@ -40,7 +40,9 @@
 
 + (UIImage *)appIcon {
     
-    UIImage *appIcon = [[UIImage alloc] initWithContentsOfFile:[self appIconPath]] ;
+    NSDictionary *infoPlist = [[NSBundle mainBundle] infoDictionary];
+    NSString *icon = [[infoPlist valueForKeyPath:@"CFBundleIcons.CFBundlePrimaryIcon.CFBundleIconFiles"] lastObject];
+    UIImage *appIcon = [UIImage imageNamed:icon] ;
     return appIcon;
 }
 
@@ -174,15 +176,6 @@
         }
     }
     return folderSize;
-}
-
-+ (NSString *)appIconPath {
-    
-    NSString *iconFilename = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleIconFile"] ;
-    NSString *iconBasename = [iconFilename stringByDeletingPathExtension] ;
-    NSString *iconExtension = [iconFilename pathExtension] ;
-    return [[NSBundle mainBundle] pathForResource:iconBasename
-                                           ofType:iconExtension] ;
 }
 
 @end

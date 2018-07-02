@@ -8,13 +8,19 @@
 
 #import "UIImageHelper.h"
 #import <Accelerate/Accelerate.h>
+#import "NSHelper.h"
 
 @implementation UIImageHelper
 
 + (UIImage *)imageWithFileName:(NSString *)name {
     
-    NSString *extension = @"png";
+    return [self imageWithName:name inBundle:nil];
+}
+
++ (UIImage *)imageWithName:(NSString *)name inBundle:(NSString *)bundleName {
     
+    NSString *extension = @"png";
+    bundleName = [bundleName stringByAppendingString:@".bundle"];
     NSArray *components = [name componentsSeparatedByString:@"."];
     if ([components count] >= 2) {
         NSUInteger lastIndex = components.count - 1;
@@ -25,29 +31,35 @@
     
     // 如果为Retina屏幕且存在对应图片，则返回Retina图片，否则查找普通图片
     if ([UIScreen mainScreen].scale == 2.0) {
-        name = [name stringByAppendingString:@"@2x"];
-        
-        NSString *path = [[NSBundle mainBundle] pathForResource:name ofType:extension];
+        NSString *tempName = [name stringByAppendingString:@"@2x"];
+        NSString *path = [UIImageHelper pathWithName:tempName extension:extension inBundle:bundleName];
         if (path != nil) {
             return [UIImage imageWithContentsOfFile:path];
         }
     }
     
     if ([UIScreen mainScreen].scale == 3.0) {
-        name = [name stringByAppendingString:@"@3x"];
-        
-        NSString *path = [[NSBundle mainBundle] pathForResource:name ofType:extension];
+        NSString *tempName = [name stringByAppendingString:@"@3x"];
+        NSString *path = [UIImageHelper pathWithName:tempName extension:extension inBundle:bundleName];
         if (path != nil) {
             return [UIImage imageWithContentsOfFile:path];
         }
     }
     
-    NSString *path = [[NSBundle mainBundle] pathForResource:name ofType:extension];
+    NSString *path = [UIImageHelper pathWithName:name extension:extension inBundle:bundleName];
     if (path) {
         return [UIImage imageWithContentsOfFile:path];
     }
-    
     return nil;
+}
+
++ (NSString *)pathWithName:(NSString *)name extension:(NSString *)extension inBundle:(NSString *)bundleName {
+    
+    if ([NSHelper isEmptyString:bundleName]) {
+        return [[NSBundle mainBundle] pathForResource:name ofType:extension];
+    } else {
+        return [[NSBundle mainBundle] pathForResource:name ofType:extension inDirectory:bundleName];
+    }
 }
 
 + (UIImage *)imageWithColor:(UIColor *)color {
@@ -127,51 +139,6 @@
     UIGraphicsEndImageContext();
     return newImage;
 }
-
-+ (UIImage *)decodeImage:(UIImage *)image {
-    
-    CGImageRef imageRef = image.CGImage;
-    CGSize imageSize = CGSizeMake(CGImageGetWidth(imageRef), CGImageGetHeight(imageRef));
-    CGRect imageRect = (CGRect){.origin = CGPointZero, .size = imageSize};
-    
-    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-    CGBitmapInfo bitmapInfo = CGImageGetBitmapInfo(imageRef);
-    
-    int infoMask = (bitmapInfo & kCGBitmapAlphaInfoMask);
-    BOOL anyNonAlpha = (infoMask == kCGImageAlphaNone ||
-                        infoMask == kCGImageAlphaNoneSkipFirst ||
-                        infoMask == kCGImageAlphaNoneSkipLast);
-    if (infoMask == kCGImageAlphaNone && CGColorSpaceGetNumberOfComponents(colorSpace) > 1) {
-        bitmapInfo &= ~kCGBitmapAlphaInfoMask;
-        bitmapInfo |= kCGImageAlphaNoneSkipFirst;
-    } else if (!anyNonAlpha && CGColorSpaceGetNumberOfComponents(colorSpace) == 3) {
-        bitmapInfo &= ~kCGBitmapAlphaInfoMask;
-        bitmapInfo |= kCGImageAlphaPremultipliedFirst;
-    }
-    
-    CGContextRef context = CGBitmapContextCreate(NULL,
-                                                 imageSize.width,
-                                                 imageSize.height,
-                                                 CGImageGetBitsPerComponent(imageRef),
-                                                 0,
-                                                 colorSpace,
-                                                 bitmapInfo);
-    CGColorSpaceRelease(colorSpace);
-    
-    if (!context) return image;
-    
-    CGContextDrawImage(context, imageRect, imageRef);
-    CGImageRef decompressedImageRef = CGBitmapContextCreateImage(context);
-    
-    CGContextRelease(context);
-    
-    UIImage *decompressedImage = [UIImage imageWithCGImage:decompressedImageRef
-                                                     scale:image.scale
-                                               orientation:image.imageOrientation];
-    CGImageRelease(decompressedImageRef);
-    return decompressedImage;
-}
-
 
 + (UIImage *)fixOrientation:(UIImage *)image {
     
