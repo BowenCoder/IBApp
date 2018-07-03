@@ -34,7 +34,6 @@
 @property (nonatomic, strong) UIImageView *imageView;
 @property (nonatomic, strong) UIButton *btn;
 @property (nonatomic, strong) UIView *testView;
-@property (nonatomic, strong) NSLoadingView *loading;
 
 @end
 
@@ -44,10 +43,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
-    NSLoadingView *loading = [[NSLoadingView alloc] initWithFrame:self.view.frame];
-//    loading.backgroundColor = [UIColor lightGrayColor];
-    [self.view addSubview:loading];
-    self.loading = loading;
 
     
     self.imageView = [[UIImageView alloc] initWithFrame:CGRectMake(50, 100, self.view.frame.size.width - 100, 200)];
@@ -106,6 +101,7 @@
 //    [MBProgressHUD showNoData:self.view reload:^{
 //        [self test6];
 //    }];
+    
 }
 
 - (void)test6 {
@@ -125,7 +121,25 @@
 }
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     NSLog(@"touchesBegan");
-    [self.loading startAnimation];
+    [MBProgressHUD showCircleLoadingView:self.view];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [MBProgressHUD hideCircleLoadingView:self.view];
+    });
+//    [MBProgressHUD showTriangleLoadingView:self.view];
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//        [MBProgressHUD hideTriangleLoadingView:self.view];
+//    });
+    
+//    NSCircleLoadingView *load = [[NSCircleLoadingView alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
+//    load.center = self.view.center;
+//    [self.view addSubview:load];
+//    load.lineWidth = 3.0;
+//    load.colorArray = @[[UIColor redColor], [UIColor purpleColor], [UIColor greenColor], [UIColor blueColor]].mutableCopy;
+//    [load startAnimation];
+
+    
+//    [MBProgressHUD showBallLoadingView:self.view];
+
 //    [MBProgressHUD hideEmpty:self.view];
 //    [MBProgressHUD showLoading:self.view text:@"加载中" background:nil];
 

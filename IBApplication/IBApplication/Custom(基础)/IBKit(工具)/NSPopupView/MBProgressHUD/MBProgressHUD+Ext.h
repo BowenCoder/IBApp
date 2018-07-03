@@ -41,7 +41,7 @@ typedef NS_ENUM(NSInteger, MBProgressBarMode) {
 + (MBProgressHUD *)showLoading:(UIView *)superview text:(NSString *)text background:(UIColor *)color;
 
 /** 自定义加载图 + 文字 */
-+ (MBProgressHUD *)showCustomView:(UIView *)superview view:(UIView *)view text:(NSString *)text;
++ (MBProgressHUD *)showCustom:(UIView *)superview view:(UIView *)view text:(NSString *)text;
 
 /** gif + 文字 */
 + (MBProgressHUD *)showLoadingGif:(UIView *)superview gif:(NSData *)data text:(NSString *)text;
@@ -75,4 +75,20 @@ typedef NS_ENUM(NSInteger, MBProgressBarMode) {
 + (void)hideEmpty:(UIView *)superview;
 
 @end
+
+@interface MBProgressHUD (Loading)
+
++ (void)showBallLoadingView:(UIView *)superview;
++ (void)hideBallLoadingView:(UIView *)superview;
+
++ (void)showCircleLoadingView:(UIView *)superview;
++ (void)hideCircleLoadingView:(UIView *)superview;
+
++ (void)showTriangleLoadingView:(UIView *)superview;
++ (void)hideTriangleLoadingView:(UIView *)superview;
+
+
+
+@end
+
 

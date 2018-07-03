@@ -10,6 +10,7 @@
 #import "UIImageHelper.h"
 #import "UIImage+GIF.h"
 #import "NSEmptyView.h"
+#import "NSLoadingView.h"
 
 CGFloat const delayTime = 1.2;
 
@@ -104,7 +105,7 @@ NS_INLINE void setupPosition(MBProgressHUD *hud, MBPosition position) {
     return hud;
 }
 
-+ (MBProgressHUD *)showCustomView:(UIView *)superview view:(UIView *)view text:(NSString *)text {
++ (MBProgressHUD *)showCustom:(UIView *)superview view:(UIView *)view text:(NSString *)text {
     MBProgressHUD *hud = setup(superview, text, MBStyleBlack, NO);
     hud.mode = MBProgressHUDModeCustomView;
     hud.customView = view;
@@ -181,15 +182,17 @@ NS_INLINE void setupPosition(MBProgressHUD *hud, MBPosition position) {
 
 @implementation MBProgressHUD (EmptyView)
 
-+ (void)showNoInternet:(UIView *)superview reload:(void(^)(void))reload{
++ (void)showNoInternet:(UIView *)superview reload:(void(^)(void))reload {
+    [self hideEmpty:superview];
     [MBProgressHUD showEmpty:superview title:@"无法连接到网络" detail:@"请检查网络设置" imageName:@"MBProgressHUD.bundle/noNetwork" reload:reload];
 }
 
-+ (void)showNoData:(UIView *)superview reload:(void(^)(void))reload{
++ (void)showNoData:(UIView *)superview reload:(void(^)(void))reload {
+    [self hideEmpty:superview];
     [MBProgressHUD showEmpty:superview title:@"当前页面没有数据" detail:@"" imageName:@"MBProgressHUD.bundle/noNetwork" reload:reload];
 }
 
-+ (void)showEmpty:(UIView *)superview title:(NSString *)title detail:(NSString *)detail imageName:(NSString *)name reload:(void(^)(void))reload{
++ (void)showEmpty:(UIView *)superview title:(NSString *)title detail:(NSString *)detail imageName:(NSString *)name reload:(void(^)(void))reload {
     NSEmptyView *empty = [[NSEmptyView alloc] initWithFrame:superview.frame title:title detail:detail imageName:name reload:reload];
     [superview addSubview:empty];
 }
@@ -209,6 +212,75 @@ NS_INLINE void setupPosition(MBProgressHUD *hud, MBPosition position) {
         }
     }
 }
+
+@end
+
+@implementation MBProgressHUD (Loading)
+
++ (void)showBallLoadingView:(UIView *)superview {
+    [self hideBallLoadingView:superview];
+    NSBallLoadingView *loadingView = [[NSBallLoadingView alloc] initWithFrame:superview.frame];
+    [loadingView startAnimation];
+    [superview addSubview:loadingView];
+}
+
++ (void)hideBallLoadingView:(UIView *)superview {
+    
+    NSEnumerator *subviewsEnum = [superview.subviews reverseObjectEnumerator];
+    for (UIView *subview in subviewsEnum) {
+        if ([subview isKindOfClass: [NSBallLoadingView class]]) {
+            NSBallLoadingView *loadingView = (NSBallLoadingView *)subview;
+            [loadingView stopAnimation];
+            [loadingView removeFromSuperview];
+            break;
+        }
+    }
+}
+
++ (void)showCircleLoadingView:(UIView *)superview {
+    
+    [self hideCircleLoadingView:superview];
+    NSCircleLoadingView *circle = [[NSCircleLoadingView alloc] initWithFrame:superview.frame];
+    circle.lineWidth = 2;
+    circle.colorArray = @[[UIColor redColor], [UIColor purpleColor], [UIColor blueColor]].mutableCopy;
+    [superview addSubview:circle];
+    [circle startAnimation];
+}
+
++ (void)hideCircleLoadingView:(UIView *)superview {
+    
+    NSEnumerator *subviewsEnum = [superview.subviews reverseObjectEnumerator];
+    for (UIView *subview in subviewsEnum) {
+        if ([subview isKindOfClass: [NSCircleLoadingView class]]) {
+            NSCircleLoadingView *loadingView = (NSCircleLoadingView *)subview;
+            [loadingView stopAnimation];
+            [loadingView removeFromSuperview];
+            break;
+        }
+    }
+}
+
++ (void)showTriangleLoadingView:(UIView *)superview {
+    
+    [MBProgressHUD hideCircleLoadingView:superview];
+    NSTriangleLoadingView *tri = [[NSTriangleLoadingView alloc] initWithFrame:superview.frame];
+    [tri startAnimation];
+    [superview addSubview:tri];
+}
+
++ (void)hideTriangleLoadingView:(UIView *)superview {
+    
+    NSEnumerator *subviewsEnum = [superview.subviews reverseObjectEnumerator];
+    for (UIView *subview in subviewsEnum) {
+        if ([subview isKindOfClass: [NSTriangleLoadingView class]]) {
+            NSTriangleLoadingView *loadingView = (NSTriangleLoadingView *)subview;
+            [loadingView stopAnimation];
+            [loadingView removeFromSuperview];
+            break;
+        }
+    }
+}
+
 
 @end
 

@@ -8,9 +8,35 @@
 
 #import <UIKit/UIKit.h>
 
-@interface NSLoadingView : UIView
+@interface NSBallLoadingView : UIView
+
+@property (nonatomic, assign) BOOL isAnimating;
 
 - (void)startAnimation;
 - (void)stopAnimation;
 
 @end
+
+
+@interface NSCircleLoadingView : UIView
+
+@property (nonatomic, strong) NSMutableArray *colorArray;
+@property (nonatomic, assign) CGFloat lineWidth;
+
+@property (nonatomic, assign) BOOL isAnimating;
+
+- (void)startAnimation;
+- (void)stopAnimation;
+
+@end
+
+
+@interface NSTriangleLoadingView : UIView
+
+@property (nonatomic, assign) BOOL isAnimating;
+
+- (void)startAnimation;
+- (void)stopAnimation;
+
+@end
+
