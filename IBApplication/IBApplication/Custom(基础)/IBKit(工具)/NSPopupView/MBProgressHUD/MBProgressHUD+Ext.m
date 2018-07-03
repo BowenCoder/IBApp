@@ -9,6 +9,7 @@
 #import "MBProgressHUD+Ext.h"
 #import "UIImageHelper.h"
 #import "UIImage+GIF.h"
+#import "NSEmptyView.h"
 
 CGFloat const delayTime = 1.2;
 
@@ -57,7 +58,7 @@ NS_INLINE void setupStyle(MBProgressHUD *hud, MBStyle style) {
             hud.bezelView.backgroundColor = [UIColor whiteColor];
             break;
         case MBStyleCustom:
-            hud.backgroundView.style = MBProgressHUDBackgroundStyleBlur;
+            hud.backgroundView.backgroundColor = [UIColor whiteColor];
             hud.bezelView.backgroundColor = [UIColor blackColor];
             hud.contentColor = [UIColor whiteColor];
             break;
@@ -176,5 +177,38 @@ NS_INLINE void setupPosition(MBProgressHUD *hud, MBPosition position) {
     [self hideHUDForView:nil];
 }
 
+@end
+
+@implementation MBProgressHUD (EmptyView)
+
++ (void)showNoInternet:(UIView *)superview reload:(void(^)(void))reload{
+    [MBProgressHUD showEmpty:superview title:@"无法连接到网络" detail:@"请检查网络设置" imageName:@"MBProgressHUD.bundle/noNetwork" reload:reload];
+}
+
++ (void)showNoData:(UIView *)superview reload:(void(^)(void))reload{
+    [MBProgressHUD showEmpty:superview title:@"当前页面没有数据" detail:@"" imageName:@"MBProgressHUD.bundle/noNetwork" reload:reload];
+}
+
++ (void)showEmpty:(UIView *)superview title:(NSString *)title detail:(NSString *)detail imageName:(NSString *)name reload:(void(^)(void))reload{
+    NSEmptyView *empty = [[NSEmptyView alloc] initWithFrame:superview.frame title:title detail:detail imageName:name reload:reload];
+    [superview addSubview:empty];
+}
+
++ (void)hideEmpty:(UIView *)superview {
+    
+    NSEnumerator *subviewsEnum = [superview.subviews reverseObjectEnumerator];
+    for (UIView *subview in subviewsEnum) {
+        if ([subview isKindOfClass: [NSEmptyView class]]) {
+            [subview setAlpha:1.0];
+            [UIView animateWithDuration:0.5 animations:^{
+                [subview setAlpha:0.0];
+            } completion:^(BOOL finished) {
+                [subview removeFromSuperview];
+            }];
+            break;
+        }
+    }
+}
 
 @end
+

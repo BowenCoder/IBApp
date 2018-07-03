@@ -17,10 +17,6 @@
 #define kUserDefaults       [NSUserDefaults standardUserDefaults]
 #define kNotificationCenter [NSNotificationCenter defaultCenter]
 
-////强弱引用
-//#define WS(type)  __weak typeof(type) weak##type = type;
-//#define SS(type) __strong typeof(type) type = weak##type;
-
 //拼接字符串
 #define NSStringFormat(format,...) [NSString stringWithFormat:format,##__VA_ARGS__]
 

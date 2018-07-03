@@ -25,23 +25,25 @@ typedef NS_ENUM(NSInteger, MBProgressBarMode) {
 
 @interface MBProgressHUD (Ext)
 
+/** 显示成功 */
 + (void)showSuccess:(UIView *)superview title:(NSString *)title;
 
+/** 显示失败 */
 + (void)showError:(UIView *)superview title:(NSString *)title;
 
 /** 纯加载图 */
 + (MBProgressHUD *)showLoading:(UIView *)superview;
 
-/** 加载图+文字 */
+/** 加载图 + 文字 */
 + (MBProgressHUD *)showLoading:(UIView *)superview text:(NSString *)text;
 
-/** 加载图+文字+蒙版 */
+/** 加载图 + 文字 + 蒙版 */
 + (MBProgressHUD *)showLoading:(UIView *)superview text:(NSString *)text background:(UIColor *)color;
 
-/** 自定义加载图+文字 */
+/** 自定义加载图 + 文字 */
 + (MBProgressHUD *)showCustomView:(UIView *)superview view:(UIView *)view text:(NSString *)text;
 
-/** gif+文字 */
+/** gif + 文字 */
 + (MBProgressHUD *)showLoadingGif:(UIView *)superview gif:(NSData *)data text:(NSString *)text;
 
 /** 纯文字 */
@@ -50,18 +52,27 @@ typedef NS_ENUM(NSInteger, MBProgressBarMode) {
 /** 纯文字标题 + 详情 */
 + (void)showText:(UIView *)superview title:(NSString *)title detail:(NSString *)detail position:(MBPosition)position;
 
-
+/** 进度条 + 文字 + 详情 */
 + (MBProgressHUD *)showProgress:(UIView *)superview title:(NSString *)title detail:(NSString *)detail progress:(void(^)(MBProgressHUD *hud))callback mode:(MBProgressBarMode)mode;
 
-/**
- 隐藏ProgressView
- 
- */
+/** 隐藏ProgressView */
 + (void)hideHUDForView:(UIView *)view;
 
-/**
- 隐藏（从window）
- */
+/** 隐藏（从window）*/
 + (void)hideHUD;
 
 @end
+
+@interface MBProgressHUD (EmptyView)
+
++ (void)showNoInternet:(UIView *)superview reload:(void(^)(void))reload;
+
++ (void)showNoData:(UIView *)superview reload:(void(^)(void))reload;
+
+/** 显示空视图，文字过多使用\n换行 */
++ (void)showEmpty:(UIView *)superview title:(NSString *)title detail:(NSString *)detail imageName:(NSString *)name reload:(void(^)(void))reload;
+
++ (void)hideEmpty:(UIView *)superview;
+
+@end
+

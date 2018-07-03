@@ -96,6 +96,8 @@
 		4A1FB22C20E92D810056A026 /* FLAnimatedImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A1FB22920E92D810056A026 /* FLAnimatedImage.m */; };
 		4A1FB22F20E931350056A026 /* MBProgressHUD+Ext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A1FB22E20E931350056A026 /* MBProgressHUD+Ext.m */; };
 		4A1FB23120E933BF0056A026 /* txt.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 4A1FB23020E933BE0056A026 /* txt.rtf */; };
+		4A686D2520EB229000C8328E /* NSEmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A686D2420EB229000C8328E /* NSEmptyView.m */; };
+		4A686D2920EB668A00C8328E /* NSLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A686D2820EB668A00C8328E /* NSLoadingView.m */; };
 		4A6F196C20E0923000EAF1A7 /* NSDateTimeAgo.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4A6F196B20E0923000EAF1A7 /* NSDateTimeAgo.bundle */; };
 		4A6F197220E23FB900EAF1A7 /* NSEncode.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6F197120E23FB900EAF1A7 /* NSEncode.m */; };
 		4A6F197620E26B3800EAF1A7 /* NSCrypto.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6F197520E26B3800EAF1A7 /* NSCrypto.m */; };
@@ -307,6 +309,10 @@
 		4A1FB22D20E931350056A026 /* MBProgressHUD+Ext.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+Ext.h"; sourceTree = "<group>"; };
 		4A1FB22E20E931350056A026 /* MBProgressHUD+Ext.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+Ext.m"; sourceTree = "<group>"; };
 		4A1FB23020E933BE0056A026 /* txt.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = txt.rtf; sourceTree = "<group>"; };
+		4A686D2320EB229000C8328E /* NSEmptyView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSEmptyView.h; sourceTree = "<group>"; };
+		4A686D2420EB229000C8328E /* NSEmptyView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSEmptyView.m; sourceTree = "<group>"; };
+		4A686D2720EB668A00C8328E /* NSLoadingView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSLoadingView.h; sourceTree = "<group>"; };
+		4A686D2820EB668A00C8328E /* NSLoadingView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSLoadingView.m; sourceTree = "<group>"; };
 		4A6F196B20E0923000EAF1A7 /* NSDateTimeAgo.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = NSDateTimeAgo.bundle; sourceTree = "<group>"; };
 		4A6F196D20E093E700EAF1A7 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		4A6F196E20E093E700EAF1A7 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
@@ -470,6 +476,8 @@
 		4A1FB0A420E8E5290056A026 /* NSPopupView */ = {
 			isa = PBXGroup;
 			children = (
+				4A686D2620EB666000C8328E /* NSLoadingView */,
+				4A686D2220EB224F00C8328E /* NSEmptyView */,
 				4A1FB0A520E8EA320056A026 /* MBProgressHUD */,
 			);
 			path = NSPopupView;
@@ -734,6 +742,24 @@
 				4A1FB20420E92D5D0056A026 /* SDWebImageTransition.m */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		4A686D2220EB224F00C8328E /* NSEmptyView */ = {
+			isa = PBXGroup;
+			children = (
+				4A686D2320EB229000C8328E /* NSEmptyView.h */,
+				4A686D2420EB229000C8328E /* NSEmptyView.m */,
+			);
+			path = NSEmptyView;
+			sourceTree = "<group>";
+		};
+		4A686D2620EB666000C8328E /* NSLoadingView */ = {
+			isa = PBXGroup;
+			children = (
+				4A686D2720EB668A00C8328E /* NSLoadingView.h */,
+				4A686D2820EB668A00C8328E /* NSLoadingView.m */,
+			);
+			path = NSLoadingView;
 			sourceTree = "<group>";
 		};
 		4A6F196F20E23F9000EAF1A7 /* NSEncode */ = {
@@ -1417,6 +1443,7 @@
 				4A1FB22420E92D5E0056A026 /* SDWebImageCompat.m in Sources */,
 				4A6F198720E35E3600EAF1A7 /* NSFile.m in Sources */,
 				4A1FB13420E921E90056A026 /* MWTapDetectingView.m in Sources */,
+				4A686D2920EB668A00C8328E /* NSLoadingView.m in Sources */,
 				4A1FB12C20E921E90056A026 /* DACircularProgressView.m in Sources */,
 				4A1FB13620E921E90056A026 /* MWGridCell.m in Sources */,
 				4A1FB0BF20E8EE6B0056A026 /* AFNetworkReachabilityManager.m in Sources */,
@@ -1441,6 +1468,7 @@
 				4A1FB09A20E89FD10056A026 /* UIModelController.m in Sources */,
 				4A6F19AD20E3F40C00EAF1A7 /* GCDAsyncSocket.m in Sources */,
 				4A78076B20E9F1BB00E60ACA /* MASViewAttribute.m in Sources */,
+				4A686D2520EB229000C8328E /* NSEmptyView.m in Sources */,
 				4A1FB0BE20E8EE6B0056A026 /* AFURLRequestSerialization.m in Sources */,
 				4ACC56A420DF7A89001352AE /* UIView+Effect.m in Sources */,
 				4A1FB0A820E8EA630056A026 /* MBProgressHUD.m in Sources */,

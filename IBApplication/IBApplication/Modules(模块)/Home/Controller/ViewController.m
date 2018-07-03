@@ -27,13 +27,14 @@
 #import "UIImageHelper.h"
 #import "MBProgressHUD+Ext.h"
 #import "SDWebImage.h"
-//#import "FLAnimatedImageView.h"
+#import "NSLoadingView.h"
 
 @interface ViewController ()
 
 @property (nonatomic, strong) UIImageView *imageView;
 @property (nonatomic, strong) UIButton *btn;
 @property (nonatomic, strong) UIView *testView;
+@property (nonatomic, strong) NSLoadingView *loading;
 
 @end
 
@@ -42,10 +43,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    NSLogger(@"%@",@"123");
-    NSLogger(@"%@", NSStringFormat(@"%@%@",@"123",@"456"));
-    NSData *data = [NSData data];
-    [data base64EncodedDataWithOptions:NSDataBase64Encoding64CharacterLineLength];
+    
+    NSLoadingView *loading = [[NSLoadingView alloc] initWithFrame:self.view.frame];
+//    loading.backgroundColor = [UIColor lightGrayColor];
+    [self.view addSubview:loading];
+    self.loading = loading;
+
     
     self.imageView = [[UIImageView alloc] initWithFrame:CGRectMake(50, 100, self.view.frame.size.width - 100, 200)];
     
@@ -56,6 +59,9 @@
     self.imageView.userInteractionEnabled = YES;
     self.imageView.cagingArea = self.view.frame;
     [self.imageView enableDragging];
+//    [self.view addSubview:self.imageView];
+    
+
 //    [self.imageView setShadowColor:[UIColor blackColor] opacity:0.7 offset:CGSizeMake(10, 10) radius:5 type:@"Trapezoidal"];
 //    self.imageView.effectGroup = [[UIMotionEffectGroup alloc] init];
 //    [self.imageView moveAxis:100 dy:100];
@@ -72,32 +78,34 @@
 //    [btn layoutButtonEdgeInsetsStyle:UIButtonEdgeInsetsStyleRight space:10];
 //    [self.view addSubview:btn];
     
-    UITextField *tf = [[UITextField alloc] initWithFrame:CGRectMake(50, 300, 300, 44)];
-    [tf setCursorColor:[UIColor redColor]];
-//    [tf setPlaceholder:@"请输入手机号码" color:[UIColor purpleColor] font:18.0];
-    [tf setLeftLabelTitle:@"用户名" titleColor:[UIColor redColor]
-                titleFont:14 width:50 backgroundColor:[UIColor orangeColor]];
-    self.btn =[tf setRightButtonTitle:@"获取验证码" titleColor:[UIColor redColor] titleFont:14 width:100 target:self selector:@selector(test3) backgroundColor:[UIColor orangeColor]];
-    [tf setBorderColor:[UIColor blackColor] width:1 cornerRadius:0];
-    [self.view addSubview:tf];
-    
-    NSLog(@"%@", [NSDate timestampToTime:[[NSDate date] timestamp] formatter:nil]);
-
-    NSDate *date = [NSDate dateWithYear:2018 month:6 day:25 hour:04 minute:40 second:14];
-    NSLog(@"%@", [date timeAgoSimple]);
-    
-    if ([date isNextWeek]) {
-        NSLog(@"昨天");
-    } else {
-        NSLog(@"不是昨天");
-
-    }
-//    [self.view addSubview:self.imageView];
-    
-    self.testView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 60, 60)];
-    self.testView.backgroundColor = [UIColor redColor];
-    [self.view addSubview:self.testView];
-
+//    UITextField *tf = [[UITextField alloc] initWithFrame:CGRectMake(50, 300, 300, 44)];
+//    [tf setCursorColor:[UIColor redColor]];
+////    [tf setPlaceholder:@"请输入手机号码" color:[UIColor purpleColor] font:18.0];
+//    [tf setLeftLabelTitle:@"用户名" titleColor:[UIColor redColor]
+//                titleFont:14 width:50 backgroundColor:[UIColor orangeColor]];
+//    self.btn =[tf setRightButtonTitle:@"获取验证码" titleColor:[UIColor redColor] titleFont:14 width:100 target:self selector:@selector(test3) backgroundColor:[UIColor orangeColor]];
+//    [tf setBorderColor:[UIColor blackColor] width:1 cornerRadius:0];
+//    [self.view addSubview:tf];
+//
+//    NSLog(@"%@", [NSDate timestampToTime:[[NSDate date] timestamp] formatter:nil]);
+//
+//    NSDate *date = [NSDate dateWithYear:2018 month:6 day:25 hour:04 minute:40 second:14];
+//    NSLog(@"%@", [date timeAgoSimple]);
+//
+//    if ([date isNextWeek]) {
+//        NSLog(@"昨天");
+//    } else {
+//        NSLog(@"不是昨天");
+//
+//    }
+//
+//    self.testView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 60, 60)];
+//    self.testView.backgroundColor = [UIColor redColor];
+//    [self.view addSubview:self.testView];
+//
+//    [MBProgressHUD showNoData:self.view reload:^{
+//        [self test6];
+//    }];
 }
 
 - (void)test6 {
@@ -116,17 +124,24 @@
     }
 }
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    NSData *data = [[NSData alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"niconiconi@2x" ofType:@"gif"]];
+    NSLog(@"touchesBegan");
+    [self.loading startAnimation];
+//    [MBProgressHUD hideEmpty:self.view];
+//    [MBProgressHUD showLoading:self.view text:@"加载中" background:nil];
+
+
+//    [MBProgressHUD hideEmpty:self.view];
+//    NSData *data = [[NSData alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"niconiconi@2x" ofType:@"gif"]];
 //    UIImage *image = [UIImage sd_animatedGIFWithData:data];
 //    [MBProgressHUD showCustomView:self.view view:[[UIImageView alloc] initWithImage:image] text:nil mask:YES];
-    MBProgressHUD *hud = [MBProgressHUD showLoadingGif:self.view gif:data text:nil];
-    NSLog(@"123");
+//    MBProgressHUD *hud = [MBProgressHUD showLoadingGif:self.view gif:data text:nil];
+    
 //    FLAnimatedImage *image1 = [FLAnimatedImage animatedImageWithGIFData:data];
 //    FLAnimatedImageView *imgview = [[FLAnimatedImageView alloc] initWithFrame:CGRectMake(0, 0, 50, 50)];
 //    imgview.animatedImage = image1;
 //    [MBProgressHUD showCustomView:self.view custom:imgview text:@"加载中..."];
 
-//    [MBProgressHUD showProgress:self.view title:@"正在上传" detail:@"0.00" progress:^(MBProgressHUD *hud) {
+//    [MBProgressHUD showProgress:self.view.superview title:@"正在上传" detail:@"0.00" progress:^(MBProgressHUD *hud) {
 //        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), ^{
 //            [self doSomeWorkWithProgress:hud];
 //            dispatch_async(dispatch_get_main_queue(), ^{
@@ -142,9 +157,9 @@
 //    [MBProgressHUD showCustomView:self.view custom:self.testView text:@"活动中"];
 //    [MBProgressHUD showLoading:self.view text:@"执行中"];
 //    [MBProgressHUD showLoading:self.view text:@"加载中" background:nil];
-    NSLog(@"%ld", [NSHTTPClient shareInstance].networkStatus);
-    UIViewAnimation *animation = [[UIViewAnimation alloc] init];
-    animation.removeAnimation = YES;
+//    NSLog(@"%ld", [NSHTTPClient shareInstance].networkStatus);
+//    UIViewAnimation *animation = [[UIViewAnimation alloc] init];
+//    animation.removeAnimation = YES;
 //    [animation flyoutAnimation:self.imageView duration:0.25 start:nil end:^(CAAnimation *animation) {
 //        [self.imageView removeFromSuperview];
 //    }];
