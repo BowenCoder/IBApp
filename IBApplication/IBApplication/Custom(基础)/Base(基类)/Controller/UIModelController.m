@@ -22,9 +22,5 @@
     [super viewDidLoad];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    NSLog(@"%s", __func__);
-}
 
 @end

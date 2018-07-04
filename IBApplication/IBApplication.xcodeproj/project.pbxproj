@@ -132,6 +132,9 @@
 		4A78077420E9FCAF00E60ACA /* YYClassInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A78077120E9FCAE00E60ACA /* YYClassInfo.m */; };
 		4A78077A20EA482E00E60ACA /* niconiconi@2x.gif in Resources */ = {isa = PBXBuildFile; fileRef = 4A78077920EA482E00E60ACA /* niconiconi@2x.gif */; };
 		4A78077E20EA493A00E60ACA /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4A78077C20EA493900E60ACA /* Info.plist */; };
+		4AAA78EB20ECB4F200CF5639 /* NSDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AAA78EA20ECB4F200CF5639 /* NSDebug.m */; };
+		4AAA78F220ECBCB200CF5639 /* NSFPSLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AAA78F120ECBCB200CF5639 /* NSFPSLabel.m */; };
+		4AAA78F820ECD46E00CF5639 /* UICommonController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AAA78F720ECD46E00CF5639 /* UICommonController.m */; };
 		4ACC55E320DB5F3E001352AE /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC55CC20DB5F3E001352AE /* ViewController.m */; };
 		4ACC55E420DB5F3E001352AE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4ACC55D320DB5F3E001352AE /* Assets.xcassets */; };
 		4ACC55E520DB5F3E001352AE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4ACC55D420DB5F3E001352AE /* LaunchScreen.storyboard */; };
@@ -389,6 +392,12 @@
 		4A78077920EA482E00E60ACA /* niconiconi@2x.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "niconiconi@2x.gif"; sourceTree = "<group>"; };
 		4A78077C20EA493900E60ACA /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4A78077D20EA493900E60ACA /* SDWebImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWebImage.h; sourceTree = "<group>"; };
+		4AAA78E920ECB4F200CF5639 /* NSDebug.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSDebug.h; sourceTree = "<group>"; };
+		4AAA78EA20ECB4F200CF5639 /* NSDebug.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSDebug.m; sourceTree = "<group>"; };
+		4AAA78F020ECBCB200CF5639 /* NSFPSLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSFPSLabel.h; sourceTree = "<group>"; };
+		4AAA78F120ECBCB200CF5639 /* NSFPSLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSFPSLabel.m; sourceTree = "<group>"; };
+		4AAA78F620ECD46E00CF5639 /* UICommonController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UICommonController.h; sourceTree = "<group>"; };
+		4AAA78F720ECD46E00CF5639 /* UICommonController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UICommonController.m; sourceTree = "<group>"; };
 		4ACC55AB20DB5100001352AE /* IBApplication.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IBApplication.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4ACC55CC20DB5F3E001352AE /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		4ACC55CD20DB5F3E001352AE /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
@@ -467,6 +476,8 @@
 		4A1FB09B20E8A2030056A026 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				4AAA78F620ECD46E00CF5639 /* UICommonController.h */,
+				4AAA78F720ECD46E00CF5639 /* UICommonController.m */,
 				4A1FB09820E89FD10056A026 /* UIModelController.h */,
 				4A1FB09920E89FD10056A026 /* UIModelController.m */,
 			);
@@ -941,6 +952,25 @@
 			path = YYModel;
 			sourceTree = "<group>";
 		};
+		4AAA78E820ECB4CA00CF5639 /* NSDebug */ = {
+			isa = PBXGroup;
+			children = (
+				4AAA78E920ECB4F200CF5639 /* NSDebug.h */,
+				4AAA78EA20ECB4F200CF5639 /* NSDebug.m */,
+				4AAA78F020ECBCB200CF5639 /* NSFPSLabel.h */,
+				4AAA78F120ECBCB200CF5639 /* NSFPSLabel.m */,
+			);
+			path = NSDebug;
+			sourceTree = "<group>";
+		};
+		4AAA78EC20ECB5A000CF5639 /* YYKit */ = {
+			isa = PBXGroup;
+			children = (
+				4A78076D20E9FCAE00E60ACA /* YYModel */,
+			);
+			path = YYKit;
+			sourceTree = "<group>";
+		};
 		4ACC55A220DB50FF001352AE = {
 			isa = PBXGroup;
 			children = (
@@ -988,9 +1018,10 @@
 		4ACC55C520DB5F3E001352AE /* Custom(基础) */ = {
 			isa = PBXGroup;
 			children = (
-				4ACC569C20DF4D9C001352AE /* IBKit(工具) */,
-				4ACC55C620DB5F3E001352AE /* Public(公共) */,
 				4ACC55C720DB5F3E001352AE /* Base(基类) */,
+				4ACC569C20DF4D9C001352AE /* IBKit(工具) */,
+				4ACC55F120DBB6A5001352AE /* Macros(宏) */,
+				4ACC55C620DB5F3E001352AE /* Public(公共) */,
 			);
 			path = "Custom(基础)";
 			sourceTree = "<group>";
@@ -998,7 +1029,7 @@
 		4ACC55C620DB5F3E001352AE /* Public(公共) */ = {
 			isa = PBXGroup;
 			children = (
-				4ACC55F120DBB6A5001352AE /* Macros */,
+				4A1FB0A420E8E5290056A026 /* NSPopupView */,
 			);
 			path = "Public(公共)";
 			sourceTree = "<group>";
@@ -1014,7 +1045,7 @@
 		4ACC55C820DB5F3E001352AE /* Vender(第三方) */ = {
 			isa = PBXGroup;
 			children = (
-				4A78076D20E9FCAE00E60ACA /* YYModel */,
+				4AAA78EC20ECB5A000CF5639 /* YYKit */,
 				4A78074720E9F1BB00E60ACA /* Masonry */,
 				4A1FB1C420E92D5D0056A026 /* SDWebImage */,
 				4A1FB0EA20E921E90056A026 /* MWPhotoBrowser */,
@@ -1118,7 +1149,7 @@
 			path = "SDKFile(集成)";
 			sourceTree = "<group>";
 		};
-		4ACC55F120DBB6A5001352AE /* Macros */ = {
+		4ACC55F120DBB6A5001352AE /* Macros(宏) */ = {
 			isa = PBXGroup;
 			children = (
 				4ACC55F820DBC6BA001352AE /* IBMacros.h */,
@@ -1126,7 +1157,7 @@
 				4ACC55F420DBB709001352AE /* UIMacros.h */,
 				4ACC55F320DBB6E8001352AE /* URLMacros.h */,
 			);
-			path = Macros;
+			path = "Macros(宏)";
 			sourceTree = "<group>";
 		};
 		4ACC55FD20DCB8A8001352AE /* NSFoundation */ = {
@@ -1231,8 +1262,8 @@
 		4ACC569C20DF4D9C001352AE /* IBKit(工具) */ = {
 			isa = PBXGroup;
 			children = (
+				4AAA78E820ECB4CA00CF5639 /* NSDebug */,
 				4A1FB0AB20E8EAF70056A026 /* NSHTTPClient */,
-				4A1FB0A420E8E5290056A026 /* NSPopupView */,
 				4A1FB09320E7B2F40056A026 /* NSAnimation */,
 				4ACC569820DEC678001352AE /* NSApp */,
 				4A6F198920E3A5DD00EAF1A7 /* NSCharacters */,
@@ -1413,6 +1444,7 @@
 				4A1FB21820E92D5E0056A026 /* UIButton+WebCache.m in Sources */,
 				4A1FB21920E92D5E0056A026 /* SDWebImageFrame.m in Sources */,
 				4A1FB20920E92D5E0056A026 /* SDImageCache.m in Sources */,
+				4AAA78EB20ECB4F200CF5639 /* NSDebug.m in Sources */,
 				4ACC55EA20DB5F3E001352AE /* AppDelegate.m in Sources */,
 				4A6F197B20E3332000EAF1A7 /* NSColor.m in Sources */,
 				4A1FB20A20E92D5E0056A026 /* SDImageCacheConfig.m in Sources */,
@@ -1441,6 +1473,7 @@
 				4A1FB0C020E8EE6B0056A026 /* AFSecurityPolicy.m in Sources */,
 				4A78077320E9FCAF00E60ACA /* NSObject+YYModel.m in Sources */,
 				4A1FB22420E92D5E0056A026 /* SDWebImageCompat.m in Sources */,
+				4AAA78F820ECD46E00CF5639 /* UICommonController.m in Sources */,
 				4A6F198720E35E3600EAF1A7 /* NSFile.m in Sources */,
 				4A1FB13420E921E90056A026 /* MWTapDetectingView.m in Sources */,
 				4A686D2920EB668A00C8328E /* NSLoadingView.m in Sources */,
@@ -1489,6 +1522,7 @@
 				4A78076A20E9F1BB00E60ACA /* MASViewConstraint.m in Sources */,
 				4A6F19A920E3F3D700EAF1A7 /* NSSocketConnection.m in Sources */,
 				4A1FB13220E921E90056A026 /* MWPhoto.m in Sources */,
+				4AAA78F220ECBCB200CF5639 /* NSFPSLabel.m in Sources */,
 				4A6F199120E3AAB200EAF1A7 /* NSSocketByte.m in Sources */,
 				4A6F198C20E3A61400EAF1A7 /* NSCharacters.m in Sources */,
 				4A1FB12E20E921E90056A026 /* MWCaptionView.m in Sources */,

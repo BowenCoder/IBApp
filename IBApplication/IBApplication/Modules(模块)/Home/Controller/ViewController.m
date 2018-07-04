@@ -28,6 +28,7 @@
 #import "MBProgressHUD+Ext.h"
 #import "SDWebImage.h"
 #import "NSLoadingView.h"
+#import "NSDebug.h"
 
 @interface ViewController ()
 
@@ -42,9 +43,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    
-
-    
+    self.view.backgroundColor = [UIColor whiteColor];
     self.imageView = [[UIImageView alloc] initWithFrame:CGRectMake(50, 100, self.view.frame.size.width - 100, 200)];
     
 //    self.imageView.contentMode = UIViewContentModeCenter;
@@ -121,10 +120,11 @@
 }
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     NSLog(@"touchesBegan");
-    [MBProgressHUD showCircleLoadingView:self.view];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [MBProgressHUD hideCircleLoadingView:self.view];
-    });
+
+//    [MBProgressHUD showCircleLoadingView:self.view];
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//        [MBProgressHUD hideCircleLoadingView:self.view];
+//    });
 //    [MBProgressHUD showTriangleLoadingView:self.view];
 //    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
 //        [MBProgressHUD hideTriangleLoadingView:self.view];
@@ -155,14 +155,14 @@
 //    imgview.animatedImage = image1;
 //    [MBProgressHUD showCustomView:self.view custom:imgview text:@"加载中..."];
 
-//    [MBProgressHUD showProgress:self.view.superview title:@"正在上传" detail:@"0.00" progress:^(MBProgressHUD *hud) {
-//        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), ^{
-//            [self doSomeWorkWithProgress:hud];
-//            dispatch_async(dispatch_get_main_queue(), ^{
-//                [hud hideAnimated:YES];
-//            });
-//        });
-//    } mode:MBProgressModeDeterminate];
+    [MBProgressHUD showProgress:self.view.superview title:@"正在上传" detail:@"0.00" progress:^(MBProgressHUD *hud) {
+        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), ^{
+            [self doSomeWorkWithProgress:hud];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [hud hideAnimated:YES];
+            });
+        });
+    } mode:MBProgressModeDeterminate];
     
 //    [MBProgressHUD showSuccess:self.view title:@"上传成功"];
 //    [MBProgressHUD showError:self.view title:@"上传失败"];

@@ -6,9 +6,9 @@
 //  Copyright © 2018年 BowenCoder. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "UICommonController.h"
 
-@interface UIModelController : UIViewController
+@interface UIModelController : UICommonController
 
 - (void)goLogin;
 
