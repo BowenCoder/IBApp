@@ -44,15 +44,16 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     self.view.backgroundColor = [UIColor whiteColor];
-    self.imageView = [[UIImageView alloc] initWithFrame:CGRectMake(50, 100, self.view.frame.size.width - 100, 200)];
-    
-//    self.imageView.contentMode = UIViewContentModeCenter;
-    UIImage *img = [UIImage imageNamed:@"test"];
-    self.imageView.image = img;
-    self.imageView.backgroundColor = [UIColor lightGrayColor];
-    self.imageView.userInteractionEnabled = YES;
-    self.imageView.cagingArea = self.view.frame;
-    [self.imageView enableDragging];
+    self.openKeyboard = YES;
+//    self.imageView = [[UIImageView alloc] initWithFrame:CGRectMake(50, 100, self.view.frame.size.width - 100, 200)];
+//
+////    self.imageView.contentMode = UIViewContentModeCenter;
+//    UIImage *img = [UIImage imageNamed:@"test"];
+//    self.imageView.image = img;
+//    self.imageView.backgroundColor = [UIColor lightGrayColor];
+//    self.imageView.userInteractionEnabled = YES;
+//    self.imageView.cagingArea = self.view.frame;
+//    [self.imageView enableDragging];
 //    [self.view addSubview:self.imageView];
     
 
@@ -72,14 +73,14 @@
 //    [btn layoutButtonEdgeInsetsStyle:UIButtonEdgeInsetsStyleRight space:10];
 //    [self.view addSubview:btn];
     
-//    UITextField *tf = [[UITextField alloc] initWithFrame:CGRectMake(50, 300, 300, 44)];
-//    [tf setCursorColor:[UIColor redColor]];
-////    [tf setPlaceholder:@"请输入手机号码" color:[UIColor purpleColor] font:18.0];
-//    [tf setLeftLabelTitle:@"用户名" titleColor:[UIColor redColor]
-//                titleFont:14 width:50 backgroundColor:[UIColor orangeColor]];
-//    self.btn =[tf setRightButtonTitle:@"获取验证码" titleColor:[UIColor redColor] titleFont:14 width:100 target:self selector:@selector(test3) backgroundColor:[UIColor orangeColor]];
-//    [tf setBorderColor:[UIColor blackColor] width:1 cornerRadius:0];
-//    [self.view addSubview:tf];
+    UITextField *tf = [[UITextField alloc] initWithFrame:CGRectMake(50, 300, 300, 44)];
+    [tf setCursorColor:[UIColor redColor]];
+//    [tf setPlaceholder:@"请输入手机号码" color:[UIColor purpleColor] font:18.0];
+    [tf setLeftLabelTitle:@"用户名" titleColor:[UIColor redColor]
+                titleFont:14 width:50 backgroundColor:[UIColor orangeColor]];
+    self.btn =[tf setRightButtonTitle:@"获取验证码" titleColor:[UIColor redColor] titleFont:14 width:100 target:self selector:@selector(test3) backgroundColor:[UIColor orangeColor]];
+    [tf setBorderColor:[UIColor blackColor] width:1 cornerRadius:0];
+    [self.view addSubview:tf];
 //
 //    NSLog(@"%@", [NSDate timestampToTime:[[NSDate date] timestamp] formatter:nil]);
 //
@@ -120,6 +121,9 @@
 }
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     NSLog(@"touchesBegan");
+//    [self.view resignFirstResponder];
+    [[UIApplication sharedApplication].keyWindow endEditing:YES];
+//    [MBProgressHUD showSwapLoadingView:self.view];
 
 //    [MBProgressHUD showCircleLoadingView:self.view];
 //    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -155,14 +159,14 @@
 //    imgview.animatedImage = image1;
 //    [MBProgressHUD showCustomView:self.view custom:imgview text:@"加载中..."];
 
-    [MBProgressHUD showProgress:self.view.superview title:@"正在上传" detail:@"0.00" progress:^(MBProgressHUD *hud) {
-        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), ^{
-            [self doSomeWorkWithProgress:hud];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [hud hideAnimated:YES];
-            });
-        });
-    } mode:MBProgressModeDeterminate];
+//    [MBProgressHUD showProgress:self.view.superview title:@"正在上传" detail:@"0.00" progress:^(MBProgressHUD *hud) {
+//        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), ^{
+//            [self doSomeWorkWithProgress:hud];
+//            dispatch_async(dispatch_get_main_queue(), ^{
+//                [hud hideAnimated:YES];
+//            });
+//        });
+//    } mode:MBProgressModeDeterminate];
     
 //    [MBProgressHUD showSuccess:self.view title:@"上传成功"];
 //    [MBProgressHUD showError:self.view title:@"上传失败"];

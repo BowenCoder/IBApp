@@ -281,6 +281,27 @@ NS_INLINE void setupPosition(MBProgressHUD *hud, MBPosition position) {
     }
 }
 
++ (void)showSwapLoadingView:(UIView *)superview {
+    
+    [MBProgressHUD hideSwapLoadingView:superview];
+    NSSwapLoadingView *swap = [[NSSwapLoadingView alloc] initWithFrame:superview.frame];
+    [swap startAnimation];
+    [superview addSubview:swap];
+}
+
++ (void)hideSwapLoadingView:(UIView *)superview {
+    
+    NSEnumerator *subviewsEnum = [superview.subviews reverseObjectEnumerator];
+    for (UIView *subview in subviewsEnum) {
+        if ([subview isKindOfClass: [NSSwapLoadingView class]]) {
+            NSSwapLoadingView *loadingView = (NSSwapLoadingView *)subview;
+            [loadingView stopAnimation];
+            [loadingView removeFromSuperview];
+            break;
+        }
+    }
+}
+
 
 @end
 

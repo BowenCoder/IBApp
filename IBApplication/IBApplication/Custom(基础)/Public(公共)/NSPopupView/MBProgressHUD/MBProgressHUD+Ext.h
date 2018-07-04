@@ -87,6 +87,8 @@ typedef NS_ENUM(NSInteger, MBProgressBarMode) {
 + (void)showTriangleLoadingView:(UIView *)superview;
 + (void)hideTriangleLoadingView:(UIView *)superview;
 
++ (void)showSwapLoadingView:(UIView *)superview;
++ (void)hideSwapLoadingView:(UIView *)superview;
 
 
 @end

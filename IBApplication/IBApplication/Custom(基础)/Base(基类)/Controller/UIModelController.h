@@ -10,6 +10,9 @@
 
 @interface UIModelController : UICommonController
 
+/** 开启键盘frame改变通知 */
+@property (nonatomic, assign) BOOL openKeyboard;
+
 - (void)goLogin;
 
 @end

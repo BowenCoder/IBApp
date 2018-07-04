@@ -40,3 +40,13 @@
 
 @end
 
+@interface NSSwapLoadingView : UIView
+
+@property (nonatomic, assign) BOOL isAnimating;
+
+- (void)startAnimation;
+- (void)stopAnimation;
+
+@end
+
+

@@ -422,3 +422,155 @@ void resetData(NSBallLoadingView *obj,CALayer **firstLayer, CALayer **secondLaye
 }
 
 @end
+
+
+@interface NSSwapLoadingView () <CAAnimationDelegate>
+
+@property (nonatomic, strong) CALayer *redLayer;
+@property (nonatomic, strong) CALayer *yellowLayer;
+@property (nonatomic, strong) CALayer *blueLayer;
+@property (nonatomic, strong) CALayer *containerLayer;
+
+@property (nonatomic, strong) UIColor *redColor;
+@property (nonatomic, strong) UIColor *yellowColor;
+@property (nonatomic, strong) UIColor *blueColor;
+
+
+@end
+
+@implementation NSSwapLoadingView
+
+- (void)dealloc {
+    NSLog(@"%s", __func__);
+}
+
+- (instancetype)init {
+    
+    if(self = [super init]) {
+        [self setupView];
+    }
+    return self;
+}
+
+- (instancetype)initWithFrame:(CGRect)frame {
+    
+    self = [super initWithFrame:frame];
+    if (self) {
+        [self setupView];
+    }
+    return self;
+}
+
+- (void)setupView {
+    
+    self.blueColor = [UIColor colorWithRed:102.f/255 green:201.f/255 blue:255.f/255 alpha:1.0];
+    self.redColor = [UIColor colorWithRed:252.f/255 green:79.f/255 blue:74.f/255 alpha:1.0];
+    self.yellowColor = [UIColor colorWithRed:254.f/255 green:212.f/255 blue:31.f/255 alpha:1.0];
+    CGFloat cx = self.frame.size.width/2 - 60;
+    CGFloat cy = self.frame.size.height/2 - 30;
+    CGFloat cw = 120;
+    CGFloat ch = 60;
+    self.containerLayer = [CALayer layer];
+    self.containerLayer.frame = CGRectMake(cx, cy, cw, ch);
+    [self.layer addSublayer:self.containerLayer];
+    
+    CGFloat bx = cw/2 - 18 - margin;
+    CGFloat by = ch/2 - 6;
+    CGFloat bw = 12;
+    CGFloat bh = 12;
+    self.blueLayer = [CALayer layer];
+    self.blueLayer.frame = CGRectMake(bx, by, bw, bh);
+    self.blueLayer.cornerRadius = 6;
+    self.blueLayer.backgroundColor = self.blueColor.CGColor;
+    [self.containerLayer addSublayer:self.blueLayer];
+    
+    CGFloat rx = cw/2 - 6;
+    CGFloat ry = ch/2 - 6;
+    CGFloat rw = 12;
+    CGFloat rh = 12;
+    self.redLayer = [CALayer layer];
+    self.redLayer.frame = CGRectMake(rx, ry, rw, rh);
+    self.redLayer.cornerRadius = 6;
+    self.redLayer.backgroundColor = self.redColor.CGColor;
+    [self.containerLayer addSublayer:self.redLayer];
+    
+    CGFloat yx = cw/2 + 6 + margin;
+    CGFloat yy = ch/2 - 6;
+    CGFloat yw = 12;
+    CGFloat yh = 12;
+    self.yellowLayer = [CALayer layer];
+    self.yellowLayer.frame = CGRectMake(yx, yy, yw, yh);
+    self.yellowLayer.cornerRadius = 6;
+    self.yellowLayer.backgroundColor = self.yellowColor.CGColor;
+    [self.containerLayer addSublayer:self.yellowLayer];
+    
+}
+
+- (void)startAnimation {
+    if (self.isAnimating) {
+        return;
+    }
+    self.isAnimating = YES;
+    CGFloat radius = (self.redLayer.position.x - self.blueLayer.position.x)/2;
+    CGPoint otherRoundCenter1 = CGPointMake(self.blueLayer.frame.origin.x + radius + 6, self.redLayer.position.y);
+    CGPoint otherRoundCenter2 = CGPointMake(self.redLayer.frame.origin.x + radius + 6, self.redLayer.position.y);
+    //圆1的路径
+    UIBezierPath *path1 = [[UIBezierPath alloc] init];
+    [path1 addArcWithCenter:otherRoundCenter1 radius:radius startAngle:-M_PI endAngle:0 clockwise:true];
+    UIBezierPath *path1_1 = [[UIBezierPath alloc] init];
+    [path1_1 addArcWithCenter:otherRoundCenter2 radius:radius startAngle:-M_PI endAngle:0 clockwise:false];
+    [path1 appendPath:path1_1];
+    
+    [self viewMovePathAnimWith:self.blueLayer path:path1 andTime:1.5];
+    [self viewColorAnimWith:self.blueLayer fromColor:self.blueColor toColor:self.yellowColor andTime:1.5];
+    
+    UIBezierPath *path2 = [[UIBezierPath alloc] init];
+    [path2 addArcWithCenter:otherRoundCenter1 radius:radius startAngle:0 endAngle:-M_PI clockwise:true];
+    [self viewMovePathAnimWith:self.redLayer path:path2 andTime:1.5];
+    [self viewColorAnimWith:self.redLayer fromColor:self.redColor toColor:self.blueColor andTime:1.5];
+    
+    UIBezierPath *path3 = [[UIBezierPath alloc] init];
+    [path3 addArcWithCenter:otherRoundCenter2 radius:radius startAngle:0 endAngle:-M_PI clockwise:false];
+    [self viewMovePathAnimWith:self.yellowLayer path:path3 andTime:1.5];
+    [self viewColorAnimWith:self.yellowLayer fromColor:self.yellowColor toColor:self.blueColor andTime:1.5];
+}
+
+- (void)stopAnimation {
+    self.isAnimating = NO;
+    [self.blueLayer removeAllAnimations];
+    [self.redLayer removeAllAnimations];
+    [self.yellowLayer removeAllAnimations];
+}
+
+///设置view的移动路线，这样抽出来因为每个圆的只有路径不一样
+- (void)viewMovePathAnimWith:(CALayer *)layer path:(UIBezierPath *)path andTime:(CGFloat)time {
+    
+    CAKeyframeAnimation *anim = [CAKeyframeAnimation animationWithKeyPath:@"position"];
+    
+    anim.path = [path CGPath];
+    anim.removedOnCompletion = false;
+    anim.fillMode = kCAFillModeForwards;
+    anim.calculationMode = kCAAnimationCubic;
+    anim.repeatCount = HUGE_VALF;
+    anim.duration = time;
+    anim.autoreverses = NO;
+    anim.delegate = self;
+    anim.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    [layer addAnimation:anim forKey:@"position"];
+    
+}
+///设置view的颜色动画
+- (void)viewColorAnimWith:(CALayer *)layer fromColor:(UIColor *)fromColor toColor:(UIColor *)toColor andTime:(CGFloat)time {
+    
+    CABasicAnimation *colorAnim = [CABasicAnimation animationWithKeyPath:@"backgroundColor"];
+    colorAnim.toValue = (__bridge id _Nullable)([toColor CGColor]);
+    colorAnim.fromValue = (__bridge id _Nullable)([fromColor CGColor]);
+    colorAnim.duration = time;
+    colorAnim.autoreverses = NO;
+    colorAnim.fillMode = kCAFillModeForwards;
+    colorAnim.removedOnCompletion = NO;
+    colorAnim.repeatCount = HUGE_VALF;
+    [layer addAnimation:colorAnim forKey:@"backgroundColor"];
+}
+
+@end
