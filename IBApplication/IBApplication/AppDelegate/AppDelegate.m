@@ -22,7 +22,11 @@
     // Override point for customization after application launch.
     
     self.window = [[UIWindow alloc] initWithFrame: [UIScreen mainScreen].bounds];
-    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController: [[ViewController alloc] init]];
+    ViewController *vc = [[ViewController alloc] init];
+    UITabBarController *tab = [[UITabBarController alloc] init];
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController: vc];
+    [tab addChildViewController: nav];
+    self.window.rootViewController = tab;
     [self.window makeKeyAndVisible];
     [NSDebug openFPS];
 

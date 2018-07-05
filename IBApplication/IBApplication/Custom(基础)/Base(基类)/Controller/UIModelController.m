@@ -14,9 +14,7 @@
 
 @implementation UIModelController
 
-- (void)goLogin {
-    
-}
+#pragma mark - 生命周期
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -28,19 +26,18 @@
 }
 
 
-#pragma mark - 合成存取
-- (void)setOpenKeyboard:(BOOL)openKeyboard {
-    _openKeyboard = openKeyboard;
-    //监听键盘的弹出事件
-    //1.创建一个NSNotificationCenter对象
-    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
-    if (openKeyboard) {
-        //2.监听键盘弹出发出的通知
-        [center addObserver:self selector:@selector(keyboardWillChangeFrame:) name:UIKeyboardWillChangeFrameNotification object:nil];
-    }
+#pragma mark - 重写方法
+
+#pragma mark - 公开方法
+
+- (void)enterLoginVC {
+    
 }
 
-//通知关联方法
+
+#pragma mark - 私有方法
+
+///键盘通知关联方法
 - (void)keyboardWillChangeFrame:(NSNotification *)noteInfo {
     
 //    NSLog(@"通知的内容：%@",noteInfo);
@@ -49,12 +46,26 @@
     CGFloat keyboardY = rectEnd.origin.y;
     //用键盘的Y值减去屏幕的高度计算平移的值
     CGFloat transformValue = keyboardY - self.view.frame.size.height;
-    NSLog(@"%f",transformValue);
+//    NSLog(@"%f",transformValue);
     
     [UIView animateWithDuration:0.25 animations:^{
         
         self.view.transform = CGAffineTransformMakeTranslation(0, transformValue);
     }];
+}
+
+
+#pragma mark - 代理事件
+
+
+#pragma mark - 合成存取
+
+- (void)setOpenKeyListener:(BOOL)openKeyListener {
+    
+    _openKeyListener = openKeyListener;
+    if (_openKeyListener) {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillChangeFrame:) name:UIKeyboardWillChangeFrameNotification object:nil];
+    }
 }
 
 

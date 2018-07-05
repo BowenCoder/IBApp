@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-//Hmac加密
+//hmac加密
 typedef NS_ENUM(NSInteger, NSEncodeHmacOption) {
     NSEncodeHmacOptionSHA1,
     NSEncodeHmacOptionMD5,

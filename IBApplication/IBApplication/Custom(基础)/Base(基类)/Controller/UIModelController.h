@@ -6,13 +6,13 @@
 //  Copyright © 2018年 BowenCoder. All rights reserved.
 //
 
-#import "UICommonController.h"
+#import "UIController.h"
 
-@interface UIModelController : UICommonController
+@interface UIModelController : UIController
 
 /** 开启键盘frame改变通知 */
-@property (nonatomic, assign) BOOL openKeyboard;
+@property (nonatomic, assign) BOOL openKeyListener;
 
-- (void)goLogin;
+- (void)enterLoginVC;
 
 @end

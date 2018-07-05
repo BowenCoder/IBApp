@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "UIModelController.h"
+#import "UIScrollController.h"
 
-@interface ViewController : UIModelController
+@interface ViewController : UIController
 
 
 @end

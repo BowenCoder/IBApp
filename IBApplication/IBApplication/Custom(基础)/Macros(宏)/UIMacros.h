@@ -29,22 +29,25 @@
 #define kSafeAreaTopHeight     kStatusBarHeight
 
 // 底部安全区域远离高度
-#define kSafeAreaBottomHeight  (IPHONEX ? 17 : 0)
+#define kSafeAreaBottomHeight  (IPHONEX ? 34 : 0)
 
 // TabBar高度
-#define kTabBarHeight          (kSafeAreaBottomHeight + 49)
+#define kTabBarHeight          49
+
+// barBar加上底部安全区域高度
+#define kBottomBarHeight       (kSafeAreaBottomHeight + kTabBarHeight)
 
 // 安全区域高度(包含导航栏和标签栏)
 #define kSafeAreaHeight        (kScreenHeight - kSafeAreaTopHeight - kSafeAreaBottomHeight)
 
-//不包含导航栏
+// 除去导航栏,屏幕高度
 #define kTabSafeAreaHeight     (kSafeAreaHeight - kNavBarHeight)
 
-//不包含标签栏
-#define kNavSafeAreaHeight     (kSafeAreaHeight - kTabBarHeight)
+// 除去标签栏，屏幕高度
+#define kNavSafeAreaHeight     (kSafeAreaHeight - kBottomBarHeight)
 
-//不包含状态栏和标签栏
-#define kViewHeight            (kSafeAreaHeight - kNavBarHeight - kTabBarHeight)
+// 除去状态栏和标签栏，屏幕高度
+#define kViewHeight            (kSafeAreaHeight - kNavBarHeight - kBottomBarHeight)
 
 //横向宽度
 #define kFitWidth(width)      (kScreenWidth  * (width/667.00))
