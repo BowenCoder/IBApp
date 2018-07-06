@@ -9,6 +9,8 @@
 #import "ViewController.h"
 #import "UIView+Ext.h"
 #import "IBMineController.h"
+#import "MBProgressHUD+Ext.h"
+#import "NSEmptyView.h"
 
 @interface ViewController ()
 
@@ -23,20 +25,20 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = [UIColor lightGrayColor];
     
-    
-    self.imageView = [[UIImageView alloc] initWithFrame:CGRectMake(50, 100, self.view.width - 100, 200)];
-    UIImage *img = [UIImage imageNamed:@"test"];
-    self.imageView.image = img;
-    self.imageView.backgroundColor = [UIColor lightGrayColor];
-    self.imageView.userInteractionEnabled = YES;
-    [self.view addSubview:self.imageView];
-
+//    self.imageView = [[UIImageView alloc] initWithFrame:CGRectMake(50, 100, self.view.width - 100, 200)];
+//    UIImage *img = [UIImage imageNamed:@"test"];
+//    self.imageView.image = img;
+//    self.imageView.backgroundColor = [UIColor lightGrayColor];
+//    self.imageView.userInteractionEnabled = YES;
+//    [self.view addSubview:self.imageView];
+//    [MBProgressHUD showNoData:self.view reload:nil];
     
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+
     IBMineController *mine = [[IBMineController alloc] init];
     [self.navigationController pushViewController:mine animated:YES];
 

@@ -11,6 +11,7 @@
 #import "UIImage+GIF.h"
 #import "NSEmptyView.h"
 #import "NSLoadingView.h"
+#import "Masonry.h"
 
 CGFloat const delayTime = 1.2;
 
@@ -195,6 +196,9 @@ NS_INLINE void setupPosition(MBProgressHUD *hud, MBPosition position) {
 + (void)showEmpty:(UIView *)superview title:(NSString *)title detail:(NSString *)detail imageName:(NSString *)name reload:(void(^)(void))reload {
     NSEmptyView *empty = [[NSEmptyView alloc] initWithFrame:superview.frame title:title detail:detail imageName:name reload:reload];
     [superview addSubview:empty];
+    [empty mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(superview);
+    }];
 }
 
 + (void)hideEmpty:(UIView *)superview {

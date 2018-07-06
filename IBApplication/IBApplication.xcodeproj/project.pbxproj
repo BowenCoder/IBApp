@@ -138,6 +138,7 @@
 		4AAA78FE20EE097300CF5639 /* UIScrollController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AAA78FD20EE097300CF5639 /* UIScrollController.m */; };
 		4AAA790320EE17AB00CF5639 /* IBMineController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AAA790220EE17AB00CF5639 /* IBMineController.m */; };
 		4AAA790620EE3FFC00CF5639 /* UINavigationController+Ext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AAA790520EE3FFC00CF5639 /* UINavigationController+Ext.m */; };
+		4AAA793020EF9C6300CF5639 /* UITableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AAA792F20EF9C6300CF5639 /* UITableController.m */; };
 		4ACC55E320DB5F3E001352AE /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC55CC20DB5F3E001352AE /* ViewController.m */; };
 		4ACC55E420DB5F3E001352AE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4ACC55D320DB5F3E001352AE /* Assets.xcassets */; };
 		4ACC55E520DB5F3E001352AE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4ACC55D420DB5F3E001352AE /* LaunchScreen.storyboard */; };
@@ -407,6 +408,8 @@
 		4AAA790220EE17AB00CF5639 /* IBMineController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBMineController.m; sourceTree = "<group>"; };
 		4AAA790420EE3FFC00CF5639 /* UINavigationController+Ext.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+Ext.h"; sourceTree = "<group>"; };
 		4AAA790520EE3FFC00CF5639 /* UINavigationController+Ext.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+Ext.m"; sourceTree = "<group>"; };
+		4AAA792E20EF9C6300CF5639 /* UITableController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UITableController.h; sourceTree = "<group>"; };
+		4AAA792F20EF9C6300CF5639 /* UITableController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UITableController.m; sourceTree = "<group>"; };
 		4ACC55AB20DB5100001352AE /* IBApplication.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IBApplication.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4ACC55CC20DB5F3E001352AE /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		4ACC55CD20DB5F3E001352AE /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
@@ -493,6 +496,8 @@
 				4A1FB09920E89FD10056A026 /* UIModelController.m */,
 				4AAA78FC20EE097300CF5639 /* UIScrollController.h */,
 				4AAA78FD20EE097300CF5639 /* UIScrollController.m */,
+				4AAA792E20EF9C6300CF5639 /* UITableController.h */,
+				4AAA792F20EF9C6300CF5639 /* UITableController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1466,6 +1471,7 @@
 				4A78076720E9F1BB00E60ACA /* NSArray+MASAdditions.m in Sources */,
 				4A1FB21B20E92D5E0056A026 /* SDWebImageCoderHelper.m in Sources */,
 				4ACC568420DE72BA001352AE /* UIViewController+Alert.m in Sources */,
+				4AAA793020EF9C6300CF5639 /* UITableController.m in Sources */,
 				4A1FB21020E92D5E0056A026 /* UIView+WebCacheOperation.m in Sources */,
 				4A6F197F20E345F500EAF1A7 /* NSHelper.m in Sources */,
 				4A1FB21720E92D5E0056A026 /* UIView+WebCache.m in Sources */,

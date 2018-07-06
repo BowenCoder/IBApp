@@ -26,15 +26,19 @@
 }
 
 - (void)didReceiveMemoryWarning {
-    [self clearMemory];
+    [self clearCache];
     [super didReceiveMemoryWarning];
 }
 
 #pragma mark - 公开方法
 
+- (void)clearCache {
+    
+}
+
 - (void)initVC {
-    [self initUI];
     [self initData];
+    [self initUI];
 }
 
 - (void)initData {
@@ -42,18 +46,17 @@
 }
 
 - (void)initUI {
+    
     self.view.backgroundColor = [UIColor groupTableViewBackgroundColor];
     [self forbidAutoLayout];
     [self setupBackBarItem];
 }
 
+
 - (void)setBackgroundImage:(UIImage *)image {
     [self.view setBackgroundImage:image pattern:NO];
 }
 
-- (void)clearMemory {
-    
-}
 
 #pragma mark - 私有方法
 
@@ -78,11 +81,13 @@
  如果设置为NO，导航栏不透明，视图下移64像素，标签栏遮住44像素，也就是108像素
  如果设置为YES，导航栏不透明，视图下移64像素
  如果设置为YES，导航栏透明，我们设置屏幕为尺寸，视图自动下移64，高度减去108
- 如果再加上标签栏，情况更复杂；所以都设置不透明，禁止自动布局
+ 如果再加上标签栏，情况更复杂；禁止自动布局，尽量保持透明
  */
 - (void)forbidAutoLayout {
-    self.navigationController.navigationBar.translucent = NO;
-    self.tabBarController.tabBar.translucent = NO;
+    
+    self.edgesForExtendedLayout = UIRectEdgeAll;
+    self.extendedLayoutIncludesOpaqueBars = NO;
+    
     if (@available(iOS 11.0, *)) {
         self.scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
     } else {
@@ -90,7 +95,9 @@
     }
 }
 
-#pragma mark - 代理事件
+#pragma mark - 触发事件
+
+#pragma mark - 回调事件
 
 #pragma mark - 合成存取
 
@@ -128,7 +135,6 @@
 
 
 /*
- 
  设置返回按钮三种方法
 1、设置backBarButtonItem，在父视图设置才会有效
 2、设置UIBarButtonItem的appearance，在本视图设置

@@ -7,6 +7,7 @@
 //
 
 #import "UIModelController.h"
+#import "MBProgressHUD+Ext.h"
 
 @interface UIModelController ()
 
@@ -33,6 +34,43 @@
 - (void)enterLoginVC {
     
 }
+
+- (void)pageLoad:(NSString *)url params:(NSDictionary *)params success:(NSHTTPClientSuccess)success failure:(NSHTTPClientError)failure isGet:(BOOL)isGet {
+    
+    [MBProgressHUD showTriangleLoadingView:self.view];
+    if (isGet) {
+        [NSHTTPClient GET:url send:nil params:params success:^(id JSON) {
+            if (success) {
+                success(JSON);
+            }
+            [MBProgressHUD hideTriangleLoadingView:self.view];
+        } failure:^(NSError *error) {
+            if (failure) {
+                failure(error);
+            }
+            [MBProgressHUD hideTriangleLoadingView:self.view];
+            [MBProgressHUD showNoData:self.view reload:^{
+                [self pageLoad:url params:params success:success failure:failure isGet:YES];
+            }];
+        }];
+    } else {
+        [NSHTTPClient POST:url send:nil params:params success:^(id JSON) {
+            if (success) {
+                success(JSON);
+            }
+            [MBProgressHUD hideTriangleLoadingView:self.view];
+        } failure:^(NSError *error) {
+            if (failure) {
+                failure(error);
+            }
+            [MBProgressHUD hideTriangleLoadingView:self.view];
+            [MBProgressHUD showNoData:self.view reload:^{
+                [self pageLoad:url params:params success:success failure:failure isGet:YES];
+            }];
+        }];
+    }
+}
+
 
 
 #pragma mark - 私有方法

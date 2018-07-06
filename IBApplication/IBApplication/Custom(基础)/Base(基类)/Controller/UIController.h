@@ -7,13 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NSHTTPClient.h"
 
 @interface UIController : UIViewController
+
+- (void)setBackgroundImage:(UIImage *)image;
 
 - (void)initVC;
 - (void)initUI;
 - (void)initData;
-- (void)clearMemory;
-- (void)setBackgroundImage:(UIImage *)image;
+- (void)clearCache;
+
+
+
 
 @end

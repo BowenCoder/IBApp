@@ -63,6 +63,7 @@
 
 - (void)click {
     if (self.reload) {
+        [self removeFromSuperview];
         self.reload();
     }
 }

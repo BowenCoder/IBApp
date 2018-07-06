@@ -15,4 +15,6 @@
 
 - (void)enterLoginVC;
 
+- (void)pageLoad:(NSString *)url params:(NSDictionary *)params success:(NSHTTPClientSuccess)success failure:(NSHTTPClientError)failure isGet:(BOOL)isGet;
+
 @end
