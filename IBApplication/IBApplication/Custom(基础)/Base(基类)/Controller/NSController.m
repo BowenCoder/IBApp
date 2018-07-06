@@ -1,28 +1,27 @@
 //
-//  UIController.m
+//  NSController.m
 //  IBApplication
 //
 //  Created by Bowen on 2018/7/4.
 //  Copyright © 2018年 BowenCoder. All rights reserved.
 //
 
-#import "UIController.h"
+#import "NSController.h"
 #import "UIView+Ext.h"
 
-@interface UIController ()
+@interface NSController ()
 
 @property (nonatomic, strong) UIScrollView *scrollView;
 
 @end
 
-@implementation UIController
+@implementation NSController
 
 #pragma mark - 重写方法
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self initVC];
-
+    [self onInit];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -32,26 +31,24 @@
 
 #pragma mark - 公开方法
 
-- (void)clearCache {
-    
+- (void)onInit {
+    [self initUI];
+    [self initData];
 }
 
-- (void)initVC {
-    [self initData];
-    [self initUI];
+- (void)initUI {
+    [self forbidAutoLayout];
+    [self setupBackBarItem];
+    self.view.backgroundColor = [UIColor groupTableViewBackgroundColor];
 }
 
 - (void)initData {
     
 }
 
-- (void)initUI {
+- (void)clearCache {
     
-    self.view.backgroundColor = [UIColor groupTableViewBackgroundColor];
-    [self forbidAutoLayout];
-    [self setupBackBarItem];
 }
-
 
 - (void)setBackgroundImage:(UIImage *)image {
     [self.view setBackgroundImage:image pattern:NO];
@@ -116,7 +113,7 @@
 }
 // 动画显示状态栏
 - (UIStatusBarAnimation)preferredStatusBarUpdateAnimation {
-    return UIStatusBarAnimationSlide;
+    return UIStatusBarAnimationFade;
 }
 
 

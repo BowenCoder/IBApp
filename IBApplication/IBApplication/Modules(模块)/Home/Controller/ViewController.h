@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "UIController.h"
+#import "NSController.h"
 
-@interface ViewController : UIController
+@interface ViewController : NSController
 
 
 @end

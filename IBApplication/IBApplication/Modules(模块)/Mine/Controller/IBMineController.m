@@ -7,6 +7,7 @@
 //
 
 #import "IBMineController.h"
+//#import "UINavigationController+FDFullscreenPopGesture.h"
 
 @interface IBMineController ()
 
@@ -18,6 +19,10 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self reloadData];
+    UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:nil action:nil];
+    pan.delegate = self;
+    [self.view addGestureRecognizer:pan];
+
 }
 
 - (void)reloadData {
@@ -26,8 +31,14 @@
         NSLog(@"%@",JSON);
     } failure:^(NSError *error) {
         NSLog(@"%@", error);
-    } isGet:YES];
+    } isGet:NO];
 }
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
+    NSLog(@"%@-%@", gestureRecognizer.delegate, otherGestureRecognizer.delegate);
+    return YES;
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

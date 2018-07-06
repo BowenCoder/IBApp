@@ -6,8 +6,8 @@
 //  Copyright © 2018年 BowenCoder. All rights reserved.
 //
 
-#import "UIModelController.h"
+#import "NSModelController.h"
 
-@interface IBMineController : UIModelController
+@interface IBMineController : NSModelController
 
 @end

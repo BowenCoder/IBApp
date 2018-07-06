@@ -1,19 +1,19 @@
 //
-//  UIModelController.m
+//  NSModelController.m
 //  IBApplication
 //
 //  Created by Bowen on 2018/7/1.
 //  Copyright © 2018年 BowenCoder. All rights reserved.
 //
 
-#import "UIModelController.h"
+#import "NSModelController.h"
 #import "MBProgressHUD+Ext.h"
 
-@interface UIModelController ()
+@interface NSModelController ()
 
 @end
 
-@implementation UIModelController
+@implementation NSModelController
 
 #pragma mark - 生命周期
 

@@ -10,10 +10,6 @@
 
 @interface NSEmptyView : UIView
 
-@property (nonatomic, copy) NSString *title;
-@property (nonatomic, copy) NSString *detailTitle;
-@property (nonatomic, copy) NSString *imageName;
-
 - (instancetype)initWithFrame:(CGRect)frame
                         title:(NSString *)title
                        detail:(NSString *)detail

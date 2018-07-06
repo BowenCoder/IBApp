@@ -12,10 +12,15 @@
 
 @interface NSEmptyView ()
 
+@property (nonatomic, copy) NSString *title;
+@property (nonatomic, copy) NSString *detail;
+@property (nonatomic, copy) NSString *imageName;
+
 @property (nonatomic, strong) UILabel *titleLabel;
-@property (nonatomic, strong) UILabel *detailTitleLabel;
+@property (nonatomic, strong) UILabel *detailLabel;
 @property (nonatomic, strong) UIImageView *imgView;
 @property (nonatomic, strong) UIView *containerView;
+
 @property (nonatomic, copy)  void(^reload)(void);
 
 @end
@@ -35,30 +40,55 @@
                        reload:(void(^)(void))reload {
     
     if (self = [super initWithFrame:frame]) {
-        _title = title;
-        _detailTitle = detail;
+        _title     = title;
+        _detail    = detail;
         _imageName = name;
-        _reload = reload;
-        [self initView];
+        _reload    = reload;
         [self setupView];
     }
     return self;
 }
 
-- (void)initView {
-    self.userInteractionEnabled = YES;
+- (void)setupView {
+
+    self.backgroundColor = [UIColor whiteColor];
+
+    [self addSubview:self.containerView];
+    [self.containerView addSubview:self.imgView];
+    [self.containerView addSubview:self.titleLabel];
+    [self.containerView addSubview:self.detailLabel];
+    [self makeConstraints];
+    
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(click)];
     [self addGestureRecognizer:tap];
 }
 
-- (void)setupView {
-    self.backgroundColor = [UIColor whiteColor];
-    [self addSubview:self.containerView];
-    [self.containerView addSubview:self.imgView];
-    [self.containerView addSubview:self.titleLabel];
-    [self.containerView addSubview:self.detailTitleLabel];
-    [self setNeedsUpdateConstraints];
-    [self updateConstraintsIfNeeded];
+- (void)makeConstraints {
+
+    [self.containerView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.center.equalTo(self);
+        make.left.right.mas_equalTo(self);
+    }];
+    
+    if (self.imgView.image) {
+        [self.imgView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.width.height.mas_equalTo(200);
+            make.centerX.equalTo(self.containerView);
+            make.top.mas_equalTo(self.containerView).offset(10);
+        }];
+    }
+    
+    [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.containerView);
+        make.top.equalTo(self.imgView.mas_bottom).offset(10);
+    }];
+    
+    [self.detailLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.containerView);
+        make.bottom.equalTo(self.containerView).offset(-10);
+        make.top.equalTo(self.titleLabel.mas_bottom).offset(10);
+    }];
+    
 }
 
 - (void)click {
@@ -68,55 +98,7 @@
     }
 }
 
-- (void)updateConstraints {
-    
-    [self.containerView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.mas_equalTo(self);
-        make.center.equalTo(self);
-    }];
-    
-    if (self.imgView.image) {
-        [self.imgView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.mas_equalTo(self.containerView).offset(10);
-            make.width.height.mas_equalTo(200);
-            make.centerX.equalTo(self.containerView);
-        }];
-    }
-    
-    [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.imgView.mas_bottom).offset(10);
-        make.centerX.equalTo(self.containerView);
-    }];
-    
-    [self.detailTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.titleLabel.mas_bottom).offset(10);
-        make.bottom.equalTo(self.containerView).offset(-10);
-        make.centerX.equalTo(self.containerView);
-    }];
-
-    [super updateConstraints];
-}
-
-
 #pragma mark - getter and setter
-
-- (void)setTitle:(NSString *)title {
-    self.titleLabel.text = title;
-    [self setNeedsUpdateConstraints];
-    [self updateConstraintsIfNeeded];
-}
-
-- (void)setImageName:(NSString *)imageName {
-    self.imgView.image = [UIImage imageNamed:imageName];
-    [self setNeedsUpdateConstraints];
-    [self updateConstraintsIfNeeded];
-}
-
-- (void)setDetailTitle:(NSString *)detailTitle {
-    self.detailTitleLabel.text = detailTitle;
-    [self setNeedsUpdateConstraints];
-    [self updateConstraintsIfNeeded];
-}
 
 - (UIView*)containerView {
     if (!_containerView) {
@@ -138,7 +120,7 @@
 - (UILabel*)titleLabel {
     if (!_titleLabel) {
         _titleLabel = [[UILabel alloc] init];
-        _titleLabel.font = [UIFont systemFontOfSize:18];
+        _titleLabel.font = [UIFont systemFontOfSize:16];
         _titleLabel.textColor = [NSColor colorWithHexString:@"#707070"];
         _titleLabel.text = _title;
         _titleLabel.backgroundColor = [UIColor whiteColor];
@@ -149,18 +131,18 @@
     return _titleLabel;
 }
 
-- (UILabel*)detailTitleLabel {
-    if (!_detailTitleLabel) {
-        _detailTitleLabel = [[UILabel alloc] init];
-        _detailTitleLabel.font = [UIFont systemFontOfSize:14];
-        _detailTitleLabel.textColor = [NSColor colorWithHexString:@"#8a8a8a"];
-        _detailTitleLabel.text = _detailTitle;
-        _detailTitleLabel.backgroundColor = [UIColor whiteColor];
-        _detailTitleLabel.textAlignment = NSTextAlignmentCenter;
-        _detailTitleLabel.numberOfLines = 0;
-        _detailTitleLabel.preferredMaxLayoutWidth = [UIScreen mainScreen].bounds.size.width - 40;
+- (UILabel*)detailLabel {
+    if (!_detailLabel) {
+        _detailLabel = [[UILabel alloc] init];
+        _detailLabel.font = [UIFont systemFontOfSize:14];
+        _detailLabel.textColor = [NSColor colorWithHexString:@"#8a8a8a"];
+        _detailLabel.text = _detail;
+        _detailLabel.backgroundColor = [UIColor whiteColor];
+        _detailLabel.textAlignment = NSTextAlignmentCenter;
+        _detailLabel.numberOfLines = 0;
+        _detailLabel.preferredMaxLayoutWidth = [UIScreen mainScreen].bounds.size.width - 40;
     }
-    return _detailTitleLabel;
+    return _detailLabel;
 }
 
 @end

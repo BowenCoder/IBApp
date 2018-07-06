@@ -1,18 +1,18 @@
 //
-//  UIScrollController.m
+//  NSScrollController.m
 //  IBApplication
 //
 //  Created by Bowen on 2018/7/5.
 //  Copyright © 2018年 BowenCoder. All rights reserved.
 //
 
-#import "UIScrollController.h"
+#import "NSScrollController.h"
 
-@interface UIScrollController ()
+@interface NSScrollController ()
 
 @end
 
-@implementation UIScrollController
+@implementation NSScrollController
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
