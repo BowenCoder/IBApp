@@ -10,7 +10,7 @@
 #import "UIView+Ext.h"
 #import "IBMineController.h"
 #import "MBProgressHUD+Ext.h"
-#import "NSEmptyView.h"
+#import "IBEmptyView.h"
 
 @interface ViewController ()
 

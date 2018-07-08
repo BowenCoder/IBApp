@@ -10,7 +10,7 @@
 #import "IBApp.h"
 #import "ViewController.h"
 #import "IBDebug.h"
-#import "NSNavigationController.h"
+#import "IBNaviController.h"
 
 @interface AppDelegate ()
 
@@ -25,7 +25,7 @@
     self.window = [[UIWindow alloc] initWithFrame: [UIScreen mainScreen].bounds];
     ViewController *vc = [[ViewController alloc] init];
     UITabBarController *tab = [[UITabBarController alloc] init];
-    NSNavigationController *nav = [[NSNavigationController alloc] initWithRootViewController: vc];
+    IBNaviController *nav = [[IBNaviController alloc] initWithRootViewController: vc];
     [tab addChildViewController: nav];
 
 

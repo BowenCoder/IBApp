@@ -166,13 +166,13 @@ NSString *const IBViewAnimationFlyoutName = @"IBViewAnimationFlyoutName";
 
 + (void)shake:(UIView *)view {
     
-    [self _shake:view times:10 direction:1 currentTimes:0 withDelta:5 speed:0.03 shakeDirection:UIViewShakeDirectionHorizontal completion:nil];
+    [self _shake:view times:10 direction:1 currentTimes:0 withDelta:5 speed:0.03 shakeDirection:IBViewShakeHorizontal completion:nil];
 }
 
-+ (void)_shake:(UIView *)view times:(int)times direction:(int)direction currentTimes:(int)current withDelta:(CGFloat)delta speed:(NSTimeInterval)interval shakeDirection:(UIViewShakeDirection)shakeDirection completion:(void (^)(void))completionHandler {
++ (void)_shake:(UIView *)view times:(int)times direction:(int)direction currentTimes:(int)current withDelta:(CGFloat)delta speed:(NSTimeInterval)interval shakeDirection:(IBViewShakeDirection)shakeDirection completion:(void (^)(void))completionHandler {
     
     [UIView animateWithDuration:interval animations:^{
-        view.layer.affineTransform = (shakeDirection == UIViewShakeDirectionHorizontal) ? CGAffineTransformMakeTranslation(delta * direction, 0) : CGAffineTransformMakeTranslation(0, delta * direction);
+        view.layer.affineTransform = (shakeDirection == IBViewShakeHorizontal) ? CGAffineTransformMakeTranslation(delta * direction, 0) : CGAffineTransformMakeTranslation(0, delta * direction);
     } completion:^(BOOL finished) {
         if(current >= times) {
             [UIView animateWithDuration:interval animations:^{

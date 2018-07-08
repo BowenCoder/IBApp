@@ -7,8 +7,8 @@
 //
 
 #import "IBApp.h"
-#import "NSHelper.h"
-#import "NSFile.h"
+#import "IBHelper.h"
+#import "IBFile.h"
 
 #import <AudioToolbox/AudioToolbox.h>
 #include <sys/types.h>
@@ -53,9 +53,9 @@
 
 + (NSString *)cacheSize {
     
-    unsigned long long docSize   =  [self _sizeOfFolder:[NSFile pathForDocumentsDirectory] resetSize:YES];
-    unsigned long long cacheSize =  [self _sizeOfFolder:[NSFile pathForCachesDirectory] resetSize:YES];
-    unsigned long long tempSize  =  [self _sizeOfFolder:[NSFile pathForTemporaryDirectory] resetSize:YES];
+    unsigned long long docSize   =  [self _sizeOfFolder:[IBFile pathForDocumentsDirectory] resetSize:YES];
+    unsigned long long cacheSize =  [self _sizeOfFolder:[IBFile pathForCachesDirectory] resetSize:YES];
+    unsigned long long tempSize  =  [self _sizeOfFolder:[IBFile pathForTemporaryDirectory] resetSize:YES];
     
     unsigned long long total = docSize + cacheSize + tempSize;
     
@@ -130,7 +130,7 @@
     NSString *versionKey = [NSString stringWithFormat:@"NSApp_v%@", version];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *oldVersion = [defaults valueForKey:versionKey];
-    if ([NSHelper isEmptyString:oldVersion]) {
+    if ([IBHelper isEmptyString:oldVersion]) {
         return YES;
     } else {
         return NO;
@@ -139,7 +139,7 @@
 
 + (void)onFirstStartForVersion:(NSString *)version block:(void (^)(BOOL isFirstStartForVersion))block {
     
-    if ([NSHelper isEmptyString:version]) {
+    if ([IBHelper isEmptyString:version]) {
         version = APP_VERSION;
     }
     NSString *versionKey = [NSString stringWithFormat:@"NSApp_v%@", version];

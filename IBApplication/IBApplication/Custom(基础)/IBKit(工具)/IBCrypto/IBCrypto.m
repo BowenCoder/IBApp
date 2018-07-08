@@ -8,7 +8,7 @@
 
 #import "IBCrypto.h"
 #import <CommonCrypto/CommonCryptor.h>
-#import "NSEncode.h"
+#import "IBEncode.h"
 
 @implementation IBCrypto
 
@@ -23,7 +23,7 @@
  *
  *  @return data
  */
-+ (NSData *)encrypt:(NSData *)data key:(NSString *)key option:(NSEncryptOption)option {
++ (NSData *)encrypt:(NSData *)data key:(NSString *)key option:(IBEncryptOption)option {
     
     NSData *keyData = [key dataUsingEncoding:NSUTF8StringEncoding];
     return [self execute:data key:keyData option:option encrypt:YES];
@@ -38,13 +38,13 @@
  *
  *  @return data
  */
-+ (NSData *)decrypt:(NSData *)data key:(NSString *)key option:(NSEncryptOption)option {
++ (NSData *)decrypt:(NSData *)data key:(NSString *)key option:(IBEncryptOption)option {
     
     NSData *keyData = [key dataUsingEncoding:NSUTF8StringEncoding];
     return [self execute:data key:keyData option:option encrypt:NO];
 }
 
-+ (NSData *)execute:(NSData *)data key:(NSData *)keyData option:(NSEncryptOption)option encrypt:(BOOL)encrypt{
++ (NSData *)execute:(NSData *)data key:(NSData *)keyData option:(IBEncryptOption)option encrypt:(BOOL)encrypt{
     
     CCAlgorithm algorithm = 0;
     size_t keyLength = 0;
@@ -81,18 +81,18 @@
     return nil;
 }
 
-void match(NSEncryptOption option,CCAlgorithm *algorithm, size_t *keyLength) {
+void match(IBEncryptOption option,CCAlgorithm *algorithm, size_t *keyLength) {
     
     switch (option) {
-        case NSEncryptOptionAES:
+        case IBEncryptOptionAES:
             *algorithm = kCCAlgorithmAES;
             *keyLength = kCCKeySizeAES128;
             break;
-        case NSEncryptOptionDES:
+        case IBEncryptOptionDES:
             *algorithm = kCCAlgorithmDES;
             *keyLength = kCCKeySizeDES;
             break;
-        case NSEncryptOption3DES:
+        case IBEncryptOption3DES:
             *algorithm = kCCAlgorithm3DES;
             *keyLength = kCCKeySize3DES;
             break;
@@ -112,7 +112,7 @@ void match(NSEncryptOption option,CCAlgorithm *algorithm, size_t *keyLength) {
  *
  *  @return data
  */
-+ (NSData *)encryptRSA:(NSData *)data key:(NSString *)key option:(NSEncryptRSA)option {
++ (NSData *)encryptRSA:(NSData *)data key:(NSString *)key option:(IBEncryptRSA)option {
     
     if(!data || !key) {
         return nil;
@@ -122,7 +122,7 @@ void match(NSEncryptOption option,CCAlgorithm *algorithm, size_t *keyLength) {
     if(!keyRef) {
         return nil;
     }
-    if (option == NSEncryptRSAPublicKey) {//公钥加密
+    if (option == IBEncryptRSAPublicKey) {//公钥加密
         return [self encrypt:data keyRef:keyRef isSign:NO];
     } else { //私钥加密
         return [self encrypt:data keyRef:keyRef isSign:YES];
@@ -137,7 +137,7 @@ void match(NSEncryptOption option,CCAlgorithm *algorithm, size_t *keyLength) {
  *
  *  @return data
  */
-+ (NSData *)decryptRSA:(NSData *)data key:(NSString *)key option:(NSEncryptRSA)option {
++ (NSData *)decryptRSA:(NSData *)data key:(NSString *)key option:(IBEncryptRSA)option {
     
     if(!data || !key) {
         return nil;
@@ -150,11 +150,11 @@ void match(NSEncryptOption option,CCAlgorithm *algorithm, size_t *keyLength) {
     return [self decrypt:data keyRef:keyRef];
 }
 
-+ (SecKeyRef)fetchSecKeyRef:(NSString *)key option:(NSEncryptRSA)option {
++ (SecKeyRef)fetchSecKeyRef:(NSString *)key option:(IBEncryptRSA)option {
     
     NSRange spos;
     NSRange epos;
-    if (option == NSEncryptRSAPublicKey) { //区分公钥私钥
+    if (option == IBEncryptRSAPublicKey) { //区分公钥私钥
         spos = [key rangeOfString:@"-----BEGIN PUBLIC KEY-----"];
         epos = [key rangeOfString:@"-----END PUBLIC KEY-----"];
     } else {
@@ -174,10 +174,10 @@ void match(NSEncryptOption option,CCAlgorithm *algorithm, size_t *keyLength) {
     key = [key stringByReplacingOccurrencesOfString:@" "  withString:@""];
     
     // This will be base64 encoded, decode it.
-    NSData *data = [NSEncode decodeBase64:key];
+    NSData *data = [IBEncode decodeBase64:key];
     //a tag to read/write keychain storage
     NSString *tag;
-    if (option == NSEncryptRSAPublicKey) { //区分公钥私钥
+    if (option == IBEncryptRSAPublicKey) { //区分公钥私钥
         data = [self publicKeyHeader:data];
         tag = @"RSAPublicKey";
     } else {
@@ -203,7 +203,7 @@ void match(NSEncryptOption option,CCAlgorithm *algorithm, size_t *keyLength) {
     [query setObject:(__bridge id) kSecAttrKeyClassPublic forKey:(__bridge id)
      kSecAttrKeyClass];
     
-    if (option == NSEncryptRSAPublicKey) { //区分公钥私钥
+    if (option == IBEncryptRSAPublicKey) { //区分公钥私钥
         [query setObject:[NSNumber numberWithBool:YES] forKey:(__bridge id)
          kSecReturnPersistentRef];
     } else {

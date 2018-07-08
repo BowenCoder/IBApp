@@ -8,16 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
-/** 动画效果类型 */
+/** spread动画效果类型 */
 typedef NS_ENUM(NSInteger, IBViewAnimationType) {
     IBViewAnimationOpen,
     IBViewAnimationClose
 };
 
 /** 震动方向 */
-typedef NS_ENUM(NSInteger, UIViewShakeDirection) {
-    UIViewShakeDirectionHorizontal = 0,
-    UIViewShakeDirectionVertical
+typedef NS_ENUM(NSInteger, IBViewShakeDirection) {
+    IBViewShakeHorizontal = 0,
+    IBViewShakeVertical
 };
 
 /** 移动方向 */

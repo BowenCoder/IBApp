@@ -7,7 +7,7 @@
 //
 
 #import "NSSocketPacket.h"
-#import "NSHelper.h"
+#import "IBHelper.h"
 
 #define BYTES_INT   4
 #define BYTES_SHORT 2
@@ -32,8 +32,8 @@
         self.packetType = packetType;
         self.socketByte = [[NSSocketByte alloc] init];
         [self.socketByte writeInt32:packetType useHost:YES];
-        if (![NSHelper isEmptyDic:content]) {
-            NSString *param = [NSHelper JSONString:content];
+        if (![IBHelper isEmptyDic:content]) {
+            NSString *param = [IBHelper JSONString:content];
             [self.socketByte writeInt16:param.length useHost:YES];
             [self.socketByte writeString:param];
         }

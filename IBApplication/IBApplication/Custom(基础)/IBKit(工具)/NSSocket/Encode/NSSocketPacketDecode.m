@@ -7,7 +7,7 @@
 //
 
 #import "NSSocketPacketDecode.h"
-#import "NSHelper.h"
+#import "IBHelper.h"
 
 @interface NSSocketPacketDecode ()
 
@@ -38,7 +38,7 @@
     
     // 读取数据的下标
     NSUInteger headIndex = 0;
-    while (![NSHelper isEmptyData:downPacket] && downPacket.length > _countOMMengthByte + headIndex) {
+    while (![IBHelper isEmptyData:downPacket] && downPacket.length > _countOMMengthByte + headIndex) {
         // 包长度
         NSInteger dataLength = 0;
         [downPacket getBytes:&dataLength range:NSMakeRange(headIndex, _countOMMengthByte)];

@@ -9,16 +9,16 @@
 #import <Foundation/Foundation.h>
 
 //对称加密
-typedef NS_ENUM(NSInteger, NSEncryptOption) {
-    NSEncryptOptionAES,
-    NSEncryptOptionDES,
-    NSEncryptOption3DES
+typedef NS_ENUM(NSInteger, IBEncryptOption) {
+    IBEncryptOptionAES,
+    IBEncryptOptionDES,
+    IBEncryptOption3DES
 };
 
 //非对称加密(公钥加密，私钥解密；反之亦然)
-typedef NS_ENUM(NSInteger, NSEncryptRSA) {
-    NSEncryptRSAPublicKey,
-    NSEncryptRSAPrivateKey //和NSEncryptRSAPublicKey使用
+typedef NS_ENUM(NSInteger, IBEncryptRSA) {
+    IBEncryptRSAPublicKey,
+    IBEncryptRSAPrivateKey //和NSEncryptRSAPublicKey使用
 };
 
 @interface IBCrypto : NSObject
@@ -33,7 +33,7 @@ typedef NS_ENUM(NSInteger, NSEncryptRSA) {
  *
  *  @return data
  */
-+ (NSData *)encrypt:(NSData *)data key:(NSString *)key option:(NSEncryptOption)option;
++ (NSData *)encrypt:(NSData *)data key:(NSString *)key option:(IBEncryptOption)option;
 
 /**
  *  对称解密
@@ -44,7 +44,7 @@ typedef NS_ENUM(NSInteger, NSEncryptRSA) {
  *
  *  @return data
  */
-+ (NSData *)decrypt:(NSData *)data key:(NSString *)key option:(NSEncryptOption)option;
++ (NSData *)decrypt:(NSData *)data key:(NSString *)key option:(IBEncryptOption)option;
 
 
 #pragma mark - 非对称加密(公钥和私钥)
@@ -57,7 +57,7 @@ typedef NS_ENUM(NSInteger, NSEncryptRSA) {
  *
  *  @return data
  */
-+ (NSData *)encryptRSA:(NSData *)data key:(NSString *)key option:(NSEncryptRSA)option;
++ (NSData *)encryptRSA:(NSData *)data key:(NSString *)key option:(IBEncryptRSA)option;
 
 /**
  *  非对称解密
@@ -68,7 +68,7 @@ typedef NS_ENUM(NSInteger, NSEncryptRSA) {
  *
  *  @return data
  */
-+ (NSData *)decryptRSA:(NSData *)data key:(NSString *)key option:(NSEncryptRSA)option;
++ (NSData *)decryptRSA:(NSData *)data key:(NSString *)key option:(IBEncryptRSA)option;
 
 
 @end
