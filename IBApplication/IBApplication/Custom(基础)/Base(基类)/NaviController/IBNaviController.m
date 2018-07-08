@@ -15,8 +15,9 @@
 
 @implementation IBNaviController
 
-- (instancetype)initWithRootViewController:(UIViewController *)rootViewController {
 
+- (instancetype)initWithRootViewController:(UIViewController *)rootViewController {
+    
     if (self = [super initWithRootViewController:rootViewController]) {
         [self setValue:[[IBNaviBar alloc] init] forKey:@"navigationBar"];
     }
@@ -27,7 +28,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 }
-
 
 
 - (UIViewController *)childViewControllerForStatusBarStyle {

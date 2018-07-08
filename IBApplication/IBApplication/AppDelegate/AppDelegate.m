@@ -25,7 +25,7 @@
     self.window = [[UIWindow alloc] initWithFrame: [UIScreen mainScreen].bounds];
     ViewController *vc = [[ViewController alloc] init];
     UITabBarController *tab = [[UITabBarController alloc] init];
-    IBNaviController *nav = [[IBNaviController alloc] initWithRootViewController: vc];
+    IBNaviController *nav = [[IBNaviController alloc] initWithRootViewController:vc];
     [tab addChildViewController: nav];
 
 
