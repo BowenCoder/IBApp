@@ -8,6 +8,8 @@
 
 #import "NSController.h"
 #import "UIView+Ext.h"
+#import "UIBarButtonItem+Ext.h"
+#import "NSPicture.h"
 
 @interface NSController ()
 
@@ -18,6 +20,10 @@
 @implementation NSController
 
 #pragma mark - 重写方法
+
+- (void)dealloc {
+    NSLog(@"%s", __func__);
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -54,6 +60,31 @@
     [self.view setBackgroundImage:image pattern:NO];
 }
 
+- (UIBarButtonItem *)rightBarItemWithTitle:(NSString *)title titleColor:(UIColor *)color imageName:(NSString *)name {
+    UIBarButtonItem *item = [UIBarButtonItem itemWithTitle:title backgroundImage:[UIImage imageNamed:name] normalColor:color highlightedColor:nil target:self action:@selector(rightBarItemClick:)];
+    NSMutableArray *items = [NSMutableArray array];
+    [items addObjectsFromArray:self.navigationItem.rightBarButtonItems];
+    [items addObject:item];
+    self.navigationItem.rightBarButtonItems = items;
+    return item;
+}
+
+- (UIBarButtonItem *)leftBarItemWithTitle:(NSString *)title titleColor:(UIColor *)color imageName:(NSString *)name {
+    UIBarButtonItem *item = [UIBarButtonItem itemWithTitle:title backgroundImage:[UIImage imageNamed:name] normalColor:color highlightedColor:nil target:self action:@selector(rightBarItemClick:)];
+    NSMutableArray *items = [NSMutableArray array];
+    [items addObjectsFromArray:self.navigationItem.leftBarButtonItems];
+    [items addObject:item];
+    self.navigationItem.leftBarButtonItems = items;
+    return item;
+}
+
+- (void)rightBarItemClick:(UIButton *)button {
+    
+}
+
+- (void)leftBarItemClick:(UIButton *)button {
+    
+}
 
 #pragma mark - 私有方法
 

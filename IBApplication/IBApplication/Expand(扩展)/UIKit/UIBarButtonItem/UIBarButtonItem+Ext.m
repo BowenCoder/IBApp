@@ -72,10 +72,8 @@
     [btn setTitleColor:normal forState:UIControlStateNormal];
     [btn setTitleColor:highlighted forState:UIControlStateHighlighted];
     [btn setBackgroundImage:backImage forState:UIControlStateNormal];
-    [btn setBackgroundImage:backImage forState:UIControlStateHighlighted];
     [btn addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
-    btn.titleLabel.font = [UIFont boldSystemFontOfSize:18];
-    
+    btn.titleLabel.font = [UIFont systemFontOfSize:16];
     if (CGSizeEqualToSize(backImage.size, CGSizeZero)) {
         CGSize size = [btn.titleLabel sizeThatFits:CGSizeMake(100, 44)];
         btn.frame = CGRectMake(0, 0, size.width, size.height);

@@ -21,8 +21,8 @@
 
 #pragma mark - 重写方法
 
-- (void)initVC {
-    [super initVC];
+- (void)onInit {
+    [super onInit];
     [self setupContentView];
 }
 

@@ -1,5 +1,5 @@
 //
-//  UIImageHelper.h
+//  NSPicture.h
 //  IBApplication
 //
 //  Created by BowenCoder on 2018/6/27.
@@ -24,7 +24,7 @@ typedef NS_ENUM(NSInteger, ImageWaterDirect) {
     ImageWaterDirectCenter
 };
 
-@interface UIImageHelper : NSObject
+@interface NSPicture : NSObject
 
 /**
  *  @brief  根据mainBundle中的文件名读取图片
@@ -105,7 +105,7 @@ typedef NS_ENUM(NSInteger, ImageWaterDirect) {
 
 @end
 
-@interface UIImageHelper (Special)
+@interface NSPicture (Special)
 
 /**
  *  @brief 图片翻转 :YES,水平翻转，NO，垂直翻转
@@ -149,7 +149,7 @@ typedef NS_ENUM(NSInteger, ImageWaterDirect) {
 
 @end
 
-@interface UIImageHelper (Merge)
+@interface NSPicture (Merge)
 
 /**
  *  @brief  合并两个图片

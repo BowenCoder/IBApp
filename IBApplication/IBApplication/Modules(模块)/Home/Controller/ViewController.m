@@ -34,6 +34,7 @@
 //    self.imageView.userInteractionEnabled = YES;
 //    [self.view addSubview:self.imageView];
 //    [MBProgressHUD showNoData:self.view reload:nil];
+    [self rightBarItemWithTitle:@"关注" titleColor:nil imageName:nil];
     
 }
 

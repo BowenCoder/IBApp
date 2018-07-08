@@ -1,5 +1,5 @@
 //
-//  NSCharacters.h
+//  IBCharacters.h
 //  IBApplication
 //
 //  Created by Bowen on 2018/6/27.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface NSCharacters : NSObject
+@interface IBCharacters : NSObject
 
 #pragma mark - contain
 

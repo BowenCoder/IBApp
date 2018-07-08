@@ -1,77 +1,77 @@
 //
-//  UIViewAnimation.m
+//  IBViewAnimation.m
 //  IBApplication
 //
 //  Created by Bowen on 2018/6/29.
 //  Copyright © 2018年 BowenCoder. All rights reserved.
 //
 
-#import "UIViewAnimation.h"
+#import "IBViewAnimation.h"
 
-NSString *const UIViewAnimationSlideName  = @"UIViewAnimationSlideName";
-NSString *const UIViewAnimationFadeName   = @"UIViewAnimationFadeName";
-NSString *const UIViewAnimationBackName   = @"UIViewAnimationBackName";
-NSString *const UIViewAnimationPopName    = @"UIViewAnimationPopName";
-NSString *const UIViewAnimationFallName   = @"UIViewAnimationFallName";
-NSString *const UIViewAnimationFlyoutName = @"UIViewAnimationFlyoutName";
+NSString *const IBViewAnimationSlideName  = @"IBViewAnimationSlideName";
+NSString *const IBViewAnimationFadeName   = @"IBViewAnimationFadeName";
+NSString *const IBViewAnimationBackName   = @"IBViewAnimationBackName";
+NSString *const IBViewAnimationPopName    = @"IBViewAnimationPopName";
+NSString *const IBViewAnimationFallName   = @"IBViewAnimationFallName";
+NSString *const IBViewAnimationFlyoutName = @"IBViewAnimationFlyoutName";
 
-@interface UIViewAnimation () <CAAnimationDelegate>
+@interface IBViewAnimation () <CAAnimationDelegate>
 
-@property (nonatomic, copy) UIViewAnimationHandle startHandle;
-@property (nonatomic, copy) UIViewAnimationHandle endHandle;
+@property (nonatomic, copy) IBViewAnimationHandle startHandle;
+@property (nonatomic, copy) IBViewAnimationHandle endHandle;
 @property (nonatomic, strong) UIView *currentView;
 @property (nonatomic, assign) NSTimeInterval duration;
 
 @end
 
-@implementation UIViewAnimation
+@implementation IBViewAnimation
 
 - (void)dealloc {
     NSLog(@"%s", __func__);
 }
 
-+ (CGPoint)viewCenter:(CGRect)enclosingViewFrame viewFrame:(CGRect)viewFrame viewCenter:(CGPoint)viewCenter direction:(UIViewAnimationDirection)direction {
++ (CGPoint)viewCenter:(CGRect)enclosingViewFrame viewFrame:(CGRect)viewFrame viewCenter:(CGPoint)viewCenter direction:(IBViewAnimationDirection)direction {
     
     switch (direction) {
-        case UIViewAnimationBottom: {
+        case IBViewAnimationBottom: {
             CGFloat extraOffset = viewFrame.size.height / 2;
             return CGPointMake(viewCenter.x, enclosingViewFrame.size.height + extraOffset);
             break;
         }
-        case UIViewAnimationTop: {
+        case IBViewAnimationTop: {
             CGFloat extraOffset = viewFrame.size.height / 2;
             return CGPointMake(viewCenter.x, enclosingViewFrame.origin.y - extraOffset);
             break;
         }
-        case UIViewAnimationLeft: {
+        case IBViewAnimationLeft: {
             CGFloat extraOffset = viewFrame.size.width / 2;
             return CGPointMake(enclosingViewFrame.origin.x - extraOffset, viewCenter.y);
             break;
         }
-        case UIViewAnimationRight: {
+        case IBViewAnimationRight: {
             CGFloat extraOffset = viewFrame.size.width / 2;
             return CGPointMake(enclosingViewFrame.size.width + extraOffset, viewCenter.y);
             break;
         }
-        case UIViewAnimationBottomLeft: {
+        case IBViewAnimationBottomLeft: {
             CGFloat extraOffsetHeight = viewFrame.size.height / 2;
             CGFloat extraOffsetWidth = viewFrame.size.width / 2;
             return CGPointMake(enclosingViewFrame.origin.x - extraOffsetWidth, enclosingViewFrame.size.height + extraOffsetHeight);
             break;
         }
-        case UIViewAnimationTopLeft: {
+        case IBViewAnimationTopLeft: {
             CGFloat extraOffsetHeight = viewFrame.size.height / 2;
             CGFloat extraOffsetWidth = viewFrame.size.width / 2;
             return CGPointMake(enclosingViewFrame.origin.x - extraOffsetWidth, enclosingViewFrame.origin.y - extraOffsetHeight);
             break;
         }
-        case UIViewAnimationBottomRight: {
+        case IBViewAnimationBottomRight: {
             CGFloat extraOffsetHeight = viewFrame.size.height / 2;
             CGFloat extraOffsetWidth = viewFrame.size.width / 2;
             return CGPointMake(enclosingViewFrame.size.width + extraOffsetWidth, enclosingViewFrame.size.height + extraOffsetHeight);
             break;
         }
-        case UIViewAnimationTopRight: {
+        case IBViewAnimationTopRight: {
             CGFloat extraOffsetHeight = viewFrame.size.height / 2;
             CGFloat extraOffsetWidth = viewFrame.size.width / 2;
             return CGPointMake(enclosingViewFrame.size.width + extraOffsetWidth, enclosingViewFrame.origin.y - extraOffsetHeight);
@@ -81,7 +81,7 @@ NSString *const UIViewAnimationFlyoutName = @"UIViewAnimationFlyoutName";
     return CGPointZero;
 }
 
-+ (CGPoint)screenCenter:(CGRect)viewFrame viewCenter:(CGPoint)viewCenter direction:(UIViewAnimationDirection)direction {
++ (CGPoint)screenCenter:(CGRect)viewFrame viewCenter:(CGPoint)viewCenter direction:(IBViewAnimationDirection)direction {
     
     CGRect screenRect = [[UIScreen mainScreen] bounds];
     if (UIInterfaceOrientationIsLandscape([[UIApplication sharedApplication] statusBarOrientation])) {
@@ -90,22 +90,22 @@ NSString *const UIViewAnimationFlyoutName = @"UIViewAnimationFlyoutName";
         screenRect.size.width = swap;
     }
     switch (direction) {
-        case UIViewAnimationBottom: {
+        case IBViewAnimationBottom: {
             CGFloat extraOffset = viewFrame.size.height / 2;
             return CGPointMake(viewCenter.x, screenRect.size.height + extraOffset);
             break;
         }
-        case UIViewAnimationTop: {
+        case IBViewAnimationTop: {
             CGFloat extraOffset = viewFrame.size.height / 2;
             return CGPointMake(viewCenter.x, screenRect.origin.y - extraOffset);
             break;
         }
-        case UIViewAnimationLeft: {
+        case IBViewAnimationLeft: {
             CGFloat extraOffset = viewFrame.size.width / 2;
             return CGPointMake(screenRect.origin.x - extraOffset, viewCenter.y);
             break;
         }
-        case UIViewAnimationRight: {
+        case IBViewAnimationRight: {
             CGFloat extraOffset = viewFrame.size.width / 2;
             return CGPointMake(screenRect.size.width + extraOffset, viewCenter.y);
             break;
@@ -113,27 +113,27 @@ NSString *const UIViewAnimationFlyoutName = @"UIViewAnimationFlyoutName";
         default:
             break;
     }
-    return [UIViewAnimation viewCenter:[[UIScreen mainScreen] bounds] viewFrame:viewFrame viewCenter:viewCenter direction:direction];
+    return [IBViewAnimation viewCenter:[[UIScreen mainScreen] bounds] viewFrame:viewFrame viewCenter:viewCenter direction:direction];
 }
 
-+ (CGPoint)overshootPoint:(CGPoint)point direction:(UIViewAnimationDirection)direction threshold:(CGFloat)threshold {
++ (CGPoint)overshootPoint:(CGPoint)point direction:(IBViewAnimationDirection)direction threshold:(CGFloat)threshold {
     CGPoint overshootPoint = CGPointMake(0, 0);
-    if(direction == UIViewAnimationTop || direction == UIViewAnimationBottom) {
-        overshootPoint = CGPointMake(point.x, point.y + ((direction == UIViewAnimationBottom ? -1 : 1) * threshold));
+    if(direction == IBViewAnimationTop || direction == IBViewAnimationBottom) {
+        overshootPoint = CGPointMake(point.x, point.y + ((direction == IBViewAnimationBottom ? -1 : 1) * threshold));
     }
-    if (direction == UIViewAnimationLeft || direction == UIViewAnimationRight){
-        overshootPoint = CGPointMake(point.x + ((direction == UIViewAnimationRight ? -1 : 1) * threshold), point.y);
+    if (direction == IBViewAnimationLeft || direction == IBViewAnimationRight){
+        overshootPoint = CGPointMake(point.x + ((direction == IBViewAnimationRight ? -1 : 1) * threshold), point.y);
     }
-    if (direction == UIViewAnimationTopLeft){
+    if (direction == IBViewAnimationTopLeft){
         overshootPoint = CGPointMake(point.x + threshold, point.y + threshold);
     }
-    if (direction == UIViewAnimationTopRight){
+    if (direction == IBViewAnimationTopRight){
         overshootPoint = CGPointMake(point.x - threshold, point.y + threshold);
     }
-    if (direction == UIViewAnimationBottomLeft){
+    if (direction == IBViewAnimationBottomLeft){
         overshootPoint = CGPointMake(point.x + threshold, point.y - threshold);
     }
-    if (direction == UIViewAnimationBottomRight){
+    if (direction == IBViewAnimationBottomRight){
         overshootPoint = CGPointMake(point.x - threshold, point.y - threshold);
     }
     
@@ -162,7 +162,7 @@ NSString *const UIViewAnimationFlyoutName = @"UIViewAnimationFlyoutName";
 
 @end
 
-@implementation UIViewAnimation (Animation)
+@implementation IBViewAnimation (Animation)
 
 + (void)shake:(UIView *)view {
     
@@ -196,10 +196,10 @@ NSString *const UIViewAnimationFlyoutName = @"UIViewAnimationFlyoutName";
     }];
 }
 
-+ (void)spread:(UIView *)view startPoint:(CGPoint)point duration:(NSTimeInterval)duration type:(UIViewAnimationType)type color:(UIColor *)color completion:(void (^)(BOOL finished))completion {
++ (void)spread:(UIView *)view startPoint:(CGPoint)point duration:(NSTimeInterval)duration type:(IBViewAnimationType)type color:(UIColor *)color completion:(void (^)(BOOL finished))completion {
     
     CAShapeLayer *shapeLayer = [CAShapeLayer layer];
-    CGFloat diameter = [UIViewAnimation maxBorderDiameterForPoint:point onView:view];
+    CGFloat diameter = [IBViewAnimation maxBorderDiameterForPoint:point onView:view];
     shapeLayer.frame = CGRectMake(floor(point.x - diameter * 0.5), floor(point.y - diameter * 0.5), diameter, diameter);
     shapeLayer.path = [UIBezierPath bezierPathWithOvalInRect:CGRectMake(0.0, 0.0, diameter, diameter)].CGPath;
     
@@ -208,14 +208,14 @@ NSString *const UIViewAnimationFlyoutName = @"UIViewAnimationFlyoutName";
     NSString *timingFunctionName = kCAMediaTimingFunctionDefault;
     CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"transform"];
     switch (type) {
-        case UIViewAnimationTypeOpen: {
+        case IBViewAnimationOpen: {
             
             [view.layer addSublayer:shapeLayer];
             animation.toValue = [NSValue valueWithCATransform3D:CATransform3DMakeScale(1.0, 1.0, 1.0)];
             animation.fromValue = [NSValue valueWithCATransform3D:CATransform3DMakeScale(scale, scale, 1.0)];
             break;
         }
-        case UIViewAnimationTypeClose: {
+        case IBViewAnimationClose: {
             
             [view.layer insertSublayer:shapeLayer atIndex:0];
             animation.toValue = [NSValue valueWithCATransform3D:CATransform3DMakeScale(scale, scale, 1.0)];
@@ -281,10 +281,10 @@ NSString *const UIViewAnimationFlyoutName = @"UIViewAnimationFlyoutName";
     }
 }
 
-+ (void)move:(UIView *)view duration:(float)duration distance:(CGFloat)distance direction:(UIViewAnimationDirection)direction completion:(void (^)(void))completion {
++ (void)move:(UIView *)view duration:(float)duration distance:(CGFloat)distance direction:(IBViewAnimationDirection)direction completion:(void (^)(void))completion {
     
     switch (direction) {
-        case UIViewAnimationLeft: {
+        case IBViewAnimationLeft: {
             [UIView animateWithDuration:duration animations:^{
                 view.center = CGPointMake(view.center.x - distance, view.center.y);
             } completion:^(BOOL finished) {
@@ -292,14 +292,14 @@ NSString *const UIViewAnimationFlyoutName = @"UIViewAnimationFlyoutName";
             }];
         }
             break;
-        case UIViewAnimationRight: {
+        case IBViewAnimationRight: {
             [UIView animateWithDuration:duration animations:^{
                 view.center = CGPointMake(view.center.x + distance, view.center.y);
             } completion:^(BOOL finished) {
                 completion();
             }];
         }
-        case UIViewAnimationTop: {
+        case IBViewAnimationTop: {
             [UIView animateWithDuration:duration animations:^{
                 view.center = CGPointMake(view.center.x, view.center.y - distance);
             } completion:^(BOOL finished) {
@@ -307,7 +307,7 @@ NSString *const UIViewAnimationFlyoutName = @"UIViewAnimationFlyoutName";
             }];
         }
             break;
-        case UIViewAnimationBottom: {
+        case IBViewAnimationBottom: {
             [UIView animateWithDuration:duration animations:^{
                 view.center = CGPointMake(view.center.x, view.center.y + distance);
             } completion:^(BOOL finished) {
@@ -331,14 +331,14 @@ NSString *const UIViewAnimationFlyoutName = @"UIViewAnimationFlyoutName";
 
 @end
 
-@implementation UIViewAnimation (CoreAnimation)
+@implementation IBViewAnimation (CoreAnimation)
 
 - (CAAnimation *)slideAnimation:(UIView *)view
                          inView:(UIView *)enclosingView
-                      direction:(UIViewAnimationDirection)direction
+                      direction:(IBViewAnimationDirection)direction
                        duration:(NSTimeInterval)duration
-                          start:(UIViewAnimationHandle)startHandle
-                            end:(UIViewAnimationHandle)endHandle
+                          start:(IBViewAnimationHandle)startHandle
+                            end:(IBViewAnimationHandle)endHandle
                            isIn:(BOOL)isIn {
     
     CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"position"];
@@ -346,31 +346,31 @@ NSString *const UIViewAnimationFlyoutName = @"UIViewAnimationFlyoutName";
     NSValue *toValue;
     if (isIn) {
         if (enclosingView) {
-            fromValue = [NSValue valueWithCGPoint:[UIViewAnimation viewCenter:enclosingView.frame viewFrame:view.frame viewCenter:view.center direction:direction]];
+            fromValue = [NSValue valueWithCGPoint:[IBViewAnimation viewCenter:enclosingView.frame viewFrame:view.frame viewCenter:view.center direction:direction]];
         } else {
-            fromValue = [NSValue valueWithCGPoint:[UIViewAnimation screenCenter:view.frame viewCenter:view.center direction:direction]];
+            fromValue = [NSValue valueWithCGPoint:[IBViewAnimation screenCenter:view.frame viewCenter:view.center direction:direction]];
         }
         toValue = [NSValue valueWithCGPoint:view.center];
     } else {
         fromValue = [NSValue valueWithCGPoint:view.center];
         if (enclosingView) {
-            toValue = [NSValue valueWithCGPoint:[UIViewAnimation viewCenter:enclosingView.frame viewFrame:view.frame viewCenter:view.center direction:direction]];
+            toValue = [NSValue valueWithCGPoint:[IBViewAnimation viewCenter:enclosingView.frame viewFrame:view.frame viewCenter:view.center direction:direction]];
         } else {
-            toValue = [NSValue valueWithCGPoint:[UIViewAnimation screenCenter:view.frame viewCenter:view.center direction:direction]];
+            toValue = [NSValue valueWithCGPoint:[IBViewAnimation screenCenter:view.frame viewCenter:view.center direction:direction]];
         }
     }
 
     animation.fromValue = fromValue;
     animation.toValue = toValue;
     CAAnimationGroup *group = [self animationGroup:view animations:@[animation] duration:duration start:startHandle end:endHandle];
-    [view.layer addAnimation:group forKey:UIViewAnimationSlideName];
+    [view.layer addAnimation:group forKey:IBViewAnimationSlideName];
     return group;
 }
 
 - (CAAnimation *)fadeAnimation:(UIView *)view
                       duration:(NSTimeInterval)duration
-                         start:(UIViewAnimationHandle)startHandle
-                           end:(UIViewAnimationHandle)endHandle
+                         start:(IBViewAnimationHandle)startHandle
+                           end:(IBViewAnimationHandle)endHandle
                           isIn:(BOOL)isIn {
 
     CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"opacity"];
@@ -383,34 +383,34 @@ NSString *const UIViewAnimationFlyoutName = @"UIViewAnimationFlyoutName";
     }
     
     CAAnimationGroup *group = [self animationGroup:view animations:@[animation] duration:duration start:startHandle end:endHandle];
-    [view.layer addAnimation:group forKey:UIViewAnimationFadeName];
+    [view.layer addAnimation:group forKey:IBViewAnimationFadeName];
     return group;
 }
 
 
 - (CAAnimation *)backAnimation:(UIView *)view
                         inView:(UIView *)enclosingView
-                     direction:(UIViewAnimationDirection)direction
+                     direction:(IBViewAnimationDirection)direction
                       duration:(NSTimeInterval)duration
-                         start:(UIViewAnimationHandle)startHandle
-                           end:(UIViewAnimationHandle)endHandle
+                         start:(IBViewAnimationHandle)startHandle
+                           end:(IBViewAnimationHandle)endHandle
                           fade:(BOOL)fade
                           isIn:(BOOL)isIn {
 
     CGPoint centerPoint;
     if (enclosingView) {
-        centerPoint = [UIViewAnimation viewCenter:enclosingView.frame viewFrame:view.frame viewCenter:view.center direction:direction];
+        centerPoint = [IBViewAnimation viewCenter:enclosingView.frame viewFrame:view.frame viewCenter:view.center direction:direction];
     } else {
-        centerPoint = [UIViewAnimation screenCenter:view.frame viewCenter:view.center direction:direction];
+        centerPoint = [IBViewAnimation screenCenter:view.frame viewCenter:view.center direction:direction];
     }
     CGPoint path[3];
     if (isIn) {
         path[0] = centerPoint;
-        path[1] = [UIViewAnimation overshootPoint:view.center direction:direction threshold:(10 * 1.15)];
+        path[1] = [IBViewAnimation overshootPoint:view.center direction:direction threshold:(10 * 1.15)];
         path[2] = view.center;
     } else {
         path[0] = view.center;
-        path[1] = [UIViewAnimation overshootPoint:view.center direction:direction threshold:10];
+        path[1] = [IBViewAnimation overshootPoint:view.center direction:direction threshold:10];
         path[2] = centerPoint;
     }
     
@@ -427,14 +427,14 @@ NSString *const UIViewAnimationFlyoutName = @"UIViewAnimationFlyoutName";
         animations = @[animation];
     }
     CAAnimationGroup *group = [self animationGroup:view animations:animations duration:duration start:startHandle end:endHandle];
-    [view.layer addAnimation:group forKey:UIViewAnimationBackName];
+    [view.layer addAnimation:group forKey:IBViewAnimationBackName];
     return nil;
 }
 
 - (CAAnimation *)popAnimation:(UIView *)view
                      duration:(NSTimeInterval)duration
-                        start:(UIViewAnimationHandle)startHandle
-                          end:(UIViewAnimationHandle)endHandle
+                        start:(IBViewAnimationHandle)startHandle
+                          end:(IBViewAnimationHandle)endHandle
                          isIn:(BOOL)isIn {
     
     CAKeyframeAnimation *scale = [CAKeyframeAnimation animationWithKeyPath:@"transform.scale"];
@@ -454,15 +454,15 @@ NSString *const UIViewAnimationFlyoutName = @"UIViewAnimationFlyoutName";
     }
     
     CAAnimationGroup *group = [self animationGroup:view animations:@[scale, fade] duration:duration start:startHandle end:endHandle];
-    [view.layer addAnimation:group forKey:UIViewAnimationPopName];
+    [view.layer addAnimation:group forKey:IBViewAnimationPopName];
     
     return group;
 }
 
 - (CAAnimation *)fallAnimation:(UIView *)view
                       duration:(NSTimeInterval)duration
-                         start:(UIViewAnimationHandle)startHandle
-                           end:(UIViewAnimationHandle)endHandle
+                         start:(IBViewAnimationHandle)startHandle
+                           end:(IBViewAnimationHandle)endHandle
                           isIn:(BOOL)isIn {
 
     CABasicAnimation *fall = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
@@ -484,14 +484,14 @@ NSString *const UIViewAnimationFlyoutName = @"UIViewAnimationFlyoutName";
     }
     
     CAAnimationGroup *group = [self animationGroup:view animations:@[fall, fade] duration:duration start:startHandle end:endHandle];
-    [view.layer addAnimation:group forKey:UIViewAnimationFallName];
+    [view.layer addAnimation:group forKey:IBViewAnimationFallName];
     return group;
 }
 
 - (CAAnimation *)flyoutAnimation:(UIView *)view
                         duration:(NSTimeInterval)duration
-                           start:(UIViewAnimationHandle)startHandle
-                             end:(UIViewAnimationHandle)endHandle {
+                           start:(IBViewAnimationHandle)startHandle
+                             end:(IBViewAnimationHandle)endHandle {
     self.currentView = view;
 
     CABasicAnimation *fly = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
@@ -501,7 +501,7 @@ NSString *const UIViewAnimationFlyoutName = @"UIViewAnimationFlyoutName";
     fade.toValue = @0.0;
     
     CAAnimationGroup *group = [self animationGroup:view animations:@[fly, fade] duration:duration start:startHandle end:endHandle];
-    [view.layer addAnimation:group forKey:UIViewAnimationFlyoutName];
+    [view.layer addAnimation:group forKey:IBViewAnimationFlyoutName];
     return group;
 
 }
@@ -509,8 +509,8 @@ NSString *const UIViewAnimationFlyoutName = @"UIViewAnimationFlyoutName";
 - (CAAnimationGroup *)animationGroup:(UIView *)view
                           animations:(NSArray *)animations
                             duration:(NSTimeInterval)duration
-                               start:(UIViewAnimationHandle)startHandle
-                                 end:(UIViewAnimationHandle)endHandle {
+                               start:(IBViewAnimationHandle)startHandle
+                                 end:(IBViewAnimationHandle)endHandle {
     self.currentView = view;
     self.duration = duration;
     
@@ -567,23 +567,23 @@ NSString *const UIViewAnimationFlyoutName = @"UIViewAnimationFlyoutName";
 
 - (void)_removeAnimations {
 
-    if ([self.currentView.layer animationForKey:UIViewAnimationSlideName]) {
-        [self.currentView.layer removeAnimationForKey:UIViewAnimationSlideName];
+    if ([self.currentView.layer animationForKey:IBViewAnimationSlideName]) {
+        [self.currentView.layer removeAnimationForKey:IBViewAnimationSlideName];
     }
-    if ([self.currentView.layer animationForKey:UIViewAnimationFadeName]) {
-        [self.currentView.layer removeAnimationForKey:UIViewAnimationFadeName];
+    if ([self.currentView.layer animationForKey:IBViewAnimationFadeName]) {
+        [self.currentView.layer removeAnimationForKey:IBViewAnimationFadeName];
     }
-    if ([self.currentView.layer animationForKey:UIViewAnimationBackName]) {
-        [self.currentView.layer removeAnimationForKey:UIViewAnimationBackName];
+    if ([self.currentView.layer animationForKey:IBViewAnimationBackName]) {
+        [self.currentView.layer removeAnimationForKey:IBViewAnimationBackName];
     }
-    if ([self.currentView.layer animationForKey:UIViewAnimationPopName]) {
-        [self.currentView.layer removeAnimationForKey:UIViewAnimationPopName];
+    if ([self.currentView.layer animationForKey:IBViewAnimationPopName]) {
+        [self.currentView.layer removeAnimationForKey:IBViewAnimationPopName];
     }
-    if ([self.currentView.layer animationForKey:UIViewAnimationFallName]) {
-        [self.currentView.layer removeAnimationForKey:UIViewAnimationFallName];
+    if ([self.currentView.layer animationForKey:IBViewAnimationFallName]) {
+        [self.currentView.layer removeAnimationForKey:IBViewAnimationFallName];
     }
-    if ([self.currentView.layer animationForKey:UIViewAnimationFlyoutName]) {
-        [self.currentView.layer removeAnimationForKey:UIViewAnimationFlyoutName];
+    if ([self.currentView.layer animationForKey:IBViewAnimationFlyoutName]) {
+        [self.currentView.layer removeAnimationForKey:IBViewAnimationFlyoutName];
     }
 }
 

@@ -1,16 +1,16 @@
 //
-//  NSCrypto.m
+//  IBCrypto.m
 //  IBApplication
 //
 //  Created by Bowen on 2018/6/26.
 //  Copyright © 2018年 BowenCoder. All rights reserved.
 //
 
-#import "NSCrypto.h"
+#import "IBCrypto.h"
 #import <CommonCrypto/CommonCryptor.h>
 #import "NSEncode.h"
 
-@implementation NSCrypto
+@implementation IBCrypto
 
 #pragma mark - 对称加密(只有一个秘钥)
 

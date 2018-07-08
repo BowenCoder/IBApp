@@ -1,5 +1,5 @@
 //
-//  NSColor.h
+//  IBColor.h
 //  IBApplication
 //
 //  Created by Bowen on 2018/6/27.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface NSColor : NSObject
+@interface IBColor : NSObject
 
 /**
  *  @brief  随机颜色

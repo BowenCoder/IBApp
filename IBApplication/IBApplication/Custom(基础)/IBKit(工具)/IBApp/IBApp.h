@@ -1,5 +1,5 @@
 //
-//  NSApp.h
+//  IBApp.h
 //  IBApplication
 //
 //  Created by Bowen on 2018/6/24.
@@ -39,7 +39,7 @@
 #define APPLanguage [[NSLocale preferredLanguages] firstObject]
 
 
-@interface NSApp : NSObject
+@interface IBApp : NSObject
 
 /**
  获取随机 UUID 例如 E621E1F8-C36C-495A-93FC-0C247A3E6E5F
@@ -108,7 +108,7 @@
 
 @end
 
-@interface NSApp (Open)
+@interface IBApp (Open)
 
 /** 打开一个URL */
 + (void)openURL:(NSURL *)url;
@@ -124,7 +124,7 @@
 
 @end
 
-@interface NSApp (Device)
+@interface IBApp (Device)
 
 /** CPU使用率 */
 + (CGFloat)cpuUsage;

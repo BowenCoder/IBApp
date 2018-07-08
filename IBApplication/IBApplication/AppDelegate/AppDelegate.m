@@ -7,9 +7,10 @@
 //
 
 #import "AppDelegate.h"
-#import "NSApp.h"
+#import "IBApp.h"
 #import "ViewController.h"
-#import "NSDebug.h"
+#import "IBDebug.h"
+#import "NSNavigationController.h"
 
 @interface AppDelegate ()
 
@@ -24,13 +25,15 @@
     self.window = [[UIWindow alloc] initWithFrame: [UIScreen mainScreen].bounds];
     ViewController *vc = [[ViewController alloc] init];
     UITabBarController *tab = [[UITabBarController alloc] init];
-    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController: vc];
+    NSNavigationController *nav = [[NSNavigationController alloc] initWithRootViewController: vc];
     [tab addChildViewController: nav];
+
+
     self.window.rootViewController = tab;
     [self.window makeKeyAndVisible];
-    [NSDebug openFPS];
+    [IBDebug openFPS];
 
-    [NSApp onFirstStartForVersion:APP_VERSION block:^(BOOL isFirstStartForVersion) {
+    [IBApp onFirstStartForVersion:APP_VERSION block:^(BOOL isFirstStartForVersion) {
         if (isFirstStartForVersion) {
             NSLog(@"特性");
         } else {

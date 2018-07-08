@@ -1,5 +1,5 @@
 //
-//  NSDebug.h
+//  IBDebug.h
 //  IBApplication
 //
 //  Created by Bowen on 2018/7/4.
@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NSDebug : NSObject
+@interface IBDebug : NSObject
 
 + (void)openFPS;
 

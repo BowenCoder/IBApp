@@ -1,20 +1,20 @@
 //
-//  NSDebug.m
+//  IBDebug.m
 //  IBApplication
 //
 //  Created by Bowen on 2018/7/4.
 //  Copyright © 2018年 BowenCoder. All rights reserved.
 //
 
-#import "NSDebug.h"
+#import "IBDebug.h"
 #import "NSFPSLabel.h"
 
-@interface NSDebug ()
+@interface IBDebug ()
 
 @end
 
 
-@implementation NSDebug
+@implementation IBDebug
 
 + (void)openFPS {
     

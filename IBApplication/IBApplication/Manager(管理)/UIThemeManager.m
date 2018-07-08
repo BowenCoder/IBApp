@@ -7,7 +7,7 @@
 //
 
 #import "UIThemeManager.h"
-#import "NSColor.h"
+#import "IBColor.h"
 @implementation UIColor (Theme)
 
 /*!
@@ -15,7 +15,7 @@
  @return 控件默认的背景颜色
  */
 + (UIColor *)defaultBGColor {
-    return [NSColor colorWithHexString:@"f2f2f2"];
+    return [IBColor colorWithHexString:@"f2f2f2"];
 }
 
 /*!
@@ -23,7 +23,7 @@
  @return APP默认主题颜色
  */
 + (UIColor *)appThemeColor {
-    return [NSColor colorWithHexString:@"#ff6666"];
+    return [IBColor colorWithHexString:@"#ff6666"];
 }
 
 /*!
@@ -31,7 +31,7 @@
  @return 分割线默认颜色
  */
 + (UIColor *)lineColor {
-    return [NSColor colorWithHexString:@"#ededed"];
+    return [IBColor colorWithHexString:@"#ededed"];
 }
 
 /*!
@@ -47,7 +47,7 @@
  @return 一级字体颜色
  */
 + (UIColor *)firstFontColor {
-    return [NSColor colorWithHexString:@"#1f1f1f"];
+    return [IBColor colorWithHexString:@"#1f1f1f"];
 }
 
 /*!
@@ -55,7 +55,7 @@
  @return 二级字体颜色
  */
 + (UIColor *)secondFontColor {
-    return [NSColor colorWithHexString:@"#5c5c5c"];
+    return [IBColor colorWithHexString:@"#5c5c5c"];
 }
 
 @end

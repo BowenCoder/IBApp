@@ -8,7 +8,7 @@
 
 #import "NSEmptyView.h"
 #import "Masonry.h"
-#import "NSColor.h"
+#import "IBColor.h"
 
 @interface NSEmptyView ()
 
@@ -121,7 +121,7 @@
     if (!_titleLabel) {
         _titleLabel = [[UILabel alloc] init];
         _titleLabel.font = [UIFont systemFontOfSize:16];
-        _titleLabel.textColor = [NSColor colorWithHexString:@"#707070"];
+        _titleLabel.textColor = [IBColor colorWithHexString:@"#707070"];
         _titleLabel.text = _title;
         _titleLabel.backgroundColor = [UIColor whiteColor];
         _titleLabel.textAlignment = NSTextAlignmentCenter;
@@ -135,7 +135,7 @@
     if (!_detailLabel) {
         _detailLabel = [[UILabel alloc] init];
         _detailLabel.font = [UIFont systemFontOfSize:14];
-        _detailLabel.textColor = [NSColor colorWithHexString:@"#8a8a8a"];
+        _detailLabel.textColor = [IBColor colorWithHexString:@"#8a8a8a"];
         _detailLabel.text = _detail;
         _detailLabel.backgroundColor = [UIColor whiteColor];
         _detailLabel.textAlignment = NSTextAlignmentCenter;

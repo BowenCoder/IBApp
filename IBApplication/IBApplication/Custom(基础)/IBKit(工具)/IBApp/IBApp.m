@@ -1,12 +1,12 @@
 //
-//  NSApp.m
+//  IBApp.m
 //  IBApplication
 //
 //  Created by Bowen on 2018/6/24.
 //  Copyright © 2018年 BowenCoder. All rights reserved.
 //
 
-#import "NSApp.h"
+#import "IBApp.h"
 #import "NSHelper.h"
 #import "NSFile.h"
 
@@ -24,7 +24,7 @@
 #import <mach/mach_host.h>
 #import <mach/processor_info.h>
 
-@implementation NSApp
+@implementation IBApp
 
 + (NSString *)UUID {
     
@@ -180,7 +180,7 @@
 
 @end
 
-@implementation NSApp (Open)
+@implementation IBApp (Open)
 
 + (void)openURL:(NSURL *)url {
     
@@ -207,7 +207,7 @@
 
 @end
 
-@implementation NSApp (Device)
+@implementation IBApp (Device)
 
 + (CGFloat)cpuUsage {
     

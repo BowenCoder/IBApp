@@ -1,5 +1,5 @@
 //
-//  NSCrypto.h
+//  IBCrypto.h
 //  IBApplication
 //
 //  Created by Bowen on 2018/6/26.
@@ -21,7 +21,7 @@ typedef NS_ENUM(NSInteger, NSEncryptRSA) {
     NSEncryptRSAPrivateKey //和NSEncryptRSAPublicKey使用
 };
 
-@interface NSCrypto : NSObject
+@interface IBCrypto : NSObject
 
 #pragma mark - 对称加密(只有一个秘钥)
 /**
