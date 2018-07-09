@@ -43,9 +43,10 @@
 //    [self rightBarItemWithTitle:@"关注" titleColor:nil imageName:nil];
     
     self.tableView = [[UITableView alloc] initWithFrame:self.view.frame style:UITableViewStylePlain];
+    self.tableView.rowHeight = 60;
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
-    [self.view addSubview:self.tableView];
+//    [self.view addSubview:self.tableView];
     
 }
 

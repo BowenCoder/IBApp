@@ -10,11 +10,6 @@
 
 @interface IBModelController : IBController
 
-/** 开启键盘frame改变通知 */
-@property (nonatomic, assign) BOOL openKeyListener;
-
-- (void)enterLoginVC;
-
 - (void)pageLoad:(NSString *)url params:(NSDictionary *)params success:(HTTPClientSuccess)success failure:(HTTPClientError)failure isGet:(BOOL)isGet;
 
 @end

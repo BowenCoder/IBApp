@@ -14,6 +14,9 @@
 /** 反向传值使用 */
 @property (nonatomic, copy) void (^callback)(id);
 
+/** 开启键盘frame改变通知 */
+@property (nonatomic, assign) BOOL openKeyListener;
+
 /**
  UI初始化之前运行
  */
@@ -38,6 +41,12 @@
  设置背景图片
  */
 - (void)setBackgroundImage:(UIImage *)image;
+
+
+/**
+ 进入登录页
+ */
+- (void)enterLoginVC;
 
 /**
  设置导航栏右边按钮
