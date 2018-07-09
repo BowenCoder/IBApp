@@ -142,6 +142,11 @@
 		4AAA790320EE17AB00CF5639 /* IBMineController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AAA790220EE17AB00CF5639 /* IBMineController.m */; };
 		4AAA793020EF9C6300CF5639 /* IBTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AAA792F20EF9C6300CF5639 /* IBTableController.m */; };
 		4AC81CCC20F3200400A1F246 /* IBTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC81CCB20F3200400A1F246 /* IBTabBarController.m */; };
+		4AC81CD220F37BFE00A1F246 /* IBWebController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC81CD120F37BFE00A1F246 /* IBWebController.m */; };
+		4AC81CD720F37C6B00A1F246 /* IBCollectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC81CD620F37C6B00A1F246 /* IBCollectionController.m */; };
+		4AC81CDC20F37D0C00A1F246 /* IBView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC81CDB20F37D0C00A1F246 /* IBView.m */; };
+		4AC81CE020F37D2800A1F246 /* IBModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC81CDF20F37D2800A1F246 /* IBModel.m */; };
+		4AC81CE420F37D4600A1F246 /* IBViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC81CE320F37D4600A1F246 /* IBViewModel.m */; };
 		4ACC55E320DB5F3E001352AE /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC55CC20DB5F3E001352AE /* ViewController.m */; };
 		4ACC55E420DB5F3E001352AE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4ACC55D320DB5F3E001352AE /* Assets.xcassets */; };
 		4ACC55E520DB5F3E001352AE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4ACC55D420DB5F3E001352AE /* LaunchScreen.storyboard */; };
@@ -419,6 +424,16 @@
 		4AAA792F20EF9C6300CF5639 /* IBTableController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBTableController.m; sourceTree = "<group>"; };
 		4AC81CCA20F3200400A1F246 /* IBTabBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBTabBarController.h; sourceTree = "<group>"; };
 		4AC81CCB20F3200400A1F246 /* IBTabBarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBTabBarController.m; sourceTree = "<group>"; };
+		4AC81CD020F37BFE00A1F246 /* IBWebController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBWebController.h; sourceTree = "<group>"; };
+		4AC81CD120F37BFE00A1F246 /* IBWebController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBWebController.m; sourceTree = "<group>"; };
+		4AC81CD520F37C6B00A1F246 /* IBCollectionController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBCollectionController.h; sourceTree = "<group>"; };
+		4AC81CD620F37C6B00A1F246 /* IBCollectionController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBCollectionController.m; sourceTree = "<group>"; };
+		4AC81CDA20F37D0C00A1F246 /* IBView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBView.h; sourceTree = "<group>"; };
+		4AC81CDB20F37D0C00A1F246 /* IBView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBView.m; sourceTree = "<group>"; };
+		4AC81CDE20F37D2800A1F246 /* IBModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBModel.h; sourceTree = "<group>"; };
+		4AC81CDF20F37D2800A1F246 /* IBModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBModel.m; sourceTree = "<group>"; };
+		4AC81CE220F37D4600A1F246 /* IBViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBViewModel.h; sourceTree = "<group>"; };
+		4AC81CE320F37D4600A1F246 /* IBViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBViewModel.m; sourceTree = "<group>"; };
 		4ACC55AB20DB5100001352AE /* IBApplication.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IBApplication.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4ACC55CC20DB5F3E001352AE /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		4ACC55CD20DB5F3E001352AE /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
@@ -494,7 +509,7 @@
 			path = IBAnimation;
 			sourceTree = "<group>";
 		};
-		4A1FB09B20E8A2030056A026 /* Controller */ = {
+		4A1FB09B20E8A2030056A026 /* BaseController */ = {
 			isa = PBXGroup;
 			children = (
 				4AAA78F620ECD46E00CF5639 /* IBController.h */,
@@ -503,10 +518,8 @@
 				4A1FB09920E89FD10056A026 /* IBModelController.m */,
 				4AAA78FC20EE097300CF5639 /* IBScrollController.h */,
 				4AAA78FD20EE097300CF5639 /* IBScrollController.m */,
-				4AAA792E20EF9C6300CF5639 /* IBTableController.h */,
-				4AAA792F20EF9C6300CF5639 /* IBTableController.m */,
 			);
-			path = Controller;
+			path = BaseController;
 			sourceTree = "<group>";
 		};
 		4A1FB0A420E8E5290056A026 /* IBPopupView */ = {
@@ -1058,6 +1071,73 @@
 			path = TabBar;
 			sourceTree = "<group>";
 		};
+		4AC81CCF20F37BD400A1F246 /* WebController */ = {
+			isa = PBXGroup;
+			children = (
+				4AC81CD020F37BFE00A1F246 /* IBWebController.h */,
+				4AC81CD120F37BFE00A1F246 /* IBWebController.m */,
+			);
+			path = WebController;
+			sourceTree = "<group>";
+		};
+		4AC81CD320F37C0D00A1F246 /* TableController */ = {
+			isa = PBXGroup;
+			children = (
+				4AAA792E20EF9C6300CF5639 /* IBTableController.h */,
+				4AAA792F20EF9C6300CF5639 /* IBTableController.m */,
+			);
+			path = TableController;
+			sourceTree = "<group>";
+		};
+		4AC81CD420F37C2800A1F246 /* CollectionController */ = {
+			isa = PBXGroup;
+			children = (
+				4AC81CD520F37C6B00A1F246 /* IBCollectionController.h */,
+				4AC81CD620F37C6B00A1F246 /* IBCollectionController.m */,
+			);
+			path = CollectionController;
+			sourceTree = "<group>";
+		};
+		4AC81CD820F37CDE00A1F246 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				4AC81CD420F37C2800A1F246 /* CollectionController */,
+				4A1FB09B20E8A2030056A026 /* BaseController */,
+				4A72287120F0CDDD008B8815 /* NaviController */,
+				4AC81CC920F31FCB00A1F246 /* TabBarController */,
+				4AC81CD320F37C0D00A1F246 /* TableController */,
+				4AC81CCF20F37BD400A1F246 /* WebController */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		4AC81CD920F37CF700A1F246 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4AC81CDA20F37D0C00A1F246 /* IBView.h */,
+				4AC81CDB20F37D0C00A1F246 /* IBView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		4AC81CDD20F37D1300A1F246 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				4AC81CDE20F37D2800A1F246 /* IBModel.h */,
+				4AC81CDF20F37D2800A1F246 /* IBModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		4AC81CE120F37D3100A1F246 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				4AC81CE220F37D4600A1F246 /* IBViewModel.h */,
+				4AC81CE320F37D4600A1F246 /* IBViewModel.m */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		4ACC55A220DB50FF001352AE = {
 			isa = PBXGroup;
 			children = (
@@ -1124,9 +1204,10 @@
 		4ACC55C720DB5F3E001352AE /* Base(基类) */ = {
 			isa = PBXGroup;
 			children = (
-				4AC81CC920F31FCB00A1F246 /* TabBarController */,
-				4A72287120F0CDDD008B8815 /* NaviController */,
-				4A1FB09B20E8A2030056A026 /* Controller */,
+				4AC81CD820F37CDE00A1F246 /* Controller */,
+				4AC81CDD20F37D1300A1F246 /* Model */,
+				4AC81CD920F37CF700A1F246 /* View */,
+				4AC81CE120F37D3100A1F246 /* ViewModel */,
 			);
 			path = "Base(基类)";
 			sourceTree = "<group>";
@@ -1528,6 +1609,7 @@
 				4ACC568420DE72BA001352AE /* UIViewController+Alert.m in Sources */,
 				4AAA793020EF9C6300CF5639 /* IBTableController.m in Sources */,
 				4A1FB21020E92D5E0056A026 /* UIView+WebCacheOperation.m in Sources */,
+				4AC81CDC20F37D0C00A1F246 /* IBView.m in Sources */,
 				4A6F197F20E345F500EAF1A7 /* IBHelper.m in Sources */,
 				4A1FB21720E92D5E0056A026 /* UIView+WebCache.m in Sources */,
 				4ACC569720DEC5B7001352AE /* IBTouchID.m in Sources */,
@@ -1537,6 +1619,7 @@
 				4A1FB21920E92D5E0056A026 /* SDWebImageFrame.m in Sources */,
 				4A1FB20920E92D5E0056A026 /* SDImageCache.m in Sources */,
 				4AAA78EB20ECB4F200CF5639 /* IBDebug.m in Sources */,
+				4AC81CE420F37D4600A1F246 /* IBViewModel.m in Sources */,
 				4ACC55EA20DB5F3E001352AE /* AppDelegate.m in Sources */,
 				4A6F197B20E3332000EAF1A7 /* IBColor.m in Sources */,
 				4A1FB20A20E92D5E0056A026 /* SDImageCacheConfig.m in Sources */,
@@ -1579,6 +1662,7 @@
 				4A1FB21620E92D5E0056A026 /* NSImage+WebCache.m in Sources */,
 				4ACC569B20DEC694001352AE /* IBApp.m in Sources */,
 				4A1FB20C20E92D5E0056A026 /* UIImage+ForceDecode.m in Sources */,
+				4AC81CD720F37C6B00A1F246 /* IBCollectionController.m in Sources */,
 				4A1FB22220E92D5E0056A026 /* SDWebImageDownloaderOperation.m in Sources */,
 				4A1FB12D20E921E90056A026 /* MWPhotoBrowser.m in Sources */,
 				4ACC566020DD7FF9001352AE /* UIViewController+MJPopupViewController.m in Sources */,
@@ -1588,6 +1672,7 @@
 				4A1FB0BB20E8EE6B0056A026 /* AFURLResponseSerialization.m in Sources */,
 				4A1FB22F20E931350056A026 /* MBProgressHUD+Ext.m in Sources */,
 				4A1FB22B20E92D810056A026 /* FLAnimatedImageView.m in Sources */,
+				4AC81CD220F37BFE00A1F246 /* IBWebController.m in Sources */,
 				4A1FB21420E92D5E0056A026 /* NSButton+WebCache.m in Sources */,
 				4A72287420F0CE3D008B8815 /* IBNaviController.m in Sources */,
 				4ACC55EC20DB5F3E001352AE /* AppDelegate+AppLifeCircle.m in Sources */,
@@ -1602,6 +1687,7 @@
 				4ACC56A420DF7A89001352AE /* UIView+Effect.m in Sources */,
 				4A1FB0A820E8EA630056A026 /* MBProgressHUD.m in Sources */,
 				4A1FB13120E921E90056A026 /* MWTapDetectingImageView.m in Sources */,
+				4AC81CE020F37D2800A1F246 /* IBModel.m in Sources */,
 				4A78076520E9F1BB00E60ACA /* MASConstraintMaker.m in Sources */,
 				4A1FB22120E92D5E0056A026 /* SDWebImageDownloader.m in Sources */,
 				4A6F199B20E3B37200EAF1A7 /* NSSocketPacketDecode.m in Sources */,
