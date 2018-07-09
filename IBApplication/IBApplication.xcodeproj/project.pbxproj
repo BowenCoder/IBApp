@@ -141,6 +141,7 @@
 		4AAA78FE20EE097300CF5639 /* IBScrollController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AAA78FD20EE097300CF5639 /* IBScrollController.m */; };
 		4AAA790320EE17AB00CF5639 /* IBMineController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AAA790220EE17AB00CF5639 /* IBMineController.m */; };
 		4AAA793020EF9C6300CF5639 /* IBTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AAA792F20EF9C6300CF5639 /* IBTableController.m */; };
+		4AC81CCC20F3200400A1F246 /* IBTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC81CCB20F3200400A1F246 /* IBTabBarController.m */; };
 		4ACC55E320DB5F3E001352AE /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC55CC20DB5F3E001352AE /* ViewController.m */; };
 		4ACC55E420DB5F3E001352AE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4ACC55D320DB5F3E001352AE /* Assets.xcassets */; };
 		4ACC55E520DB5F3E001352AE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4ACC55D420DB5F3E001352AE /* LaunchScreen.storyboard */; };
@@ -416,6 +417,8 @@
 		4AAA790220EE17AB00CF5639 /* IBMineController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBMineController.m; sourceTree = "<group>"; };
 		4AAA792E20EF9C6300CF5639 /* IBTableController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBTableController.h; sourceTree = "<group>"; };
 		4AAA792F20EF9C6300CF5639 /* IBTableController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBTableController.m; sourceTree = "<group>"; };
+		4AC81CCA20F3200400A1F246 /* IBTabBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBTabBarController.h; sourceTree = "<group>"; };
+		4AC81CCB20F3200400A1F246 /* IBTabBarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBTabBarController.m; sourceTree = "<group>"; };
 		4ACC55AB20DB5100001352AE /* IBApplication.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IBApplication.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4ACC55CC20DB5F3E001352AE /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		4ACC55CD20DB5F3E001352AE /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
@@ -1038,6 +1041,23 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		4AC81CC920F31FCB00A1F246 /* TabBarController */ = {
+			isa = PBXGroup;
+			children = (
+				4AC81CCD20F3252100A1F246 /* TabBar */,
+				4AC81CCA20F3200400A1F246 /* IBTabBarController.h */,
+				4AC81CCB20F3200400A1F246 /* IBTabBarController.m */,
+			);
+			path = TabBarController;
+			sourceTree = "<group>";
+		};
+		4AC81CCD20F3252100A1F246 /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = TabBar;
+			sourceTree = "<group>";
+		};
 		4ACC55A220DB50FF001352AE = {
 			isa = PBXGroup;
 			children = (
@@ -1104,6 +1124,7 @@
 		4ACC55C720DB5F3E001352AE /* Base(基类) */ = {
 			isa = PBXGroup;
 			children = (
+				4AC81CC920F31FCB00A1F246 /* TabBarController */,
 				4A72287120F0CDDD008B8815 /* NaviController */,
 				4A1FB09B20E8A2030056A026 /* Controller */,
 			);
@@ -1594,6 +1615,7 @@
 				4A1FB21120E92D5E0056A026 /* FLAnimatedImageView+WebCache.m in Sources */,
 				4ACC563C20DD6C62001352AE /* UIBarButtonItem+Ext.m in Sources */,
 				4A1FB22520E92D5E0056A026 /* SDWebImagePrefetcher.m in Sources */,
+				4AC81CCC20F3200400A1F246 /* IBTabBarController.m in Sources */,
 				4A78076A20E9F1BB00E60ACA /* MASViewConstraint.m in Sources */,
 				4A6F19A920E3F3D700EAF1A7 /* NSSocketConnection.m in Sources */,
 				4A1FB13220E921E90056A026 /* MWPhoto.m in Sources */,

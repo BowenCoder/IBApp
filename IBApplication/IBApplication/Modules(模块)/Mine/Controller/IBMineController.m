@@ -8,6 +8,7 @@
 
 #import "IBMineController.h"
 //#import "UINavigationController+FDFullscreenPopGesture.h"
+#import "IBNaviController.h"
 
 @interface IBMineController ()<UIGestureRecognizerDelegate>
 
@@ -22,11 +23,12 @@
     UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:nil action:nil];
     pan.delegate = self;
     [self.view addGestureRecognizer:pan];
+
 //    self.navigationController.navigationBar.barTintColor = [UIColor redColor];
 //    self.navigationController.navigationBar.frame = CGRectMake(0, 0, self.view.frame.size.width, 200);
 //    self.navigationController.navigationBar.translucent = YES;
-    
-//    [self rightBarItemWithTitle:@"关注" titleColor:[UIColor redColor] imageName:@"bubble"];
+    self.navigationItem.title = @"123";
+    [self rightBarItemWithTitle:@"关注" titleColor:nil imageName:nil];
 //    [self rightBarItemWithTitle:@"关注" titleColor:[UIColor redColor] imageName:@"bubble"];
 //    [self leftBarItemWithTitle:@"关注" titleColor:[UIColor redColor] imageName:@"bubble"];
 

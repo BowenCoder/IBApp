@@ -110,8 +110,6 @@
                                                                  style:UIBarButtonItemStylePlain
                                                                 target:nil
                                                                 action:nil];
-    //设置颜色不然会变成蓝色
-    self.navigationController.navigationBar.tintColor = [UIColor blackColor];
     //主要是以下两个图片设置
     self.navigationController.navigationBar.backIndicatorImage = [UIImage imageNamed:@"back"];
     self.navigationController.navigationBar.backIndicatorTransitionMaskImage = [UIImage imageNamed:@"back"];
@@ -226,6 +224,15 @@
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(ib_keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(ib_textViewDidBeginEditing:) name:UITextFieldTextDidBeginEditingNotification object:nil];
     }
+}
+
+- (IBNaviController *)naviController {
+    if (!_naviController) {
+        if (self.navigationController && [self.navigationController isKindOfClass:[IBNaviController class]]) {
+            _naviController = (IBNaviController *)self.navigationController;
+        }
+    }
+    return _naviController;
 }
 
 

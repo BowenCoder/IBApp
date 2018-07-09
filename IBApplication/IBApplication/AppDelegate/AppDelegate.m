@@ -26,6 +26,15 @@
     ViewController *vc = [[ViewController alloc] init];
     UITabBarController *tab = [[UITabBarController alloc] init];
     IBNaviController *nav = [[IBNaviController alloc] initWithRootViewController:vc];
+//    nav.naviBar.lucencyBar = YES;
+    [nav.naviBar hiddenBarBottomLine:YES];
+    
+//    nav.naviBar.globalShadowImage = [UIImage new];
+    nav.naviBar.globalBarTintColor = [UIColor redColor];
+    nav.naviBar.globalTintColor = [UIColor purpleColor];
+ 
+    [IBNaviBar setTitleColor:[UIColor redColor] fontSize:16];
+    [IBNaviBar setItemTitleColor:[UIColor orangeColor] fontSize:13];
     [tab addChildViewController: nav];
 
 
@@ -42,7 +51,6 @@
     }];
     return YES;
 }
-
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

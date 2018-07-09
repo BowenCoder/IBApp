@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "IBNaviBar.h"
 
 @interface IBNaviController : UINavigationController
+
+@property (nonatomic, strong) IBNaviBar *naviBar;
 
 @end

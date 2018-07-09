@@ -7,6 +7,7 @@
 //
 
 #import "IBController.h"
+#import "IBHTTPClient.h"
 
 @interface IBModelController : IBController
 

@@ -26,6 +26,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    
+    self.navigationController.navigationBar.backgroundColor = [UIColor clearColor];
+//    self.navigationController.navigationBar.barTintColor = [UIColor clearColor];
+//    self.navigationController.navigationBar.hidden = YES;
+//    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+    self.naviController.naviBar.barTintColor = [UIColor orangeColor];
     self.view.backgroundColor = [UIColor lightGrayColor];
     UITextField *tf = [[UITextField alloc] initWithFrame:CGRectMake(0, 500, self.view.frame.size.width, 44)];
     tf.borderStyle = UITextBorderStyleLine;
@@ -52,9 +58,9 @@
 
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    [self.view endEditing:YES];
-//    IBMineController *mine = [[IBMineController alloc] init];
-//    [self.navigationController pushViewController:mine animated:YES];
+//    [self.view endEditing:YES];
+    IBMineController *mine = [[IBMineController alloc] init];
+    [self.navigationController pushViewController:mine animated:YES];
 
 }
 

@@ -7,7 +7,6 @@
 //
 
 #import "IBNaviController.h"
-#import "IBNaviBar.h"
 
 @interface IBNaviController ()
 
@@ -15,11 +14,11 @@
 
 @implementation IBNaviController
 
-
 - (instancetype)initWithRootViewController:(UIViewController *)rootViewController {
     
     if (self = [super initWithRootViewController:rootViewController]) {
-        [self setValue:[[IBNaviBar alloc] init] forKey:@"navigationBar"];
+        self.naviBar = [[IBNaviBar alloc] init];
+        [self setValue:self.naviBar forKey:@"navigationBar"];
     }
     return self;
 }
@@ -29,6 +28,7 @@
     // Do any additional setup after loading the view.
 }
 
+#pragma mark - 控制状态栏
 
 - (UIViewController *)childViewControllerForStatusBarStyle {
     return self.visibleViewController;
@@ -36,6 +36,21 @@
 
 - (UIViewController *)childViewControllerForStatusBarHidden {
     return self.visibleViewController;
+}
+
+
+#pragma mark - 控制屏幕旋转
+
+- (BOOL)shouldAutorotate {
+    return self.visibleViewController.shouldAutorotate;
+}
+
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations {
+    return self.visibleViewController.supportedInterfaceOrientations;
+}
+
+- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation {
+    return self.visibleViewController.preferredInterfaceOrientationForPresentation;
 }
 
 @end
