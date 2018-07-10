@@ -227,14 +227,11 @@
 }
 
 - (IBNaviController *)naviController {
-    if (!_naviController) {
-        if (self.navigationController && [self.navigationController isKindOfClass:[IBNaviController class]]) {
-            _naviController = (IBNaviController *)self.navigationController;
-        }
+    if (self.navigationController && [self.navigationController isKindOfClass:[IBNaviController class]]) {
+        return (IBNaviController *)self.navigationController;
     }
-    return _naviController;
+    return nil;
 }
-
 
 #pragma mark - 状态栏设置
 

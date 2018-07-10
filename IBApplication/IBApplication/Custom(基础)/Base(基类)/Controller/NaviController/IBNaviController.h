@@ -11,6 +11,9 @@
 
 @interface IBNaviController : UINavigationController
 
-@property (nonatomic, strong) IBNaviBar *naviBar;
+/** 自定义导航栏 */
+@property (nonatomic, readonly, strong) IBNaviBar *naviBar;
+
+- (instancetype)initWithRootViewController:(UIViewController *)rootViewController naviBar:(Class)naviBarClass;
 
 @end

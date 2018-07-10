@@ -31,7 +31,6 @@
 //    self.navigationController.navigationBar.barTintColor = [UIColor clearColor];
 //    self.navigationController.navigationBar.hidden = YES;
 //    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
-    self.naviController.naviBar.barTintColor = [UIColor orangeColor];
     self.view.backgroundColor = [UIColor lightGrayColor];
     UITextField *tf = [[UITextField alloc] initWithFrame:CGRectMake(0, 500, self.view.frame.size.width, 44)];
     tf.borderStyle = UITextBorderStyleLine;

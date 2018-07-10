@@ -25,13 +25,15 @@
     self.window = [[UIWindow alloc] initWithFrame: [UIScreen mainScreen].bounds];
     ViewController *vc = [[ViewController alloc] init];
     UITabBarController *tab = [[UITabBarController alloc] init];
-    IBNaviController *nav = [[IBNaviController alloc] initWithRootViewController:vc];
+//    IBNaviController *nav = [[IBNaviController alloc] initWithRootViewController:vc];
+    IBNaviController *nav = [[IBNaviController alloc] initWithRootViewController:vc naviBar:[IBNaviBar class]];
+    nav.navigationBar.barTintColor = [UIColor redColor];
 //    nav.naviBar.lucencyBar = YES;
-    [nav.naviBar hiddenBarBottomLine:YES];
-    
-//    nav.naviBar.globalShadowImage = [UIImage new];
-    nav.naviBar.globalBarTintColor = [UIColor redColor];
-    nav.naviBar.globalTintColor = [UIColor purpleColor];
+//    [nav.naviBar hiddenBarBottomLine:YES];
+//
+////    nav.naviBar.globalShadowImage = [UIImage new];
+//    nav.naviBar.globalBarTintColor = [UIColor redColor];
+//    nav.naviBar.globalTintColor = [UIColor purpleColor];
  
     [IBNaviBar setTitleColor:[UIColor redColor] fontSize:16];
     [IBNaviBar setItemTitleColor:[UIColor orangeColor] fontSize:13];

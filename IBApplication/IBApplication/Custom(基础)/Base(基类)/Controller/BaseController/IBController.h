@@ -18,7 +18,7 @@
 @property (nonatomic, assign) BOOL openKeyListener;
 
 /** 获取自定义导航控制器 */
-@property (nonatomic, strong) IBNaviController *naviController;
+@property (nonatomic, readonly, strong) IBNaviController *naviController;
 
 /**
  UI初始化之前运行

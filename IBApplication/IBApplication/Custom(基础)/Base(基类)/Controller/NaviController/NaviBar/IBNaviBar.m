@@ -8,7 +8,6 @@
 
 #import "IBNaviBar.h"
 #import "IBPicture.h"
-#import "IBNaviController.h"
 #import "IBApp.h"
 
 #pragma clang diagnostic push
@@ -16,15 +15,14 @@
 
 @interface IBNaviBar ()
 
-
 @end
 
 @implementation IBNaviBar
 
 - (void)setGlobalBarTintColor:(UIColor *)globalBarTintColor {
     _globalBarTintColor = globalBarTintColor;
-    if (self.clipsToBounds) {
-        [[IBNaviBar appearance] setClipsToBounds:NO];
+    if ([IBNaviBar appearance].clipsToBounds) {
+        [self hiddenBarBottomLine:NO];
     }
     if (self.lucencyBar) {
         [[IBNaviBar appearance] setBackgroundImage:[IBPicture imageWithColor:globalBarTintColor] forBarMetrics:UIBarMetricsDefault];
@@ -41,19 +39,20 @@
 - (void)setLucencyBar:(BOOL)lucencyBar {
     _lucencyBar = lucencyBar;
     [[IBNaviBar appearance] setBackgroundImage:[[UIImage alloc] init] forBarMetrics:UIBarMetricsDefault];
+    [self hiddenBarBottomLine:YES];
 }
 
 - (void)hiddenBarBottomLine:(BOOL)hidden {
-    self.clipsToBounds = YES;
+    [IBNaviBar appearance].clipsToBounds = hidden;
 }
 
 
 + (void)setTitleColor:(UIColor *)color fontSize:(CGFloat)fontSize {
     UINavigationBar *bar;
     if (APPSystemVersion > 9) {
-        bar = [UINavigationBar appearanceWhenContainedInInstancesOfClasses:@[[IBNaviController class]]];
+        bar = [UINavigationBar appearanceWhenContainedInInstancesOfClasses:@[[UINavigationController class]]];
     } else {
-        bar = [UINavigationBar appearanceWhenContainedIn:[IBNaviController class], nil];
+        bar = [UINavigationBar appearanceWhenContainedIn:[UINavigationController class], nil];
     }
     [bar setTitleTextAttributes:@{
                                   NSFontAttributeName : [UIFont systemFontOfSize:fontSize],
@@ -66,9 +65,9 @@
     
     UIBarButtonItem *item;
     if (APPSystemVersion > 9) {
-        item = [UIBarButtonItem appearanceWhenContainedInInstancesOfClasses:@[[IBNaviController class]]];
+        item = [UIBarButtonItem appearanceWhenContainedInInstancesOfClasses:@[[UINavigationController class]]];
     } else {
-        item = [UIBarButtonItem appearanceWhenContainedIn:[IBNaviController class], nil];
+        item = [UIBarButtonItem appearanceWhenContainedIn:[UINavigationController class], nil];
     }
     
     NSDictionary *attrs = @{
