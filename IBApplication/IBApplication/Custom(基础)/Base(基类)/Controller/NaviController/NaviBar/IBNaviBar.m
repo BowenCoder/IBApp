@@ -7,7 +7,7 @@
 //
 
 #import "IBNaviBar.h"
-#import "IBPicture.h"
+#import "IBImage.h"
 #import "IBApp.h"
 
 #pragma clang diagnostic push
@@ -25,7 +25,7 @@
         [self hiddenBarBottomLine:NO];
     }
     if (self.lucencyBar) {
-        [[IBNaviBar appearance] setBackgroundImage:[IBPicture imageWithColor:globalBarTintColor] forBarMetrics:UIBarMetricsDefault];
+        [[IBNaviBar appearance] setBackgroundImage:[IBImage imageWithColor:globalBarTintColor] forBarMetrics:UIBarMetricsDefault];
     } else {
         [[IBNaviBar appearance] setBarTintColor:globalBarTintColor];
     }

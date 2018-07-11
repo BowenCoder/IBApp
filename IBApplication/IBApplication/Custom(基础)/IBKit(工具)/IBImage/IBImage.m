@@ -1,16 +1,16 @@
 //
-//  IBPicture.m
+//  IBImage.m
 //  IBApplication
 //
 //  Created by BowenCoder on 2018/6/27.
 //  Copyright © 2018年 BowenCoder. All rights reserved.
 //
 
-#import "IBPicture.h"
+#import "IBImage.h"
 #import <Accelerate/Accelerate.h>
 #import "IBHelper.h"
 
-@implementation IBPicture
+@implementation IBImage
 
 + (UIImage *)imageWithFileName:(NSString *)name {
     
@@ -32,7 +32,7 @@
     // 如果为Retina屏幕且存在对应图片，则返回Retina图片，否则查找普通图片
     if ([UIScreen mainScreen].scale == 2.0) {
         NSString *tempName = [name stringByAppendingString:@"@2x"];
-        NSString *path = [IBPicture pathWithName:tempName extension:extension inBundle:bundleName];
+        NSString *path = [IBImage pathWithName:tempName extension:extension inBundle:bundleName];
         if (path != nil) {
             return [UIImage imageWithContentsOfFile:path];
         }
@@ -40,13 +40,13 @@
     
     if ([UIScreen mainScreen].scale == 3.0) {
         NSString *tempName = [name stringByAppendingString:@"@3x"];
-        NSString *path = [IBPicture pathWithName:tempName extension:extension inBundle:bundleName];
+        NSString *path = [IBImage pathWithName:tempName extension:extension inBundle:bundleName];
         if (path != nil) {
             return [UIImage imageWithContentsOfFile:path];
         }
     }
     
-    NSString *path = [IBPicture pathWithName:name extension:extension inBundle:bundleName];
+    NSString *path = [IBImage pathWithName:name extension:extension inBundle:bundleName];
     if (path) {
         return [UIImage imageWithContentsOfFile:path];
     }
@@ -122,7 +122,7 @@
 
 @end
 
-@implementation IBPicture (Special)
+@implementation IBImage (Special)
 
 + (UIImage *)flip:(UIImage *)image horizontal:(BOOL)horizontal {
     
@@ -319,7 +319,7 @@
 
 @end
 
-@implementation IBPicture (Merge)
+@implementation IBImage (Merge)
 
 /**
  *  @brief  合并两个图片

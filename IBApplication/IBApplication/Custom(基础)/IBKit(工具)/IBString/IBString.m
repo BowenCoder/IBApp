@@ -1,17 +1,17 @@
 //
-//  IBCharacters.m
+//  IBString.m
 //  IBApplication
 //
 //  Created by Bowen on 2018/6/27.
 //  Copyright © 2018年 BowenCoder. All rights reserved.
 //
 
-#import "IBCharacters.h"
+#import "IBString.h"
 
 #define EmojiCodeToSymbol(c) ((((0x808080F0 | (c & 0x3F000) >> 4) | (c & 0xFC0) << 10) | (c & 0x1C0000) << 18) | (c & 0x3F) << 24)
 
 
-@implementation IBCharacters
+@implementation IBString
 
 /**
  *  @brief  判断URL中是否包含中文

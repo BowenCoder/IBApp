@@ -7,7 +7,7 @@
 //
 
 #import "MBProgressHUD+Ext.h"
-#import "IBPicture.h"
+#import "IBImage.h"
 #import "UIImage+GIF.h"
 #import "IBEmptyView.h"
 #import "IBLoadingView.h"
@@ -142,14 +142,14 @@ NS_INLINE void setupPosition(MBProgressHUD *hud, MBPosition position) {
     MBProgressHUD *hud = setup(superview, title, MBStyleBlack, YES);
     hud.mode = MBProgressHUDModeCustomView;
     hud.square = YES;
-    hud.customView = [[UIImageView alloc] initWithImage:[IBPicture imageWithName:@"success" inBundle:@"MBProgressHUD"]];
+    hud.customView = [[UIImageView alloc] initWithImage:[IBImage imageWithName:@"success" inBundle:@"MBProgressHUD"]];
 }
 
 + (void)showError:(UIView *)superview title:(NSString *)title {
     MBProgressHUD *hud = setup(superview, title, MBStyleBlack, YES);
     hud.mode = MBProgressHUDModeCustomView;
     hud.square = YES;
-    hud.customView = [[UIImageView alloc] initWithImage:[IBPicture imageWithName:@"error" inBundle:@"MBProgressHUD"]];
+    hud.customView = [[UIImageView alloc] initWithImage:[IBImage imageWithName:@"error" inBundle:@"MBProgressHUD"]];
 }
 
 + (MBProgressHUD *)showProgress:(UIView *)superview title:(NSString *)title detail:(NSString *)detail progress:(void(^)(MBProgressHUD *hud))callback mode:(MBProgressBarMode)mode {

@@ -7,7 +7,7 @@
 //
 
 #import "UIView+Ext.h"
-#import "IBPicture.h"
+#import "IBImage.h"
 
 @implementation UIView (Ext)
 
@@ -48,7 +48,7 @@
         return;
     }
     if (pattern) {
-        UIImage *img = [IBPicture resizedImage:image size:self.frame.size]; //重绘图片，不然出现平铺效果
+        UIImage *img = [IBImage resizedImage:image size:self.frame.size]; //重绘图片，不然出现平铺效果
         [self setBackgroundColor:[UIColor colorWithPatternImage:img]];
     } else {
         self.layer.contents = (__bridge id _Nullable)(image.CGImage);

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface IBCharacters : NSObject
+@interface IBString : NSObject
 
 #pragma mark - contain
 

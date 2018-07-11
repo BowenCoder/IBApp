@@ -24,7 +24,7 @@ typedef NS_ENUM(NSInteger, ImageWaterDirect) {
     ImageWaterDirectCenter
 };
 
-@interface IBPicture : NSObject
+@interface IBImage : NSObject
 
 /**
  *  @brief  根据mainBundle中的文件名读取图片
@@ -105,7 +105,7 @@ typedef NS_ENUM(NSInteger, ImageWaterDirect) {
 
 @end
 
-@interface IBPicture (Special)
+@interface IBImage (Special)
 
 /**
  *  @brief 图片翻转 :YES,水平翻转，NO，垂直翻转
@@ -149,7 +149,7 @@ typedef NS_ENUM(NSInteger, ImageWaterDirect) {
 
 @end
 
-@interface IBPicture (Merge)
+@interface IBImage (Merge)
 
 /**
  *  @brief  合并两个图片

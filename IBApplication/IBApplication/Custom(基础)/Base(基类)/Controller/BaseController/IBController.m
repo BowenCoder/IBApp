@@ -9,7 +9,7 @@
 #import "IBController.h"
 #import "UIView+Ext.h"
 #import "UIBarButtonItem+Ext.h"
-#import "IBPicture.h"
+#import "IBImage.h"
 
 @interface IBController ()
 
