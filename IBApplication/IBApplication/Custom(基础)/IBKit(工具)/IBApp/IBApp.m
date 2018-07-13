@@ -209,6 +209,58 @@
 
 @implementation IBApp (Device)
 
++ (BOOL)isSimulator {
+#if TARGET_OS_SIMULATOR
+    return YES;
+#else
+    return NO;
+#endif
+}
+
++ (BOOL)isJailbroken {
+    if ([self isSimulator]) return NO; // 不要检查模拟器
+    
+    //  iOS9 URL Scheme查询更改...
+    // NSURL *cydiaURL = [NSURL URLWithString:@"cydia://package"];
+    // if ([[UIApplication sharedApplication] canOpenURL:cydiaURL]) return YES;
+    
+    NSArray *paths = @[@"/Applications/Cydia.app",
+                       @"/private/var/lib/apt/",
+                       @"/private/var/lib/cydia",
+                       @"/private/var/stash"];
+    for (NSString *path in paths) {
+        if ([[NSFileManager defaultManager] fileExistsAtPath:path]) return YES;
+    }
+    
+    FILE *bash = fopen("/bin/bash", "r");
+    if (bash != NULL) {
+        fclose(bash);
+        return YES;
+    }
+    
+    NSString *path = [NSString stringWithFormat:@"/private/%@", [self UUID]];
+    if ([@"test" writeToFile : path atomically : YES encoding : NSUTF8StringEncoding error : NULL]) {
+        [[NSFileManager defaultManager] removeItemAtPath:path error:nil];
+        return YES;
+    }
+    
+    return NO;
+}
+
++ (NSString *)machineModel {
+    static dispatch_once_t one;
+    static NSString *model;
+    dispatch_once(&one, ^{
+        size_t size;
+        sysctlbyname("hw.machine", NULL, &size, NULL, 0);
+        char *machine = malloc(size);
+        sysctlbyname("hw.machine", machine, &size, NULL, 0);
+        model = [NSString stringWithUTF8String:machine];
+        free(machine);
+    });
+    return model;
+}
+
 + (CGFloat)cpuUsage {
     
     kern_return_t kr;

@@ -21,9 +21,6 @@
 
 - (void)setGlobalBarTintColor:(UIColor *)globalBarTintColor {
     _globalBarTintColor = globalBarTintColor;
-    if ([IBNaviBar appearance].clipsToBounds) {
-        [self hiddenBarBottomLine:NO];
-    }
     if (self.lucencyBar) {
         [[IBNaviBar appearance] setBackgroundImage:[IBImage imageWithColor:globalBarTintColor] forBarMetrics:UIBarMetricsDefault];
     } else {
@@ -43,7 +40,13 @@
 }
 
 - (void)hiddenBarBottomLine:(BOOL)hidden {
-    [IBNaviBar appearance].clipsToBounds = hidden;
+    
+    UIView *_barBackground = self.subviews.firstObject;
+    for (UIView *view in _barBackground.subviews) {
+        if (view.frame.size.height <= 1.0) {
+            view.hidden = hidden;
+        }
+    }
 }
 
 

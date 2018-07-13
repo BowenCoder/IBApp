@@ -111,6 +111,9 @@
  */
 + (NSString *)adjustHTMLFormat:(NSString *)content;
 
+/** 过滤非法字符 关键字 []{}（#%-*+=_）\\|~(＜＞$%^&*)_+ */
++(NSString *)filterString:(NSString *)string target:(NSString *)target;
+
 #pragma mark - Regex
 
 /** 手机号有效性 */

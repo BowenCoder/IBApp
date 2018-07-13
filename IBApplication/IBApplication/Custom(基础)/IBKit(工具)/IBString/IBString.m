@@ -228,6 +228,19 @@
     return tmpMutable;
 }
 
+/**
+ 过滤非法字符
+ 
+ @param string 原字符串
+ @param target 过滤关键字 []{}（#%-*+=_）\\|~(＜＞$%^&*)_+
+ @return 过滤后的字符串
+ */
++(NSString *)filterString:(NSString *)string target:(NSString *)target{
+    NSString *tempString = string;
+    NSCharacterSet *doNotWant = [NSCharacterSet characterSetWithCharactersInString:target];
+    tempString = [[tempString componentsSeparatedByCharactersInSet: doNotWant]componentsJoinedByString:@""];
+    return tempString;
+}
 
 #pragma mark - 正则相关
 + (BOOL)isValidate:(NSString *)text regex:(NSString *)regex {

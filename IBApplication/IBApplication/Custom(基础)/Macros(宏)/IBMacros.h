@@ -21,7 +21,7 @@
 #define NSStringFormat(format,...) [NSString stringWithFormat:format,##__VA_ARGS__]
 
 #ifdef DEBUG
-#define NSLogger(format, ...) printf("[%s] %s [%d line] %s\n", __TIME__, __FUNCTION__, __LINE__, [[NSString stringWithFormat:format, ## __VA_ARGS__] UTF8String])
+#define NSLogger(format, ...) printf("[%s] %s %s\n", __TIME__, __FUNCTION__, [[NSString stringWithFormat:format, ## __VA_ARGS__] UTF8String])
 #else
 #define NSLogger(...)
 #endif

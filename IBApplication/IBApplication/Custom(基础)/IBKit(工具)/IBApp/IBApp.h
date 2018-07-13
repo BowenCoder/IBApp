@@ -126,6 +126,12 @@
 
 @interface IBApp (Device)
 
+/** 判断是否越狱 */
++ (BOOL)isJailbroken;
+
+/** 设备的机器型号 */
++ (NSString *)machineModel;
+
 /** CPU使用率 */
 + (CGFloat)cpuUsage;
 

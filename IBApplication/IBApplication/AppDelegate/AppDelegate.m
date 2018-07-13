@@ -27,14 +27,14 @@
     UITabBarController *tab = [[UITabBarController alloc] init];
 //    IBNaviController *nav = [[IBNaviController alloc] initWithRootViewController:vc];
     IBNaviController *nav = [[IBNaviController alloc] initWithRootViewController:vc naviBar:[IBNaviBar class]];
-    nav.navigationBar.barTintColor = [UIColor redColor];
-//    nav.naviBar.lucencyBar = YES;
+    nav.naviBar.lucencyBar = YES;
+    nav.naviBar.globalBarTintColor = [UIColor redColor];
 //    [nav.naviBar hiddenBarBottomLine:YES];
 //
 ////    nav.naviBar.globalShadowImage = [UIImage new];
 //    nav.naviBar.globalBarTintColor = [UIColor redColor];
 //    nav.naviBar.globalTintColor = [UIColor purpleColor];
- 
+     
     [IBNaviBar setTitleColor:[UIColor redColor] fontSize:16];
     [IBNaviBar setItemTitleColor:[UIColor orangeColor] fontSize:13];
     [tab addChildViewController: nav];

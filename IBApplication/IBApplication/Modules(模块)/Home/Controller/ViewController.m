@@ -11,6 +11,7 @@
 #import "IBMineController.h"
 #import "MBProgressHUD+Ext.h"
 #import "IBEmptyView.h"
+#import "NSDate+Ext.h"
 
 @interface ViewController ()<UITableViewDataSource, UITableViewDelegate>
 

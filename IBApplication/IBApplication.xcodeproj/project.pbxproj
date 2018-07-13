@@ -96,6 +96,7 @@
 		4A1FB22C20E92D810056A026 /* FLAnimatedImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A1FB22920E92D810056A026 /* FLAnimatedImage.m */; };
 		4A1FB22F20E931350056A026 /* MBProgressHUD+Ext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A1FB22E20E931350056A026 /* MBProgressHUD+Ext.m */; };
 		4A1FB23120E933BF0056A026 /* txt.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 4A1FB23020E933BE0056A026 /* txt.rtf */; };
+		4A44437520F89833001B2350 /* IBPrivacy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A44437420F89833001B2350 /* IBPrivacy.m */; };
 		4A686D2520EB229000C8328E /* IBEmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A686D2420EB229000C8328E /* IBEmptyView.m */; };
 		4A686D2920EB668A00C8328E /* IBLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A686D2820EB668A00C8328E /* IBLoadingView.m */; };
 		4A6F196C20E0923000EAF1A7 /* NSDateTimeAgo.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4A6F196B20E0923000EAF1A7 /* NSDateTimeAgo.bundle */; };
@@ -324,6 +325,8 @@
 		4A1FB22D20E931350056A026 /* MBProgressHUD+Ext.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+Ext.h"; sourceTree = "<group>"; };
 		4A1FB22E20E931350056A026 /* MBProgressHUD+Ext.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+Ext.m"; sourceTree = "<group>"; };
 		4A1FB23020E933BE0056A026 /* txt.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = txt.rtf; sourceTree = "<group>"; };
+		4A44437320F89833001B2350 /* IBPrivacy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBPrivacy.h; sourceTree = "<group>"; };
+		4A44437420F89833001B2350 /* IBPrivacy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBPrivacy.m; sourceTree = "<group>"; };
 		4A686D2320EB229000C8328E /* IBEmptyView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBEmptyView.h; sourceTree = "<group>"; };
 		4A686D2420EB229000C8328E /* IBEmptyView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBEmptyView.m; sourceTree = "<group>"; };
 		4A686D2720EB668A00C8328E /* IBLoadingView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBLoadingView.h; sourceTree = "<group>"; };
@@ -791,6 +794,15 @@
 				4A1FB20420E92D5D0056A026 /* SDWebImageTransition.m */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		4A44437220F8980A001B2350 /* IBPrivacy */ = {
+			isa = PBXGroup;
+			children = (
+				4A44437320F89833001B2350 /* IBPrivacy.h */,
+				4A44437420F89833001B2350 /* IBPrivacy.m */,
+			);
+			path = IBPrivacy;
 			sourceTree = "<group>";
 		};
 		4A686D2220EB224F00C8328E /* IBEmptyView */ = {
@@ -1434,6 +1446,7 @@
 		4ACC569C20DF4D9C001352AE /* IBKit(工具) */ = {
 			isa = PBXGroup;
 			children = (
+				4A44437220F8980A001B2350 /* IBPrivacy */,
 				4A1FB09320E7B2F40056A026 /* IBAnimation */,
 				4ACC569820DEC678001352AE /* IBApp */,
 				4A6F198920E3A5DD00EAF1A7 /* IBString */,
@@ -1645,6 +1658,7 @@
 				4A7227EE20EFE3BC008B8815 /* UINavigationController+FDFullscreenPopGesture.m in Sources */,
 				4A1FB21E20E92D5E0056A026 /* SDWebImageGIFCoder.m in Sources */,
 				4ACC55EB20DB5F3E001352AE /* AppDelegate+AppService.m in Sources */,
+				4A44437520F89833001B2350 /* IBPrivacy.m in Sources */,
 				4A1FB21C20E92D5E0056A026 /* SDWebImageCoder.m in Sources */,
 				4A1FB0C020E8EE6B0056A026 /* AFSecurityPolicy.m in Sources */,
 				4A78077320E9FCAF00E60ACA /* NSObject+YYModel.m in Sources */,
