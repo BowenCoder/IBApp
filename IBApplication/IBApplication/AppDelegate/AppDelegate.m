@@ -28,7 +28,7 @@
 //    IBNaviController *nav = [[IBNaviController alloc] initWithRootViewController:vc];
     IBNaviController *nav = [[IBNaviController alloc] initWithRootViewController:vc naviBar:[IBNaviBar class]];
     nav.naviBar.lucencyBar = YES;
-    nav.naviBar.globalBarTintColor = [UIColor redColor];
+    nav.naviBar.globalBarColor = [UIColor redColor];
 //    [nav.naviBar hiddenBarBottomLine:YES];
 //
 ////    nav.naviBar.globalShadowImage = [UIImage new];

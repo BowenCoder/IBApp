@@ -11,10 +11,13 @@
 @interface IBNaviBar : UINavigationBar
 
 /** 全局设置背景颜色 */
-@property (nonatomic, strong) UIColor *globalBarTintColor;
+@property (nonatomic, strong) UIColor *globalBarColor;
 
 /** 全局设置控件颜色 */
 @property (nonatomic, strong) UIColor *globalTintColor;
+
+/** 全局设置背景图片 */
+@property (nonatomic, strong) UIImage *globalBgImage;
 
 /** 全局设置透明 */
 @property (nonatomic, assign) BOOL lucencyBar;

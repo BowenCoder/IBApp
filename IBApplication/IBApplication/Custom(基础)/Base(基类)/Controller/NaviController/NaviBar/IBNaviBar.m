@@ -19,13 +19,18 @@
 
 @implementation IBNaviBar
 
-- (void)setGlobalBarTintColor:(UIColor *)globalBarTintColor {
-    _globalBarTintColor = globalBarTintColor;
+- (void)setGlobalBarColor:(UIColor *)globalBarColor {
+    _globalBarColor = globalBarColor;
     if (self.lucencyBar) {
-        [[IBNaviBar appearance] setBackgroundImage:[IBImage imageWithColor:globalBarTintColor] forBarMetrics:UIBarMetricsDefault];
+        [self setGlobalBgImage:[IBImage imageWithColor:globalBarColor]];
     } else {
-        [[IBNaviBar appearance] setBarTintColor:globalBarTintColor];
+        [[IBNaviBar appearance] setBarTintColor:globalBarColor];
     }
+}
+
+- (void)setGlobalBgImage:(UIImage *)globalBgImage {
+    _globalBgImage = globalBgImage;
+    [[IBNaviBar appearance] setBackgroundImage:globalBgImage forBarMetrics:UIBarMetricsDefault];
 }
 
 - (void)setGlobalTintColor:(UIColor *)globalTintColor {
@@ -40,7 +45,6 @@
 }
 
 - (void)hiddenBarBottomLine:(BOOL)hidden {
-    
     UIView *_barBackground = self.subviews.firstObject;
     for (UIView *view in _barBackground.subviews) {
         if (view.frame.size.height <= 1.0) {
