@@ -8,19 +8,16 @@
 
 #import "IBPrivacy.h"
 #import <Photos/Photos.h>
-#import <AVFoundation/AVFoundation.h>
+#import <Speech/Speech.h>
+#import <Intents/Intents.h>
 #import <EventKit/EventKit.h>
 #import <Contacts/Contacts.h>
-#import <Speech/Speech.h>
 #import <HealthKit/HealthKit.h>
 #import <MediaPlayer/MediaPlayer.h>
-#import <UserNotifications/UserNotifications.h>
-#import <CoreBluetooth/CoreBluetooth.h>
+#import <AVFoundation/AVFoundation.h>
 #import <CoreLocation/CoreLocation.h>
-#import <Intents/Intents.h>
-
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+#import <CoreBluetooth/CoreBluetooth.h>
+#import <UserNotifications/UserNotifications.h>
 
 @implementation IBPrivacy
 
@@ -271,5 +268,4 @@
 
 @end
 
-#pragma clang diagnostic pop
 
