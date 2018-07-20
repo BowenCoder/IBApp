@@ -19,35 +19,6 @@
     return [[UIColor alloc] initWithRed:r green:g blue:b alpha:1];
 }
 
-/**
- *  @brief  渐变颜色
- *
- *  @param c1     开始颜色
- *  @param c2     结束颜色
- *  @param height 渐变高度
- *
- *  @return 渐变颜色
- */
-+ (UIColor*)gradientFromColor:(UIColor*)c1 toColor:(UIColor*)c2 withHeight:(int)height {
-    
-    CGSize size = CGSizeMake(1, height);
-    UIGraphicsBeginImageContextWithOptions(size, NO, 0);
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    CGColorSpaceRef colorspace = CGColorSpaceCreateDeviceRGB();
-    
-    NSArray* colors = [NSArray arrayWithObjects:(id)c1.CGColor, (id)c2.CGColor, nil];
-    CGGradientRef gradient = CGGradientCreateWithColors(colorspace, (__bridge CFArrayRef)colors, NULL);
-    CGContextDrawLinearGradient(context, gradient, CGPointMake(0, 0), CGPointMake(0, size.height), 0);
-    
-    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-    
-    CGGradientRelease(gradient);
-    CGColorSpaceRelease(colorspace);
-    UIGraphicsEndImageContext();
-    
-    return [UIColor colorWithPatternImage:image];
-}
-
 + (UIColor *)colorWithHexString:(NSString *)hexString {
     
     CGFloat alpha, red, blue, green;
@@ -97,5 +68,78 @@ CGFloat colorComponentFrom(NSString *string, NSUInteger start, NSUInteger length
     [[NSScanner scannerWithString: fullHex] scanHexInt: &hexComponent];
     return hexComponent / 255.0;
 }
+
+//还可以使用CGContextDrawLinearGradient实现
++ (UIColor *)linearGradient:(UIColor *)startColor endColor:(UIColor *)endColor direction:(IBGradientColorDirection)direction size:(CGSize)size {
+    
+    CAGradientLayer *gradientLayer = [CAGradientLayer layer];
+    gradientLayer.colors = @[(__bridge id)startColor.CGColor,
+                             (__bridge id)endColor.CGColor];
+    gradientLayer.locations = @[@(0.0f), @(1.0f)];
+    
+    if (direction == IBGradientColorHorizontal) {
+        gradientLayer.startPoint = CGPointMake(0, 0);
+        gradientLayer.endPoint = CGPointMake(1, 0);
+    }else if (direction == IBGradientColorVertical){
+        gradientLayer.startPoint = CGPointMake(0, 0);
+        gradientLayer.endPoint = CGPointMake(0, 1);
+    }else if (direction == IBGradientColorUpwardDiagonal){
+        gradientLayer.startPoint = CGPointMake(0, 0);
+        gradientLayer.endPoint = CGPointMake(1, 1);
+    }else if (direction == IBGradientColorDownDiagonal){
+        gradientLayer.startPoint = CGPointMake(0, 1);
+        gradientLayer.endPoint = CGPointMake(1, 0);
+    }
+    
+    gradientLayer.frame = CGRectMake(0, 0, size.width, size.height);
+    UIGraphicsBeginImageContextWithOptions(gradientLayer.frame.size, NO, 0);
+    [gradientLayer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *gradientImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return [UIColor colorWithPatternImage:gradientImage];
+}
+
++ (UIColor *)radialGradient:(UIColor *)centerColor outColor:(UIColor *)outColor size:(CGSize)size {
+    
+    UIGraphicsBeginImageContext(size);
+    CGContextRef gc = UIGraphicsGetCurrentContext();
+    
+    CGMutablePathRef path = CGPathCreateMutable();
+    CGFloat raduis = MAX(size.width / 2, size.height / 2);
+    CGPathAddArc(path, NULL, size.width / 2, size.height / 2, raduis, 0, 2 * M_PI, NO);
+    
+    [self _radialGradient:gc path:path startColor:centerColor.CGColor endColor:outColor.CGColor];
+    CGPathRelease(path);
+    
+    UIImage *gradientImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return [UIColor colorWithPatternImage:gradientImage];
+}
+
++ (void)_radialGradient:(CGContextRef)context path:(CGPathRef)path startColor:(CGColorRef)startColor endColor:(CGColorRef)endColor {
+    
+    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+    CGFloat locations[] = {0.0, 1.0};
+    
+    NSArray *colors = @[(__bridge id) startColor, (__bridge id) endColor];
+    
+    CGGradientRef gradient = CGGradientCreateWithColors(colorSpace, (__bridge CFArrayRef) colors, locations);
+    
+    CGRect pathRect = CGPathGetBoundingBox(path);
+    CGPoint center = CGPointMake(CGRectGetMidX(pathRect), CGRectGetMidY(pathRect));
+    CGFloat radius = MAX(pathRect.size.width / 2.0, pathRect.size.height / 2.0) * sqrt(2);
+    
+    CGContextSaveGState(context);
+    CGContextAddPath(context, path);
+    CGContextEOClip(context);
+    
+    CGContextDrawRadialGradient(context, gradient, center, 0, center, radius, 0);
+    
+    CGContextRestoreGState(context);
+    
+    CGGradientRelease(gradient);
+    CGColorSpaceRelease(colorSpace);
+}
+
 
 @end

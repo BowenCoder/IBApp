@@ -97,6 +97,10 @@
 		4A1FB22F20E931350056A026 /* MBProgressHUD+Ext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A1FB22E20E931350056A026 /* MBProgressHUD+Ext.m */; };
 		4A1FB23120E933BF0056A026 /* txt.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 4A1FB23020E933BE0056A026 /* txt.rtf */; };
 		4A44437520F89833001B2350 /* IBPrivacy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A44437420F89833001B2350 /* IBPrivacy.m */; };
+		4A44437820F9C506001B2350 /* IBNaviConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A44437720F9C506001B2350 /* IBNaviConfig.m */; };
+		4A44437E21006150001B2350 /* IBTabBarBadge.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A44437D21006150001B2350 /* IBTabBarBadge.m */; };
+		4A4443812100797E001B2350 /* IBTabBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A4443802100797E001B2350 /* IBTabBarItem.m */; };
+		4A44438421008BE2001B2350 /* IBTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A44438321008BE2001B2350 /* IBTabBar.m */; };
 		4A686D2520EB229000C8328E /* IBEmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A686D2420EB229000C8328E /* IBEmptyView.m */; };
 		4A686D2920EB668A00C8328E /* IBLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A686D2820EB668A00C8328E /* IBLoadingView.m */; };
 		4A6F196C20E0923000EAF1A7 /* NSDateTimeAgo.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4A6F196B20E0923000EAF1A7 /* NSDateTimeAgo.bundle */; };
@@ -106,17 +110,17 @@
 		4A6F197F20E345F500EAF1A7 /* IBHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6F197E20E345F500EAF1A7 /* IBHelper.m */; };
 		4A6F198720E35E3600EAF1A7 /* IBFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6F198620E35E3600EAF1A7 /* IBFile.m */; };
 		4A6F198C20E3A61400EAF1A7 /* IBString.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6F198B20E3A61400EAF1A7 /* IBString.m */; };
-		4A6F199120E3AAB200EAF1A7 /* NSSocketByte.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6F199020E3AAB200EAF1A7 /* NSSocketByte.m */; };
-		4A6F199620E3AC7F00EAF1A7 /* NSSocketPacket.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6F199520E3AC7F00EAF1A7 /* NSSocketPacket.m */; };
-		4A6F199B20E3B37200EAF1A7 /* NSSocketPacketDecode.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6F199A20E3B37200EAF1A7 /* NSSocketPacketDecode.m */; };
-		4A6F199E20E3B56C00EAF1A7 /* NSSocketPacketEncode.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6F199D20E3B56C00EAF1A7 /* NSSocketPacketEncode.m */; };
-		4A6F19A520E3F0D700EAF1A7 /* NSSocketConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6F19A420E3F0D700EAF1A7 /* NSSocketConfig.m */; };
-		4A6F19A920E3F3D700EAF1A7 /* NSSocketConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6F19A820E3F3D700EAF1A7 /* NSSocketConnection.m */; };
+		4A6F199120E3AAB200EAF1A7 /* IBSocketByte.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6F199020E3AAB200EAF1A7 /* IBSocketByte.m */; };
+		4A6F199620E3AC7F00EAF1A7 /* IBSocketPacket.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6F199520E3AC7F00EAF1A7 /* IBSocketPacket.m */; };
+		4A6F199B20E3B37200EAF1A7 /* IBSocketPacketDecode.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6F199A20E3B37200EAF1A7 /* IBSocketPacketDecode.m */; };
+		4A6F199E20E3B56C00EAF1A7 /* IBSocketPacketEncode.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6F199D20E3B56C00EAF1A7 /* IBSocketPacketEncode.m */; };
+		4A6F19A520E3F0D700EAF1A7 /* IBSocketConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6F19A420E3F0D700EAF1A7 /* IBSocketConfig.m */; };
+		4A6F19A920E3F3D700EAF1A7 /* IBSocketConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6F19A820E3F3D700EAF1A7 /* IBSocketConnection.m */; };
 		4A6F19AD20E3F40C00EAF1A7 /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6F19AC20E3F40C00EAF1A7 /* GCDAsyncSocket.m */; };
 		4A6F19B020E3FB7700EAF1A7 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6F19AF20E3FB7700EAF1A7 /* Reachability.m */; };
-		4A6F19B420E3FBDE00EAF1A7 /* NSNetworkStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6F19B320E3FBDE00EAF1A7 /* NSNetworkStatus.m */; };
-		4A6F19B720E3FE9600EAF1A7 /* NSSocketService.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6F19B620E3FE9600EAF1A7 /* NSSocketService.m */; };
-		4A6F19BA20E401CC00EAF1A7 /* NSSocketClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6F19B920E401CC00EAF1A7 /* NSSocketClient.m */; };
+		4A6F19B420E3FBDE00EAF1A7 /* IBNetworkStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6F19B320E3FBDE00EAF1A7 /* IBNetworkStatus.m */; };
+		4A6F19B720E3FE9600EAF1A7 /* IBSocketService.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6F19B620E3FE9600EAF1A7 /* IBSocketService.m */; };
+		4A6F19BA20E401CC00EAF1A7 /* IBSocketClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6F19B920E401CC00EAF1A7 /* IBSocketClient.m */; };
 		4A6F19C320E5DD3100EAF1A7 /* IBViewAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6F19C220E5DD3100EAF1A7 /* IBViewAnimation.m */; };
 		4A7227EE20EFE3BC008B8815 /* UINavigationController+FDFullscreenPopGesture.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A7227EC20EFE3BC008B8815 /* UINavigationController+FDFullscreenPopGesture.m */; };
 		4A72287420F0CE3D008B8815 /* IBNaviController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A72287320F0CE3D008B8815 /* IBNaviController.m */; };
@@ -327,6 +331,14 @@
 		4A1FB23020E933BE0056A026 /* txt.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = txt.rtf; sourceTree = "<group>"; };
 		4A44437320F89833001B2350 /* IBPrivacy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBPrivacy.h; sourceTree = "<group>"; };
 		4A44437420F89833001B2350 /* IBPrivacy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBPrivacy.m; sourceTree = "<group>"; };
+		4A44437620F9C506001B2350 /* IBNaviConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBNaviConfig.h; sourceTree = "<group>"; };
+		4A44437720F9C506001B2350 /* IBNaviConfig.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBNaviConfig.m; sourceTree = "<group>"; };
+		4A44437C21006150001B2350 /* IBTabBarBadge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBTabBarBadge.h; sourceTree = "<group>"; };
+		4A44437D21006150001B2350 /* IBTabBarBadge.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBTabBarBadge.m; sourceTree = "<group>"; };
+		4A44437F2100797E001B2350 /* IBTabBarItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBTabBarItem.h; sourceTree = "<group>"; };
+		4A4443802100797E001B2350 /* IBTabBarItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBTabBarItem.m; sourceTree = "<group>"; };
+		4A44438221008BE2001B2350 /* IBTabBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBTabBar.h; sourceTree = "<group>"; };
+		4A44438321008BE2001B2350 /* IBTabBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBTabBar.m; sourceTree = "<group>"; };
 		4A686D2320EB229000C8328E /* IBEmptyView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBEmptyView.h; sourceTree = "<group>"; };
 		4A686D2420EB229000C8328E /* IBEmptyView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBEmptyView.m; sourceTree = "<group>"; };
 		4A686D2720EB668A00C8328E /* IBLoadingView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBLoadingView.h; sourceTree = "<group>"; };
@@ -346,31 +358,31 @@
 		4A6F198620E35E3600EAF1A7 /* IBFile.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBFile.m; sourceTree = "<group>"; };
 		4A6F198A20E3A61400EAF1A7 /* IBString.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBString.h; sourceTree = "<group>"; };
 		4A6F198B20E3A61400EAF1A7 /* IBString.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBString.m; sourceTree = "<group>"; };
-		4A6F198F20E3AAB200EAF1A7 /* NSSocketByte.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSSocketByte.h; sourceTree = "<group>"; };
-		4A6F199020E3AAB200EAF1A7 /* NSSocketByte.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSSocketByte.m; sourceTree = "<group>"; };
-		4A6F199320E3AC0000EAF1A7 /* NSSocketCMDType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSSocketCMDType.h; sourceTree = "<group>"; };
-		4A6F199420E3AC7F00EAF1A7 /* NSSocketPacket.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSSocketPacket.h; sourceTree = "<group>"; };
-		4A6F199520E3AC7F00EAF1A7 /* NSSocketPacket.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSSocketPacket.m; sourceTree = "<group>"; };
-		4A6F199820E3B15E00EAF1A7 /* NSSocketEncodeProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSSocketEncodeProtocol.h; sourceTree = "<group>"; };
-		4A6F199920E3B37200EAF1A7 /* NSSocketPacketDecode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSSocketPacketDecode.h; sourceTree = "<group>"; };
-		4A6F199A20E3B37200EAF1A7 /* NSSocketPacketDecode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSSocketPacketDecode.m; sourceTree = "<group>"; };
-		4A6F199C20E3B56C00EAF1A7 /* NSSocketPacketEncode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSSocketPacketEncode.h; sourceTree = "<group>"; };
-		4A6F199D20E3B56C00EAF1A7 /* NSSocketPacketEncode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSSocketPacketEncode.m; sourceTree = "<group>"; };
-		4A6F19A320E3F0D700EAF1A7 /* NSSocketConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSSocketConfig.h; sourceTree = "<group>"; };
-		4A6F19A420E3F0D700EAF1A7 /* NSSocketConfig.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSSocketConfig.m; sourceTree = "<group>"; };
-		4A6F19A620E3F30400EAF1A7 /* NSSocketDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSSocketDelegate.h; sourceTree = "<group>"; };
-		4A6F19A720E3F3D700EAF1A7 /* NSSocketConnection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSSocketConnection.h; sourceTree = "<group>"; };
-		4A6F19A820E3F3D700EAF1A7 /* NSSocketConnection.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSSocketConnection.m; sourceTree = "<group>"; };
+		4A6F198F20E3AAB200EAF1A7 /* IBSocketByte.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBSocketByte.h; sourceTree = "<group>"; };
+		4A6F199020E3AAB200EAF1A7 /* IBSocketByte.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBSocketByte.m; sourceTree = "<group>"; };
+		4A6F199320E3AC0000EAF1A7 /* IBSocketCMDType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBSocketCMDType.h; sourceTree = "<group>"; };
+		4A6F199420E3AC7F00EAF1A7 /* IBSocketPacket.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBSocketPacket.h; sourceTree = "<group>"; };
+		4A6F199520E3AC7F00EAF1A7 /* IBSocketPacket.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBSocketPacket.m; sourceTree = "<group>"; };
+		4A6F199820E3B15E00EAF1A7 /* IBSocketEncodeProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBSocketEncodeProtocol.h; sourceTree = "<group>"; };
+		4A6F199920E3B37200EAF1A7 /* IBSocketPacketDecode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBSocketPacketDecode.h; sourceTree = "<group>"; };
+		4A6F199A20E3B37200EAF1A7 /* IBSocketPacketDecode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBSocketPacketDecode.m; sourceTree = "<group>"; };
+		4A6F199C20E3B56C00EAF1A7 /* IBSocketPacketEncode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBSocketPacketEncode.h; sourceTree = "<group>"; };
+		4A6F199D20E3B56C00EAF1A7 /* IBSocketPacketEncode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBSocketPacketEncode.m; sourceTree = "<group>"; };
+		4A6F19A320E3F0D700EAF1A7 /* IBSocketConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBSocketConfig.h; sourceTree = "<group>"; };
+		4A6F19A420E3F0D700EAF1A7 /* IBSocketConfig.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBSocketConfig.m; sourceTree = "<group>"; };
+		4A6F19A620E3F30400EAF1A7 /* IBSocketDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBSocketDelegate.h; sourceTree = "<group>"; };
+		4A6F19A720E3F3D700EAF1A7 /* IBSocketConnection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBSocketConnection.h; sourceTree = "<group>"; };
+		4A6F19A820E3F3D700EAF1A7 /* IBSocketConnection.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBSocketConnection.m; sourceTree = "<group>"; };
 		4A6F19AB20E3F40C00EAF1A7 /* GCDAsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDAsyncSocket.h; sourceTree = "<group>"; };
 		4A6F19AC20E3F40C00EAF1A7 /* GCDAsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDAsyncSocket.m; sourceTree = "<group>"; };
 		4A6F19AE20E3FB7600EAF1A7 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		4A6F19AF20E3FB7700EAF1A7 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
-		4A6F19B220E3FBDE00EAF1A7 /* NSNetworkStatus.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSNetworkStatus.h; sourceTree = "<group>"; };
-		4A6F19B320E3FBDE00EAF1A7 /* NSNetworkStatus.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSNetworkStatus.m; sourceTree = "<group>"; };
-		4A6F19B520E3FE9600EAF1A7 /* NSSocketService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSSocketService.h; sourceTree = "<group>"; };
-		4A6F19B620E3FE9600EAF1A7 /* NSSocketService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSSocketService.m; sourceTree = "<group>"; };
-		4A6F19B820E401CB00EAF1A7 /* NSSocketClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSSocketClient.h; sourceTree = "<group>"; };
-		4A6F19B920E401CC00EAF1A7 /* NSSocketClient.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSSocketClient.m; sourceTree = "<group>"; };
+		4A6F19B220E3FBDE00EAF1A7 /* IBNetworkStatus.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBNetworkStatus.h; sourceTree = "<group>"; };
+		4A6F19B320E3FBDE00EAF1A7 /* IBNetworkStatus.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBNetworkStatus.m; sourceTree = "<group>"; };
+		4A6F19B520E3FE9600EAF1A7 /* IBSocketService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBSocketService.h; sourceTree = "<group>"; };
+		4A6F19B620E3FE9600EAF1A7 /* IBSocketService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBSocketService.m; sourceTree = "<group>"; };
+		4A6F19B820E401CB00EAF1A7 /* IBSocketClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBSocketClient.h; sourceTree = "<group>"; };
+		4A6F19B920E401CC00EAF1A7 /* IBSocketClient.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBSocketClient.m; sourceTree = "<group>"; };
 		4A6F19C120E5DD3100EAF1A7 /* IBViewAnimation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBViewAnimation.h; sourceTree = "<group>"; };
 		4A6F19C220E5DD3100EAF1A7 /* IBViewAnimation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBViewAnimation.m; sourceTree = "<group>"; };
 		4A7227EC20EFE3BC008B8815 /* UINavigationController+FDFullscreenPopGesture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+FDFullscreenPopGesture.m"; sourceTree = "<group>"; };
@@ -877,7 +889,7 @@
 			path = IBString;
 			sourceTree = "<group>";
 		};
-		4A6F198D20E3A84600EAF1A7 /* NSSocket */ = {
+		4A6F198D20E3A84600EAF1A7 /* IBSocket */ = {
 			isa = PBXGroup;
 			children = (
 				4A6F19B120E3FB9E00EAF1A7 /* NetworkStatus */,
@@ -887,16 +899,16 @@
 				4A6F199220E3ABC300EAF1A7 /* Service */,
 				4A6F198E20E3AA5B00EAF1A7 /* Packet */,
 			);
-			path = NSSocket;
+			path = IBSocket;
 			sourceTree = "<group>";
 		};
 		4A6F198E20E3AA5B00EAF1A7 /* Packet */ = {
 			isa = PBXGroup;
 			children = (
-				4A6F198F20E3AAB200EAF1A7 /* NSSocketByte.h */,
-				4A6F199020E3AAB200EAF1A7 /* NSSocketByte.m */,
-				4A6F199420E3AC7F00EAF1A7 /* NSSocketPacket.h */,
-				4A6F199520E3AC7F00EAF1A7 /* NSSocketPacket.m */,
+				4A6F198F20E3AAB200EAF1A7 /* IBSocketByte.h */,
+				4A6F199020E3AAB200EAF1A7 /* IBSocketByte.m */,
+				4A6F199420E3AC7F00EAF1A7 /* IBSocketPacket.h */,
+				4A6F199520E3AC7F00EAF1A7 /* IBSocketPacket.m */,
 			);
 			path = Packet;
 			sourceTree = "<group>";
@@ -904,9 +916,9 @@
 		4A6F199220E3ABC300EAF1A7 /* Service */ = {
 			isa = PBXGroup;
 			children = (
-				4A6F199320E3AC0000EAF1A7 /* NSSocketCMDType.h */,
-				4A6F19B520E3FE9600EAF1A7 /* NSSocketService.h */,
-				4A6F19B620E3FE9600EAF1A7 /* NSSocketService.m */,
+				4A6F199320E3AC0000EAF1A7 /* IBSocketCMDType.h */,
+				4A6F19B520E3FE9600EAF1A7 /* IBSocketService.h */,
+				4A6F19B620E3FE9600EAF1A7 /* IBSocketService.m */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -914,11 +926,11 @@
 		4A6F199720E3B0FA00EAF1A7 /* Encode */ = {
 			isa = PBXGroup;
 			children = (
-				4A6F199820E3B15E00EAF1A7 /* NSSocketEncodeProtocol.h */,
-				4A6F199920E3B37200EAF1A7 /* NSSocketPacketDecode.h */,
-				4A6F199A20E3B37200EAF1A7 /* NSSocketPacketDecode.m */,
-				4A6F199C20E3B56C00EAF1A7 /* NSSocketPacketEncode.h */,
-				4A6F199D20E3B56C00EAF1A7 /* NSSocketPacketEncode.m */,
+				4A6F199820E3B15E00EAF1A7 /* IBSocketEncodeProtocol.h */,
+				4A6F199920E3B37200EAF1A7 /* IBSocketPacketDecode.h */,
+				4A6F199A20E3B37200EAF1A7 /* IBSocketPacketDecode.m */,
+				4A6F199C20E3B56C00EAF1A7 /* IBSocketPacketEncode.h */,
+				4A6F199D20E3B56C00EAF1A7 /* IBSocketPacketEncode.m */,
 			);
 			path = Encode;
 			sourceTree = "<group>";
@@ -926,13 +938,13 @@
 		4A6F199F20E3EECF00EAF1A7 /* Connection */ = {
 			isa = PBXGroup;
 			children = (
-				4A6F19A620E3F30400EAF1A7 /* NSSocketDelegate.h */,
-				4A6F19A320E3F0D700EAF1A7 /* NSSocketConfig.h */,
-				4A6F19A420E3F0D700EAF1A7 /* NSSocketConfig.m */,
-				4A6F19A720E3F3D700EAF1A7 /* NSSocketConnection.h */,
-				4A6F19A820E3F3D700EAF1A7 /* NSSocketConnection.m */,
-				4A6F19B820E401CB00EAF1A7 /* NSSocketClient.h */,
-				4A6F19B920E401CC00EAF1A7 /* NSSocketClient.m */,
+				4A6F19A620E3F30400EAF1A7 /* IBSocketDelegate.h */,
+				4A6F19A320E3F0D700EAF1A7 /* IBSocketConfig.h */,
+				4A6F19A420E3F0D700EAF1A7 /* IBSocketConfig.m */,
+				4A6F19A720E3F3D700EAF1A7 /* IBSocketConnection.h */,
+				4A6F19A820E3F3D700EAF1A7 /* IBSocketConnection.m */,
+				4A6F19B820E401CB00EAF1A7 /* IBSocketClient.h */,
+				4A6F19B920E401CC00EAF1A7 /* IBSocketClient.m */,
 			);
 			path = Connection;
 			sourceTree = "<group>";
@@ -951,8 +963,8 @@
 		4A6F19B120E3FB9E00EAF1A7 /* NetworkStatus */ = {
 			isa = PBXGroup;
 			children = (
-				4A6F19B220E3FBDE00EAF1A7 /* NSNetworkStatus.h */,
-				4A6F19B320E3FBDE00EAF1A7 /* NSNetworkStatus.m */,
+				4A6F19B220E3FBDE00EAF1A7 /* IBNetworkStatus.h */,
+				4A6F19B320E3FBDE00EAF1A7 /* IBNetworkStatus.m */,
 			);
 			path = NetworkStatus;
 			sourceTree = "<group>";
@@ -981,6 +993,8 @@
 			children = (
 				4A72287920F20C04008B8815 /* IBNaviBar.h */,
 				4A72287A20F20C04008B8815 /* IBNaviBar.m */,
+				4A44437620F9C506001B2350 /* IBNaviConfig.h */,
+				4A44437720F9C506001B2350 /* IBNaviConfig.m */,
 			);
 			path = NaviBar;
 			sourceTree = "<group>";
@@ -1079,6 +1093,12 @@
 		4AC81CCD20F3252100A1F246 /* TabBar */ = {
 			isa = PBXGroup;
 			children = (
+				4A44437C21006150001B2350 /* IBTabBarBadge.h */,
+				4A44437D21006150001B2350 /* IBTabBarBadge.m */,
+				4A44437F2100797E001B2350 /* IBTabBarItem.h */,
+				4A4443802100797E001B2350 /* IBTabBarItem.m */,
+				4A44438221008BE2001B2350 /* IBTabBar.h */,
+				4A44438321008BE2001B2350 /* IBTabBar.m */,
 			);
 			path = TabBar;
 			sourceTree = "<group>";
@@ -1289,7 +1309,7 @@
 		4ACC55D120DB5F3E001352AE /* Expand(扩展) */ = {
 			isa = PBXGroup;
 			children = (
-				4ACC55FD20DCB8A8001352AE /* NSFoundation */,
+				4ACC55FD20DCB8A8001352AE /* Foundation */,
 				4ACC562E20DD6AE0001352AE /* UIKit */,
 			);
 			path = "Expand(扩展)";
@@ -1343,13 +1363,13 @@
 			path = "Macros(宏)";
 			sourceTree = "<group>";
 		};
-		4ACC55FD20DCB8A8001352AE /* NSFoundation */ = {
+		4ACC55FD20DCB8A8001352AE /* Foundation */ = {
 			isa = PBXGroup;
 			children = (
 				4ACC56AA20DFFFF3001352AE /* NSDate */,
 				4ACC55FE20DCB8A8001352AE /* NSArray */,
 			);
-			path = NSFoundation;
+			path = Foundation;
 			sourceTree = "<group>";
 		};
 		4ACC55FE20DCB8A8001352AE /* NSArray */ = {
@@ -1446,10 +1466,8 @@
 		4ACC569C20DF4D9C001352AE /* IBKit(工具) */ = {
 			isa = PBXGroup;
 			children = (
-				4A44437220F8980A001B2350 /* IBPrivacy */,
 				4A1FB09320E7B2F40056A026 /* IBAnimation */,
 				4ACC569820DEC678001352AE /* IBApp */,
-				4A6F198920E3A5DD00EAF1A7 /* IBString */,
 				4A6F197820E3323A00EAF1A7 /* IBColor */,
 				4A6F197320E26B2300EAF1A7 /* IBCrypto */,
 				4AAA78E820ECB4CA00CF5639 /* IBDebug */,
@@ -1457,10 +1475,12 @@
 				4A6F198420E35E1F00EAF1A7 /* IBFile */,
 				4A6F197C20E345A100EAF1A7 /* IBHelper */,
 				4A1FB0AB20E8EAF70056A026 /* IBHTTPClient */,
-				4ACC569320DEC47D001352AE /* IBPassword */,
 				F3E79EE920E2A1F2000AC50A /* IBImage */,
+				4ACC569320DEC47D001352AE /* IBPassword */,
+				4A44437220F8980A001B2350 /* IBPrivacy */,
+				4A6F198D20E3A84600EAF1A7 /* IBSocket */,
+				4A6F198920E3A5DD00EAF1A7 /* IBString */,
 				4ACC569420DEC59D001352AE /* IBTouchID */,
-				4A6F198D20E3A84600EAF1A7 /* NSSocket */,
 			);
 			path = "IBKit(工具)";
 			sourceTree = "<group>";
@@ -1619,6 +1639,7 @@
 				4A1FB20E20E92D5E0056A026 /* UIImage+MultiFormat.m in Sources */,
 				4A78076720E9F1BB00E60ACA /* NSArray+MASAdditions.m in Sources */,
 				4A1FB21B20E92D5E0056A026 /* SDWebImageCoderHelper.m in Sources */,
+				4A4443812100797E001B2350 /* IBTabBarItem.m in Sources */,
 				4ACC568420DE72BA001352AE /* UIViewController+Alert.m in Sources */,
 				4AAA793020EF9C6300CF5639 /* IBTableController.m in Sources */,
 				4A1FB21020E92D5E0056A026 /* UIView+WebCacheOperation.m in Sources */,
@@ -1645,11 +1666,12 @@
 				4A1FB09720E811FA0056A026 /* UIView+draggable.m in Sources */,
 				4A1FB13520E921E90056A026 /* MWGridViewController.m in Sources */,
 				4A1FB0BC20E8EE6B0056A026 /* AFHTTPSessionManager.m in Sources */,
+				4A44437820F9C506001B2350 /* IBNaviConfig.m in Sources */,
 				F3E79EEC20E2A217000AC50A /* IBImage.m in Sources */,
-				4A6F19A520E3F0D700EAF1A7 /* NSSocketConfig.m in Sources */,
+				4A6F19A520E3F0D700EAF1A7 /* IBSocketConfig.m in Sources */,
 				4A6F197220E23FB900EAF1A7 /* IBEncode.m in Sources */,
 				4ACC56B020E0001E001352AE /* NSDate+Ext.m in Sources */,
-				4A6F19B720E3FE9600EAF1A7 /* NSSocketService.m in Sources */,
+				4A6F19B720E3FE9600EAF1A7 /* IBSocketService.m in Sources */,
 				4A1FB20F20E92D5E0056A026 /* NSData+ImageContentType.m in Sources */,
 				4A1FB12B20E921E90056A026 /* DALabeledCircularProgressView.m in Sources */,
 				4A1FB22620E92D5E0056A026 /* SDWebImageTransition.m in Sources */,
@@ -1665,6 +1687,7 @@
 				4A1FB22420E92D5E0056A026 /* SDWebImageCompat.m in Sources */,
 				4AAA78F820ECD46E00CF5639 /* IBController.m in Sources */,
 				4A6F198720E35E3600EAF1A7 /* IBFile.m in Sources */,
+				4A44437E21006150001B2350 /* IBTabBarBadge.m in Sources */,
 				4A1FB13420E921E90056A026 /* MWTapDetectingView.m in Sources */,
 				4A686D2920EB668A00C8328E /* IBLoadingView.m in Sources */,
 				4A1FB12C20E921E90056A026 /* DACircularProgressView.m in Sources */,
@@ -1672,7 +1695,7 @@
 				4A1FB0BF20E8EE6B0056A026 /* AFNetworkReachabilityManager.m in Sources */,
 				4ACC55E320DB5F3E001352AE /* ViewController.m in Sources */,
 				4A1FB12F20E921E90056A026 /* MWZoomingScrollView.m in Sources */,
-				4A6F199E20E3B56C00EAF1A7 /* NSSocketPacketEncode.m in Sources */,
+				4A6F199E20E3B56C00EAF1A7 /* IBSocketPacketEncode.m in Sources */,
 				4A1FB21620E92D5E0056A026 /* NSImage+WebCache.m in Sources */,
 				4ACC569B20DEC694001352AE /* IBApp.m in Sources */,
 				4A1FB20C20E92D5E0056A026 /* UIImage+ForceDecode.m in Sources */,
@@ -1692,6 +1715,7 @@
 				4ACC55EC20DB5F3E001352AE /* AppDelegate+AppLifeCircle.m in Sources */,
 				4A1FB21D20E92D5E0056A026 /* SDAnimatedImageRep.m in Sources */,
 				4AAA790320EE17AB00CF5639 /* IBMineController.m in Sources */,
+				4A44438421008BE2001B2350 /* IBTabBar.m in Sources */,
 				4AAA78FE20EE097300CF5639 /* IBScrollController.m in Sources */,
 				4A1FB09A20E89FD10056A026 /* IBModelController.m in Sources */,
 				4A6F19AD20E3F40C00EAF1A7 /* GCDAsyncSocket.m in Sources */,
@@ -1704,10 +1728,10 @@
 				4AC81CE020F37D2800A1F246 /* IBModel.m in Sources */,
 				4A78076520E9F1BB00E60ACA /* MASConstraintMaker.m in Sources */,
 				4A1FB22120E92D5E0056A026 /* SDWebImageDownloader.m in Sources */,
-				4A6F199B20E3B37200EAF1A7 /* NSSocketPacketDecode.m in Sources */,
-				4A6F199620E3AC7F00EAF1A7 /* NSSocketPacket.m in Sources */,
-				4A6F19B420E3FBDE00EAF1A7 /* NSNetworkStatus.m in Sources */,
-				4A6F19BA20E401CC00EAF1A7 /* NSSocketClient.m in Sources */,
+				4A6F199B20E3B37200EAF1A7 /* IBSocketPacketDecode.m in Sources */,
+				4A6F199620E3AC7F00EAF1A7 /* IBSocketPacket.m in Sources */,
+				4A6F19B420E3FBDE00EAF1A7 /* IBNetworkStatus.m in Sources */,
+				4A6F19BA20E401CC00EAF1A7 /* IBSocketClient.m in Sources */,
 				4ACC56A820DFC7AC001352AE /* UITextField+Ext.m in Sources */,
 				4ACC569220DEC463001352AE /* IBPassword.m in Sources */,
 				4A1FB22C20E92D810056A026 /* FLAnimatedImage.m in Sources */,
@@ -1717,10 +1741,10 @@
 				4A1FB22520E92D5E0056A026 /* SDWebImagePrefetcher.m in Sources */,
 				4AC81CCC20F3200400A1F246 /* IBTabBarController.m in Sources */,
 				4A78076A20E9F1BB00E60ACA /* MASViewConstraint.m in Sources */,
-				4A6F19A920E3F3D700EAF1A7 /* NSSocketConnection.m in Sources */,
+				4A6F19A920E3F3D700EAF1A7 /* IBSocketConnection.m in Sources */,
 				4A1FB13220E921E90056A026 /* MWPhoto.m in Sources */,
 				4AAA78F220ECBCB200CF5639 /* IBFPSLabel.m in Sources */,
-				4A6F199120E3AAB200EAF1A7 /* NSSocketByte.m in Sources */,
+				4A6F199120E3AAB200EAF1A7 /* IBSocketByte.m in Sources */,
 				4A6F198C20E3A61400EAF1A7 /* IBString.m in Sources */,
 				4A1FB12E20E921E90056A026 /* MWCaptionView.m in Sources */,
 				4A72287B20F20C04008B8815 /* IBNaviBar.m in Sources */,

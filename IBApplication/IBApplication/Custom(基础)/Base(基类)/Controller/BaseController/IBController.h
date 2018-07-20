@@ -7,18 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "IBNaviController.h"
 
 @interface IBController : UIViewController
 
 /** 反向传值使用 */
 @property (nonatomic, copy) void (^callback)(id);
 
+/** 正向传值使用 */
+@property (nonatomic, copy) NSDictionary *params;
+
 /** 开启键盘frame改变通知 */
 @property (nonatomic, assign) BOOL openKeyListener;
-
-/** 获取自定义导航控制器 */
-@property (nonatomic, readonly, strong) IBNaviController *naviController;
 
 /**
  UI初始化之前运行

@@ -182,9 +182,14 @@
 
 @implementation IBApp (Open)
 
++ (BOOL)canOpenURL:(NSURL *)url {
+    return [[UIApplication sharedApplication] canOpenURL:url];
+}
+
 + (void)openURL:(NSURL *)url {
-    
-    [[UIApplication sharedApplication] openURL:url];
+    if ([self canOpenURL:url]) {
+        [[UIApplication sharedApplication] openURL:url];
+    }
 }
 
 + (void)sendMail:(NSString *)mail {

@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+typedef NS_ENUM(NSInteger, IBGradientColorDirection) {
+    IBGradientColorHorizontal = 0,
+    IBGradientColorVertical,
+    IBGradientColorUpwardDiagonal,
+    IBGradientColorDownDiagonal
+};
+
+
 @interface IBColor : NSObject
 
 /**
@@ -26,14 +34,25 @@
 + (UIColor *)colorWithHexString:(NSString *)hexString;
 
 /**
- *  @brief  渐变颜色
- *
- *  @param c1     开始颜色
- *  @param c2     结束颜色
- *  @param height 渐变高度
- *
- *  @return 渐变颜色
+ 颜色线性渐变
+
+ @param startColor 开始颜色
+ @param endColor 结束颜色
+ @param direction 方向
+ @param size 尺寸
+ @return 颜色
  */
-+ (UIColor*)gradientFromColor:(UIColor*)c1 toColor:(UIColor*)c2 withHeight:(int)height;
++ (UIColor *)linearGradient:(UIColor *)startColor endColor:(UIColor *)endColor direction:(IBGradientColorDirection)direction size:(CGSize)size;
+
+/**
+ 颜色放射性渐变
+
+ @param centerColor 中心颜色
+ @param outColor 外围颜色
+ @param size 尺寸
+ @return 颜色
+ */
++ (UIColor *)radialGradient:(UIColor *)centerColor outColor:(UIColor *)outColor size:(CGSize)size;
+
 
 @end

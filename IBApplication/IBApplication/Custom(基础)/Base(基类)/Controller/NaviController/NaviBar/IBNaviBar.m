@@ -41,18 +41,18 @@
 - (void)setLucencyBar:(BOOL)lucencyBar {
     _lucencyBar = lucencyBar;
     [[IBNaviBar appearance] setBackgroundImage:[[UIImage alloc] init] forBarMetrics:UIBarMetricsDefault];
-    [self hiddenBarBottomLine:YES];
+    self.hiddenLine = YES;
 }
 
-- (void)hiddenBarBottomLine:(BOOL)hidden {
+- (void)setHiddenLine:(BOOL)hiddenLine {
+    _hiddenLine = hiddenLine;
     UIView *_barBackground = self.subviews.firstObject;
     for (UIView *view in _barBackground.subviews) {
         if (view.frame.size.height <= 1.0) {
-            view.hidden = hidden;
+            view.hidden = hiddenLine;
         }
     }
 }
-
 
 + (void)setTitleColor:(UIColor *)color fontSize:(CGFloat)fontSize {
     UINavigationBar *bar;
@@ -84,6 +84,55 @@
     [item setTitleTextAttributes:attrs forState:UIControlStateNormal];
 
 }
+
+#pragma mark - 自定义外观
+
+- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
+    return [super hitTest:point withEvent:event];
+}
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    self.effectView.frame = self.effectView.superview.bounds;
+    self.backgroundImgView.frame = self.backgroundImgView.superview.bounds;
+    self.shadowImgView.frame = CGRectMake(0, CGRectGetHeight(self.shadowImgView.superview.bounds) - 0.5, CGRectGetWidth(self.shadowImgView.superview.bounds), 0.5);
+}
+
+- (UIVisualEffectView *)effectView {
+    if (!_effectView) {
+        [super setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+        _effectView = [[UIVisualEffectView alloc] initWithEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleLight]];
+        _effectView.userInteractionEnabled = NO;
+        _effectView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        [[self.subviews firstObject] insertSubview:_effectView atIndex:0];
+
+    }
+    return _effectView;
+}
+
+- (UIImageView *)backgroundImgView {
+    if (!_backgroundImgView) {
+        _backgroundImgView = [[UIImageView alloc] init];
+        _backgroundImgView.userInteractionEnabled = NO;
+        _backgroundImgView.contentScaleFactor = 1;
+        _backgroundImgView.contentMode = UIViewContentModeScaleToFill;
+        _backgroundImgView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        [[self.subviews firstObject] insertSubview:_backgroundImgView aboveSubview:self.effectView];
+    }
+    return _backgroundImgView;
+}
+
+- (UIImageView *)shadowImgView {
+    if (!_shadowImgView) {
+        [super setShadowImage:[UIImage new]];
+        _shadowImgView = [[UIImageView alloc] init];
+        _shadowImgView.userInteractionEnabled = NO;
+        _shadowImgView.contentScaleFactor = 1;
+        [[self.subviews firstObject] insertSubview:_shadowImgView aboveSubview:self.backgroundImgView];
+    }
+    return _shadowImgView;
+}
+
 
 @end
 

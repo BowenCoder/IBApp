@@ -110,7 +110,10 @@
 
 @interface IBApp (Open)
 
-/** 打开一个URL */
+/** 可以用来判断设备是否安装app等 */
++ (BOOL)canOpenURL:(NSURL *)url;
+
+/** 打开一个URL(网页或者跳转等) */
 + (void)openURL:(NSURL *)url;
 
 /** 发送邮件 */

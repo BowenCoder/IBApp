@@ -12,6 +12,8 @@
 #import "MBProgressHUD+Ext.h"
 #import "IBEmptyView.h"
 #import "NSDate+Ext.h"
+#import "IBApp.h"
+#import "IBColor.h"
 
 @interface ViewController ()<UITableViewDataSource, UITableViewDelegate>
 
@@ -27,24 +29,26 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    
-    self.navigationController.navigationBar.backgroundColor = [UIColor clearColor];
+    self.title = @"主界面";
+    self.config.backgroundColor = [UIColor redColor];
+    [self.naviController updateNavigationBarColorOrImageForViewController:self];
+
 //    self.navigationController.navigationBar.barTintColor = [UIColor clearColor];
 //    self.navigationController.navigationBar.hidden = YES;
 //    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
-    self.view.backgroundColor = [UIColor lightGrayColor];
+    self.view.backgroundColor = [IBColor radialGradient:[UIColor redColor] outColor:[UIColor orangeColor] size:CGSizeMake(100, 100)];
     UITextField *tf = [[UITextField alloc] initWithFrame:CGRectMake(0, 500, self.view.frame.size.width, 44)];
     tf.borderStyle = UITextBorderStyleLine;
 //    tf.spellCheckingType = UITextSpellCheckingTypeNo;
     tf.autocorrectionType = UITextAutocorrectionTypeNo;
     [self.view addSubview:tf];
     self.openKeyListener = YES;
-//    self.imageView = [[UIImageView alloc] initWithFrame:CGRectMake(50, 100, self.view.width - 100, 200)];
-//    UIImage *img = [UIImage imageNamed:@"test"];
-//    self.imageView.image = img;
-//    self.imageView.backgroundColor = [UIColor lightGrayColor];
-//    self.imageView.userInteractionEnabled = YES;
-//    [self.view addSubview:self.imageView];
+    self.imageView = [[UIImageView alloc] initWithFrame:CGRectMake(50, 100, self.view.width - 100, 200)];
+    UIImage *img = [UIImage imageNamed:@"test"];
+    self.imageView.image = img;
+    self.imageView.backgroundColor = [UIColor lightGrayColor];
+    self.imageView.userInteractionEnabled = YES;
+    [self.view addSubview:self.imageView];
 //    [MBProgressHUD showNoData:self.view reload:nil];
 //    [self rightBarItemWithTitle:@"关注" titleColor:nil imageName:nil];
     
@@ -59,9 +63,8 @@
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
 //    [self.view endEditing:YES];
-    IBMineController *mine = [[IBMineController alloc] init];
-    [self.navigationController pushViewController:mine animated:YES];
-
+//    IBMineController *mine = [[IBMineController alloc] init];
+//    [self.navigationController pushViewController:mine animated:YES];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

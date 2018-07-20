@@ -226,13 +226,6 @@
     }
 }
 
-- (IBNaviController *)naviController {
-    if (self.navigationController && [self.navigationController isKindOfClass:[IBNaviController class]]) {
-        return (IBNaviController *)self.navigationController;
-    }
-    return nil;
-}
-
 #pragma mark - 状态栏设置
 
 // 返回NO表示要显示，返回YES将hiden
