@@ -23,8 +23,6 @@
     UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:nil action:nil];
     pan.delegate = self;
     [self.view addGestureRecognizer:pan];
-    self.config.backgroundColor = [UIColor orangeColor];
-    [self.naviController updateNavigationBarColorOrImageForViewController:self];
 //    self.navigationController.navigationBar.barTintColor = [UIColor redColor];
 //    self.navigationController.navigationBar.frame = CGRectMake(0, 0, self.view.frame.size.width, 200);
 //    self.navigationController.navigationBar.translucent = YES;

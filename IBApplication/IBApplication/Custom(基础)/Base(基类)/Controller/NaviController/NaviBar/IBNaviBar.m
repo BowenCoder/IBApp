@@ -85,52 +85,41 @@
 
 }
 
-#pragma mark - 自定义外观
-
-- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
-    return [super hitTest:point withEvent:event];
+- (UIView *)backgroundView {
+    return [self valueForKey:@"_backgroundView"];
 }
 
-- (void)layoutSubviews {
-    [super layoutSubviews];
-    self.effectView.frame = self.effectView.superview.bounds;
-    self.backgroundImgView.frame = self.backgroundImgView.superview.bounds;
-    self.shadowImgView.frame = CGRectMake(0, CGRectGetHeight(self.shadowImgView.superview.bounds) - 0.5, CGRectGetWidth(self.shadowImgView.superview.bounds), 0.5);
+- (void)updateBarStyle:(UIBarStyle)barStyle tintColor:(UIColor *)tintColor{
+    self.barStyle = barStyle;
+    self.tintColor = tintColor;
 }
 
-- (UIVisualEffectView *)effectView {
-    if (!_effectView) {
-        [super setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
-        _effectView = [[UIVisualEffectView alloc] initWithEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleLight]];
-        _effectView.userInteractionEnabled = NO;
-        _effectView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-        [[self.subviews firstObject] insertSubview:_effectView atIndex:0];
-
+- (void)applyBarConfig:(IBNaviConfig *)config {
+#if DEBUG
+    if (@available(iOS 11,*)) {
+        NSAssert(!self.prefersLargeTitles, @"large titles is not supported");
     }
-    return _effectView;
-}
-
-- (UIImageView *)backgroundImgView {
-    if (!_backgroundImgView) {
-        _backgroundImgView = [[UIImageView alloc] init];
-        _backgroundImgView.userInteractionEnabled = NO;
-        _backgroundImgView.contentScaleFactor = 1;
-        _backgroundImgView.contentMode = UIViewContentModeScaleToFill;
-        _backgroundImgView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-        [[self.subviews firstObject] insertSubview:_backgroundImgView aboveSubview:self.effectView];
+#endif
+    
+    [self updateBarStyle:config.barStyle tintColor:config.tintColor];
+    
+    UIView *backgroundView = [self backgroundView];
+    UIImage *transpanrentImage = [[UIImage alloc] init];
+    if (config.transparent) {
+        backgroundView.alpha = 0;
+        self.translucent = YES;
+        [self setBackgroundImage:transpanrentImage forBarMetrics:UIBarMetricsDefault];
+    } else {
+        backgroundView.alpha = 1;
+        self.translucent = config.translucent;
+        UIImage* backgroundImage = config.backgroundImage;
+        if (!backgroundImage && config.backgroundColor) {
+            backgroundImage = [IBImage imageWithColor:config.backgroundColor];
+        }
+        [self setBackgroundImage:backgroundImage forBarMetrics:UIBarMetricsDefault];
     }
-    return _backgroundImgView;
-}
-
-- (UIImageView *)shadowImgView {
-    if (!_shadowImgView) {
-        [super setShadowImage:[UIImage new]];
-        _shadowImgView = [[UIImageView alloc] init];
-        _shadowImgView.userInteractionEnabled = NO;
-        _shadowImgView.contentScaleFactor = 1;
-        [[self.subviews firstObject] insertSubview:_shadowImgView aboveSubview:self.backgroundImgView];
-    }
-    return _shadowImgView;
+    self.shadowImage = transpanrentImage;
+    self.currentBarConfig = config;
 }
 
 

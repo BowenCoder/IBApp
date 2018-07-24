@@ -140,6 +140,7 @@
 		4A78077420E9FCAF00E60ACA /* YYClassInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A78077120E9FCAE00E60ACA /* YYClassInfo.m */; };
 		4A78077A20EA482E00E60ACA /* niconiconi@2x.gif in Resources */ = {isa = PBXBuildFile; fileRef = 4A78077920EA482E00E60ACA /* niconiconi@2x.gif */; };
 		4A78077E20EA493A00E60ACA /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4A78077C20EA493900E60ACA /* Info.plist */; };
+		4AAA27C02107379100B0C256 /* IBNaviBar+Config.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AAA27BF2107379100B0C256 /* IBNaviBar+Config.m */; };
 		4AAA78EB20ECB4F200CF5639 /* IBDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AAA78EA20ECB4F200CF5639 /* IBDebug.m */; };
 		4AAA78F220ECBCB200CF5639 /* IBFPSLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AAA78F120ECBCB200CF5639 /* IBFPSLabel.m */; };
 		4AAA78F820ECD46E00CF5639 /* IBController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AAA78F720ECD46E00CF5639 /* IBController.m */; };
@@ -425,6 +426,8 @@
 		4A78077920EA482E00E60ACA /* niconiconi@2x.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "niconiconi@2x.gif"; sourceTree = "<group>"; };
 		4A78077C20EA493900E60ACA /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4A78077D20EA493900E60ACA /* SDWebImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWebImage.h; sourceTree = "<group>"; };
+		4AAA27BE2107379100B0C256 /* IBNaviBar+Config.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "IBNaviBar+Config.h"; sourceTree = "<group>"; };
+		4AAA27BF2107379100B0C256 /* IBNaviBar+Config.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "IBNaviBar+Config.m"; sourceTree = "<group>"; };
 		4AAA78E920ECB4F200CF5639 /* IBDebug.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBDebug.h; sourceTree = "<group>"; };
 		4AAA78EA20ECB4F200CF5639 /* IBDebug.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBDebug.m; sourceTree = "<group>"; };
 		4AAA78F020ECBCB200CF5639 /* IBFPSLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBFPSLabel.h; sourceTree = "<group>"; };
@@ -995,6 +998,8 @@
 				4A72287A20F20C04008B8815 /* IBNaviBar.m */,
 				4A44437620F9C506001B2350 /* IBNaviConfig.h */,
 				4A44437720F9C506001B2350 /* IBNaviConfig.m */,
+				4AAA27BE2107379100B0C256 /* IBNaviBar+Config.h */,
+				4AAA27BF2107379100B0C256 /* IBNaviBar+Config.m */,
 			);
 			path = NaviBar;
 			sourceTree = "<group>";
@@ -1715,6 +1720,7 @@
 				4ACC55EC20DB5F3E001352AE /* AppDelegate+AppLifeCircle.m in Sources */,
 				4A1FB21D20E92D5E0056A026 /* SDAnimatedImageRep.m in Sources */,
 				4AAA790320EE17AB00CF5639 /* IBMineController.m in Sources */,
+				4AAA27C02107379100B0C256 /* IBNaviBar+Config.m in Sources */,
 				4A44438421008BE2001B2350 /* IBTabBar.m in Sources */,
 				4AAA78FE20EE097300CF5639 /* IBScrollController.m in Sources */,
 				4A1FB09A20E89FD10056A026 /* IBModelController.m in Sources */,

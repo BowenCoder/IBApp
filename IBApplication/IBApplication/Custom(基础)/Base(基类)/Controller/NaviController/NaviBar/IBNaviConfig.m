@@ -11,15 +11,36 @@
 @implementation IBNaviConfig
 
 - (instancetype)init {
-    
-    self = [super init];
-    if (self) {
-        _alpha = 1.0;
-        _hidden = NO;
-        _translucent = YES;
-        _transparent = NO;
-        _barStyle = UIBarStyleDefault;
-        _backgroundColor = [UIColor whiteColor];
+    return [self initWithBarOptions:IBNaviBarOptionDefault
+                          tintColor:nil
+                    backgroundColor:nil
+                    backgroundImage:nil];
+}
+
+- (instancetype)initWithBarOptions:(IBNaviBarOption)options
+                         tintColor:(UIColor *)tintColor
+                   backgroundColor:(UIColor *)backgroundColor
+                   backgroundImage:(UIImage *)backgroundImage {
+    if (self = [super init]) {
+        _hidden = (options & IBNaviBarOptionHidden) > 0;
+        _barStyle = (options & IBNaviBarOptionBlack) > 0 ? UIBarStyleBlack : UIBarStyleDefault;
+        if (!tintColor) {
+            tintColor = _barStyle == UIBarStyleBlack ? [UIColor whiteColor] : [UIColor blackColor];
+        }
+        _tintColor = tintColor;
+        
+        if (_hidden) return self;
+        
+        _transparent = (options & IBNaviBarOptionTransparent) > 0;
+        if (_transparent) return self;
+        
+        _translucent = (options & IBNaviBarOptionTranslucent) == 0;
+        
+        if ((options & IBNaviBarOptionImage) > 0 && backgroundImage) {
+            _backgroundImage = backgroundImage;
+        } else if (options & IBNaviBarOptionColor){
+            _backgroundColor = backgroundColor;
+        }
     }
     return self;
 }

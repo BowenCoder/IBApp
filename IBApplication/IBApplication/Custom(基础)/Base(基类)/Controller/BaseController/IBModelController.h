@@ -8,13 +8,10 @@
 
 #import "IBController.h"
 #import "IBHTTPClient.h"
-#import "IBNaviConfig.h"
 #import "IBNaviController.h"
 #import "IBTabBarController.h"
 
 @interface IBModelController : IBController
-
-@property (nonatomic, strong) IBNaviConfig *config;
 
 /** 获取自定义导航控制器 */
 @property (nonatomic, readonly, strong) IBNaviController *naviController;

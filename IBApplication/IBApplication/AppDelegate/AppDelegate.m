@@ -21,32 +21,16 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
     
     self.window = [[UIWindow alloc] initWithFrame: [UIScreen mainScreen].bounds];
     self.window.backgroundColor = [UIColor whiteColor];
     ViewController *vc = [[ViewController alloc] init];
     vc.tabBarItem.title = @"首页";
     vc.tabBarItem.image = [UIImage imageNamed:@"icon_tabbar_subscription_no"];
-//    vc.tabBarItem.badgeValue = @"1";
-//    UITabBarController *tab = [[UITabBarController alloc] init];
 
     IBTabBarController *tab = [[IBTabBarController alloc] init];
-//    IBNaviController *nav = [[IBNaviController alloc] initWithRootViewController:vc];
     IBNaviController *nav = [[IBNaviController alloc] initWithRootViewController:vc naviBar:[IBNaviBar class]];
-//    nav.naviBar.lucencyBar = YES;
-//    nav.naviBar.globalBarColor = [UIColor redColor];
-//    bar.backgroundImgView.image = [UIImage imageNamed:@"test"];
-//    bar.effectView.backgroundColor = [UIColor redColor];
-//    nav.naviBar.effectView.backgroundColor = [UIColor redColor];
-//    [nav.naviBar hiddenBarBottomLine:YES];
-//
-////    nav.naviBar.globalShadowImage = [UIImage new];
-//    nav.naviBar.globalBarTintColor = [UIColor redColor];
-//    nav.naviBar.globalTintColor = [UIColor purpleColor];
-     
-    [IBNaviBar setTitleColor:[UIColor whiteColor] fontSize:16];
-    [IBNaviBar setItemTitleColor:[UIColor orangeColor] fontSize:13];
+    
     [tab addChildViewController: nav];
 
     self.window.rootViewController = tab;

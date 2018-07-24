@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "IBNaviConfig.h"
 
 @interface IBNaviBar : UINavigationBar
 
@@ -33,11 +34,11 @@
 /** 设置按钮的颜色、大小(自定义按钮无效) */
 + (void)setItemTitleColor:(UIColor *)color fontSize:(CGFloat)fontSize;
 
-#pragma mark - 自定义外观
 
-@property (nonatomic, strong) UIImageView *shadowImgView;
-@property (nonatomic, strong) UIVisualEffectView *effectView;
-@property (nonatomic, strong) UIImageView *backgroundImgView;
+@property (nonatomic, strong) IBNaviConfig *currentBarConfig;
 
+- (UIView *)backgroundView;
+- (void)updateBarStyle:(UIBarStyle)barStyle tintColor:(UIColor *)tintColor;
+- (void)applyBarConfig:(IBNaviConfig *)config;
 
 @end

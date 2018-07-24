@@ -77,13 +77,6 @@
 
 #pragma mark - 合成存取
 
-- (IBNaviConfig *)config {
-    if (!_config) {
-        _config = [[IBNaviConfig alloc] init];
-    }
-    return _config;
-}
-
 - (IBNaviController *)naviController {
     if (self.navigationController && [self.navigationController isKindOfClass:[IBNaviController class]]) {
         return (IBNaviController *)self.navigationController;

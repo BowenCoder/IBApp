@@ -30,13 +30,14 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     self.title = @"主界面";
-    self.config.backgroundColor = [UIColor redColor];
-    [self.naviController updateNavigationBarColorOrImageForViewController:self];
+
+//    self.config.backgroundColor = [UIColor redColor];
+//    self.config.alpha = 0;
+//    [self.naviController updateNavigationBarColorOrImageForViewController:self];
 
 //    self.navigationController.navigationBar.barTintColor = [UIColor clearColor];
 //    self.navigationController.navigationBar.hidden = YES;
 //    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
-    self.view.backgroundColor = [IBColor radialGradient:[UIColor redColor] outColor:[UIColor orangeColor] size:CGSizeMake(100, 100)];
     UITextField *tf = [[UITextField alloc] initWithFrame:CGRectMake(0, 500, self.view.frame.size.width, 44)];
     tf.borderStyle = UITextBorderStyleLine;
 //    tf.spellCheckingType = UITextSpellCheckingTypeNo;
@@ -56,15 +57,14 @@
     self.tableView.rowHeight = 60;
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
-//    [self.view addSubview:self.tableView];
+    [self.view addSubview:self.tableView];
     
 }
 
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-//    [self.view endEditing:YES];
-//    IBMineController *mine = [[IBMineController alloc] init];
-//    [self.navigationController pushViewController:mine animated:YES];
+    [self.view endEditing:YES];
+
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -87,10 +87,14 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [self.view endEditing:YES];
+    IBMineController *mine = [[IBMineController alloc] init];
+    [self.navigationController pushViewController:mine animated:YES];
 }
 
 
-
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    
+}
 
 
 @end

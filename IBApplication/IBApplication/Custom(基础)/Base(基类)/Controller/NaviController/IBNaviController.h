@@ -8,19 +8,15 @@
 
 #import <UIKit/UIKit.h>
 #import "IBNaviBar.h"
-
-@class IBModelController;
+#import "IBNaviBar+Config.h"
 
 @interface IBNaviController : UINavigationController
 
 /** 自定义导航栏 */
 @property (nonatomic, readonly, strong) IBNaviBar *naviBar;
 
+/** 自定义导航栏初始化 */
 - (instancetype)initWithRootViewController:(UIViewController *)rootViewController naviBar:(Class)naviBarClass;
 
-- (void)updateNavigationBarForViewController:(IBModelController *)vc;
-- (void)updateNavigationBarAlphaForViewController:(IBModelController *)vc;
-- (void)updateNavigationBarColorOrImageForViewController:(IBModelController *)vc;
-- (void)updateNavigationBarShadowIAlphaForViewController:(IBModelController *)vc;
 
 @end
