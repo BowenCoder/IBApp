@@ -112,7 +112,7 @@
     } else {
         backgroundView.alpha = 1;
         self.translucent = config.translucent;
-        UIImage* backgroundImage = config.backgroundImage;
+        UIImage *backgroundImage = config.backgroundImage;
         if (!backgroundImage && config.backgroundColor) {
             backgroundImage = [IBImage imageWithColor:config.backgroundColor];
         }

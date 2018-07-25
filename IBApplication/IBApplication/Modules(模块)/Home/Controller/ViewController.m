@@ -14,6 +14,7 @@
 #import "NSDate+Ext.h"
 #import "IBApp.h"
 #import "IBColor.h"
+#import "IBNaviBar+Config.h"
 
 @interface ViewController ()<UITableViewDataSource, UITableViewDelegate>
 
@@ -31,13 +32,8 @@
     // Do any additional setup after loading the view, typically from a nib.
     self.title = @"主界面";
 
-//    self.config.backgroundColor = [UIColor redColor];
-//    self.config.alpha = 0;
-//    [self.naviController updateNavigationBarColorOrImageForViewController:self];
+    self.config = [[IBNaviConfig alloc] initWithBarOptions:IBNaviBarOptionShow tintColor:nil backgroundColor:[UIColor redColor] backgroundImage:nil backgroundImgID:nil];
 
-//    self.navigationController.navigationBar.barTintColor = [UIColor clearColor];
-//    self.navigationController.navigationBar.hidden = YES;
-//    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
     UITextField *tf = [[UITextField alloc] initWithFrame:CGRectMake(0, 500, self.view.frame.size.width, 44)];
     tf.borderStyle = UITextBorderStyleLine;
 //    tf.spellCheckingType = UITextSpellCheckingTypeNo;

@@ -12,6 +12,7 @@
 
 @property (nonatomic, strong) UIToolbar *fromNaviBar;
 @property (nonatomic, strong) UIToolbar *toNaviBar;
+@property (nonatomic, strong) IBNaviConfig *defaultConfig;
 
 @end
 
@@ -31,6 +32,95 @@
 
 - (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
     
+    id<UIViewControllerTransitionCoordinator> coordinator = self.transitionCoordinator;
+    if (coordinator) {
+        UIViewController *fromVC = [coordinator viewControllerForKey:UITransitionContextFromViewControllerKey];
+        UIViewController *toVC = [coordinator viewControllerForKey:UITransitionContextToViewControllerKey];
+        IBNaviConfig *fromConfig = fromVC.config ? fromVC.config : self.defaultConfig;
+        IBNaviConfig *toConfig = toVC.config ? toVC.config : self.defaultConfig;
+        
+        if (toConfig.hidden != navigationController.navigationBarHidden) {
+            [navigationController setNavigationBarHidden:toConfig.hidden animated:animated];
+        }
+        
+        BOOL showBar = shouldShow(fromConfig, toConfig);
+        IBNaviConfig *transparentConfig = nil;
+        if (showBar) {
+            IBNaviBarOption transparentOption = IBNaviBarOptionDefault | IBNaviBarOptionTransparent;
+            if (fromConfig.barStyle == UIBarStyleBlack) transparentOption |= IBNaviBarOptionBlack;
+            transparentConfig = [[IBNaviConfig alloc] initWithBarOptions:transparentOption tintColor:toConfig.tintColor backgroundColor:nil backgroundImage:nil backgroundImgID:nil];
+        }
+        
+        if (!toConfig.hidden) {
+            [self.naviBar applyBarConfig:transparentConfig ? transparentConfig : toConfig];
+        } else {
+            [self.naviBar updateBarStyle:toConfig.barStyle tintColor:toConfig.tintColor];
+        }
+        
+        [coordinator animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
+            if (showBar) {
+                [UIView setAnimationsEnabled:NO];
+                
+                if (fromVC && [fromConfig isVisible]) {
+                    CGRect barFrame = [fromVC barFrameForNavigationBar:self.naviBar];
+                    if (!CGRectIsNull(barFrame)) {
+                        [self.fromNaviBar applyBarConfig:fromConfig];
+                        self.fromNaviBar.frame = barFrame;
+                        [fromVC.view addSubview:self.fromNaviBar];
+                    }
+                }
+                
+                if (toVC && [toConfig isVisible]) {
+                    CGRect barFrame = [toVC barFrameForNavigationBar:self.naviBar];
+                    if (!CGRectIsNull(barFrame)) {
+                        if (toVC.extendedLayoutIncludesOpaqueBars ||
+                            toConfig.translucent) {
+                            barFrame.origin.y = toVC.view.bounds.origin.y;
+                        }
+                        [self.toNaviBar applyBarConfig:toConfig];
+                        self.toNaviBar.frame = barFrame;
+                        [toVC.view addSubview:self.toNaviBar];
+                    }
+                }
+                
+                [toVC.view addObserver:self
+                            forKeyPath:NSStringFromSelector(@selector(bounds))
+                               options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld
+                               context:"updateToNaviBarFrame"];
+                
+                [UIView setAnimationsEnabled:YES];
+            }
+        } completion:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
+            if ([context isCancelled]) {
+                [self clearView];
+                [self.naviBar applyBarConfig:toConfig];
+                
+                if (toConfig.hidden != navigationController.navigationBarHidden) {
+                    [navigationController setNavigationBarHidden:toConfig.hidden animated:animated];
+                }
+            }
+            
+            if (showBar) {
+                [toVC.view removeObserver:self
+                               forKeyPath:NSStringFromSelector(@selector(bounds))
+                                  context:"updateToNaviBarFrame"];
+            }
+        }];
+        
+        void (^popInteractionEndBlock)(id<UIViewControllerTransitionCoordinatorContext>) =
+        ^(id<UIViewControllerTransitionCoordinatorContext> context){
+            if ([context isCancelled]) {
+                [self.naviBar updateBarStyle:fromConfig.barStyle
+                                           tintColor:fromConfig.tintColor];
+            }
+        };
+        
+        if (@available(iOS 10,*)) {
+            [navigationController.transitionCoordinator notifyWhenInteractionChangesUsingBlock:popInteractionEndBlock];
+        } else {
+            [navigationController.transitionCoordinator notifyWhenInteractionEndsUsingBlock:popInteractionEndBlock];
+        }
+    }
 }
 
 - (void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
@@ -38,49 +128,68 @@
     [self.naviBar applyBarConfig:viewController.config];
 }
 
+- (void)observeValueForKeyPath:(NSString *)keyPath
+                      ofObject:(id)object
+                        change:(NSDictionary *)change
+                       context:(void *)context {
+    if (strcmp(context, "updateToNaviBarFrame") == 0) {
+        UIView *view = (UIView*)object;
+        
+        if (self.toNaviBar.superview == view) {
+            CGRect barFrame = self.toNaviBar.frame;
+            
+            CGRect old = [change[NSKeyValueChangeOldKey] CGRectValue];
+            CGRect new = [change[NSKeyValueChangeNewKey] CGRectValue];
+            CGFloat offset = new.origin.y - old.origin.y;
+            if (offset != 0) {
+                barFrame.origin.y += offset;
+                self.toNaviBar.frame = barFrame;
+            }
+        }
+    }
+}
 #pragma mark - 私有方法
 
 BOOL isImageEqual(UIImage *fromImage, UIImage *toImage) {
-    
-    if (fromImage && toImage) {
-        NSData *fromImageData = UIImagePNGRepresentation(fromImage);
-        NSData *toImageData = UIImagePNGRepresentation(toImage);
-        BOOL result = [fromImageData isEqual:toImageData];
-        return result;
-    }
-    return NO;
+    NSData *fromImageData = UIImagePNGRepresentation(fromImage);
+    NSData *toImageData = UIImagePNGRepresentation(toImage);
+    BOOL result = [fromImageData isEqual:toImageData];
+    return result;
 }
 
-BOOL shouldShow(UIViewController *vc,UIViewController *from, UIViewController *to) {
-    if (vc != to ) {
+BOOL shouldShow(IBNaviConfig *fromConfig, IBNaviConfig *toConfig) {
+    if (fromConfig.hidden || toConfig.hidden) {
         return NO;
     }
     
-    if (isImageEqual(from.config.backgroundImage, to.config.backgroundImage)) {
+    if (fromConfig.transparent != toConfig.transparent ||
+        fromConfig.translucent != toConfig.translucent) {
+        return YES;
+    }
+
+
+    if (fromConfig.backgroundImage && toConfig.backgroundImage) {
+        if (fromConfig.backgroundImgID && toConfig.backgroundImgID) {
+            return ![fromConfig.backgroundImgID isEqualToString:toConfig.backgroundImgID];
+        }
         // 都有图片，并且是同一张图片
-        if (ABS(from.config.alpha - to.config.alpha) > 0.1) {
-            return YES;
+        if (isImageEqual(fromConfig.backgroundImage, toConfig.backgroundImage)) {
+            return NO;
         }
-        return NO;
     }
     
-    if (CGColorEqualToColor(from.config.backgroundColor.CGColor, to.config.backgroundColor.CGColor)) {
-        // 都没图片，并且颜色相同
-        if (ABS(from.config.alpha - to.config.alpha) > 0.1) {
-            return YES;
-        }
+    // 都没图片，并且颜色相同
+    if (CGColorEqualToColor(fromConfig.backgroundColor.CGColor, toConfig.backgroundColor.CGColor)) {
         return NO;
     }
     
     return YES;
 }
 
-
 - (void)clearView {
     [self.fromNaviBar removeFromSuperview];
     [self.toNaviBar removeFromSuperview];
 }
-
 
 #pragma mark - 合成存取
 

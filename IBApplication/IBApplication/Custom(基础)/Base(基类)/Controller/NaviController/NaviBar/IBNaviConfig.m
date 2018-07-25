@@ -14,13 +14,15 @@
     return [self initWithBarOptions:IBNaviBarOptionDefault
                           tintColor:nil
                     backgroundColor:nil
-                    backgroundImage:nil];
+                    backgroundImage:nil
+                    backgroundImgID:nil];
 }
 
 - (instancetype)initWithBarOptions:(IBNaviBarOption)options
                          tintColor:(UIColor *)tintColor
                    backgroundColor:(UIColor *)backgroundColor
-                   backgroundImage:(UIImage *)backgroundImage {
+                   backgroundImage:(UIImage *)backgroundImage
+                   backgroundImgID:(NSString *)backgroundImgID {
     if (self = [super init]) {
         _hidden = (options & IBNaviBarOptionHidden) > 0;
         _barStyle = (options & IBNaviBarOptionBlack) > 0 ? UIBarStyleBlack : UIBarStyleDefault;
@@ -38,11 +40,16 @@
         
         if ((options & IBNaviBarOptionImage) > 0 && backgroundImage) {
             _backgroundImage = backgroundImage;
+            _backgroundImgID = backgroundImgID;
         } else if (options & IBNaviBarOptionColor){
             _backgroundColor = backgroundColor;
         }
     }
     return self;
+}
+
+- (BOOL)isVisible {
+    return !self.hidden && !self.transparent;
 }
 
 @end

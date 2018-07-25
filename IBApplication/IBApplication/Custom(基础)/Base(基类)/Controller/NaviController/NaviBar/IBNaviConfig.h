@@ -38,10 +38,15 @@ typedef NS_OPTIONS(NSUInteger, IBNaviBarOption) {
 @property (nonatomic, readonly, strong) UIColor *tintColor;
 @property (nonatomic, readonly, strong) UIColor *backgroundColor;
 @property (nonatomic, readonly, strong) UIImage *backgroundImage;
+@property (nonatomic, readonly, strong) NSString *backgroundImgID;
+
 
 - (instancetype)initWithBarOptions:(IBNaviBarOption)options
-                         tintColor:(nullable UIColor*) tintColor
-                   backgroundColor:(nullable UIColor *)backgroundColor
-                   backgroundImage:(nullable UIImage *)backgroundImage;
+                         tintColor:(UIColor *)tintColor
+                   backgroundColor:(UIColor *)backgroundColor
+                   backgroundImage:(UIImage *)backgroundImage
+                   backgroundImgID:(NSString *)backgroundImgID;
+
+- (BOOL)isVisible;
 
 @end
