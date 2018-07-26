@@ -44,7 +44,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [self.view endEditing:YES];
     IBMineController *mine = [[IBMineController alloc] init];
-    mine.config = [[IBNaviConfig alloc] initWithBarOptions:IBNaviBarOptionShow | IBNaviBarOptionColor tintColor:nil backgroundColor:[UIColor orangeColor] backgroundImage:nil backgroundImgID:nil];
+    mine.config = [[IBNaviConfig alloc] initWithBarOptions:IBNaviBarOptionHidden tintColor:nil backgroundColor:nil backgroundImage:nil backgroundImgID:nil];
     [self.navigationController pushViewController:mine animated:YES];
 }
 

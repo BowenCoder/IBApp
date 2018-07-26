@@ -8,7 +8,7 @@
 
 #import "IBNaviController.h"
 
-@interface IBNaviController ()<UINavigationControllerDelegate>
+@interface IBNaviController ()<UINavigationControllerDelegate, UIGestureRecognizerDelegate>
 
 @property (nonatomic, strong) UIToolbar *fromNaviBar;
 @property (nonatomic, strong) UIToolbar *toNaviBar;
@@ -28,7 +28,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.delegate = self;
-
+    self.interactivePopGestureRecognizer.delegate = self;
 }
 
 - (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
