@@ -35,8 +35,6 @@
 + (void)setItemTitleColor:(UIColor *)color fontSize:(CGFloat)fontSize;
 
 
-@property (nonatomic, strong) IBNaviConfig *currentBarConfig;
-
 - (UIView *)backgroundView;
 - (void)updateBarStyle:(UIBarStyle)barStyle tintColor:(UIColor *)tintColor;
 - (void)applyBarConfig:(IBNaviConfig *)config;

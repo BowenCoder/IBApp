@@ -30,7 +30,7 @@ typedef NS_OPTIONS(NSUInteger, IBNaviBarOption) {
 @interface IBNaviConfig : NSObject
 
 @property (nonatomic, readonly, assign) BOOL hidden;
-@property (nonatomic, readonly, assign) BOOL translucent; //半透明
+@property (nonatomic, readonly, assign) BOOL translucent; //YES,为半透明， NO为不透明
 @property (nonatomic, readonly, assign) BOOL transparent; //透明
 @property (nonatomic, readonly, assign) UIBarStyle barStyle;
 

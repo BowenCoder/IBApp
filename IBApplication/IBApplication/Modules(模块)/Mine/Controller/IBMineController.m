@@ -10,7 +10,7 @@
 //#import "UINavigationController+FDFullscreenPopGesture.h"
 #import "IBNaviController.h"
 
-@interface IBMineController ()<UIGestureRecognizerDelegate>
+@interface IBMineController ()<UINavigationControllerDelegate>
 
 @end
 
@@ -19,10 +19,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [self reloadData];
-    UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:nil action:nil];
-    pan.delegate = self;
-    [self.view addGestureRecognizer:pan];
+//    [self reloadData];
+
 //    self.navigationController.navigationBar.barTintColor = [UIColor redColor];
 //    self.navigationController.navigationBar.frame = CGRectMake(0, 0, self.view.frame.size.width, 200);
 //    self.navigationController.navigationBar.translucent = YES;
@@ -31,6 +29,10 @@
 //    [self rightBarItemWithTitle:@"关注" titleColor:[UIColor redColor] imageName:@"bubble"];
 //    [self leftBarItemWithTitle:@"关注" titleColor:[UIColor redColor] imageName:@"bubble"];
 
+}
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+//    [self.navigationController setNavigationBarHidden:YES animated:animated];
 
 }
 
@@ -47,10 +49,7 @@
     } isGet:NO];
 }
 
-- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
-    NSLog(@"%@-%@", gestureRecognizer.delegate, otherGestureRecognizer.delegate);
-    return YES;
-}
+
 
 
 - (void)didReceiveMemoryWarning {

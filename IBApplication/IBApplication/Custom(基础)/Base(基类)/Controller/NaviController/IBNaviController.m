@@ -28,10 +28,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.delegate = self;
+
 }
 
 - (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
-    
     id<UIViewControllerTransitionCoordinator> coordinator = self.transitionCoordinator;
     if (coordinator) {
         UIViewController *fromVC = [coordinator viewControllerForKey:UITransitionContextFromViewControllerKey];
@@ -44,23 +44,21 @@
         }
         
         BOOL showBar = shouldShow(fromConfig, toConfig);
-        IBNaviConfig *transparentConfig = nil;
-        if (showBar) {
-            IBNaviBarOption transparentOption = IBNaviBarOptionDefault | IBNaviBarOptionTransparent;
-            if (fromConfig.barStyle == UIBarStyleBlack) transparentOption |= IBNaviBarOptionBlack;
-            transparentConfig = [[IBNaviConfig alloc] initWithBarOptions:transparentOption tintColor:toConfig.tintColor backgroundColor:nil backgroundImage:nil backgroundImgID:nil];
-        }
         
         if (!toConfig.hidden) {
-            [self.naviBar applyBarConfig:transparentConfig ? transparentConfig : toConfig];
+            [self.naviBar applyBarConfig:toConfig];
         } else {
-            [self.naviBar updateBarStyle:toConfig.barStyle tintColor:toConfig.tintColor];
+            [self.naviBar updateBarStyle:fromConfig.barStyle tintColor:toConfig.tintColor];
+        }
+        
+        if (!animated) {
+            return;
         }
         
         [coordinator animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
             if (showBar) {
                 [UIView setAnimationsEnabled:NO];
-                
+                NSLog(@"123");
                 if (fromVC && [fromConfig isVisible]) {
                     CGRect barFrame = [fromVC barFrameForNavigationBar:self.naviBar];
                     if (!CGRectIsNull(barFrame)) {
@@ -93,9 +91,9 @@
         } completion:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
             if ([context isCancelled]) {
                 [self clearView];
-                [self.naviBar applyBarConfig:toConfig];
+                [self.naviBar applyBarConfig:fromConfig];
                 
-                if (toConfig.hidden != navigationController.navigationBarHidden) {
+                if (fromConfig.hidden != navigationController.navigationBarHidden) {
                     [navigationController setNavigationBarHidden:toConfig.hidden animated:animated];
                 }
             }
@@ -125,7 +123,9 @@
 
 - (void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
     [self clearView];
-    [self.naviBar applyBarConfig:viewController.config];
+    NSLog(@"456");
+    IBNaviConfig *showConfig = viewController.config ? viewController.config : self.defaultConfig;
+    [self.naviBar applyBarConfig:showConfig];
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath
@@ -216,6 +216,13 @@ BOOL shouldShow(IBNaviConfig *fromConfig, IBNaviConfig *toConfig) {
         _toNaviBar = [[UIToolbar alloc] init];
     }
     return _toNaviBar;
+}
+
+- (IBNaviConfig *)defaultConfig {
+    if (!_defaultConfig) {
+        _defaultConfig = [[IBNaviConfig alloc] initWithBarOptions:IBNaviBarOptionDefault tintColor:nil backgroundColor:nil backgroundImage:nil backgroundImgID:nil];
+    }
+    return _defaultConfig;
 }
 
 #pragma mark - 控制状态栏

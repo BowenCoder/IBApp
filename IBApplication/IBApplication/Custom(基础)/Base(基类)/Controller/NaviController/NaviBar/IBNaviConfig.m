@@ -36,7 +36,7 @@
         _transparent = (options & IBNaviBarOptionTransparent) > 0;
         if (_transparent) return self;
         
-        _translucent = (options & IBNaviBarOptionTranslucent) == 0;
+        _translucent = (options & IBNaviBarOptionOpaque) == 0;
         
         if ((options & IBNaviBarOptionImage) > 0 && backgroundImage) {
             _backgroundImage = backgroundImage;

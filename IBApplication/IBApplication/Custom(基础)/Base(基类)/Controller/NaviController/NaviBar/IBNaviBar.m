@@ -119,7 +119,6 @@
         [self setBackgroundImage:backgroundImage forBarMetrics:UIBarMetricsDefault];
     }
     self.shadowImage = transpanrentImage;
-    self.currentBarConfig = config;
 }
 
 

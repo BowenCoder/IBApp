@@ -32,31 +32,21 @@
     // Do any additional setup after loading the view, typically from a nib.
     self.title = @"主界面";
 
-    self.config = [[IBNaviConfig alloc] initWithBarOptions:IBNaviBarOptionShow tintColor:nil backgroundColor:[UIColor redColor] backgroundImage:nil backgroundImgID:nil];
-
-    UITextField *tf = [[UITextField alloc] initWithFrame:CGRectMake(0, 500, self.view.frame.size.width, 44)];
-    tf.borderStyle = UITextBorderStyleLine;
-//    tf.spellCheckingType = UITextSpellCheckingTypeNo;
-    tf.autocorrectionType = UITextAutocorrectionTypeNo;
-    [self.view addSubview:tf];
-    self.openKeyListener = YES;
-    self.imageView = [[UIImageView alloc] initWithFrame:CGRectMake(50, 100, self.view.width - 100, 200)];
-    UIImage *img = [UIImage imageNamed:@"test"];
-    self.imageView.image = img;
-    self.imageView.backgroundColor = [UIColor lightGrayColor];
-    self.imageView.userInteractionEnabled = YES;
-    [self.view addSubview:self.imageView];
-//    [MBProgressHUD showNoData:self.view reload:nil];
-//    [self rightBarItemWithTitle:@"关注" titleColor:nil imageName:nil];
+    self.config = [[IBNaviConfig alloc] initWithBarOptions:IBNaviBarOptionShow | IBNaviBarOptionColor | IBNaviBarOptionBlack tintColor:nil backgroundColor:[UIColor redColor] backgroundImage:nil backgroundImgID:nil];
     
     self.tableView = [[UITableView alloc] initWithFrame:self.view.frame style:UITableViewStylePlain];
     self.tableView.rowHeight = 60;
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     [self.view addSubview:self.tableView];
-    
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [self.view endEditing:YES];
+    IBMineController *mine = [[IBMineController alloc] init];
+    mine.config = [[IBNaviConfig alloc] initWithBarOptions:IBNaviBarOptionShow | IBNaviBarOptionColor tintColor:nil backgroundColor:[UIColor orangeColor] backgroundImage:nil backgroundImgID:nil];
+    [self.navigationController pushViewController:mine animated:YES];
+}
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     [self.view endEditing:YES];
@@ -79,12 +69,6 @@
     }
     
     return cell;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [self.view endEditing:YES];
-    IBMineController *mine = [[IBMineController alloc] init];
-    [self.navigationController pushViewController:mine animated:YES];
 }
 
 
