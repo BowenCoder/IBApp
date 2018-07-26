@@ -44,11 +44,17 @@
         }
         
         BOOL showBar = shouldShow(fromConfig, toConfig);
+        IBNaviConfig *transparentConfig = nil;
+        if (showBar) {
+            IBNaviBarOption transparentOption = IBNaviBarOptionDefault | IBNaviBarOptionTransparent;
+            if (toConfig.barStyle == UIBarStyleBlack) transparentOption |= IBNaviBarOptionBlack;
+            transparentConfig = [[IBNaviConfig alloc] initWithBarOptions:transparentOption tintColor:nil backgroundColor:nil backgroundImage:nil backgroundImgID:nil];
+        }
         
         if (!toConfig.hidden) {
-            [self.naviBar applyBarConfig:toConfig];
+            [self.naviBar updateNaviBarConfig:transparentConfig ? transparentConfig : toConfig];
         } else {
-            [self.naviBar updateBarStyle:fromConfig.barStyle tintColor:toConfig.tintColor];
+            [self.naviBar updateBarStyle:toConfig.barStyle tintColor:toConfig.tintColor];
         }
         
         if (!animated) {
@@ -58,11 +64,10 @@
         [coordinator animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
             if (showBar) {
                 [UIView setAnimationsEnabled:NO];
-                NSLog(@"123");
                 if (fromVC && [fromConfig isVisible]) {
                     CGRect barFrame = [fromVC barFrameForNavigationBar:self.naviBar];
                     if (!CGRectIsNull(barFrame)) {
-                        [self.fromNaviBar applyBarConfig:fromConfig];
+                        [self.fromNaviBar updateToolBarConfig:fromConfig];
                         self.fromNaviBar.frame = barFrame;
                         [fromVC.view addSubview:self.fromNaviBar];
                     }
@@ -75,7 +80,7 @@
                             toConfig.translucent) {
                             barFrame.origin.y = toVC.view.bounds.origin.y;
                         }
-                        [self.toNaviBar applyBarConfig:toConfig];
+                        [self.toNaviBar updateToolBarConfig:toConfig];
                         self.toNaviBar.frame = barFrame;
                         [toVC.view addSubview:self.toNaviBar];
                     }
@@ -91,7 +96,7 @@
         } completion:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
             if ([context isCancelled]) {
                 [self clearView];
-                [self.naviBar applyBarConfig:fromConfig];
+                [self.naviBar updateNaviBarConfig:fromConfig];
                 
                 if (fromConfig.hidden != navigationController.navigationBarHidden) {
                     [navigationController setNavigationBarHidden:toConfig.hidden animated:animated];
@@ -123,9 +128,8 @@
 
 - (void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
     [self clearView];
-    NSLog(@"456");
     IBNaviConfig *showConfig = viewController.config ? viewController.config : self.defaultConfig;
-    [self.naviBar applyBarConfig:showConfig];
+    [self.naviBar updateNaviBarConfig:showConfig];
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath

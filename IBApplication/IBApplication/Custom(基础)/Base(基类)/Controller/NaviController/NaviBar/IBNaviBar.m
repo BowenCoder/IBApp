@@ -94,7 +94,7 @@
     self.tintColor = tintColor;
 }
 
-- (void)applyBarConfig:(IBNaviConfig *)config {
+- (void)updateNaviBarConfig:(IBNaviConfig *)config {
 #if DEBUG
     if (@available(iOS 11,*)) {
         NSAssert(!self.prefersLargeTitles, @"large titles is not supported");

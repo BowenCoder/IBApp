@@ -45,7 +45,7 @@
 
 @implementation UIToolbar (Config)
 
-- (void)applyBarConfig:(IBNaviConfig *)config {
+- (void)updateToolBarConfig:(IBNaviConfig *)config {
     
     self.barStyle = config.barStyle;
     
