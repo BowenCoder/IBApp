@@ -31,6 +31,17 @@
     self.interactivePopGestureRecognizer.delegate = self;
 }
 
+#pragma mark - UIGestureRecognizerDelegate
+
+- (BOOL) gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
+    if (gestureRecognizer == self.interactivePopGestureRecognizer) {
+        return self.viewControllers.count > 1;
+    }
+    return YES;
+}
+
+#pragma mark - UINavigationControllerDelegate
+
 - (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
     id<UIViewControllerTransitionCoordinator> coordinator = self.transitionCoordinator;
     if (coordinator) {
