@@ -38,5 +38,10 @@
 - (UIView *)backgroundView;
 - (void)updateBarStyle:(UIBarStyle)barStyle tintColor:(UIColor *)tintColor;
 - (void)updateNaviBarConfig:(IBNaviConfig *)config;
+- (void)updateBackgroundAlpha:(CGFloat)alpha;
+
+//- (void)setTranslationY:(CGFloat)translationY;
+//- (void)resetTranslation;
+
 
 @end

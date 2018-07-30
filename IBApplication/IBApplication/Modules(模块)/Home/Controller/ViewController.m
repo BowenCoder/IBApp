@@ -30,9 +30,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    self.title = @"主界面";
+    self.navigationItem.title = @"主界面";
 
-    self.config = [[IBNaviConfig alloc] initWithBarOptions:IBNaviBarOptionShow | IBNaviBarOptionColor | IBNaviBarOptionBlack tintColor:nil backgroundColor:[UIColor redColor] backgroundImage:nil backgroundImgID:nil];
+    self.config = [[IBNaviConfig alloc] initWithBarOptions:IBNaviBarOptionShow | IBNaviBarOptionColor tintColor:[UIColor orangeColor] backgroundColor:[UIColor redColor] backgroundImage:nil backgroundImgID:nil];
     
     self.tableView = [[UITableView alloc] initWithFrame:self.view.frame style:UITableViewStylePlain];
     self.tableView.rowHeight = 60;
@@ -41,10 +41,14 @@
     [self.view addSubview:self.tableView];
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [self.view endEditing:YES];
     IBMineController *mine = [[IBMineController alloc] init];
-    mine.config = [[IBNaviConfig alloc] initWithBarOptions:IBNaviBarOptionHidden tintColor:nil backgroundColor:nil backgroundImage:nil backgroundImgID:nil];
+    mine.config = [[IBNaviConfig alloc] initWithBarOptions:IBNaviBarOptionShow|IBNaviBarOptionColor tintColor:[UIColor orangeColor] backgroundColor:[UIColor purpleColor] backgroundImage:nil backgroundImgID:nil];
     [self.navigationController pushViewController:mine animated:YES];
 }
 
@@ -73,6 +77,9 @@
 
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    CGFloat contentY = scrollView.contentOffset.y;
+//    [self.naviController updateNavBarAlphaWithOffset:contentY range:500];
+//    [self.naviController updateNavBarOriginY:contentY];
     
 }
 

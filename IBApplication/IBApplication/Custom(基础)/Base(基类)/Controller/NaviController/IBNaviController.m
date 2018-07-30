@@ -59,7 +59,7 @@
         if (showBar) {
             IBNaviBarOption transparentOption = IBNaviBarOptionDefault | IBNaviBarOptionTransparent;
             if (toConfig.barStyle == UIBarStyleBlack) transparentOption |= IBNaviBarOptionBlack;
-            transparentConfig = [[IBNaviConfig alloc] initWithBarOptions:transparentOption tintColor:nil backgroundColor:nil backgroundImage:nil backgroundImgID:nil];
+            transparentConfig = [[IBNaviConfig alloc] initWithBarOptions:transparentOption tintColor:toConfig.tintColor backgroundColor:nil backgroundImage:nil backgroundImgID:nil];
         }
         
         if (!toConfig.hidden) {
@@ -163,6 +163,53 @@
         }
     }
 }
+
+- (void)updateNavBarAlphaWithOffset:(CGFloat)offset range:(CGFloat)height {
+    
+    if (height == 0) {
+        height = 160;
+    }
+    
+    if (offset <= 0) {
+        self.visibleViewController.config.alpha = 0;
+        [self.naviBar updateBackgroundAlpha:0];
+        return;
+    }
+    
+    // 渐变区间 (0 - height)
+    if (offset > 0 && offset < height) {
+        CGFloat alpha = offset / height;
+        self.visibleViewController.config.alpha = alpha;
+        [self.naviBar updateBackgroundAlpha:alpha];
+        if (alpha > 0.5) {
+            [self.naviBar updateBarStyle:UIBarStyleBlack tintColor:nil];
+        } else {
+            [self.naviBar updateBarStyle:UIBarStyleDefault tintColor:nil];
+        }
+    } else {
+        self.visibleViewController.config.alpha = 1;
+        [self.naviBar updateBackgroundAlpha:1];
+    }
+}
+
+//- (void)updateNavBarOriginY:(CGFloat)offset {
+//
+//    CGFloat navBarHeight = kTopBarHeight;
+//    CGFloat progress = offset / navBarHeight;
+//    if (offset > 0) {
+//        if (offset >= navBarHeight) {
+//            [self.naviBar setTranslationY: -navBarHeight];
+//            self.visibleViewController.config.translationY = -navBarHeight;
+//        } else {
+//            [self.naviBar setTranslationY: -navBarHeight * progress];
+//            self.visibleViewController.config.translationY = -navBarHeight * progress;
+//        }
+//    } else {
+//        [self.naviBar setTranslationY: 0];
+//        self.visibleViewController.config.translationY = 0;
+//    }
+//}
+
 #pragma mark - 私有方法
 
 BOOL isImageEqual(UIImage *fromImage, UIImage *toImage) {
@@ -181,7 +228,6 @@ BOOL shouldShow(IBNaviConfig *fromConfig, IBNaviConfig *toConfig) {
         fromConfig.translucent != toConfig.translucent) {
         return YES;
     }
-
 
     if (fromConfig.backgroundImage && toConfig.backgroundImage) {
         if (fromConfig.backgroundImgID && toConfig.backgroundImgID) {

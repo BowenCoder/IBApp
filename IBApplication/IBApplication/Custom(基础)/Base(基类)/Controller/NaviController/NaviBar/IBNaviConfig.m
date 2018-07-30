@@ -44,6 +44,8 @@
         } else if (options & IBNaviBarOptionColor){
             _backgroundColor = backgroundColor;
         }
+        _alpha = 1.0;
+        _translationY = 0.0;
     }
     return self;
 }

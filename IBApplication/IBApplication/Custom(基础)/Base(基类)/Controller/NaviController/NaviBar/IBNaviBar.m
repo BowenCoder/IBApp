@@ -89,7 +89,7 @@
     return [self valueForKey:@"_backgroundView"];
 }
 
-- (void)updateBarStyle:(UIBarStyle)barStyle tintColor:(UIColor *)tintColor{
+- (void)updateBarStyle:(UIBarStyle)barStyle tintColor:(UIColor *)tintColor {
     self.barStyle = barStyle;
     self.tintColor = tintColor;
 }
@@ -102,6 +102,10 @@
 #endif
     
     [self updateBarStyle:config.barStyle tintColor:config.tintColor];
+    
+    if (config.alpha >= 0 && config.alpha < 1) {
+        [self updateBackgroundAlpha:config.alpha];
+    }
     
     UIView *backgroundView = [self backgroundView];
     UIImage *transpanrentImage = [[UIImage alloc] init];
@@ -120,6 +124,25 @@
     }
     self.shadowImage = transpanrentImage;
 }
+
+- (void)updateBackgroundAlpha:(CGFloat)alpha {
+    
+    [self.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([obj isKindOfClass:NSClassFromString(@"_UIBarBackground")]) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                obj.alpha = alpha;
+            });
+        }
+    }];
+}
+
+//- (void)setTranslationY:(CGFloat)translationY {
+//    self.transform = CGAffineTransformMakeTranslation(0, translationY);
+//}
+//
+//- (void)resetTranslation {
+//    self.transform = CGAffineTransformIdentity;
+//}
 
 
 @end

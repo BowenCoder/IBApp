@@ -18,5 +18,8 @@
 /** 自定义导航栏初始化 */
 - (instancetype)initWithRootViewController:(UIViewController *)rootViewController naviBar:(Class)naviBarClass;
 
+- (void)updateNavBarAlphaWithOffset:(CGFloat)offset range:(CGFloat)height;
+
+//- (void)updateNavBarOriginY:(CGFloat)offset;
 
 @end

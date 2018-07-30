@@ -29,16 +29,17 @@ typedef NS_OPTIONS(NSUInteger, IBNaviBarOption) {
 
 @interface IBNaviConfig : NSObject
 
-@property (nonatomic, readonly, assign) BOOL hidden;
-@property (nonatomic, readonly, assign) BOOL translucent; //YES,为半透明， NO为不透明
-@property (nonatomic, readonly, assign) BOOL transparent; //透明
-@property (nonatomic, readonly, assign) UIBarStyle barStyle;
+@property (nonatomic, assign) BOOL hidden;
+@property (nonatomic, assign) BOOL translucent; //YES,为半透明， NO为不透明
+@property (nonatomic, assign) BOOL transparent; //透明
+@property (nonatomic, assign) UIBarStyle barStyle;
 
-@property (nonatomic, readonly, assign) CGFloat alpha;
-@property (nonatomic, readonly, strong) UIColor *tintColor;
-@property (nonatomic, readonly, strong) UIColor *backgroundColor;
-@property (nonatomic, readonly, strong) UIImage *backgroundImage;
-@property (nonatomic, readonly, strong) NSString *backgroundImgID;
+@property (nonatomic, assign) CGFloat alpha;
+@property (nonatomic, assign) CGFloat translationY;
+@property (nonatomic, strong) UIColor *tintColor;//改不了title颜色，能改titleView颜色
+@property (nonatomic, strong) UIColor *backgroundColor;
+@property (nonatomic, strong) UIImage *backgroundImage;
+@property (nonatomic, strong) NSString *backgroundImgID;
 
 
 - (instancetype)initWithBarOptions:(IBNaviBarOption)options
