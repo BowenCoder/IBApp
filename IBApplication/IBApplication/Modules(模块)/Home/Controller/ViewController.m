@@ -33,7 +33,7 @@
     self.navigationItem.title = @"主界面";
 
     self.config = [[IBNaviConfig alloc] initWithBarOptions:IBNaviBarOptionShow | IBNaviBarOptionColor tintColor:[UIColor orangeColor] backgroundColor:[UIColor redColor] backgroundImage:nil backgroundImgID:nil];
-    
+    self.config.alpha = 0;
     self.tableView = [[UITableView alloc] initWithFrame:self.view.frame style:UITableViewStylePlain];
     self.tableView.rowHeight = 60;
     self.tableView.dataSource = self;
@@ -78,7 +78,7 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     CGFloat contentY = scrollView.contentOffset.y;
-//    [self.naviController updateNavBarAlphaWithOffset:contentY range:500];
+    [self.naviController updateNavBarAlphaWithOffset:contentY range:500];
 //    [self.naviController updateNavBarOriginY:contentY];
     
 }

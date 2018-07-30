@@ -48,11 +48,8 @@
 - (void)updateToolBarConfig:(IBNaviConfig *)config {
     
     self.barStyle = config.barStyle;
-    
-    if (config.alpha >= 0 && config.alpha < 1) {
-        self.alpha = config.alpha;
-    }
-    
+    self.alpha = config.alpha;
+
     UIImage *transpanrentImage = [[UIImage alloc] init];
     if (config.transparent) {
         self.translucent = YES;

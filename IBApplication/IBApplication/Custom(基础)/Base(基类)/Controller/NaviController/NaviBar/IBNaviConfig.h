@@ -34,9 +34,9 @@ typedef NS_OPTIONS(NSUInteger, IBNaviBarOption) {
 @property (nonatomic, assign) BOOL transparent; //透明
 @property (nonatomic, assign) UIBarStyle barStyle;
 
-@property (nonatomic, assign) CGFloat alpha;
+@property (nonatomic, assign) CGFloat alpha; //0~1之间
 @property (nonatomic, assign) CGFloat translationY;
-@property (nonatomic, strong) UIColor *tintColor;//改不了title颜色，能改titleView颜色
+@property (nonatomic, strong) UIColor *tintColor; //改不了title颜色，能改titleView颜色
 @property (nonatomic, strong) UIColor *backgroundColor;
 @property (nonatomic, strong) UIImage *backgroundImage;
 @property (nonatomic, strong) NSString *backgroundImgID;
