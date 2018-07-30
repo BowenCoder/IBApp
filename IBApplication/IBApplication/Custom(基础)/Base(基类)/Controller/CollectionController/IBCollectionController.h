@@ -6,8 +6,8 @@
 //  Copyright © 2018年 BowenCoder. All rights reserved.
 //
 
-#import "IBController.h"
+#import "IBModelController.h"
 
-@interface IBCollectionController : IBController
+@interface IBCollectionController : IBModelController
 
 @end

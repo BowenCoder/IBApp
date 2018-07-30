@@ -6,9 +6,9 @@
 //  Copyright © 2018年 BowenCoder. All rights reserved.
 //
 
-#import "IBController.h"
+#import "IBModelController.h"
 
-@interface IBTableController : IBController
+@interface IBTableController : IBModelController
 
 - (void)loadData;
 - (void)reloadData;

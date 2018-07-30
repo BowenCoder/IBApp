@@ -15,6 +15,7 @@
 #import "IBApp.h"
 #import "IBColor.h"
 #import "IBNaviBar+Config.h"
+#import "IBTableCell.h"
 
 @interface ViewController ()<UITableViewDataSource, UITableViewDelegate>
 
@@ -38,7 +39,12 @@
     self.tableView.rowHeight = 60;
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
-    [self.view addSubview:self.tableView];
+//    [self.view addSubview:self.tableView];
+    IBTableCell *cell = [[IBTableCell alloc] init];
+    cell.frame = CGRectMake(0, 100, 414, 44);
+    cell.textLabel.text = @"123";
+    cell.separatorStyle = IBTableCellSeparatorBoth;
+    [self.view addSubview:cell];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
