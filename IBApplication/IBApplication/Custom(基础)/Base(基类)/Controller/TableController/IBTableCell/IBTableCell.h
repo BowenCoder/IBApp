@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-typedef NS_ENUM(NSInteger, IBTableCellSeparatorStyle){
+typedef NS_ENUM(NSInteger, IBTableCellSeparatorType) {
     IBTableCellSeparatorNone,                   // 无分割线
     IBTableCellSeparatorTop,                    // 顶部分割线（屏幕宽）
     IBTableCellSeparatorBottom,                 // 底部分割线（屏幕宽）
@@ -18,7 +18,7 @@ typedef NS_ENUM(NSInteger, IBTableCellSeparatorStyle){
 @interface IBTableCell : UITableViewCell
 
 /** 分割线的类型 */
-@property (nonatomic, assign) IBTableCellSeparatorStyle separatorStyle;
+@property (nonatomic, assign) IBTableCellSeparatorType separatorType;
 /** 分割线的颜色 */
 @property (nonatomic, strong) UIColor *seperatorColor;
 

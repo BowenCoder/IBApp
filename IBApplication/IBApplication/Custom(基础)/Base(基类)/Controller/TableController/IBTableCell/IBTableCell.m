@@ -23,12 +23,12 @@
 }
 
 + (instancetype)tableCellWithTableView:(UITableView *)tableView {
-    NSString *tableCellID = [IBTableCell identifier];
+    NSString *tableCellID = [self identifier];
     IBTableCell *cell = [tableView dequeueReusableCellWithIdentifier:tableCellID];
     if (!cell) {
         cell = [[IBTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:tableCellID];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.separatorStyle = IBTableCellSeparatorNone;
+        cell.separatorType = IBTableCellSeparatorNone;
     }
     return cell;
 }
@@ -46,8 +46,8 @@
 }
 
 - (void)updateConstraints {
-    
-    switch (self.separatorStyle) {
+
+    switch (self.separatorType) {
         case IBTableCellSeparatorNone: {
             self.topLine.hidden = YES;
             self.bottomLine.hidden = YES;
@@ -74,6 +74,7 @@
         default:
             break;
     }
+    
     [super updateConstraints];
 }
 
@@ -106,8 +107,8 @@
     self.bottomLine.backgroundColor = seperatorColor;
 }
 
-- (void)setSeparatorStyle:(IBTableCellSeparatorStyle)separatorStyle {
-    _separatorStyle = separatorStyle;
+- (void)setSeparatorType:(IBTableCellSeparatorType)separatorType {
+    _separatorType = separatorType;
     [self setNeedsUpdateConstraints];
 }
 

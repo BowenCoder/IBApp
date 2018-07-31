@@ -34,35 +34,42 @@
 - (void)pageLoad:(NSString *)url params:(NSDictionary *)params success:(HTTPClientSuccess)success failure:(HTTPClientError)failure isGet:(BOOL)isGet {
     
     [MBProgressHUD showTriangleLoadingView:self.view];
+    [self requestData:url params:params success:^(id JSON) {
+        if (success) {
+            success(JSON);
+        }
+        [MBProgressHUD hideTriangleLoadingView:self.view];
+    } failure:^(NSError *error) {
+        if (failure) {
+            failure(error);
+        }
+        [MBProgressHUD hideTriangleLoadingView:self.view];
+        [MBProgressHUD showNoData:self.view reload:^{
+            [self pageLoad:url params:params success:success failure:failure isGet:isGet];
+        }];
+    } isGet:isGet];
+}
+
+- (void)requestData:(NSString *)url params:(NSDictionary *)params success:(HTTPClientSuccess)success failure:(HTTPClientError)failure isGet:(BOOL)isGet {
     if (isGet) {
         [IBHTTPClient GET:url send:nil params:params success:^(id JSON) {
             if (success) {
                 success(JSON);
             }
-            [MBProgressHUD hideTriangleLoadingView:self.view];
         } failure:^(NSError *error) {
             if (failure) {
                 failure(error);
             }
-            [MBProgressHUD hideTriangleLoadingView:self.view];
-            [MBProgressHUD showNoData:self.view reload:^{
-                [self pageLoad:url params:params success:success failure:failure isGet:YES];
-            }];
         }];
     } else {
         [IBHTTPClient POST:url send:nil params:params success:^(id JSON) {
             if (success) {
                 success(JSON);
             }
-            [MBProgressHUD hideTriangleLoadingView:self.view];
         } failure:^(NSError *error) {
             if (failure) {
                 failure(error);
             }
-            [MBProgressHUD hideTriangleLoadingView:self.view];
-            [MBProgressHUD showNoData:self.view reload:^{
-                [self pageLoad:url params:params success:success failure:failure isGet:YES];
-            }];
         }];
     }
 }

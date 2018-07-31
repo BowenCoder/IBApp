@@ -15,14 +15,13 @@
 #import "IBApp.h"
 #import "IBColor.h"
 #import "IBNaviBar+Config.h"
-#import "IBTableCell.h"
+#import "IBTableViewCell.h"
 
 @interface ViewController ()<UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, strong) UIImageView *imageView;
 @property (nonatomic, strong) UIButton *btn;
 @property (nonatomic, strong) UIView *testView;
-@property (nonatomic, strong) UITableView *tableView;
 
 @end
 
@@ -34,21 +33,8 @@
     self.navigationItem.title = @"主界面";
 
     self.config = [[IBNaviConfig alloc] initWithBarOptions:IBNaviBarOptionShow | IBNaviBarOptionColor tintColor:[UIColor orangeColor] backgroundColor:[UIColor redColor] backgroundImage:nil backgroundImgID:nil];
-    self.config.alpha = 0;
-    self.tableView = [[UITableView alloc] initWithFrame:self.view.frame style:UITableViewStylePlain];
-    self.tableView.rowHeight = 60;
-    self.tableView.dataSource = self;
-    self.tableView.delegate = self;
-//    [self.view addSubview:self.tableView];
-    IBTableCell *cell = [[IBTableCell alloc] init];
-    cell.frame = CGRectMake(0, 100, 414, 44);
-    cell.textLabel.text = @"123";
-    cell.separatorStyle = IBTableCellSeparatorBoth;
-    [self.view addSubview:cell];
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
+    [self addRefreshHeader];
+    [self addRefreshFooter];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -64,7 +50,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 20;
+    return 8;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -84,8 +70,7 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     CGFloat contentY = scrollView.contentOffset.y;
-    [self.naviController updateNavBarAlphaWithOffset:contentY range:500];
-//    [self.naviController updateNavBarOriginY:contentY];
+//    [self.naviController updateNavBarAlphaWithOffset:contentY range:500];
     
 }
 

@@ -167,6 +167,9 @@
 		4AC29F8C210F04A900F218FE /* MJRefreshAutoFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC29F75210F04A900F218FE /* MJRefreshAutoFooter.m */; };
 		4AC29F8D210F04A900F218FE /* MJRefreshComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC29F77210F04A900F218FE /* MJRefreshComponent.m */; };
 		4AC29F91210F18C700F218FE /* IBTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC29F90210F18C700F218FE /* IBTableCell.m */; };
+		4AC29F942110014000F218FE /* IBTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC29F932110014000F218FE /* IBTableViewCell.m */; };
+		4AC29F9921106C0800F218FE /* IBRefreshHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC29F9821106C0800F218FE /* IBRefreshHeader.m */; };
+		4AC29F9C211073D700F218FE /* IBRefreshFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC29F9B211073D700F218FE /* IBRefreshFooter.m */; };
 		4AC81CCC20F3200400A1F246 /* IBTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC81CCB20F3200400A1F246 /* IBTabBarController.m */; };
 		4AC81CD220F37BFE00A1F246 /* IBWebController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC81CD120F37BFE00A1F246 /* IBWebController.m */; };
 		4AC81CD720F37C6B00A1F246 /* IBCollectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC81CD620F37C6B00A1F246 /* IBCollectionController.m */; };
@@ -500,6 +503,12 @@
 		4AC29F79210F04A900F218FE /* MJRefreshBackFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshBackFooter.h; sourceTree = "<group>"; };
 		4AC29F8F210F18C700F218FE /* IBTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBTableCell.h; sourceTree = "<group>"; };
 		4AC29F90210F18C700F218FE /* IBTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBTableCell.m; sourceTree = "<group>"; };
+		4AC29F922110014000F218FE /* IBTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBTableViewCell.h; sourceTree = "<group>"; };
+		4AC29F932110014000F218FE /* IBTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBTableViewCell.m; sourceTree = "<group>"; };
+		4AC29F9721106C0800F218FE /* IBRefreshHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBRefreshHeader.h; sourceTree = "<group>"; };
+		4AC29F9821106C0800F218FE /* IBRefreshHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBRefreshHeader.m; sourceTree = "<group>"; };
+		4AC29F9A211073D700F218FE /* IBRefreshFooter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBRefreshFooter.h; sourceTree = "<group>"; };
+		4AC29F9B211073D700F218FE /* IBRefreshFooter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBRefreshFooter.m; sourceTree = "<group>"; };
 		4AC81CCA20F3200400A1F246 /* IBTabBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBTabBarController.h; sourceTree = "<group>"; };
 		4AC81CCB20F3200400A1F246 /* IBTabBarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBTabBarController.m; sourceTree = "<group>"; };
 		4AC81CD020F37BFE00A1F246 /* IBWebController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBWebController.h; sourceTree = "<group>"; };
@@ -1240,6 +1249,17 @@
 			path = IBTableCell;
 			sourceTree = "<group>";
 		};
+		4AC29F9621106B3F00F218FE /* IBRefresh */ = {
+			isa = PBXGroup;
+			children = (
+				4AC29F9721106C0800F218FE /* IBRefreshHeader.h */,
+				4AC29F9821106C0800F218FE /* IBRefreshHeader.m */,
+				4AC29F9A211073D700F218FE /* IBRefreshFooter.h */,
+				4AC29F9B211073D700F218FE /* IBRefreshFooter.m */,
+			);
+			path = IBRefresh;
+			sourceTree = "<group>";
+		};
 		4AC81CC920F31FCB00A1F246 /* TabBarController */ = {
 			isa = PBXGroup;
 			children = (
@@ -1275,6 +1295,7 @@
 		4AC81CD320F37C0D00A1F246 /* TableController */ = {
 			isa = PBXGroup;
 			children = (
+				4AC29F9621106B3F00F218FE /* IBRefresh */,
 				4AC29F8E210F188600F218FE /* IBTableCell */,
 				4AAA792E20EF9C6300CF5639 /* IBTableController.h */,
 				4AAA792F20EF9C6300CF5639 /* IBTableController.m */,
@@ -1443,6 +1464,8 @@
 			children = (
 				4ACC55CD20DB5F3E001352AE /* ViewController.h */,
 				4ACC55CC20DB5F3E001352AE /* ViewController.m */,
+				4AC29F922110014000F218FE /* IBTableViewCell.h */,
+				4AC29F932110014000F218FE /* IBTableViewCell.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1808,9 +1831,11 @@
 				4AAA793020EF9C6300CF5639 /* IBTableController.m in Sources */,
 				4A1FB21020E92D5E0056A026 /* UIView+WebCacheOperation.m in Sources */,
 				4AC81CDC20F37D0C00A1F246 /* IBView.m in Sources */,
+				4AC29F9921106C0800F218FE /* IBRefreshHeader.m in Sources */,
 				4A6F197F20E345F500EAF1A7 /* IBHelper.m in Sources */,
 				4A1FB21720E92D5E0056A026 /* UIView+WebCache.m in Sources */,
 				4ACC569720DEC5B7001352AE /* IBTouchID.m in Sources */,
+				4AC29F9C211073D700F218FE /* IBRefreshFooter.m in Sources */,
 				4A6F19B020E3FB7700EAF1A7 /* Reachability.m in Sources */,
 				4A1FB21520E92D5E0056A026 /* UIImageView+WebCache.m in Sources */,
 				4AC29F8B210F04A900F218FE /* MJRefreshBackFooter.m in Sources */,
@@ -1841,6 +1866,7 @@
 				4ACC56B020E0001E001352AE /* NSDate+Ext.m in Sources */,
 				4A6F19B720E3FE9600EAF1A7 /* IBSocketService.m in Sources */,
 				4A1FB20F20E92D5E0056A026 /* NSData+ImageContentType.m in Sources */,
+				4AC29F942110014000F218FE /* IBTableViewCell.m in Sources */,
 				4A1FB12B20E921E90056A026 /* DALabeledCircularProgressView.m in Sources */,
 				4A1FB22620E92D5E0056A026 /* SDWebImageTransition.m in Sources */,
 				4ACC55E720DB5F3E001352AE /* main.m in Sources */,

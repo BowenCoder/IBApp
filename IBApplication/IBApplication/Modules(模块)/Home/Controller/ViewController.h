@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 //#import "IBController.h"
-#import "IBModelController.h"
+//#import "IBModelController.h"
+#import "IBTableController.h"
 
-@interface ViewController : IBModelController
+@interface ViewController : IBTableController
 
 
 @end
