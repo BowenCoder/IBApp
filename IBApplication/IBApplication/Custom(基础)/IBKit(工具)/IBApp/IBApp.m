@@ -64,6 +64,10 @@
     return folderSize;
 }
 
++ (BOOL)emptyCaches {
+    return [IBFile emptyCachesDirectory] && [IBFile emptyTemporaryDirectory];
+}
+
 + (NSString *)APNSToken:(NSData *)tokenData {
     
     return [[[[tokenData description]
@@ -154,6 +158,40 @@
     }
 }
 
++ (void)checkAppVersionInStore:(NSString *)appID block:(void(^)(NSString *storeVersion, NSString *openUrl,BOOL update))block {
+    NSURLRequest *request;
+    if (appID) {
+        request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://itunes.apple.com/cn/lookup?id=%@",appID]]];
+    } else {
+        request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://itunes.apple.com/lookup?bundleId=%@&country=cn",APP_BundleID]]];
+    }
+    NSURLSession *session = [NSURLSession sharedSession];
+    
+    NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        if (error) { //失败
+            dispatch_async(dispatch_get_main_queue(), ^{
+                block(nil,nil,NO);
+            });
+            return;
+        }
+        NSDictionary *appInfo = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if ([appInfo[@"resultCount"] integerValue] == 0) { //APP未上架或者已下架
+                block(nil,nil,NO);
+                return;
+            }
+            NSString *appStoreVersion = appInfo[@"results"][0][@"version"];
+            if ([APP_VERSION floatValue] < [appStoreVersion floatValue]) {
+                block(appInfo[@"results"][0][@"version"],appInfo[@"results"][0][@"trackViewUrl"],YES);
+            } else {
+                block(appInfo[@"results"][0][@"version"],appInfo[@"results"][0][@"trackViewUrl"],NO);
+            }
+        });
+    }];
+    
+    [task resume];
+}
+
 + (unsigned long long)_sizeOfFolder:(NSString *)folderPath resetSize:(BOOL)reset{
     
     static unsigned long long folderSize;
@@ -188,7 +226,12 @@
 
 + (void)openURL:(NSURL *)url {
     if ([self canOpenURL:url]) {
-        [[UIApplication sharedApplication] openURL:url];
+        if (@available(iOS 10.0, *)) {
+            [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:^(BOOL success) {
+            }];
+        } else {
+            [[UIApplication sharedApplication] openURL:url];
+        }
     }
 }
 
@@ -208,6 +251,11 @@
     
     NSString *url = [NSString stringWithFormat:@"tel://%@", number];
     [self openURL:[NSURL URLWithString:url]];
+}
+
++ (void)openSettings {
+    NSURL *url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
+    [self openURL:url];
 }
 
 @end

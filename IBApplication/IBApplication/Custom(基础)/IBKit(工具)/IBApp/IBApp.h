@@ -68,6 +68,13 @@
 + (NSString *)cacheSize;
 
 /**
+ 清空缓存
+
+ @return 是否清空
+ */
++ (BOOL)emptyCaches;
+
+/**
  将APNS的NSData类型token格式化成字符串
 
  @param tokenData token
@@ -106,6 +113,14 @@
  */
 + (void)onFirstStartForVersion:(NSString *)version block:(void (^)(BOOL isFirstStartForVersion))block;
 
+/**
+ 检查App是否需要更新
+
+ @param appID 账号
+ @param block 回调
+ */
++ (void)checkAppVersionInStore:(NSString *)appID block:(void(^)(NSString *storeVersion, NSString *openUrl,BOOL update))block;
+
 @end
 
 @interface IBApp (Open)
@@ -124,6 +139,8 @@
 
 /** 打电话 */
 + (void)callNumber:(NSString *)number;
+
++ (void)openSettings;
 
 @end
 

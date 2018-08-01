@@ -6,8 +6,8 @@
 //  Copyright © 2018年 BowenCoder. All rights reserved.
 //
 
-#import "IBController.h"
+#import "AXWebViewController.h"
 
-@interface IBWebController : IBController
+@interface IBWebController : AXWebViewController
 
 @end
