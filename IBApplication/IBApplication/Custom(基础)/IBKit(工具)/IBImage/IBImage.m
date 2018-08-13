@@ -8,7 +8,6 @@
 
 #import "IBImage.h"
 #import <Accelerate/Accelerate.h>
-#import "IBHelper.h"
 
 @implementation IBImage
 
@@ -55,7 +54,7 @@
 
 + (NSString *)pathWithName:(NSString *)name extension:(NSString *)extension inBundle:(NSString *)bundleName {
     
-    if ([IBHelper isEmptyString:bundleName]) {
+    if (kIsEmptyString(bundleName)) {
         return [[NSBundle mainBundle] pathForResource:name ofType:extension];
     } else {
         return [[NSBundle mainBundle] pathForResource:name ofType:extension inDirectory:bundleName];

@@ -48,55 +48,5 @@
 
 @end
 
-@interface IBHelper (NSDataHelper)
 
-/**
- *  是否空数据
- *
- *  @param data 数据
- *
- *  @return 如果数据为nil或者长度为0返回YES
- */
-+ (BOOL)isEmptyData:(NSData *)data;
-
-@end
-
-@interface IBHelper (NSDictionaryHelper)
-
-/**
- *  是否空字典
- *
- *  @param dict 字典
- *
- *  @return 如果字典为nil或者元素个数为0返回YES
- */
-+ (BOOL)isEmptyDic:(NSDictionary *)dict;
-
-@end
-
-@interface IBHelper (NSArrayHelper)
-
-/**
- *  是否空数组
- *
- *  @param array 数组
- *
- *  @return 如果数组为nil或者元素个数为0返回YES
- */
-+ (BOOL)isEmptyArray:(NSArray *)array;
-
-@end
-
-@interface IBHelper (NSStringHelper)
-
-/**
- *  是否空字符串
- *
- *  @param string 字符串
- *
- *  @return 如果字符串为nil或者长度为0返回YES
- */
-+ (BOOL)isEmptyString:(NSString *)string;
-
-@end
 

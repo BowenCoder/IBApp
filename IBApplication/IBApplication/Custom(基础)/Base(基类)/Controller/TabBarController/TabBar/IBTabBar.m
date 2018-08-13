@@ -84,14 +84,14 @@
     if (item.itemModel.isRepeatClick) { // 允许重复点击触发动画
         if (animation) [item startAnimation]; // 开始执行设置的动画效果
         if (self.delegate && [self.delegate respondsToSelector:@selector(tabBar:selectIndex:)]) {
-            [self.delegate tabBar:weak_self selectIndex:index];
+            [self.delegate tabBar:weakself selectIndex:index];
         }
     } else {
         if (![self.preSelectItem isEqual:item]) { // 不是上次点击的
             self.preSelectItem = item;
             if (animation) [item startAnimation]; // 开始执行设置的动画效果
             if (self.delegate && [self.delegate respondsToSelector:@selector(tabBar:selectIndex:)]) {
-                [self.delegate tabBar:weak_self selectIndex:index];
+                [self.delegate tabBar:weakself selectIndex:index];
             }
         }
     }

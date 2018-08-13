@@ -7,7 +7,6 @@
 //
 
 #import "UIViewController+Alert.h"
-#import "IBHelper.h"
 
 #define NO_USE -1000
 
@@ -24,7 +23,7 @@ static Click clickIndex = nil;
                   animated:(BOOL)animated
                     action:(Click)click {
     
-    if ([IBHelper isEmptyString:title] || [IBHelper isEmptyArray:others]) {
+    if (kIsEmptyString(title) || kIsEmptyArray(others)) {
         return;
     }
         
@@ -68,7 +67,7 @@ static Click clickIndex = nil;
                         animated:(BOOL)animated
                           action:(Click)click {
     
-    if ([IBHelper isEmptyString:title] || [IBHelper isEmptyArray:others]) {
+    if (kIsEmptyString(title) || kIsEmptyArray(others)) {
         return;
     }
     NSString *cancelTitle = others[0];
@@ -115,7 +114,7 @@ static Click clickIndex = nil;
                   animated:(BOOL)animated
                     action:(Click)click {
     
-    if ([IBHelper isEmptyString:title] || [IBHelper isEmptyArray:others]) {
+    if (kIsEmptyString(title) || kIsEmptyArray(others)) {
         return;
     }
     

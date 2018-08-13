@@ -11,7 +11,6 @@
 #import "IBSocketPacketDecode.h"
 #import "IBSocketPacketEncode.h"
 #import "IBNetworkStatus.h"
-#import "IBHelper.h"
 
 @interface IBSocketClient()<IBSocketDecoderOutputProtocol, IBSocketEncoderOutputProtocol>
 
@@ -121,9 +120,10 @@
 
 - (void)didRead:(id<IBSocketDelegate>)delegate withData:(NSData *)data tag:(long)tag {
     
-    if ([IBHelper isEmptyData:data]) {
+    if (kIsEmptyData(data)) {
         return;
     }
+    
     dispatch_semaphore_wait(self.socketLock, DISPATCH_TIME_FOREVER);
     [self.receiveDataBuffer appendData:data];
     NSData *responseData = [NSData dataWithData:self.receiveDataBuffer];
@@ -162,7 +162,7 @@
 
 - (void)didEncode:(NSData *)encodedData timeout:(NSInteger)timeout {
     
-    if ([IBHelper isEmptyData:encodedData]) {
+    if (kIsEmptyData(encodedData)) {
         return;
     }
     [self writeData:encodedData timeout:timeout];
