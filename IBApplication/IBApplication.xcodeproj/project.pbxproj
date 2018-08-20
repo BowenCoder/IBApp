@@ -139,6 +139,7 @@
 		4A78077420E9FCAF00E60ACA /* YYClassInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A78077120E9FCAE00E60ACA /* YYClassInfo.m */; };
 		4A78077A20EA482E00E60ACA /* niconiconi@2x.gif in Resources */ = {isa = PBXBuildFile; fileRef = 4A78077920EA482E00E60ACA /* niconiconi@2x.gif */; };
 		4A78077E20EA493A00E60ACA /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4A78077C20EA493900E60ACA /* Info.plist */; };
+		4A81F339212560C400A99CE3 /* UIControl+Repeat.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A81F338212560C400A99CE3 /* UIControl+Repeat.m */; };
 		4AAA27C02107379100B0C256 /* IBNaviBar+Config.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AAA27BF2107379100B0C256 /* IBNaviBar+Config.m */; };
 		4AAA78EB20ECB4F200CF5639 /* IBDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AAA78EA20ECB4F200CF5639 /* IBDebug.m */; };
 		4AAA78F220ECBCB200CF5639 /* IBFPSLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AAA78F120ECBCB200CF5639 /* IBFPSLabel.m */; };
@@ -464,6 +465,8 @@
 		4A78077920EA482E00E60ACA /* niconiconi@2x.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "niconiconi@2x.gif"; sourceTree = "<group>"; };
 		4A78077C20EA493900E60ACA /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4A78077D20EA493900E60ACA /* SDWebImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWebImage.h; sourceTree = "<group>"; };
+		4A81F337212560C400A99CE3 /* UIControl+Repeat.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIControl+Repeat.h"; sourceTree = "<group>"; };
+		4A81F338212560C400A99CE3 /* UIControl+Repeat.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIControl+Repeat.m"; sourceTree = "<group>"; };
 		4AAA27BE2107379100B0C256 /* IBNaviBar+Config.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "IBNaviBar+Config.h"; sourceTree = "<group>"; };
 		4AAA27BF2107379100B0C256 /* IBNaviBar+Config.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "IBNaviBar+Config.m"; sourceTree = "<group>"; };
 		4AAA78E920ECB4F200CF5639 /* IBDebug.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBDebug.h; sourceTree = "<group>"; };
@@ -1156,6 +1159,15 @@
 			path = YYModel;
 			sourceTree = "<group>";
 		};
+		4A81F3332125604F00A99CE3 /* UIControl */ = {
+			isa = PBXGroup;
+			children = (
+				4A81F337212560C400A99CE3 /* UIControl+Repeat.h */,
+				4A81F338212560C400A99CE3 /* UIControl+Repeat.m */,
+			);
+			path = UIControl;
+			sourceTree = "<group>";
+		};
 		4AAA78E820ECB4CA00CF5639 /* IBDebug */ = {
 			isa = PBXGroup;
 			children = (
@@ -1746,6 +1758,7 @@
 		4ACC562E20DD6AE0001352AE /* UIKit */ = {
 			isa = PBXGroup;
 			children = (
+				4A81F3332125604F00A99CE3 /* UIControl */,
 				4ACC56A520DFC747001352AE /* UITextField */,
 				4ACC563620DD6C3C001352AE /* UIBarButtonItem */,
 				4ACC564820DD7589001352AE /* UIButton */,
@@ -2120,6 +2133,7 @@
 				4AC29F7D210F04A900F218FE /* UIScrollView+MJExtension.m in Sources */,
 				4AC29F91210F18C700F218FE /* IBTableCell.m in Sources */,
 				4A6F199620E3AC7F00EAF1A7 /* IBSocketPacket.m in Sources */,
+				4A81F339212560C400A99CE3 /* UIControl+Repeat.m in Sources */,
 				4A6F19B420E3FBDE00EAF1A7 /* IBNetworkStatus.m in Sources */,
 				4A6F19BA20E401CC00EAF1A7 /* IBSocketClient.m in Sources */,
 				4ACC56A820DFC7AC001352AE /* UITextField+Ext.m in Sources */,

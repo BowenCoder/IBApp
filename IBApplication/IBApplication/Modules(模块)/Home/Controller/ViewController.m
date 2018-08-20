@@ -16,6 +16,7 @@
 #import "IBColor.h"
 #import "IBNaviBar+Config.h"
 #import "AXWebViewController.h"
+#import "UIControl+Repeat.h"
 
 @interface ViewController ()<UITableViewDataSource, UITableViewDelegate>
 
@@ -32,9 +33,19 @@
     // Do any additional setup after loading the view, typically from a nib.
     self.navigationItem.title = @"主界面";
 
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    btn.frame = CGRectMake(0, 100, self.view.frame.size.width, 44);
+    btn.backgroundColor = [UIColor redColor];
+    [self.view addSubview:btn];
+    btn.acceptEventInterval = 3;
+    [btn addTarget:self action:@selector(test) forControlEvents:UIControlEventTouchUpInside];
     self.config = [[IBNaviConfig alloc] initWithBarOptions:IBNaviBarOptionShow | IBNaviBarOptionColor tintColor:[UIColor orangeColor] backgroundColor:[UIColor redColor] backgroundImage:nil backgroundImgID:nil];
     [self addRefreshHeader];
     [self addRefreshFooter];
+}
+
+- (void)test {
+    NSLog(@"123");
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
