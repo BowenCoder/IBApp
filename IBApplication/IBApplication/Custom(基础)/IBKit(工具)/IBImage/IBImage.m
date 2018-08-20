@@ -119,6 +119,15 @@
     return newImage;
 }
 
++ (BOOL)equalToImage:(UIImage *)image anotherImage:(UIImage *)anotherImage {
+    NSData *orginalData = UIImagePNGRepresentation(image);
+    NSData *anotherData = UIImagePNGRepresentation(anotherImage);
+    if ([orginalData isEqual:anotherData]) {
+        return YES;
+    }
+    return NO;
+}
+
 @end
 
 @implementation IBImage (Special)

@@ -55,4 +55,13 @@ typedef NS_ENUM(NSInteger, IBGradientColorDirection) {
 + (UIColor *)radialGradient:(UIColor *)centerColor outColor:(UIColor *)outColor size:(CGSize)size;
 
 
+/**
+ 判断颜色是否相等
+
+ @param color 一个颜色
+ @param anotherColor 另一个颜色
+ @return YES,相等
+ */
++ (BOOL)equalToColor:(UIColor *)color anotherColor:(UIColor *)anotherColor;
+
 @end

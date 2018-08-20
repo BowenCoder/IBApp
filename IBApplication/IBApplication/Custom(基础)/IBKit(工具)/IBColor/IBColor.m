@@ -116,6 +116,13 @@ CGFloat colorComponentFrom(NSString *string, NSUInteger start, NSUInteger length
     return [UIColor colorWithPatternImage:gradientImage];
 }
 
++ (BOOL)equalToColor:(UIColor *)color anotherColor:(UIColor *)anotherColor {
+    if (CGColorEqualToColor(color.CGColor, anotherColor.CGColor)) {
+        return YES;
+    }
+    return NO;
+}
+
 + (void)_radialGradient:(CGContextRef)context path:(CGPathRef)path startColor:(CGColorRef)startColor endColor:(CGColorRef)endColor {
     
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();

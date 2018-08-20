@@ -103,6 +103,15 @@ typedef NS_ENUM(NSInteger, ImageWaterDirect) {
  */
 + (UIImage *)resizedImageName:(NSString *)name size:(CGSize)newSize;
 
+/**
+ 判断相等
+
+ @param image 一种图片
+ @param anotherImage 另一种图片
+ @return 是否相等
+ */
++ (BOOL)equalToImage:(UIImage*)image anotherImage:(UIImage *)anotherImage;
+
 @end
 
 @interface IBImage (Special)

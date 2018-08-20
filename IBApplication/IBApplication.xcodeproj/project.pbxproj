@@ -218,6 +218,7 @@
 		4ACC56A420DF7A89001352AE /* UIView+Effect.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC56A320DF7A89001352AE /* UIView+Effect.m */; };
 		4ACC56A820DFC7AC001352AE /* UITextField+Ext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC56A720DFC7AC001352AE /* UITextField+Ext.m */; };
 		4ACC56B020E0001E001352AE /* NSDate+Ext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC56AF20E0001E001352AE /* NSDate+Ext.m */; };
+		4AE64C49212ACFF7003DE328 /* IBCheckbox.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE64C48212ACFF7003DE328 /* IBCheckbox.m */; };
 		F3E79EEC20E2A217000AC50A /* IBImage.m in Sources */ = {isa = PBXBuildFile; fileRef = F3E79EEB20E2A217000AC50A /* IBImage.m */; };
 /* End PBXBuildFile section */
 
@@ -624,6 +625,8 @@
 		4ACC56A720DFC7AC001352AE /* UITextField+Ext.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITextField+Ext.m"; sourceTree = "<group>"; };
 		4ACC56AE20E0001E001352AE /* NSDate+Ext.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDate+Ext.h"; sourceTree = "<group>"; };
 		4ACC56AF20E0001E001352AE /* NSDate+Ext.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Ext.m"; sourceTree = "<group>"; };
+		4AE64C47212ACFF7003DE328 /* IBCheckbox.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBCheckbox.h; sourceTree = "<group>"; };
+		4AE64C48212ACFF7003DE328 /* IBCheckbox.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBCheckbox.m; sourceTree = "<group>"; };
 		F3E79EEA20E2A217000AC50A /* IBImage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBImage.h; sourceTree = "<group>"; };
 		F3E79EEB20E2A217000AC50A /* IBImage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBImage.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1600,6 +1603,7 @@
 		4ACC55C620DB5F3E001352AE /* Public(公共) */ = {
 			isa = PBXGroup;
 			children = (
+				4AE64C46212ACFA4003DE328 /* IBCheckbox */,
 				4A1FB0A420E8E5290056A026 /* IBPopupView */,
 			);
 			path = "Public(公共)";
@@ -1878,6 +1882,15 @@
 			path = NSDate;
 			sourceTree = "<group>";
 		};
+		4AE64C46212ACFA4003DE328 /* IBCheckbox */ = {
+			isa = PBXGroup;
+			children = (
+				4AE64C47212ACFF7003DE328 /* IBCheckbox.h */,
+				4AE64C48212ACFF7003DE328 /* IBCheckbox.m */,
+			);
+			path = IBCheckbox;
+			sourceTree = "<group>";
+		};
 		F3E79EE920E2A1F2000AC50A /* IBImage */ = {
 			isa = PBXGroup;
 			children = (
@@ -2099,6 +2112,7 @@
 				4A78076420E9F1BB00E60ACA /* MASCompositeConstraint.m in Sources */,
 				4A1FB21A20E92D5E0056A026 /* SDWebImageCodersManager.m in Sources */,
 				4AC29FAB2111C77D00F218FE /* AXWebViewControllerActivity.m in Sources */,
+				4AE64C49212ACFF7003DE328 /* IBCheckbox.m in Sources */,
 				4ACC567E20DE6744001352AE /* UIPopupManager.m in Sources */,
 				4A1FB0BB20E8EE6B0056A026 /* AFURLResponseSerialization.m in Sources */,
 				4AC29F7A210F04A900F218FE /* UIScrollView+MJRefresh.m in Sources */,
