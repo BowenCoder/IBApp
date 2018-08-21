@@ -18,6 +18,7 @@
 #import "AXWebViewController.h"
 #import "UIControl+Repeat.h"
 #import "IBCheckbox.h"
+#import "IBPopupManager.h"
 
 @interface ViewController ()<UITableViewDataSource, UITableViewDelegate>
 
@@ -46,14 +47,24 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [self.view endEditing:YES];
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
+    view.backgroundColor = [UIColor redColor];
+    self.popupManager = [IBPopupManager popupManagerWithMaskType:IBPopupMaskTypeBlackBlur];
+    self.popupManager.slideStyle = IBPopupSlideStyleShrinkInOut1;
+    self.popupManager.allowPan = YES;
+    self.popupManager.dismissOnMaskTouched = YES;
+    self.popupManager.dismissOppositeDirection = YES;
+    // 弹出2秒后消失
+//    [self.popupManager presentContentView:view duration:0.75 springAnimated:YES inView:nil displayTime:2];
+    [self.popupManager presentContentView:view];
     
-    AXWebViewController *webVC = [[AXWebViewController alloc] initWithAddress:@"https://www.iqiyi.com"];
-    webVC.showsToolBar = YES;
-     webVC.showsNavigationCloseBarButtonItem = NO;
-    if (AX_WEB_VIEW_CONTROLLER_iOS9_0_AVAILABLE()) {
-        webVC.webView.allowsLinkPreview = YES;
-    }
-    [self.navigationController pushViewController:webVC animated:YES];
+//    AXWebViewController *webVC = [[AXWebViewController alloc] initWithAddress:@"https://www.iqiyi.com"];
+//    webVC.showsToolBar = YES;
+//     webVC.showsNavigationCloseBarButtonItem = NO;
+//    if (AX_WEB_VIEW_CONTROLLER_iOS9_0_AVAILABLE()) {
+//        webVC.webView.allowsLinkPreview = YES;
+//    }
+//    [self.navigationController pushViewController:webVC animated:YES];
 
 
 //    IBMineController *mine = [[IBMineController alloc] init];
@@ -83,6 +94,7 @@
     
     return cell;
 }
+
 
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {

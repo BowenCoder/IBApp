@@ -209,7 +209,6 @@
 		4ACC566020DD7FF9001352AE /* UIViewController+MJPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC565E20DD7FF8001352AE /* UIViewController+MJPopupViewController.m */; };
 		4ACC567520DE5E29001352AE /* UIThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC567420DE5E29001352AE /* UIThemeManager.m */; };
 		4ACC567B20DE6679001352AE /* NSNotificationNameManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC567A20DE6679001352AE /* NSNotificationNameManager.m */; };
-		4ACC567E20DE6744001352AE /* UIPopupManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC567D20DE6744001352AE /* UIPopupManager.m */; };
 		4ACC568420DE72BA001352AE /* UIViewController+Alert.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC568320DE72BA001352AE /* UIViewController+Alert.m */; };
 		4ACC569220DEC463001352AE /* IBPassword.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC569120DEC463001352AE /* IBPassword.m */; };
 		4ACC569720DEC5B7001352AE /* IBTouchID.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC569620DEC5B7001352AE /* IBTouchID.m */; };
@@ -219,6 +218,7 @@
 		4ACC56A820DFC7AC001352AE /* UITextField+Ext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC56A720DFC7AC001352AE /* UITextField+Ext.m */; };
 		4ACC56B020E0001E001352AE /* NSDate+Ext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC56AF20E0001E001352AE /* NSDate+Ext.m */; };
 		4AE64C49212ACFF7003DE328 /* IBCheckbox.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE64C48212ACFF7003DE328 /* IBCheckbox.m */; };
+		4AE64C53212BB7E8003DE328 /* IBPopupManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE64C52212BB7E8003DE328 /* IBPopupManager.m */; };
 		F3E79EEC20E2A217000AC50A /* IBImage.m in Sources */ = {isa = PBXBuildFile; fileRef = F3E79EEB20E2A217000AC50A /* IBImage.m */; };
 /* End PBXBuildFile section */
 
@@ -607,8 +607,6 @@
 		4ACC567420DE5E29001352AE /* UIThemeManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UIThemeManager.m; sourceTree = "<group>"; };
 		4ACC567920DE6679001352AE /* NSNotificationNameManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSNotificationNameManager.h; sourceTree = "<group>"; };
 		4ACC567A20DE6679001352AE /* NSNotificationNameManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSNotificationNameManager.m; sourceTree = "<group>"; };
-		4ACC567C20DE6744001352AE /* UIPopupManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIPopupManager.h; sourceTree = "<group>"; };
-		4ACC567D20DE6744001352AE /* UIPopupManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UIPopupManager.m; sourceTree = "<group>"; };
 		4ACC568220DE72BA001352AE /* UIViewController+Alert.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Alert.h"; sourceTree = "<group>"; };
 		4ACC568320DE72BA001352AE /* UIViewController+Alert.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Alert.m"; sourceTree = "<group>"; };
 		4ACC569020DEC463001352AE /* IBPassword.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBPassword.h; sourceTree = "<group>"; };
@@ -627,6 +625,8 @@
 		4ACC56AF20E0001E001352AE /* NSDate+Ext.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Ext.m"; sourceTree = "<group>"; };
 		4AE64C47212ACFF7003DE328 /* IBCheckbox.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBCheckbox.h; sourceTree = "<group>"; };
 		4AE64C48212ACFF7003DE328 /* IBCheckbox.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBCheckbox.m; sourceTree = "<group>"; };
+		4AE64C51212BB7E8003DE328 /* IBPopupManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBPopupManager.h; sourceTree = "<group>"; };
+		4AE64C52212BB7E8003DE328 /* IBPopupManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBPopupManager.m; sourceTree = "<group>"; };
 		F3E79EEA20E2A217000AC50A /* IBImage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBImage.h; sourceTree = "<group>"; };
 		F3E79EEB20E2A217000AC50A /* IBImage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBImage.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1452,6 +1452,13 @@
 			path = AXIndicatorView;
 			sourceTree = "<group>";
 		};
+		4AC7FBD8212C42C200203C92 /* IBPopupController */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = IBPopupController;
+			sourceTree = "<group>";
+		};
 		4AC81CC920F31FCB00A1F246 /* TabBarController */ = {
 			isa = PBXGroup;
 			children = (
@@ -1581,8 +1588,6 @@
 			children = (
 				4ACC567320DE5E28001352AE /* UIThemeManager.h */,
 				4ACC567420DE5E29001352AE /* UIThemeManager.m */,
-				4ACC567C20DE6744001352AE /* UIPopupManager.h */,
-				4ACC567D20DE6744001352AE /* UIPopupManager.m */,
 				4ACC567920DE6679001352AE /* NSNotificationNameManager.h */,
 				4ACC567A20DE6679001352AE /* NSNotificationNameManager.m */,
 			);
@@ -1603,6 +1608,8 @@
 		4ACC55C620DB5F3E001352AE /* Public(公共) */ = {
 			isa = PBXGroup;
 			children = (
+				4AC7FBD8212C42C200203C92 /* IBPopupController */,
+				4AE64C50212BB78D003DE328 /* IBPopupManager */,
 				4AE64C46212ACFA4003DE328 /* IBCheckbox */,
 				4A1FB0A420E8E5290056A026 /* IBPopupView */,
 			);
@@ -1891,6 +1898,15 @@
 			path = IBCheckbox;
 			sourceTree = "<group>";
 		};
+		4AE64C50212BB78D003DE328 /* IBPopupManager */ = {
+			isa = PBXGroup;
+			children = (
+				4AE64C51212BB7E8003DE328 /* IBPopupManager.h */,
+				4AE64C52212BB7E8003DE328 /* IBPopupManager.m */,
+			);
+			path = IBPopupManager;
+			sourceTree = "<group>";
+		};
 		F3E79EE920E2A1F2000AC50A /* IBImage */ = {
 			isa = PBXGroup;
 			children = (
@@ -2055,6 +2071,7 @@
 				4AAA78EB20ECB4F200CF5639 /* IBDebug.m in Sources */,
 				4AC81CE420F37D4600A1F246 /* IBViewModel.m in Sources */,
 				4AC29F89210F04A900F218FE /* MJRefreshFooter.m in Sources */,
+				4AE64C53212BB7E8003DE328 /* IBPopupManager.m in Sources */,
 				4ACC55EA20DB5F3E001352AE /* AppDelegate.m in Sources */,
 				4A6F197B20E3332000EAF1A7 /* IBColor.m in Sources */,
 				4A1FB20A20E92D5E0056A026 /* SDImageCacheConfig.m in Sources */,
@@ -2113,7 +2130,6 @@
 				4A1FB21A20E92D5E0056A026 /* SDWebImageCodersManager.m in Sources */,
 				4AC29FAB2111C77D00F218FE /* AXWebViewControllerActivity.m in Sources */,
 				4AE64C49212ACFF7003DE328 /* IBCheckbox.m in Sources */,
-				4ACC567E20DE6744001352AE /* UIPopupManager.m in Sources */,
 				4A1FB0BB20E8EE6B0056A026 /* AFURLResponseSerialization.m in Sources */,
 				4AC29F7A210F04A900F218FE /* UIScrollView+MJRefresh.m in Sources */,
 				4A1FB22F20E931350056A026 /* MBProgressHUD+Ext.m in Sources */,
