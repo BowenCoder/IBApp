@@ -12,6 +12,7 @@
 #import "IBDebug.h"
 #import "IBNaviController.h"
 #import "IBTabBarController.h"
+#import "WXApi.h"
 
 @interface AppDelegate ()
 
