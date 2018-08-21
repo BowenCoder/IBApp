@@ -230,6 +230,11 @@
 		F3A5C8EC212C7459005D9174 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = F3A5C8E9212C7459005D9174 /* README.txt */; };
 		F3A5C8ED212C7459005D9174 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F3A5C8EB212C7459005D9174 /* libWeChatSDK.a */; };
 		F3A5C8F0212C746C005D9174 /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3A5C8EF212C746C005D9174 /* TencentOpenAPI.framework */; };
+		F3A5C8F5212C7B5E005D9174 /* AlipaySDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F3A5C8F3212C7B5E005D9174 /* AlipaySDK.bundle */; };
+		F3A5C8F6212C7B5E005D9174 /* AlipaySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3A5C8F4212C7B5E005D9174 /* AlipaySDK.framework */; };
+		F3A5C8F9212C7C71005D9174 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F3A5C8F8212C7C71005D9174 /* libc++.tbd */; };
+		F3A5C8FB212C7C88005D9174 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F3A5C8FA212C7C88005D9174 /* libz.tbd */; };
+		F3A5C8FD212C7CAD005D9174 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3A5C8FC212C7CAD005D9174 /* CoreMotion.framework */; };
 		F3E79EEC20E2A217000AC50A /* IBImage.m in Sources */ = {isa = PBXBuildFile; fileRef = F3E79EEB20E2A217000AC50A /* IBImage.m */; };
 /* End PBXBuildFile section */
 
@@ -662,6 +667,11 @@
 		F3A5C8EA212C7459005D9174 /* WechatAuthSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WechatAuthSDK.h; sourceTree = "<group>"; };
 		F3A5C8EB212C7459005D9174 /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
 		F3A5C8EF212C746C005D9174 /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TencentOpenAPI.framework; sourceTree = "<group>"; };
+		F3A5C8F3212C7B5E005D9174 /* AlipaySDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AlipaySDK.bundle; sourceTree = "<group>"; };
+		F3A5C8F4212C7B5E005D9174 /* AlipaySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AlipaySDK.framework; sourceTree = "<group>"; };
+		F3A5C8F8212C7C71005D9174 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		F3A5C8FA212C7C88005D9174 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		F3A5C8FC212C7CAD005D9174 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		F3E79EEA20E2A217000AC50A /* IBImage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBImage.h; sourceTree = "<group>"; };
 		F3E79EEB20E2A217000AC50A /* IBImage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBImage.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -671,7 +681,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F3A5C8FD212C7CAD005D9174 /* CoreMotion.framework in Frameworks */,
+				F3A5C8FB212C7C88005D9174 /* libz.tbd in Frameworks */,
+				F3A5C8F9212C7C71005D9174 /* libc++.tbd in Frameworks */,
 				F3A5C8ED212C7459005D9174 /* libWeChatSDK.a in Frameworks */,
+				F3A5C8F6212C7B5E005D9174 /* AlipaySDK.framework in Frameworks */,
 				F3A5C8F0212C746C005D9174 /* TencentOpenAPI.framework in Frameworks */,
 				F3A5C8E5212C7422005D9174 /* libWeiboSDK.a in Frameworks */,
 			);
@@ -1610,6 +1624,7 @@
 			children = (
 				4ACC55AD20DB5100001352AE /* IBApplication */,
 				4ACC55AC20DB5100001352AE /* Products */,
+				F3A5C8F7212C7C70005D9174 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1631,7 +1646,6 @@
 				4ACC55D120DB5F3E001352AE /* Expand(扩展) */,
 				4ACC55C820DB5F3E001352AE /* Vender(第三方) */,
 				4ACC55F020DB6907001352AE /* SDKFile(集成) */,
-				F3A5C8F1212C7592005D9174 /* Framework(系统) */,
 				4ACC55D220DB5F3E001352AE /* Resource(资源) */,
 			);
 			path = IBApplication;
@@ -1786,6 +1800,7 @@
 		4ACC55F020DB6907001352AE /* SDKFile(集成) */ = {
 			isa = PBXGroup;
 			children = (
+				F3A5C8F2212C7B5E005D9174 /* AlipaySDK */,
 				F3A5C8EE212C746C005D9174 /* TencentSDK */,
 				F3A5C8E6212C7459005D9174 /* WechatSDK */,
 				F3A5C8DF212C7421005D9174 /* WeiboSDK */,
@@ -1994,11 +2009,23 @@
 			path = TencentSDK;
 			sourceTree = "<group>";
 		};
-		F3A5C8F1212C7592005D9174 /* Framework(系统) */ = {
+		F3A5C8F2212C7B5E005D9174 /* AlipaySDK */ = {
 			isa = PBXGroup;
 			children = (
+				F3A5C8F4212C7B5E005D9174 /* AlipaySDK.framework */,
+				F3A5C8F3212C7B5E005D9174 /* AlipaySDK.bundle */,
 			);
-			path = "Framework(系统)";
+			path = AlipaySDK;
+			sourceTree = "<group>";
+		};
+		F3A5C8F7212C7C70005D9174 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F3A5C8FC212C7CAD005D9174 /* CoreMotion.framework */,
+				F3A5C8FA212C7C88005D9174 /* libz.tbd */,
+				F3A5C8F8212C7C71005D9174 /* libc++.tbd */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		F3E79EE920E2A1F2000AC50A /* IBImage */ = {
@@ -2110,6 +2137,7 @@
 				4ACC55E420DB5F3E001352AE /* Assets.xcassets in Resources */,
 				4A1FB14B20E921E90056A026 /* ImageSelectedOff@2x.png in Resources */,
 				4A1FB15120E921E90056A026 /* PlayButtonOverlayLarge@3x.png in Resources */,
+				F3A5C8F5212C7B5E005D9174 /* AlipaySDK.bundle in Resources */,
 				4A1FB13D20E921E90056A026 /* ImageSelectedOff.png in Resources */,
 				4ACC55E520DB5F3E001352AE /* LaunchScreen.storyboard in Resources */,
 				4A1FB14520E921E90056A026 /* UIBarButtonItemArrowRight.png in Resources */,
@@ -2447,6 +2475,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/IBApplication/SDKFile(集成)/TencentSDK",
+					"$(PROJECT_DIR)/IBApplication/SDKFile(集成)/AlipaySDK",
 				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/IBApplication/Resource(资源)/PrefixHeader.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/IBApplication/Resource(资源)/Info.plist";
@@ -2475,6 +2504,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/IBApplication/SDKFile(集成)/TencentSDK",
+					"$(PROJECT_DIR)/IBApplication/SDKFile(集成)/AlipaySDK",
 				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/IBApplication/Resource(资源)/PrefixHeader.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/IBApplication/Resource(资源)/Info.plist";
