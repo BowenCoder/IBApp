@@ -219,6 +219,13 @@
 		4ACC56B020E0001E001352AE /* NSDate+Ext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC56AF20E0001E001352AE /* NSDate+Ext.m */; };
 		4AE64C49212ACFF7003DE328 /* IBCheckbox.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE64C48212ACFF7003DE328 /* IBCheckbox.m */; };
 		4AE64C53212BB7E8003DE328 /* IBPopupManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE64C52212BB7E8003DE328 /* IBPopupManager.m */; };
+		F367404C212C54B000E614A0 /* IBPopupLeftBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F367403D212C54AF00E614A0 /* IBPopupLeftBarItem.m */; };
+		F367404D212C54B000E614A0 /* UIViewController+IBPopup.m in Sources */ = {isa = PBXBuildFile; fileRef = F367403E212C54AF00E614A0 /* UIViewController+IBPopup.m */; };
+		F367404E212C54B000E614A0 /* IBPopupControllerTransitioningSlideVertical.m in Sources */ = {isa = PBXBuildFile; fileRef = F367403F212C54AF00E614A0 /* IBPopupControllerTransitioningSlideVertical.m */; };
+		F367404F212C54B000E614A0 /* IBPopupController.m in Sources */ = {isa = PBXBuildFile; fileRef = F3674041212C54AF00E614A0 /* IBPopupController.m */; };
+		F3674050212C54B000E614A0 /* IBPopupNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = F3674048212C54B000E614A0 /* IBPopupNavigationBar.m */; };
+		F3674051212C54B000E614A0 /* UIResponder+IBPopup.m in Sources */ = {isa = PBXBuildFile; fileRef = F3674049212C54B000E614A0 /* UIResponder+IBPopup.m */; };
+		F3674052212C54B000E614A0 /* IBPopupControllerTransitioningFade.m in Sources */ = {isa = PBXBuildFile; fileRef = F367404A212C54B000E614A0 /* IBPopupControllerTransitioningFade.m */; };
 		F3E79EEC20E2A217000AC50A /* IBImage.m in Sources */ = {isa = PBXBuildFile; fileRef = F3E79EEB20E2A217000AC50A /* IBImage.m */; };
 /* End PBXBuildFile section */
 
@@ -627,6 +634,21 @@
 		4AE64C48212ACFF7003DE328 /* IBCheckbox.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBCheckbox.m; sourceTree = "<group>"; };
 		4AE64C51212BB7E8003DE328 /* IBPopupManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBPopupManager.h; sourceTree = "<group>"; };
 		4AE64C52212BB7E8003DE328 /* IBPopupManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBPopupManager.m; sourceTree = "<group>"; };
+		F367403D212C54AF00E614A0 /* IBPopupLeftBarItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IBPopupLeftBarItem.m; sourceTree = "<group>"; };
+		F367403E212C54AF00E614A0 /* UIViewController+IBPopup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+IBPopup.m"; sourceTree = "<group>"; };
+		F367403F212C54AF00E614A0 /* IBPopupControllerTransitioningSlideVertical.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IBPopupControllerTransitioningSlideVertical.m; sourceTree = "<group>"; };
+		F3674040212C54AF00E614A0 /* UIResponder+IBPopup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIResponder+IBPopup.h"; sourceTree = "<group>"; };
+		F3674041212C54AF00E614A0 /* IBPopupController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IBPopupController.m; sourceTree = "<group>"; };
+		F3674042212C54AF00E614A0 /* IBPopupController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBPopupController.h; sourceTree = "<group>"; };
+		F3674043212C54AF00E614A0 /* IBPopupControllerTransitioningFade.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBPopupControllerTransitioningFade.h; sourceTree = "<group>"; };
+		F3674044212C54B000E614A0 /* IBPopupControllerTransitioningSlideVertical.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBPopupControllerTransitioningSlideVertical.h; sourceTree = "<group>"; };
+		F3674045212C54B000E614A0 /* UIViewController+IBPopup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+IBPopup.h"; sourceTree = "<group>"; };
+		F3674046212C54B000E614A0 /* IBPopup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBPopup.h; sourceTree = "<group>"; };
+		F3674047212C54B000E614A0 /* IBPopupNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBPopupNavigationBar.h; sourceTree = "<group>"; };
+		F3674048212C54B000E614A0 /* IBPopupNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IBPopupNavigationBar.m; sourceTree = "<group>"; };
+		F3674049212C54B000E614A0 /* UIResponder+IBPopup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIResponder+IBPopup.m"; sourceTree = "<group>"; };
+		F367404A212C54B000E614A0 /* IBPopupControllerTransitioningFade.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IBPopupControllerTransitioningFade.m; sourceTree = "<group>"; };
+		F367404B212C54B000E614A0 /* IBPopupLeftBarItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBPopupLeftBarItem.h; sourceTree = "<group>"; };
 		F3E79EEA20E2A217000AC50A /* IBImage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBImage.h; sourceTree = "<group>"; };
 		F3E79EEB20E2A217000AC50A /* IBImage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBImage.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1455,6 +1477,21 @@
 		4AC7FBD8212C42C200203C92 /* IBPopupController */ = {
 			isa = PBXGroup;
 			children = (
+				F3674046212C54B000E614A0 /* IBPopup.h */,
+				F3674042212C54AF00E614A0 /* IBPopupController.h */,
+				F3674041212C54AF00E614A0 /* IBPopupController.m */,
+				F3674043212C54AF00E614A0 /* IBPopupControllerTransitioningFade.h */,
+				F367404A212C54B000E614A0 /* IBPopupControllerTransitioningFade.m */,
+				F3674044212C54B000E614A0 /* IBPopupControllerTransitioningSlideVertical.h */,
+				F367403F212C54AF00E614A0 /* IBPopupControllerTransitioningSlideVertical.m */,
+				F367404B212C54B000E614A0 /* IBPopupLeftBarItem.h */,
+				F367403D212C54AF00E614A0 /* IBPopupLeftBarItem.m */,
+				F3674047212C54B000E614A0 /* IBPopupNavigationBar.h */,
+				F3674048212C54B000E614A0 /* IBPopupNavigationBar.m */,
+				F3674040212C54AF00E614A0 /* UIResponder+IBPopup.h */,
+				F3674049212C54B000E614A0 /* UIResponder+IBPopup.m */,
+				F3674045212C54B000E614A0 /* UIViewController+IBPopup.h */,
+				F367403E212C54AF00E614A0 /* UIViewController+IBPopup.m */,
 			);
 			path = IBPopupController;
 			sourceTree = "<group>";
@@ -2038,6 +2075,7 @@
 				4ACC561920DD59F5001352AE /* NSArray+Ext.m in Sources */,
 				4ACC564E20DD75AB001352AE /* UIButton+Ext.m in Sources */,
 				4A1FB22020E92D5E0056A026 /* SDWebImageWebPCoder.m in Sources */,
+				F367404F212C54B000E614A0 /* IBPopupController.m in Sources */,
 				4A78076820E9F1BB00E60ACA /* View+MASAdditions.m in Sources */,
 				4AC29F83210F04A900F218FE /* MJRefreshAutoStateFooter.m in Sources */,
 				4AC29FE22111CB8800F218FE /* AXActivityIndicatorView.m in Sources */,
@@ -2047,6 +2085,7 @@
 				4AC29F87210F04A900F218FE /* MJRefreshStateHeader.m in Sources */,
 				4A78076220E9F1BB00E60ACA /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
 				4A1FB20E20E92D5E0056A026 /* UIImage+MultiFormat.m in Sources */,
+				F367404C212C54B000E614A0 /* IBPopupLeftBarItem.m in Sources */,
 				4A78076720E9F1BB00E60ACA /* NSArray+MASAdditions.m in Sources */,
 				4A1FB21B20E92D5E0056A026 /* SDWebImageCoderHelper.m in Sources */,
 				4A4443812100797E001B2350 /* IBTabBarItem.m in Sources */,
@@ -2066,6 +2105,7 @@
 				4AC29F8B210F04A900F218FE /* MJRefreshBackFooter.m in Sources */,
 				4AC29F81210F04A900F218FE /* MJRefreshBackStateFooter.m in Sources */,
 				4A1FB21820E92D5E0056A026 /* UIButton+WebCache.m in Sources */,
+				F367404E212C54B000E614A0 /* IBPopupControllerTransitioningSlideVertical.m in Sources */,
 				4A1FB21920E92D5E0056A026 /* SDWebImageFrame.m in Sources */,
 				4A1FB20920E92D5E0056A026 /* SDImageCache.m in Sources */,
 				4AAA78EB20ECB4F200CF5639 /* IBDebug.m in Sources */,
@@ -2082,6 +2122,7 @@
 				4A78076920E9F1BB00E60ACA /* MASConstraint.m in Sources */,
 				4A1FB0E120E8F0D80056A026 /* IBHTTPClient.m in Sources */,
 				4AC29FB42111C90B00F218FE /* NJKWebViewProgress.m in Sources */,
+				F3674052212C54B000E614A0 /* IBPopupControllerTransitioningFade.m in Sources */,
 				4A1FB09720E811FA0056A026 /* UIView+draggable.m in Sources */,
 				4A1FB13520E921E90056A026 /* MWGridViewController.m in Sources */,
 				4A1FB0BC20E8EE6B0056A026 /* AFHTTPSessionManager.m in Sources */,
@@ -2125,6 +2166,7 @@
 				4AC81CD720F37C6B00A1F246 /* IBCollectionController.m in Sources */,
 				4A1FB22220E92D5E0056A026 /* SDWebImageDownloaderOperation.m in Sources */,
 				4A1FB12D20E921E90056A026 /* MWPhotoBrowser.m in Sources */,
+				F367404D212C54B000E614A0 /* UIViewController+IBPopup.m in Sources */,
 				4ACC566020DD7FF9001352AE /* UIViewController+MJPopupViewController.m in Sources */,
 				4A78076420E9F1BB00E60ACA /* MASCompositeConstraint.m in Sources */,
 				4A1FB21A20E92D5E0056A026 /* SDWebImageCodersManager.m in Sources */,
@@ -2139,6 +2181,7 @@
 				4A1FB21420E92D5E0056A026 /* NSButton+WebCache.m in Sources */,
 				4A72287420F0CE3D008B8815 /* IBNaviController.m in Sources */,
 				4ACC55EC20DB5F3E001352AE /* AppDelegate+AppLifeCircle.m in Sources */,
+				F3674050212C54B000E614A0 /* IBPopupNavigationBar.m in Sources */,
 				4A1FB21D20E92D5E0056A026 /* SDAnimatedImageRep.m in Sources */,
 				4AC29FD12111CAD700F218FE /* AXPracticalHUDContentView.m in Sources */,
 				4AAA790320EE17AB00CF5639 /* IBMineController.m in Sources */,
@@ -2195,6 +2238,7 @@
 				4AC29F8A210F04A900F218FE /* MJRefreshHeader.m in Sources */,
 				4AC29F7F210F04A900F218FE /* UIView+MJExtension.m in Sources */,
 				4ACC56A120DF72D9001352AE /* UIView+Ext.m in Sources */,
+				F3674051212C54B000E614A0 /* UIResponder+IBPopup.m in Sources */,
 				4A1FB0BD20E8EE6B0056A026 /* AFURLSessionManager.m in Sources */,
 				4A1FB21F20E92D5E0056A026 /* SDWebImageImageIOCoder.m in Sources */,
 			);

@@ -19,6 +19,7 @@
 #import "UIControl+Repeat.h"
 #import "IBCheckbox.h"
 #import "IBPopupManager.h"
+#import "IBPopup.h"
 
 @interface ViewController ()<UITableViewDataSource, UITableViewDelegate>
 
@@ -47,16 +48,26 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [self.view endEditing:YES];
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
-    view.backgroundColor = [UIColor redColor];
-    self.popupManager = [IBPopupManager popupManagerWithMaskType:IBPopupMaskTypeBlackBlur];
-    self.popupManager.slideStyle = IBPopupSlideStyleShrinkInOut1;
-    self.popupManager.allowPan = YES;
-    self.popupManager.dismissOnMaskTouched = YES;
-    self.popupManager.dismissOppositeDirection = YES;
+    ViewController *vc = [ViewController new];
+    vc.contentSizeInPopup = CGSizeMake(300, 400);
+    vc.landscapeContentSizeInPopup = CGSizeMake(400, 200);
+    IBPopupController *popupController = [[IBPopupController alloc] initWithRootViewController:vc];
+    popupController.transitionStyle = IBPopupTransitionStyleSlideVertical;
+    popupController.style = IBPopupStyleBottomSheet;
+    popupController.containerView.layer.cornerRadius = 4;
+    [popupController presentInViewController:self];
+    
+//    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
+//    view.backgroundColor = [UIColor redColor];
+//    self.popupManager = [IBPopupManager popupManagerWithMaskType:IBPopupMaskTypeBlackBlur];
+//    self.popupManager.slideStyle = IBPopupSlideStyleShrinkInOut1;
+//    self.popupManager.allowPan = YES;
+//    self.popupManager.dismissOnMaskTouched = YES;
+//    self.popupManager.dismissOppositeDirection = YES;
+    
     // 弹出2秒后消失
 //    [self.popupManager presentContentView:view duration:0.75 springAnimated:YES inView:nil displayTime:2];
-    [self.popupManager presentContentView:view];
+//    [self.popupManager presentContentView:view];
     
 //    AXWebViewController *webVC = [[AXWebViewController alloc] initWithAddress:@"https://www.iqiyi.com"];
 //    webVC.showsToolBar = YES;
