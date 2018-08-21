@@ -54,6 +54,7 @@
     IBPopupController *popupController = [[IBPopupController alloc] initWithRootViewController:vc];
     popupController.transitionStyle = IBPopupTransitionStyleSlideVertical;
     popupController.style = IBPopupStyleBottomSheet;
+    popupController.hidesCloseButton = YES;
     popupController.containerView.layer.cornerRadius = 4;
     [popupController presentInViewController:self];
     
