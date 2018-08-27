@@ -20,6 +20,7 @@
 #import "IBCheckbox.h"
 #import "IBPopupManager.h"
 #import "IBPopup.h"
+#import "IBShareManager.h"
 
 @interface ViewController ()<UITableViewDataSource, UITableViewDelegate>
 
@@ -48,15 +49,16 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [self.view endEditing:YES];
-    ViewController *vc = [ViewController new];
-    vc.contentSizeInPopup = CGSizeMake(300, 400);
-    vc.landscapeContentSizeInPopup = CGSizeMake(400, 200);
-    IBPopupController *popupController = [[IBPopupController alloc] initWithRootViewController:vc];
-    popupController.transitionStyle = IBPopupTransitionStyleSlideVertical;
-    popupController.style = IBPopupStyleBottomSheet;
-    popupController.hidesCloseButton = YES;
-    popupController.containerView.layer.cornerRadius = 4;
-    [popupController presentInViewController:self];
+    IBShareObject *obj = [[IBShareObject alloc] init];
+    obj.urlString = @"www.baidu.com";
+    [[IBShareManager manager] shareToQQ:obj success:^(id response) {
+        
+    } failure:^(NSError *error) {
+        
+    }];
+    
+    
+
     
 //    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
 //    view.backgroundColor = [UIColor redColor];

@@ -12,4 +12,8 @@
 // 友盟统计
 #define UMengKey @"59281b4a5312dd3f5f0005ed"
 
+#define QQKey     @"1107724677"
+#define wechatKey @""
+#define sinaKey   @""
+
 #endif /* SDKMacros_h */

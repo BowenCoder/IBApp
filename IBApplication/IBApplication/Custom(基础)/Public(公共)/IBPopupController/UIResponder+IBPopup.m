@@ -17,7 +17,7 @@ NSString *const IBPopupFirstResponderDidChangeNotification = @"IBPopupFirstRespo
 {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        [self swizzleSelector:@selector(becomeFirstResponder) toSelector:@selector(_becomeFirstResponder)];
+        [self swizzleSelector:@selector(becomeFirstResponder) toSelector:@selector(ib_becomeFirstResponder)];
     });
 }
 
@@ -30,9 +30,9 @@ NSString *const IBPopupFirstResponderDidChangeNotification = @"IBPopupFirstRespo
     method_exchangeImplementations(originalMethod, swizzledMethod);
 }
 
-- (BOOL)_becomeFirstResponder
+- (BOOL)ib_becomeFirstResponder
 {
-    BOOL accepted = [self _becomeFirstResponder];
+    BOOL accepted = [self ib_becomeFirstResponder];
     if (accepted) {
         [[NSNotificationCenter defaultCenter] postNotificationName:IBPopupFirstResponderDidChangeNotification object:self];
     }

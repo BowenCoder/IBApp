@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4A06E16F212FDCD300227583 /* IBSocialObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A06E16E212FDCD300227583 /* IBSocialObject.m */; };
+		4A06E172212FE42A00227583 /* IBSocialManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A06E171212FE42A00227583 /* IBSocialManager.m */; };
+		4A06E178213002A900227583 /* IBSocialHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A06E177213002A900227583 /* IBSocialHandle.m */; };
+		4A06E17A2130049A00227583 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A06E1792130049A00227583 /* libsqlite3.tbd */; };
+		4A06E17E2133197200227583 /* IBShareManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A06E17D2133197100227583 /* IBShareManager.m */; };
 		4A1FB09720E811FA0056A026 /* UIView+draggable.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A1FB09520E811FA0056A026 /* UIView+draggable.m */; };
 		4A1FB09A20E89FD10056A026 /* IBModelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A1FB09920E89FD10056A026 /* IBModelController.m */; };
 		4A1FB0A820E8EA630056A026 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A1FB0A620E8EA630056A026 /* MBProgressHUD.m */; };
@@ -239,6 +244,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4A06E16C212FDC0200227583 /* IBSocialDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBSocialDelegate.h; sourceTree = "<group>"; };
+		4A06E16D212FDCD300227583 /* IBSocialObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBSocialObject.h; sourceTree = "<group>"; };
+		4A06E16E212FDCD300227583 /* IBSocialObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBSocialObject.m; sourceTree = "<group>"; };
+		4A06E170212FE42A00227583 /* IBSocialManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBSocialManager.h; sourceTree = "<group>"; };
+		4A06E171212FE42A00227583 /* IBSocialManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBSocialManager.m; sourceTree = "<group>"; };
+		4A06E176213002A900227583 /* IBSocialHandle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBSocialHandle.h; sourceTree = "<group>"; };
+		4A06E177213002A900227583 /* IBSocialHandle.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBSocialHandle.m; sourceTree = "<group>"; };
+		4A06E1792130049A00227583 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		4A06E17C2133197100227583 /* IBShareManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBShareManager.h; sourceTree = "<group>"; };
+		4A06E17D2133197100227583 /* IBShareManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBShareManager.m; sourceTree = "<group>"; };
 		4A1FB09520E811FA0056A026 /* UIView+draggable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+draggable.m"; sourceTree = "<group>"; };
 		4A1FB09620E811FA0056A026 /* UIView+draggable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+draggable.h"; sourceTree = "<group>"; };
 		4A1FB09820E89FD10056A026 /* IBModelController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBModelController.h; sourceTree = "<group>"; };
@@ -681,6 +696,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4A06E17A2130049A00227583 /* libsqlite3.tbd in Frameworks */,
 				F3A5C8FD212C7CAD005D9174 /* CoreMotion.framework in Frameworks */,
 				F3A5C8FB212C7C88005D9174 /* libz.tbd in Frameworks */,
 				F3A5C8F9212C7C71005D9174 /* libc++.tbd in Frameworks */,
@@ -694,6 +710,38 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4A06E16A212FDB9100227583 /* IBSocial */ = {
+			isa = PBXGroup;
+			children = (
+				4A06E17B2130129E00227583 /* Share */,
+				4A06E16B212FDBCC00227583 /* Social */,
+			);
+			path = IBSocial;
+			sourceTree = "<group>";
+		};
+		4A06E16B212FDBCC00227583 /* Social */ = {
+			isa = PBXGroup;
+			children = (
+				4A06E16C212FDC0200227583 /* IBSocialDelegate.h */,
+				4A06E176213002A900227583 /* IBSocialHandle.h */,
+				4A06E177213002A900227583 /* IBSocialHandle.m */,
+				4A06E170212FE42A00227583 /* IBSocialManager.h */,
+				4A06E171212FE42A00227583 /* IBSocialManager.m */,
+				4A06E16D212FDCD300227583 /* IBSocialObject.h */,
+				4A06E16E212FDCD300227583 /* IBSocialObject.m */,
+			);
+			path = Social;
+			sourceTree = "<group>";
+		};
+		4A06E17B2130129E00227583 /* Share */ = {
+			isa = PBXGroup;
+			children = (
+				4A06E17C2133197100227583 /* IBShareManager.h */,
+				4A06E17D2133197100227583 /* IBShareManager.m */,
+			);
+			path = Share;
+			sourceTree = "<group>";
+		};
 		4A1FB09320E7B2F40056A026 /* IBAnimation */ = {
 			isa = PBXGroup;
 			children = (
@@ -1922,6 +1970,7 @@
 		4ACC569C20DF4D9C001352AE /* IBKit(工具) */ = {
 			isa = PBXGroup;
 			children = (
+				4A06E16A212FDB9100227583 /* IBSocial */,
 				4A1FB09320E7B2F40056A026 /* IBAnimation */,
 				4ACC569820DEC678001352AE /* IBApp */,
 				4A6F197820E3323A00EAF1A7 /* IBColor */,
@@ -2021,6 +2070,7 @@
 		F3A5C8F7212C7C70005D9174 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4A06E1792130049A00227583 /* libsqlite3.tbd */,
 				F3A5C8FC212C7CAD005D9174 /* CoreMotion.framework */,
 				F3A5C8FA212C7C88005D9174 /* libz.tbd */,
 				F3A5C8F8212C7C71005D9174 /* libc++.tbd */,
@@ -2168,6 +2218,7 @@
 				4A78076620E9F1BB00E60ACA /* MASLayoutConstraint.m in Sources */,
 				4A6F19C320E5DD3100EAF1A7 /* IBViewAnimation.m in Sources */,
 				4A1FB20B20E92D5E0056A026 /* UIImage+WebP.m in Sources */,
+				4A06E16F212FDCD300227583 /* IBSocialObject.m in Sources */,
 				4AC29F87210F04A900F218FE /* MJRefreshStateHeader.m in Sources */,
 				4A78076220E9F1BB00E60ACA /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
 				4A1FB20E20E92D5E0056A026 /* UIImage+MultiFormat.m in Sources */,
@@ -2240,6 +2291,7 @@
 				4AC29FD32111CAD700F218FE /* AXBarProgressView.m in Sources */,
 				4A1FB13420E921E90056A026 /* MWTapDetectingView.m in Sources */,
 				4A686D2920EB668A00C8328E /* IBLoadingView.m in Sources */,
+				4A06E17E2133197200227583 /* IBShareManager.m in Sources */,
 				4A1FB12C20E921E90056A026 /* DACircularProgressView.m in Sources */,
 				4A1FB13620E921E90056A026 /* MWGridCell.m in Sources */,
 				4A1FB0BF20E8EE6B0056A026 /* AFNetworkReachabilityManager.m in Sources */,
@@ -2261,6 +2313,7 @@
 				4A1FB0BB20E8EE6B0056A026 /* AFURLResponseSerialization.m in Sources */,
 				4AC29F7A210F04A900F218FE /* UIScrollView+MJRefresh.m in Sources */,
 				4A1FB22F20E931350056A026 /* MBProgressHUD+Ext.m in Sources */,
+				4A06E172212FE42A00227583 /* IBSocialManager.m in Sources */,
 				4A1FB22B20E92D810056A026 /* FLAnimatedImageView.m in Sources */,
 				4AC81CD220F37BFE00A1F246 /* IBWebController.m in Sources */,
 				4AC29F8D210F04A900F218FE /* MJRefreshComponent.m in Sources */,
@@ -2273,6 +2326,7 @@
 				4AAA790320EE17AB00CF5639 /* IBMineController.m in Sources */,
 				4AAA27C02107379100B0C256 /* IBNaviBar+Config.m in Sources */,
 				4A44438421008BE2001B2350 /* IBTabBar.m in Sources */,
+				4A06E178213002A900227583 /* IBSocialHandle.m in Sources */,
 				4AAA78FE20EE097300CF5639 /* IBScrollController.m in Sources */,
 				4A1FB09A20E89FD10056A026 /* IBModelController.m in Sources */,
 				4A6F19AD20E3F40C00EAF1A7 /* GCDAsyncSocket.m in Sources */,
