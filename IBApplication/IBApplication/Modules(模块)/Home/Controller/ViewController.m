@@ -52,9 +52,9 @@
     IBShareObject *obj = [[IBShareObject alloc] init];
     obj.urlString = @"www.baidu.com";
     [[IBShareManager manager] shareToQQ:obj success:^(id response) {
-        
+        NSLog(@"%@", response);
     } failure:^(NSError *error) {
-        
+        NSLog(@"%@", error);
     }];
     
     

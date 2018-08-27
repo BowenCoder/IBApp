@@ -44,6 +44,9 @@
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>ib123456</string>
+		<string>mqq</string>
+		<string>tim</string>
+		<string>mqqopensdkapiv2</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>

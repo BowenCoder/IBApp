@@ -39,7 +39,7 @@
     
     if ([url.scheme hasPrefix:@"tencent"]) {
         result = [QQApiInterface handleOpenURL:url delegate:[IBSocialHandle delegate]];
-        result = [TencentOAuth HandleOpenURL:url];
+//        result = [TencentOAuth HandleOpenURL:url];
         
     } else if([url.scheme hasPrefix:@"wb"]) {
         result = [WeiboSDK handleOpenURL:url delegate:[IBSocialHandle delegate]];
