@@ -49,21 +49,29 @@
 - (void)auth:(id)result error:(NSError *)error {
     if (!error && self.successBlock) {
         self.successBlock(result);
-        self.successBlock = nil;
     } else {
         self.failureBlock(error);
-        self.failureBlock = nil;
     }
+    [self clearData];
 }
 
 - (void)share:(id)result error:(NSError *)error {
     if (!error && self.successBlock) {
         self.successBlock(result);
-        self.successBlock = nil;
     } else {
         self.failureBlock(error);
-        self.failureBlock = nil;
     }
+    [self clearData];
+}
+
+- (void)clearData {
+    self.successBlock = nil;
+    self.failureBlock = nil;
+    [IBSocialManager manager].delegate = nil;
+}
+
+- (void)dealloc {
+    NSLog(@"%s", __func__);
 }
 
 @end

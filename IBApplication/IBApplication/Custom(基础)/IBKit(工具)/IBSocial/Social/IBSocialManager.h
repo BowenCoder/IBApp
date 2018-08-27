@@ -13,7 +13,7 @@
 
 @interface IBSocialManager : NSObject
 
-@property (nonatomic, weak) id<IBSocialDelegate> delegate;
+@property (nonatomic, strong) id<IBSocialDelegate> delegate;
 
 @property (nonatomic, strong) TencentOAuth *tecentAuth;
 
