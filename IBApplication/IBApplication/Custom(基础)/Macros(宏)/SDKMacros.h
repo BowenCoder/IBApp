@@ -13,7 +13,7 @@
 #define UMengKey @"59281b4a5312dd3f5f0005ed"
 
 #define QQKey     @"1107724677"
-#define wechatKey @""
-#define sinaKey   @""
+#define wechatKey @"wx2f4cbc8023b3464d"
+#define sinaKey   @"640496612"
 
 #endif /* SDKMacros_h */

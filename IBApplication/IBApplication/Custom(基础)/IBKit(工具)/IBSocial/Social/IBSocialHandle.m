@@ -120,7 +120,7 @@
     
     if ([response isKindOfClass:[WBAuthorizeResponse class]]) {
         IBSocialResponse *rsp = [[IBSocialResponse alloc] init];
-        rsp.originalResponse  = response;
+        rsp.originalResponse  = response.userInfo;
         NSString *errmsg;
         
         if (response.statusCode == WeiboSDKResponseStatusCodeSuccess) {

@@ -192,6 +192,7 @@
 		4AC29FE12111CB8800F218FE /* AXIndicatorView.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4AC29FDC2111CB8800F218FE /* AXIndicatorView.bundle */; };
 		4AC29FE22111CB8800F218FE /* AXActivityIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC29FDD2111CB8800F218FE /* AXActivityIndicatorView.m */; };
 		4AC29FE32111CB8800F218FE /* AXSpinningWaitCursor.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC29FDE2111CB8800F218FE /* AXSpinningWaitCursor.m */; };
+		4AC455C421368840007CBEF0 /* IBAuthManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC455C321368840007CBEF0 /* IBAuthManager.m */; };
 		4AC81CCC20F3200400A1F246 /* IBTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC81CCB20F3200400A1F246 /* IBTabBarController.m */; };
 		4AC81CD220F37BFE00A1F246 /* IBWebController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC81CD120F37BFE00A1F246 /* IBWebController.m */; };
 		4AC81CD720F37C6B00A1F246 /* IBCollectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC81CD620F37C6B00A1F246 /* IBCollectionController.m */; };
@@ -592,6 +593,9 @@
 		4AC29FDD2111CB8800F218FE /* AXActivityIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AXActivityIndicatorView.m; sourceTree = "<group>"; };
 		4AC29FDE2111CB8800F218FE /* AXSpinningWaitCursor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AXSpinningWaitCursor.m; sourceTree = "<group>"; };
 		4AC29FDF2111CB8800F218FE /* AXBreachedAnnulusIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AXBreachedAnnulusIndicatorView.h; sourceTree = "<group>"; };
+		4AC455C221368840007CBEF0 /* IBAuthManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBAuthManager.h; sourceTree = "<group>"; };
+		4AC455C321368840007CBEF0 /* IBAuthManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBAuthManager.m; sourceTree = "<group>"; };
+		4AC455C52137C9B0007CBEF0 /* IBErrorCode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBErrorCode.h; sourceTree = "<group>"; };
 		4AC81CCA20F3200400A1F246 /* IBTabBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBTabBarController.h; sourceTree = "<group>"; };
 		4AC81CCB20F3200400A1F246 /* IBTabBarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBTabBarController.m; sourceTree = "<group>"; };
 		4AC81CD020F37BFE00A1F246 /* IBWebController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBWebController.h; sourceTree = "<group>"; };
@@ -713,6 +717,7 @@
 		4A06E16A212FDB9100227583 /* IBSocial */ = {
 			isa = PBXGroup;
 			children = (
+				4AC455C121368823007CBEF0 /* Auth */,
 				4A06E17B2130129E00227583 /* Share */,
 				4A06E16B212FDBCC00227583 /* Social */,
 			);
@@ -1552,6 +1557,15 @@
 			path = AXIndicatorView;
 			sourceTree = "<group>";
 		};
+		4AC455C121368823007CBEF0 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				4AC455C221368840007CBEF0 /* IBAuthManager.h */,
+				4AC455C321368840007CBEF0 /* IBAuthManager.m */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
 		4AC7FBD8212C42C200203C92 /* IBPopupController */ = {
 			isa = PBXGroup;
 			children = (
@@ -1863,6 +1877,7 @@
 				4ACC55F620DBC4F4001352AE /* SDKMacros.h */,
 				4ACC55F420DBB709001352AE /* UIMacros.h */,
 				4ACC55F320DBB6E8001352AE /* URLMacros.h */,
+				4AC455C52137C9B0007CBEF0 /* IBErrorCode.h */,
 			);
 			path = "Macros(宏)";
 			sourceTree = "<group>";
@@ -2337,6 +2352,7 @@
 				4A1FB0A820E8EA630056A026 /* MBProgressHUD.m in Sources */,
 				4AC29FD02111CAD700F218FE /* AXPracticalHUDAnimator.m in Sources */,
 				4A1FB13120E921E90056A026 /* MWTapDetectingImageView.m in Sources */,
+				4AC455C421368840007CBEF0 /* IBAuthManager.m in Sources */,
 				4AC29F7E210F04A900F218FE /* NSBundle+MJRefresh.m in Sources */,
 				4AC81CE020F37D2800A1F246 /* IBModel.m in Sources */,
 				4AC29F7B210F04A900F218FE /* MJRefreshConst.m in Sources */,
@@ -2543,6 +2559,10 @@
 					"$(PROJECT_DIR)/IBApplication/SDKFile(集成)/WeiboSDK",
 					"$(PROJECT_DIR)/IBApplication/SDKFile(集成)/WechatSDK",
 				);
+				OTHER_LDFLAGS = (
+					"-Objc",
+					"-all_load",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.leador.IBApplication;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2571,6 +2591,10 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/IBApplication/SDKFile(集成)/WeiboSDK",
 					"$(PROJECT_DIR)/IBApplication/SDKFile(集成)/WechatSDK",
+				);
+				OTHER_LDFLAGS = (
+					"-Objc",
+					"-all_load",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.leador.IBApplication;
 				PRODUCT_NAME = "$(TARGET_NAME)";

@@ -21,6 +21,7 @@
 #import "IBPopupManager.h"
 #import "IBPopup.h"
 #import "IBShareManager.h"
+#import "IBAuthManager.h"
 
 @interface ViewController ()<UITableViewDataSource, UITableViewDelegate>
 
@@ -50,12 +51,25 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [self.view endEditing:YES];
     IBShareObject *obj = [[IBShareObject alloc] init];
+    obj.platformType = IBSharePlatformWechatTimeLine;
+    obj.image = [UIImage imageNamed:@"test"];
+    obj.previewImage = [UIImage imageNamed:@"bg"];
     obj.urlString = @"www.baidu.com";
-    [[IBShareManager manager] shareToQQ:obj success:^(id response) {
-        NSLog(@"%@", response);
+//    obj.previewUrlString = @"www.inke.cn";
+    obj.title = @"123456789";
+    obj.text = @"qwert";
+//    [[IBShareManager manager] shareImage:obj success:^(id response) {
+//
+//    } failure:^(NSError *error) {
+//
+//    }];
+    [[IBShareManager manager] shareLink:obj success:^(id response) {
+
     } failure:^(NSError *error) {
-        NSLog(@"%@", error);
+
     }];
+    
+
     
     
 

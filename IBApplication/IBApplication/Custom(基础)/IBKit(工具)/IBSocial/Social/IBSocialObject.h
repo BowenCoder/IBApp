@@ -17,7 +17,7 @@ typedef NS_ENUM(NSInteger, IBSocialPlatformType) {
 
 typedef NS_ENUM(NSInteger, IBSharePlatformType) {
     IBSharePlatformUnkown,          //未知
-    IBSharePlatformQQ,              //QQ聊天界面
+    IBSharePlatformQQSession,       //QQ聊天界面
     IBSharePlatformQZone,           //QQ空间
     IBSharePlatformSina,            //新浪
     IBSharePlatformWechatSession,   //微信聊天
@@ -26,6 +26,8 @@ typedef NS_ENUM(NSInteger, IBSharePlatformType) {
 };
 
 @interface IBShareObject : NSObject
+
+@property (nonatomic, assign) IBSharePlatformType platformType;
 
 /**
  分享文本(例如分享纯文本就传这个)
@@ -57,12 +59,14 @@ typedef NS_ENUM(NSInteger, IBSharePlatformType) {
  */
 @property (nonatomic, copy) NSString *urlString;
 
+/**
+ 分享目标链接的预览图链接地址(字符串,统一下就不提供NSURL类型的了)
+ */
+@property (nonatomic, copy) NSString *previewUrlString;
 
 @end
 
 @interface IBSocialResponse : NSObject
-
-@property (nonatomic, assign) IBSharePlatformType platformType;
 
 @property (nonatomic, copy) NSString  *uid;         //唯一id
 @property (nonatomic, copy) NSString  *openid;      //openid

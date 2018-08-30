@@ -25,6 +25,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     [[IBSocialManager manager] registerSDK:IBSocialPlatformQQ];
+    [[IBSocialManager manager] registerSDK:IBSocialPlatformWechat];
+    [[IBSocialManager manager] registerSDK:IBSocialPlatformSina];
     
     self.window = [[UIWindow alloc] initWithFrame: [UIScreen mainScreen].bounds];
     self.window.backgroundColor = [UIColor whiteColor];

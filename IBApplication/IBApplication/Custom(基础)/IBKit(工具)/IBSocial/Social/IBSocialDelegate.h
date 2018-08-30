@@ -8,6 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
+typedef void(^IBSuccessBlock)(id response);
+typedef void(^IBFailureBlock)(NSError *error);
+
 @protocol IBSocialDelegate <NSObject>
 
 @optional
