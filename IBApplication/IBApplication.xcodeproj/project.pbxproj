@@ -224,6 +224,9 @@
 		4ACC56B020E0001E001352AE /* NSDate+Ext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC56AF20E0001E001352AE /* NSDate+Ext.m */; };
 		4AE64C49212ACFF7003DE328 /* IBCheckbox.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE64C48212ACFF7003DE328 /* IBCheckbox.m */; };
 		4AE64C53212BB7E8003DE328 /* IBPopupManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE64C52212BB7E8003DE328 /* IBPopupManager.m */; };
+		4AEEA7A9213D0EFB00CFAA3D /* IBActionItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AEEA7A8213D0EFA00CFAA3D /* IBActionItem.m */; };
+		4AEEA7AC213D148500CFAA3D /* IBActionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AEEA7AB213D148500CFAA3D /* IBActionCell.m */; };
+		4AEEA7B2213D2AA700CFAA3D /* IBActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AEEA7B1213D2AA700CFAA3D /* IBActionSheet.m */; };
 		F367404C212C54B000E614A0 /* IBPopupLeftBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F367403D212C54AF00E614A0 /* IBPopupLeftBarItem.m */; };
 		F367404D212C54B000E614A0 /* UIViewController+IBPopup.m in Sources */ = {isa = PBXBuildFile; fileRef = F367403E212C54AF00E614A0 /* UIViewController+IBPopup.m */; };
 		F367404E212C54B000E614A0 /* IBPopupControllerTransitioningSlideVertical.m in Sources */ = {isa = PBXBuildFile; fileRef = F367403F212C54AF00E614A0 /* IBPopupControllerTransitioningSlideVertical.m */; };
@@ -661,6 +664,12 @@
 		4AE64C48212ACFF7003DE328 /* IBCheckbox.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBCheckbox.m; sourceTree = "<group>"; };
 		4AE64C51212BB7E8003DE328 /* IBPopupManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBPopupManager.h; sourceTree = "<group>"; };
 		4AE64C52212BB7E8003DE328 /* IBPopupManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBPopupManager.m; sourceTree = "<group>"; };
+		4AEEA7A7213D0EFA00CFAA3D /* IBActionItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBActionItem.h; sourceTree = "<group>"; };
+		4AEEA7A8213D0EFA00CFAA3D /* IBActionItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBActionItem.m; sourceTree = "<group>"; };
+		4AEEA7AA213D148500CFAA3D /* IBActionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBActionCell.h; sourceTree = "<group>"; };
+		4AEEA7AB213D148500CFAA3D /* IBActionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBActionCell.m; sourceTree = "<group>"; };
+		4AEEA7B0213D2AA700CFAA3D /* IBActionSheet.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBActionSheet.h; sourceTree = "<group>"; };
+		4AEEA7B1213D2AA700CFAA3D /* IBActionSheet.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBActionSheet.m; sourceTree = "<group>"; };
 		F367403D212C54AF00E614A0 /* IBPopupLeftBarItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IBPopupLeftBarItem.m; sourceTree = "<group>"; };
 		F367403E212C54AF00E614A0 /* UIViewController+IBPopup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+IBPopup.m"; sourceTree = "<group>"; };
 		F367403F212C54AF00E614A0 /* IBPopupControllerTransitioningSlideVertical.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IBPopupControllerTransitioningSlideVertical.m; sourceTree = "<group>"; };
@@ -770,8 +779,7 @@
 		4A1FB0A420E8E5290056A026 /* IBPopupView */ = {
 			isa = PBXGroup;
 			children = (
-				4A686D2620EB666000C8328E /* IBLoadingView */,
-				4A686D2220EB224F00C8328E /* IBEmptyView */,
+				4AEEA7A6213D0D3400CFAA3D /* IBActionSheet */,
 				4A1FB0A520E8EA320056A026 /* MBProgressHUD */,
 			);
 			path = IBPopupView;
@@ -780,11 +788,9 @@
 		4A1FB0A520E8EA320056A026 /* MBProgressHUD */ = {
 			isa = PBXGroup;
 			children = (
-				4A1FB0A720E8EA630056A026 /* MBProgressHUD.h */,
-				4A1FB0A620E8EA630056A026 /* MBProgressHUD.m */,
-				4A1FB22D20E931350056A026 /* MBProgressHUD+Ext.h */,
-				4A1FB22E20E931350056A026 /* MBProgressHUD+Ext.m */,
-				4A1FB0A920E8EA9C0056A026 /* MBProgressHUD.bundle */,
+				4AEEA7AE213D285700CFAA3D /* Core */,
+				4AEEA7AD213D284100CFAA3D /* Views */,
+				4AEEA7AF213D286B00CFAA3D /* Source */,
 			);
 			path = MBProgressHUD;
 			sourceTree = "<group>";
@@ -1985,7 +1991,6 @@
 		4ACC569C20DF4D9C001352AE /* IBKit(工具) */ = {
 			isa = PBXGroup;
 			children = (
-				4A06E16A212FDB9100227583 /* IBSocial */,
 				4A1FB09320E7B2F40056A026 /* IBAnimation */,
 				4ACC569820DEC678001352AE /* IBApp */,
 				4A6F197820E3323A00EAF1A7 /* IBColor */,
@@ -1998,6 +2003,7 @@
 				F3E79EE920E2A1F2000AC50A /* IBImage */,
 				4ACC569320DEC47D001352AE /* IBPassword */,
 				4A44437220F8980A001B2350 /* IBPrivacy */,
+				4A06E16A212FDB9100227583 /* IBSocial */,
 				4A6F198D20E3A84600EAF1A7 /* IBSocket */,
 				4A6F198920E3A5DD00EAF1A7 /* IBString */,
 				4ACC569420DEC59D001352AE /* IBTouchID */,
@@ -2040,6 +2046,47 @@
 				4AE64C52212BB7E8003DE328 /* IBPopupManager.m */,
 			);
 			path = IBPopupManager;
+			sourceTree = "<group>";
+		};
+		4AEEA7A6213D0D3400CFAA3D /* IBActionSheet */ = {
+			isa = PBXGroup;
+			children = (
+				4AEEA7B0213D2AA700CFAA3D /* IBActionSheet.h */,
+				4AEEA7B1213D2AA700CFAA3D /* IBActionSheet.m */,
+				4AEEA7A7213D0EFA00CFAA3D /* IBActionItem.h */,
+				4AEEA7A8213D0EFA00CFAA3D /* IBActionItem.m */,
+				4AEEA7AA213D148500CFAA3D /* IBActionCell.h */,
+				4AEEA7AB213D148500CFAA3D /* IBActionCell.m */,
+			);
+			path = IBActionSheet;
+			sourceTree = "<group>";
+		};
+		4AEEA7AD213D284100CFAA3D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				4A686D2620EB666000C8328E /* IBLoadingView */,
+				4A686D2220EB224F00C8328E /* IBEmptyView */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		4AEEA7AE213D285700CFAA3D /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				4A1FB0A720E8EA630056A026 /* MBProgressHUD.h */,
+				4A1FB0A620E8EA630056A026 /* MBProgressHUD.m */,
+				4A1FB22D20E931350056A026 /* MBProgressHUD+Ext.h */,
+				4A1FB22E20E931350056A026 /* MBProgressHUD+Ext.m */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		4AEEA7AF213D286B00CFAA3D /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				4A1FB0A920E8EA9C0056A026 /* MBProgressHUD.bundle */,
+			);
+			path = Source;
 			sourceTree = "<group>";
 		};
 		F3A5C8DF212C7421005D9174 /* WeiboSDK */ = {
@@ -2223,6 +2270,7 @@
 				4A78076320E9F1BB00E60ACA /* ViewController+MASAdditions.m in Sources */,
 				4A1FB21220E92D5E0056A026 /* MKAnnotationView+WebCache.m in Sources */,
 				4A78077420E9FCAF00E60ACA /* YYClassInfo.m in Sources */,
+				4AEEA7A9213D0EFB00CFAA3D /* IBActionItem.m in Sources */,
 				4ACC561920DD59F5001352AE /* NSArray+Ext.m in Sources */,
 				4ACC564E20DD75AB001352AE /* UIButton+Ext.m in Sources */,
 				4A1FB22020E92D5E0056A026 /* SDWebImageWebPCoder.m in Sources */,
@@ -2234,10 +2282,12 @@
 				4A6F19C320E5DD3100EAF1A7 /* IBViewAnimation.m in Sources */,
 				4A1FB20B20E92D5E0056A026 /* UIImage+WebP.m in Sources */,
 				4A06E16F212FDCD300227583 /* IBSocialObject.m in Sources */,
+				4AEEA7AC213D148500CFAA3D /* IBActionCell.m in Sources */,
 				4AC29F87210F04A900F218FE /* MJRefreshStateHeader.m in Sources */,
 				4A78076220E9F1BB00E60ACA /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
 				4A1FB20E20E92D5E0056A026 /* UIImage+MultiFormat.m in Sources */,
 				F367404C212C54B000E614A0 /* IBPopupLeftBarItem.m in Sources */,
+				4AEEA7B2213D2AA700CFAA3D /* IBActionSheet.m in Sources */,
 				4A78076720E9F1BB00E60ACA /* NSArray+MASAdditions.m in Sources */,
 				4A1FB21B20E92D5E0056A026 /* SDWebImageCoderHelper.m in Sources */,
 				4A4443812100797E001B2350 /* IBTabBarItem.m in Sources */,

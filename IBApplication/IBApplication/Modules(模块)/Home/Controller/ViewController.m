@@ -44,6 +44,10 @@
     
 }
 
+- (BOOL)shouldAutorotate {
+    return YES;
+}
+
 - (void)test {
     NSLog(@"123");
 }
@@ -63,28 +67,25 @@
 //    } failure:^(NSError *error) {
 //
 //    }];
-    [[IBShareManager manager] shareLink:obj success:^(id response) {
-
-    } failure:^(NSError *error) {
-
-    }];
+//    [[IBShareManager manager] shareLink:obj success:^(id response) {
+//
+//    } failure:^(NSError *error) {
+//
+//    }];
     
 
     
     
 
     
-//    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
-//    view.backgroundColor = [UIColor redColor];
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
+    view.backgroundColor = [UIColor redColor];
 //    self.popupManager = [IBPopupManager popupManagerWithMaskType:IBPopupMaskTypeBlackBlur];
 //    self.popupManager.slideStyle = IBPopupSlideStyleShrinkInOut1;
 //    self.popupManager.allowPan = YES;
 //    self.popupManager.dismissOnMaskTouched = YES;
 //    self.popupManager.dismissOppositeDirection = YES;
-    
-    // 弹出2秒后消失
-//    [self.popupManager presentContentView:view duration:0.75 springAnimated:YES inView:nil displayTime:2];
-//    [self.popupManager presentContentView:view];
+    [self.popupManager presentContentView:view];
     
 //    AXWebViewController *webVC = [[AXWebViewController alloc] initWithAddress:@"https://www.iqiyi.com"];
 //    webVC.showsToolBar = YES;

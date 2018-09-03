@@ -218,6 +218,7 @@ NS_INLINE void setupPosition(MBProgressHUD *hud, MBPosition position) {
 @implementation MBProgressHUD (Loading)
 
 + (void)showBallLoadingView:(UIView *)superview {
+    
     [self hideBallLoadingView:superview];
     IBBallLoadingView *loadingView = [[IBBallLoadingView alloc] initWithFrame:superview.frame];
     [loadingView startAnimation];
