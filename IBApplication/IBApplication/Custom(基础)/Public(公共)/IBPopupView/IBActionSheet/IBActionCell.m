@@ -36,12 +36,12 @@
     self.contentAlignment = IBContentAlignmentCenter;
     
     [self.contentView addSubview:self.titleButton];
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_titleButton]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(self.titleButton)]];
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_titleButton]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(self.titleButton)]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_titleButton]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_titleButton)]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_titleButton]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_titleButton)]];
     
     [self.contentView addSubview:self.topLine];
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[topLine]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(self.topLine)]];
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[topLine(lineHeight)]" options:0 metrics:@{@"lineHeight":@(1)} views:NSDictionaryOfVariableBindings(self.topLine)]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_topLine]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_topLine)]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_topLine(lineHeight)]" options:0 metrics:@{@"lineHeight":@(1)} views:NSDictionaryOfVariableBindings(_topLine)]];
 
 }
 
@@ -62,6 +62,10 @@
 
 #pragma mark - 合成存取
 
+- (void)setHideTopLine:(BOOL)hideTopLine {
+    self.topLine.hidden = hideTopLine;
+}
+
 - (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated {
     [super setHighlighted:highlighted animated:animated];
     
@@ -77,10 +81,10 @@
 - (void)setItem:(IBActionItem *)item {
     _item = item;
     
-    // 前景色设置, 如果有自定义前景色则使用自定义的前景色, 否则使用预配置的颜色值.
+    // 前景色设置
     UIColor *tintColor;
-    if (item.tintColor) {
-        tintColor = item.tintColor;
+    if (_item.tintColor) {
+        tintColor = _item.tintColor;
     } else {
         if (_item.type == IBActionTypeNormal) {
             tintColor = [IBColor colorWithHexString:IBActionItemNormalColor];
@@ -88,8 +92,6 @@
             tintColor = [IBColor colorWithHexString:IBActionItemHighlightedColor];
         }
     }
-    self.titleButton.tintColor = tintColor;
-    
     // 调整图片与标题的间距
     CGFloat imgLeft = _item.image ? -IBActionItemContentSpacing / 2 : 0;
     CGFloat imgBottom = _item.image ? 1 : 0;
@@ -102,6 +104,7 @@
     self.titleButton.titleEdgeInsets = UIEdgeInsetsMake(titleTop, titleLeft, 0, titleRight);
     
     // 设置图片与标题
+    [self.titleButton setTintColor:tintColor];
     [self.titleButton setTitle:_item.title forState:UIControlStateNormal];
     [self.titleButton setImage:_item.image forState:UIControlStateNormal];
 }
@@ -134,7 +137,7 @@
 
 - (UIButton *)titleButton {
     if(!_titleButton){
-        _titleButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        _titleButton = [UIButton buttonWithType:UIButtonTypeSystem];
         _titleButton.tintColor = [IBColor colorWithHexString:IBActionItemNormalColor];
         _titleButton.titleLabel.font = [UIFont systemFontOfSize:IBActionItemTitleFontSize];
         _titleButton.userInteractionEnabled = NO;

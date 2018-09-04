@@ -7,33 +7,33 @@
 //
 
 #import "IBActionSheet.h"
+#import "IBPopupManager.h"
+#import "IBString.h"
 
 @interface IBActionSheet () <UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, copy) NSString *title;
-@property (nonatomic, copy) NSString *cancelTitle;
-@property (nonatomic, copy) NSArray<IBActionItem *> *items;
+@property (nonatomic, copy) NSArray<NSArray *> *items;
 
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) UILabel *titleLabel;
+
+@property (nonatomic, strong) IBPopupManager *popupManager;
 
 @end
 
 @implementation IBActionSheet
 
-- (instancetype)init {
-    self = [super init];
-    if (self) {
-        [self initView];
-    }
-    return self;
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    self.tableView.frame = self.bounds;
 }
 
-/*! @brief 单文本选项快速初始化 */
 - (instancetype)initWithTitle:(NSString *)title delegate:(id<IBActionSheetDelegate>)delegate cancelTitle:(NSString *)cancelTitle highlightedTitle:(NSString *)highlightedTitle otherTitles:(NSArray<NSString *> *)otherTitles {
     
-    if (self = [self init]) {
+    if (self = [super init]) {
         
+        NSMutableArray *group = @[].mutableCopy;
         NSMutableArray *titleItems = @[].mutableCopy;
         //普通按钮
         for (NSString *otherTitle in otherTitles) {
@@ -47,30 +47,63 @@
             IBActionItem *item = [IBActionItem itemWithType:IBActionTypeHighlighted image:nil title:highlightedTitle tintColor:nil handler:nil];
             [titleItems addObject:item];
         }
+        [group addObject:titleItems];
         
-        self.title = title ? : @"";
+        if (cancelTitle && cancelTitle.length > 0) {
+            IBActionItem *cancel = [IBActionItem itemWithType:IBActionTypeNormal image:nil title:cancelTitle tintColor:nil handler:nil];
+            [group addObject:@[cancel]];
+        } else {
+            IBActionItem *cancel = [IBActionItem itemWithType:IBActionTypeNormal image:nil title:@"取消" tintColor:nil handler:nil];
+            [group addObject:@[cancel]];
+        }
+
+        self.items = [group copy];
+        self.title = title;
         self.delegate = delegate;
-        self.cancelTitle = (cancelTitle && cancelTitle.length != 0) ? cancelTitle : @"取消";
-        self.items = titleItems;
+        
+        [self initView];
     }
     return self;
 }
 
-/*! @brief 在外部组装选项按钮item */
-- (instancetype)initWithTitle:(NSString *)title cancelTitle:(NSString *)cancelTitle items:(NSArray<IBActionItem *> *)items {
+- (instancetype)initWithTitle:(NSString *)title cancelItem:(IBActionItem *)cancelItem items:(NSArray<IBActionItem *> *)items {
+
+    if (self = [super init]) {
+        
+        NSMutableArray *group = [NSMutableArray array];
+        
+        if (items) {
+            [group addObject:items];
+        }
+
+        if (cancelItem) {
+            [group addObject:@[cancelItem]];
+        } else {
+            IBActionItem *cancel = [IBActionItem itemWithType:IBActionTypeNormal image:nil title:@"取消" tintColor:nil handler:nil];
+            [group addObject:@[cancel]];
+        }
+        
+        self.items = [group copy];
+        self.title = title;
+
+        [self initView];
+
+    }
+    return self;
+}
+
+- (void)show {
+    [self.tableView reloadData];
+    CGFloat contentHeight = self.tableView.contentSize.height + kSafeAreaBottomHeight;
+    // 适配屏幕高度
+    CGFloat contentMaxHeight = kScreenHeight * IBActionContentMaxScale + kSafeAreaBottomHeight;
+    if (contentHeight > contentMaxHeight) {
+        self.tableView.scrollEnabled = YES;
+        contentHeight = contentMaxHeight;
+    }
+    self.frame = CGRectMake(0, 0, kScreenWidth, contentHeight);
     
-    if (self = [self init]) {
-        self.title = title ? : @"";
-        self.cancelTitle = (cancelTitle && cancelTitle.length != 0) ? cancelTitle : @"取消";
-        self.items = items ? : @[];
-    }
-    return self;
-}
-
-
-- (void)layoutSubviews {
-    [super layoutSubviews];
-    self.tableView.frame = self.bounds;
+    [self.popupManager presentContentView:self];
 }
 
 // 默认设置
@@ -78,10 +111,8 @@
     self.backgroundColor = [IBColor colorWithHexString:IBActionBGColor];
     self.translatesAutoresizingMaskIntoConstraints = NO; // 允许约束
     self.contentAlignment = IBContentAlignmentCenter; // 默认样式为居中
-    self.cancelTitle = @"取消";
     [self addSubview:self.tableView];
 }
-
 
 // 适配标题偏移方向
 - (void)updateTitleAttributeText {
@@ -126,28 +157,19 @@
 
 // 计算title在设定宽度下的富文本高度
 - (CGFloat)heightForHeaderView {
-    
     CGFloat labelHeight = [self.titleLabel.attributedText boundingRectWithSize:CGSizeMake(kScreenWidth - IBActionDefaultMargin*2, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading context:nil].size.height;
     CGFloat headerHeight = ceil(labelHeight)+IBActionDefaultMargin*2;
     return headerHeight;
 }
 
-// 整个弹窗内容的高度
-- (CGFloat)contentHeight {
-    CGFloat titleHeight = (self.title.length > 0) ? [self heightForHeaderView] : 0;
-    CGFloat rowHeightSum = (self.items.count+1) * IBActionRowHeight + IBActionSectionHeight;
-    CGFloat contentHeight = titleHeight + rowHeightSum;
-    return contentHeight;
-}
-
 #pragma mark - UITableViewDelegate
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 2;
+    return self.items.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return (section == 1 ) ? 1 : self.items.count;
+    return self.items[section].count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -166,24 +188,13 @@
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     
     IBActionCell *sheetCell = (IBActionCell *)cell;
-    if (indexPath.section == 0) {
-        sheetCell.item = self.items[indexPath.row];
-        sheetCell.hideTopLine = NO;
-        // 当有标题时隐藏第一单元格的顶部线条
-        if (indexPath.row == 0 && (!self.title || self.title.length == 0)) {
-            sheetCell.hideTopLine = YES;
-        }
-    } else {
-        // 默认取消的单元格没有附带icon
-        IBActionItem *cancelItem = [IBActionItem itemWithType:IBActionTypeNormal image:nil title:self.cancelTitle tintColor:nil handler:nil];
-        // 如果其它单元格中附带icon的话则添加上默认的取消icon.
-        for (IBActionItem *item in self.items) {
-            if (item.image) {
-                cancelItem = [IBActionItem itemWithType:IBActionTypeNormal image:[UIImage imageNamed:@""] title:self.cancelTitle tintColor:nil handler:nil];
-                break;
-            }
-        }
-        sheetCell.item = cancelItem;
+    sheetCell.item = self.items[indexPath.section][indexPath.row];
+    //第一组没有标题，隐藏第一个单元格的顶部线条
+    if (indexPath.section == 0 && indexPath.row == 0 && (!self.title || self.title.length == 0)) {
+        sheetCell.hideTopLine = YES;
+    }
+    //隐藏取消单元格的顶部线条
+    if (indexPath.section == 1) {
         sheetCell.hideTopLine = YES;
     }
     sheetCell.contentAlignment = self.contentAlignment;
@@ -199,17 +210,14 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    // 延迟0.1秒隐藏让用户既看到点击效果又不影响体验
-    if (indexPath.section == 0) {
-        IBActionItem *item = self.items[indexPath.row];
-        if (item.handler) {
-            item.handler(item, indexPath.row);
-        } else {
-            if (self.delegate && [self.delegate respondsToSelector:@selector(actionSheet:selectedIndex:)]) {
-                [self.delegate actionSheet:self selectedIndex:indexPath.row];
-            }
-        }
+    IBActionItem *item = self.items[indexPath.section][indexPath.row];
+    if (item.handler) {
+        item.handler(item, indexPath.row);
     }
+    if (self.delegate && [self.delegate respondsToSelector:@selector(actionSheet:selectedIndex:)]) {
+        [self.delegate actionSheet:self selectedIndex:indexPath.row];
+    }
+    [self.popupManager dismiss];
 }
 
 #pragma mark - 合成存取
@@ -259,14 +267,14 @@
     headerView.frame = CGRectMake(0, 0, kScreenWidth, headerHeight);
     
     // 约束
-    [headerView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-margin-[titleLabel]-margin-|"
+    [headerView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-margin-[_titleLabel]-margin-|"
                                                                        options:0.0
                                                                        metrics:@{@"margin" : @(IBActionDefaultMargin)}
-                                                                         views:NSDictionaryOfVariableBindings(self.titleLabel)]];
-    [headerView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-margin-[titleLabel]"
+                                                                         views:NSDictionaryOfVariableBindings(_titleLabel)]];
+    [headerView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-margin-[_titleLabel]"
                                                                        options:0.0
                                                                        metrics:@{@"margin" : @(IBActionDefaultMargin)}
-                                                                         views:NSDictionaryOfVariableBindings(self.titleLabel)]];
+                                                                         views:NSDictionaryOfVariableBindings(_titleLabel)]];
     return headerView;
 }
 
@@ -278,6 +286,14 @@
         _titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
     }
     return _titleLabel;
+}
+
+- (IBPopupManager *)popupManager {
+    if(!_popupManager){
+        _popupManager = [[IBPopupManager alloc] init];
+        _popupManager.layoutType = IBPopupLayoutTypeBottom;
+    }
+    return _popupManager;
 }
 
 @end

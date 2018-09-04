@@ -38,7 +38,6 @@ typedef NS_ENUM(NSInteger, IBContentAlignment) {
 
 @end
 
-
 // float
 UIKIT_EXTERN CGFloat const IBActionDefaultMargin; ///< 默认边距 (标题四边边距, 选项靠左或靠右时距离边缘的距离)
 UIKIT_EXTERN CGFloat const IBActionContentMaxScale; ///< 弹窗内容高度与屏幕高度的默认比例
