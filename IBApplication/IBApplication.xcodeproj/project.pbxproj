@@ -779,6 +779,7 @@
 		4A1FB0A420E8E5290056A026 /* IBPopupView */ = {
 			isa = PBXGroup;
 			children = (
+				4A7D3A352142696700310E7B /* IBPopoverView */,
 				4AEEA7A6213D0D3400CFAA3D /* IBActionSheet */,
 				4A1FB0A520E8EA320056A026 /* MBProgressHUD */,
 			);
@@ -1271,6 +1272,13 @@
 				4A78076F20E9FCAE00E60ACA /* YYModel.h */,
 			);
 			path = YYModel;
+			sourceTree = "<group>";
+		};
+		4A7D3A352142696700310E7B /* IBPopoverView */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = IBPopoverView;
 			sourceTree = "<group>";
 		};
 		4A81F3332125604F00A99CE3 /* UIControl */ = {
