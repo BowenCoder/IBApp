@@ -37,11 +37,18 @@ typedef NS_ENUM(NSInteger, IBTimeOption) {
 - (IBDateInformation)dateInformation;
 
 /**
- 获取时间戳
+ 获取时间戳（毫秒），建议使用
 
  @return 返回时间戳
  */
 - (long)timestamp;
+
+/**
+ 获取时间戳（微秒）
+ 
+ @return 返回时间戳
+ */
+- (long)microsecond;
 
 /**
  时间戳转化成日期

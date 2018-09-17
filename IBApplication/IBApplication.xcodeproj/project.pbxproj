@@ -222,6 +222,8 @@
 		4ACC56A420DF7A89001352AE /* UIView+Effect.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC56A320DF7A89001352AE /* UIView+Effect.m */; };
 		4ACC56A820DFC7AC001352AE /* UITextField+Ext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC56A720DFC7AC001352AE /* UITextField+Ext.m */; };
 		4ACC56B020E0001E001352AE /* NSDate+Ext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC56AF20E0001E001352AE /* NSDate+Ext.m */; };
+		4AE24BDB214F5470006448DC /* NSDictionary+Ext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE24BDA214F5470006448DC /* NSDictionary+Ext.m */; };
+		4AE24BE0214F7518006448DC /* UIFont+Ext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE24BDF214F7518006448DC /* UIFont+Ext.m */; };
 		4AE64C49212ACFF7003DE328 /* IBCheckbox.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE64C48212ACFF7003DE328 /* IBCheckbox.m */; };
 		4AE64C53212BB7E8003DE328 /* IBPopupManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE64C52212BB7E8003DE328 /* IBPopupManager.m */; };
 		4AEEA7A9213D0EFB00CFAA3D /* IBActionItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AEEA7A8213D0EFA00CFAA3D /* IBActionItem.m */; };
@@ -660,6 +662,10 @@
 		4ACC56A720DFC7AC001352AE /* UITextField+Ext.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITextField+Ext.m"; sourceTree = "<group>"; };
 		4ACC56AE20E0001E001352AE /* NSDate+Ext.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDate+Ext.h"; sourceTree = "<group>"; };
 		4ACC56AF20E0001E001352AE /* NSDate+Ext.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Ext.m"; sourceTree = "<group>"; };
+		4AE24BD9214F5470006448DC /* NSDictionary+Ext.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Ext.h"; sourceTree = "<group>"; };
+		4AE24BDA214F5470006448DC /* NSDictionary+Ext.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Ext.m"; sourceTree = "<group>"; };
+		4AE24BDE214F7518006448DC /* UIFont+Ext.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIFont+Ext.h"; sourceTree = "<group>"; };
+		4AE24BDF214F7518006448DC /* UIFont+Ext.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIFont+Ext.m"; sourceTree = "<group>"; };
 		4AE64C47212ACFF7003DE328 /* IBCheckbox.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBCheckbox.h; sourceTree = "<group>"; };
 		4AE64C48212ACFF7003DE328 /* IBCheckbox.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBCheckbox.m; sourceTree = "<group>"; };
 		4AE64C51212BB7E8003DE328 /* IBPopupManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBPopupManager.h; sourceTree = "<group>"; };
@@ -1899,6 +1905,7 @@
 		4ACC55FD20DCB8A8001352AE /* Foundation */ = {
 			isa = PBXGroup;
 			children = (
+				4AE24BD8214F544B006448DC /* NSDictionary */,
 				4ACC56AA20DFFFF3001352AE /* NSDate */,
 				4ACC55FE20DCB8A8001352AE /* NSArray */,
 			);
@@ -1917,6 +1924,7 @@
 		4ACC562E20DD6AE0001352AE /* UIKit */ = {
 			isa = PBXGroup;
 			children = (
+				4AE24BDD214F74FF006448DC /* UIFont */,
 				4A81F3332125604F00A99CE3 /* UIControl */,
 				4ACC56A520DFC747001352AE /* UITextField */,
 				4ACC563620DD6C3C001352AE /* UIBarButtonItem */,
@@ -2036,6 +2044,24 @@
 				4A6F196B20E0923000EAF1A7 /* NSDateTimeAgo.bundle */,
 			);
 			path = NSDate;
+			sourceTree = "<group>";
+		};
+		4AE24BD8214F544B006448DC /* NSDictionary */ = {
+			isa = PBXGroup;
+			children = (
+				4AE24BD9214F5470006448DC /* NSDictionary+Ext.h */,
+				4AE24BDA214F5470006448DC /* NSDictionary+Ext.m */,
+			);
+			path = NSDictionary;
+			sourceTree = "<group>";
+		};
+		4AE24BDD214F74FF006448DC /* UIFont */ = {
+			isa = PBXGroup;
+			children = (
+				4AE24BDE214F7518006448DC /* UIFont+Ext.h */,
+				4AE24BDF214F7518006448DC /* UIFont+Ext.m */,
+			);
+			path = UIFont;
 			sourceTree = "<group>";
 		};
 		4AE64C46212ACFA4003DE328 /* IBCheckbox */ = {
@@ -2281,6 +2307,7 @@
 				4AEEA7A9213D0EFB00CFAA3D /* IBActionItem.m in Sources */,
 				4ACC561920DD59F5001352AE /* NSArray+Ext.m in Sources */,
 				4ACC564E20DD75AB001352AE /* UIButton+Ext.m in Sources */,
+				4AE24BE0214F7518006448DC /* UIFont+Ext.m in Sources */,
 				4A1FB22020E92D5E0056A026 /* SDWebImageWebPCoder.m in Sources */,
 				F367404F212C54B000E614A0 /* IBPopupController.m in Sources */,
 				4A78076820E9F1BB00E60ACA /* View+MASAdditions.m in Sources */,
@@ -2292,6 +2319,7 @@
 				4A06E16F212FDCD300227583 /* IBSocialObject.m in Sources */,
 				4AEEA7AC213D148500CFAA3D /* IBActionCell.m in Sources */,
 				4AC29F87210F04A900F218FE /* MJRefreshStateHeader.m in Sources */,
+				4AE24BDB214F5470006448DC /* NSDictionary+Ext.m in Sources */,
 				4A78076220E9F1BB00E60ACA /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
 				4A1FB20E20E92D5E0056A026 /* UIImage+MultiFormat.m in Sources */,
 				F367404C212C54B000E614A0 /* IBPopupLeftBarItem.m in Sources */,

@@ -29,21 +29,35 @@
  *
  *  @return  JSON字符串
  */
-+ (NSString *)JSONString:(NSDictionary *)dict {
++ (NSString *)JSONStringFromDict:(NSDictionary *)dict {
     
     NSError *error = nil;
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dict
                                                        options:NSJSONWritingPrettyPrinted
                                                          error:&error];
-    if (jsonData == nil) {
-#ifdef DEBUG
-        NSLog(@"fail to get JSON from dictionary: %@, error: %@", self, error);
-#endif
-        return nil;
+    if (error) {
+        NSLogger(@"fail to get JSON from dictionary: %@, error: %@", self, error);
+        return error.localizedDescription;
     }
     NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
     return jsonString;
 }
+
++ (NSString *)JSONStringFromArray:(NSArray *)array {
+    NSString *json = nil;
+    NSError *error = nil;
+    NSData *data = [NSJSONSerialization dataWithJSONObject:array options:0 error:&error];
+    
+    if (!error) {
+        json = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        return json;
+    } else {
+        NSLogger(@"fail to get JSON from dictionary: %@, error: %@", self, error);
+        return error.localizedDescription;
+    }
+}
+
+
 
 /**
  *  @brief  将url参数转换成NSDictionary

@@ -16,61 +16,85 @@
 }
 
 - (BOOL)containsIndex:(NSUInteger)index {
-    
     return index < [self count];
 }
 
-- (NSString *)JSONString {
-    
-    NSString *json = nil;
-    NSError *error = nil;
-    NSData *data = [NSJSONSerialization dataWithJSONObject:self options:0 error:&error];
-    if (!error) {
-        json = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-        return json;
-    } else {
-        return error.localizedDescription;
-    }
-}
 
 @end
 
 @implementation NSMutableArray (Ext)
 
-- (BOOL)addObjectOrNil:(id)anObject {
+- (BOOL)addObjectOrNil:(id)object {
     
-    if (!anObject) {
+    if (!object) {
+        NSLogger( @"the object to be added is nil");
         return NO;
     }
-    [self addObject:anObject];
+    if ([object isKindOfClass:[NSNull class]]) {
+        NSLogger( @"the object to be added is NSNull");
+        return NO;
+    }
+    [self addObject:object];
     return YES;
 }
 
-- (BOOL)insertObjectOrNil:(id)anObject atIndex:(NSUInteger)index {
+- (BOOL)insertObjectOrNil:(id)object atIndex:(NSUInteger)index {
     
-    if (!anObject || index > [self count]) {
+    if (index > [self count]) {
+        NSLogger( @"the index to be inserted is out of array boundary");
         return NO;
+    } else {
+        if (!object) {
+            NSLogger( @"the object to be inserted is nil");
+            return NO;
+        }
+        if ([object isKindOfClass:[NSNull class]]) {
+            NSLogger( @"the object to be inserted is NSNull");
+            return NO;
+        }
+        [self insertObject:object atIndex:index];
+        return YES;
     }
-    [self insertObject:anObject atIndex:index];
-    return YES;
 }
 
 - (BOOL)removeObjectOrNilAtIndex:(NSUInteger)index {
     
     if (index >= [self count]) {
+        NSLogger( @"the index to be removed is out of array boundary");
         return NO;
     }
     [self removeObjectAtIndex:index];
     return YES;
 }
 
-- (BOOL)replaceObjectAtIndex:(NSUInteger)index withObjectOrNil:(id)anObject {
+- (BOOL)replaceObjectAtIndex:(NSUInteger)index withObjectOrNil:(id)object {
     
-    if (!anObject || index >= [self count]) {
+    if (index > [self count]) {
+        NSLogger( @"the index to be replaced is out of array boundary");
+        return NO;
+    } else {
+        if (!object) {
+            NSLogger( @"the object to be replaced is nil");
+            return NO;
+        }
+        if ([object isKindOfClass:[NSNull class]]) {
+            NSLogger( @"the object to be replaced is NSNull");
+            return NO;
+        }
+        [self replaceObjectAtIndex:index withObject:object];
+        return YES;
+    }
+}
+
+- (BOOL)swapObjectAtIndex:(NSUInteger)fromIndex withObjectAtIndex:(NSUInteger)toIndex {
+    if ([self count] != 0 && toIndex != fromIndex
+        && fromIndex < [self count] && toIndex < [self count]) {
+        [self exchangeObjectAtIndex:fromIndex withObjectAtIndex:toIndex];
+        return YES;
+    } else {
+        NSLogger( @"the index to be exchanged is out of array boundary");
         return NO;
     }
-    [self replaceObjectAtIndex:index withObject:anObject];
-    return YES;
 }
 
 

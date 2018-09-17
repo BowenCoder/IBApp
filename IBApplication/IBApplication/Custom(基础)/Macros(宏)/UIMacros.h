@@ -16,6 +16,15 @@
 #define kScreenHeight    [[UIScreen mainScreen] bounds].size.height
 #define kScreenBounds    [[UIScreen mainScreen] bounds]
 
+//一像素线
+#define kOnePixelLine (1.f / [UIScreen mainScreen].scale)
+
+
+//横向宽度（以iPhone6为标准）
+#define kFitWidth(width)      (kScreenWidth  * (width/667.00))
+//纵向高度
+#define kFitHeight(height)    (kScreenHeight * (height/375.00))
+
 // 状态栏高度(iPhoneX:44, 其他:20)
 #define kStatusBarHeight [[UIApplication sharedApplication] statusBarFrame].size.height
 
@@ -49,10 +58,5 @@
 // 除去状态栏和标签栏，屏幕高度
 #define kViewHeight            (kSafeAreaHeight - kNavBarHeight - kBottomBarHeight)
 
-//横向宽度
-#define kFitWidth(width)      (kScreenWidth  * (width/667.00))
-
-//纵向高度
-#define kFitHeight(height)    (kScreenHeight * (height/375.00))
 
 #endif /* UIMacros_h */

@@ -26,7 +26,16 @@
  *
  *  @return  JSON字符串
  */
-+ (NSString *)JSONString:(NSDictionary *)dict;
++ (NSString *)JSONStringFromDict:(NSDictionary *)dict;
+
+/**
+ *  @brief NSArray转换成JSON字符串
+ *
+ *  @param array 字典
+ *
+ *  @return  JSON字符串
+ */
++ (NSString *)JSONStringFromArray:(NSArray *)array;
 
 /**
  *  @brief  将url参数转换成NSDictionary

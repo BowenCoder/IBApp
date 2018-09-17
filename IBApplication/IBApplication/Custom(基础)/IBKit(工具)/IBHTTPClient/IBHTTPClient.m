@@ -28,56 +28,51 @@
 }
 
 + (void)GET:(NSString *)url
-       send:(UIView *)view
      params:(NSDictionary *)params
-    success:(HTTPClientSuccess)success
-    failure:(HTTPClientError)failure {
+   callback:(HTTPClientHandle)handle {
+    
     IBHTTPClient *client = [IBHTTPClient shareInstance];
     
     [client GET:url parameters:params progress:^(NSProgress * _Nonnull downloadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        if (success) {
-            success(responseObject);
+        if (handle) {
+            handle(responseObject, nil);
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        if (failure) {
-            failure(error);
+        if (handle) {
+            handle(nil, error);
         }
     }];
 }
 
 + (void)POST:(NSString *)url
-        send:(UIView *)view
       params:(NSDictionary *)params
-     success:(HTTPClientSuccess)success
-     failure:(HTTPClientError)failure {
-    
+    callback:(HTTPClientHandle)handle {
+
     IBHTTPClient *client = [IBHTTPClient shareInstance];
     
     [client POST:url parameters:params progress:^(NSProgress * _Nonnull uploadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        if (success) {
-            success(responseObject);
+        if (handle) {
+            handle(responseObject, nil);
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        if (failure) {
-            failure(error);
+        if (handle) {
+            handle(nil, error);
         }
     }];
 }
 
 + (void)POST:(NSString *)url
-        send:(UIView *)view
       params:(NSDictionary *)params
         data:(NSData *)fileData
    fieldName:(NSString *)fieldName
     fileName:(NSString *)fileName
     mimeType:(NSString *)mimeType
-     success:(HTTPClientSuccess)success
-     failure:(HTTPClientError)failure {
-    
+    callback:(HTTPClientHandle)handle {
+
     IBHTTPClient *client = [IBHTTPClient shareInstance];
     
     [client POST:url parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
@@ -85,24 +80,22 @@
     } progress:^(NSProgress * _Nonnull uploadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        if (success) {
-            success(responseObject);
+        if (handle) {
+            handle(responseObject, nil);
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        if (failure) {
-            failure(error);
+        if (handle) {
+            handle(nil, error);
         }
     }];
     
 }
 
 + (void)uploadFile:(NSString *)url
-              send:(UIView *)view
           fromFile:(NSURL *)path
           progress:(void(^)(NSProgress *progress))progress
-           success:(HTTPClientSuccess)success
-           failure:(HTTPClientError)failure {
-    
+          callback:(HTTPClientHandle)handle {
+
     NSURL *requestURL = [NSURL URLWithString:url];
     NSURLRequest *request = [[NSURLRequest alloc] initWithURL:requestURL];
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
@@ -110,24 +103,22 @@
     NSURLSessionUploadTask *uploadTask = [manager uploadTaskWithRequest:request fromFile:path progress:^(NSProgress * _Nonnull uploadProgress) {
         progress(uploadProgress);
     } completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
-        if (error && failure) {
-            failure(error);
+        if (error && handle) {
+            handle(nil, error);
             return;
         }
-        if (responseObject && success) {
-            success(responseObject);
+        if (responseObject && handle) {
+            handle(responseObject, nil);
         }
     }];
     [uploadTask resume];
 }
 
 + (void)uploadData:(NSString *)url
-              send:(UIView *)view
           fromData:(NSData *)data
           progress:(void(^)(NSProgress *progress))progress
-           success:(HTTPClientSuccess)success
-           failure:(HTTPClientError)failure {
-    
+          callback:(HTTPClientHandle)handle {
+
     NSURL *requestURL = [NSURL URLWithString:url];
     NSURLRequest *request = [[NSURLRequest alloc] initWithURL:requestURL];
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
@@ -135,19 +126,18 @@
     NSURLSessionUploadTask *uploadTask = [manager uploadTaskWithRequest:request fromData:data progress:^(NSProgress * _Nonnull uploadProgress) {
         progress(uploadProgress);
     } completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
-        if (error && failure) {
-            failure(error);
+        if (error && handle) {
+            handle(nil, error);
             return;
         }
-        if (responseObject && success) {
-            success(responseObject);
+        if (responseObject && handle) {
+            handle(responseObject, nil);
         }
     }];
     [uploadTask resume];
 }
 
 + (void)downloadData:(NSString *)url
-                send:(UIView *)view
               params:(NSDictionary *)params
                 save:(NSString *)path
             complete:(void (^)(NSData *data, NSError *error))complete

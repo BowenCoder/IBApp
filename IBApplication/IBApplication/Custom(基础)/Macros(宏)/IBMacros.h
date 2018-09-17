@@ -21,6 +21,15 @@
 //拼接字符串
 #define NSStringFormat(format,...) [NSString stringWithFormat:format,##__VA_ARGS__]
 
+//范围随机数
+#define IBRandom(from, to) (int)(from + (arc4random() % (to - from + 1)))
+
+//弧度转化成角度
+#define kRadianToDegree(radian) ((radian) * (180.0 / M_PI))
+
+//角度转化成弧度
+#define kDegreeToRadian(angle) ((angle) / 180.0 * M_PI)
+
 //加载图片简化
 #define kImage(Name)       ([UIImage imageNamed:Name])
 #define kImageOfFile(Name) ([UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:Name ofType:nil]])
@@ -80,7 +89,7 @@ dispatch_sync(dispatch_get_main_queue(), block);  \
 
 //日志打印
 #ifdef DEBUG
-#define NSLogger(format, ...) printf("[%s] %s %s\n", __TIME__, __FUNCTION__, [[NSString stringWithFormat:format, ## __VA_ARGS__] UTF8String])
+#define NSLogger(format, ...) printf("%s %s\n", __FUNCTION__, [[NSString stringWithFormat:format, ## __VA_ARGS__] UTF8String])
 #else
 #define NSLogger(...)
 #endif

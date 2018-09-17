@@ -51,12 +51,17 @@ static const unsigned unitFlags = (NSCalendarUnitYear| NSCalendarUnitMonth| NSCa
 }
 
 //获取时间戳
-- (long)timestamp{
+- (long)timestamp {
     
     //时间戳(到秒)
-    long timespp = [self timeIntervalSince1970]; //毫秒：时间戳*1000
+    long timespp = [self timeIntervalSince1970];
     
     return timespp;
+}
+
+//毫秒：时间戳*1000
+- (long)microsecond {
+    return [self timeIntervalSince1970] * 1000.f;
 }
 
 //时间戳转换成日期（10位时间戳）
@@ -114,7 +119,7 @@ static const unsigned unitFlags = (NSCalendarUnitYear| NSCalendarUnitMonth| NSCa
         formatter.AMSymbol = @"下午";
     }
     if (info.hour >= 19  && info.hour < 24) {
-        formatter.AMSymbol = @"下午";
+        formatter.AMSymbol = @"晚上";
     }
 
     [formatter setDateStyle:NSDateFormatterMediumStyle];

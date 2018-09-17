@@ -31,44 +31,41 @@
 
 #pragma mark - 公开方法
 
-- (void)pageLoad:(NSString *)url params:(NSDictionary *)params success:(HTTPClientSuccess)success failure:(HTTPClientError)failure isGet:(BOOL)isGet {
+- (void)pageLoad:(NSString *)url params:(NSDictionary *)params callback:(HTTPClientHandle)handle isGet:(BOOL)isGet {
     
     [MBProgressHUD showTriangleLoadingView:self.view];
-    [self requestData:url params:params success:^(id JSON) {
-        if (success) {
-            success(JSON);
-        }
+    [self requestData:url params:params callback:^(id JSON, NSError *error) {
         [MBProgressHUD hideTriangleLoadingView:self.view];
-    } failure:^(NSError *error) {
-        if (failure) {
-            failure(error);
+        if (error && handle) {
+            handle(nil, error);
+            [MBProgressHUD showNoData:self.view reload:^{
+                [self pageLoad:url params:params callback:handle isGet:isGet];
+            }];
         }
-        [MBProgressHUD hideTriangleLoadingView:self.view];
-        [MBProgressHUD showNoData:self.view reload:^{
-            [self pageLoad:url params:params success:success failure:failure isGet:isGet];
-        }];
+        if (JSON && handle) {
+            handle(JSON, nil);
+        }
     } isGet:isGet];
+
 }
 
-- (void)requestData:(NSString *)url params:(NSDictionary *)params success:(HTTPClientSuccess)success failure:(HTTPClientError)failure isGet:(BOOL)isGet {
+- (void)requestData:(NSString *)url params:(NSDictionary *)params callback:(HTTPClientHandle)handle isGet:(BOOL)isGet {
     if (isGet) {
-        [IBHTTPClient GET:url send:nil params:params success:^(id JSON) {
-            if (success) {
-                success(JSON);
+        [IBHTTPClient GET:url params:params callback:^(id JSON, NSError *error) {
+            if (error && handle) {
+                handle(nil, error);
             }
-        } failure:^(NSError *error) {
-            if (failure) {
-                failure(error);
+            if (JSON && handle) {
+                handle(JSON, nil);
             }
         }];
     } else {
-        [IBHTTPClient POST:url send:nil params:params success:^(id JSON) {
-            if (success) {
-                success(JSON);
+        [IBHTTPClient POST:url params:params callback:^(id JSON, NSError *error) {
+            if (error && handle) {
+                handle(nil, error);
             }
-        } failure:^(NSError *error) {
-            if (failure) {
-                failure(error);
+            if (JSON && handle) {
+                handle(JSON, nil);
             }
         }];
     }

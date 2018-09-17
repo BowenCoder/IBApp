@@ -28,13 +28,6 @@
  */
 - (BOOL)containsIndex:(NSUInteger)index;
 
-/**
- *  @brief NSArray转换成JSON字符串
- *
- *  @return  JSON字符串
- */
-- (NSString *)JSONString;
-
 @end
 
 
@@ -45,17 +38,17 @@
  *
  *  @return 是否添加成功
  */
-- (BOOL)addObjectOrNil:(id)anObject;
+- (BOOL)addObjectOrNil:(id)object;
 
 /**
  *  在对应的下标插入一个元素
  *
- *  @param anObject 插入的元素
+ *  @param object 插入的元素
  *  @param index    需要插入的小标
  *
  *  @return 是否插入成功
  */
-- (BOOL)insertObjectOrNil:(id)anObject atIndex:(NSUInteger)index;
+- (BOOL)insertObjectOrNil:(id)object atIndex:(NSUInteger)index;
 
 /**
  *  移除对应下标的元素
@@ -70,10 +63,20 @@
  *  替换相应下标的元素
  *
  *  @param index    要替换元素的下标
- *  @param anObject 需啊哟替换的元素
+ *  @param object 需啊哟替换的元素
  *
  *  @return 是否替换成功
  */
-- (BOOL)replaceObjectAtIndex:(NSUInteger)index withObjectOrNil:(id)anObject;
+- (BOOL)replaceObjectAtIndex:(NSUInteger)index withObjectOrNil:(id)object;
+
+/**
+ *  交换两个下标元素
+ *
+ *  @param fromIndex 要替换元素的下标
+ *  @param toIndex 替换到的下标
+ *
+ *  @return 是否替换成功
+ */
+- (BOOL)swapObjectAtIndex:(NSUInteger)fromIndex withObjectAtIndex:(NSUInteger)toIndex;
 
 @end

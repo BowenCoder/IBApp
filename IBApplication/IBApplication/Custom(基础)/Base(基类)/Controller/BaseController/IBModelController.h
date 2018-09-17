@@ -19,10 +19,10 @@
 @property (nonatomic, readonly, strong) IBTabBarController *tabController;
 
 /** 请求数据 */
-- (void)requestData:(NSString *)url params:(NSDictionary *)params success:(HTTPClientSuccess)success failure:(HTTPClientError)failure isGet:(BOOL)isGet;
+- (void)requestData:(NSString *)url params:(NSDictionary *)params callback:(HTTPClientHandle)handle isGet:(BOOL)isGet;
 
 /** 加载页面数据 */
-- (void)pageLoad:(NSString *)url params:(NSDictionary *)params success:(HTTPClientSuccess)success failure:(HTTPClientError)failure isGet:(BOOL)isGet;
+- (void)pageLoad:(NSString *)url params:(NSDictionary *)params callback:(HTTPClientHandle)handle isGet:(BOOL)isGet;
 
 
 
