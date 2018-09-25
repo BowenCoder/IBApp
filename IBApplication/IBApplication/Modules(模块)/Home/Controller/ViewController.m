@@ -26,6 +26,7 @@
 #import "MBProgressHUD+Ext.h"
 #import "NSDictionary+Ext.h"
 #import "NSArray+Ext.h"
+#import "IBPopoverView.h"
 
 @interface ViewController ()<UITableViewDataSource, UITableViewDelegate>
 
@@ -48,6 +49,7 @@
     [self addRefreshFooter];
     NSMutableArray *arr = @[].mutableCopy;
     [arr addObjectOrNil:[NSNull null]];
+
     
 }
 
@@ -61,7 +63,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [self.view endEditing:YES];
+    
 
+    
 //    [MBProgressHUD showCircleLoadingView:self.view];
 //    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
 //    view.backgroundColor = [UIColor redColor];
@@ -72,18 +76,11 @@
 //    self.popupManager.dismissOppositeDirection = YES;
 //    [self.popupManager presentContentView:view];
     
-//    AXWebViewController *webVC = [[AXWebViewController alloc] initWithAddress:@"https://www.iqiyi.com"];
-//    webVC.showsToolBar = YES;
-//     webVC.showsNavigationCloseBarButtonItem = NO;
-//    if (AX_WEB_VIEW_CONTROLLER_iOS9_0_AVAILABLE()) {
-//        webVC.webView.allowsLinkPreview = YES;
-//    }
-//    [self.navigationController pushViewController:webVC animated:YES];
 
 
-//    IBMineController *mine = [[IBMineController alloc] init];
-//    mine.config = [[IBNaviConfig alloc] initWithBarOptions:IBNaviBarOptionShow|IBNaviBarOptionColor tintColor:[UIColor orangeColor] backgroundColor:[UIColor purpleColor] backgroundImage:nil backgroundImgID:nil];
-//    [self.navigationController pushViewController:mine animated:YES];
+    IBMineController *mine = [[IBMineController alloc] init];
+    mine.config = [[IBNaviConfig alloc] initWithBarOptions:IBNaviBarOptionShow|IBNaviBarOptionColor tintColor:[UIColor orangeColor] backgroundColor:[UIColor purpleColor] backgroundImage:nil backgroundImgID:nil];
+    [self.navigationController pushViewController:mine animated:YES];
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {

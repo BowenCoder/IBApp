@@ -9,8 +9,12 @@
 #import "IBMineController.h"
 //#import "UINavigationController+FDFullscreenPopGesture.h"
 #import "IBNaviController.h"
+#import "IBPopoverView.h"
+
 
 @interface IBMineController ()<UINavigationControllerDelegate>
+
+@property (nonatomic, strong) UIButton *btn;
 
 @end
 
@@ -29,8 +33,27 @@
 //    [self rightBarItemWithTitle:@"关注" titleColor:[UIColor redColor] imageName:@"bubble"];
 //    [self leftBarItemWithTitle:@"关注" titleColor:[UIColor redColor] imageName:@"bubble"];
     
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    btn.frame= CGRectMake(100, 200, 100, 44);
+    btn.backgroundColor = [UIColor redColor];
+    [btn addTarget:self action:@selector(test) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:btn];
+    self.btn = btn;
+}
+
+- (void)test {
+    IBPopoverView *pop = [[IBPopoverView alloc] initWithFrame:CGRectMake(50, 100, 100, 100)];
+    pop.priority = IBPopoverPriorityHorizontal;
+    pop.dimBackground = YES;
+    pop.preferredArrowDirection = IBPopoverArrowDirectionAny;
+    pop.translucent = NO;
+    pop.translucentStyle = IBPopoverTranslucentDefault;
+    pop.preferredWidth = 300.0;
+    pop.contentView.frame = CGRectMake(0, 0, 50, 50);
+    [pop showFromRect:self.btn.frame inView:self.view animated:YES duration:20];
 
 }
+
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
 //    [self.navigationController setNavigationBarHidden:YES animated:animated];
