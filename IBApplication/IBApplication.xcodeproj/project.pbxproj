@@ -138,11 +138,9 @@
 		4A78076920E9F1BB00E60ACA /* MASConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A78075D20E9F1BB00E60ACA /* MASConstraint.m */; };
 		4A78076A20E9F1BB00E60ACA /* MASViewConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A78075F20E9F1BB00E60ACA /* MASViewConstraint.m */; };
 		4A78076B20E9F1BB00E60ACA /* MASViewAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A78076020E9F1BB00E60ACA /* MASViewAttribute.m */; };
-		4A78076C20E9F1BB00E60ACA /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4A78076120E9F1BB00E60ACA /* Info.plist */; };
 		4A78077320E9FCAF00E60ACA /* NSObject+YYModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A78077020E9FCAE00E60ACA /* NSObject+YYModel.m */; };
 		4A78077420E9FCAF00E60ACA /* YYClassInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A78077120E9FCAE00E60ACA /* YYClassInfo.m */; };
 		4A78077A20EA482E00E60ACA /* niconiconi@2x.gif in Resources */ = {isa = PBXBuildFile; fileRef = 4A78077920EA482E00E60ACA /* niconiconi@2x.gif */; };
-		4A78077E20EA493A00E60ACA /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4A78077C20EA493900E60ACA /* Info.plist */; };
 		4A81F339212560C400A99CE3 /* UIControl+Repeat.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A81F338212560C400A99CE3 /* UIControl+Repeat.m */; };
 		4AAA27C02107379100B0C256 /* IBNaviBar+Config.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AAA27BF2107379100B0C256 /* IBNaviBar+Config.m */; };
 		4AAA78EB20ECB4F200CF5639 /* IBDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AAA78EA20ECB4F200CF5639 /* IBDebug.m */; };
@@ -2256,14 +2254,12 @@
 				4A1FB14A20E921E90056A026 /* PlayButtonOverlayLarge@2x.png in Resources */,
 				F3A5C8E4212C7422005D9174 /* WeiboSDK.bundle in Resources */,
 				4A6F196C20E0923000EAF1A7 /* NSDateTimeAgo.bundle in Resources */,
-				4A78076C20E9F1BB00E60ACA /* Info.plist in Resources */,
 				4A78077A20EA482E00E60ACA /* niconiconi@2x.gif in Resources */,
 				4A1FB15420E921E90056A026 /* PlayButtonOverlayLarge.png in Resources */,
 				4A1FB14820E921E90056A026 /* UIBarButtonItemArrowRight@3x.png in Resources */,
 				4A1FB14320E921E90056A026 /* ImageError@3x.png in Resources */,
 				4A1FB14620E921E90056A026 /* VideoOverlay@3x.png in Resources */,
 				4A1FB15720E921E90056A026 /* ImageSelectedSmallOn@2x.png in Resources */,
-				4A78077E20EA493A00E60ACA /* Info.plist in Resources */,
 				4A1FB13820E921E90056A026 /* UIBarButtonItemGrid@3x.png in Resources */,
 				4A1FB13720E921E90056A026 /* UIBarButtonItemArrowLeft.png in Resources */,
 				4A1FB15020E921E90056A026 /* ImageSelectedOff@3x.png in Resources */,
