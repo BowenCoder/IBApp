@@ -26,6 +26,7 @@
 #import "MBProgressHUD+Ext.h"
 #import "NSDictionary+Ext.h"
 #import "NSArray+Ext.h"
+#import "IBPopoverView.h"
 
 @interface ViewController ()<UITableViewDataSource, UITableViewDelegate>
 
@@ -48,6 +49,7 @@
     [self addRefreshFooter];
     NSMutableArray *arr = @[].mutableCopy;
     [arr addObjectOrNil:[NSNull null]];
+
     
 }
 
@@ -61,7 +63,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [self.view endEditing:YES];
+    
 
+    
 //    [MBProgressHUD showCircleLoadingView:self.view];
 //    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
 //    view.backgroundColor = [UIColor redColor];

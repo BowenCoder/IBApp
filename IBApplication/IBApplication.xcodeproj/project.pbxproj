@@ -190,6 +190,8 @@
 		4AC29FE12111CB8800F218FE /* AXIndicatorView.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4AC29FDC2111CB8800F218FE /* AXIndicatorView.bundle */; };
 		4AC29FE22111CB8800F218FE /* AXActivityIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC29FDD2111CB8800F218FE /* AXActivityIndicatorView.m */; };
 		4AC29FE32111CB8800F218FE /* AXSpinningWaitCursor.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC29FDE2111CB8800F218FE /* AXSpinningWaitCursor.m */; };
+		4AC428EE215A569C008C93D4 /* IBPopoverLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC428ED215A569C008C93D4 /* IBPopoverLabel.m */; };
+		4AC428F1215A56A8008C93D4 /* IBPopoverMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC428F0215A56A8008C93D4 /* IBPopoverMenu.m */; };
 		4AC455C421368840007CBEF0 /* IBAuthManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC455C321368840007CBEF0 /* IBAuthManager.m */; };
 		4AC81CCC20F3200400A1F246 /* IBTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC81CCB20F3200400A1F246 /* IBTabBarController.m */; };
 		4AC81CD220F37BFE00A1F246 /* IBWebController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC81CD120F37BFE00A1F246 /* IBWebController.m */; };
@@ -224,6 +226,7 @@
 		4AE24BE0214F7518006448DC /* UIFont+Ext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE24BDF214F7518006448DC /* UIFont+Ext.m */; };
 		4AE64C49212ACFF7003DE328 /* IBCheckbox.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE64C48212ACFF7003DE328 /* IBCheckbox.m */; };
 		4AE64C53212BB7E8003DE328 /* IBPopupManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE64C52212BB7E8003DE328 /* IBPopupManager.m */; };
+		4AED64C0215378EF0082280F /* IBPopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AED64BF215378EF0082280F /* IBPopoverView.m */; };
 		4AEEA7A9213D0EFB00CFAA3D /* IBActionItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AEEA7A8213D0EFA00CFAA3D /* IBActionItem.m */; };
 		4AEEA7AC213D148500CFAA3D /* IBActionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AEEA7AB213D148500CFAA3D /* IBActionCell.m */; };
 		4AEEA7B2213D2AA700CFAA3D /* IBActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AEEA7B1213D2AA700CFAA3D /* IBActionSheet.m */; };
@@ -596,6 +599,10 @@
 		4AC29FDD2111CB8800F218FE /* AXActivityIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AXActivityIndicatorView.m; sourceTree = "<group>"; };
 		4AC29FDE2111CB8800F218FE /* AXSpinningWaitCursor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AXSpinningWaitCursor.m; sourceTree = "<group>"; };
 		4AC29FDF2111CB8800F218FE /* AXBreachedAnnulusIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AXBreachedAnnulusIndicatorView.h; sourceTree = "<group>"; };
+		4AC428EC215A569C008C93D4 /* IBPopoverLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBPopoverLabel.h; sourceTree = "<group>"; };
+		4AC428ED215A569C008C93D4 /* IBPopoverLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBPopoverLabel.m; sourceTree = "<group>"; };
+		4AC428EF215A56A8008C93D4 /* IBPopoverMenu.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBPopoverMenu.h; sourceTree = "<group>"; };
+		4AC428F0215A56A8008C93D4 /* IBPopoverMenu.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBPopoverMenu.m; sourceTree = "<group>"; };
 		4AC455C221368840007CBEF0 /* IBAuthManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBAuthManager.h; sourceTree = "<group>"; };
 		4AC455C321368840007CBEF0 /* IBAuthManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBAuthManager.m; sourceTree = "<group>"; };
 		4AC455C52137C9B0007CBEF0 /* IBErrorCode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBErrorCode.h; sourceTree = "<group>"; };
@@ -668,6 +675,8 @@
 		4AE64C48212ACFF7003DE328 /* IBCheckbox.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBCheckbox.m; sourceTree = "<group>"; };
 		4AE64C51212BB7E8003DE328 /* IBPopupManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBPopupManager.h; sourceTree = "<group>"; };
 		4AE64C52212BB7E8003DE328 /* IBPopupManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBPopupManager.m; sourceTree = "<group>"; };
+		4AED64BE215378EF0082280F /* IBPopoverView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBPopoverView.h; sourceTree = "<group>"; };
+		4AED64BF215378EF0082280F /* IBPopoverView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBPopoverView.m; sourceTree = "<group>"; };
 		4AEEA7A7213D0EFA00CFAA3D /* IBActionItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBActionItem.h; sourceTree = "<group>"; };
 		4AEEA7A8213D0EFA00CFAA3D /* IBActionItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBActionItem.m; sourceTree = "<group>"; };
 		4AEEA7AA213D148500CFAA3D /* IBActionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBActionCell.h; sourceTree = "<group>"; };
@@ -1281,6 +1290,9 @@
 		4A7D3A352142696700310E7B /* IBPopoverView */ = {
 			isa = PBXGroup;
 			children = (
+				4AC428EB215A5645008C93D4 /* IBPopoverMenu */,
+				4AC428EA215A5632008C93D4 /* IBPopoverLabel */,
+				4AC428E9215A5624008C93D4 /* Core */,
 			);
 			path = IBPopoverView;
 			sourceTree = "<group>";
@@ -1573,6 +1585,33 @@
 				4AC29FDC2111CB8800F218FE /* AXIndicatorView.bundle */,
 			);
 			path = AXIndicatorView;
+			sourceTree = "<group>";
+		};
+		4AC428E9215A5624008C93D4 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				4AED64BE215378EF0082280F /* IBPopoverView.h */,
+				4AED64BF215378EF0082280F /* IBPopoverView.m */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		4AC428EA215A5632008C93D4 /* IBPopoverLabel */ = {
+			isa = PBXGroup;
+			children = (
+				4AC428EC215A569C008C93D4 /* IBPopoverLabel.h */,
+				4AC428ED215A569C008C93D4 /* IBPopoverLabel.m */,
+			);
+			path = IBPopoverLabel;
+			sourceTree = "<group>";
+		};
+		4AC428EB215A5645008C93D4 /* IBPopoverMenu */ = {
+			isa = PBXGroup;
+			children = (
+				4AC428EF215A56A8008C93D4 /* IBPopoverMenu.h */,
+				4AC428F0215A56A8008C93D4 /* IBPopoverMenu.m */,
+			);
+			path = IBPopoverMenu;
 			sourceTree = "<group>";
 		};
 		4AC455C121368823007CBEF0 /* Auth */ = {
@@ -2367,9 +2406,11 @@
 				4AC29F80210F04A900F218FE /* MJRefreshBackGifFooter.m in Sources */,
 				4ACC56B020E0001E001352AE /* NSDate+Ext.m in Sources */,
 				4A6F19B720E3FE9600EAF1A7 /* IBSocketService.m in Sources */,
+				4AC428F1215A56A8008C93D4 /* IBPopoverMenu.m in Sources */,
 				4A1FB20F20E92D5E0056A026 /* NSData+ImageContentType.m in Sources */,
 				4A1FB12B20E921E90056A026 /* DALabeledCircularProgressView.m in Sources */,
 				4A1FB22620E92D5E0056A026 /* SDWebImageTransition.m in Sources */,
+				4AC428EE215A569C008C93D4 /* IBPopoverLabel.m in Sources */,
 				4ACC55E720DB5F3E001352AE /* main.m in Sources */,
 				4ACC567520DE5E29001352AE /* UIThemeManager.m in Sources */,
 				4A1FB21E20E92D5E0056A026 /* SDWebImageGIFCoder.m in Sources */,
@@ -2397,6 +2438,7 @@
 				4A6F199E20E3B56C00EAF1A7 /* IBSocketPacketEncode.m in Sources */,
 				4A1FB21620E92D5E0056A026 /* NSImage+WebCache.m in Sources */,
 				4ACC569B20DEC694001352AE /* IBApp.m in Sources */,
+				4AED64C0215378EF0082280F /* IBPopoverView.m in Sources */,
 				4A1FB20C20E92D5E0056A026 /* UIImage+ForceDecode.m in Sources */,
 				4AC81CD720F37C6B00A1F246 /* IBCollectionController.m in Sources */,
 				4A1FB22220E92D5E0056A026 /* SDWebImageDownloaderOperation.m in Sources */,
