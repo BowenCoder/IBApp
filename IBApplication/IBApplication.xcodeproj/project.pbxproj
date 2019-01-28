@@ -226,6 +226,7 @@
 		4AE24BE0214F7518006448DC /* UIFont+Ext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE24BDF214F7518006448DC /* UIFont+Ext.m */; };
 		4AE64C49212ACFF7003DE328 /* IBCheckbox.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE64C48212ACFF7003DE328 /* IBCheckbox.m */; };
 		4AE64C53212BB7E8003DE328 /* IBPopupManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE64C52212BB7E8003DE328 /* IBPopupManager.m */; };
+		4AEBF47A21FF15FA00206451 /* ONOXMLDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AEBF47721FF15FA00206451 /* ONOXMLDocument.m */; };
 		4AED64C0215378EF0082280F /* IBPopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AED64BF215378EF0082280F /* IBPopoverView.m */; };
 		4AEEA7A9213D0EFB00CFAA3D /* IBActionItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AEEA7A8213D0EFA00CFAA3D /* IBActionItem.m */; };
 		4AEEA7AC213D148500CFAA3D /* IBActionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AEEA7AB213D148500CFAA3D /* IBActionCell.m */; };
@@ -675,6 +676,8 @@
 		4AE64C48212ACFF7003DE328 /* IBCheckbox.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBCheckbox.m; sourceTree = "<group>"; };
 		4AE64C51212BB7E8003DE328 /* IBPopupManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBPopupManager.h; sourceTree = "<group>"; };
 		4AE64C52212BB7E8003DE328 /* IBPopupManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBPopupManager.m; sourceTree = "<group>"; };
+		4AEBF47721FF15FA00206451 /* ONOXMLDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ONOXMLDocument.m; path = "../../../../../../../Downloads/Ono-master/Source/ONOXMLDocument.m"; sourceTree = "<group>"; };
+		4AEBF47921FF15FA00206451 /* ONOXMLDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ONOXMLDocument.h; path = "../../../../../../../Downloads/Ono-master/Source/ONOXMLDocument.h"; sourceTree = "<group>"; };
 		4AED64BE215378EF0082280F /* IBPopoverView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBPopoverView.h; sourceTree = "<group>"; };
 		4AED64BF215378EF0082280F /* IBPopoverView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBPopoverView.m; sourceTree = "<group>"; };
 		4AEEA7A7213D0EFA00CFAA3D /* IBActionItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBActionItem.h; sourceTree = "<group>"; };
@@ -1817,6 +1820,7 @@
 		4ACC55C820DB5F3E001352AE /* Vender(第三方) */ = {
 			isa = PBXGroup;
 			children = (
+				4AEBF47621FF15CD00206451 /* Ono */,
 				4AC29FA02111C77D00F218FE /* AXWebViewController */,
 				4AC29F4B210F04A900F218FE /* MJRefresh */,
 				4AAA78EC20ECB5A000CF5639 /* YYKit */,
@@ -2117,6 +2121,15 @@
 				4AE64C52212BB7E8003DE328 /* IBPopupManager.m */,
 			);
 			path = IBPopupManager;
+			sourceTree = "<group>";
+		};
+		4AEBF47621FF15CD00206451 /* Ono */ = {
+			isa = PBXGroup;
+			children = (
+				4AEBF47921FF15FA00206451 /* ONOXMLDocument.h */,
+				4AEBF47721FF15FA00206451 /* ONOXMLDocument.m */,
+			);
+			path = Ono;
 			sourceTree = "<group>";
 		};
 		4AEEA7A6213D0D3400CFAA3D /* IBActionSheet */ = {
@@ -2445,6 +2458,7 @@
 				4A1FB12D20E921E90056A026 /* MWPhotoBrowser.m in Sources */,
 				F367404D212C54B000E614A0 /* UIViewController+IBPopup.m in Sources */,
 				4ACC566020DD7FF9001352AE /* UIViewController+MJPopupViewController.m in Sources */,
+				4AEBF47A21FF15FA00206451 /* ONOXMLDocument.m in Sources */,
 				4A78076420E9F1BB00E60ACA /* MASCompositeConstraint.m in Sources */,
 				4A1FB21A20E92D5E0056A026 /* SDWebImageCodersManager.m in Sources */,
 				4AC29FAB2111C77D00F218FE /* AXWebViewControllerActivity.m in Sources */,
