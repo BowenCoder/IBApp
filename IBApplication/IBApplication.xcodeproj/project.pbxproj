@@ -142,6 +142,9 @@
 		4A78077420E9FCAF00E60ACA /* YYClassInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A78077120E9FCAE00E60ACA /* YYClassInfo.m */; };
 		4A78077A20EA482E00E60ACA /* niconiconi@2x.gif in Resources */ = {isa = PBXBuildFile; fileRef = 4A78077920EA482E00E60ACA /* niconiconi@2x.gif */; };
 		4A81F339212560C400A99CE3 /* UIControl+Repeat.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A81F338212560C400A99CE3 /* UIControl+Repeat.m */; };
+		4A95F6E8222E4B7500EE07B9 /* ONOXMLDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A95F6E6222E4B7500EE07B9 /* ONOXMLDocument.m */; };
+		4A95F6ED222E509300EE07B9 /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A95F6E9222E4F5800EE07B9 /* libxml2.tbd */; };
+		4A95F6F0222E5A9500EE07B9 /* NullSafe.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A95F6EF222E5A9500EE07B9 /* NullSafe.m */; };
 		4AAA27C02107379100B0C256 /* IBNaviBar+Config.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AAA27BF2107379100B0C256 /* IBNaviBar+Config.m */; };
 		4AAA78EB20ECB4F200CF5639 /* IBDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AAA78EA20ECB4F200CF5639 /* IBDebug.m */; };
 		4AAA78F220ECBCB200CF5639 /* IBFPSLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AAA78F120ECBCB200CF5639 /* IBFPSLabel.m */; };
@@ -226,7 +229,6 @@
 		4AE24BE0214F7518006448DC /* UIFont+Ext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE24BDF214F7518006448DC /* UIFont+Ext.m */; };
 		4AE64C49212ACFF7003DE328 /* IBCheckbox.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE64C48212ACFF7003DE328 /* IBCheckbox.m */; };
 		4AE64C53212BB7E8003DE328 /* IBPopupManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE64C52212BB7E8003DE328 /* IBPopupManager.m */; };
-		4AEBF47A21FF15FA00206451 /* ONOXMLDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AEBF47721FF15FA00206451 /* ONOXMLDocument.m */; };
 		4AED64C0215378EF0082280F /* IBPopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AED64BF215378EF0082280F /* IBPopoverView.m */; };
 		4AEEA7A9213D0EFB00CFAA3D /* IBActionItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AEEA7A8213D0EFA00CFAA3D /* IBActionItem.m */; };
 		4AEEA7AC213D148500CFAA3D /* IBActionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AEEA7AB213D148500CFAA3D /* IBActionCell.m */; };
@@ -506,6 +508,10 @@
 		4A78077D20EA493900E60ACA /* SDWebImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWebImage.h; sourceTree = "<group>"; };
 		4A81F337212560C400A99CE3 /* UIControl+Repeat.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIControl+Repeat.h"; sourceTree = "<group>"; };
 		4A81F338212560C400A99CE3 /* UIControl+Repeat.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIControl+Repeat.m"; sourceTree = "<group>"; };
+		4A95F6E4222E4B7500EE07B9 /* ONOXMLDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ONOXMLDocument.h; sourceTree = "<group>"; };
+		4A95F6E6222E4B7500EE07B9 /* ONOXMLDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ONOXMLDocument.m; sourceTree = "<group>"; };
+		4A95F6E9222E4F5800EE07B9 /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = usr/lib/libxml2.tbd; sourceTree = SDKROOT; };
+		4A95F6EF222E5A9500EE07B9 /* NullSafe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NullSafe.m; sourceTree = "<group>"; };
 		4AAA27BE2107379100B0C256 /* IBNaviBar+Config.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "IBNaviBar+Config.h"; sourceTree = "<group>"; };
 		4AAA27BF2107379100B0C256 /* IBNaviBar+Config.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "IBNaviBar+Config.m"; sourceTree = "<group>"; };
 		4AAA78E920ECB4F200CF5639 /* IBDebug.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBDebug.h; sourceTree = "<group>"; };
@@ -676,8 +682,6 @@
 		4AE64C48212ACFF7003DE328 /* IBCheckbox.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBCheckbox.m; sourceTree = "<group>"; };
 		4AE64C51212BB7E8003DE328 /* IBPopupManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBPopupManager.h; sourceTree = "<group>"; };
 		4AE64C52212BB7E8003DE328 /* IBPopupManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBPopupManager.m; sourceTree = "<group>"; };
-		4AEBF47721FF15FA00206451 /* ONOXMLDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ONOXMLDocument.m; path = "../../../../../../../Downloads/Ono-master/Source/ONOXMLDocument.m"; sourceTree = "<group>"; };
-		4AEBF47921FF15FA00206451 /* ONOXMLDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ONOXMLDocument.h; path = "../../../../../../../Downloads/Ono-master/Source/ONOXMLDocument.h"; sourceTree = "<group>"; };
 		4AED64BE215378EF0082280F /* IBPopoverView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBPopoverView.h; sourceTree = "<group>"; };
 		4AED64BF215378EF0082280F /* IBPopoverView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBPopoverView.m; sourceTree = "<group>"; };
 		4AEEA7A7213D0EFA00CFAA3D /* IBActionItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBActionItem.h; sourceTree = "<group>"; };
@@ -725,6 +729,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4A95F6ED222E509300EE07B9 /* libxml2.tbd in Frameworks */,
 				4A06E17A2130049A00227583 /* libsqlite3.tbd in Frameworks */,
 				F3A5C8FD212C7CAD005D9174 /* CoreMotion.framework in Frameworks */,
 				F3A5C8FB212C7C88005D9174 /* libz.tbd in Frameworks */,
@@ -1309,6 +1314,23 @@
 			path = UIControl;
 			sourceTree = "<group>";
 		};
+		4A95F6E2222E4B7500EE07B9 /* Ono */ = {
+			isa = PBXGroup;
+			children = (
+				4A95F6E4222E4B7500EE07B9 /* ONOXMLDocument.h */,
+				4A95F6E6222E4B7500EE07B9 /* ONOXMLDocument.m */,
+			);
+			path = Ono;
+			sourceTree = "<group>";
+		};
+		4A95F6EE222E5A9500EE07B9 /* NullSafe */ = {
+			isa = PBXGroup;
+			children = (
+				4A95F6EF222E5A9500EE07B9 /* NullSafe.m */,
+			);
+			path = NullSafe;
+			sourceTree = "<group>";
+		};
 		4AAA78E820ECB4CA00CF5639 /* IBDebug */ = {
 			isa = PBXGroup;
 			children = (
@@ -1820,7 +1842,8 @@
 		4ACC55C820DB5F3E001352AE /* Vender(第三方) */ = {
 			isa = PBXGroup;
 			children = (
-				4AEBF47621FF15CD00206451 /* Ono */,
+				4A95F6EE222E5A9500EE07B9 /* NullSafe */,
+				4A95F6E2222E4B7500EE07B9 /* Ono */,
 				4AC29FA02111C77D00F218FE /* AXWebViewController */,
 				4AC29F4B210F04A900F218FE /* MJRefresh */,
 				4AAA78EC20ECB5A000CF5639 /* YYKit */,
@@ -2123,15 +2146,6 @@
 			path = IBPopupManager;
 			sourceTree = "<group>";
 		};
-		4AEBF47621FF15CD00206451 /* Ono */ = {
-			isa = PBXGroup;
-			children = (
-				4AEBF47921FF15FA00206451 /* ONOXMLDocument.h */,
-				4AEBF47721FF15FA00206451 /* ONOXMLDocument.m */,
-			);
-			path = Ono;
-			sourceTree = "<group>";
-		};
 		4AEEA7A6213D0D3400CFAA3D /* IBActionSheet */ = {
 			isa = PBXGroup;
 			children = (
@@ -2216,6 +2230,7 @@
 		F3A5C8F7212C7C70005D9174 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4A95F6E9222E4F5800EE07B9 /* libxml2.tbd */,
 				4A06E1792130049A00227583 /* libsqlite3.tbd */,
 				F3A5C8FC212C7CAD005D9174 /* CoreMotion.framework */,
 				F3A5C8FA212C7C88005D9174 /* libz.tbd */,
@@ -2394,6 +2409,7 @@
 				F367404E212C54B000E614A0 /* IBPopupControllerTransitioningSlideVertical.m in Sources */,
 				4A1FB21920E92D5E0056A026 /* SDWebImageFrame.m in Sources */,
 				4A1FB20920E92D5E0056A026 /* SDImageCache.m in Sources */,
+				4A95F6F0222E5A9500EE07B9 /* NullSafe.m in Sources */,
 				4AAA78EB20ECB4F200CF5639 /* IBDebug.m in Sources */,
 				4AC81CE420F37D4600A1F246 /* IBViewModel.m in Sources */,
 				4AC29F89210F04A900F218FE /* MJRefreshFooter.m in Sources */,
@@ -2458,7 +2474,7 @@
 				4A1FB12D20E921E90056A026 /* MWPhotoBrowser.m in Sources */,
 				F367404D212C54B000E614A0 /* UIViewController+IBPopup.m in Sources */,
 				4ACC566020DD7FF9001352AE /* UIViewController+MJPopupViewController.m in Sources */,
-				4AEBF47A21FF15FA00206451 /* ONOXMLDocument.m in Sources */,
+				4A95F6E8222E4B7500EE07B9 /* ONOXMLDocument.m in Sources */,
 				4A78076420E9F1BB00E60ACA /* MASCompositeConstraint.m in Sources */,
 				4A1FB21A20E92D5E0056A026 /* SDWebImageCodersManager.m in Sources */,
 				4AC29FAB2111C77D00F218FE /* AXWebViewControllerActivity.m in Sources */,
@@ -2685,7 +2701,9 @@
 					"$(PROJECT_DIR)/IBApplication/SDKFile(集成)/TencentSDK",
 					"$(PROJECT_DIR)/IBApplication/SDKFile(集成)/AlipaySDK",
 				);
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/IBApplication/Resource(资源)/PrefixHeader.pch";
+				HEADER_SEARCH_PATHS = " '$(SDKROOT)/usr/include/libxml2'";
 				INFOPLIST_FILE = "$(SRCROOT)/IBApplication/Resource(资源)/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -2718,7 +2736,9 @@
 					"$(PROJECT_DIR)/IBApplication/SDKFile(集成)/TencentSDK",
 					"$(PROJECT_DIR)/IBApplication/SDKFile(集成)/AlipaySDK",
 				);
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/IBApplication/Resource(资源)/PrefixHeader.pch";
+				HEADER_SEARCH_PATHS = " '$(SDKROOT)/usr/include/libxml2'";
 				INFOPLIST_FILE = "$(SRCROOT)/IBApplication/Resource(资源)/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
