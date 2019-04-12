@@ -9,6 +9,15 @@
 #ifndef IBMacros_h
 #define IBMacros_h
 
+#define defineToString(macro) #macro
+
+/// 忽略警告 warningName：clang的warning名，warning 列表参考：https://clang.llvm.org/docs/DiagnosticsReference.html
+#define BeginIgnoreClangWarning(warningName) \
+_Pragma("clang diagnostic push") \
+_Pragma(defineToString(clang diagnostic ignored warningName))
+
+#define EndIgnoreClangWarning _Pragma("clang diagnostic pop")
+
 //获取系统对象
 #define kApplication        [UIApplication sharedApplication]
 #define kAppWindow          [UIApplication sharedApplication].keyWindow
@@ -22,7 +31,7 @@
 #define NSStringFormat(format,...) [NSString stringWithFormat:format,##__VA_ARGS__]
 
 //范围随机数
-#define IBRandom(from, to) (int)(from + (arc4random() % (to - from + 1)))
+#define kRandom(from, to) (int)(from + (arc4random() % (to - from + 1)))
 
 //弧度转化成角度
 #define kRadianToDegree(radian) ((radian) * (180.0 / M_PI))
@@ -74,17 +83,17 @@ alpha:(a)])
 #ifndef dispatch_main_async_safe
 #define dispatch_main_async_safe(block)\
 if (strcmp(dispatch_queue_get_label(DISPATCH_CURRENT_QUEUE_LABEL), dispatch_queue_get_label(dispatch_get_main_queue())) == 0) {\
-block();\
+    block();\
 } else {\
-dispatch_async(dispatch_get_main_queue(), block);\
+    dispatch_async(dispatch_get_main_queue(), block);\
 }
 #endif
 
-#define dispatch_main_sync_safe(block)            \
-if ([NSThread isMainThread]) {                    \
-block();                                          \
-} else {                                          \
-dispatch_sync(dispatch_get_main_queue(), block);  \
+#define dispatch_main_sync_safe(block) \
+if ([NSThread isMainThread]) { \
+    block(); \
+} else { \
+    dispatch_sync(dispatch_get_main_queue(), block);  \
 }
 
 //日志打印

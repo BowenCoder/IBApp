@@ -19,7 +19,7 @@
 + (void)openFPS {
     
     IBFPSLabel *fps = [[IBFPSLabel alloc] initWithFrame:CGRectMake(([[UIScreen mainScreen] bounds].size.width-50)/2+50, 0, 60, 20)];
-    if (IPHONEX) {
+    if (kIphoneX) {
         fps.frame = CGRectMake(([[UIScreen mainScreen] bounds].size.width)/2-30, 26, 60, 20);
     }
     if ([UIApplication sharedApplication].keyWindow) {

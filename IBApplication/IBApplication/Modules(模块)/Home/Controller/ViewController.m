@@ -50,6 +50,8 @@
     NSMutableArray *arr = @[].mutableCopy;
     [arr addObjectOrNil:[NSNull null]];
 
+    NSLog(@"%@", NSStringFromCGRect(CGRectMakeFit(100, 150, 200, 250)));
+    NSLog(@"demo %lf", ceil(2.1 * kScreenScale) / kScreenScale);
     
 }
 

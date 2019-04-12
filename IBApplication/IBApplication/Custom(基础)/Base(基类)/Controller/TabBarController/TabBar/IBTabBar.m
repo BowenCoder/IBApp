@@ -112,7 +112,7 @@
     [self.items enumerateObjectsUsingBlock:^(IBTabBarItem * _Nonnull item, NSUInteger idx, BOOL * _Nonnull stop) {
         CGRect itemFrame = item.frame;
         CGFloat itemHeight = self.frame.size.height;
-        if (IPHONEX || itemHeight > 50) {
+        if (kIphoneX || itemHeight > 50) {
             itemHeight = 49; // iphoneX高度要小
         }
         BOOL isNoSettingItemSize = !item.itemModel.itemSize.width || !item.itemModel.itemSize.height;
