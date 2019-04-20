@@ -10,5 +10,18 @@
 
 @implementation IBView
 
+- (instancetype)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        [self setupView];
+    }
+    return self;
+}
+
+- (void)setupView
+{
+    
+}
 
 @end

@@ -11,6 +11,9 @@
 
 #define defineToString(macro) #macro
 
+/// 判断是不是开发者自己
+#define kIsCoder(devicename) [[UIDevice currentDevice].name isEqualToString:devicename]
+
 /// 忽略警告 warningName：clang的warning名，warning 列表参考：https://clang.llvm.org/docs/DiagnosticsReference.html
 #define BeginIgnoreClangWarning(warningName) \
 _Pragma("clang diagnostic push") \
@@ -98,8 +101,10 @@ if ([NSThread isMainThread]) { \
 
 //日志打印
 #ifdef DEBUG
+#define executeInDebug(block) block()
 #define NSLogger(format, ...) printf("%s %s\n", __FUNCTION__, [[NSString stringWithFormat:format, ## __VA_ARGS__] UTF8String])
 #else
+#define executeInDebug(block)
 #define NSLogger(...)
 #endif
 

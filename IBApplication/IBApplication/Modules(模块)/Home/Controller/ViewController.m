@@ -50,8 +50,13 @@
     NSMutableArray *arr = @[].mutableCopy;
     [arr addObjectOrNil:[NSNull null]];
 
-    NSLog(@"%@", NSStringFromCGRect(CGRectMakeFit(100, 150, 200, 250)));
+    NSLog(@"%@", NSStringFromCGRect(CGRectMakeFit(111, 333, 555, 777)));
     NSLog(@"demo %lf", ceil(2.1 * kScreenScale) / kScreenScale);
+    
+    executeInDebug(^{
+        NSLog(@"bowen 123");
+        NSLog(@"bowen %@", [UIDevice currentDevice].name);
+    });
     
 }
 

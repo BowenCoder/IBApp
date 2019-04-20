@@ -7,7 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "YYModel.h"
 
-@interface IBModel : NSObject
+@interface IBModel : NSObject <NSCoding, NSCopying, YYModel>
 
 @end
