@@ -1,0 +1,165 @@
+
+
+def fastlane_message(msg)
+  puts "🌸 #{msg}".blue
+end
+
+default_platform :ios
+platform :ios do
+
+  before_all do
+  end
+
+  lane :build do |options|
+
+    # git log
+    git_log = `git --no-pager log --pretty=format:"%an   %ad   %s" --date=format:'%m/%d %H:%M' --after="yesterday"`
+    fastlane_message "git_log:\n#{git_log}"
+
+    # prepare config
+    work_path = File.expand_path("..", Dir.pwd)
+    fastlane_message "work_path:#{work_path}"
+
+    ft_name = File.basename(work_path)
+    fastlane_message "ft_name:#{ft_name}"
+
+    project_path = "#{work_path}/Assassin.xcodeproj"
+    fastlane_message "project_path:#{project_path}"
+
+    workspace_path =  "#{work_path}/Assassin.xcworkspace"
+    fastlane_message "workspace_path:#{workspace_path}"
+
+    git_branch = options[:'git_branch'].gsub('/', '_')
+    fastlane_message "git_branch:#{git_branch}"
+    raise "missing config git_branch!" unless git_branch
+
+    build_type = options[:'build_type']
+    fastlane_message "build_type:#{build_type}"
+    raise "missing config build_type!" unless build_type
+
+    output_root_path = "#{Dir.home}/app_builder/build_result/ios"
+    fastlane_message "output_root_path:#{output_root_path}"
+
+    date_now = Time.new.strftime("%Y%m%d_%H%M%S")
+    fastlane_message "date_now:#{date_now}"
+
+    dest_dir = "#{ft_name}/#{git_branch}/#{build_type}_#{date_now}"
+    fastlane_message "dest_dir:#{dest_dir}"
+
+    output_dir = "#{output_root_path}/#{dest_dir}"
+    fastlane_message "output_dir:#{output_dir}"
+    FileUtils.mkpath output_dir
+
+    build_timestamp = Time.new.strftime("%y%m%d%H%M")
+    if build_type == "Assassin"
+      build_no = "9.#{build_timestamp}"
+    else
+      build_no = "0.#{build_timestamp}"
+    end
+    fastlane_message "build_no:#{build_no}"
+
+    build_version = get_version_number(xcodeproj: project_path)
+    fastlane_message "build_version:#{build_version}"
+
+    file_name = "#{build_type}_#{build_version}.#{build_no}"
+    fastlane_message "file_name:#{file_name}"
+
+    archive_path = "#{output_dir}/#{file_name}.xcarchive"
+    fastlane_message "archive_path:#{archive_path}"
+
+    adhoc_url = "https://192.168.7.252:9989/ios/#{dest_dir}/install.html"
+    fastlane_message "adhoc_url:#{adhoc_url}"
+
+    # parse build type
+    target = "Assassin"
+    configuration = ""
+    export_method = ""
+    ipa_name = ""
+
+    case build_type
+    when 'Assassin'
+      configuration = "Release"
+      export_method = "ad-hoc"
+      ipa_name = "#{file_name}_adhoc.ipa"
+    when 'AssassinENT'
+      configuration = "Enterprise"
+      export_method = "enterprise"
+      ipa_name = "#{file_name}_enterprise.ipa"
+    end
+
+    fastlane_message "configuration:#{configuration}"
+    fastlane_message "export_method:#{export_method}"
+    fastlane_message "ipa_name:#{ipa_name}"
+
+    plist_path = "#{work_path}/Assassin/Resource/Info.plist"
+
+    # set build no
+    increment_build_number(
+        build_number: build_no,
+        xcodeproj: project_path,
+        )
+
+    bundle_version = get_info_plist_value(path: "#{plist_path}", key: "CFBundleShortVersionString")
+    fastlane_message "bundle_version:#{bundle_version}"
+
+     # set bundleid and profile
+    app_identifier = ""
+    provisioning_profile = ""
+
+    if build_type.include?"AssassinENT"
+
+      app_identifier = "com.inke.assassin.enterprise"
+      provisioning_profile = "inke_boom_ent_dis"
+
+    else
+
+      app_identifier = "com.inke.assassin"
+      provisioning_profile = "Assassin_dev"
+
+    end
+
+    # export IPA  export_method, must be: ["app-store", "ad-hoc", "package", "enterprise", "development", "developer-id"
+    gym(
+      workspace: workspace_path,
+      export_method: export_method,
+      output_name: ipa_name,
+      archive_path: archive_path,
+      scheme: target,
+      configuration: configuration,
+      output_directory: output_dir,
+      clean: true,
+      silent: false,
+      include_symbols: true,
+      skip_build_archive: false,
+      export_xcargs: "-allowProvisioningUpdates",
+      skip_profile_detection: true,
+      export_options: {
+        provisioningProfiles: {
+          "#{app_identifier}" => "#{provisioning_profile}"
+       },
+     },
+    )
+
+    # make ad-hoc web page
+    make_adhoc_py = "#{work_path}/fastlane/make_adhoc.py"
+    fastlane_message "make ad-hoc: #{make_adhoc_py}"
+    system "python #{make_adhoc_py} \"#{output_root_path}\" \"#{dest_dir}\" #{ipa_name} #{bundle_version} #{ft_name}"
+
+    # send mail
+    send_mail_py = "#{work_path}/fastlane/send_mail.py"
+    fastlane_message "send mail: #{send_mail_py}"
+    mail_group = options[:'mail_group']
+    fastlane_message "mail_group:#{mail_group}"
+    git_log = git_log.gsub('"', '\"')
+    system "python #{send_mail_py} \"#{adhoc_url}\" \"#{output_dir}\" \"#{git_log}\" #{ft_name} #{git_branch} #{build_type} #{mail_group}"
+
+  end
+
+  after_all do |lane|
+  end
+
+  error do |lane, exception|
+    puts "#{exception}".red
+  end
+
+end
