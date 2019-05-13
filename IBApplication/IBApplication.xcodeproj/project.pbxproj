@@ -100,6 +100,7 @@
 		4A1FB22B20E92D810056A026 /* FLAnimatedImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A1FB22720E92D810056A026 /* FLAnimatedImageView.m */; };
 		4A1FB22C20E92D810056A026 /* FLAnimatedImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A1FB22920E92D810056A026 /* FLAnimatedImage.m */; };
 		4A1FB22F20E931350056A026 /* MBProgressHUD+Ext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A1FB22E20E931350056A026 /* MBProgressHUD+Ext.m */; };
+		4A35EAB122891D2B00FADE23 /* UITableView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A35EAB022891D2B00FADE23 /* UITableView+Extension.m */; };
 		4A44437520F89833001B2350 /* IBPrivacy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A44437420F89833001B2350 /* IBPrivacy.m */; };
 		4A44437820F9C506001B2350 /* IBNaviConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A44437720F9C506001B2350 /* IBNaviConfig.m */; };
 		4A44437E21006150001B2350 /* IBTabBarBadge.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A44437D21006150001B2350 /* IBTabBarBadge.m */; };
@@ -412,6 +413,8 @@
 		4A1FB22A20E92D810056A026 /* FLAnimatedImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLAnimatedImageView.h; sourceTree = "<group>"; };
 		4A1FB22D20E931350056A026 /* MBProgressHUD+Ext.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+Ext.h"; sourceTree = "<group>"; };
 		4A1FB22E20E931350056A026 /* MBProgressHUD+Ext.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+Ext.m"; sourceTree = "<group>"; };
+		4A35EAAF22891D2B00FADE23 /* UITableView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+Extension.h"; sourceTree = "<group>"; };
+		4A35EAB022891D2B00FADE23 /* UITableView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+Extension.m"; sourceTree = "<group>"; };
 		4A44437320F89833001B2350 /* IBPrivacy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBPrivacy.h; sourceTree = "<group>"; };
 		4A44437420F89833001B2350 /* IBPrivacy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBPrivacy.m; sourceTree = "<group>"; };
 		4A44437620F9C506001B2350 /* IBNaviConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBNaviConfig.h; sourceTree = "<group>"; };
@@ -1064,6 +1067,15 @@
 				4A1FB20420E92D5D0056A026 /* SDWebImageTransition.m */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		4A35EAAE22891D1100FADE23 /* UITableView */ = {
+			isa = PBXGroup;
+			children = (
+				4A35EAAF22891D2B00FADE23 /* UITableView+Extension.h */,
+				4A35EAB022891D2B00FADE23 /* UITableView+Extension.m */,
+			);
+			path = UITableView;
 			sourceTree = "<group>";
 		};
 		4A44437220F8980A001B2350 /* IBPrivacy */ = {
@@ -1988,6 +2000,7 @@
 		4ACC562E20DD6AE0001352AE /* UIKit */ = {
 			isa = PBXGroup;
 			children = (
+				4A35EAAE22891D1100FADE23 /* UITableView */,
 				4AE24BDD214F74FF006448DC /* UIFont */,
 				4A81F3332125604F00A99CE3 /* UIControl */,
 				4ACC56A520DFC747001352AE /* UITextField */,
@@ -2408,6 +2421,7 @@
 				4AC29F81210F04A900F218FE /* MJRefreshBackStateFooter.m in Sources */,
 				4A1FB21820E92D5E0056A026 /* UIButton+WebCache.m in Sources */,
 				F367404E212C54B000E614A0 /* IBPopupControllerTransitioningSlideVertical.m in Sources */,
+				4A35EAB122891D2B00FADE23 /* UITableView+Extension.m in Sources */,
 				4A1FB21920E92D5E0056A026 /* SDWebImageFrame.m in Sources */,
 				4A1FB20920E92D5E0056A026 /* SDImageCache.m in Sources */,
 				4A95F6F0222E5A9500EE07B9 /* NullSafe.m in Sources */,

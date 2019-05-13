@@ -71,6 +71,12 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [self.view endEditing:YES];
     
+    UIView *red = [[UIView alloc] init];
+    red.backgroundColor = UIColor.redColor;
+    red.frame = CGRectMake(100, 100, 200, 200);
+    [self.popupManager presentContentView:red duration:0.25 springAnimated:YES];
+    
+    return;
 
     
 //    [MBProgressHUD showCircleLoadingView:self.view];
