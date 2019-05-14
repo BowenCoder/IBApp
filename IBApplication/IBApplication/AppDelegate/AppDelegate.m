@@ -14,6 +14,7 @@
 #import "IBTabBarController.h"
 #import "WXApi.h"
 #import "IBSocialManager.h"
+#import "MBLogger.h"
 
 @interface AppDelegate ()
 
@@ -50,6 +51,8 @@
             NSLog(@"闪屏");
         }
     }];
+    [[MBLogger sharedInstance] start];
+
     return YES;
 }
 

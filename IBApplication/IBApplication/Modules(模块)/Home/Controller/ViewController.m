@@ -27,6 +27,8 @@
 #import "NSDictionary+Ext.h"
 #import "NSArray+Ext.h"
 #import "IBPopoverView.h"
+#import "MBErrorCheck.h"
+#import "MBLogger.h"
 
 @interface ViewController ()<UITableViewDataSource, UITableViewDelegate>
 
@@ -43,6 +45,7 @@
     // Do any additional setup after loading the view, typically from a nib.
     self.navigationItem.title = @"主界面";
     NSLogger(@"123");
+    MBLog(@"123");
 
     self.config = [[IBNaviConfig alloc] initWithBarOptions:IBNaviBarOptionShow | IBNaviBarOptionColor tintColor:[UIColor orangeColor] backgroundColor:[UIColor redColor] backgroundImage:nil backgroundImgID:nil];
     [self addRefreshHeader];
@@ -70,7 +73,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [self.view endEditing:YES];
-    
+    MBLog(@"123");
+    return;
     UIView *red = [[UIView alloc] init];
     red.backgroundColor = UIColor.redColor;
     red.frame = CGRectMake(100, 100, 200, 200);
