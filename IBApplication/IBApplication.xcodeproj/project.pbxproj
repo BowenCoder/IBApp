@@ -175,6 +175,8 @@
 		4A89D636228B17490072FB23 /* pwd2key.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A89D626228B17490072FB23 /* pwd2key.m */; };
 		4A89D637228B17490072FB23 /* aestab.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A89D627228B17490072FB23 /* aestab.m */; };
 		4A89D638228B17490072FB23 /* entropy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A89D62A228B17490072FB23 /* entropy.m */; };
+		4A89D63D228BC1530072FB23 /* DDLogMessage+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A89D63C228BC1530072FB23 /* DDLogMessage+Extension.m */; };
+		4A89D641228BC2DC0072FB23 /* NSObject+Ext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A89D640228BC2DC0072FB23 /* NSObject+Ext.m */; };
 		4A95F6E8222E4B7500EE07B9 /* ONOXMLDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A95F6E6222E4B7500EE07B9 /* ONOXMLDocument.m */; };
 		4A95F6ED222E509300EE07B9 /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A95F6E9222E4F5800EE07B9 /* libxml2.tbd */; };
 		4A95F6F0222E5A9500EE07B9 /* NullSafe.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A95F6EF222E5A9500EE07B9 /* NullSafe.m */; };
@@ -621,6 +623,10 @@
 		4A89D628228B17490072FB23 /* sha1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sha1.h; sourceTree = "<group>"; };
 		4A89D629228B17490072FB23 /* fileenc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fileenc.h; sourceTree = "<group>"; };
 		4A89D62A228B17490072FB23 /* entropy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = entropy.m; sourceTree = "<group>"; };
+		4A89D63B228BC1530072FB23 /* DDLogMessage+Extension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DDLogMessage+Extension.h"; sourceTree = "<group>"; };
+		4A89D63C228BC1530072FB23 /* DDLogMessage+Extension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "DDLogMessage+Extension.m"; sourceTree = "<group>"; };
+		4A89D63F228BC2DC0072FB23 /* NSObject+Ext.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+Ext.h"; sourceTree = "<group>"; };
+		4A89D640228BC2DC0072FB23 /* NSObject+Ext.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Ext.m"; sourceTree = "<group>"; };
 		4A95F6E4222E4B7500EE07B9 /* ONOXMLDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ONOXMLDocument.h; sourceTree = "<group>"; };
 		4A95F6E6222E4B7500EE07B9 /* ONOXMLDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ONOXMLDocument.m; sourceTree = "<group>"; };
 		4A95F6E9222E4F5800EE07B9 /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = usr/lib/libxml2.tbd; sourceTree = SDKROOT; };
@@ -1182,7 +1188,7 @@
 		4A22DDF5228AF3B500D4CFA6 /* CocoaLumberjack */ = {
 			isa = PBXGroup;
 			children = (
-				4A22DE26228AF53400D4CFA6 /* Custom */,
+				4A22DE26228AF53400D4CFA6 /* MBLog */,
 				4A22DDF6228AF3B500D4CFA6 /* Core */,
 				4A22DE0D228AF3B500D4CFA6 /* CLI */,
 				4A22DE10228AF3B500D4CFA6 /* Extensions */,
@@ -1243,9 +1249,11 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		4A22DE26228AF53400D4CFA6 /* Custom */ = {
+		4A22DE26228AF53400D4CFA6 /* MBLog */ = {
 			isa = PBXGroup;
 			children = (
+				4A89D63B228BC1530072FB23 /* DDLogMessage+Extension.h */,
+				4A89D63C228BC1530072FB23 /* DDLogMessage+Extension.m */,
 				4A89D5F5228B07C70072FB23 /* MBErrorCheck.h */,
 				4A89D5FA228B0E260072FB23 /* MBFilterLogger.h */,
 				4A89D5FB228B0E260072FB23 /* MBFilterLogger.m */,
@@ -1259,7 +1267,7 @@
 				4A89D5F6228B09440072FB23 /* NSThread+SequenceNumber.h */,
 				4A89D5F7228B09440072FB23 /* NSThread+SequenceNumber.m */,
 			);
-			path = Custom;
+			path = MBLog;
 			sourceTree = "<group>";
 		};
 		4A35EAAE22891D1100FADE23 /* UITableView */ = {
@@ -1582,6 +1590,15 @@
 				4A89D607228B17480072FB23 /* ZipArchive.h */,
 			);
 			path = Core;
+			sourceTree = "<group>";
+		};
+		4A89D63E228BC2BF0072FB23 /* NSObject */ = {
+			isa = PBXGroup;
+			children = (
+				4A89D63F228BC2DC0072FB23 /* NSObject+Ext.h */,
+				4A89D640228BC2DC0072FB23 /* NSObject+Ext.m */,
+			);
+			path = NSObject;
 			sourceTree = "<group>";
 		};
 		4A95F6E2222E4B7500EE07B9 /* Ono */ = {
@@ -2241,6 +2258,7 @@
 		4ACC55FD20DCB8A8001352AE /* Foundation */ = {
 			isa = PBXGroup;
 			children = (
+				4A89D63E228BC2BF0072FB23 /* NSObject */,
 				4AE24BD8214F544B006448DC /* NSDictionary */,
 				4ACC56AA20DFFFF3001352AE /* NSDate */,
 				4ACC55FE20DCB8A8001352AE /* NSArray */,
@@ -2740,6 +2758,7 @@
 				4A1FB0C020E8EE6B0056A026 /* AFSecurityPolicy.m in Sources */,
 				4A78077320E9FCAF00E60ACA /* NSObject+YYModel.m in Sources */,
 				4AC29F88210F04A900F218FE /* MJRefreshGifHeader.m in Sources */,
+				4A89D63D228BC1530072FB23 /* DDLogMessage+Extension.m in Sources */,
 				4A1FB22420E92D5E0056A026 /* SDWebImageCompat.m in Sources */,
 				4A22DE1B228AF3B500D4CFA6 /* DDASLLogger.m in Sources */,
 				4AAA78F820ECD46E00CF5639 /* IBController.m in Sources */,
@@ -2824,6 +2843,7 @@
 				4A1FB22C20E92D810056A026 /* FLAnimatedImage.m in Sources */,
 				4AC29FBD2111CA7600F218FE /* Aspects.m in Sources */,
 				4AC29FD22111CAD700F218FE /* AXCircleProgressView.m in Sources */,
+				4A89D641228BC2DC0072FB23 /* NSObject+Ext.m in Sources */,
 				4ACC55E920DB5F3E001352AE /* AppDelegate+AppController.m in Sources */,
 				4A22DE23228AF3B500D4CFA6 /* DDDispatchQueueLogFormatter.m in Sources */,
 				4A22DE21228AF3B500D4CFA6 /* CLIColor.m in Sources */,

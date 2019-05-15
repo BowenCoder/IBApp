@@ -79,7 +79,7 @@ def send_mail_by_client_build(mail_subject, mail_msg, recivers):
         'server': 'mail.bowen.cn',
         'port': 25,
         'username': 'bowen\\client_build',
-        'password': 'Sqrt3equ173205',
+        'password': 'buzhidao',
         'from': "client_build@bowen.cn",
         'to': recivers,
         'subject': mail_subject,
@@ -144,12 +144,12 @@ def make_message(ft_name, git_branch, build_type, adhoc_url, local_url, git_log)
 {ADHOC_URL}
 
 内网共享:
-afp://192.168.1.1
-用户名/密码:buildresult
+afp://x.x.x.x
+用户名/密码:buzhidao
 路径:{LOCAL_PATH}
 
 使用说明:
-https://192.168.40.112/ClientDev/sharing/wiki/iOS构建机使用说明
+https://x.x.x.x/ClientDev/sharing/wiki/iOS构建机使用说明
 
 更新日志:
 {GIT_LOG}

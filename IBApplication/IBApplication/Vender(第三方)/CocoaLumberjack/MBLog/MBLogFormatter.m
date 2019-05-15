@@ -7,6 +7,7 @@
 //
 
 #import "MBLogFormatter.h"
+#import "DDLogMessage+Extension.h"
 
 @interface MBLogFormatter ()
 
@@ -33,15 +34,15 @@
     
     logLevel = [NSString stringWithFormat:@"[%@]", logLevel];
     
-    NSString *formattedLog = [NSString stringWithFormat:@"%@\t %@\t %d:%ld\t %@\t %@\t %@(%lu)",
+    NSString *formattedLog = [NSString stringWithFormat:@"%@\t %@\t %d:%ld\t %@(%lu)\t %@\n %@",
                               dateAndTime,
                               logLevel,
                               [[NSProcessInfo processInfo] processIdentifier],
                               logMessage.threadSequenceNumber,
-                              logMessage.message,
-                              logMessage.function,
                               logMessage.file.lastPathComponent,
-                              (unsigned long)logMessage.line];
+                              (unsigned long)logMessage.line,
+                              logMessage.function,
+                              logMessage.message];
     
     return formattedLog;
 }
@@ -67,7 +68,7 @@
 
 @implementation MBLogDebugFormatter
 
-- (NSString*)formatLogMessage:(DDLogMessage *)logMessage
+- (NSString *)formatLogMessage:(DDLogMessage *)logMessage
 {
     
     NSString *dateAndTime = [self.formatter stringFromDate:(logMessage.timestamp)];

@@ -12,8 +12,8 @@ import qrcode
 sys.path.append("/Users/appbuilder/app_builder/build_result/ios")
 import install_enterprise
 
-WEB_ROOT_PATH                  = 'https://192.168.7.252:8888/ios/'
-CA_CERT_PATH                   = 'https://192.168.7.252:8888/tools/certificate/self_ca.cer'
+WEB_ROOT_PATH                  = 'https://x.x.x.x:8888/ios/'
+CA_CERT_PATH                   = 'https://x.x.x.x:8888/tools/certificate/self_ca.cer'
 APP_BUNDLE_ID                  = 'com.bowen.shop'
 APP_BUNDLE_ID_ADHOC            = 'com.bowen.shop'
 APP_BUNDLE_ID_ENTERPRISE       = 'com.bowen.trivia.enterprise'

@@ -39,7 +39,7 @@ const DDLogLevel ddLogLevel = DDLogLevelInfo;
     return instance;
 }
 
-- (NSString*)logsDirectory
+- (NSString *)logsDirectory
 {
     return [_fileLogger.logFileManager logsDirectory];
 }
@@ -69,7 +69,7 @@ const DDLogLevel ddLogLevel = DDLogLevelInfo;
     [DDLog removeAllLoggers];
 }
 
-- (NSString*)zipLogFiles
+- (NSString *)zipLogFiles
 {
     {
         [DDLog flushLog];
@@ -124,7 +124,7 @@ MBExit:
 
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-- (NSString*)_UUID
+- (NSString *)_UUID
 {
     CFUUIDRef theUUID = CFUUIDCreate(NULL);
     CFStringRef string = CFUUIDCreateString(NULL, theUUID);

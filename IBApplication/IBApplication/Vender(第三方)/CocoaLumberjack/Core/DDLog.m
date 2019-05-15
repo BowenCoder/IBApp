@@ -1053,7 +1053,6 @@ NSString * __nullable DDExtractFileNameWithoutExtension(const char *filePath, BO
         _tag          = tag;
         _options      = options;
         _timestamp    = timestamp ?: [NSDate new];
-        _threadSequenceNumber = [[NSThread currentThread] sequenceNumber];
 
         __uint64_t tid;
         if (pthread_threadid_np(NULL, &tid) == 0) {
@@ -1091,7 +1090,6 @@ NSString * __nullable DDExtractFileNameWithoutExtension(const char *filePath, BO
     newMessage->_tag = _tag;
     newMessage->_options = _options;
     newMessage->_timestamp = _timestamp;
-    newMessage->_threadSequenceNumber = _threadSequenceNumber;
     newMessage->_threadID = _threadID;
     newMessage->_threadName = _threadName;
     newMessage->_queueLabel = _queueLabel;

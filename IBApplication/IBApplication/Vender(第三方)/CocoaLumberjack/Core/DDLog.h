@@ -780,7 +780,6 @@ typedef NS_OPTIONS(NSInteger, DDLogMessageOptions){
     NSDate *_timestamp;
     NSString *_threadID;
     NSString *_threadName;
-    NSInteger _threadSequenceNumber;
     NSString *_queueLabel;
 }
 
@@ -845,7 +844,6 @@ typedef NS_OPTIONS(NSInteger, DDLogMessageOptions){
 @property (readonly, nonatomic) id __nullable tag;
 @property (readonly, nonatomic) DDLogMessageOptions options;
 @property (readonly, nonatomic) NSDate *timestamp;
-@property (readonly, nonatomic, assign) NSInteger threadSequenceNumber;
 @property (readonly, nonatomic) NSString *threadID; // ID as it appears in NSLog calculated from the machThreadID
 @property (readonly, nonatomic) NSString *threadName;
 @property (readonly, nonatomic) NSString *queueLabel;

@@ -28,14 +28,14 @@
     return self;
 }
 
-- (NSString*)formatLogMessage:(DDLogMessage *)logMessage
+- (NSString *)formatLogMessage:(DDLogMessage *)logMessage
 {
     NSString* message = [super formatLogMessage:logMessage];
     message = [self _encryptMessage:message];
     return message;
 }
 
-- (NSString*)_encryptMessage:(NSString*)message
+- (NSString *)_encryptMessage:(NSString *)message
 {
     NSData *originalData  = [message dataUsingEncoding:NSUTF8StringEncoding];
     NSData *encryptedData = [IBCrypto encrypt:originalData key:self.encryptKey option:IBEncryptOptionDES];

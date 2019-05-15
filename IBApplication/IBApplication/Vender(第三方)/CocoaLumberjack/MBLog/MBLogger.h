@@ -26,7 +26,7 @@ extern const DDLogLevel ddLogLevel;
 
 - (void)start;
 - (void)stop;
-- (NSString*)zipLogFiles;
+- (NSString *)zipLogFiles;
 
 @end
 
