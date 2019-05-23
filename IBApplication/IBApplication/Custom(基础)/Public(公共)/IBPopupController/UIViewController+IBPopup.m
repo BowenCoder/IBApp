@@ -20,11 +20,11 @@
 {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        [self swizzleSelector:@selector(viewDidLoad) toSelector:@selector(IB_viewDidLoad)];
-        [self swizzleSelector:@selector(presentViewController:animated:completion:) toSelector:@selector(IB_presentViewController:animated:completion:)];
-        [self swizzleSelector:@selector(dismissViewControllerAnimated:completion:) toSelector:@selector(IB_dismissViewControllerAnimated:completion:)];
-        [self swizzleSelector:@selector(presentedViewController) toSelector:@selector(IB_presentedViewController)];
-        [self swizzleSelector:@selector(presentingViewController) toSelector:@selector(IB_presentingViewController)];
+        [self swizzleSelector:@selector(viewDidLoad) toSelector:@selector(ib_viewDidLoad)];
+        [self swizzleSelector:@selector(presentViewController:animated:completion:) toSelector:@selector(ib_presentViewController:animated:completion:)];
+        [self swizzleSelector:@selector(dismissViewControllerAnimated:completion:) toSelector:@selector(ib_dismissViewControllerAnimated:completion:)];
+        [self swizzleSelector:@selector(presentedViewController) toSelector:@selector(ib_presentedViewController)];
+        [self swizzleSelector:@selector(presentingViewController) toSelector:@selector(ib_presentingViewController)];
     });
 }
 
@@ -37,7 +37,7 @@
     method_exchangeImplementations(originalMethod, swizzledMethod);
 }
 
-- (void)IB_viewDidLoad
+- (void)ib_viewDidLoad
 {
     CGSize contentSize = CGSizeZero;
     switch ([UIApplication sharedApplication].statusBarOrientation) {
@@ -58,41 +58,41 @@
     if (!CGSizeEqualToSize(contentSize, CGSizeZero)) {
         self.view.frame = CGRectMake(0, 0, contentSize.width, contentSize.height);
     }
-    [self IB_viewDidLoad];
+    [self ib_viewDidLoad];
 }
 
-- (void)IB_presentViewController:(UIViewController *)viewControllerToPresent animated:(BOOL)flag completion:(void (^)(void))completion
+- (void)ib_presentViewController:(UIViewController *)viewControllerToPresent animated:(BOOL)flag completion:(void (^)(void))completion
 {
     if (!self.popupController) {
-        [self IB_presentViewController:viewControllerToPresent animated:flag completion:completion];
+        [self ib_presentViewController:viewControllerToPresent animated:flag completion:completion];
         return;
     }
     
     [[self.popupController valueForKey:@"containerViewController"] presentViewController:viewControllerToPresent animated:flag completion:completion];
 }
 
-- (void)IB_dismissViewControllerAnimated:(BOOL)flag completion:(void (^)(void))completion
+- (void)ib_dismissViewControllerAnimated:(BOOL)flag completion:(void (^)(void))completion
 {
     if (!self.popupController) {
-        [self IB_dismissViewControllerAnimated:flag completion:completion];
+        [self ib_dismissViewControllerAnimated:flag completion:completion];
         return;
     }
     
     [self.popupController dismissWithCompletion:completion];
 }
 
-- (UIViewController *)IB_presentedViewController
+- (UIViewController *)ib_presentedViewController
 {
     if (!self.popupController) {
-        return [self IB_presentedViewController];
+        return [self ib_presentedViewController];
     }
     return [[self.popupController valueForKey:@"containerViewController"] presentedViewController];
 }
 
-- (UIViewController *)IB_presentingViewController
+- (UIViewController *)ib_presentingViewController
 {
     if (!self.popupController) {
-        return [self IB_presentingViewController];
+        return [self ib_presentingViewController];
     }
     return [[self.popupController valueForKey:@"containerViewController"] presentingViewController];
 }

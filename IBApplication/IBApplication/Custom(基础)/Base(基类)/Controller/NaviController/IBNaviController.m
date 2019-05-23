@@ -40,12 +40,18 @@
 
 #pragma mark - UIGestureRecognizerDelegate
 
-- (BOOL) gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
+BeginIgnoreClangWarning("-Wundeclared-selector");
+- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
     if (gestureRecognizer == self.interactivePopGestureRecognizer) {
-        return self.viewControllers.count > 1;
+        BOOL forbid = NO;
+        if ([self.topViewController respondsToSelector:@selector(forbidLeftBack)]) {
+            forbid = [self.topViewController performSelector:@selector(forbidLeftBack)];
+        }
+        return self.viewControllers.count > 1 && !forbid;
     }
     return YES;
 }
+EndIgnoreClangWarning
 
 #pragma mark - UINavigationControllerDelegate
 

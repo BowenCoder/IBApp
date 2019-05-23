@@ -136,6 +136,10 @@
     }
 }
 
+- (BOOL)forbidLeftBack {
+    return NO;
+}
+
 - (UIView *)superview:(UIView *)view classType:(Class)classType {
     
     UIView *superview = view.superview;

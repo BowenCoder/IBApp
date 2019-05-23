@@ -249,7 +249,6 @@
 		4ACC561920DD59F5001352AE /* NSArray+Ext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC561820DD59F5001352AE /* NSArray+Ext.m */; };
 		4ACC563C20DD6C62001352AE /* UIBarButtonItem+Ext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC563B20DD6C62001352AE /* UIBarButtonItem+Ext.m */; };
 		4ACC564E20DD75AB001352AE /* UIButton+Ext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC564D20DD75AB001352AE /* UIButton+Ext.m */; };
-		4ACC566020DD7FF9001352AE /* UIViewController+MJPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC565E20DD7FF8001352AE /* UIViewController+MJPopupViewController.m */; };
 		4ACC567520DE5E29001352AE /* UIThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC567420DE5E29001352AE /* UIThemeManager.m */; };
 		4ACC567B20DE6679001352AE /* NSNotificationNameManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC567A20DE6679001352AE /* NSNotificationNameManager.m */; };
 		4ACC568420DE72BA001352AE /* UIViewController+Alert.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC568320DE72BA001352AE /* UIViewController+Alert.m */; };
@@ -771,8 +770,6 @@
 		4ACC563B20DD6C62001352AE /* UIBarButtonItem+Ext.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+Ext.m"; sourceTree = "<group>"; };
 		4ACC564C20DD75AB001352AE /* UIButton+Ext.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIButton+Ext.h"; sourceTree = "<group>"; };
 		4ACC564D20DD75AB001352AE /* UIButton+Ext.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Ext.m"; sourceTree = "<group>"; };
-		4ACC565E20DD7FF8001352AE /* UIViewController+MJPopupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+MJPopupViewController.m"; sourceTree = "<group>"; };
-		4ACC565F20DD7FF8001352AE /* UIViewController+MJPopupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+MJPopupViewController.h"; sourceTree = "<group>"; };
 		4ACC567320DE5E28001352AE /* UIThemeManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIThemeManager.h; sourceTree = "<group>"; };
 		4ACC567420DE5E29001352AE /* UIThemeManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UIThemeManager.m; sourceTree = "<group>"; };
 		4ACC567920DE6679001352AE /* NSNotificationNameManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSNotificationNameManager.h; sourceTree = "<group>"; };
@@ -2324,8 +2321,6 @@
 		4ACC565D20DD7FD6001352AE /* UIViewController */ = {
 			isa = PBXGroup;
 			children = (
-				4ACC565F20DD7FF8001352AE /* UIViewController+MJPopupViewController.h */,
-				4ACC565E20DD7FF8001352AE /* UIViewController+MJPopupViewController.m */,
 				4ACC568220DE72BA001352AE /* UIViewController+Alert.h */,
 				4ACC568320DE72BA001352AE /* UIViewController+Alert.m */,
 			);
@@ -2785,7 +2780,6 @@
 				4A89D636228B17490072FB23 /* pwd2key.m in Sources */,
 				4A1FB12D20E921E90056A026 /* MWPhotoBrowser.m in Sources */,
 				F367404D212C54B000E614A0 /* UIViewController+IBPopup.m in Sources */,
-				4ACC566020DD7FF9001352AE /* UIViewController+MJPopupViewController.m in Sources */,
 				4A22DE19228AF3B500D4CFA6 /* DDTTYLogger.m in Sources */,
 				4A95F6E8222E4B7500EE07B9 /* ONOXMLDocument.m in Sources */,
 				4A78076420E9F1BB00E60ACA /* MASCompositeConstraint.m in Sources */,

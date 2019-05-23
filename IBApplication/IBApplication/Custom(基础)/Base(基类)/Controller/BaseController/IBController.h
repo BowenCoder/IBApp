@@ -85,4 +85,11 @@
 - (void)leftBarItemClick:(UIButton *)button;
 
 
+/**
+ 是否禁止左滑返回
+
+ @return YES，禁止；NO，允许
+ */
+- (BOOL)forbidLeftBack;
+
 @end
