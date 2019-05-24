@@ -45,8 +45,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     self.navigationItem.title = @"主界面";
-    NSLogger(@"123");
-    MBLog(@"123");
 
     self.config = [[IBNaviConfig alloc] initWithBarOptions:IBNaviBarOptionShow | IBNaviBarOptionColor tintColor:[UIColor orangeColor] backgroundColor:[UIColor redColor] backgroundImage:nil backgroundImgID:nil];
     [self addRefreshHeader];
@@ -57,12 +55,10 @@
     NSLog(@"%@", NSStringFromCGRect(CGRectMakeFit(111, 333, 555, 777)));
     NSLog(@"demo %lf", ceil(2.1 * kScreenScale) / kScreenScale);
     
-    executeInDebug(^{
-        NSLog(@"bowen 123");
-        NSLog(@"bowen %@", [UIDevice currentDevice].name);
-    });
-    NSString *str = @"https://service.bojoapp.com/time/getconfig?lc=0000000000000003&cc=TG0001&cv=AURORA1.0.30_iPhone&proto=0&idfa=59F39E5E-88ED-410F-874D-84786CDCA15E&idfv=E74599B5-41E2-4A80-BD51-FC728B12A902&devi=bf39596600d61c1fb8c6c308a0893abf0402e78f&osversion=ios_12.200000&ua=iPhone10_1&imei=&imsi=&uid=100669&sid=30QDS0sxb0JwpNASWef2cuSEL4u1vkNAlJXfYIzasQ0bi1P&conn=WiFi&mtid=d41d8cd98f00b204e9800998ecf8427e&mtxid=&logid=&smid=D2N61gKysXKcLmWjLUAOBsr8E4sPc6iPuQUG7BadHTvZ4X6e&ndid=201809040019504eef3499d30af56b3489f7dce271c48501c4737106fd0a31&ast=1";
+    NSString *str = @"https://service.bowen.com/time/config?lc=0000000000000003&cc=TG0001&cv=AURORA1.0.30_iPhone&proto=0&idfa=59F39E5E-88ED-410F-874D-84786CDCA15E&idfv=E74599B5-41E2-4A80-BD51-FC728B12A902&devi=bf39596600d61c1fb8c6c308a0893abf0402e78f&osversion=ios_12.200000&ua=iPhone10_1&imei=&imsi=&uid=100669";
     NSDictionary *dict = [IBHelper dictionaryWithURL:[NSURL URLWithString:str]];
+    MBLog(@"bowen %@", dict);
+    NSLogger(@"bowen %@", dict);
     NSString *base = @"https://service.bojoapp.com/time/getconfig?";
     MBLog(@"%@", [IBHelper fullURL:base params:dict]);
     

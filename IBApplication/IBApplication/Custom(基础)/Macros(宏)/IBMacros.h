@@ -102,7 +102,7 @@ if ([NSThread isMainThread]) { \
 //日志打印
 #ifdef DEBUG
 #define executeInDebug(block) block()
-#define NSLogger(format, ...) printf("%s %s\n", __FUNCTION__, [[NSString stringWithFormat:format, ## __VA_ARGS__] UTF8String])
+#define NSLogger(...) NSLog(__VA_ARGS__)
 #else
 #define executeInDebug(block)
 #define NSLogger(...)
