@@ -57,8 +57,6 @@
     }
 }
 
-
-
 /**
  *  @brief  将url参数转换成NSDictionary
  *
@@ -85,6 +83,15 @@
     return [NSDictionary dictionaryWithDictionary:dict];
 }
 
++ (NSDictionary *)dictionaryWithURL:(NSURL *)url {
+    NSURLComponents *urlComponents = [[NSURLComponents alloc] initWithString:url.absoluteString];
+    NSMutableDictionary *parm = [[NSMutableDictionary alloc] init];
+    [urlComponents.queryItems enumerateObjectsUsingBlock:^(NSURLQueryItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [parm setObject:obj.value forKey:obj.name];
+    }];
+    return parm.copy;
+}
+
 /**
  *  @brief  将NSDictionary转换成url参数字符串
  *
@@ -99,11 +106,22 @@
         if ([string length]) {
             [string appendString:@"&"];
         }
-        CFStringRef escaped = (__bridge CFStringRef)([[[params objectForKey:key] description] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLPathAllowedCharacterSet]]);
-        [string appendFormat:@"%@=%@", key, escaped];
-        CFRelease(escaped);
+        NSString *value = [[params valueForKey:key] description];
+        [value stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLPathAllowedCharacterSet]];
+        [string appendFormat:@"%@=%@", key, value];
     }
-    return string;
+    return string.copy;
+}
+
++ (NSString *)fullURL:(NSString *)url params:(NSDictionary *)params {
+    
+    NSMutableString *urlStr = [NSMutableString stringWithString:url];
+    NSRange flag = [urlStr rangeOfString:@"?"];
+    if(flag.location == NSNotFound) {
+        [urlStr appendString:@"?"];
+    }
+    [urlStr appendString:[self URLQueryString:params]];
+    return urlStr.copy;
 }
 
 @end

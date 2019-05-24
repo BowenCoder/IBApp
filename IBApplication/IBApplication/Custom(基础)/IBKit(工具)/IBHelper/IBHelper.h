@@ -47,6 +47,14 @@
 + (NSDictionary *)dictionaryWithURLQuery:(NSString *)query;
 
 /**
+ 从URL中截取所包含的参数,并且以字典的形式返回
+
+ @param url url
+ @return NSDictionary
+ */
++ (NSDictionary *)dictionaryWithURL:(NSURL *)url;
+
+/**
  *  @brief  将NSDictionary转换成url参数字符串
  *
  *  @param  params url参数
@@ -54,6 +62,15 @@
  *  @return url 参数字符串
  */
 + (NSString *)URLQueryString:(NSDictionary *)params;
+
+/**
+ 拼接url参数
+
+ @param url url
+ @param params 参数
+ @return NSString
+ */
++ (NSString *)fullURL:(NSString *)url params:(NSDictionary *)params;
 
 @end
 
