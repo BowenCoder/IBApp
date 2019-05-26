@@ -39,23 +39,4 @@
 
 #endif
 
-
-#pragma mark - ——————— 详细接口地址 ————————
-
-//测试接口
-#define URL_Test @"/api/cast/home/start"
-
-
-#pragma mark - ——————— 用户相关 ————————
-//自动登录
-#define URL_user_auto_login @"/api/autoLogin"
-//登录
-#define URL_user_login @"/api/login"
-//用户详情
-#define URL_user_info_detail @"/api/user/info/detail"
-//修改头像
-#define URL_user_info_change_photo @"/api/user/info/changephoto"
-//注释
-#define URL_user_info_change @"/api/user/info/change"
-
 #endif /* URLMacros_h */

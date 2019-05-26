@@ -14,7 +14,7 @@
 #import "IBTabBarController.h"
 #import "WXApi.h"
 #import "IBSocialManager.h"
-#import "MBLogger.h"
+#import "MBLaunchManager.h"
 
 @interface AppDelegate ()
 
@@ -22,6 +22,12 @@
 
 @implementation AppDelegate
 
+- (BOOL)application:(UIApplication *)application willFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
+    [[MBLaunchManager sharedInstance] willFinishLaunching:launchOptions];
+    
+    return YES;
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
@@ -51,7 +57,6 @@
             NSLog(@"闪屏");
         }
     }];
-    [[MBLogger sharedInstance] start];
 
     return YES;
 }

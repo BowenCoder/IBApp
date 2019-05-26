@@ -30,6 +30,7 @@
 #import "MBErrorCheck.h"
 #import "MBLogger.h"
 #import "IBHelper.h"
+#import "MBUserManager.h"
 
 @interface ViewController ()<UITableViewDataSource, UITableViewDelegate>
 
@@ -61,6 +62,12 @@
     NSLogger(@"bowen %@", dict);
     NSString *base = @"https://service.bojoapp.com/time/getconfig?";
     MBLog(@"%@", [IBHelper fullURL:base params:dict]);
+    
+    MBUserModel *model = [[MBUserModel alloc] init];
+    model.uid = 123;
+    model.nick = @"bowen";
+    model.session = @"abcd";
+    [[MBUserManager sharedManager] setLoginUser:model];
     
 }
 

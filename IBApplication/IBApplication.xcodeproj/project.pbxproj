@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4A03B8D6229ADCCB00173765 /* MBModuleCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A03B8D5229ADCCB00173765 /* MBModuleCenter.m */; };
+		4A03B8DC229AEFCE00173765 /* MBLaunchManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A03B8DB229AEFCE00173765 /* MBLaunchManager.m */; };
+		4A03B8DF229AEFE400173765 /* MBLaunchSetup.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A03B8DE229AEFE400173765 /* MBLaunchSetup.m */; };
+		4A03B8E3229AFC3700173765 /* MBUserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A03B8E2229AFC3700173765 /* MBUserManager.m */; };
+		4A03B8E6229B06A200173765 /* MBUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A03B8E5229B06A200173765 /* MBUserModel.m */; };
+		4A03B8E9229B091100173765 /* MBPhoneNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A03B8E8229B091100173765 /* MBPhoneNumber.m */; };
+		4A03B8EC229B0F0900173765 /* IBSecurity.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A03B8EB229B0F0900173765 /* IBSecurity.m */; };
+		4A03B8EF229B102E00173765 /* IBAtomFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A03B8EE229B102E00173765 /* IBAtomFactory.m */; };
 		4A06E16F212FDCD300227583 /* IBSocialObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A06E16E212FDCD300227583 /* IBSocialObject.m */; };
 		4A06E172212FE42A00227583 /* IBSocialManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A06E171212FE42A00227583 /* IBSocialManager.m */; };
 		4A06E178213002A900227583 /* IBSocialHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A06E177213002A900227583 /* IBSocialHandle.m */; };
@@ -242,10 +250,7 @@
 		4ACC55E520DB5F3E001352AE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4ACC55D420DB5F3E001352AE /* LaunchScreen.storyboard */; };
 		4ACC55E620DB5F3E001352AE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4ACC55D620DB5F3E001352AE /* Main.storyboard */; };
 		4ACC55E720DB5F3E001352AE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC55D820DB5F3E001352AE /* main.m */; };
-		4ACC55E920DB5F3E001352AE /* AppDelegate+AppController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC55DC20DB5F3E001352AE /* AppDelegate+AppController.m */; };
 		4ACC55EA20DB5F3E001352AE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC55E020DB5F3E001352AE /* AppDelegate.m */; };
-		4ACC55EB20DB5F3E001352AE /* AppDelegate+AppService.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC55E120DB5F3E001352AE /* AppDelegate+AppService.m */; };
-		4ACC55EC20DB5F3E001352AE /* AppDelegate+AppLifeCircle.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC55E220DB5F3E001352AE /* AppDelegate+AppLifeCircle.m */; };
 		4ACC561920DD59F5001352AE /* NSArray+Ext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC561820DD59F5001352AE /* NSArray+Ext.m */; };
 		4ACC563C20DD6C62001352AE /* UIBarButtonItem+Ext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC563B20DD6C62001352AE /* UIBarButtonItem+Ext.m */; };
 		4ACC564E20DD75AB001352AE /* UIButton+Ext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC564D20DD75AB001352AE /* UIButton+Ext.m */; };
@@ -318,6 +323,23 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4A03B8D3229ACD0B00173765 /* MBModuleProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBModuleProtocol.h; sourceTree = "<group>"; };
+		4A03B8D4229ADCCB00173765 /* MBModuleCenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBModuleCenter.h; sourceTree = "<group>"; };
+		4A03B8D5229ADCCB00173765 /* MBModuleCenter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBModuleCenter.m; sourceTree = "<group>"; };
+		4A03B8DA229AEFCE00173765 /* MBLaunchManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBLaunchManager.h; sourceTree = "<group>"; };
+		4A03B8DB229AEFCE00173765 /* MBLaunchManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBLaunchManager.m; sourceTree = "<group>"; };
+		4A03B8DD229AEFE400173765 /* MBLaunchSetup.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBLaunchSetup.h; sourceTree = "<group>"; };
+		4A03B8DE229AEFE400173765 /* MBLaunchSetup.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBLaunchSetup.m; sourceTree = "<group>"; };
+		4A03B8E1229AFC3700173765 /* MBUserManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBUserManager.h; sourceTree = "<group>"; };
+		4A03B8E2229AFC3700173765 /* MBUserManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBUserManager.m; sourceTree = "<group>"; };
+		4A03B8E4229B06A200173765 /* MBUserModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBUserModel.h; sourceTree = "<group>"; };
+		4A03B8E5229B06A200173765 /* MBUserModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBUserModel.m; sourceTree = "<group>"; };
+		4A03B8E7229B091100173765 /* MBPhoneNumber.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBPhoneNumber.h; sourceTree = "<group>"; };
+		4A03B8E8229B091100173765 /* MBPhoneNumber.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBPhoneNumber.m; sourceTree = "<group>"; };
+		4A03B8EA229B0F0900173765 /* IBSecurity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBSecurity.h; sourceTree = "<group>"; };
+		4A03B8EB229B0F0900173765 /* IBSecurity.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBSecurity.m; sourceTree = "<group>"; };
+		4A03B8ED229B102E00173765 /* IBAtomFactory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBAtomFactory.h; sourceTree = "<group>"; };
+		4A03B8EE229B102E00173765 /* IBAtomFactory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBAtomFactory.m; sourceTree = "<group>"; };
 		4A06E16C212FDC0200227583 /* IBSocialDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBSocialDelegate.h; sourceTree = "<group>"; };
 		4A06E16D212FDCD300227583 /* IBSocialObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBSocialObject.h; sourceTree = "<group>"; };
 		4A06E16E212FDCD300227583 /* IBSocialObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBSocialObject.m; sourceTree = "<group>"; };
@@ -782,13 +804,7 @@
 		4ACC55D820DB5F3E001352AE /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4ACC55D920DB5F3E001352AE /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4ACC55DB20DB5F3E001352AE /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		4ACC55DC20DB5F3E001352AE /* AppDelegate+AppController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+AppController.m"; sourceTree = "<group>"; };
-		4ACC55DD20DB5F3E001352AE /* AppDelegate+AppService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+AppService.h"; sourceTree = "<group>"; };
-		4ACC55DE20DB5F3E001352AE /* AppDelegate+AppLifeCircle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+AppLifeCircle.h"; sourceTree = "<group>"; };
-		4ACC55DF20DB5F3E001352AE /* AppDelegate+AppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+AppController.h"; sourceTree = "<group>"; };
 		4ACC55E020DB5F3E001352AE /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		4ACC55E120DB5F3E001352AE /* AppDelegate+AppService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+AppService.m"; sourceTree = "<group>"; };
-		4ACC55E220DB5F3E001352AE /* AppDelegate+AppLifeCircle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+AppLifeCircle.m"; sourceTree = "<group>"; };
 		4ACC55F320DBB6E8001352AE /* URLMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = URLMacros.h; sourceTree = "<group>"; };
 		4ACC55F420DBB709001352AE /* UIMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIMacros.h; sourceTree = "<group>"; };
 		4ACC55F620DBC4F4001352AE /* SDKMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SDKMacros.h; sourceTree = "<group>"; };
@@ -951,6 +967,58 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4A03B8D2229ACCA600173765 /* MBModuleCenter */ = {
+			isa = PBXGroup;
+			children = (
+				4A03B8D3229ACD0B00173765 /* MBModuleProtocol.h */,
+				4A03B8D4229ADCCB00173765 /* MBModuleCenter.h */,
+				4A03B8D5229ADCCB00173765 /* MBModuleCenter.m */,
+			);
+			path = MBModuleCenter;
+			sourceTree = "<group>";
+		};
+		4A03B8D7229AEF1800173765 /* ThemeManager */ = {
+			isa = PBXGroup;
+			children = (
+				4ACC567320DE5E28001352AE /* UIThemeManager.h */,
+				4ACC567420DE5E29001352AE /* UIThemeManager.m */,
+			);
+			path = ThemeManager;
+			sourceTree = "<group>";
+		};
+		4A03B8D8229AEF4000173765 /* NotificationManager */ = {
+			isa = PBXGroup;
+			children = (
+				4ACC567920DE6679001352AE /* NSNotificationNameManager.h */,
+				4ACC567A20DE6679001352AE /* NSNotificationNameManager.m */,
+			);
+			path = NotificationManager;
+			sourceTree = "<group>";
+		};
+		4A03B8D9229AEF9800173765 /* LaunchManager */ = {
+			isa = PBXGroup;
+			children = (
+				4A03B8DA229AEFCE00173765 /* MBLaunchManager.h */,
+				4A03B8DB229AEFCE00173765 /* MBLaunchManager.m */,
+				4A03B8DD229AEFE400173765 /* MBLaunchSetup.h */,
+				4A03B8DE229AEFE400173765 /* MBLaunchSetup.m */,
+			);
+			path = LaunchManager;
+			sourceTree = "<group>";
+		};
+		4A03B8E0229AFC1600173765 /* UserManager */ = {
+			isa = PBXGroup;
+			children = (
+				4A03B8E1229AFC3700173765 /* MBUserManager.h */,
+				4A03B8E2229AFC3700173765 /* MBUserManager.m */,
+				4A03B8E4229B06A200173765 /* MBUserModel.h */,
+				4A03B8E5229B06A200173765 /* MBUserModel.m */,
+				4A03B8E7229B091100173765 /* MBPhoneNumber.h */,
+				4A03B8E8229B091100173765 /* MBPhoneNumber.m */,
+			);
+			path = UserManager;
+			sourceTree = "<group>";
+		};
 		4A06E16A212FDB9100227583 /* IBSocial */ = {
 			isa = PBXGroup;
 			children = (
@@ -1031,6 +1099,10 @@
 				4A1FB0E020E8F0D80056A026 /* IBHTTPClient.m */,
 				4AD770502297C40000FEB76B /* IBServerEnvironment.h */,
 				4AD770512297C40000FEB76B /* IBServerEnvironment.m */,
+				4A03B8EA229B0F0900173765 /* IBSecurity.h */,
+				4A03B8EB229B0F0900173765 /* IBSecurity.m */,
+				4A03B8ED229B102E00173765 /* IBAtomFactory.h */,
+				4A03B8EE229B102E00173765 /* IBAtomFactory.m */,
 			);
 			path = IBHTTPClient;
 			sourceTree = "<group>";
@@ -2179,10 +2251,10 @@
 		4ACC55C420DB5F3E001352AE /* Manager(管理) */ = {
 			isa = PBXGroup;
 			children = (
-				4ACC567320DE5E28001352AE /* UIThemeManager.h */,
-				4ACC567420DE5E29001352AE /* UIThemeManager.m */,
-				4ACC567920DE6679001352AE /* NSNotificationNameManager.h */,
-				4ACC567A20DE6679001352AE /* NSNotificationNameManager.m */,
+				4A03B8E0229AFC1600173765 /* UserManager */,
+				4A03B8D9229AEF9800173765 /* LaunchManager */,
+				4A03B8D8229AEF4000173765 /* NotificationManager */,
+				4A03B8D7229AEF1800173765 /* ThemeManager */,
 			);
 			path = "Manager(管理)";
 			sourceTree = "<group>";
@@ -2316,12 +2388,6 @@
 			children = (
 				4ACC55DB20DB5F3E001352AE /* AppDelegate.h */,
 				4ACC55E020DB5F3E001352AE /* AppDelegate.m */,
-				4ACC55DE20DB5F3E001352AE /* AppDelegate+AppLifeCircle.h */,
-				4ACC55E220DB5F3E001352AE /* AppDelegate+AppLifeCircle.m */,
-				4ACC55DD20DB5F3E001352AE /* AppDelegate+AppService.h */,
-				4ACC55E120DB5F3E001352AE /* AppDelegate+AppService.m */,
-				4ACC55DF20DB5F3E001352AE /* AppDelegate+AppController.h */,
-				4ACC55DC20DB5F3E001352AE /* AppDelegate+AppController.m */,
 			);
 			path = AppDelegate;
 			sourceTree = "<group>";
@@ -2470,6 +2536,7 @@
 				4A6F198D20E3A84600EAF1A7 /* IBSocket */,
 				4A6F198920E3A5DD00EAF1A7 /* IBString */,
 				4ACC569420DEC59D001352AE /* IBTouchID */,
+				4A03B8D2229ACCA600173765 /* MBModuleCenter */,
 			);
 			path = "IBKit(工具)";
 			sourceTree = "<group>";
@@ -2923,6 +2990,7 @@
 				4AD770B22297CD1300FEB76B /* YYTextAttribute.m in Sources */,
 				4A1FB20A20E92D5E0056A026 /* SDImageCacheConfig.m in Sources */,
 				4A1FB13020E921E90056A026 /* UIImage+MWPhotoBrowser.m in Sources */,
+				4A03B8DC229AEFCE00173765 /* MBLaunchManager.m in Sources */,
 				4ACC567B20DE6679001352AE /* NSNotificationNameManager.m in Sources */,
 				4A1FB21320E92D5E0056A026 /* UIImageView+HighlightedWebCache.m in Sources */,
 				4AD7706D2297C92400FEB76B /* YYCache.m in Sources */,
@@ -2957,7 +3025,6 @@
 				4AD7706E2297C92400FEB76B /* YYKVStorage.m in Sources */,
 				4ACC567520DE5E29001352AE /* UIThemeManager.m in Sources */,
 				4A1FB21E20E92D5E0056A026 /* SDWebImageGIFCoder.m in Sources */,
-				4ACC55EB20DB5F3E001352AE /* AppDelegate+AppService.m in Sources */,
 				4A44437520F89833001B2350 /* IBPrivacy.m in Sources */,
 				4A89D632228B17490072FB23 /* aescrypt.m in Sources */,
 				4AC29FE32111CB8800F218FE /* AXSpinningWaitCursor.m in Sources */,
@@ -2993,10 +3060,12 @@
 				4A89D636228B17490072FB23 /* pwd2key.m in Sources */,
 				4A1FB12D20E921E90056A026 /* MWPhotoBrowser.m in Sources */,
 				F367404D212C54B000E614A0 /* UIViewController+IBPopup.m in Sources */,
+				4A03B8EC229B0F0900173765 /* IBSecurity.m in Sources */,
 				4A22DE19228AF3B500D4CFA6 /* DDTTYLogger.m in Sources */,
 				4A95F6E8222E4B7500EE07B9 /* ONOXMLDocument.m in Sources */,
 				4A78076420E9F1BB00E60ACA /* MASCompositeConstraint.m in Sources */,
 				4A1FB21A20E92D5E0056A026 /* SDWebImageCodersManager.m in Sources */,
+				4A03B8E9229B091100173765 /* MBPhoneNumber.m in Sources */,
 				4AC29FAB2111C77D00F218FE /* AXWebViewControllerActivity.m in Sources */,
 				4AE64C49212ACFF7003DE328 /* IBCheckbox.m in Sources */,
 				4A1FB0BB20E8EE6B0056A026 /* AFURLResponseSerialization.m in Sources */,
@@ -3005,11 +3074,11 @@
 				4A06E172212FE42A00227583 /* IBSocialManager.m in Sources */,
 				4A1FB22B20E92D810056A026 /* FLAnimatedImageView.m in Sources */,
 				4A22DE24228AF3B500D4CFA6 /* DDFileLogger+Buffering.m in Sources */,
+				4A03B8DF229AEFE400173765 /* MBLaunchSetup.m in Sources */,
 				4AC81CD220F37BFE00A1F246 /* IBWebController.m in Sources */,
 				4AC29F8D210F04A900F218FE /* MJRefreshComponent.m in Sources */,
 				4A1FB21420E92D5E0056A026 /* NSButton+WebCache.m in Sources */,
 				4A72287420F0CE3D008B8815 /* IBNaviController.m in Sources */,
-				4ACC55EC20DB5F3E001352AE /* AppDelegate+AppLifeCircle.m in Sources */,
 				F3674050212C54B000E614A0 /* IBPopupNavigationBar.m in Sources */,
 				4A89D638228B17490072FB23 /* entropy.m in Sources */,
 				4A1FB21D20E92D5E0056A026 /* SDAnimatedImageRep.m in Sources */,
@@ -3018,6 +3087,7 @@
 				4AAA27C02107379100B0C256 /* IBNaviBar+Config.m in Sources */,
 				4A44438421008BE2001B2350 /* IBTabBar.m in Sources */,
 				4AD770AD2297CD1300FEB76B /* YYTextKeyboardManager.m in Sources */,
+				4A03B8E3229AFC3700173765 /* MBUserManager.m in Sources */,
 				4A06E178213002A900227583 /* IBSocialHandle.m in Sources */,
 				4AAA78FE20EE097300CF5639 /* IBScrollController.m in Sources */,
 				4A1FB09A20E89FD10056A026 /* IBModelController.m in Sources */,
@@ -3028,6 +3098,7 @@
 				4A1FB0BE20E8EE6B0056A026 /* AFURLRequestSerialization.m in Sources */,
 				4ACC56A420DF7A89001352AE /* UIView+Effect.m in Sources */,
 				4A1FB0A820E8EA630056A026 /* MBProgressHUD.m in Sources */,
+				4A03B8EF229B102E00173765 /* IBAtomFactory.m in Sources */,
 				4AD770AA2297CD1300FEB76B /* YYTextLayout.m in Sources */,
 				4A22DE1F228AF3B500D4CFA6 /* DDFileLogger.m in Sources */,
 				4AC29FD02111CAD700F218FE /* AXPracticalHUDAnimator.m in Sources */,
@@ -3049,6 +3120,7 @@
 				4A89D634228B17490072FB23 /* sha1.m in Sources */,
 				4A6F19B420E3FBDE00EAF1A7 /* IBNetworkStatus.m in Sources */,
 				4AD770BC2297CD1300FEB76B /* YYTextWeakProxy.m in Sources */,
+				4A03B8E6229B06A200173765 /* MBUserModel.m in Sources */,
 				4A6F19BA20E401CC00EAF1A7 /* IBSocketClient.m in Sources */,
 				4ACC56A820DFC7AC001352AE /* UITextField+Ext.m in Sources */,
 				4ACC569220DEC463001352AE /* IBPassword.m in Sources */,
@@ -3056,10 +3128,10 @@
 				4AC29FBD2111CA7600F218FE /* Aspects.m in Sources */,
 				4AC29FD22111CAD700F218FE /* AXCircleProgressView.m in Sources */,
 				4A89D641228BC2DC0072FB23 /* NSObject+Ext.m in Sources */,
-				4ACC55E920DB5F3E001352AE /* AppDelegate+AppController.m in Sources */,
 				4A22DE23228AF3B500D4CFA6 /* DDDispatchQueueLogFormatter.m in Sources */,
 				4A22DE21228AF3B500D4CFA6 /* CLIColor.m in Sources */,
 				4AC29FAA2111C77D00F218FE /* AXSecurityPolicy.m in Sources */,
+				4A03B8D6229ADCCB00173765 /* MBModuleCenter.m in Sources */,
 				4A1FB21120E92D5E0056A026 /* FLAnimatedImageView+WebCache.m in Sources */,
 				4A22DE25228AF3B500D4CFA6 /* DDMultiFormatter.m in Sources */,
 				4ACC563C20DD6C62001352AE /* UIBarButtonItem+Ext.m in Sources */,

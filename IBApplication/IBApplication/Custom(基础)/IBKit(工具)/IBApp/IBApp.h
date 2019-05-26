@@ -38,6 +38,7 @@
  */
 #define APPLanguage [[NSLocale preferredLanguages] firstObject]
 
+NS_ASSUME_NONNULL_BEGIN
 
 @interface IBApp : NSObject
 
@@ -180,3 +181,5 @@
 + (NSUInteger)freeDiskSpaceBytes;
 
 @end
+
+NS_ASSUME_NONNULL_END
