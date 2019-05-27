@@ -164,6 +164,9 @@
 		4A78077420E9FCAF00E60ACA /* YYClassInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A78077120E9FCAE00E60ACA /* YYClassInfo.m */; };
 		4A78077A20EA482E00E60ACA /* niconiconi@2x.gif in Resources */ = {isa = PBXBuildFile; fileRef = 4A78077920EA482E00E60ACA /* niconiconi@2x.gif */; };
 		4A81F339212560C400A99CE3 /* UIControl+Repeat.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A81F338212560C400A99CE3 /* UIControl+Repeat.m */; };
+		4A84CBB7229B917100CA4794 /* MBMediator.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A84CBB6229B917100CA4794 /* MBMediator.m */; };
+		4A84CBBA229B938700CA4794 /* MBRouterRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A84CBB9229B938700CA4794 /* MBRouterRequest.m */; };
+		4A84CBBD229B976500CA4794 /* MBRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A84CBBC229B976500CA4794 /* MBRouter.m */; };
 		4A89D5F8228B09440072FB23 /* NSThread+SequenceNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A89D5F7228B09440072FB23 /* NSThread+SequenceNumber.m */; };
 		4A89D5FC228B0E260072FB23 /* MBFilterLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A89D5FB228B0E260072FB23 /* MBFilterLogger.m */; };
 		4A89D5FF228B0F720072FB23 /* MBLogFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A89D5FE228B0F720072FB23 /* MBLogFormatter.m */; };
@@ -628,6 +631,13 @@
 		4A78077D20EA493900E60ACA /* SDWebImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWebImage.h; sourceTree = "<group>"; };
 		4A81F337212560C400A99CE3 /* UIControl+Repeat.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIControl+Repeat.h"; sourceTree = "<group>"; };
 		4A81F338212560C400A99CE3 /* UIControl+Repeat.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIControl+Repeat.m"; sourceTree = "<group>"; };
+		4A84CBB5229B917100CA4794 /* MBMediator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBMediator.h; sourceTree = "<group>"; };
+		4A84CBB6229B917100CA4794 /* MBMediator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBMediator.m; sourceTree = "<group>"; };
+		4A84CBB8229B938700CA4794 /* MBRouterRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBRouterRequest.h; sourceTree = "<group>"; };
+		4A84CBB9229B938700CA4794 /* MBRouterRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBRouterRequest.m; sourceTree = "<group>"; };
+		4A84CBBB229B976500CA4794 /* MBRouter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBRouter.h; sourceTree = "<group>"; };
+		4A84CBBC229B976500CA4794 /* MBRouter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBRouter.m; sourceTree = "<group>"; };
+		4A84CBBE229B98AE00CA4794 /* MBRouterProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBRouterProtocol.h; sourceTree = "<group>"; };
 		4A89D5F5228B07C70072FB23 /* MBErrorCheck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBErrorCheck.h; sourceTree = "<group>"; };
 		4A89D5F6228B09440072FB23 /* NSThread+SequenceNumber.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSThread+SequenceNumber.h"; sourceTree = "<group>"; };
 		4A89D5F7228B09440072FB23 /* NSThread+SequenceNumber.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSThread+SequenceNumber.m"; sourceTree = "<group>"; };
@@ -1689,6 +1699,20 @@
 			path = UIControl;
 			sourceTree = "<group>";
 		};
+		4A84CBB4229B914B00CA4794 /* MBRouter */ = {
+			isa = PBXGroup;
+			children = (
+				4A84CBB5229B917100CA4794 /* MBMediator.h */,
+				4A84CBB6229B917100CA4794 /* MBMediator.m */,
+				4A84CBB8229B938700CA4794 /* MBRouterRequest.h */,
+				4A84CBB9229B938700CA4794 /* MBRouterRequest.m */,
+				4A84CBBB229B976500CA4794 /* MBRouter.h */,
+				4A84CBBC229B976500CA4794 /* MBRouter.m */,
+				4A84CBBE229B98AE00CA4794 /* MBRouterProtocol.h */,
+			);
+			path = MBRouter;
+			sourceTree = "<group>";
+		};
 		4A89D606228B17480072FB23 /* SSZipArchive */ = {
 			isa = PBXGroup;
 			children = (
@@ -2537,6 +2561,7 @@
 				4A6F198920E3A5DD00EAF1A7 /* IBString */,
 				4ACC569420DEC59D001352AE /* IBTouchID */,
 				4A03B8D2229ACCA600173765 /* MBModuleCenter */,
+				4A84CBB4229B914B00CA4794 /* MBRouter */,
 			);
 			path = "IBKit(工具)";
 			sourceTree = "<group>";
@@ -2953,6 +2978,7 @@
 				4AC29FAD2111C77D00F218FE /* AXWebViewController.m in Sources */,
 				4A1FB21020E92D5E0056A026 /* UIView+WebCacheOperation.m in Sources */,
 				4AC81CDC20F37D0C00A1F246 /* IBView.m in Sources */,
+				4A84CBB7229B917100CA4794 /* MBMediator.m in Sources */,
 				4AC29F9921106C0800F218FE /* IBRefreshHeader.m in Sources */,
 				4A89D62F228B17490072FB23 /* SSZipArchive.m in Sources */,
 				4A6F197F20E345F500EAF1A7 /* IBHelper.m in Sources */,
@@ -2960,6 +2986,7 @@
 				4AC29FD52111CAD700F218FE /* AXPracticalHUD.m in Sources */,
 				4A89D635228B17490072FB23 /* prng.m in Sources */,
 				4A1FB21720E92D5E0056A026 /* UIView+WebCache.m in Sources */,
+				4A84CBBA229B938700CA4794 /* MBRouterRequest.m in Sources */,
 				4ACC569720DEC5B7001352AE /* IBTouchID.m in Sources */,
 				4AC29F9C211073D700F218FE /* IBRefreshFooter.m in Sources */,
 				4A6F19B020E3FB7700EAF1A7 /* Reachability.m in Sources */,
@@ -3129,6 +3156,7 @@
 				4AC29FD22111CAD700F218FE /* AXCircleProgressView.m in Sources */,
 				4A89D641228BC2DC0072FB23 /* NSObject+Ext.m in Sources */,
 				4A22DE23228AF3B500D4CFA6 /* DDDispatchQueueLogFormatter.m in Sources */,
+				4A84CBBD229B976500CA4794 /* MBRouter.m in Sources */,
 				4A22DE21228AF3B500D4CFA6 /* CLIColor.m in Sources */,
 				4AC29FAA2111C77D00F218FE /* AXSecurityPolicy.m in Sources */,
 				4A03B8D6229ADCCB00173765 /* MBModuleCenter.m in Sources */,

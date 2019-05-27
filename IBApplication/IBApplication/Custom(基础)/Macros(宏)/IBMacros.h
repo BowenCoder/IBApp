@@ -9,17 +9,8 @@
 #ifndef IBMacros_h
 #define IBMacros_h
 
-#define defineToString(macro) #macro
-
-/// 判断是不是开发者自己
+/// 判断是不是开发者自己，调试使用
 #define kIsCoder(devicename) [[UIDevice currentDevice].name isEqualToString:devicename]
-
-/// 忽略警告 warningName：clang的warning名，warning 列表参考：https://clang.llvm.org/docs/DiagnosticsReference.html
-#define BeginIgnoreClangWarning(warningName) \
-_Pragma("clang diagnostic push") \
-_Pragma(defineToString(clang diagnostic ignored warningName))
-
-#define EndIgnoreClangWarning _Pragma("clang diagnostic pop")
 
 //获取系统对象
 #define kApplication        [UIApplication sharedApplication]
@@ -29,6 +20,8 @@ _Pragma(defineToString(clang diagnostic ignored warningName))
 #define kUserDefaults       [NSUserDefaults standardUserDefaults]
 #define kNotificationCenter [NSNotificationCenter defaultCenter]
 #define kFileManager        [NSFileManager defaultManager]
+
+#define RES_OK(selector) (self.delegate && [self.delegate respondsToSelector:selector])
 
 //拼接字符串
 #define NSStringFormat(format,...) [NSString stringWithFormat:format,##__VA_ARGS__]
@@ -140,6 +133,16 @@ if ([NSThread isMainThread]) { \
         #endif
     #endif
 #endif
+
+
+#define defineToString(macro) #macro
+
+/// 忽略警告 warningName：clang的warning名，warning 列表参考：https://clang.llvm.org/docs/DiagnosticsReference.html
+#define BeginIgnoreClangWarning(warningName) \
+_Pragma("clang diagnostic push") \
+_Pragma(defineToString(clang diagnostic ignored warningName))
+
+#define EndIgnoreClangWarning _Pragma("clang diagnostic pop")
 
 
 #endif /* IBMacros_h */
