@@ -132,5 +132,9 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>123</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>456</string>
 </dict>
 </plist>

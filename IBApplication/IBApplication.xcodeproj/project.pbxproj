@@ -305,6 +305,7 @@
 		4AEEA7A9213D0EFB00CFAA3D /* IBActionItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AEEA7A8213D0EFA00CFAA3D /* IBActionItem.m */; };
 		4AEEA7AC213D148500CFAA3D /* IBActionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AEEA7AB213D148500CFAA3D /* IBActionCell.m */; };
 		4AEEA7B2213D2AA700CFAA3D /* IBActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AEEA7B1213D2AA700CFAA3D /* IBActionSheet.m */; };
+		F333517B22A2C448005B968E /* MBLibraryCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = F333517A22A2C448005B968E /* MBLibraryCamera.m */; };
 		F367404C212C54B000E614A0 /* IBPopupLeftBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F367403D212C54AF00E614A0 /* IBPopupLeftBarItem.m */; };
 		F367404D212C54B000E614A0 /* UIViewController+IBPopup.m in Sources */ = {isa = PBXBuildFile; fileRef = F367403E212C54AF00E614A0 /* UIViewController+IBPopup.m */; };
 		F367404E212C54B000E614A0 /* IBPopupControllerTransitioningSlideVertical.m in Sources */ = {isa = PBXBuildFile; fileRef = F367403F212C54AF00E614A0 /* IBPopupControllerTransitioningSlideVertical.m */; };
@@ -323,6 +324,14 @@
 		F3A5C8FB212C7C88005D9174 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F3A5C8FA212C7C88005D9174 /* libz.tbd */; };
 		F3A5C8FD212C7CAD005D9174 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3A5C8FC212C7CAD005D9174 /* CoreMotion.framework */; };
 		F3E79EEC20E2A217000AC50A /* IBImage.m in Sources */ = {isa = PBXBuildFile; fileRef = F3E79EEB20E2A217000AC50A /* IBImage.m */; };
+		F3FCB42922A2F9F600C4870B /* CGGeometry+RSKImageCropper.m in Sources */ = {isa = PBXBuildFile; fileRef = F3FCB41722A2F9F600C4870B /* CGGeometry+RSKImageCropper.m */; };
+		F3FCB42A22A2F9F600C4870B /* RSKInternalUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = F3FCB41822A2F9F600C4870B /* RSKInternalUtility.m */; };
+		F3FCB42B22A2F9F600C4870B /* RSKTouchView.m in Sources */ = {isa = PBXBuildFile; fileRef = F3FCB41922A2F9F600C4870B /* RSKTouchView.m */; };
+		F3FCB42C22A2F9F600C4870B /* UIApplication+RSKImageCropper.m in Sources */ = {isa = PBXBuildFile; fileRef = F3FCB41B22A2F9F600C4870B /* UIApplication+RSKImageCropper.m */; };
+		F3FCB42D22A2F9F600C4870B /* RSKImageCropViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F3FCB41C22A2F9F600C4870B /* RSKImageCropViewController.m */; };
+		F3FCB42E22A2F9F600C4870B /* UIImage+RSKImageCropper.m in Sources */ = {isa = PBXBuildFile; fileRef = F3FCB41D22A2F9F600C4870B /* UIImage+RSKImageCropper.m */; };
+		F3FCB42F22A2F9F600C4870B /* RSKImageCropperStrings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F3FCB42222A2F9F600C4870B /* RSKImageCropperStrings.bundle */; };
+		F3FCB43022A2F9F600C4870B /* RSKImageScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = F3FCB42822A2F9F600C4870B /* RSKImageScrollView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -923,6 +932,8 @@
 		4AEEA7AB213D148500CFAA3D /* IBActionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBActionCell.m; sourceTree = "<group>"; };
 		4AEEA7B0213D2AA700CFAA3D /* IBActionSheet.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBActionSheet.h; sourceTree = "<group>"; };
 		4AEEA7B1213D2AA700CFAA3D /* IBActionSheet.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBActionSheet.m; sourceTree = "<group>"; };
+		F333517922A2C448005B968E /* MBLibraryCamera.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBLibraryCamera.h; sourceTree = "<group>"; };
+		F333517A22A2C448005B968E /* MBLibraryCamera.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBLibraryCamera.m; sourceTree = "<group>"; };
 		F367403D212C54AF00E614A0 /* IBPopupLeftBarItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IBPopupLeftBarItem.m; sourceTree = "<group>"; };
 		F367403E212C54AF00E614A0 /* UIViewController+IBPopup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+IBPopup.m"; sourceTree = "<group>"; };
 		F367403F212C54AF00E614A0 /* IBPopupControllerTransitioningSlideVertical.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IBPopupControllerTransitioningSlideVertical.m; sourceTree = "<group>"; };
@@ -955,6 +966,24 @@
 		F3A5C8FC212C7CAD005D9174 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		F3E79EEA20E2A217000AC50A /* IBImage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBImage.h; sourceTree = "<group>"; };
 		F3E79EEB20E2A217000AC50A /* IBImage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBImage.m; sourceTree = "<group>"; };
+		F3FCB41722A2F9F600C4870B /* CGGeometry+RSKImageCropper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CGGeometry+RSKImageCropper.m"; sourceTree = "<group>"; };
+		F3FCB41822A2F9F600C4870B /* RSKInternalUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSKInternalUtility.m; sourceTree = "<group>"; };
+		F3FCB41922A2F9F600C4870B /* RSKTouchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSKTouchView.m; sourceTree = "<group>"; };
+		F3FCB41A22A2F9F600C4870B /* RSKImageCropViewController+Protected.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RSKImageCropViewController+Protected.h"; sourceTree = "<group>"; };
+		F3FCB41B22A2F9F600C4870B /* UIApplication+RSKImageCropper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIApplication+RSKImageCropper.m"; sourceTree = "<group>"; };
+		F3FCB41C22A2F9F600C4870B /* RSKImageCropViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSKImageCropViewController.m; sourceTree = "<group>"; };
+		F3FCB41D22A2F9F600C4870B /* UIImage+RSKImageCropper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RSKImageCropper.m"; sourceTree = "<group>"; };
+		F3FCB41E22A2F9F600C4870B /* RSKImageScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSKImageScrollView.h; sourceTree = "<group>"; };
+		F3FCB41F22A2F9F600C4870B /* RSKTouchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSKTouchView.h; sourceTree = "<group>"; };
+		F3FCB42022A2F9F600C4870B /* RSKInternalUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSKInternalUtility.h; sourceTree = "<group>"; };
+		F3FCB42122A2F9F600C4870B /* CGGeometry+RSKImageCropper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CGGeometry+RSKImageCropper.h"; sourceTree = "<group>"; };
+		F3FCB42222A2F9F600C4870B /* RSKImageCropperStrings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = RSKImageCropperStrings.bundle; sourceTree = "<group>"; };
+		F3FCB42322A2F9F600C4870B /* UIImage+RSKImageCropper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+RSKImageCropper.h"; sourceTree = "<group>"; };
+		F3FCB42422A2F9F600C4870B /* RSKImageCropViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSKImageCropViewController.h; sourceTree = "<group>"; };
+		F3FCB42522A2F9F600C4870B /* RSKImageCropper.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = RSKImageCropper.modulemap; sourceTree = "<group>"; };
+		F3FCB42622A2F9F600C4870B /* UIApplication+RSKImageCropper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIApplication+RSKImageCropper.h"; sourceTree = "<group>"; };
+		F3FCB42722A2F9F600C4870B /* RSKImageCropper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSKImageCropper.h; sourceTree = "<group>"; };
+		F3FCB42822A2F9F600C4870B /* RSKImageScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSKImageScrollView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2297,6 +2326,7 @@
 		4ACC55C620DB5F3E001352AE /* Public(公共) */ = {
 			isa = PBXGroup;
 			children = (
+				F333517822A2C404005B968E /* MBLibraryCamera */,
 				4AC7FBD8212C42C200203C92 /* IBPopupController */,
 				4AE64C50212BB78D003DE328 /* IBPopupManager */,
 				4AE64C46212ACFA4003DE328 /* IBCheckbox */,
@@ -2757,6 +2787,16 @@
 			path = Source;
 			sourceTree = "<group>";
 		};
+		F333517822A2C404005B968E /* MBLibraryCamera */ = {
+			isa = PBXGroup;
+			children = (
+				F333517922A2C448005B968E /* MBLibraryCamera.h */,
+				F333517A22A2C448005B968E /* MBLibraryCamera.m */,
+				F3FCB41622A2F9F600C4870B /* RSKImageCropper */,
+			);
+			path = MBLibraryCamera;
+			sourceTree = "<group>";
+		};
 		F3A5C8DF212C7421005D9174 /* WeiboSDK */ = {
 			isa = PBXGroup;
 			children = (
@@ -2816,6 +2856,31 @@
 				F3E79EEB20E2A217000AC50A /* IBImage.m */,
 			);
 			path = IBImage;
+			sourceTree = "<group>";
+		};
+		F3FCB41622A2F9F600C4870B /* RSKImageCropper */ = {
+			isa = PBXGroup;
+			children = (
+				F3FCB42122A2F9F600C4870B /* CGGeometry+RSKImageCropper.h */,
+				F3FCB41722A2F9F600C4870B /* CGGeometry+RSKImageCropper.m */,
+				F3FCB42722A2F9F600C4870B /* RSKImageCropper.h */,
+				F3FCB42522A2F9F600C4870B /* RSKImageCropper.modulemap */,
+				F3FCB42222A2F9F600C4870B /* RSKImageCropperStrings.bundle */,
+				F3FCB42422A2F9F600C4870B /* RSKImageCropViewController.h */,
+				F3FCB41C22A2F9F600C4870B /* RSKImageCropViewController.m */,
+				F3FCB41A22A2F9F600C4870B /* RSKImageCropViewController+Protected.h */,
+				F3FCB41E22A2F9F600C4870B /* RSKImageScrollView.h */,
+				F3FCB42822A2F9F600C4870B /* RSKImageScrollView.m */,
+				F3FCB42022A2F9F600C4870B /* RSKInternalUtility.h */,
+				F3FCB41822A2F9F600C4870B /* RSKInternalUtility.m */,
+				F3FCB41F22A2F9F600C4870B /* RSKTouchView.h */,
+				F3FCB41922A2F9F600C4870B /* RSKTouchView.m */,
+				F3FCB42622A2F9F600C4870B /* UIApplication+RSKImageCropper.h */,
+				F3FCB41B22A2F9F600C4870B /* UIApplication+RSKImageCropper.m */,
+				F3FCB42322A2F9F600C4870B /* UIImage+RSKImageCropper.h */,
+				F3FCB41D22A2F9F600C4870B /* UIImage+RSKImageCropper.m */,
+			);
+			path = RSKImageCropper;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -2901,6 +2966,7 @@
 				4A1FB13820E921E90056A026 /* UIBarButtonItemGrid@3x.png in Resources */,
 				4A1FB13720E921E90056A026 /* UIBarButtonItemArrowLeft.png in Resources */,
 				4A1FB15020E921E90056A026 /* ImageSelectedOff@3x.png in Resources */,
+				F3FCB42F22A2F9F600C4870B /* RSKImageCropperStrings.bundle in Resources */,
 				4A1FB13B20E921E90056A026 /* UIBarButtonItemGrid@2x.png in Resources */,
 				4A1FB13920E921E90056A026 /* ImageSelectedSmallOn.png in Resources */,
 				4A1FB14120E921E90056A026 /* ImageSelectedSmallOff@3x.png in Resources */,
@@ -2953,6 +3019,7 @@
 				4AC29FE22111CB8800F218FE /* AXActivityIndicatorView.m in Sources */,
 				4A78076620E9F1BB00E60ACA /* MASLayoutConstraint.m in Sources */,
 				4A6F19C320E5DD3100EAF1A7 /* IBViewAnimation.m in Sources */,
+				F3FCB43022A2F9F600C4870B /* RSKImageScrollView.m in Sources */,
 				4A1FB20B20E92D5E0056A026 /* UIImage+WebP.m in Sources */,
 				4A06E16F212FDCD300227583 /* IBSocialObject.m in Sources */,
 				4AEEA7AC213D148500CFAA3D /* IBActionCell.m in Sources */,
@@ -3021,12 +3088,14 @@
 				4ACC567B20DE6679001352AE /* NSNotificationNameManager.m in Sources */,
 				4A1FB21320E92D5E0056A026 /* UIImageView+HighlightedWebCache.m in Sources */,
 				4AD7706D2297C92400FEB76B /* YYCache.m in Sources */,
+				F3FCB42A22A2F9F600C4870B /* RSKInternalUtility.m in Sources */,
 				4A6F197620E26B3800EAF1A7 /* IBCrypto.m in Sources */,
 				4A78076920E9F1BB00E60ACA /* MASConstraint.m in Sources */,
 				4A1FB0E120E8F0D80056A026 /* IBHTTPClient.m in Sources */,
 				4AC29FB42111C90B00F218FE /* NJKWebViewProgress.m in Sources */,
 				F3674052212C54B000E614A0 /* IBPopupControllerTransitioningFade.m in Sources */,
 				4A22DE20228AF3B500D4CFA6 /* DDASLLogCapture.m in Sources */,
+				F3FCB42C22A2F9F600C4870B /* UIApplication+RSKImageCropper.m in Sources */,
 				4AD770A52297CD1300FEB76B /* YYTextView.m in Sources */,
 				4A1FB09720E811FA0056A026 /* UIView+draggable.m in Sources */,
 				4A1FB13520E921E90056A026 /* MWGridViewController.m in Sources */,
@@ -3044,6 +3113,7 @@
 				4A6F19B720E3FE9600EAF1A7 /* IBSocketService.m in Sources */,
 				4AC428F1215A56A8008C93D4 /* IBPopoverMenu.m in Sources */,
 				4A1FB20F20E92D5E0056A026 /* NSData+ImageContentType.m in Sources */,
+				F333517B22A2C448005B968E /* MBLibraryCamera.m in Sources */,
 				4A1FB12B20E921E90056A026 /* DALabeledCircularProgressView.m in Sources */,
 				4A1FB22620E92D5E0056A026 /* SDWebImageTransition.m in Sources */,
 				4AC428EE215A569C008C93D4 /* IBPopoverLabel.m in Sources */,
@@ -3147,6 +3217,7 @@
 				4A89D634228B17490072FB23 /* sha1.m in Sources */,
 				4A6F19B420E3FBDE00EAF1A7 /* IBNetworkStatus.m in Sources */,
 				4AD770BC2297CD1300FEB76B /* YYTextWeakProxy.m in Sources */,
+				F3FCB42B22A2F9F600C4870B /* RSKTouchView.m in Sources */,
 				4A03B8E6229B06A200173765 /* MBUserModel.m in Sources */,
 				4A6F19BA20E401CC00EAF1A7 /* IBSocketClient.m in Sources */,
 				4ACC56A820DFC7AC001352AE /* UITextField+Ext.m in Sources */,
@@ -3163,6 +3234,7 @@
 				4A1FB21120E92D5E0056A026 /* FLAnimatedImageView+WebCache.m in Sources */,
 				4A22DE25228AF3B500D4CFA6 /* DDMultiFormatter.m in Sources */,
 				4ACC563C20DD6C62001352AE /* UIBarButtonItem+Ext.m in Sources */,
+				F3FCB42D22A2F9F600C4870B /* RSKImageCropViewController.m in Sources */,
 				4A1FB22520E92D5E0056A026 /* SDWebImagePrefetcher.m in Sources */,
 				4AD770A72297CD1300FEB76B /* YYTextContainerView.m in Sources */,
 				4AC81CCC20F3200400A1F246 /* IBTabBarController.m in Sources */,
@@ -3192,7 +3264,9 @@
 				4AC29F7F210F04A900F218FE /* UIView+MJExtension.m in Sources */,
 				4ACC56A120DF72D9001352AE /* UIView+Ext.m in Sources */,
 				F3674051212C54B000E614A0 /* UIResponder+IBPopup.m in Sources */,
+				F3FCB42922A2F9F600C4870B /* CGGeometry+RSKImageCropper.m in Sources */,
 				4A1FB0BD20E8EE6B0056A026 /* AFURLSessionManager.m in Sources */,
+				F3FCB42E22A2F9F600C4870B /* UIImage+RSKImageCropper.m in Sources */,
 				4A1FB21F20E92D5E0056A026 /* SDWebImageImageIOCoder.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -31,12 +31,14 @@
 #import "MBLogger.h"
 #import "IBHelper.h"
 #import "MBUserManager.h"
+#import "MBLibraryCamera.h"
 
 @interface ViewController ()<UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, strong) UIImageView *imageView;
 @property (nonatomic, strong) UIButton *btn;
 @property (nonatomic, strong) UIView *testView;
+@property (nonatomic, strong) MBLibraryCamera *camera;
 
 @end
 
@@ -71,6 +73,11 @@
     
 }
 
+- (BOOL)prefersStatusBarHidden
+{
+    return NO;
+}
+
 - (BOOL)shouldAutorotate {
     return YES;
 }
@@ -81,15 +88,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [self.view endEditing:YES];
-    MBLog(@"123");
+     self.camera = [[MBLibraryCamera alloc] init];
+//    [self.camera openGallery:self];
+    [self.camera openCamera:self];
     return;
-    UIView *red = [[UIView alloc] init];
-    red.backgroundColor = UIColor.redColor;
-    red.frame = CGRectMake(100, 100, 200, 200);
-    [self.popupManager presentContentView:red duration:0.25 springAnimated:YES];
-    
-    return;
-
     
 //    [MBProgressHUD showCircleLoadingView:self.view];
 //    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
