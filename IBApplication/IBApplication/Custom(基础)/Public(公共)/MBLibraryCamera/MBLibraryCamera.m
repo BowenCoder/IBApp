@@ -136,12 +136,8 @@
     crop.avoidEmptySpaceAroundImage = YES;
     crop.maskLayerLineWidth = 1;
     crop.maskLayerStrokeColor = [UIColor whiteColor];
-    if (picker.sourceType == UIImagePickerControllerSourceTypeCamera) {
-        [picker dismissViewControllerAnimated:NO completion:nil];
-        [self.currentController presentViewController:crop animated:YES completion:nil];
-    } else {
-        [picker presentViewController:crop animated:YES completion:nil];
-    }
+    [picker dismissViewControllerAnimated:NO completion:nil];
+    [self.currentController presentViewController:crop animated:YES completion:nil];
 }
 
 #pragma mark - RSKImageCropViewControllerDelegate

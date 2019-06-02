@@ -89,8 +89,11 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [self.view endEditing:YES];
      self.camera = [[MBLibraryCamera alloc] init];
-//    [self.camera openGallery:self];
-    [self.camera openCamera:self];
+    if (indexPath.row %2 == 0) {
+        [self.camera openGallery:self];
+    } else {
+        [self.camera openCamera:self];
+    }
     return;
     
 //    [MBProgressHUD showCircleLoadingView:self.view];

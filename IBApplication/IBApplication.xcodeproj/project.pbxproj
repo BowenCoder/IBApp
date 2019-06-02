@@ -305,6 +305,7 @@
 		4AEEA7A9213D0EFB00CFAA3D /* IBActionItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AEEA7A8213D0EFA00CFAA3D /* IBActionItem.m */; };
 		4AEEA7AC213D148500CFAA3D /* IBActionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AEEA7AB213D148500CFAA3D /* IBActionCell.m */; };
 		4AEEA7B2213D2AA700CFAA3D /* IBActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AEEA7B1213D2AA700CFAA3D /* IBActionSheet.m */; };
+		F323F5EB22A4341D008BC303 /* RSKImageCropViewController+Ext.m in Sources */ = {isa = PBXBuildFile; fileRef = F323F5EA22A4341D008BC303 /* RSKImageCropViewController+Ext.m */; };
 		F333517B22A2C448005B968E /* MBLibraryCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = F333517A22A2C448005B968E /* MBLibraryCamera.m */; };
 		F367404C212C54B000E614A0 /* IBPopupLeftBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F367403D212C54AF00E614A0 /* IBPopupLeftBarItem.m */; };
 		F367404D212C54B000E614A0 /* UIViewController+IBPopup.m in Sources */ = {isa = PBXBuildFile; fileRef = F367403E212C54AF00E614A0 /* UIViewController+IBPopup.m */; };
@@ -932,6 +933,8 @@
 		4AEEA7AB213D148500CFAA3D /* IBActionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBActionCell.m; sourceTree = "<group>"; };
 		4AEEA7B0213D2AA700CFAA3D /* IBActionSheet.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBActionSheet.h; sourceTree = "<group>"; };
 		4AEEA7B1213D2AA700CFAA3D /* IBActionSheet.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBActionSheet.m; sourceTree = "<group>"; };
+		F323F5E922A4341D008BC303 /* RSKImageCropViewController+Ext.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RSKImageCropViewController+Ext.h"; sourceTree = "<group>"; };
+		F323F5EA22A4341D008BC303 /* RSKImageCropViewController+Ext.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "RSKImageCropViewController+Ext.m"; sourceTree = "<group>"; };
 		F333517922A2C448005B968E /* MBLibraryCamera.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBLibraryCamera.h; sourceTree = "<group>"; };
 		F333517A22A2C448005B968E /* MBLibraryCamera.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBLibraryCamera.m; sourceTree = "<group>"; };
 		F367403D212C54AF00E614A0 /* IBPopupLeftBarItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IBPopupLeftBarItem.m; sourceTree = "<group>"; };
@@ -2792,6 +2795,8 @@
 			children = (
 				F333517922A2C448005B968E /* MBLibraryCamera.h */,
 				F333517A22A2C448005B968E /* MBLibraryCamera.m */,
+				F323F5E922A4341D008BC303 /* RSKImageCropViewController+Ext.h */,
+				F323F5EA22A4341D008BC303 /* RSKImageCropViewController+Ext.m */,
 				F3FCB41622A2F9F600C4870B /* RSKImageCropper */,
 			);
 			path = MBLibraryCamera;
@@ -3243,6 +3248,7 @@
 				4A89D633228B17490072FB23 /* fileenc.m in Sources */,
 				4AC29F8C210F04A900F218FE /* MJRefreshAutoFooter.m in Sources */,
 				4A6F19A920E3F3D700EAF1A7 /* IBSocketConnection.m in Sources */,
+				F323F5EB22A4341D008BC303 /* RSKImageCropViewController+Ext.m in Sources */,
 				4AC29F82210F04A900F218FE /* MJRefreshBackNormalFooter.m in Sources */,
 				4AC29F84210F04A900F218FE /* MJRefreshAutoGifFooter.m in Sources */,
 				4A1FB13220E921E90056A026 /* MWPhoto.m in Sources */,
