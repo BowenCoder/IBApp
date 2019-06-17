@@ -39,7 +39,9 @@
 
 + (void)userSetup
 {
-    [[MBUserManager sharedManager] restore];
+    [[MBUserManager sharedManager] refreshLoginUser:^{
+        
+    }];
 }
 
 // 注册MBModuleCenter

@@ -7,15 +7,13 @@
 //
 
 #import "IBNetworkStatus.h"
-
 #import <CoreTelephony/CTTelephonyNetworkInfo.h>
-#import "Reachability.h"
 
 @interface IBNetworkStatus ()
 /**
  网络状态
  */
-@property (nonatomic, strong) Reachability *reachability;
+@property (nonatomic, strong) AFNetworkReachabilityManager *reachability;
 /**
  2G数组
  */
@@ -39,9 +37,13 @@ NSString * const kIBReachabilityChangedNotification = @"kIBReachabilityChangedNo
 
 @implementation IBNetworkStatus
 
-+ (instancetype)shareNetworkStatus {
+- (void)dealloc {
+    [self.reachability stopMonitoring];
+}
+
++ (instancetype)shareInstance {
     
-    static IBNetworkStatus *instance = NULL;
+    static IBNetworkStatus *instance;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         if (instance == nil) {
@@ -54,7 +56,7 @@ NSString * const kIBReachabilityChangedNotification = @"kIBReachabilityChangedNo
 - (instancetype)init {
     
     if (self = [super init]) {
-        [self.reachability startNotifier];
+        [self.reachability startMonitoring];
         [self addNetworkingStatusNotification];
     }
     return self;
@@ -62,7 +64,7 @@ NSString * const kIBReachabilityChangedNotification = @"kIBReachabilityChangedNo
 
 - (void)addNetworkingStatusNotification {
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveReachabilityChangedNotification:) name:kReachabilityChangedNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveReachabilityChangedNotification:) name:AFNetworkingReachabilityDidChangeNotification object:nil];
 }
 
 - (void)receiveReachabilityChangedNotification:(NSNotification *)notification {
@@ -72,26 +74,23 @@ NSString * const kIBReachabilityChangedNotification = @"kIBReachabilityChangedNo
 
 - (IBNetworkModeStatus)currentNetworkStatus {
     
-    NetworkStatus status = self.reachability.currentReachabilityStatus;
+    AFNetworkReachabilityStatus status = self.reachability.networkReachabilityStatus;
     switch (status) {
-        case NotReachable:
-            return IBNotReachable;
+        case AFNetworkReachabilityStatusUnknown:
+            return IBNetworkStatusUnknown;
             break;
-        case ReachableViaWiFi:
-            return IBReachableViaWiFi;
+        case AFNetworkReachabilityStatusNotReachable:
+            return IBNetworkStatusNotReachable;
             break;
-        case ReachableViaWWAN:
-            return IBReachableViaWWAN;
+        case AFNetworkReachabilityStatusReachableViaWWAN:
+            return IBNetworkStatusReachableViaWWAN;
+            break;
+        case AFNetworkReachabilityStatusReachableViaWiFi:
+            return IBNetworkStatusReachableViaWiFi;
             break;
         default:
-            return IBNotReachable;
-            break;
+            return IBNetworkStatusUnknown;
     }
-}
-
-- (BOOL)isReachable
-{
-    return [self.reachability currentReachabilityStatus] != NotReachable;
 }
 
 /**
@@ -99,37 +98,62 @@ NSString * const kIBReachabilityChangedNotification = @"kIBReachabilityChangedNo
  */
 - (NSString *)specificNetworkMode
 {
-    Reachability *r = [Reachability reachabilityWithHostName:@"www.apple.com"];
-    NetworkStatus status = [r currentReachabilityStatus];
-    if (status == NotReachable)
-    {
+    IBNetworkModeStatus status = [self currentNetworkStatus];
+    
+    if (status == IBNetworkStatusNotReachable){
         return @"NotReachable";
     }
-    else if(status == ReachableViaWiFi)
-    {
+    if (status == IBNetworkStatusReachableViaWiFi) {
         return @"Wifi";
     }
+    
     //获取当前网络描述
     NSString *currentStatus = self.networkInfo.currentRadioAccessTechnology;
+    
     if ([self.technology2GArray containsObject:currentStatus]) {
         return @"2G";
     }
-    else if ([self.technology3GArray containsObject:currentStatus])
-    {
+    else if ([self.technology3GArray containsObject:currentStatus]) {
         return @"3G";
     }
-    else if ([self.technology4GArray containsObject:currentStatus])
-    {
+    else if ([self.technology4GArray containsObject:currentStatus]) {
         return @"4G";
     }
-    return @"Unkonw";
+    return @"Unkown";
+}
+
+- (void)checkingNetworkStatus:(void(^)(IBNetworkModeStatus status))callback {
+    
+    [self.reachability setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+        if (status == AFNetworkReachabilityStatusUnknown) {
+            if (callback) callback(IBNetworkStatusUnknown);
+        } else if (status == AFNetworkReachabilityStatusNotReachable){
+            if (callback) callback(IBNetworkStatusNotReachable);
+        } else if (status == AFNetworkReachabilityStatusReachableViaWWAN){
+            if (callback) callback(IBNetworkStatusReachableViaWWAN);
+        } else if (status == AFNetworkReachabilityStatusReachableViaWiFi){
+            if (callback) callback(IBNetworkStatusReachableViaWiFi);
+        }
+    }];
 }
 
 #pragma mark - 懒加载
 
-- (Reachability *)reachability{
+- (BOOL)reachable {
+    return [self.reachability isReachableViaWWAN] || [self.reachability isReachableViaWiFi];
+}
+
+- (BOOL)reachableViaWWAN {
+    return self.reachability.networkReachabilityStatus == AFNetworkReachabilityStatusReachableViaWWAN;
+}
+
+- (BOOL)reachableViaWiFi {
+    return self.reachability.networkReachabilityStatus == AFNetworkReachabilityStatusReachableViaWiFi;
+}
+
+- (AFNetworkReachabilityManager *)reachability{
     if (!_reachability) {
-        _reachability = [Reachability reachabilityForInternetConnection];
+        _reachability = [AFNetworkReachabilityManager sharedManager];
     }
     return _reachability;
 }

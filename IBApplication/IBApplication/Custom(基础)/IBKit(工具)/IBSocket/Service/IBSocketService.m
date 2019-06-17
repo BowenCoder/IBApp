@@ -145,7 +145,7 @@ static IBSocketService *service = nil;
 
 - (void)onReceiveReachabilityChangedNotification:(NSNotification *)notification {
     
-    if ([IBNetworkStatus shareNetworkStatus].isReachable){
+    if ([IBNetworkStatus shareInstance].reachable){
         [self startConnectSocket];
     }
 }

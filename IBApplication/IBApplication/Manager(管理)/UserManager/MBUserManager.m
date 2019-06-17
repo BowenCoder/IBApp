@@ -30,6 +30,18 @@
     return manager;
 }
 
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        [self restore];
+    }
+    return self;
+}
+
+/**
+ 从本地恢复数据
+ */
 - (void)restore
 {
     NSString *lastUserPath = [self loginFile];
@@ -45,15 +57,23 @@
     [self refreshAtom];
 }
 
-- (MBUserModel *)loginUser
+- (BOOL)isLoginUser:(NSInteger)uid
 {
-    return _user;
+    return _user.uid == uid;
 }
 
-- (void)setLoginUser:(MBUserModel *)user
+- (void)updateLoginUser:(MBUserModel *)user
 {
     _user = user;
     [self saveUserInfo];
+}
+
+- (void)refreshLoginUser:(dispatch_block_t)completion
+{
+    /*
+     1、网络请求用户数据
+     2、设置用户数据（[self setLoginUser:nil];）
+     */
 }
 
 - (void)setLogin:(NSInteger)uid session:(NSString *)session phoneNum:(MBPhoneNumber *)phoneNumber
@@ -64,22 +84,6 @@
     _user.phoneNumber = phoneNumber;
     [self refreshAtom];
     [self saveUserInfo];
-}
-
-- (void)refreshLoginUser:(dispatch_block_t)completion
-{
-    // 网络请求
-    [self setLoginUser:nil];
-}
-
-- (BOOL)isLoginUser:(MBUserModel *)user
-{
-    return _user.uid == user.uid;
-}
-
-- (BOOL)isLogin
-{
-    return _user && _user.session;
 }
 
 - (void)logout
@@ -100,8 +104,14 @@
 
 - (void)refreshAtom
 {
-    
+    if (_user) {
+        [[IBAtomFactory sharedInstance] updateUserId:[@(_user.uid) stringValue] sessionId:NSStringNONil(_user.session)];
+    } else {
+        [[IBAtomFactory sharedInstance] updateUserId:@"" sessionId:@""];
+    }
 }
+
+#pragma mark - 存储
 
 - (void)saveUserInfo
 {
@@ -114,6 +124,7 @@
         [IBFile writeFileAtPath:filePath content:userDic];
     });
     [self saveLastUserWithDict:userDic];
+    [self syncSharedData:userDic];
 }
 
 - (void)saveLastUserWithDict:(NSMutableDictionary *)userDic
@@ -154,7 +165,7 @@
 
 - (NSString *)userInfoFileName:(NSInteger)uid
 {
-    NSString *filename = [NSString stringWithFormat:@"User/login_%ld.plist", uid];
+    NSString *filename = [NSString stringWithFormat:@"User/login_%ld.plist", (long)uid];
     return [IBFile pathForLibraryDirectoryWithPath:filename];
 }
 
@@ -163,5 +174,16 @@
     return [IBFile pathForLibraryDirectoryWithPath:@"User/login_uid.plist"];
 }
 
+#pragma mark - getter
+
+- (MBUserModel *)loginUser
+{
+    return _user;
+}
+
+- (BOOL)isLogin
+{
+    return _user && _user.session;
+}
 
 @end

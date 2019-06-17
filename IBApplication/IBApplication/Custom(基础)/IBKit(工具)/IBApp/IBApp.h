@@ -50,6 +50,16 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSString *)UUID;
 
 /**
+ 广告商的标志符
+ */
++ (NSString *)idfa;
+
+/**
+ 供应商的标志符
+ */
++ (NSString *)idfv;
+
+/**
  APP图标
  
  @return 图片
@@ -147,11 +157,20 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface IBApp (Device)
 
+/** 判断是否是模拟器 */
++ (BOOL)isSimulator;
+
 /** 判断是否越狱 */
 + (BOOL)isJailbroken;
 
 /** 设备的机器型号 */
 + (NSString *)machineModel;
+
+/** 电池电量 */
++ (CGFloat)batteryLevel;
+
+/** 无线网ssid */
++ (id)wifiSSID;
 
 /** CPU使用率 */
 + (CGFloat)cpuUsage;

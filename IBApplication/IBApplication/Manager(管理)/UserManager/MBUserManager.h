@@ -13,26 +13,39 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface MBUserManager : NSObject
 
+@property (nonatomic, readonly, strong) MBUserModel *loginUser;
+@property (nonatomic, readonly, assign) BOOL isLogin;
+
 + (instancetype)sharedManager;
 
-- (void)restore;
+/**
+ 退出登录
+ */
+- (void)logout;
 
-- (MBUserModel *)loginUser;
+/**
+ 判断是否是登录用户
+ */
+- (BOOL)isLoginUser:(NSInteger)uid;
 
-- (void)setLoginUser:(MBUserModel *)user;
+/**
+ 更新或者设置用户数据
+ */
+- (void)updateLoginUser:(MBUserModel *)user;
 
-// 原子参数设置专用
-- (void)setLogin:(NSInteger)uid session:(NSString *)session phoneNum:(MBPhoneNumber *)phoneNumber;
-
+/**
+ 网络刷新用户数据
+ */
 - (void)refreshLoginUser:(dispatch_block_t)completion;
 
-- (BOOL)isLoginUser:(MBUserModel *)user;
+/**
+ 原子参数设置专用
 
-- (BOOL)isLogin;
-
-- (void)saveUserInfo;
-
-- (void)logout;
+ @param uid uid
+ @param session sessionID
+ @param phoneNumber 电话
+ */
+- (void)setLogin:(NSInteger)uid session:(NSString *)session phoneNum:(MBPhoneNumber *)phoneNumber;
 
 @end
 

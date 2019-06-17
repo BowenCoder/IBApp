@@ -243,7 +243,7 @@
 
 - (BOOL)isCanReconnectSocket {
     
-    return (![self isConnected] && self.connectConfig.autoReconnect && [IBNetworkStatus shareNetworkStatus].isReachable && _connectCount < self.connectConfig.connectMaxCount);
+    return (![self isConnected] && self.connectConfig.autoReconnect && [IBNetworkStatus shareInstance].reachable && _connectCount < self.connectConfig.connectMaxCount);
 }
 
 

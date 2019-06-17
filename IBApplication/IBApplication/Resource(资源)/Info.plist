@@ -132,5 +132,27 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<true/>
+	<key>app</key>
+	<dict>
+		<key>channel</key>
+		<string>CA0001</string>
+		<key>license</key>
+		<string>lC0001</string>
+		<key>project</key>
+		<string>bowen</string>
+		<key>proto</key>
+		<string>0</string>
+	</dict>
+	<key>serviceinfo</key>
+	<dict>
+		<key>url_pro</key>
+		<string>http://service.bowen.com/api/v1/serviceinfo/info</string>
+		<key>url_dev</key>
+		<string>http://develop.bowen.com/api/v1/serviceinfo/info </string>
+		<key>url_test</key>
+		<string>http://test.bowen.com/api/v1/serviceinfo/info </string>
+		<key>url_backup</key>
+		<string>http://service.bowen.com/api/v1/serviceinfo/info</string>
+	</dict>
 </dict>
 </plist>

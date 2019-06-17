@@ -9,7 +9,6 @@
 #import "IBApp.h"
 #import "IBFile.h"
 
-#import <AudioToolbox/AudioToolbox.h>
 #include <sys/types.h>
 #include <sys/sysctl.h>
 #import <sys/socket.h>
@@ -22,6 +21,9 @@
 #import <mach/mach.h>
 #import <mach/mach_host.h>
 #import <mach/processor_info.h>
+#import <AdSupport/AdSupport.h>
+#import <AudioToolbox/AudioToolbox.h>
+#import <SystemConfiguration/CaptiveNetwork.h>
 
 @implementation IBApp
 
@@ -35,6 +37,32 @@
         CFRelease(uuidRef);
         return (__bridge_transfer NSString *)uuid;
     }
+}
+
++ (NSString *)idfa
+{
+    ASIdentifierManager *mgr = [ASIdentifierManager sharedManager];
+    if (mgr.isAdvertisingTrackingEnabled) {
+        NSUUID *rv = mgr.advertisingIdentifier;
+        while (!rv) {
+            [NSThread sleepForTimeInterval:0.005];
+            rv = mgr.advertisingIdentifier;
+        }
+        return rv.UUIDString;
+    } else {
+        return nil;
+    }
+}
+
++ (NSString *)idfv
+{
+    UIDevice *device = [UIDevice currentDevice];
+    NSUUID *rv = device.identifierForVendor;
+    while (!rv) { // 设备重启没有解锁，但是应用在后台已被唤醒，可能为nil
+        [NSThread sleepForTimeInterval:0.005];
+        rv = device.identifierForVendor;
+    }
+    return rv.UUIDString;
 }
 
 + (UIImage *)appIcon {
@@ -301,17 +329,33 @@
 }
 
 + (NSString *)machineModel {
-    static dispatch_once_t one;
-    static NSString *model;
-    dispatch_once(&one, ^{
-        size_t size;
-        sysctlbyname("hw.machine", NULL, &size, NULL, 0);
-        char *machine = malloc(size);
-        sysctlbyname("hw.machine", machine, &size, NULL, 0);
-        model = [NSString stringWithUTF8String:machine];
-        free(machine);
-    });
-    return model;
+    if ([self isSimulator]) {
+        // Simulator doesn't return the identifier for the actual physical model, but returns it as an environment variable
+        // 模拟器不返回物理机器信息，但会通过环境变量的方式返回
+        return [NSString stringWithFormat:@"%s", getenv("SIMULATOR_MODEL_IDENTIFIER")];
+    }
+    
+    // See https://www.theiphonewiki.com/wiki/Models for identifiers
+    struct utsname systemInfo;
+    uname(&systemInfo);
+    NSString *machine = [NSString stringWithCString:systemInfo.machine encoding:NSUTF8StringEncoding];
+    machine = [machine stringByReplacingOccurrencesOfString:@"," withString:@"_"];
+    return machine;
+}
+
++ (CGFloat)batteryLevel {
+    return [[UIDevice currentDevice] batteryLevel];
+}
+
++ (id)wifiSSID
+{
+    id info = nil;
+    NSArray *ifs = (__bridge_transfer id)CNCopySupportedInterfaces();
+    for (NSString *ifnam in ifs) {
+        info = (__bridge_transfer id)CNCopyCurrentNetworkInfo((__bridge CFStringRef)ifnam);
+        if (info && [info count]) { break; }
+    }
+    return info;
 }
 
 + (CGFloat)cpuUsage {

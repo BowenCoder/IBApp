@@ -49,7 +49,7 @@
 + (void)POST:(NSString *)url
       params:(NSDictionary *)params
     callback:(HTTPClientHandle)handle {
-
+    
     IBHTTPClient *client = [IBHTTPClient shareInstance];
     
     [client POST:url parameters:params progress:^(NSProgress * _Nonnull uploadProgress) {
@@ -72,7 +72,7 @@
     fileName:(NSString *)fileName
     mimeType:(NSString *)mimeType
     callback:(HTTPClientHandle)handle {
-
+    
     IBHTTPClient *client = [IBHTTPClient shareInstance];
     
     [client POST:url parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
@@ -95,7 +95,7 @@
           fromFile:(NSURL *)path
           progress:(void(^)(NSProgress *progress))progress
           callback:(HTTPClientHandle)handle {
-
+    
     NSURL *requestURL = [NSURL URLWithString:url];
     NSURLRequest *request = [[NSURLRequest alloc] initWithURL:requestURL];
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
@@ -118,7 +118,7 @@
           fromData:(NSData *)data
           progress:(void(^)(NSProgress *progress))progress
           callback:(HTTPClientHandle)handle {
-
+    
     NSURL *requestURL = [NSURL URLWithString:url];
     NSURLRequest *request = [[NSURLRequest alloc] initWithURL:requestURL];
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
@@ -151,6 +151,7 @@
         progress(downloadProgress);
     } destination:^NSURL * _Nonnull(NSURL * _Nonnull targetPath, NSURLResponse * _Nonnull response) {
         NSString *cachesPath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject];
+        cachesPath = [cachesPath stringByAppendingString:@"afn_download"];
         NSString *fullPath = [cachesPath stringByAppendingPathComponent:response.suggestedFilename];
         return [NSURL fileURLWithPath:path != nil ? path : fullPath];
     } completionHandler:^(NSURLResponse * _Nonnull response, NSURL * _Nullable filePath, NSError * _Nullable error) {
@@ -163,32 +164,6 @@
         
     }];
     [downloadTask resume];
-}
-
-+ (void)checkingNetworkStatus:(void(^)(HTTPClientNetworkStatus status))callback {
-    
-    IBHTTPClient *client = [IBHTTPClient shareInstance];
-    AFNetworkReachabilityManager *manager = [AFNetworkReachabilityManager sharedManager];
-    [manager startMonitoring];
-    [manager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
-        if (status == AFNetworkReachabilityStatusUnknown) {
-            client.networkStatus = HTTPClientNetworkUnknown;
-            if (callback) callback(HTTPClientNetworkUnknown);
-            
-        }else if (status == AFNetworkReachabilityStatusNotReachable){
-            client.networkStatus = HTTPClientNetworkNotReachable;
-            if (callback) callback(HTTPClientNetworkNotReachable);
-            
-        }else if (status == AFNetworkReachabilityStatusReachableViaWWAN){
-            client.networkStatus = HTTPClientNetworkViaWWAN;
-            if (callback) callback(HTTPClientNetworkViaWWAN);
-            
-        }else if (status == AFNetworkReachabilityStatusReachableViaWiFi){
-            client.networkStatus = HTTPClientNetworkViaWiFi;
-            if (callback) callback(HTTPClientNetworkViaWiFi);
-            
-        }
-    }];
 }
 
 + (void)cancelAllOperations {

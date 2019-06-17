@@ -11,16 +11,7 @@
 
 typedef void(^HTTPClientHandle)(id JSON, NSError *error);
 
-typedef NS_ENUM(NSInteger, HTTPClientNetworkStatus){
-    HTTPClientNetworkUnknown       = -1,
-    HTTPClientNetworkNotReachable  = 0,
-    HTTPClientNetworkViaWWAN       = 1,
-    HTTPClientNetworkViaWiFi       = 2
-};
-
 @interface IBHTTPClient : AFHTTPSessionManager
-
-@property (nonatomic, assign) HTTPClientNetworkStatus networkStatus;
 
 + (instancetype)shareInstance;
 
@@ -110,10 +101,5 @@ typedef NS_ENUM(NSInteger, HTTPClientNetworkStatus){
  取消请求
  */
 + (void)cancelAllOperations;
-
-/**
- 监听网络状态的变化(全局开启一次就行)
- */
-+ (void)checkingNetworkStatus:(void(^)(HTTPClientNetworkStatus status))callback;
 
 @end
