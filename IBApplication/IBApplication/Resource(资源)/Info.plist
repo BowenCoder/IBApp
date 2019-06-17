@@ -154,5 +154,9 @@
 		<key>url_backup</key>
 		<string>http://service.bowen.com/api/v1/serviceinfo/info</string>
 	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>123</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>456</string>
 </dict>
 </plist>

@@ -32,12 +32,14 @@
 #import "IBHelper.h"
 #import "MBUserManager.h"
 #import "IBAtomFactory.h"
+#import "MBLibraryCamera.h"
 
 @interface ViewController ()<UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, strong) UIImageView *imageView;
 @property (nonatomic, strong) UIButton *btn;
 @property (nonatomic, strong) UIView *testView;
+@property (nonatomic, strong) MBLibraryCamera *camera;
 
 @end
 
@@ -62,6 +64,11 @@
     
 }
 
+- (BOOL)prefersStatusBarHidden
+{
+    return NO;
+}
+
 - (BOOL)shouldAutorotate {
     return YES;
 }
@@ -71,10 +78,8 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [self.view endEditing:YES];
-    
+    [self.view endEditing:YES];    
     MBLog(@"%@", [IBAtomFactory sharedInstance].atomDict);
-    
     return;
 
     IBMineController *mine = [[IBMineController alloc] init];
