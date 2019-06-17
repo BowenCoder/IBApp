@@ -121,7 +121,7 @@
 
 @interface IBAtomFactory ()
 
-@property(nonatomic, strong) IBAtomInfo *atom;
+@property (nonatomic, strong) IBAtomInfo *atom;
 @property (nonatomic) dispatch_queue_t serialQueue;
 
 @end
@@ -204,7 +204,5 @@
     });
     return dict;
 }
-
-
 
 @end

@@ -40,7 +40,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface IBAtomFactory : NSObject
 
-@property(copy, readonly, nonatomic) NSDictionary *atomDict;
+@property (nonatomic, readonly, copy) NSDictionary *atomDict;
 
 + (instancetype)sharedInstance;
 

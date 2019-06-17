@@ -10,6 +10,7 @@
 #import <CoreTelephony/CTTelephonyNetworkInfo.h>
 
 @interface IBNetworkStatus ()
+
 /**
  网络状态
  */
@@ -165,6 +166,7 @@ NSString * const kIBReachabilityChangedNotification = @"kIBReachabilityChangedNo
     }
     return _networkInfo;
 }
+
 /**
  2G识别数组
  */
