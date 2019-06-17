@@ -41,7 +41,7 @@
 - (void)createConstantQuery
 {
     NSMutableString *constQuery = [[NSMutableString alloc] init];
-    if (kIsString(_license)) {
+    if (kIsString(_license)) { // 注意第一个参数不能为空
         [constQuery appendFormat:@"lc=%@", _license];
     }
     if (kIsString(_channel)) {
