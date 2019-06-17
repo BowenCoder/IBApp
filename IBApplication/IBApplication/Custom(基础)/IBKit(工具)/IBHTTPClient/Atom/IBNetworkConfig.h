@@ -28,7 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSString *)clientVersion;
 
 /** 系统版本 */
-+ (NSString *)osVersion;
++ (NSString *)systemVersion;
 
 /** 手机类型 */
 + (NSString *)iPhoneType;

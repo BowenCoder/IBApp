@@ -22,11 +22,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (copy, readonly, nonatomic) NSString *license;
 @property (copy, readonly, nonatomic) NSString *channel;
 @property (copy, readonly, nonatomic) NSString *userAgent;
-@property (copy, readonly, nonatomic) NSString *osVersion;
+@property (copy, readonly, nonatomic) NSString *systemVersion;
 @property (copy, readonly, nonatomic) NSString *clientVersion;
 
-@property (atomic, copy) NSString *essid; // 局域网名称
-@property (atomic, copy) NSString *bssid; // 站点的MAC地址
 @property (atomic, copy) NSString *networkMode; // 网络类型
 
 #pragma mark - 手动设置
@@ -44,19 +42,30 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (instancetype)sharedInstance;
 
-/** 更新原子参数 */
+/**
+ 更新原子参数
+ */
 - (void)updateCoordinate:(CLLocationCoordinate2D)coord;
 - (void)updateUserId:(NSString *)userId sessionId:(NSString *)sessionId;
 
-/** 往url后附加Atom参数 */
+/**
+ 往url后附加Atom参数
+ */
 - (NSString *)appendAtomParams:(NSString *)url;
 
-/** 服务入口地址 */
+/**
+ 服务入口地址
+ */
 - (NSString *)enterUrl;
 
-/** 服务入口备份 */
+/**
+ 服务入口备份
+ */
 - (NSString *)backupEnterUrl;
 
+/**
+ 清除
+ */
 - (void)clear;
 
 @end

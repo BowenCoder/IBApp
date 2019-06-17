@@ -12,9 +12,7 @@
 
 @interface IBAtomInfo ()
 
-@property (nonatomic, copy) NSString *query; // 拼接动态参数
 @property (nonatomic, copy) NSString *constantQuery; // 生成不变的query
-@property (nonatomic, copy) NSDictionary *atomDict;
 
 @property (nonatomic, assign) time_t lastNetUpdateTime;
 
@@ -29,7 +27,7 @@
         _license       = [IBNetworkConfig licenseCode];
         _channel       = [IBNetworkConfig channelCode];
         _clientVersion = [IBNetworkConfig clientVersion];
-        _osVersion     = [IBNetworkConfig osVersion];
+        _systemVersion = [IBNetworkConfig systemVersion];
         _proto         = [IBNetworkConfig protoVersion];
         _userAgent     = [IBNetworkConfig iPhoneType];
         _idfa          = [IBNetworkConfig idfa];
@@ -49,39 +47,24 @@
     [constQuery appendFormat:@"&proto=%@",  NSStringNONil(_proto)];
     [constQuery appendFormat:@"&idfa=%@",   NSStringNONil(_idfa)];
     [constQuery appendFormat:@"&idfv=%@",   NSStringNONil(_idfv)];
-    [constQuery appendFormat:@"&os=%@",     NSStringNONil(_osVersion)];
+    [constQuery appendFormat:@"&os=%@",     NSStringNONil(_systemVersion)];
     [constQuery appendFormat:@"&ua=%@",     NSStringNONil(_userAgent)];
     _constantQuery = constQuery;
 }
 
-- (void)fetchNetworkInfo
-{
+/**
+ 拼接动态参数
+ */
+- (NSString *)dynamicQuery {
+
     _networkMode = [[IBNetworkStatus shareInstance] specificNetworkMode];
     
-    // wifi信息
-    if ([_networkMode isEqualToString:@"Wifi"]) {
-        if ((time(NULL) - _lastNetUpdateTime) > 10) {
-            _essid = [IBNetworkConfig wifiESSID] ?: @"";
-            _bssid = [IBNetworkConfig wifiBSSID] ?: @"";
-        }
-    } else {
-        _essid = @"";
-        _bssid = @"";
-    }
-}
-
-- (NSString *)query {
-    
     NSMutableString *temp = [[NSMutableString alloc] initWithString:_constantQuery];
-    
-    [self fetchNetworkInfo];
-    
-    [temp appendFormat:@"&essid=%@", NSStringNONil(_essid)];
-    [temp appendFormat:@"&bssid=%@", NSStringNONil(_bssid)];
+
     [temp appendFormat:@"&conn=%@",  NSStringNONil(_networkMode)];
     [temp appendFormat:@"&uid=%@",   NSStringNONil(_userId)];
     [temp appendFormat:@"&sid=%@",   NSStringNONil(_sessionId)];
-    if (_coordinate.latitude != 400.0 && _coordinate.longitude != 400.0) {
+    if (CLLocationCoordinate2DIsValid(_coordinate)) {
         [temp appendFormat:@"&lat=%@",   [NSString stringWithFormat:@"%lf", _coordinate.latitude]];
         [temp appendFormat:@"&lng=%@",   [NSString stringWithFormat:@"%lf", _coordinate.longitude]];
     }
@@ -89,10 +72,13 @@
     return temp;
 }
 
+/**
+ 原子参数字典
+ */
 - (NSDictionary *)atomDict
 {
-    [self fetchNetworkInfo];
-    
+    _networkMode = [[IBNetworkStatus shareInstance] specificNetworkMode];
+
     NSMutableDictionary *dict = @{}.mutableCopy;
     
     [dict setObject:NSStringNONil(_license) forKey:@"lc"];
@@ -101,15 +87,13 @@
     [dict setObject:NSStringNONil(_proto) forKey:@"proto"];
     [dict setObject:NSStringNONil(_idfa) forKey:@"idfa"];
     [dict setObject:NSStringNONil(_idfv) forKey:@"idfv"];
-    [dict setObject:NSStringNONil(_osVersion) forKey:@"os"];
+    [dict setObject:NSStringNONil(_systemVersion) forKey:@"os"];
     [dict setObject:NSStringNONil(_userAgent) forKey:@"ua"];
-    [dict setObject:NSStringNONil(_essid) forKey:@"essid"];
-    [dict setObject:NSStringNONil(_bssid) forKey:@"bssid"];
     [dict setObject:NSStringNONil(_networkMode) forKey:@"cnn"];
     [dict setObject:NSStringNONil(_userId) forKey:@"uid"];
     [dict setObject:NSStringNONil(_sessionId) forKey:@"sid"];
     
-    if (_coordinate.latitude != 400.0 && _coordinate.longitude != 400.0) {
+    if (CLLocationCoordinate2DIsValid(_coordinate)) {
         [dict setObject:[NSString stringWithFormat:@"%lf", _coordinate.latitude] forKey:@"lat"];
         [dict setObject:[NSString stringWithFormat:@"%lf", _coordinate.longitude] forKey:@"lng"];
     }
@@ -148,6 +132,14 @@
     return self;
 }
 
+- (void)updateCoordinate:(CLLocationCoordinate2D)coord {
+    dispatch_sync(self.serialQueue, ^{
+        if (CLLocationCoordinate2DIsValid(coord)) {
+            self.atom.coordinate = coord;
+        }
+    });
+}
+
 - (void)updateUserId:(NSString *)userId sessionId:(NSString *)sessionId
 {
     dispatch_sync(self.serialQueue, ^{
@@ -156,17 +148,11 @@
     });
 }
 
-- (void)updateCoordinate:(CLLocationCoordinate2D)coord {
-    dispatch_sync(self.serialQueue, ^{
-        self.atom.coordinate = coord;
-    });
-}
-
 - (NSString *)appendAtomParams:(NSString *)url
 {
    __block NSString *query;
     dispatch_sync(self.serialQueue, ^{
-        query = self.atom.query;
+        query = [self.atom dynamicQuery];
     });
     
     NSString *symbol = @"?";
@@ -200,7 +186,7 @@
 - (NSDictionary *)atomDict {
     __block NSDictionary *dict;
     dispatch_sync(self.serialQueue, ^{
-        dict = self.atom.atomDict;
+        dict = [self.atom atomDict];
     });
     return dict;
 }

@@ -80,6 +80,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [self.view endEditing:YES];    
     MBLog(@"%@", [IBAtomFactory sharedInstance].atomDict);
+    MBLog(@"%@", [IBApp UUID]);
     return;
 
     IBMineController *mine = [[IBMineController alloc] init];

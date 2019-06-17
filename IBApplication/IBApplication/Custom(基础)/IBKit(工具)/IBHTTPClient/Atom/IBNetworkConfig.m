@@ -56,7 +56,7 @@
     return clientVersion;
 }
 
-+ (NSString *)osVersion
++ (NSString *)systemVersion
 {
     return [NSString stringWithFormat:@"ios_%f", [[[UIDevice currentDevice] systemVersion] floatValue]];
 }
