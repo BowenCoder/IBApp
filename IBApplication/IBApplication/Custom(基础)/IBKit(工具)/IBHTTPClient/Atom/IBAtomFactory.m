@@ -41,14 +41,30 @@
 - (void)createConstantQuery
 {
     NSMutableString *constQuery = [[NSMutableString alloc] init];
-    [constQuery appendFormat:@"lc=%@",      NSStringNONil(_license)];
-    [constQuery appendFormat:@"&ca=%@",     NSStringNONil(_channel)];
-    [constQuery appendFormat:@"&cv=%@",     NSStringNONil(_clientVersion)];
-    [constQuery appendFormat:@"&proto=%@",  NSStringNONil(_proto)];
-    [constQuery appendFormat:@"&idfa=%@",   NSStringNONil(_idfa)];
-    [constQuery appendFormat:@"&idfv=%@",   NSStringNONil(_idfv)];
-    [constQuery appendFormat:@"&os=%@",     NSStringNONil(_systemVersion)];
-    [constQuery appendFormat:@"&ua=%@",     NSStringNONil(_userAgent)];
+    if (kIsString(_license)) {
+        [constQuery appendFormat:@"lc=%@", _license];
+    }
+    if (kIsString(_channel)) {
+        [constQuery appendFormat:@"&ca=%@", _channel];
+    }
+    if (kIsString(_clientVersion)) {
+        [constQuery appendFormat:@"&cv=%@", _clientVersion];
+    }
+    if (kIsString(_proto)) {
+        [constQuery appendFormat:@"&proto=%@", _proto];
+    }
+    if (kIsString(_idfa)) {
+        [constQuery appendFormat:@"&idfa=%@", _idfa];
+    }
+    if (kIsString(_idfv)) {
+        [constQuery appendFormat:@"&idfv=%@", _idfv];
+    }
+    if (kIsString(_systemVersion)) {
+        [constQuery appendFormat:@"&os=%@", _systemVersion];
+    }
+    if (kIsString(_userAgent)) {
+        [constQuery appendFormat:@"&ua=%@", _userAgent];
+    }
     _constantQuery = constQuery;
 }
 
@@ -61,15 +77,15 @@
     
     NSMutableString *temp = [[NSMutableString alloc] initWithString:_constantQuery];
 
-    [temp appendFormat:@"&conn=%@",  NSStringNONil(_networkMode)];
-    [temp appendFormat:@"&uid=%@",   NSStringNONil(_userId)];
-    [temp appendFormat:@"&sid=%@",   NSStringNONil(_sessionId)];
+    if (kIsString(_networkMode)) {
+        [temp appendFormat:@"&conn=%@", _networkMode];
+    }
     if (CLLocationCoordinate2DIsValid(_coordinate)) {
         [temp appendFormat:@"&lat=%@",   [NSString stringWithFormat:@"%lf", _coordinate.latitude]];
         [temp appendFormat:@"&lng=%@",   [NSString stringWithFormat:@"%lf", _coordinate.longitude]];
     }
     
-    return temp;
+    return temp.copy;
 }
 
 /**
@@ -81,24 +97,57 @@
 
     NSMutableDictionary *dict = @{}.mutableCopy;
     
-    [dict setObject:NSStringNONil(_license) forKey:@"lc"];
-    [dict setObject:NSStringNONil(_channel) forKey:@"ca"];
-    [dict setObject:NSStringNONil(_clientVersion) forKey:@"cv"];
-    [dict setObject:NSStringNONil(_proto) forKey:@"proto"];
-    [dict setObject:NSStringNONil(_idfa) forKey:@"idfa"];
-    [dict setObject:NSStringNONil(_idfv) forKey:@"idfv"];
-    [dict setObject:NSStringNONil(_systemVersion) forKey:@"os"];
-    [dict setObject:NSStringNONil(_userAgent) forKey:@"ua"];
-    [dict setObject:NSStringNONil(_networkMode) forKey:@"cnn"];
-    [dict setObject:NSStringNONil(_userId) forKey:@"uid"];
-    [dict setObject:NSStringNONil(_sessionId) forKey:@"sid"];
-    
+    if (kIsString(_license)) {
+        [dict setObject:_license forKey:@"lc"];
+    }
+    if (kIsString(_channel)) {
+        [dict setObject:_channel forKey:@"ca"];
+    }
+    if (kIsString(_clientVersion)) {
+        [dict setObject:_clientVersion forKey:@"cv"];
+    }
+    if (kIsString(_proto)) {
+        [dict setObject:NSStringNONil(_proto) forKey:@"proto"];
+    }
+    if (kIsString(_idfa)) {
+        [dict setObject:_idfa forKey:@"idfa"];
+    }
+    if (kIsString(_idfv)) {
+        [dict setObject:_idfv forKey:@"idfv"];
+    }
+    if (kIsString(_systemVersion)) {
+        [dict setObject:_systemVersion forKey:@"os"];
+    }
+    if (kIsString(_userAgent)) {
+        [dict setObject:_userAgent forKey:@"ua"];
+    }
+    if (kIsString(_networkMode)) {
+        [dict setObject:_networkMode forKey:@"cnn"];
+    }
+    if (kIsString(_userId)) {
+        [dict setObject:_userId forKey:@"uid"];
+    }
+    if (kIsString(_sessionId)) {
+        [dict setObject:_sessionId forKey:@"sid"];
+    }
     if (CLLocationCoordinate2DIsValid(_coordinate)) {
         [dict setObject:[NSString stringWithFormat:@"%lf", _coordinate.latitude] forKey:@"lat"];
         [dict setObject:[NSString stringWithFormat:@"%lf", _coordinate.longitude] forKey:@"lng"];
     }
     
     return dict;
+}
+
+- (void)setUserId:(NSString *)userId
+{
+    _userId = userId;
+    _constantQuery = [_constantQuery stringByAppendingFormat:@"&uid=%@", userId];
+}
+
+- (void)setSessionId:(NSString *)sessionId
+{
+    _sessionId = sessionId;
+    _constantQuery = [_constantQuery stringByAppendingFormat:@"&sid=%@", sessionId];
 }
 
 @end

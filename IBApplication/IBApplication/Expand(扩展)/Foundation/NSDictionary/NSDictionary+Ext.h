@@ -18,5 +18,4 @@
 
 - (NSDictionary *)dictionaryForKey:(NSString *)keyPath;
 
-
 @end

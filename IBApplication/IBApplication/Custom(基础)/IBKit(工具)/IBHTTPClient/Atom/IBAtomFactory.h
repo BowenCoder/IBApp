@@ -29,9 +29,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - 手动设置
 
-@property (atomic, copy) NSString *userId;
-@property (atomic, copy) NSString *sessionId;
-@property (atomic, assign) CLLocationCoordinate2D coordinate;
+@property (nonatomic, copy) NSString *userId;
+@property (nonatomic, copy) NSString *sessionId;
+@property (nonatomic, assign) CLLocationCoordinate2D coordinate;
 
 @end
 
