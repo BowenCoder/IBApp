@@ -10,7 +10,7 @@
 
 #define NO_USE -1000
 
-static Click clickIndex = nil;
+static OnClickHandler clickIndex = nil;
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
@@ -21,12 +21,12 @@ static Click clickIndex = nil;
                    message:(NSString *)message
                     others:(NSArray<NSString *> *)others
                   animated:(BOOL)animated
-                    action:(Click)click {
+                    action:(OnClickHandler)click {
     
     if (kIsEmptyString(title) || kIsEmptyArray(others)) {
         return;
     }
-        
+    
     NSString *cancelTitle = others[0];
     NSMutableArray *otherTitles = others.mutableCopy;
     [otherTitles removeObjectAtIndex:0];
@@ -65,7 +65,7 @@ static Click clickIndex = nil;
                      destructive:(NSString *)destructive
                           others:(NSArray <NSString *> *)others
                         animated:(BOOL)animated
-                          action:(Click)click {
+                          action:(OnClickHandler)click {
     
     if (kIsEmptyString(title) || kIsEmptyArray(others)) {
         return;
@@ -112,7 +112,7 @@ static Click clickIndex = nil;
                   tfNumber:(NSInteger)number
                   tfHandle:(TFHandle)handle
                   animated:(BOOL)animated
-                    action:(Click)click {
+                    action:(OnClickHandler)click {
     
     if (kIsEmptyString(title) || kIsEmptyArray(others)) {
         return;

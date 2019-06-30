@@ -10,7 +10,7 @@
 
 @implementation UITableView (Extension)
 
-- (void)ik_deleteRowAtIndexPath:(NSIndexPath *)indexPath animation:(UITableViewRowAnimation)animation {
+- (void)mb_deleteRowAtIndexPath:(NSIndexPath *)indexPath animation:(UITableViewRowAnimation)animation {
     NSUInteger sectionCount = [self numberOfSections];
     if (indexPath.section >= sectionCount) {
 #if DEBUG
@@ -46,12 +46,12 @@
     }
 }
 
-- (void)ik_deleteRow:(NSUInteger)row inSection:(NSUInteger)section animation:(UITableViewRowAnimation)animation {
+- (void)mb_deleteRow:(NSUInteger)row inSection:(NSUInteger)section animation:(UITableViewRowAnimation)animation {
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:section];
-    [self ik_deleteRowAtIndexPath:indexPath animation:animation];
+    [self mb_deleteRowAtIndexPath:indexPath animation:animation];
 }
 
-- (void)ik_insertRowsAtIndexPath:(NSIndexPath *)indexPath withRowAnimation:(UITableViewRowAnimation)animation {
+- (void)mb_insertRowsAtIndexPath:(NSIndexPath *)indexPath withRowAnimation:(UITableViewRowAnimation)animation {
     if (nil == indexPath) return;
     NSInteger beforeSectionNumber = [self numberOfSections];
     
@@ -69,9 +69,9 @@
     }
 }
 
-- (void)ik_insertRow:(NSUInteger)row inSection:(NSUInteger)section animation:(UITableViewRowAnimation)animation {
+- (void)mb_insertRow:(NSUInteger)row inSection:(NSUInteger)section animation:(UITableViewRowAnimation)animation {
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:section];
-    [self ik_insertRowsAtIndexPath:indexPath withRowAnimation:animation];
+    [self mb_insertRowsAtIndexPath:indexPath withRowAnimation:animation];
 }
 
 @end

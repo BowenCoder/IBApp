@@ -92,13 +92,23 @@ if ([NSThread isMainThread]) { \
     dispatch_sync(dispatch_get_main_queue(), block);  \
 }
 
+#define try_catch_finally(tryBlock,finallyBlock) \
+@try { \
+    tryBlock(); \
+} @catch (NSException *exception) { \
+    MBLogD(@"%@ %@", exception, [exception callStackSymbols]); \
+} @finally { \
+    finallyBlock(); \
+}
+
+
 //日志打印
 #ifdef DEBUG
 #define executeInDebug(block) block()
-#define NSLogger(...) NSLog(__VA_ARGS__)
+#define NSLog(...) NSLog(__VA_ARGS__)
 #else
 #define executeInDebug(block)
-#define NSLogger(...)
+#define NSLog(...)
 #endif
 
 //循环引用

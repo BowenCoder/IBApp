@@ -11,14 +11,13 @@
 
 @implementation UITextField (Ext)
 
-- (void)setCursorColor:(UIColor *)color {
+- (void)mb_setCursorColor:(UIColor *)color {
     self.tintColor = color;
 }
 
-- (void)setPlaceholder:(NSString *)placeholder
-                 color:(UIColor *)color
-                  font:(CGFloat)font {
-
+- (void)mb_setPlaceholder:(NSString *)placeholder
+                    color:(UIColor *)color
+                     font:(CGFloat)font {
     
     NSMutableAttributedString *attr = [[NSMutableAttributedString alloc] initWithString:placeholder];
     [attr addAttribute:NSForegroundColorAttributeName
@@ -29,52 +28,50 @@
                  range:NSMakeRange(0, placeholder.length)];
     self.attributedPlaceholder = attr;
     self.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-
-    
 }
 
-- (void)setLeftLabelTitle:(NSString *)title
+- (void)mb_leftLabelTitle:(NSString *)title
                titleColor:(UIColor *)titleColor
                 titleFont:(CGFloat)font
                     width:(CGFloat)width
           backgroundColor:(UIColor *)backgroundColor {
     
-    [self buttonWithText:title
-                  isLeft:YES
-               textColor:titleColor
-                textFont:[UIFont systemFontOfSize:font]
-                   width:width
-                  target:nil
-                selector:nil
-         backgroundColor:backgroundColor];
+    [self _buttonWithText:title
+                   isLeft:YES
+                textColor:titleColor
+                 textFont:[UIFont systemFontOfSize:font]
+                    width:width
+                   target:nil
+                 selector:nil
+          backgroundColor:backgroundColor];
 }
 
-- (UIButton *)setRightButtonTitle:(NSString *)title
-                 titleColor:(UIColor *)titleColor
-                  titleFont:(CGFloat)font
-                      width:(CGFloat)width
-                     target:(id)target
-                   selector:(SEL)selector
-            backgroundColor:(UIColor *)backgroundColor {
+- (UIButton *)mb_rightButtonTitle:(NSString *)title
+                       titleColor:(UIColor *)titleColor
+                        titleFont:(CGFloat)font
+                            width:(CGFloat)width
+                           target:(id)target
+                         selector:(SEL)selector
+                  backgroundColor:(UIColor *)backgroundColor {
     
-    return [self buttonWithText:title
-                         isLeft:NO
-                      textColor:titleColor
-                       textFont:[UIFont systemFontOfSize:font]
-                          width:width
-                         target:target
-                       selector:selector
-                backgroundColor:backgroundColor];
+    return [self _buttonWithText:title
+                          isLeft:NO
+                       textColor:titleColor
+                        textFont:[UIFont systemFontOfSize:font]
+                           width:width
+                          target:target
+                        selector:selector
+                 backgroundColor:backgroundColor];
 }
 
-- (UIButton *)buttonWithText:(NSString *)text
-                      isLeft:(BOOL)isLeft
-                   textColor:(UIColor *)textColor
-                    textFont:(UIFont *)font
-                       width:(CGFloat)width
-                      target:(id)target
-                    selector:(SEL)selector
-             backgroundColor:(UIColor *)backgroundColor {
+- (UIButton *)_buttonWithText:(NSString *)text
+                       isLeft:(BOOL)isLeft
+                    textColor:(UIColor *)textColor
+                     textFont:(UIFont *)font
+                        width:(CGFloat)width
+                       target:(id)target
+                     selector:(SEL)selector
+              backgroundColor:(UIColor *)backgroundColor {
     
     UIButton *btn = [[UIButton alloc] initWithFrame: CGRectMake(0, 0, width, self.bounds.size.height)];
     btn.titleLabel.font = font;

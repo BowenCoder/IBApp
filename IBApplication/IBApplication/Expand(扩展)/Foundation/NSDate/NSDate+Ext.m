@@ -33,9 +33,9 @@ static const unsigned unitFlags = (NSCalendarUnitYear| NSCalendarUnitMonth| NSCa
 }
 
 //日期信息
-- (IBDateInformation)dateInformation {
+- (IBDateInfo)mb_dateInfo {
     
-    IBDateInformation info;
+    IBDateInfo info;
     NSDateComponents *components = [[NSDate currentCalendar] components:unitFlags fromDate:self];
     info.year           = components.year;
     info.month          = components.month;
@@ -43,6 +43,7 @@ static const unsigned unitFlags = (NSCalendarUnitYear| NSCalendarUnitMonth| NSCa
     info.hour           = components.hour;
     info.minute         = components.minute;
     info.seconds        = components.second;
+    info.nanosecond     = components.nanosecond;
     info.weekday        = components.weekday;
     info.weekOfYear     = components.weekOfYear;
     info.weekOfMonth    = components.weekOfMonth;
@@ -51,7 +52,7 @@ static const unsigned unitFlags = (NSCalendarUnitYear| NSCalendarUnitMonth| NSCa
 }
 
 //获取时间戳
-- (long)timestamp {
+- (long)mb_timestamp {
     
     //时间戳(到秒)
     long timespp = [self timeIntervalSince1970];
@@ -60,18 +61,18 @@ static const unsigned unitFlags = (NSCalendarUnitYear| NSCalendarUnitMonth| NSCa
 }
 
 //毫秒：时间戳*1000
-- (long)microsecond {
+- (long)mb_microsecond {
     return [self timeIntervalSince1970] * 1000.f;
 }
 
 //时间戳转换成日期（10位时间戳）
-+ (NSDate *)timestampToDate:(NSInteger)timestamp {
++ (NSDate *)mb_timestampToDate:(NSInteger)timestamp {
     
     return [NSDate dateWithTimeIntervalSince1970:timestamp];
 }
 
 //时间戳转换成时间字符串（10位时间戳）
-+ (NSString *)timestampToTime:(NSInteger)timestamp formatter:(NSString *)format {
++ (NSString *)mb_timestampToTime:(NSInteger)timestamp formatter:(NSString *)format {
     
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateStyle:NSDateFormatterMediumStyle];
@@ -88,7 +89,7 @@ static const unsigned unitFlags = (NSCalendarUnitYear| NSCalendarUnitMonth| NSCa
 }
 
 //日期字符串转换成日期
-+ (NSDate *)dateWithString:(NSString *)dateString formatter:(NSString *)format {
++ (NSDate *)mb_dateWithString:(NSString *)dateString formatter:(NSString *)format {
     
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateStyle:NSDateFormatterMediumStyle];
@@ -101,13 +102,13 @@ static const unsigned unitFlags = (NSCalendarUnitYear| NSCalendarUnitMonth| NSCa
 }
 
 //显示时间
-+ (NSString *)displayHalfDay:(NSDate *)date formatter:(NSString *)format {
++ (NSString *)mb_displayHalfDay:(NSDate *)date formatter:(NSString *)format {
     
     if (format == nil) {
         format = @"aaahh:ss";
     }
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    IBDateInformation info = [date dateInformation];
+    IBDateInfo info = [date mb_dateInfo];
     
     if (info.hour >= 0  && info.hour < 6) {
         formatter.AMSymbol = @"凌晨";
@@ -132,9 +133,9 @@ static const unsigned unitFlags = (NSCalendarUnitYear| NSCalendarUnitMonth| NSCa
 
 }
 
-+ (NSString *)displayWeek:(NSDate *)date {
++ (NSString *)mb_displayWeek:(NSDate *)date {
     
-    IBDateInformation info = [date dateInformation];
+    IBDateInfo info = [date mb_dateInfo];
     if (info.weekday == 1) {
         return NSDateTimeAgoLocalizedStrings(@"Sunday");
     }
@@ -172,7 +173,7 @@ static const unsigned unitFlags = (NSCalendarUnitYear| NSCalendarUnitMonth| NSCa
  @param option 决定改变是年月日还是时份周
  @return 返回改变后的时间
  */
-- (NSDate *)dateAlterTimes:(NSInteger)times option:(IBTimeOption)option {
+- (NSDate *)mb_dateAlterTimes:(NSInteger)times option:(IBTimeOption)option {
     
     NSDateComponents *components = [[NSDateComponents alloc] init];
     switch (option) {
@@ -201,7 +202,7 @@ static const unsigned unitFlags = (NSCalendarUnitYear| NSCalendarUnitMonth| NSCa
     return newDate;
 }
 
-- (NSDate *)dateAtStartOfDay {
+- (NSDate *)mb_dateAtStartOfDay {
     
     NSDateComponents *components = [[NSDate currentCalendar] components:unitFlags fromDate:self];
     components.hour = 0;
@@ -210,7 +211,7 @@ static const unsigned unitFlags = (NSCalendarUnitYear| NSCalendarUnitMonth| NSCa
     return [[NSDate currentCalendar] dateFromComponents:components];
 }
 
-- (NSDate *)dateAtEndOfDay {
+- (NSDate *)mb_dateAtEndOfDay {
     
     NSDateComponents *components = [[NSDate currentCalendar] components:unitFlags fromDate:self];
     components.hour = 23; // Thanks Aleksey Kononov
@@ -219,7 +220,7 @@ static const unsigned unitFlags = (NSCalendarUnitYear| NSCalendarUnitMonth| NSCa
     return [[NSDate currentCalendar] dateFromComponents:components];
 }
 
-+ (NSDate *)dateWithYear:(NSInteger)year month:(NSInteger)month day:(NSInteger)day hour:(NSInteger)hour minute:(NSInteger)minute second:(NSInteger)second {
++ (NSDate *)mb_dateWithYear:(NSInteger)year month:(NSInteger)month day:(NSInteger)day hour:(NSInteger)hour minute:(NSInteger)minute second:(NSInteger)second {
     
     NSDate *newDate = nil;
     
@@ -242,8 +243,8 @@ static const unsigned unitFlags = (NSCalendarUnitYear| NSCalendarUnitMonth| NSCa
 
 - (BOOL)isEqualTime:(NSDate *)date interval:(NSInteger)interval option:(IBTimeOption)option {
     
-    IBDateInformation currentInfo = [self dateInformation];
-    IBDateInformation dateInfo = [date dateInformation];
+    IBDateInfo currentInfo = [self mb_dateInfo];
+    IBDateInfo dateInfo = [date mb_dateInfo];
     
     if (option == IBTimeOptionYear) {
         return currentInfo.year == dateInfo.year + interval;
@@ -377,7 +378,7 @@ static const unsigned unitFlags = (NSCalendarUnitYear| NSCalendarUnitMonth| NSCa
 #pragma mark - Roles
 - (BOOL)isTypicallyWeekend {
     
-    IBDateInformation currentInfo = [self dateInformation];
+    IBDateInfo currentInfo = [self mb_dateInfo];
 
     if ((currentInfo.weekday == 1) || (currentInfo.weekday == 7)) {
         return YES;
@@ -395,7 +396,7 @@ static const unsigned unitFlags = (NSCalendarUnitYear| NSCalendarUnitMonth| NSCa
 
 @implementation NSDate (TimeAgo)
 
-- (NSString *)timeAgo {
+- (NSString *)mb_timeAgo {
     
     NSDate *now = [NSDate date];
     double deltaSeconds = fabs([self timeIntervalSinceDate:now]);
@@ -451,7 +452,7 @@ static const unsigned unitFlags = (NSCalendarUnitYear| NSCalendarUnitMonth| NSCa
     return [self stringFromFormat:@"%%d %@years ago" withValue:minutes];
 }
 
-- (NSString *)timeAgoSimple {
+- (NSString *)mb_timeAgoSimple {
     
     NSDate *now = [NSDate date];
     NSDateComponents *components = [[NSDate currentCalendar] components:unitFlags fromDate:self toDate:now options:0];
@@ -500,30 +501,30 @@ static const unsigned unitFlags = (NSCalendarUnitYear| NSCalendarUnitMonth| NSCa
     return [self stringFromFormat:@"%%d %@seconds ago" withValue:components.second];
 }
 
-- (NSString *)timeAgoWithLimit:(NSTimeInterval)limit {
+- (NSString *)mb_timeAgoWithLimit:(NSTimeInterval)limit {
     
     if (fabs([self timeIntervalSinceDate:[NSDate date]]) <= limit)
-        return [self timeAgo];
+        return [self mb_timeAgo];
     
     return [NSDateFormatter localizedStringFromDate:self
                                           dateStyle:NSDateFormatterMediumStyle
                                           timeStyle:NSDateFormatterShortStyle];
 }
 
-- (NSString *)displayTime {
+- (NSString *)mb_displayTime {
     
     if ([self isToday]) {
-        return [NSDate displayHalfDay:self formatter:nil];
+        return [NSDate mb_displayHalfDay:self formatter:nil];
     }
     NSString *prefix;
     if ([self isYesterday]) {
         prefix = NSDateTimeAgoLocalizedStrings(@"Yesterday");
-        return [NSString stringWithFormat:@"%@ %@",prefix,[NSDate displayHalfDay:self formatter:nil]];
+        return [NSString stringWithFormat:@"%@ %@",prefix,[NSDate mb_displayHalfDay:self formatter:nil]];
     }
     //7天以内
     if ([self isWithinDays:7]) {
-        prefix = [NSDate displayWeek:self];
-        return [NSString stringWithFormat:@"%@ %@",prefix,[NSDate displayHalfDay:self formatter:nil]];
+        prefix = [NSDate mb_displayWeek:self];
+        return [NSString stringWithFormat:@"%@ %@",prefix,[NSDate mb_displayHalfDay:self formatter:nil]];
     }
     
     return [NSDateFormatter localizedStringFromDate:self

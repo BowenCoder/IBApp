@@ -11,7 +11,7 @@
 
 @implementation UIView (Effect)
 
-- (void)setCornerRadius:(CGFloat)radius option:(UIRectCorner)corners {
+- (void)mb_setCornerRadius:(CGFloat)radius option:(UIRectCorner)corners {
     
     UIBezierPath *maskPath;
     maskPath = [UIBezierPath bezierPathWithRoundedRect:self.bounds
@@ -23,14 +23,14 @@
     self.layer.mask = maskLayer;
 }
 
-- (void)setBorderColor:(UIColor *)color width:(CGFloat)width cornerRadius:(CGFloat)radius {
+- (void)mb_setBorderColor:(UIColor *)color width:(CGFloat)width cornerRadius:(CGFloat)radius {
     
     [self.layer setCornerRadius:radius];
     [self.layer setBorderWidth:width];
     [self.layer setBorderColor:color.CGColor];
 }
 
-- (void)setShadowColor:(UIColor *)color opacity:(CGFloat)opacity offset:(CGSize)offset radius:(CGFloat)radius type:(NSString *)type {
+- (void)mb_setShadowColor:(UIColor *)color opacity:(CGFloat)opacity offset:(CGSize)offset radius:(CGFloat)radius type:(NSString *)type {
     
     [self.layer setShadowColor:color.CGColor];
     [self.layer setShadowOpacity:opacity];
@@ -73,21 +73,21 @@
         [path addLineToPoint:topRight];
         [path addLineToPoint:topLeft];
         [path closePath];
+        
         self.layer.borderColor = [UIColor colorWithWhite:1.0 alpha:1.0].CGColor;
         self.layer.borderWidth = 5.0;
         self.layer.shadowOffset = CGSizeMake(0, 3);
         self.layer.shadowOpacity = 0.7;
         self.layer.shouldRasterize = YES;
         self.layer.shadowPath = path.CGPath;
-        
     }
 }
 
 @end
 
-@implementation UIView (MotionEffect)
-
 static NSString *motionEffectFlag = @"motionEffectFlag";
+
+@implementation UIView (MotionEffect)
 
 - (void)setEffectGroup:(UIMotionEffectGroup *)effectGroup {
     
@@ -105,7 +105,7 @@ static NSString *motionEffectFlag = @"motionEffectFlag";
     return objc_getAssociatedObject(self, &motionEffectFlag);
 }
 
-- (void)moveAxis:(CGFloat)dx dy:(CGFloat)dy {
+- (void)mb_moveAxis:(CGFloat)dx dy:(CGFloat)dy {
     
     if ((dx >= 0) && (dy >= 0)) {
         UIInterpolatingMotionEffect *xAxis = [[UIInterpolatingMotionEffect alloc] initWithKeyPath:@"center.x" type:UIInterpolatingMotionEffectTypeTiltAlongHorizontalAxis];
@@ -129,7 +129,7 @@ static NSString *motionEffectFlag = @"motionEffectFlag";
     }
 }
 
-- (void)cancelMotionEffect {
+- (void)mb_cancelMotionEffect {
     
     [self removeMotionEffect:self.effectGroup];
 }

@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NSArray (Ext)
+@interface NSArray<__covariant ObjectType> (Ext)
 
 /**
  *  获取index的元素
@@ -17,7 +17,7 @@
  *
  *  @return index下标的元素
  */
-- (id)objectOrNilAtIndex:(NSUInteger)index;
+- (ObjectType)mb_objectAtIndex:(NSUInteger)index;
 
 /**
  *  判断数组是都越界
@@ -26,7 +26,7 @@
  *
  *  @return 是否越界
  */
-- (BOOL)containsIndex:(NSUInteger)index;
+- (BOOL)mb_containsIndex:(NSUInteger)index;
 
 @end
 
@@ -38,7 +38,7 @@
  *
  *  @return 是否添加成功
  */
-- (BOOL)addObjectOrNil:(id)object;
+- (BOOL)mb_addObject:(id)object;
 
 /**
  *  在对应的下标插入一个元素
@@ -48,7 +48,7 @@
  *
  *  @return 是否插入成功
  */
-- (BOOL)insertObjectOrNil:(id)object atIndex:(NSUInteger)index;
+- (BOOL)mb_insertObject:(id)object atIndex:(NSUInteger)index;
 
 /**
  *  移除对应下标的元素
@@ -57,7 +57,7 @@
  *
  *  @return 是否移除成功
  */
-- (BOOL)removeObjectOrNilAtIndex:(NSUInteger)index;
+- (BOOL)mb_removeObjectAtIndex:(NSUInteger)index;
 
 /**
  *  替换相应下标的元素
@@ -67,7 +67,7 @@
  *
  *  @return 是否替换成功
  */
-- (BOOL)replaceObjectAtIndex:(NSUInteger)index withObjectOrNil:(id)object;
+- (BOOL)mb_replaceObjectAtIndex:(NSUInteger)index withObject:(id)object;
 
 /**
  *  交换两个下标元素
@@ -77,6 +77,6 @@
  *
  *  @return 是否替换成功
  */
-- (BOOL)swapObjectAtIndex:(NSUInteger)fromIndex withObjectAtIndex:(NSUInteger)toIndex;
+- (BOOL)mb_exchangeObjectAtIndex:(NSUInteger)fromIndex withObjectAtIndex:(NSUInteger)toIndex;
 
 @end

@@ -54,13 +54,16 @@
     [self addRefreshHeader];
     [self addRefreshFooter];
     NSMutableArray *arr = @[].mutableCopy;
-    [arr addObjectOrNil:[NSNull null]];
+    NSObject *obj = nil;
+    [arr mb_addObject:obj];
 
     NSLog(@"%@", NSStringFromCGRect(CGRectMakeFit(111, 333, 555, 777)));
     NSLog(@"demo %lf", ceil(2.1 * kScreenScale) / kScreenScale);
     
     NSString *base = @"https://service.bowen.com/time/getconfig?";
     MBLog(@"%@", [[IBAtomFactory sharedInstance] appendAtomParams:base]);
+    
+    
     
 }
 

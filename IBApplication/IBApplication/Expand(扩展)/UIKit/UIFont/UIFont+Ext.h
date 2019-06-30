@@ -13,6 +13,6 @@
 /**
  * 兼容iOS8及其没有相关字体的情况，获取不到对应字体直接取系统默认字体
  **/
-+ (UIFont *)fontWithNameOrNil:(NSString *)fontName size:(CGFloat)fontSize;
++ (UIFont *)mb_fontWithName:(NSString *)fontName size:(CGFloat)fontSize;
 
 @end

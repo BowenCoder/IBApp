@@ -199,6 +199,7 @@
 		4AAA78FE20EE097300CF5639 /* IBScrollController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AAA78FD20EE097300CF5639 /* IBScrollController.m */; };
 		4AAA790320EE17AB00CF5639 /* IBMineController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AAA790220EE17AB00CF5639 /* IBMineController.m */; };
 		4AAA793020EF9C6300CF5639 /* IBTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AAA792F20EF9C6300CF5639 /* IBTableController.m */; };
+		4ABB57FA22BB637500CADB8F /* UIViewController+Ext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ABB57F922BB637500CADB8F /* UIViewController+Ext.m */; };
 		4AC29F7A210F04A900F218FE /* UIScrollView+MJRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC29F4C210F04A900F218FE /* UIScrollView+MJRefresh.m */; };
 		4AC29F7B210F04A900F218FE /* MJRefreshConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC29F4D210F04A900F218FE /* MJRefreshConst.m */; };
 		4AC29F7C210F04A900F218FE /* MJRefresh.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4AC29F51210F04A900F218FE /* MJRefresh.bundle */; };
@@ -720,6 +721,8 @@
 		4AAA790220EE17AB00CF5639 /* IBMineController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBMineController.m; sourceTree = "<group>"; };
 		4AAA792E20EF9C6300CF5639 /* IBTableController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBTableController.h; sourceTree = "<group>"; };
 		4AAA792F20EF9C6300CF5639 /* IBTableController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBTableController.m; sourceTree = "<group>"; };
+		4ABB57F822BB637500CADB8F /* UIViewController+Ext.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Ext.h"; sourceTree = "<group>"; };
+		4ABB57F922BB637500CADB8F /* UIViewController+Ext.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Ext.m"; sourceTree = "<group>"; };
 		4AC29F4C210F04A900F218FE /* UIScrollView+MJRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+MJRefresh.m"; sourceTree = "<group>"; };
 		4AC29F4D210F04A900F218FE /* MJRefreshConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshConst.m; sourceTree = "<group>"; };
 		4AC29F4E210F04A900F218FE /* UIScrollView+MJExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+MJExtension.h"; sourceTree = "<group>"; };
@@ -2590,6 +2593,8 @@
 			children = (
 				4ACC568220DE72BA001352AE /* UIViewController+Alert.h */,
 				4ACC568320DE72BA001352AE /* UIViewController+Alert.m */,
+				4ABB57F822BB637500CADB8F /* UIViewController+Ext.h */,
+				4ABB57F922BB637500CADB8F /* UIViewController+Ext.m */,
 			);
 			path = UIViewController;
 			sourceTree = "<group>";
@@ -3178,6 +3183,7 @@
 				4A89D5FC228B0E260072FB23 /* MBFilterLogger.m in Sources */,
 				4ACC55E720DB5F3E001352AE /* main.m in Sources */,
 				4AD7706E2297C92400FEB76B /* YYKVStorage.m in Sources */,
+				4ABB57FA22BB637500CADB8F /* UIViewController+Ext.m in Sources */,
 				4ACC567520DE5E29001352AE /* UIThemeManager.m in Sources */,
 				4A1FB21E20E92D5E0056A026 /* SDWebImageGIFCoder.m in Sources */,
 				4A44437520F89833001B2350 /* IBPrivacy.m in Sources */,

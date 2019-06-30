@@ -31,7 +31,7 @@ typedef NS_ENUM(NSUInteger, UIButtonEdgeInsetsStyle) {
  *  @param backgroundColor 背景颜色
  *  @param state           按钮状态
  */
-- (void)setBackgroundColor:(UIColor *)backgroundColor forState:(UIControlState)state;
+- (void)mb_setBackgroundColor:(UIColor *)backgroundColor forState:(UIControlState)state;
 
 /**
  *  @brief  设置按钮倒计时
@@ -40,7 +40,7 @@ typedef NS_ENUM(NSUInteger, UIButtonEdgeInsetsStyle) {
  *  @param tittle      秒后面接的文字
  *  @param waitTittle  倒计时结束后显示的文字
  */
--(void)startTime:(NSInteger )timeout title:(NSString *)tittle waitTittle:(NSString *)waitTittle;
+-(void)mb_startTime:(NSInteger )timeout title:(NSString *)tittle waitTittle:(NSString *)waitTittle;
 
 /**
  *  @brief  调整图片文字布局
@@ -48,7 +48,7 @@ typedef NS_ENUM(NSUInteger, UIButtonEdgeInsetsStyle) {
  *  @param style 布局类型
  *  @param space 图片和文字的间隙
  */
-- (void)layoutButtonEdgeInsetsStyle:(UIButtonEdgeInsetsStyle)style
+- (void)mb_setButtonEdgeInsetsStyle:(UIButtonEdgeInsetsStyle)style
                               space:(CGFloat)space;
 
 @end
@@ -56,15 +56,9 @@ typedef NS_ENUM(NSUInteger, UIButtonEdgeInsetsStyle) {
 
 @interface UIButton (Indicator)
 
-/**
- This method will show the activity indicator in place of the button text.
- */
-- (void) showIndicator;
+- (void)mb_showIndicator;
 
-/**
- This method will remove the indicator and put thebutton text back in place.
- */
-- (void) hideIndicator;
+- (void)mb_hideIndicator;
 
 @end
 

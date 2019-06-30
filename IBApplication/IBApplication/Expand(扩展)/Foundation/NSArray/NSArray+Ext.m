@@ -7,49 +7,49 @@
 //
 
 #import "NSArray+Ext.h"
+#import "MBLogger.h"
 
 @implementation NSArray (Ext)
 
-- (id)objectOrNilAtIndex:(NSUInteger)index {
+- (id)mb_objectAtIndex:(NSUInteger)index {
     
-    return [self containsIndex:index] ? [self objectAtIndex:index] : nil;
+    return [self mb_containsIndex:index] ? [self objectAtIndex:index] : nil;
 }
 
-- (BOOL)containsIndex:(NSUInteger)index {
+- (BOOL)mb_containsIndex:(NSUInteger)index {
     return index < [self count];
 }
-
 
 @end
 
 @implementation NSMutableArray (Ext)
 
-- (BOOL)addObjectOrNil:(id)object {
+- (BOOL)mb_addObject:(id)object {
     
     if (!object) {
-        NSLogger( @"the object to be added is nil");
+        MBLog( @"the object to be added is nil %@",[NSThread callStackSymbols]);
         return NO;
     }
     if ([object isKindOfClass:[NSNull class]]) {
-        NSLogger( @"the object to be added is NSNull");
+        MBLog( @"the object to be added is NSNull %@",[NSThread callStackSymbols]);
         return NO;
     }
     [self addObject:object];
     return YES;
 }
 
-- (BOOL)insertObjectOrNil:(id)object atIndex:(NSUInteger)index {
+- (BOOL)mb_insertObject:(id)object atIndex:(NSUInteger)index {
     
     if (index > [self count]) {
-        NSLogger( @"the index to be inserted is out of array boundary");
+        MBLog( @"the index to be inserted is out of array boundary %@",[NSThread callStackSymbols]);
         return NO;
     } else {
         if (!object) {
-            NSLogger( @"the object to be inserted is nil");
+            MBLog( @"the object to be inserted is nil %@",[NSThread callStackSymbols]);
             return NO;
         }
         if ([object isKindOfClass:[NSNull class]]) {
-            NSLogger( @"the object to be inserted is NSNull");
+            MBLog( @"the object to be inserted is NSNull %@",[NSThread callStackSymbols]);
             return NO;
         }
         [self insertObject:object atIndex:index];
@@ -57,28 +57,28 @@
     }
 }
 
-- (BOOL)removeObjectOrNilAtIndex:(NSUInteger)index {
+- (BOOL)mb_removeObjectAtIndex:(NSUInteger)index {
     
     if (index >= [self count]) {
-        NSLogger( @"the index to be removed is out of array boundary");
+        MBLog( @"the index to be removed is out of array boundary %@",[NSThread callStackSymbols]);
         return NO;
     }
     [self removeObjectAtIndex:index];
     return YES;
 }
 
-- (BOOL)replaceObjectAtIndex:(NSUInteger)index withObjectOrNil:(id)object {
+- (BOOL)mb_replaceObjectAtIndex:(NSUInteger)index withObject:(id)object {
     
     if (index > [self count]) {
-        NSLogger( @"the index to be replaced is out of array boundary");
+        MBLog( @"the index to be replaced is out of array boundary %@",[NSThread callStackSymbols]);
         return NO;
     } else {
         if (!object) {
-            NSLogger( @"the object to be replaced is nil");
+            MBLog( @"the object to be replaced is nil %@",[NSThread callStackSymbols]);
             return NO;
         }
         if ([object isKindOfClass:[NSNull class]]) {
-            NSLogger( @"the object to be replaced is NSNull");
+            MBLog( @"the object to be replaced is NSNull %@",[NSThread callStackSymbols]);
             return NO;
         }
         [self replaceObjectAtIndex:index withObject:object];
@@ -86,16 +86,15 @@
     }
 }
 
-- (BOOL)swapObjectAtIndex:(NSUInteger)fromIndex withObjectAtIndex:(NSUInteger)toIndex {
+- (BOOL)mb_exchangeObjectAtIndex:(NSUInteger)fromIndex withObjectAtIndex:(NSUInteger)toIndex {
     if ([self count] != 0 && toIndex != fromIndex
         && fromIndex < [self count] && toIndex < [self count]) {
         [self exchangeObjectAtIndex:fromIndex withObjectAtIndex:toIndex];
         return YES;
     } else {
-        NSLogger( @"the index to be exchanged is out of array boundary");
+        MBLog( @"the index to be exchanged is out of array boundary %@",[NSThread callStackSymbols]);
         return NO;
     }
 }
-
 
 @end

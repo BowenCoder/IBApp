@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-typedef void (^Click) (NSInteger buttonIndex);
+typedef void (^OnClickHandler) (NSInteger buttonIndex);
 typedef void(^TFHandle)(UITextField *field, NSInteger index);
 
 @interface UIViewController (Alert) <UIAlertViewDelegate,UIActionSheetDelegate>
@@ -26,7 +26,7 @@ typedef void(^TFHandle)(UITextField *field, NSInteger index);
                    message:(NSString *)message
                     others:(NSArray<NSString *> *)others
                   animated:(BOOL)animated
-                    action:(Click)click;
+                    action:(OnClickHandler)click;
 
 /**
  操作表
@@ -43,7 +43,7 @@ typedef void(^TFHandle)(UITextField *field, NSInteger index);
                      destructive:(NSString *)destructive
                           others:(NSArray <NSString *> *)others
                     animated:(BOOL)animated
-                      action:(Click)click;
+                      action:(OnClickHandler)click;
 
 /**
  带有文本框的警示框
@@ -62,6 +62,6 @@ typedef void(^TFHandle)(UITextField *field, NSInteger index);
                   tfNumber:(NSInteger)number
                   tfHandle:(TFHandle)handle
                   animated:(BOOL)animated
-                    action:(Click)click;
+                    action:(OnClickHandler)click;
 
 @end
