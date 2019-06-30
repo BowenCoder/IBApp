@@ -10,6 +10,7 @@
 #import "NSDictionary+Ext.h"
 #import "IBHelper.h"
 #import "IBEncode.h"
+#import "IBMacros.h"
 
 @implementation MBRouterRequest
 

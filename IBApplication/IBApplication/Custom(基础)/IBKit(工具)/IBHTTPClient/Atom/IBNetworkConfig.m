@@ -7,8 +7,8 @@
 //
 
 #import "IBNetworkConfig.h"
+#import "IBServerManager.h"
 #import "IBApp.h"
-#import "IBServerEnvironment.h"
 
 @implementation IBNetworkConfig
 
@@ -90,14 +90,14 @@
 {
     NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
     NSString *url;
-    IBNetworkEnvironment env = [IBServerEnvironment shareInstance].env;
-    if (env == IBNetworkEnvProduct) {
+    IBServerEnvironment env = [IBServerManager shareInstance].env;
+    if (env == IBServerEnvProduct) {
         url = [infoDictionary valueForKeyPath:@"serviceinfo.url_pro"];
     }
-    if (env == IBNetworkEnvDevelop) {
+    if (env == IBServerEnvDevelop) {
         url = [infoDictionary valueForKeyPath:@"serviceinfo.url_dev"];
     }
-    if (env == IBNetworkEnvTest) {
+    if (env == IBServerEnvTest) {
         url = [infoDictionary valueForKeyPath:@"serviceinfo.url_test"];
     }
     NSAssert(url != nil && [url isKindOfClass:[NSString class]],

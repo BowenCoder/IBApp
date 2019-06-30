@@ -7,6 +7,9 @@
 //
 
 #import "IBShareManager.h"
+#import "IBMacros.h"
+#import "UIMacros.h"
+#import "IBErrorCode.h"
 
 @interface IBShareManager () <IBSocialDelegate>
 

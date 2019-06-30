@@ -7,6 +7,7 @@
 //
 
 #import "UIViewController+Alert.h"
+#import "IBMacros.h"
 
 #define NO_USE -1000
 

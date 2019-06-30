@@ -8,6 +8,7 @@
 //
 
 #import "IBSocialManager.h"
+#import "SDKMacros.h"
 
 @interface IBSocialManager () <TencentSessionDelegate>
 

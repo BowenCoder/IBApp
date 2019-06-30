@@ -9,7 +9,7 @@
 #import "MBLaunchSetup.h"
 #import <WebKit/WKWebsiteDataRecord.h>
 #import <WebKit/WKWebsiteDataStore.h>
-#import "IBServerEnvironment.h"
+#import "IBServerManager.h"
 #import "MBLogger.h"
 #import "MBUserManager.h"
 
@@ -17,19 +17,7 @@
 
 + (void)networkSetup
 {
-#if IB_DEVELOP_SEVER_OPEN
-    
-    [IBServerEnvironment shareInstance].env = IBNetworkEnvDevelop;
-    
-#elif IB_TEST_SEVER_OPEN
-    
-    [IBServerEnvironment shareInstance].env = IBNetworkEnvTest;
-
-#elif IB_PRODUCT_SEVER_OPEN
-    
-    [IBServerEnvironment shareInstance].env = IBNetworkEnvProduct;
-    
-#endif
+    [IBServerManager shareInstance].env = IBServerEnvDevelop;
 }
 
 + (void)loggerSetup

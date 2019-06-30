@@ -7,6 +7,7 @@
 //
 
 #import "IBNaviController.h"
+#import "IBMacros.h"
 
 @interface IBNaviController ()<UINavigationControllerDelegate, UIGestureRecognizerDelegate>
 

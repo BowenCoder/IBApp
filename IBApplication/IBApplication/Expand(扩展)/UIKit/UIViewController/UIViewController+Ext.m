@@ -7,6 +7,7 @@
 //
 
 #import "UIViewController+Ext.h"
+#import "IBMacros.h"
 
 @implementation UIViewController (Ext)
 

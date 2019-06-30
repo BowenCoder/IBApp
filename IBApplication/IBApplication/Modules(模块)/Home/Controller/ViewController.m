@@ -33,6 +33,9 @@
 #import "MBUserManager.h"
 #import "IBAtomFactory.h"
 #import "MBLibraryCamera.h"
+#import "IBMacros.h"
+#import "UIMacros.h"
+#import "MBGestureView.h"
 
 @interface ViewController ()<UITableViewDataSource, UITableViewDelegate>
 
@@ -63,7 +66,9 @@
     NSString *base = @"https://service.bowen.com/time/getconfig?";
     MBLog(@"%@", [[IBAtomFactory sharedInstance] appendAtomParams:base]);
     
-    
+    MBGestureView *gv = [[MBGestureView alloc] initWithFrame:self.view.bounds];
+//    gv.canHandleEvent = YES;
+    [self.view addSubview:gv];
     
 }
 

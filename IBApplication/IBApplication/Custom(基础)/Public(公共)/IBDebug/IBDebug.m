@@ -8,6 +8,7 @@
 
 #import "IBDebug.h"
 #import "IBFPSLabel.h"
+#import "UIMacros.h"
 
 @interface IBDebug ()
 

@@ -9,6 +9,7 @@
 #import "IBActionSheet.h"
 #import "IBPopupManager.h"
 #import "IBString.h"
+#import "UIMacros.h"
 
 @interface IBActionSheet () <UITableViewDelegate, UITableViewDataSource>
 

@@ -8,6 +8,7 @@
 
 #import "IBApp.h"
 #import "IBFile.h"
+#import "IBMacros.h"
 
 #include <sys/types.h>
 #include <sys/sysctl.h>

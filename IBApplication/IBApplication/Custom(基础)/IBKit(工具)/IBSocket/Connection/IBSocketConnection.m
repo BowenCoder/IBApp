@@ -8,6 +8,7 @@
 
 #import "IBSocketConnection.h"
 #import "GCDAsyncSocket.h"
+#import "IBMacros.h"
 
 @interface IBSocketConnection () <GCDAsyncSocketDelegate>
 

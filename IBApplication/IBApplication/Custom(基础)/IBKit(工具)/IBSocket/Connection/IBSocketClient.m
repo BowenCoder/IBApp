@@ -11,6 +11,7 @@
 #import "IBSocketPacketDecode.h"
 #import "IBSocketPacketEncode.h"
 #import "IBNetworkStatus.h"
+#import "IBMacros.h"
 
 @interface IBSocketClient()<IBSocketDecoderOutputProtocol, IBSocketEncoderOutputProtocol>
 
