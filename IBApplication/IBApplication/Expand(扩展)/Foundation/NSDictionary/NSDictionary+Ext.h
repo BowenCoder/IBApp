@@ -10,12 +10,18 @@
 
 @interface NSDictionary (Ext)
 
-- (NSArray *)arrayForKey:(NSString *)keyPath;
+- (NSArray *)mb_arrayForKey:(NSString *)keyPath;
 
-- (NSNumber *)numberForKey:(NSString *)keyPath;
+- (NSNumber *)mb_numberForKey:(NSString *)keyPath;
 
-- (NSString *)stringForKey:(NSString *)keyPath;
+- (NSString *)mb_stringForKey:(NSString *)keyPath;
 
-- (NSDictionary *)dictionaryForKey:(NSString *)keyPath;
+- (NSDictionary *)mb_dictionaryForKey:(NSString *)keyPath;
+
+@end
+
+@interface NSMutableDictionary (Ext)
+
+- (void)mb_setObject:(id)value forKey:(id)key;
 
 @end

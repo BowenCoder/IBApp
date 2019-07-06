@@ -7,6 +7,7 @@
 //
 
 #import "MBRouter.h"
+#import "IBMacros.h"
 
 #define kRouterDefaultPName @"^default^"
 

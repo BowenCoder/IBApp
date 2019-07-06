@@ -8,6 +8,7 @@
 
 #import "IBSocketPacket.h"
 #import "IBHelper.h"
+#import "IBMacros.h"
 
 #define BYTES_INT   4
 #define BYTES_SHORT 2

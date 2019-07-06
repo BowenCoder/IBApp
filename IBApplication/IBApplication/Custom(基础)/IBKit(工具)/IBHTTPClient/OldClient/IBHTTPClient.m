@@ -7,6 +7,7 @@
 //
 
 #import "IBHTTPClient.h"
+#import "IBServerManager.h"
 
 @implementation IBHTTPClient
 

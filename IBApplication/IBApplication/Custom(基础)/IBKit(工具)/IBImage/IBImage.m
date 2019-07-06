@@ -8,6 +8,7 @@
 
 #import "IBImage.h"
 #import <Accelerate/Accelerate.h>
+#import "IBMacros.h"
 
 @implementation IBImage
 

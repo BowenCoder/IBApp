@@ -11,7 +11,7 @@
 
 @implementation UIView (Ext)
 
-- (UIView *)topView {
+- (UIView *)mb_topView {
     
     UIView *topSuperView = self.superview;
     
@@ -26,11 +26,18 @@
     return topSuperView;
 }
 
+///< 移除此view上的所有子视图
+- (void)mb_removeAllSubviews {
+    
+    for (UIView *view in self.subviews) {
+        [view removeFromSuperview];
+    }
+}
 
 /**
  *  @brief  找到当前view所在的viewcontroler
  */
-- (UIViewController *)viewController {
+- (UIViewController *)mb_viewController {
     
     UIResponder *responder = self.nextResponder;
     do {
@@ -42,7 +49,7 @@
     return nil;
 }
 
-- (void)setBackgroundImage:(UIImage *)image pattern:(BOOL)pattern {
+- (void)mb_setBackgroundImage:(UIImage *)image pattern:(BOOL)pattern {
     
     if (image == nil || [image isKindOfClass:[NSNull class]]) {
         return;
@@ -56,16 +63,8 @@
     }
 }
 
-///< 移除此view上的所有子视图
-- (void)removeAllSubviews {
-    
-    for (UIView *view in self.subviews) {
-        [view removeFromSuperview];
-    }
-}
-
 //画线
-+ (CAShapeLayer *)drawLine:(CGPoint)points to:(CGPoint)pointe color:(UIColor *)color {
++ (CAShapeLayer *)mb_drawLine:(CGPoint)points to:(CGPoint)pointe color:(UIColor *)color {
     
     CAShapeLayer *shapeLayer = [CAShapeLayer layer];
     UIBezierPath *path = [UIBezierPath bezierPath];
@@ -190,7 +189,7 @@
     
     return self.frame.size.height + self.frame.origin.y;
 }
--(void)setBottom:(CGFloat)bottom {
+- (void)setBottom:(CGFloat)bottom {
     
     CGRect frame = self.frame;
     frame.origin.y = bottom - [self height];
@@ -218,7 +217,6 @@
     transform.tx=ttx;
     self.transform=transform;
 }
-
 
 - (CGFloat)tty {
     

@@ -9,13 +9,12 @@
 #import <Foundation/Foundation.h>
 
 //用于获取日期的详细信息
- struct IBDateInformation {
+ struct IBDateInfo {
     NSInteger year, month, day;//年月日
-    NSInteger hour, minute, seconds, nanosecond;//时分秒微秒
+    NSInteger hour, minute, seconds, nanosecond;//时分秒纳秒
     NSInteger weekday, weekOfYear, weekOfMonth;//周，一年第几周，一月第几周
 };
-
-typedef struct IBDateInformation IBDateInformation;
+typedef struct IBDateInfo IBDateInfo;
 
 //时间类型
 typedef NS_ENUM(NSInteger, IBTimeOption) {
@@ -34,21 +33,21 @@ typedef NS_ENUM(NSInteger, IBTimeOption) {
 
  @return 时间信息
  */
-- (IBDateInformation)dateInformation;
+- (IBDateInfo)mb_dateInfo;
 
 /**
  获取时间戳（毫秒），建议使用
 
  @return 返回时间戳
  */
-- (long)timestamp;
+- (long)mb_timestamp;
 
 /**
  获取时间戳（微秒）
  
  @return 返回时间戳
  */
-- (long)microsecond;
+- (long)mb_microsecond;
 
 /**
  时间戳转化成日期
@@ -56,7 +55,7 @@ typedef NS_ENUM(NSInteger, IBTimeOption) {
  @param timestamp 时间戳(默认从1970年开始)
  @return 日期
  */
-+ (NSDate *)timestampToDate:(NSInteger)timestamp;
++ (NSDate *)mb_timestampToDate:(NSInteger)timestamp;
 
 /**
  时间戳转换成日期字符串（10位时间戳）
@@ -65,7 +64,7 @@ typedef NS_ENUM(NSInteger, IBTimeOption) {
  @param format 时间格式 例如,YYYY-MM-dd HH:mm:ss
  @return 日期字符串
  */
-+ (NSString *)timestampToTime:(NSInteger)timestamp formatter:(NSString *)format;
++ (NSString *)mb_timestampToTime:(NSInteger)timestamp formatter:(NSString *)format;
 
 /**
  日期字符串转换成日期
@@ -74,7 +73,7 @@ typedef NS_ENUM(NSInteger, IBTimeOption) {
  @param format 时间格式 例如,YYYY-MM-dd HH:mm:ss
  @return 字符串时间
  */
-+ (NSDate *)dateWithString:(NSString *)dateString formatter:(NSString *)format;
++ (NSDate *)mb_dateWithString:(NSString *)dateString formatter:(NSString *)format;
 
 /**
  显示上下午+时分
@@ -83,7 +82,7 @@ typedef NS_ENUM(NSInteger, IBTimeOption) {
  @param format 要显示格式
  @return 上下午+时分的字符串
  */
-+ (NSString *)displayHalfDay:(NSDate *)date formatter:(NSString *)format;
++ (NSString *)mb_displayHalfDay:(NSDate *)date formatter:(NSString *)format;
 
 /**
  显示星期几
@@ -91,7 +90,7 @@ typedef NS_ENUM(NSInteger, IBTimeOption) {
  @param date 日期
  @return 星期字符串
  */
-+ (NSString *)displayWeek:(NSDate *)date;
++ (NSString *)mb_displayWeek:(NSDate *)date;
 
 @end
 
@@ -104,7 +103,7 @@ typedef NS_ENUM(NSInteger, IBTimeOption) {
  @param option 决定改变是年月日还是时份周
  @return 返回改变后的时间
  */
-- (NSDate *)dateAlterTimes:(NSInteger)times option:(IBTimeOption)option;
+- (NSDate *)mb_dateAlterTimes:(NSInteger)times option:(IBTimeOption)option;
 
 /**
  时间初始化
@@ -117,21 +116,21 @@ typedef NS_ENUM(NSInteger, IBTimeOption) {
  @param second 秒
  @return 时间
  */
-+ (NSDate *)dateWithYear:(NSInteger)year month:(NSInteger)month day:(NSInteger)day hour:(NSInteger)hour minute:(NSInteger)minute second:(NSInteger)second;
++ (NSDate *)mb_dateWithYear:(NSInteger)year month:(NSInteger)month day:(NSInteger)day hour:(NSInteger)hour minute:(NSInteger)minute second:(NSInteger)second;
 
 /**
  一天开始的时候
 
  @return 日期
  */
-- (NSDate *)dateAtStartOfDay;
+- (NSDate *)mb_dateAtStartOfDay;
 
 /**
  一天结束的时候
 
  @return 日期
  */
-- (NSDate *)dateAtEndOfDay;
+- (NSDate *)mb_dateAtEndOfDay;
 
 @end
 
@@ -198,7 +197,7 @@ typedef NS_ENUM(NSInteger, IBTimeOption) {
 
  @return 时间字符串
  */
-- (NSString *)displayTime;
+- (NSString *)mb_displayTime;
 
 /**
  显示过去多久时间
@@ -206,7 +205,7 @@ typedef NS_ENUM(NSInteger, IBTimeOption) {
  
  @return 时间字符串
  */
-- (NSString *)timeAgo;
+- (NSString *)mb_timeAgo;
 
 /**
  显示过去多久时间
@@ -214,7 +213,7 @@ typedef NS_ENUM(NSInteger, IBTimeOption) {
 
  @return 时间字符串
  */
-- (NSString *)timeAgoSimple;
+- (NSString *)mb_timeAgoSimple;
 
 /**
  限制多少时间以内显示过去多久时间，以外显示日期
@@ -222,7 +221,7 @@ typedef NS_ENUM(NSInteger, IBTimeOption) {
  @param limit 时间戳
  @return 时间字符串
  */
-- (NSString *)timeAgoWithLimit:(NSTimeInterval)limit;
+- (NSString *)mb_timeAgoWithLimit:(NSTimeInterval)limit;
 
 @end
 

@@ -11,6 +11,7 @@
 #import "IBSecurity.h"
 #import "IBFile.h"
 #import "MBLogger.h"
+#import "IBMacros.h"
 
 @interface MBUserManager ()
 

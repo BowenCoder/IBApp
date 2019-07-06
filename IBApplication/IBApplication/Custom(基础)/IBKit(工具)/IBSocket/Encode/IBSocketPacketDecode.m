@@ -7,6 +7,7 @@
 //
 
 #import "IBSocketPacketDecode.h"
+#import "IBMacros.h"
 
 @interface IBSocketPacketDecode ()
 

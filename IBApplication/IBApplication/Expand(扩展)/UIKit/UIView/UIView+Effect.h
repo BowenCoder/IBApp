@@ -16,7 +16,7 @@
  @param radius 圆角半径
  @param corners 圆角类型
  */
-- (void)setCornerRadius:(CGFloat)radius option:(UIRectCorner)corners;
+- (void)mb_setCornerRadius:(CGFloat)radius option:(UIRectCorner)corners;
 
 /**
  绘制带圆角的边框
@@ -25,7 +25,7 @@
  @param width 边框宽度
  @param radius 圆角半径
  */
-- (void)setBorderColor:(UIColor *)color width:(CGFloat)width cornerRadius:(CGFloat)radius;
+- (void)mb_setBorderColor:(UIColor *)color width:(CGFloat)width cornerRadius:(CGFloat)radius;
 
 /**
  设置阴影
@@ -37,7 +37,7 @@
  @param type 阴影类型
 
  */
-- (void)setShadowColor:(UIColor *)color opacity:(CGFloat)opacity offset:(CGSize)offset radius:(CGFloat)radius type:(NSString *)type;
+- (void)mb_setShadowColor:(UIColor *)color opacity:(CGFloat)opacity offset:(CGSize)offset radius:(CGFloat)radius type:(NSString *)type;
 
 @end
 
@@ -56,9 +56,9 @@
  *  @param dx x方向的偏移
  *  @param dy y方向的偏移
  */
-- (void)moveAxis:(CGFloat)dx dy:(CGFloat)dy;
+- (void)mb_moveAxis:(CGFloat)dx dy:(CGFloat)dy;
 
-- (void)cancelMotionEffect;
+- (void)mb_cancelMotionEffect;
 
 @end
 

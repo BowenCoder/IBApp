@@ -7,6 +7,7 @@
 //
 
 #import "IBHelper.h"
+#import "MBLogger.h"
 
 @implementation IBHelper
 
@@ -36,7 +37,7 @@
                                                        options:NSJSONWritingPrettyPrinted
                                                          error:&error];
     if (error) {
-        NSLogger(@"fail to get JSON from dictionary: %@, error: %@", self, error);
+        MBLog(@"fail to get JSON from dictionary: %@, error: %@", self, error);
         return error.localizedDescription;
     }
     NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
@@ -52,7 +53,7 @@
         json = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
         return json;
     } else {
-        NSLogger(@"fail to get JSON from dictionary: %@, error: %@", self, error);
+        MBLog(@"fail to get JSON from dictionary: %@, error: %@", self, error);
         return error.localizedDescription;
     }
 }

@@ -7,6 +7,8 @@
 //
 
 #import "IBTabBar.h"
+#import "IBMacros.h"
+#import "UIMacros.h"
 
 #define IBTabBarTag 10000
 

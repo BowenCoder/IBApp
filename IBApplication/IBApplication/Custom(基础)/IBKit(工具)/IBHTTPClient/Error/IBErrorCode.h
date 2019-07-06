@@ -16,7 +16,7 @@ typedef NS_ENUM(NSInteger, IBErrorCode) {
      */
     IBSUCCESS = 0,
     /**
-     *  其他错误
+     *  未知错误
      */
     IBOtherError = -1,
     /**
@@ -24,17 +24,26 @@ typedef NS_ENUM(NSInteger, IBErrorCode) {
      */
     IBTimeout = -2,
     /**
-     *  http非200错误
-     */
-    IBHttpError = -3,
-    /**
-     *  请求参数错误    请求的参数传递错误
+     *  请求参数错误
      */
     IBArgumentError = 499,
     /**
-     *  系统错误    服务内部发生错误
+     *  服务内部发生错误
      */
     IBSystemError = 500,
+    /**
+     *  权限错误
+     */
+    IKAuthError = 600,
+    /**
+     *  session错误
+     */
+    IKSessionError = 604,
+    /**
+     *  内容非法：包含敏感词
+     */
+    IKContentError = 982,
+
 };
 
 

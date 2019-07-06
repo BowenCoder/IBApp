@@ -9,6 +9,7 @@
 #import "IBAtomFactory.h"
 #import "IBNetworkStatus.h"
 #import "IBNetworkConfig.h"
+#import "IBMacros.h"
 
 @interface IBAtomInfo ()
 

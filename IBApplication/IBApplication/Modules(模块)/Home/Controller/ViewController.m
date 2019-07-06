@@ -33,6 +33,9 @@
 #import "MBUserManager.h"
 #import "IBAtomFactory.h"
 #import "MBLibraryCamera.h"
+#import "IBMacros.h"
+#import "UIMacros.h"
+#import "MBGestureView.h"
 
 @interface ViewController ()<UITableViewDataSource, UITableViewDelegate>
 
@@ -54,13 +57,18 @@
     [self addRefreshHeader];
     [self addRefreshFooter];
     NSMutableArray *arr = @[].mutableCopy;
-    [arr addObjectOrNil:[NSNull null]];
+    NSObject *obj = nil;
+    [arr mb_addObject:obj];
 
     NSLog(@"%@", NSStringFromCGRect(CGRectMakeFit(111, 333, 555, 777)));
     NSLog(@"demo %lf", ceil(2.1 * kScreenScale) / kScreenScale);
     
     NSString *base = @"https://service.bowen.com/time/getconfig?";
     MBLog(@"%@", [[IBAtomFactory sharedInstance] appendAtomParams:base]);
+    
+    MBGestureView *gv = [[MBGestureView alloc] initWithFrame:self.view.bounds];
+//    gv.canHandleEvent = YES;
+    [self.view addSubview:gv];
     
 }
 

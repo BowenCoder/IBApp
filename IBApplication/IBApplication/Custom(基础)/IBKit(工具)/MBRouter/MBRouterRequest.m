@@ -10,6 +10,7 @@
 #import "NSDictionary+Ext.h"
 #import "IBHelper.h"
 #import "IBEncode.h"
+#import "IBMacros.h"
 
 @implementation MBRouterRequest
 
@@ -37,8 +38,8 @@
     
     _scheme = [url scheme];
     _options = [IBHelper dictionaryWithURL:url];
-    _pName = [[_options stringForKey:kRouterPageName] lowercaseString];
-    _sourceApplication = [_options stringForKey:kRouterSourceApplication];
+    _pName = [[_options mb_stringForKey:kRouterPageName] lowercaseString];
+    _sourceApplication = [_options mb_stringForKey:kRouterSourceApplication];
 }
 
 + (instancetype)requestWithURLString:(NSString *)URLString resultCallback:(MBRouterResultCallback)resultCallback

@@ -9,6 +9,7 @@
 #import "MBLibraryCamera.h"
 #import "RSKImageCropViewController.h"
 #import "IBImage.h"
+#import "UIMacros.h"
 
 @interface MBLibraryCamera () <UIImagePickerControllerDelegate, UINavigationControllerDelegate, RSKImageCropViewControllerDelegate, RSKImageCropViewControllerDataSource>
 

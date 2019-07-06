@@ -68,7 +68,7 @@
 }
 
 - (void)setBackgroundImage:(UIImage *)image {
-    [self.view setBackgroundImage:image pattern:NO];
+    [self.view mb_setBackgroundImage:image pattern:NO];
 }
 
 - (void)enterLoginVC {

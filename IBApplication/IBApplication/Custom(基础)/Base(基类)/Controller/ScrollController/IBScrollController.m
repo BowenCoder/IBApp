@@ -7,6 +7,8 @@
 //
 
 #import "IBScrollController.h"
+#import "IBMacros.h"
+#import "UIMacros.h"
 
 @interface IBScrollController ()
 

@@ -12,6 +12,7 @@
 @interface MBModuleCenter ()
 
 @property (nonatomic, strong) NSMutableArray<id<MBModuleProtocol>> *managers;
+@property (nonatomic, strong) dispatch_queue_t moduleCenterQueue;
 
 @end
 
@@ -29,23 +30,12 @@
     return center;
 }
 
-- (dispatch_queue_t)moduleCenterQueue
-{
-    static dispatch_queue_t moduleQueue = NULL;
-    static dispatch_once_t onceToken;
-    
-    dispatch_once(&onceToken, ^{
-        moduleQueue = dispatch_queue_create("com.bowen.moduleCenterQueue", NULL);
-    });
-    
-    return moduleQueue;
-}
-
 - (instancetype)init
 {
     self = [super init];
     if (self) {
         _managers = [NSMutableArray array];
+        _moduleCenterQueue = dispatch_queue_create("com.bowen.moduleCenterQueue", NULL);;
     }
     return self;
 }

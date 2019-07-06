@@ -23,8 +23,11 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)logoutAccount;
 
 - (void)pushViewController:(UIViewController *)vc animated:(BOOL)animated;
+
 - (UIViewController *)popViewControllerAnimated:(BOOL)animated;
+
 - (UIViewController *)popViewControllerWithLevel:(NSInteger)level animated:(BOOL)animated;
+
 - (BOOL)presentViewController:(UIViewController *)vc animated:(BOOL)animated completion:(void (^)(void))completion;
 
 /**

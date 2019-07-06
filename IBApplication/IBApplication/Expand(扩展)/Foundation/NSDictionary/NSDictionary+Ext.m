@@ -7,28 +7,29 @@
 //
 
 #import "NSDictionary+Ext.h"
+#import "MBLogger.h"
 
 @implementation NSDictionary (Ext)
 
-- (NSNumber *)numberForKey:(NSString *)keyPath {
+- (NSNumber *)mb_numberForKey:(NSString *)keyPath {
     return [self _valueFromDictionary:self
                           withKeyPath:keyPath
                           classVerify:[NSNumber class]];
 }
 
-- (NSString *)stringForKey:(NSString *)keyPath {
+- (NSString *)mb_stringForKey:(NSString *)keyPath {
     return [self _valueFromDictionary:self
                           withKeyPath:keyPath
                           classVerify:[NSString class]];
 }
 
-- (NSDictionary *)dictionaryForKey:(NSString *)keyPath {
+- (NSDictionary *)mb_dictionaryForKey:(NSString *)keyPath {
     return [self _valueFromDictionary:self
                           withKeyPath:keyPath
                           classVerify:[NSDictionary class]];
 }
 
-- (NSArray *)arrayForKey:(NSString *)keyPath {
+- (NSArray *)mb_arrayForKey:(NSString *)keyPath {
     return [self _valueFromDictionary:self
                           withKeyPath:keyPath
                           classVerify:[NSArray class]];
@@ -58,5 +59,22 @@
     return nil;
 }
 
+
+@end
+
+
+@implementation NSMutableDictionary (Ext)
+
+- (void)mb_setObject:(id)value forKey:(id)key
+{
+    if (!value || !key || value == [NSNull null] || key == [NSNull null]) {
+        MBLog( @"the object to be setted is failed %@",[NSThread callStackSymbols]);
+        return;
+    }
+    
+    if ([self respondsToSelector:@selector(setObject:forKey:)]) {
+        [self setObject:value forKey:key];
+    }
+}
 
 @end
