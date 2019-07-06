@@ -34,13 +34,14 @@
 #define CGPointMakeFit(x, y) CGPointMake(kFitWidth(x), kFitHeight(y))
 // size适配
 #define CGSizeMakeFit(width, height) CGSizeMake(kFitWidth(width), kFitHeight(height))
-// rect适配
+// rect适配 
 #define CGRectMakeFit(x, y, width, height) CGRectMake(kFitWidth(x), kFitHeight(y), kFitWidth(width), kFitHeight(height))
 // edge适配
 #define UIEdgeInsetsMakeFit(top, left, bottom, right) UIEdgeInsetsMake(kFitHeight(top), kFitWidth(left), kFitHeight(bottom), kFitWidth(right))
 
 // 状态栏高度(iPhoneX:44, 其他:20)
-#define kStatusBarHeight [UIApplication sharedApplication].statusBarHidden ? 0 : [[UIApplication sharedApplication] statusBarFrame].size.height
+//#define kStatusBarHeight [UIApplication sharedApplication].statusBarHidden ? 0 : [[UIApplication sharedApplication] statusBarFrame].size.height // 不能动态获取，会被热点，定位蓝条影响
+#define kStatusBarHeight [UIApplication sharedApplication].statusBarHidden ? 0 : kIphoneX ? 44 : 20
 
 // 导航栏高度
 #define kNavBarHeight    44
