@@ -313,6 +313,9 @@
 		4AEEA7B2213D2AA700CFAA3D /* IBActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AEEA7B1213D2AA700CFAA3D /* IBActionSheet.m */; };
 		F323F5EB22A4341D008BC303 /* RSKImageCropViewController+Ext.m in Sources */ = {isa = PBXBuildFile; fileRef = F323F5EA22A4341D008BC303 /* RSKImageCropViewController+Ext.m */; };
 		F333517B22A2C448005B968E /* MBLibraryCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = F333517A22A2C448005B968E /* MBLibraryCamera.m */; };
+		F33F610522D0E5E200D6CADA /* IBSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = F33F610422D0E5E200D6CADA /* IBSerialization.m */; };
+		F33F610D22D0F39000D6CADA /* IBResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = F33F610C22D0F39000D6CADA /* IBResponse.m */; };
+		F33F611022D1112C00D6CADA /* IBRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = F33F610F22D1112C00D6CADA /* IBRequest.m */; };
 		F367404C212C54B000E614A0 /* IBPopupLeftBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F367403D212C54AF00E614A0 /* IBPopupLeftBarItem.m */; };
 		F367404D212C54B000E614A0 /* UIViewController+IBPopup.m in Sources */ = {isa = PBXBuildFile; fileRef = F367403E212C54AF00E614A0 /* UIViewController+IBPopup.m */; };
 		F367404E212C54B000E614A0 /* IBPopupControllerTransitioningSlideVertical.m in Sources */ = {isa = PBXBuildFile; fileRef = F367403F212C54AF00E614A0 /* IBPopupControllerTransitioningSlideVertical.m */; };
@@ -955,6 +958,15 @@
 		F323F5EA22A4341D008BC303 /* RSKImageCropViewController+Ext.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "RSKImageCropViewController+Ext.m"; sourceTree = "<group>"; };
 		F333517922A2C448005B968E /* MBLibraryCamera.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBLibraryCamera.h; sourceTree = "<group>"; };
 		F333517A22A2C448005B968E /* MBLibraryCamera.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBLibraryCamera.m; sourceTree = "<group>"; };
+		F33F610322D0E5E200D6CADA /* IBSerialization.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBSerialization.h; sourceTree = "<group>"; };
+		F33F610422D0E5E200D6CADA /* IBSerialization.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBSerialization.m; sourceTree = "<group>"; };
+		F33F610A22D0F15D00D6CADA /* IBResponseProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBResponseProtocol.h; sourceTree = "<group>"; };
+		F33F610B22D0F39000D6CADA /* IBResponse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBResponse.h; sourceTree = "<group>"; };
+		F33F610C22D0F39000D6CADA /* IBResponse.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBResponse.m; sourceTree = "<group>"; };
+		F33F610E22D1112C00D6CADA /* IBRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBRequest.h; sourceTree = "<group>"; };
+		F33F610F22D1112C00D6CADA /* IBRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBRequest.m; sourceTree = "<group>"; };
+		F33F611122D1114A00D6CADA /* IBRequestProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBRequestProtocol.h; sourceTree = "<group>"; };
+		F33F611322D123FF00D6CADA /* IBHTTPManagerProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBHTTPManagerProtocol.h; sourceTree = "<group>"; };
 		F367403D212C54AF00E614A0 /* IBPopupLeftBarItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IBPopupLeftBarItem.m; sourceTree = "<group>"; };
 		F367403E212C54AF00E614A0 /* UIViewController+IBPopup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+IBPopup.m"; sourceTree = "<group>"; };
 		F367403F212C54AF00E614A0 /* IBPopupControllerTransitioningSlideVertical.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IBPopupControllerTransitioningSlideVertical.m; sourceTree = "<group>"; };
@@ -1146,6 +1158,8 @@
 			children = (
 				4AA2863722C92BFB00C34336 /* IBServerManager.h */,
 				4AA2863822C92BFB00C34336 /* IBServerManager.m */,
+				F33F610322D0E5E200D6CADA /* IBSerialization.h */,
+				F33F610422D0E5E200D6CADA /* IBSerialization.m */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -1204,6 +1218,8 @@
 		4A1FB0AB20E8EAF70056A026 /* IBHTTPClient */ = {
 			isa = PBXGroup;
 			children = (
+				F33F611222D123C500D6CADA /* Protocol */,
+				F33F610622D0F0EF00D6CADA /* Request */,
 				4AA2862822C8DB9F00C34336 /* Error */,
 				4A1ECD7522B7B90F0070338B /* Manager */,
 				4A6F19B120E3FB9E00EAF1A7 /* NetworkStatus */,
@@ -2896,6 +2912,27 @@
 			path = MBLibraryCamera;
 			sourceTree = "<group>";
 		};
+		F33F610622D0F0EF00D6CADA /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				F33F610E22D1112C00D6CADA /* IBRequest.h */,
+				F33F610F22D1112C00D6CADA /* IBRequest.m */,
+				F33F610B22D0F39000D6CADA /* IBResponse.h */,
+				F33F610C22D0F39000D6CADA /* IBResponse.m */,
+			);
+			path = Request;
+			sourceTree = "<group>";
+		};
+		F33F611222D123C500D6CADA /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				F33F611122D1114A00D6CADA /* IBRequestProtocol.h */,
+				F33F610A22D0F15D00D6CADA /* IBResponseProtocol.h */,
+				F33F611322D123FF00D6CADA /* IBHTTPManagerProtocol.h */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
 		F3A5C8DF212C7421005D9174 /* WeiboSDK */ = {
 			isa = PBXGroup;
 			children = (
@@ -3150,6 +3187,7 @@
 				4A1FB21020E92D5E0056A026 /* UIView+WebCacheOperation.m in Sources */,
 				4AC81CDC20F37D0C00A1F246 /* IBView.m in Sources */,
 				4A84CBB7229B917100CA4794 /* MBMediator.m in Sources */,
+				F33F610D22D0F39000D6CADA /* IBResponse.m in Sources */,
 				4AC29F9921106C0800F218FE /* IBRefreshHeader.m in Sources */,
 				4A89D62F228B17490072FB23 /* SSZipArchive.m in Sources */,
 				4A6F197F20E345F500EAF1A7 /* IBHelper.m in Sources */,
@@ -3215,6 +3253,7 @@
 				4AC29F80210F04A900F218FE /* MJRefreshBackGifFooter.m in Sources */,
 				4AD770BB2297CD1300FEB76B /* YYTextAsyncLayer.m in Sources */,
 				4ACC56B020E0001E001352AE /* NSDate+Ext.m in Sources */,
+				F33F610522D0E5E200D6CADA /* IBSerialization.m in Sources */,
 				4A6F19B720E3FE9600EAF1A7 /* IBSocketService.m in Sources */,
 				4AC428F1215A56A8008C93D4 /* IBPopoverMenu.m in Sources */,
 				4A1FB20F20E92D5E0056A026 /* NSData+ImageContentType.m in Sources */,
@@ -3371,6 +3410,7 @@
 				4AC29FD42111CAD700F218FE /* AXGradientProgressView.m in Sources */,
 				4A89D602228B11C40072FB23 /* MBLogEncryptFormatter.m in Sources */,
 				4AC29FE02111CB8800F218FE /* AXBreachedAnnulusIndicatorView.m in Sources */,
+				F33F611022D1112C00D6CADA /* IBRequest.m in Sources */,
 				4AC29F8A210F04A900F218FE /* MJRefreshHeader.m in Sources */,
 				4AC29F7F210F04A900F218FE /* UIView+MJExtension.m in Sources */,
 				4ACC56A120DF72D9001352AE /* UIView+Ext.m in Sources */,

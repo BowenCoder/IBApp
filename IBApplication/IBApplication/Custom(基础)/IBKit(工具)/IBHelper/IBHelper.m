@@ -8,6 +8,7 @@
 
 #import "IBHelper.h"
 #import "MBLogger.h"
+#import "IBMacros.h"
 
 @implementation IBHelper
 
@@ -123,6 +124,27 @@
     }
     [urlStr appendString:[self URLQueryString:params]];
     return urlStr.copy;
+}
+
++ (NSString *)fullURL:(NSString *)url paramStr:(NSString *)paramStr
+{
+    if (kIsEmptyString(url) || kIsEmptyString(paramStr)) {
+        return url;
+    }
+    
+    NSRange flag = [url rangeOfString:@"?"];
+    NSRange andFlag = [url rangeOfString:@"&"];
+    
+    NSMutableString *tempURL = [NSMutableString string];
+    [tempURL appendString:url];
+    if (flag.location == NSNotFound && andFlag.location == NSNotFound) {
+        [tempURL appendString:@"?"];
+    } else {
+        [tempURL appendString:@"&"];
+    }
+    [tempURL appendString:NSStringNONil(paramStr)];
+    
+    return tempURL.copy;
 }
 
 @end

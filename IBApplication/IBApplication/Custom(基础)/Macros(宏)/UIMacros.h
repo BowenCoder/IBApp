@@ -34,7 +34,7 @@
 #define CGPointMakeFit(x, y) CGPointMake(kFitWidth(x), kFitHeight(y))
 // size适配
 #define CGSizeMakeFit(width, height) CGSizeMake(kFitWidth(width), kFitHeight(height))
-// rect适配 
+// rect适配
 #define CGRectMakeFit(x, y, width, height) CGRectMake(kFitWidth(x), kFitHeight(y), kFitWidth(width), kFitHeight(height))
 // edge适配
 #define UIEdgeInsetsMakeFit(top, left, bottom, right) UIEdgeInsetsMake(kFitHeight(top), kFitWidth(left), kFitHeight(bottom), kFitWidth(right))

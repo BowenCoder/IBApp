@@ -64,13 +64,22 @@
 + (NSString *)URLQueryString:(NSDictionary *)params;
 
 /**
- 拼接url参数
+ 拼接url字典参数
 
  @param url url
  @param params 参数
  @return NSString
  */
 + (NSString *)fullURL:(NSString *)url params:(NSDictionary *)params;
+
+/**
+ 拼接字符串参数
+
+ @param url url
+ @param paramStr 参数
+ @return fullUrl
+ */
++ (NSString *)fullURL:(NSString *)url paramStr:(NSString *)paramStr;
 
 @end
 
