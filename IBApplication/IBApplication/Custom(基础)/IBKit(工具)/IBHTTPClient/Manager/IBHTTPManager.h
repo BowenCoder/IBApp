@@ -7,13 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "IBHTTPManagerProtocol.h"
+#import "IBRequest.h"
+#import "IBResponse.h"
 #import "AFNetworking.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface IBHTTPManager : NSObject
 
-@property (nonatomic, strong) AFHTTPSessionManager *manager;
 
 @end
 

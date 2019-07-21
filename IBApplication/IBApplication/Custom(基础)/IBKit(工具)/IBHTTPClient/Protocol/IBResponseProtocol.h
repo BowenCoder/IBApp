@@ -16,9 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) IBError      *error;
 @property (nonatomic, strong) NSData       *data;
 @property (nonatomic, strong) NSDictionary *dict;
-@property (nonatomic, strong) NSDictionary *headers;
 @property (nonatomic, strong) NSURLSessionDataTask *task;
-
 
 - (void)parseResponse;
 

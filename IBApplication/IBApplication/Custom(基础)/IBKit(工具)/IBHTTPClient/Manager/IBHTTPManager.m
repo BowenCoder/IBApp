@@ -8,6 +8,12 @@
 
 #import "IBHTTPManager.h"
 
+@interface IBHTTPManager ()
+
+@property (nonatomic, strong) AFHTTPSessionManager *manager;
+
+@end
+
 @implementation IBHTTPManager
 
 @end

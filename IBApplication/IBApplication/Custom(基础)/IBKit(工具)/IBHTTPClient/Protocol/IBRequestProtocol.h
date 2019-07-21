@@ -21,9 +21,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSDictionary    *params;
 @property (nonatomic, assign) IBHttpCacheType cacheType;
 @property (nonatomic, assign) NSTimeInterval  cacheTime;
-@property (nonatomic, assign) NSTimeInterval  timeoutInterval;
 @property (nonatomic, assign) NSInteger       retryTimes;
 @property (nonatomic, assign) NSInteger       retryInterval;
+@property (nonatomic, assign) NSTimeInterval  timeoutInterval;
 
 @optional
 

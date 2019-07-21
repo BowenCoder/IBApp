@@ -11,7 +11,7 @@
 #import "IBSerialization.h"
 
 @implementation IBResponse
-@synthesize error, data, dict, headers, task;
+@synthesize error, data, dict, task;
 
 + (instancetype)response
 {
