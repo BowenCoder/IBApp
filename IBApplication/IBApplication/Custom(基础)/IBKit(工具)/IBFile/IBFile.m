@@ -110,10 +110,7 @@
 {
     NSError *error;
     NSString *path = [[self documentPath] stringByAppendingPathComponent:dir];
-    if ([[NSFileManager defaultManager] createDirectoryAtPath:path
-                                  withIntermediateDirectories:YES
-                                                   attributes:nil
-                                                        error:&error]) {
+    if ([self createDirForPath:path error:&error]) {
         [self addSkipBackupAttributeToItemAtPath:path];
     }
     return path;
@@ -123,10 +120,7 @@
 {
     NSError *error;
     NSString *path = [[self libraryPath] stringByAppendingPathComponent:dir];
-    if ([[NSFileManager defaultManager] createDirectoryAtPath:path
-                                  withIntermediateDirectories:YES
-                                                   attributes:nil
-                                                        error:&error]) {
+    if ([self createDirForPath:path error:&error]) {
         [self addSkipBackupAttributeToItemAtPath:path];
     }
     
@@ -137,10 +131,7 @@
 {
     NSError *error;
     NSString *path = [[self cachePath] stringByAppendingPathComponent:dir];
-    if ([[NSFileManager defaultManager] createDirectoryAtPath:path
-                                  withIntermediateDirectories:YES
-                                                   attributes:nil
-                                                        error:&error]) {
+    if ([self createDirForPath:path error:&error]) {
         [self addSkipBackupAttributeToItemAtPath:path];
     }
     
@@ -151,10 +142,7 @@
 {
     NSError *error;
     NSString *path = [[self temporaryPath] stringByAppendingPathComponent:dir];
-    if ([[NSFileManager defaultManager] createDirectoryAtPath:path
-                                  withIntermediateDirectories:YES
-                                                   attributes:nil
-                                                        error:&error]) {
+    if ([self createDirForPath:path error:&error]) {
         [self addSkipBackupAttributeToItemAtPath:path];
     }
     return path;
