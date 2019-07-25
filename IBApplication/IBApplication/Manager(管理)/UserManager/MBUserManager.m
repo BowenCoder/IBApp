@@ -97,8 +97,8 @@
 - (void)clear
 {
     NSString *filePath = [self userInfoFileName:_user.uid];
-    [IBFile removeItemAtPath:filePath];
-    [IBFile removeItemAtPath:[self loginFile]];
+    [IBFile removeItemAtPath:filePath error:nil];
+    [IBFile removeItemAtPath:[self loginFile] error:nil];
     _user = nil;
     [self refreshAtom];
 }
@@ -122,7 +122,7 @@
     NSMutableDictionary *userDic = [self.user yy_modelToJSONObject];
     NSString *filePath = [self userInfoFileName:self.user.uid];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        [IBFile writeFileAtPath:filePath content:userDic];
+        [IBFile writeFileAtPath:filePath content:userDic error:nil];
     });
     [self saveLastUserWithDict:userDic];
     [self syncSharedData:userDic];
@@ -138,7 +138,7 @@
     [dict setObject:userDic[@"uid"] forKey:@"uid"];
     [dict setObject:userDic[@"nick"] forKey:@"nick"];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        [IBFile writeFileAtPath:fileName content:dict];
+        [IBFile writeFileAtPath:fileName content:dict error:nil];
     });
 }
 
@@ -167,12 +167,12 @@
 - (NSString *)userInfoFileName:(NSInteger)uid
 {
     NSString *filename = [NSString stringWithFormat:@"User/login_%ld.plist", (long)uid];
-    return [IBFile pathForLibraryDirectoryWithPath:filename];
+    return [IBFile pathForLibraryDirWithPath:filename];
 }
 
 - (NSString *)loginFile
 {
-    return [IBFile pathForLibraryDirectoryWithPath:@"User/login_uid.plist"];
+    return [IBFile pathForLibraryDirWithPath:@"User/login_uid.plist"];
 }
 
 #pragma mark - getter

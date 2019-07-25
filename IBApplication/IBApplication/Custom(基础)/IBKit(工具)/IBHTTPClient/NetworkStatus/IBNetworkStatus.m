@@ -9,6 +9,8 @@
 #import "IBNetworkStatus.h"
 #import <CoreTelephony/CTTelephonyNetworkInfo.h>
 
+NSString * const kIBReachabilityChangedNotification = @"kIBReachabilityChangedNotification";
+
 @interface IBNetworkStatus ()
 
 /**
@@ -33,8 +35,6 @@
 @property (nonatomic, strong) CTTelephonyNetworkInfo *networkInfo;
 
 @end
-
-NSString * const kIBReachabilityChangedNotification = @"kIBReachabilityChangedNotification";
 
 @implementation IBNetworkStatus
 

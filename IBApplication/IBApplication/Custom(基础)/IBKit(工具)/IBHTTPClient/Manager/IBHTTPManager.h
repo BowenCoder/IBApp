@@ -14,8 +14,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface IBHTTPManager : NSObject
+@interface IBHTTPManager : NSObject<IBHTTPManagerProtocol>
 
++ (instancetype)sharedInstance;
 
 @end
 
