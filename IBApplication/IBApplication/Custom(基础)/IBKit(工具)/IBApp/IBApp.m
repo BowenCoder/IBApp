@@ -81,9 +81,9 @@
 
 + (NSString *)cacheSize {
     
-    unsigned long long docSize   =  [self _sizeOfFolder:[IBFile pathForDocumentsDir] resetSize:YES];
-    unsigned long long cacheSize =  [self _sizeOfFolder:[IBFile pathForCachesDir] resetSize:YES];
-    unsigned long long tempSize  =  [self _sizeOfFolder:[IBFile pathForTemporaryDir] resetSize:YES];
+    unsigned long long docSize   =  [self _sizeOfFolder:[IBFile documentPath] resetSize:YES];
+    unsigned long long cacheSize =  [self _sizeOfFolder:[IBFile cachePath] resetSize:YES];
+    unsigned long long tempSize  =  [self _sizeOfFolder:[IBFile temporaryPath] resetSize:YES];
     
     unsigned long long total = docSize + cacheSize + tempSize;
     
@@ -93,7 +93,7 @@
 }
 
 + (BOOL)emptyCaches {
-    return [IBFile emptyCachesDir] && [IBFile emptyTemporaryDir];
+    return [IBFile emptyCachesPath] && [IBFile emptyTemporaryPath];
 }
 
 + (NSString *)APNSToken:(NSData *)tokenData {

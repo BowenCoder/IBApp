@@ -46,7 +46,7 @@
 - (void)restore
 {
     NSString *lastUserPath = [self loginFile];
-    if (![IBFile existsItemAtPath:lastUserPath]) {
+    if (![IBFile isFileExists:lastUserPath]) {
         return;
     }
     NSDictionary *uidDic    = [IBFile readFileAtPathAsDictionary:lastUserPath];
@@ -167,12 +167,12 @@
 - (NSString *)userInfoFileName:(NSInteger)uid
 {
     NSString *filename = [NSString stringWithFormat:@"User/login_%ld.plist", (long)uid];
-    return [IBFile pathForLibraryDirWithPath:filename];
+    return [IBFile filePathInLibrary:filename];
 }
 
 - (NSString *)loginFile
 {
-    return [IBFile pathForLibraryDirWithPath:@"User/login_uid.plist"];
+    return [IBFile filePathInLibrary:@"User/login_uid.plist"];
 }
 
 #pragma mark - getter
