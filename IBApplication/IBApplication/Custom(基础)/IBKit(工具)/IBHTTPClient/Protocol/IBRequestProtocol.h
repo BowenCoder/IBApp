@@ -31,7 +31,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSDictionary*)requestHeaders;
 
 /// url拼接原子参数
-- (void)appendAtomicInfo;
+- (void)appendAtomParams;
 
 /// 加密url
 - (void)encryptUrl;

@@ -99,7 +99,7 @@
  *  @param  text   字符串
  *  @param  filter 是否过滤
  *
- *  @return 清楚js后的结果
+ *  @return 清楚空格后的结果
  */
 + (NSString *)clearWhitespace:(NSString *)text filter:(BOOL)filter;
 

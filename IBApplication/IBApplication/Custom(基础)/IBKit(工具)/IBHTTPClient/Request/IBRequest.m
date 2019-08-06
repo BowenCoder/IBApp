@@ -39,7 +39,7 @@
     return dict;
 }
 
-- (void)appendAtomicInfo
+- (void)appendAtomParams
 {
     self.url = [[IBAtomFactory sharedInstance] appendAtomParams:self.url];
 }

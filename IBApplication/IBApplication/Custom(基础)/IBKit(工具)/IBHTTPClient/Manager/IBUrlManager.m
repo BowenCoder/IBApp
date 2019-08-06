@@ -95,7 +95,7 @@
 {
     self = [super init];
     if (self) {
-        _urlQueue = dispatch_queue_create("com.bowen.url_manager_queue", NULL);;
+        _urlQueue = dispatch_queue_create("com.bowen.url.manager.queue", NULL);;
     }
     return self;
 }
