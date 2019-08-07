@@ -23,10 +23,11 @@ typedef NS_ENUM(NSInteger , IBRequestPriority) {
     IBRequestPriorityHigh = 1,
 };
 
-typedef void (^IBResponseBlock)(id<IBResponseProtocol>response);
-typedef void (^IBHTTPResponseBlock)(IBErrorCode errorCode, NSString *errorMsg, NSData *response);
-
 NS_ASSUME_NONNULL_BEGIN
+
+typedef void (^IBResponseBlock)(id<IBResponseProtocol> response);
+typedef void (^IBHTTPCompletionBlock)(IBErrorCode errorCode, NSString *errorMsg, NSDictionary *response);
+typedef void (^IBHTTPResponseBlock)(IBErrorCode errorCode, NSString *errorMsg, NSData *response);
 
 @protocol IBHTTPManagerProtocol <NSObject>
 

@@ -71,6 +71,76 @@
     _httpCache.diskCache.costLimit = kHttpDiskCacheCostLimit;
 }
 
+- (void)GET:(NSString *)url params:(NSDictionary *)params completion:(IBHTTPCompletionBlock)completion
+{
+    
+}
+
+- (void)GETWithoutAtom:(NSString *)url params:(NSDictionary *)params completion:(IBHTTPCompletionBlock)completion
+{
+    
+}
+
+- (void)GET:(NSString *)url params:(NSDictionary *)params cacheType:(IBHttpCacheType)cacheType cacheTime:(NSUInteger)secs timeout:(NSUInteger)interval completion:(IBHTTPCompletionBlock)completion
+{
+    
+}
+
+- (void)GETRetry:(NSString *)url params:(NSDictionary *)params cacheType:(IBHttpCacheType)cacheType cacheTime:(NSUInteger)secs timeout:(NSUInteger)interval completion:(IBHTTPCompletionBlock)completion
+{
+    
+}
+
+- (void)POST:(NSString *)url params:(NSDictionary *)params body:(NSDictionary *)body completion:(IBHTTPCompletionBlock)completion
+{
+    
+}
+
+- (void)POST:(NSString *)url params:(NSDictionary *)params body:(NSDictionary *)body timeout:(NSUInteger)interval completion:(IBHTTPCompletionBlock)completion
+{
+    
+}
+
+- (void)POSTRetry:(NSString *)url params:(NSDictionary *)params body:(NSDictionary *)body timeout:(NSUInteger)interval completion:(IBHTTPCompletionBlock)completion
+{
+    
+}
+
+
+#pragma mark - IBHTTPManagerProtocol
+
+- (void)get:(id<IBRequestProtocol>)request completion:(IBResponseBlock)completion
+{
+    
+}
+
+- (void)get:(id<IBRequestProtocol>)request response:(id<IBResponseProtocol>)response completion:(IBResponseBlock)completion
+{
+    
+}
+
+- (void)postJson:(id<IBPostJsonRequestProtocol>)request completion:(IBResponseBlock)completion
+{
+    
+}
+
+- (void)postJson:(id<IBPostJsonRequestProtocol>)request response:(id<IBResponseProtocol>)response completion:(IBResponseBlock)completion
+{
+    
+}
+
+- (void)postBinary:(id<IBPostBinaryRequestProtocol>)request completion:(IBResponseBlock)completion
+{
+    
+}
+
+- (void)postBinary:(id<IBPostBinaryRequestProtocol>)request response:(id<IBResponseProtocol>)response completion:(IBResponseBlock)completion
+{
+    
+}
+
+#pragma mark - 私有方法
+
 - (void)_request:(id<IBRequestProtocol>)request requestType:(IBRequestType)requestType isByRetry:(BOOL)isByRetry completion:(IBHTTPResponseBlock)completion
 {
     @weakify(self);
@@ -229,7 +299,7 @@
             
             dispatch_async(dispatch_get_main_queue(), ^{
                 for (IBHTTPResponseBlock block in blocks) {
-                    block(errCode, NSStringNONil(errMsg), nil);
+                    block(errCode, NSStringNONil(errMsg), [NSData new]);
                 }
             });
         }
