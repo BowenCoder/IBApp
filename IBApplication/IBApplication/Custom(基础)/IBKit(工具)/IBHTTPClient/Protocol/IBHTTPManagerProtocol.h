@@ -11,37 +11,20 @@
 #import "IBRequestProtocol.h"
 #import "IBResponseProtocol.h"
 
-typedef NS_ENUM(NSInteger, IBRequestType)  {
-    IBRequestTypeGet = 0,
-    IBRequestTypePostJson,
-    IBRequestTypePostBinary
-};
-
-typedef NS_ENUM(NSInteger , IBRequestPriority) {
-    IBRequestPriorityLow = -1,
-    IBRequestPriorityDefault = 0,
-    IBRequestPriorityHigh = 1,
-};
-
 NS_ASSUME_NONNULL_BEGIN
 
 typedef void (^IBResponseBlock)(id<IBResponseProtocol> response);
-typedef void (^IBHTTPCompletionBlock)(IBErrorCode errorCode, NSString *errorMsg, NSDictionary *response);
-typedef void (^IBHTTPResponseBlock)(IBErrorCode errorCode, NSString *errorMsg, NSData *response);
+typedef void (^IBHTTPCompletionBlock)(IBErrorCode errorCode, NSString *errorMsg, NSDictionary *responseDict);
 
 @protocol IBHTTPManagerProtocol <NSObject>
 
-- (void)get:(id<IBRequestProtocol>)request completion:(IBResponseBlock)completion;
+- (void)GET:(id<IBRequestProtocol>)request completion:(IBResponseBlock)completion;
 
-- (void)get:(id<IBRequestProtocol>)request response:(id<IBResponseProtocol>)response completion:(IBResponseBlock)completion;
+- (void)GET:(id<IBRequestProtocol>)request response:(id<IBResponseProtocol>)response completion:(IBResponseBlock)completion;
 
-- (void)postJson:(id<IBPostJsonRequestProtocol>)request completion:(IBResponseBlock)completion;
+- (void)POST:(id<IBRequestProtocol>)request completion:(IBResponseBlock)completion;
 
-- (void)postJson:(id<IBPostJsonRequestProtocol>)request response:(id<IBResponseProtocol>)response completion:(IBResponseBlock)completion;
-
-- (void)postBinary:(id<IBPostBinaryRequestProtocol>)request completion:(IBResponseBlock)completion;
-
-- (void)postBinary:(id<IBPostBinaryRequestProtocol>)request response:(id<IBResponseProtocol>)response completion:(IBResponseBlock)completion;
+- (void)POST:(id<IBRequestProtocol>)request response:(id<IBResponseProtocol>)response completion:(IBResponseBlock)completion;
 
 @end
 

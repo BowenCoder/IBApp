@@ -71,86 +71,166 @@
     _httpCache.diskCache.costLimit = kHttpDiskCacheCostLimit;
 }
 
-- (void)GET:(NSString *)url params:(NSDictionary *)params completion:(IBHTTPCompletionBlock)completion
+#pragma mark - 类方法
+
++ (void)GET:(NSString *)url params:(NSDictionary *)params completion:(IBHTTPCompletionBlock)completion
 {
-    
+    IBRequest *request = [[IBRequest alloc] init];
+    request.url = url;
+    request.params = params;
+    [[IBHTTPManager sharedInstance] GET:request completion:^(id<IBResponseProtocol> response) {
+        completion(response.errorCode, response.errorMsg, response.dict);
+    }];
 }
 
-- (void)GETWithoutAtom:(NSString *)url params:(NSDictionary *)params completion:(IBHTTPCompletionBlock)completion
++ (void)GETWithoutAtom:(NSString *)url params:(NSDictionary *)params completion:(IBHTTPCompletionBlock)completion
 {
-    
+    IBRequest *request = [[IBRequest alloc] init];
+    request.url = url;
+    request.params = params;
+    request.isAllowAtom = NO;
+    [[IBHTTPManager sharedInstance] GET:request completion:^(id<IBResponseProtocol> response) {
+        completion(response.errorCode, response.errorMsg, response.dict);
+    }];
 }
 
-- (void)GET:(NSString *)url params:(NSDictionary *)params cacheType:(IBHttpCacheType)cacheType cacheTime:(NSUInteger)secs timeout:(NSUInteger)interval completion:(IBHTTPCompletionBlock)completion
++ (void)GET:(NSString *)url params:(NSDictionary *)params cacheType:(IBHttpCacheType)cacheType cacheTime:(NSUInteger)secs timeout:(NSUInteger)interval completion:(IBHTTPCompletionBlock)completion
 {
-    
+    IBRequest *request = [[IBRequest alloc] init];
+    request.url = url;
+    request.params = params;
+    request.cacheType = cacheType;
+    request.cacheTime = secs;
+    request.timeoutInterval = interval;
+    [[IBHTTPManager sharedInstance] GET:request completion:^(id<IBResponseProtocol> response) {
+        completion(response.errorCode, response.errorMsg, response.dict);
+    }];
 }
 
-- (void)GETRetry:(NSString *)url params:(NSDictionary *)params cacheType:(IBHttpCacheType)cacheType cacheTime:(NSUInteger)secs timeout:(NSUInteger)interval completion:(IBHTTPCompletionBlock)completion
++ (void)GETRetry:(NSString *)url params:(NSDictionary *)params cacheType:(IBHttpCacheType)cacheType cacheTime:(NSUInteger)secs timeout:(NSUInteger)interval completion:(IBHTTPCompletionBlock)completion
 {
-    
+    IBRequest *request = [[IBRequest alloc] init];
+    request.url = url;
+    request.params = params;
+    request.cacheType = cacheType;
+    request.cacheTime = secs;
+    request.retryTimes = 3;
+    request.timeoutInterval = interval;
+    [[IBHTTPManager sharedInstance] GET:request completion:^(id<IBResponseProtocol> response) {
+        completion(response.errorCode, response.errorMsg, response.dict);
+    }];
 }
 
-- (void)POST:(NSString *)url params:(NSDictionary *)params body:(NSDictionary *)body completion:(IBHTTPCompletionBlock)completion
++ (void)POST:(NSString *)url params:(NSDictionary *)params body:(NSDictionary *)body completion:(IBHTTPCompletionBlock)completion
 {
-    
+    IBRequest *request = [[IBRequest alloc] init];
+    request.url = url;
+    request.params = params;
+    request.body = body;
+    [[IBHTTPManager sharedInstance] POST:request completion:^(id<IBResponseProtocol> response) {
+        completion(response.errorCode, response.errorMsg, response.dict);
+    }];
 }
 
-- (void)POST:(NSString *)url params:(NSDictionary *)params body:(NSDictionary *)body timeout:(NSUInteger)interval completion:(IBHTTPCompletionBlock)completion
++ (void)POSTWithoutAtom:(NSString *)url params:(NSDictionary *)params body:(NSDictionary *)body completion:(IBHTTPCompletionBlock)completion
 {
-    
+    IBRequest *request = [[IBRequest alloc] init];
+    request.url = url;
+    request.params = params;
+    request.body = body;
+    request.isAllowAtom = NO;
+    [[IBHTTPManager sharedInstance] POST:request completion:^(id<IBResponseProtocol> response) {
+        completion(response.errorCode, response.errorMsg, response.dict);
+    }];
+
 }
 
-- (void)POSTRetry:(NSString *)url params:(NSDictionary *)params body:(NSDictionary *)body timeout:(NSUInteger)interval completion:(IBHTTPCompletionBlock)completion
++ (void)POST:(NSString *)url params:(NSDictionary *)params body:(NSDictionary *)body timeout:(NSUInteger)interval completion:(IBHTTPCompletionBlock)completion
 {
-    
+    IBRequest *request = [[IBRequest alloc] init];
+    request.url = url;
+    request.params = params;
+    request.body = body;
+    request.timeoutInterval = interval;
+    [[IBHTTPManager sharedInstance] POST:request completion:^(id<IBResponseProtocol> response) {
+        completion(response.errorCode, response.errorMsg, response.dict);
+    }];
 }
 
++ (void)POSTRetry:(NSString *)url params:(NSDictionary *)params body:(NSDictionary *)body timeout:(NSUInteger)interval completion:(IBHTTPCompletionBlock)completion
+{
+    IBRequest *request = [[IBRequest alloc] init];
+    request.url = url;
+    request.params = params;
+    request.body = body;
+    request.retryTimes = 3;
+    request.timeoutInterval = interval;
+    [[IBHTTPManager sharedInstance] POST:request completion:^(id<IBResponseProtocol> response) {
+        completion(response.errorCode, response.errorMsg, response.dict);
+    }];
+}
 
 #pragma mark - IBHTTPManagerProtocol
 
-- (void)get:(id<IBRequestProtocol>)request completion:(IBResponseBlock)completion
+- (void)GET:(id<IBRequestProtocol>)request completion:(IBResponseBlock)completion
 {
-    
+    [self GET:request response:[[IBResponse alloc] init] completion:completion];
 }
 
-- (void)get:(id<IBRequestProtocol>)request response:(id<IBResponseProtocol>)response completion:(IBResponseBlock)completion
+- (void)GET:(id<IBRequestProtocol>)request response:(id<IBResponseProtocol>)resp completion:(IBResponseBlock)completion
 {
-    
+    request.requestType = IBRequestTypeGet;
+    [self _retryRequest:request resp:resp isRetry:NO completion:^(id<IBResponseProtocol> response) {
+        [IBHTTPManager _handleResponse:response completion:completion];
+    }];
 }
 
-- (void)postJson:(id<IBPostJsonRequestProtocol>)request completion:(IBResponseBlock)completion
+- (void)POST:(id<IBRequestProtocol>)request completion:(IBResponseBlock)completion
 {
-    
+    [self POST:request response:[[IBResponse alloc] init] completion:completion];
 }
 
-- (void)postJson:(id<IBPostJsonRequestProtocol>)request response:(id<IBResponseProtocol>)response completion:(IBResponseBlock)completion
+- (void)POST:(id<IBRequestProtocol>)request response:(id<IBResponseProtocol>)resp completion:(IBResponseBlock)completion
 {
-    
-}
-
-- (void)postBinary:(id<IBPostBinaryRequestProtocol>)request completion:(IBResponseBlock)completion
-{
-    
-}
-
-- (void)postBinary:(id<IBPostBinaryRequestProtocol>)request response:(id<IBResponseProtocol>)response completion:(IBResponseBlock)completion
-{
-    
+    request.requestType = IBRequestTypePost;
+    [self _retryRequest:request resp:resp isRetry:NO completion:^(id<IBResponseProtocol> response) {
+        [IBHTTPManager _handleResponse:response completion:completion];
+    }];
 }
 
 #pragma mark - 私有方法
 
-- (void)_request:(id<IBRequestProtocol>)request requestType:(IBRequestType)requestType isByRetry:(BOOL)isByRetry completion:(IBHTTPResponseBlock)completion
+- (void)_retryRequest:(id<IBRequestProtocol>)request resp:(id<IBResponseProtocol>)resp isRetry:(BOOL)isRetry completion:(IBResponseBlock)completion
+{
+    @weakify(self)
+    
+    request.retryTimes -= 1;
+
+    [self _request:request resp:resp isRetry:isRetry completion:^(id<IBResponseProtocol> response) {
+        @strongify(self)
+        IBErrorCode errorCode = response.errorCode;
+        if (errorCode != IBSUCCESS && request.retryTimes > 1) {
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(request.retryInterval * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [self _retryRequest:request resp:response isRetry:YES completion:completion];
+            });
+        } else {
+            completion(response);
+        }
+    }];
+}
+
+- (void)_request:(id<IBRequestProtocol>)request resp:(id<IBResponseProtocol>)resp isRetry:(BOOL)isRetry completion:(IBResponseBlock)completion
 {
     @weakify(self);
-    if (kIsEmptyObject(request) || kIsEmptyString(request.url)) {
-        MBLogE(@"#网络请求# url is nil....");
-        completion(IBOtherError, @"url is invalid", nil);
+    
+    BOOL isError = [self _handlerRequestError:request resp:resp completion:completion];
+    if (isError) {
         return;
     }
     
-    [self _buildRequestUrl:request];
+    if (!isRetry) {
+        [self _buildRequestUrl:request];
+    }
     
     MBLog(@"#网络请求# url is: %@", request.url);
     
@@ -158,16 +238,17 @@
         @strongify(self);
         
         NSString *url        = request.url;
-        NSString *requestKey = [self _requestMD5:request];
+        NSString *requestKey = [IBEncode md5WithString:url];
         
         if (![self.requestBlocks objectForKey:requestKey]) {
             
-            [self _addRequestBlockWithKey:requestKey completion:completion];
+            [self _addCompletionWithKey:requestKey resp:resp completion:completion];
             
-            id cacheObj = request.cacheTime > 0 ? [self.httpCache objectForKey:requestKey] : nil;
-            if (cacheObj) {
-                
-                NSArray *cacheArray = (NSArray *)cacheObj;
+            NSArray *cacheArray;
+            if (request.cacheTime > 0) {
+                cacheArray = (NSArray *)[self.httpCache objectForKey:requestKey];
+            }
+            if (cacheArray) {
                 NSDate *expireTime  = (NSDate *)(cacheArray.firstObject);
                 NSTimeInterval interval = [expireTime timeIntervalSinceNow];
                 
@@ -178,36 +259,69 @@
                 }
             }
             
-            NSTimeInterval timeout = request.timeoutInterval > 0 ? request.timeoutInterval : kHttpRequestTimeout;
+            NSTimeInterval timeout = request.timeoutInterval;
+            IBRequestType requestType = request.requestType;
             self.manager.requestSerializer.timeoutInterval = timeout;
             
             switch (requestType) {
-                    case IBRequestTypeGet:
-                    [self _GET:url query:nil secs:request.cacheTime requestKey:requestKey];
+                case IBRequestTypeGet:
+                    [self _GET:url secs:request.cacheTime requestKey:requestKey];
                     break;
-                    
-                    case IBRequestTypePostJson: {
-                        id<IBPostJsonRequestProtocol> jsonRequest = (id<IBPostJsonRequestProtocol>)request;
-                        [self _POSTJSON:url query:nil body:jsonRequest.body requestKey:requestKey];
-                    }
+                case IBRequestTypePost:
+                    [self _POST:url body:request.body requestKey:requestKey];
                     break;
-                    
-                    case IBRequestTypePostBinary: {
-                        id<IBPostBinaryRequestProtocol> binaryRequest = (id<IBPostBinaryRequestProtocol>)request;
-                        [self _POST:url query:nil body:binaryRequest.body requestKey:requestKey];
-                    }
-                    break;
-                    
                 default:
                     break;
             }
         } else {
-            [self _addRequestBlockWithKey:requestKey completion:completion];
+            [self _addCompletionWithKey:requestKey resp:resp completion:completion];
         }
     });
 }
 
-- (void)_GET:(NSString *)url query:(NSString *)query secs:(int)secs requestKey:(NSString *)requestKey
+- (BOOL)_handlerRequestError:(id<IBRequestProtocol>)request resp:(id<IBResponseProtocol>)response completion:(IBResponseBlock)completion
+{
+    BOOL isError = NO;
+    
+    if (kIsEmptyObject(request) || kIsEmptyObject(response)) {
+        MBLogE(@"#网络请求# this is invalid request");
+        response.errorCode = IBArgumentError;
+        response.errorMsg = @"this is invalid request";
+        isError = YES;
+    } else {
+        if (kIsEmptyString(request.url)) {
+            MBLogE(@"#网络请求# url is nil....");
+            response.errorCode = IBURLError;
+            response.errorMsg = @"url is nil";
+            isError = YES;
+        }
+    }
+    
+    if (completion) {
+        completion(response);
+    }
+    
+    return isError;
+}
+
++ (void)_handleResponse:(id<IBResponseProtocol>)response completion:(IBResponseBlock)completion
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self _handleResponseError:response];
+        if (completion) {
+            completion(response);
+        }
+    });
+}
+
++ (void)_handleResponseError:(id<IBResponseProtocol>)response
+{
+    if (response.errorCode == IBSessionError) {
+        //TODO:
+    }
+}
+
+- (void)_GET:(NSString *)url secs:(NSUInteger)secs requestKey:(NSString *)requestKey
 {
     [_manager GET:url parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
         
@@ -218,36 +332,15 @@
     }];
 }
 
-- (void)_POSTJSON:(NSString *)url query:(NSString *)query body:(NSDictionary *)body requestKey:(NSString *)requestKey
+- (void)_POST:(NSString *)url body:(NSDictionary *)body requestKey:(NSString *)requestKey
 {
-    NSString *urlStr = [IBHelper fullURL:url paramStr:query];
+    [_manager POST:url parameters:body progress:^(NSProgress *uploadProgress) {
     
-    [_manager POST:urlStr parameters:body progress:^(NSProgress *uploadProgress) {
-        
     } success:^(NSURLSessionDataTask *task, id responseObject) {
         [self _requestSuccessWithKey:requestKey task:task data:responseObject cacheTime:0];
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         [self _requestFailureWithKey:requestKey task:task error:error];
     }];
-}
-
-- (void)_POST:(NSString *)url query:(NSString *)query body:(NSData *)body requestKey:(NSString *)requestKey
-{
-    NSString *urlStr = [IBHelper fullURL:url paramStr:query];
-    NSURL *uploadUrl = [NSURL URLWithString:urlStr];
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:uploadUrl];
-    [request setHTTPMethod:@"POST"];
-    
-    __block NSURLSessionUploadTask *uploadTask = nil;
-    uploadTask = [_manager uploadTaskWithRequest:request fromData:body progress:nil completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
-        if (!error) {
-            [self _requestSuccessWithKey:requestKey task:uploadTask data:responseObject cacheTime:0];
-        } else {
-            [self _requestFailureWithKey:requestKey task:uploadTask error:error];
-        }
-    }];
-    
-    [uploadTask resume];
 }
 
 - (void)_requestSuccessWithKey:(NSString *)requestKey task:(NSURLSessionDataTask *)task data:(NSData *)data cacheTime:(NSUInteger)secs
@@ -266,11 +359,17 @@
             
             [self.requestBlocks removeObjectForKey:requestKey];
             
-            dispatch_async(dispatch_get_main_queue(), ^{
-                for (IBHTTPResponseBlock block in blocks) {
-                    block(IBSUCCESS, @"", data);
+            for (NSDictionary *dict in blocks) {
+                IBResponseBlock completion = [dict objectForKey:@"completion"];
+                id<IBResponseProtocol> response = [dict objectForKey:@"response"];
+                [response parseResponse];
+                response.errorCode = IBSUCCESS;
+                response.data = data;
+                response.task = task;
+                if (completion) {
+                    completion(response);
                 }
-            });
+            }
         }
     });
 }
@@ -298,8 +397,15 @@
             NSString *errMsg = error.localizedDescription;
             
             dispatch_async(dispatch_get_main_queue(), ^{
-                for (IBHTTPResponseBlock block in blocks) {
-                    block(errCode, NSStringNONil(errMsg), [NSData new]);
+                for (NSDictionary *dict in blocks) {
+                    IBResponseBlock completion = [dict objectForKey:@"completion"];
+                    id<IBResponseProtocol> response = [dict objectForKey:@"response"];
+                    response.errorCode = errCode;
+                    response.errorMsg = errMsg;
+                    response.task = task;
+                    if (completion) {
+                        completion(response);
+                    }
                 }
             });
         }
@@ -313,21 +419,23 @@
     [_httpCache setObject:cacheItem forKey:key];
 }
 
-- (void)_addRequestBlockWithKey:(NSString *)requestKey completion:(IBHTTPResponseBlock)block
+- (void)_addCompletionWithKey:(NSString *)requestKey resp:(id<IBResponseProtocol>)resp completion:(IBResponseBlock)block
 {
-    NSMutableArray<IBHTTPResponseBlock> *blocks =  [self.requestBlocks objectForKey:requestKey];
+    NSDictionary *dict = @{@"response" : resp, @"completion": block};
+    
+    NSMutableArray<NSDictionary *> *blocks =  [self.requestBlocks objectForKey:requestKey];
 
     if (!blocks) {
-        blocks = [NSMutableArray new];
+        blocks = [NSMutableArray array];
         self.requestBlocks[requestKey] = blocks;
     }
     
-    [blocks addObject:block];
+    [blocks addObject:dict];
 }
 
-- (NSMutableArray<IBHTTPResponseBlock> *)_blocksForKey:(NSString *)requestKey
+- (NSMutableArray<NSDictionary *> *)_blocksForKey:(NSString *)requestKey
 {
-    NSMutableArray<IBHTTPResponseBlock> *blocks = [self.requestBlocks objectForKey:requestKey];
+    NSMutableArray<NSDictionary *> *blocks = [self.requestBlocks objectForKey:requestKey];
     
     if (kIsEmptyArray(blocks)) {
         return nil;
@@ -348,16 +456,6 @@
     if ([request respondsToSelector:@selector(encryptUrl)]) {
         [request encryptUrl];
     }
-    
 }
-
-- (NSString *)_requestMD5:(id<IBRequestProtocol>)request
-{
-    NSString *key = [IBEncode md5WithString:request.url];
-    return key;
-}
-
-
-
 
 @end

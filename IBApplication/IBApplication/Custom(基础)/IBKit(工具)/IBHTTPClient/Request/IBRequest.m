@@ -13,12 +13,14 @@
 
 @implementation IBRequest
 @synthesize url;
+@synthesize body;
 @synthesize params;
 @synthesize cacheTime;
 @synthesize cacheType;
 @synthesize retryTimes;
 @synthesize retryInterval;
 @synthesize timeoutInterval;
+@synthesize requestType;
 
 - (instancetype)init
 {
@@ -29,6 +31,7 @@
         self.retryTimes = 0;
         self.retryInterval = 5;
         self.timeoutInterval = 10;
+        self.isAllowAtom = YES;
     }
     return self;
 }
@@ -41,7 +44,9 @@
 
 - (void)appendAtomParams
 {
-    self.url = [[IBAtomFactory sharedInstance] appendAtomParams:self.url];
+    if (self.isAllowAtom) {
+        self.url = [[IBAtomFactory sharedInstance] appendAtomParams:self.url];
+    }
 }
 
 - (void)encryptUrl
@@ -50,18 +55,3 @@
 }
 
 @end
-
-@implementation IBGetRequest
-
-@end
-
-@implementation IBPostJsonRequest
-@synthesize body;
-
-@end
-
-@implementation IBPostBinaryRequest
-@synthesize body;
-
-@end
-

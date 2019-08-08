@@ -8,6 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
+typedef NS_ENUM(NSInteger, IBRequestType)  {
+    IBRequestTypeNone = 0,
+    IBRequestTypeGet,
+    IBRequestTypePost,
+};
+
 typedef NS_ENUM(NSInteger, IBHttpCacheType) {
     IBHttpCacheTypeNone = 0,
     IBHttpCacheTypeCache,
@@ -18,12 +24,16 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol IBRequestProtocol <NSObject>
 
 @property (nonatomic, copy)   NSString        *url;
+@property (nonatomic, strong) NSDictionary    *body;
 @property (nonatomic, strong) NSDictionary    *params;
 @property (nonatomic, assign) IBHttpCacheType cacheType;
 @property (nonatomic, assign) NSTimeInterval  cacheTime;
 @property (nonatomic, assign) NSInteger       retryTimes;
 @property (nonatomic, assign) NSInteger       retryInterval;
 @property (nonatomic, assign) NSTimeInterval  timeoutInterval;
+
+@property (nonatomic, assign) BOOL isAllowAtom; // 需要原子参数
+@property (nonatomic, assign) IBRequestType requestType;
 
 @optional
 
@@ -35,22 +45,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 加密url
 - (void)encryptUrl;
-
-@end
-
-@protocol IBPostJsonRequestProtocol <IBRequestProtocol>
-
-@optional
-
-@property (nonatomic, strong) NSDictionary *body;
-
-@end
-
-@protocol IBPostBinaryRequestProtocol <IBRequestProtocol>
-
-@optional
-
-@property (nonatomic, strong) NSData *body;
 
 @end
 

@@ -11,7 +11,7 @@
 #import "IBSerialization.h"
 
 @implementation IBResponse
-@synthesize error, data, dict, task;
+@synthesize data, dict, errorCode, errorMsg, task;
 
 + (instancetype)response
 {
@@ -24,7 +24,10 @@
         return;
     }
     self.dict = [IBSerialization unSerializeWithJsonData:self.data error:nil];
-    self.error = [IBError errorWithResponse:self.dict];
+    if (kIsEmptyDict(self.dict)) {
+        self.errorCode = [[self.dict objectForKey:@"error_code"] integerValue];
+        self.errorMsg  = [self.dict objectForKey:@"error_msg"];
+    }
 }
 
 @end

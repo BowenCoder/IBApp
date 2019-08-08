@@ -24,6 +24,10 @@ typedef NS_ENUM(NSInteger, IBErrorCode) {
      */
     IBTimeout = -2,
     /**
+     *  请求链接错误
+     */
+    IBURLError = -3,
+    /**
      *  请求参数错误
      */
     IBArgumentError = 499,
@@ -34,15 +38,15 @@ typedef NS_ENUM(NSInteger, IBErrorCode) {
     /**
      *  权限错误
      */
-    IKAuthError = 600,
+    IBAuthError = 600,
     /**
      *  session错误
      */
-    IKSessionError = 604,
+    IBSessionError = 604,
     /**
      *  内容非法：包含敏感词
      */
-    IKContentError = 982,
+    IBContentError = 982,
 
 };
 

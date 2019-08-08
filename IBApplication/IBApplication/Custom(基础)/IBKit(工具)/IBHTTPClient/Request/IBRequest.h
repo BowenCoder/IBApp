@@ -15,19 +15,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface IBGetRequest : IBRequest
-
-@end
-
-@interface IBPostJsonRequest : IBRequest <IBPostJsonRequestProtocol>
-
-@end
-
-@interface IBPostBinaryRequest : IBRequest <IBPostBinaryRequestProtocol>
-
-@end
-
-
 
 
 NS_ASSUME_NONNULL_END

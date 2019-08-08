@@ -13,9 +13,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol IBResponseProtocol <NSObject>
 
-@property (nonatomic, strong) IBError      *error;
-@property (nonatomic, strong) NSData       *data;
+@property (nonatomic, strong) NSData *data;
 @property (nonatomic, strong) NSDictionary *dict;
+@property (nonatomic, copy)   NSString *errorMsg;
+@property (nonatomic, assign) IBErrorCode errorCode;
 @property (nonatomic, strong) NSURLSessionDataTask *task;
 
 - (void)parseResponse;

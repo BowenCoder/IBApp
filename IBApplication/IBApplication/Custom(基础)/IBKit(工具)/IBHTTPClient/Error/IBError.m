@@ -24,4 +24,12 @@
     return error;
 }
 
++ (IBError *)errorWithCode:(IBErrorCode)code msg:(NSString *)errorMsg
+{
+    IBError *error = [[IBError alloc] init];
+    error.errorCode =code;
+    error.errorMsg = errorMsg;
+    return error;
+}
+
 @end

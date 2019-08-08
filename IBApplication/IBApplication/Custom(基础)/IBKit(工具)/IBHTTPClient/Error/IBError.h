@@ -17,6 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,   copy) NSString *errorMsg;
 
 + (IBError *)errorWithResponse:(NSDictionary *)response;
++ (IBError *)errorWithCode:(IBErrorCode)code msg:(NSString *)errorMsg;
 
 @end
 
