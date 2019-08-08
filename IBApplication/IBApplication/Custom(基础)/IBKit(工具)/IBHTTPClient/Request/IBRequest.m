@@ -21,6 +21,7 @@
 @synthesize retryInterval;
 @synthesize timeoutInterval;
 @synthesize requestType;
+@synthesize isAllowAtom;
 
 - (instancetype)init
 {
