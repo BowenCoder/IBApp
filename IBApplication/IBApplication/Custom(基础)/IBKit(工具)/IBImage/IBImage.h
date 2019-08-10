@@ -24,6 +24,13 @@ typedef NS_ENUM(NSInteger, ImageWaterDirect) {
     ImageWaterDirectCenter
 };
 
+typedef NS_ENUM(NSInteger, IBImageGradientType) {
+    IBImageGradientTopToBottom = 0,
+    IBImageGradientLeftToRight,
+    IBImageGradientLeftTopToRightBottom,
+    IBImageGradientLeftBottomToRightTop,
+};
+
 @interface IBImage : NSObject
 
 /**
@@ -84,7 +91,7 @@ typedef NS_ENUM(NSInteger, ImageWaterDirect) {
 + (UIImage *)stretchImageWithImage:(UIImage *)image;
 
 /**
- *  压缩图片
+ *  压缩图片，不带圆角
  *
  *  @param image   要压缩的图片
  *  @param newSize 压缩后的图片的像素尺寸
@@ -94,14 +101,15 @@ typedef NS_ENUM(NSInteger, ImageWaterDirect) {
 + (UIImage *)resizedImage:(UIImage*)image size:(CGSize)newSize;
 
 /**
- *  压缩图片
+ *  压缩图片，带圆角
  *
- *  @param name    要压缩的图片名字
+ *  @param image   要压缩的图片
  *  @param newSize 压缩后的图片的像素尺寸
+ *  @param radius  圆角
  *
  *  @return 压缩好的图片
  */
-+ (UIImage *)resizedImageName:(NSString *)name size:(CGSize)newSize;
++ (UIImage *)resizedImage:(UIImage *)image size:(CGSize)newSize radius:(CGFloat)radius;
 
 /**
  判断相等
@@ -110,7 +118,7 @@ typedef NS_ENUM(NSInteger, ImageWaterDirect) {
  @param anotherImage 另一种图片
  @return 是否相等
  */
-+ (BOOL)equalToImage:(UIImage*)image anotherImage:(UIImage *)anotherImage;
++ (BOOL)equalToImage:(UIImage *)image anotherImage:(UIImage *)anotherImage;
 
 @end
 
@@ -146,6 +154,15 @@ typedef NS_ENUM(NSInteger, ImageWaterDirect) {
 + (UIImage *)captureCircleImage:(UIImage *)image borderWidth:(CGFloat)border borderColor:(UIColor *)color;
 
 /**
+ 改变图片背景色
+ 
+ @param image     图片
+ @param tintColor 颜色
+ @return 图片
+ */
++ (UIImage *)blendImage:(UIImage *)image tintColor:(UIColor *)tintColor;
+
+/**
  *  生成毛玻璃效果的图片
  *
  *  @param image      要模糊化的图片
@@ -154,6 +171,17 @@ typedef NS_ENUM(NSInteger, ImageWaterDirect) {
  *  @return 返回模糊化之后的图片
  */
 + (UIImage *)blurredImage:(UIImage *)image blurValue:(CGFloat)blurValue;
+
+/**
+ 生成渐变色图片
+
+ @param size 大小
+ @param colors 颜色数组
+ @param percents 颜色数组改变的位置，每个对象0~1之间
+ @param gradientType 渐变类型
+ @return 图片
+ */
++ (UIImage *)gradientImageWithSize:(CGSize)size gradientColors:(NSArray *)colors percentage:(NSArray *)percents gradientType:(IBImageGradientType)gradientType;
 
 
 @end

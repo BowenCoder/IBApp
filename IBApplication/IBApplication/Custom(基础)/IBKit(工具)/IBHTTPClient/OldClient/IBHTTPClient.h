@@ -102,4 +102,12 @@ typedef void(^HTTPClientHandle)(id JSON, NSError *error);
  */
 + (void)cancelAllOperations;
 
+
+/**
+ *  是否打开网络状态转圈菊花:默认打开
+ *
+ *  @param open YES(打开), NO(关闭)
+ */
++ (void)openNetworkActivityIndicator:(BOOL)open;
+
 @end

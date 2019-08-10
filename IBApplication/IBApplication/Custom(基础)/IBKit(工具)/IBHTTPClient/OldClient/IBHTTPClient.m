@@ -8,6 +8,7 @@
 
 #import "IBHTTPClient.h"
 #import "IBServerManager.h"
+#import "AFNetworkActivityIndicatorManager.h"
 
 @implementation IBHTTPClient
 
@@ -171,6 +172,10 @@
     
     IBHTTPClient *client = [IBHTTPClient shareInstance];
     [client.operationQueue cancelAllOperations];
+}
+
++ (void)openNetworkActivityIndicator:(BOOL)open {
+    [[AFNetworkActivityIndicatorManager sharedManager] setEnabled:open];
 }
 
 @end

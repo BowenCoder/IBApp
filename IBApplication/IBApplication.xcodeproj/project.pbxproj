@@ -205,6 +205,7 @@
 		4AAA790320EE17AB00CF5639 /* IBMineController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AAA790220EE17AB00CF5639 /* IBMineController.m */; };
 		4AAA793020EF9C6300CF5639 /* IBTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AAA792F20EF9C6300CF5639 /* IBTableController.m */; };
 		4ABB57FA22BB637500CADB8F /* UIViewController+Ext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ABB57F922BB637500CADB8F /* UIViewController+Ext.m */; };
+		4ABF2FC622FEDEA700645809 /* MBGradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ABF2FC522FEDEA700645809 /* MBGradientView.m */; };
 		4AC29F7A210F04A900F218FE /* UIScrollView+MJRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC29F4C210F04A900F218FE /* UIScrollView+MJRefresh.m */; };
 		4AC29F7B210F04A900F218FE /* MJRefreshConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC29F4D210F04A900F218FE /* MJRefreshConst.m */; };
 		4AC29F7C210F04A900F218FE /* MJRefresh.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4AC29F51210F04A900F218FE /* MJRefresh.bundle */; };
@@ -249,6 +250,7 @@
 		4AC428EE215A569C008C93D4 /* IBPopoverLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC428ED215A569C008C93D4 /* IBPopoverLabel.m */; };
 		4AC428F1215A56A8008C93D4 /* IBPopoverMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC428F0215A56A8008C93D4 /* IBPopoverMenu.m */; };
 		4AC455C421368840007CBEF0 /* IBAuthManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC455C321368840007CBEF0 /* IBAuthManager.m */; };
+		4AC456AD22FD283400BBC9AC /* AFNetworkActivityIndicatorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC456AB22FD283300BBC9AC /* AFNetworkActivityIndicatorManager.m */; };
 		4AC81CCC20F3200400A1F246 /* IBTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC81CCB20F3200400A1F246 /* IBTabBarController.m */; };
 		4AC81CD220F37BFE00A1F246 /* IBWebController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC81CD120F37BFE00A1F246 /* IBWebController.m */; };
 		4AC81CD720F37C6B00A1F246 /* IBCollectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC81CD620F37C6B00A1F246 /* IBCollectionController.m */; };
@@ -740,6 +742,8 @@
 		4AAA792F20EF9C6300CF5639 /* IBTableController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBTableController.m; sourceTree = "<group>"; };
 		4ABB57F822BB637500CADB8F /* UIViewController+Ext.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Ext.h"; sourceTree = "<group>"; };
 		4ABB57F922BB637500CADB8F /* UIViewController+Ext.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Ext.m"; sourceTree = "<group>"; };
+		4ABF2FC422FEDEA700645809 /* MBGradientView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBGradientView.h; sourceTree = "<group>"; };
+		4ABF2FC522FEDEA700645809 /* MBGradientView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBGradientView.m; sourceTree = "<group>"; };
 		4AC29F4C210F04A900F218FE /* UIScrollView+MJRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+MJRefresh.m"; sourceTree = "<group>"; };
 		4AC29F4D210F04A900F218FE /* MJRefreshConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshConst.m; sourceTree = "<group>"; };
 		4AC29F4E210F04A900F218FE /* UIScrollView+MJExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+MJExtension.h"; sourceTree = "<group>"; };
@@ -827,6 +831,8 @@
 		4AC455C221368840007CBEF0 /* IBAuthManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBAuthManager.h; sourceTree = "<group>"; };
 		4AC455C321368840007CBEF0 /* IBAuthManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBAuthManager.m; sourceTree = "<group>"; };
 		4AC455C52137C9B0007CBEF0 /* IBErrorCode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBErrorCode.h; sourceTree = "<group>"; };
+		4AC456AB22FD283300BBC9AC /* AFNetworkActivityIndicatorManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFNetworkActivityIndicatorManager.m; sourceTree = "<group>"; };
+		4AC456AC22FD283300BBC9AC /* AFNetworkActivityIndicatorManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworkActivityIndicatorManager.h; sourceTree = "<group>"; };
 		4AC81CCA20F3200400A1F246 /* IBTabBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBTabBarController.h; sourceTree = "<group>"; };
 		4AC81CCB20F3200400A1F246 /* IBTabBarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBTabBarController.m; sourceTree = "<group>"; };
 		4AC81CD020F37BFE00A1F246 /* IBWebController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBWebController.h; sourceTree = "<group>"; };
@@ -1234,6 +1240,8 @@
 		4A1FB0AC20E8EE6B0056A026 /* AFNetworking */ = {
 			isa = PBXGroup;
 			children = (
+				4AC456AC22FD283300BBC9AC /* AFNetworkActivityIndicatorManager.h */,
+				4AC456AB22FD283300BBC9AC /* AFNetworkActivityIndicatorManager.m */,
 				4A1FB0B620E8EE6B0056A026 /* AFNetworking.h */,
 				4A1FB0B920E8EE6B0056A026 /* AFCompatibilityMacros.h */,
 				4A1FB0AD20E8EE6B0056A026 /* AFSecurityPolicy.h */,
@@ -1981,6 +1989,15 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		4ABF2FC322FEDE8200645809 /* MBGradientView */ = {
+			isa = PBXGroup;
+			children = (
+				4ABF2FC422FEDEA700645809 /* MBGradientView.h */,
+				4ABF2FC522FEDEA700645809 /* MBGradientView.m */,
+			);
+			path = MBGradientView;
+			sourceTree = "<group>";
+		};
 		4AC29F4B210F04A900F218FE /* MJRefresh */ = {
 			isa = PBXGroup;
 			children = (
@@ -2437,6 +2454,7 @@
 		4ACC55C620DB5F3E001352AE /* Public(公共) */ = {
 			isa = PBXGroup;
 			children = (
+				4ABF2FC322FEDE8200645809 /* MBGradientView */,
 				4AA2862F22C922DA00C34336 /* MBGestureView */,
 				4AAA78E820ECB4CA00CF5639 /* IBDebug */,
 				F333517822A2C404005B968E /* MBLibraryCamera */,
@@ -3167,6 +3185,7 @@
 				4A89D605228B13160072FB23 /* MBLogger.m in Sources */,
 				4AC29F87210F04A900F218FE /* MJRefreshStateHeader.m in Sources */,
 				4AE24BDB214F5470006448DC /* NSDictionary+Ext.m in Sources */,
+				4ABF2FC622FEDEA700645809 /* MBGradientView.m in Sources */,
 				4A78076220E9F1BB00E60ACA /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
 				4AD770A92297CD1300FEB76B /* YYTextInput.m in Sources */,
 				4A1FB20E20E92D5E0056A026 /* UIImage+MultiFormat.m in Sources */,
@@ -3264,6 +3283,7 @@
 				4A89D5FC228B0E260072FB23 /* MBFilterLogger.m in Sources */,
 				4ACC55E720DB5F3E001352AE /* main.m in Sources */,
 				4AD7706E2297C92400FEB76B /* YYKVStorage.m in Sources */,
+				4AC456AD22FD283400BBC9AC /* AFNetworkActivityIndicatorManager.m in Sources */,
 				4ABB57FA22BB637500CADB8F /* UIViewController+Ext.m in Sources */,
 				4ACC567520DE5E29001352AE /* UIThemeManager.m in Sources */,
 				4A1FB21E20E92D5E0056A026 /* SDWebImageGIFCoder.m in Sources */,

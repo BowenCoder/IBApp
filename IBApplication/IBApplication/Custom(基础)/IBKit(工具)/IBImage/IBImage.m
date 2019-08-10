@@ -70,7 +70,7 @@
 
 + (UIImage *)imageWithColor:(UIColor *)color size:(CGSize)size {
     
-    CGRect rect=CGRectMake(0.0f, 0.0f,size.width, size.height);
+    CGRect rect = CGRectMake(0.0f, 0.0f,size.width, size.height);
     
     UIGraphicsBeginImageContext(rect.size);
     
@@ -98,24 +98,20 @@
     return [image resizableImageWithCapInsets:UIEdgeInsetsMake(top, left, bottom, right) resizingMode:UIImageResizingModeStretch];
 }
 
-+ (UIImage *)resizedImageName:(NSString *)name size:(CGSize)newSize {
-    
-    return [self resizedImage:[UIImage imageNamed:name] size:newSize];
++ (UIImage *)resizedImage:(UIImage *)image size:(CGSize)newSize
+{
+    return [self resizedImage:image size:newSize radius:0];
 }
 
-/**
- *  压缩图片
- *
- *  @param image   要压缩的图片
- *  @param newSize 压缩后的图片的像素尺寸
- *
- *  @return 压缩好的图片
- */
-+ (UIImage *)resizedImage:(UIImage*)image size:(CGSize)newSize {
++ (UIImage *)resizedImage:(UIImage*)image size:(CGSize)newSize radius:(CGFloat)radius {
     
     UIGraphicsBeginImageContext(newSize);
+    if (radius > 0.0) {
+        [[UIBezierPath bezierPathWithRoundedRect:CGRectMake(0,0,newSize.width,newSize.height)
+                                    cornerRadius:radius] addClip];
+    }
     [image drawInRect:CGRectMake(0,0,newSize.width,newSize.height)];
-    UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return newImage;
 }
@@ -220,15 +216,6 @@
     return img;
 }
 
-/**
- *  根据image返回一个圆形的头像
- *
- *  @param image     要切割的头像
- *  @param border    边框的宽度
- *  @param color     边框的颜色
- *
- *  @return 切割好的头像
- */
 + (UIImage *)captureCircleImage:(UIImage *)image borderWidth:(CGFloat)border borderColor:(UIColor *)color {
     
     CGFloat imageW = image.size.width + border * 2;
@@ -259,14 +246,23 @@
     return newImage;
 }
 
-/**
- *  生成毛玻璃效果的图片
- *
- *  @param image      要模糊化的图片
- *  @param blurValue  模糊化指数
- *
- *  @return 返回模糊化之后的图片
- */
++ (UIImage *)blendImage:(UIImage *)image tintColor:(UIColor *)tintColor {
+    
+    UIGraphicsBeginImageContextWithOptions(image.size, NO, 0.0f);
+    [tintColor setFill];
+    CGRect bounds = CGRectMake(0, 0, image.size.width, image.size.height);
+    UIRectFill(bounds);
+    // 保留灰度信息
+    [image drawInRect:bounds blendMode:kCGBlendModeDestinationIn alpha:1.0f];
+    // 保留透明度信息
+    [image drawInRect:bounds blendMode:kCGBlendModeDestinationIn alpha:1.0f];
+    
+    UIImage *tintedImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return tintedImage;
+}
+
 + (UIImage *)blurredImage:(UIImage *)image blurValue:(CGFloat)blurValue {
     
     if (blurValue < 0.0 || blurValue > 2.0) {
@@ -326,18 +322,59 @@
     return returnImage;
 }
 
++ (UIImage *)gradientImageWithSize:(CGSize)size gradientColors:(NSArray *)colors percentage:(NSArray *)percents gradientType:(IBImageGradientType)gradientType
+{
+    NSMutableArray *cgColors = [NSMutableArray array];
+    for(UIColor *color in colors) {
+        [cgColors addObject:(id)color.CGColor];
+    }
+    
+    CGFloat locations[percents.count];
+    for (int i = 0; i < percents.count; i++) {
+        locations[i] = [percents[i] floatValue];
+    }
+    
+    UIGraphicsBeginImageContextWithOptions(size, YES, [UIScreen mainScreen].scale);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSaveGState(context);
+    CGColorSpaceRef colorSpace = CGColorGetColorSpace([[colors lastObject] CGColor]);
+    CGGradientRef gradient = CGGradientCreateWithColors(colorSpace, (CFArrayRef)cgColors, locations);
+    CGPoint start;
+    CGPoint end;
+    switch (gradientType) {
+        case IBImageGradientTopToBottom:
+            start = CGPointMake(size.width/2, 0.0);
+            end = CGPointMake(size.width/2, size.height);
+            break;
+        case IBImageGradientLeftToRight:
+            start = CGPointMake(0.0, size.height/2);
+            end = CGPointMake(size.width, size.height/2);
+            break;
+        case IBImageGradientLeftTopToRightBottom:
+            start = CGPointMake(0.0, 0.0);
+            end = CGPointMake(size.width, size.height);
+            break;
+        case IBImageGradientLeftBottomToRightTop:
+            start = CGPointMake(0.0, size.height);
+            end = CGPointMake(size.width, 0.0);
+            break;
+        default:
+            break;
+    }
+    CGGradientDrawingOptions options = kCGGradientDrawsBeforeStartLocation | kCGGradientDrawsAfterEndLocation;
+    CGContextDrawLinearGradient(context, gradient, start, end, options);
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    CGGradientRelease(gradient);
+    CGContextRestoreGState(context);
+    CGColorSpaceRelease(colorSpace);
+    UIGraphicsEndImageContext();
+    return image;
+}
+
 @end
 
 @implementation IBImage (Merge)
 
-/**
- *  @brief  合并两个图片
- *
- *  @param firstImage  一个图片
- *  @param secondImage 二个图片
- *
- *  @return 合并后图片
- */
 + (UIImage*)mergeImage:(UIImage*)firstImage withImage:(UIImage*)secondImage {
     
     CGImageRef firstImageRef = firstImage.CGImage;
@@ -355,9 +392,6 @@
     return image;
 }
 
-/**
- *  加文字水印
- */
 + (UIImage *)water:(UIImage *)image text:(NSString *)text direction:(ImageWaterDirect)direction fontColor:(UIColor *)fontColor fontPoint:(CGFloat)fontPoint marginXY:(CGPoint)marginXY {
     
     CGSize size = image.size;
@@ -377,9 +411,6 @@
     return newImage;
 }
 
-/**
- *  加图片水印
- */
 + (UIImage *)water:(UIImage *)image waterImage:(UIImage *)waterImage direction:(ImageWaterDirect)direction waterSize:(CGSize)waterSize marginXY:(CGPoint)marginXY {
     
     CGSize size = image.size;

@@ -12,6 +12,7 @@
 #import "IBHelper.h"
 #import "MBLogger.h"
 #import "IBEncode.h"
+#import "AFNetworkActivityIndicatorManager.h"
 
 #define kHttpCachePath @"HttpCache"
 
@@ -456,6 +457,56 @@
     if ([request respondsToSelector:@selector(encryptUrl)]) {
         [request encryptUrl];
     }
+}
+
+@end
+
+@implementation IBHTTPManager (Ext)
+
+- (void)cancelAllOperations
+{
+    [self.manager.operationQueue cancelAllOperations];
+}
+
+- (void)removeHttpCaches
+{
+    dispatch_async(self.httpQueue, ^{
+        [self.httpCache removeAllObjects];
+    });
+}
+
+- (void)openNetworkActivityIndicator:(BOOL)open {
+    [[AFNetworkActivityIndicatorManager sharedManager] setEnabled:open];
+}
+
+/*
+ 1、AFSSLPinningMode
+ AFSSLPinningModePublicKey: 只认证公钥那一段
+ AFSSLPinningModeCertificate: 使用证书验证模式，是证书所有字段都一样才通过认证，更安全。但是单向认证不能防止“中间人攻击”
+ 
+ 2、allowInvalidCertificates: 是否允许无效证书（也就是自建的证书），默认为NO，如果是需要验证自建证书，需要设置为YES
+ 
+ 3、validatesDomainName 是否需要验证域名，默认为YES
+ 假如证书的域名与你请求的域名不一致，需把该项设置为NO；
+ 如设成NO的话，即服务器使用其他可信任机构颁发的证书，也可以建立连接，这个非常危险，建议打开。
+ 设置为NO，主要用于这种情况：客户端请求的是子域名，而证书上的是另外一个域名。
+ 因为SSL证书上的域名是独立的，假如证书上注册的域名是www.google.com，那么mail.google.com是无法验证通过的；
+ 当然，有钱可以注册通配符的域名*.google.com，但这个还是比较贵的。
+ 如置为NO，建议自己添加对应域名的校验逻辑。
+ */
+- (void)setSecurityPolicyWithCerName:(NSString *)name validatesDomainName:(BOOL)validatesDomainName
+{
+    NSString *cerPath = [[NSBundle mainBundle] pathForResource:name ofType:@"cer"];
+    NSData *certData = [NSData dataWithContentsOfFile:cerPath];
+    
+    AFSecurityPolicy *securityPolicy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeCertificate];
+    securityPolicy.allowInvalidCertificates = YES;
+    securityPolicy.validatesDomainName = validatesDomainName;
+    NSSet<NSData*> * set = [[NSSet alloc] initWithObjects:certData, nil];
+    securityPolicy.pinnedCertificates = set;
+    
+    [self.manager setSecurityPolicy:securityPolicy];
+
 }
 
 @end

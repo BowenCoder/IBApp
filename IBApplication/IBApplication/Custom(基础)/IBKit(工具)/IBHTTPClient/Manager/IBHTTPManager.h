@@ -104,4 +104,33 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+@interface IBHTTPManager (Ext)
+
+/**
+ 取消请求
+ */
+- (void)cancelAllOperations;
+
+/**
+ * 移除所有缓存
+ */
+- (void)removeHttpCaches;
+
+/**
+ *  是否打开网络状态转圈菊花:默认打开
+ *
+ *  @param open YES(打开), NO(关闭)
+ */
+- (void)openNetworkActivityIndicator:(BOOL)open;
+
+/**
+ * 验证证书
+ *
+ * @param name 证书名称
+ * @param validatesDomainName 是否需要验证域名
+ */
+- (void)setSecurityPolicyWithCerName:(NSString *)name validatesDomainName:(BOOL)validatesDomainName;
+
+@end
+
 NS_ASSUME_NONNULL_END
