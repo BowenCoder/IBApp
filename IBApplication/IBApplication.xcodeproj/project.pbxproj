@@ -206,6 +206,7 @@
 		4AAA793020EF9C6300CF5639 /* IBTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AAA792F20EF9C6300CF5639 /* IBTableController.m */; };
 		4ABB57FA22BB637500CADB8F /* UIViewController+Ext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ABB57F922BB637500CADB8F /* UIViewController+Ext.m */; };
 		4ABF2FC622FEDEA700645809 /* MBGradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ABF2FC522FEDEA700645809 /* MBGradientView.m */; };
+		4ABF2FCA22FEF42A00645809 /* MBDeliveryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ABF2FC922FEF42A00645809 /* MBDeliveryView.m */; };
 		4AC29F7A210F04A900F218FE /* UIScrollView+MJRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC29F4C210F04A900F218FE /* UIScrollView+MJRefresh.m */; };
 		4AC29F7B210F04A900F218FE /* MJRefreshConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC29F4D210F04A900F218FE /* MJRefreshConst.m */; };
 		4AC29F7C210F04A900F218FE /* MJRefresh.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4AC29F51210F04A900F218FE /* MJRefresh.bundle */; };
@@ -744,6 +745,8 @@
 		4ABB57F922BB637500CADB8F /* UIViewController+Ext.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Ext.m"; sourceTree = "<group>"; };
 		4ABF2FC422FEDEA700645809 /* MBGradientView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBGradientView.h; sourceTree = "<group>"; };
 		4ABF2FC522FEDEA700645809 /* MBGradientView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBGradientView.m; sourceTree = "<group>"; };
+		4ABF2FC822FEF42A00645809 /* MBDeliveryView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBDeliveryView.h; sourceTree = "<group>"; };
+		4ABF2FC922FEF42A00645809 /* MBDeliveryView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBDeliveryView.m; sourceTree = "<group>"; };
 		4AC29F4C210F04A900F218FE /* UIScrollView+MJRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+MJRefresh.m"; sourceTree = "<group>"; };
 		4AC29F4D210F04A900F218FE /* MJRefreshConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshConst.m; sourceTree = "<group>"; };
 		4AC29F4E210F04A900F218FE /* UIScrollView+MJExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+MJExtension.h"; sourceTree = "<group>"; };
@@ -1998,6 +2001,15 @@
 			path = MBGradientView;
 			sourceTree = "<group>";
 		};
+		4ABF2FC722FEF28600645809 /* MBDeliveryView */ = {
+			isa = PBXGroup;
+			children = (
+				4ABF2FC822FEF42A00645809 /* MBDeliveryView.h */,
+				4ABF2FC922FEF42A00645809 /* MBDeliveryView.m */,
+			);
+			path = MBDeliveryView;
+			sourceTree = "<group>";
+		};
 		4AC29F4B210F04A900F218FE /* MJRefresh */ = {
 			isa = PBXGroup;
 			children = (
@@ -2454,6 +2466,7 @@
 		4ACC55C620DB5F3E001352AE /* Public(公共) */ = {
 			isa = PBXGroup;
 			children = (
+				4ABF2FC722FEF28600645809 /* MBDeliveryView */,
 				4ABF2FC322FEDE8200645809 /* MBGradientView */,
 				4AA2862F22C922DA00C34336 /* MBGestureView */,
 				4AAA78E820ECB4CA00CF5639 /* IBDebug */,
@@ -3418,6 +3431,7 @@
 				4A1FB13220E921E90056A026 /* MWPhoto.m in Sources */,
 				4AD770B62297CD1300FEB76B /* NSParagraphStyle+YYText.m in Sources */,
 				4AAA78F220ECBCB200CF5639 /* IBFPSLabel.m in Sources */,
+				4ABF2FCA22FEF42A00645809 /* MBDeliveryView.m in Sources */,
 				4A6F199120E3AAB200EAF1A7 /* IBSocketByte.m in Sources */,
 				4A6F198C20E3A61400EAF1A7 /* IBString.m in Sources */,
 				4AC29FB52111C90B00F218FE /* NJKWebViewProgressView.m in Sources */,
