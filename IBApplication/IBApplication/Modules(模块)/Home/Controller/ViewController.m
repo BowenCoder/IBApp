@@ -36,6 +36,8 @@
 #import "IBMacros.h"
 #import "UIMacros.h"
 #import "MBGestureView.h"
+#import "MBAlignmentLabel.h"
+#import "Masonry.h"
 
 @interface ViewController ()<UITableViewDataSource, UITableViewDelegate>
 
@@ -54,21 +56,9 @@
     self.navigationItem.title = @"主界面";
 
     self.config = [[IBNaviConfig alloc] initWithBarOptions:IBNaviBarOptionShow | IBNaviBarOptionColor tintColor:[UIColor orangeColor] backgroundColor:[UIColor redColor] backgroundImage:nil backgroundImgID:nil];
-    [self addRefreshHeader];
-    [self addRefreshFooter];
-    NSMutableArray *arr = @[].mutableCopy;
-    NSObject *obj = nil;
-    [arr mb_addObject:obj];
 
-    NSLog(@"%@", NSStringFromCGRect(CGRectMakeFit(111, 333, 555, 777)));
-    NSLog(@"demo %lf", ceil(2.1 * kScreenScale) / kScreenScale);
     
-    NSString *base = @"https://service.bowen.com/time/getconfig?";
-    MBLog(@"%@", [[IBAtomFactory sharedInstance] appendAtomParams:base]);
-    
-    MBGestureView *gv = [[MBGestureView alloc] initWithFrame:self.view.bounds];
-//    gv.canHandleEvent = YES;
-    [self.view addSubview:gv];
+
     
 }
 

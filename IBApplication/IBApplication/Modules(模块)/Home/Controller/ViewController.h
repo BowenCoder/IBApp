@@ -11,7 +11,7 @@
 //#import "IBModelController.h"
 #import "IBTableController.h"
 
-@interface ViewController : IBTableController
+@interface ViewController : UIViewController
 
 
 @end

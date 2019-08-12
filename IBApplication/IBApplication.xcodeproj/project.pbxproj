@@ -279,6 +279,7 @@
 		4ACC56B020E0001E001352AE /* NSDate+Ext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC56AF20E0001E001352AE /* NSDate+Ext.m */; };
 		4AD688F52301159E00D3A248 /* MBStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD688F42301159E00D3A248 /* MBStorage.m */; };
 		4AD688F92301175900D3A248 /* MBWeakProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD688F82301175900D3A248 /* MBWeakProxy.m */; };
+		4AD688FD23014AD700D3A248 /* MBAlignmentLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD688FC23014AD700D3A248 /* MBAlignmentLabel.m */; };
 		4AD770622297C78A00FEB76B /* IBWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD770612297C78A00FEB76B /* IBWindow.m */; };
 		4AD7706C2297C92400FEB76B /* YYDiskCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD770642297C92400FEB76B /* YYDiskCache.m */; };
 		4AD7706D2297C92400FEB76B /* YYCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD770662297C92400FEB76B /* YYCache.m */; };
@@ -894,6 +895,8 @@
 		4AD688F42301159E00D3A248 /* MBStorage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBStorage.m; sourceTree = "<group>"; };
 		4AD688F72301175900D3A248 /* MBWeakProxy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBWeakProxy.h; sourceTree = "<group>"; };
 		4AD688F82301175900D3A248 /* MBWeakProxy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBWeakProxy.m; sourceTree = "<group>"; };
+		4AD688FB23014AD700D3A248 /* MBAlignmentLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBAlignmentLabel.h; sourceTree = "<group>"; };
+		4AD688FC23014AD700D3A248 /* MBAlignmentLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBAlignmentLabel.m; sourceTree = "<group>"; };
 		4AD770602297C78A00FEB76B /* IBWindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBWindow.h; sourceTree = "<group>"; };
 		4AD770612297C78A00FEB76B /* IBWindow.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBWindow.m; sourceTree = "<group>"; };
 		4AD770642297C92400FEB76B /* YYDiskCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYDiskCache.m; sourceTree = "<group>"; };
@@ -2472,6 +2475,7 @@
 		4ACC55C620DB5F3E001352AE /* Public(公共) */ = {
 			isa = PBXGroup;
 			children = (
+				4AD688FA23014A6600D3A248 /* MBAlignmentLabel */,
 				4ABF2FC722FEF28600645809 /* MBDeliveryView */,
 				4ABF2FC322FEDE8200645809 /* MBGradientView */,
 				4AA2862F22C922DA00C34336 /* MBGestureView */,
@@ -2783,6 +2787,15 @@
 				4AD688F82301175900D3A248 /* MBWeakProxy.m */,
 			);
 			path = MBWeakProxy;
+			sourceTree = "<group>";
+		};
+		4AD688FA23014A6600D3A248 /* MBAlignmentLabel */ = {
+			isa = PBXGroup;
+			children = (
+				4AD688FB23014AD700D3A248 /* MBAlignmentLabel.h */,
+				4AD688FC23014AD700D3A248 /* MBAlignmentLabel.m */,
+			);
+			path = MBAlignmentLabel;
 			sourceTree = "<group>";
 		};
 		4AD770632297C92400FEB76B /* YYCache */ = {
@@ -3276,6 +3289,7 @@
 				4AD770B52297CD1300FEB76B /* YYTextUtilities.m in Sources */,
 				4AC29F89210F04A900F218FE /* MJRefreshFooter.m in Sources */,
 				4AE64C53212BB7E8003DE328 /* IBPopupManager.m in Sources */,
+				4AD688FD23014AD700D3A248 /* MBAlignmentLabel.m in Sources */,
 				4AD770AE2297CD1300FEB76B /* YYTextDebugOption.m in Sources */,
 				4A22DE1D228AF3B500D4CFA6 /* DDLoggerNames.m in Sources */,
 				4ACC55EA20DB5F3E001352AE /* AppDelegate.m in Sources */,
