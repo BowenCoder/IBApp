@@ -20,6 +20,7 @@
 		4A06E178213002A900227583 /* IBSocialHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A06E177213002A900227583 /* IBSocialHandle.m */; };
 		4A06E17A2130049A00227583 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A06E1792130049A00227583 /* libsqlite3.tbd */; };
 		4A06E17E2133197200227583 /* IBShareManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A06E17D2133197100227583 /* IBShareManager.m */; };
+		4A0800E82302B82000EF25BE /* MBButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A0800E72302B82000EF25BE /* MBButton.m */; };
 		4A1ECD7222B76A4F0070338B /* IBNetworkConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A1ECD7122B76A4F0070338B /* IBNetworkConfig.m */; };
 		4A1ECD7822B7B92D0070338B /* IBHTTPManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A1ECD7722B7B92D0070338B /* IBHTTPManager.m */; };
 		4A1FB09720E811FA0056A026 /* UIView+draggable.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A1FB09520E811FA0056A026 /* UIView+draggable.m */; };
@@ -381,6 +382,8 @@
 		4A06E1792130049A00227583 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		4A06E17C2133197100227583 /* IBShareManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBShareManager.h; sourceTree = "<group>"; };
 		4A06E17D2133197100227583 /* IBShareManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBShareManager.m; sourceTree = "<group>"; };
+		4A0800E62302B82000EF25BE /* MBButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBButton.h; sourceTree = "<group>"; };
+		4A0800E72302B82000EF25BE /* MBButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBButton.m; sourceTree = "<group>"; };
 		4A1ECD7022B76A4F0070338B /* IBNetworkConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBNetworkConfig.h; sourceTree = "<group>"; };
 		4A1ECD7122B76A4F0070338B /* IBNetworkConfig.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBNetworkConfig.m; sourceTree = "<group>"; };
 		4A1ECD7622B7B92D0070338B /* IBHTTPManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBHTTPManager.h; sourceTree = "<group>"; };
@@ -1149,6 +1152,15 @@
 				4A06E17D2133197100227583 /* IBShareManager.m */,
 			);
 			path = Share;
+			sourceTree = "<group>";
+		};
+		4A0800E52302B80100EF25BE /* MBButton */ = {
+			isa = PBXGroup;
+			children = (
+				4A0800E62302B82000EF25BE /* MBButton.h */,
+				4A0800E72302B82000EF25BE /* MBButton.m */,
+			);
+			path = MBButton;
 			sourceTree = "<group>";
 		};
 		4A1ECD6C22B7443B0070338B /* OldClient */ = {
@@ -2484,6 +2496,7 @@
 		4ACC55C620DB5F3E001352AE /* Public(公共) */ = {
 			isa = PBXGroup;
 			children = (
+				4A0800E52302B80100EF25BE /* MBButton */,
 				4AD688FA23014A6600D3A248 /* MBAlignmentLabel */,
 				4ABF2FC722FEF28600645809 /* MBDeliveryView */,
 				4ABF2FC322FEDE8200645809 /* MBGradientView */,
@@ -3516,6 +3529,7 @@
 				4AC29F8A210F04A900F218FE /* MJRefreshHeader.m in Sources */,
 				4AC29F7F210F04A900F218FE /* UIView+MJExtension.m in Sources */,
 				4ACC56A120DF72D9001352AE /* UIView+Ext.m in Sources */,
+				4A0800E82302B82000EF25BE /* MBButton.m in Sources */,
 				F3674051212C54B000E614A0 /* UIResponder+IBPopup.m in Sources */,
 				F3FCB42922A2F9F600C4870B /* CGGeometry+RSKImageCropper.m in Sources */,
 				4A1FB0BD20E8EE6B0056A026 /* AFURLSessionManager.m in Sources */,

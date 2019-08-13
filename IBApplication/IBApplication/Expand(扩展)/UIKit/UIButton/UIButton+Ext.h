@@ -8,16 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-/**
- 图片和文字布局类型
- */
-typedef NS_ENUM(NSUInteger, UIButtonEdgeInsetsStyle) {
-    UIButtonEdgeInsetsStyleTop, // image在上，label在下
-    UIButtonEdgeInsetsStyleLeft, // image在左，label在右
-    UIButtonEdgeInsetsStyleBottom, // image在下，label在上
-    UIButtonEdgeInsetsStyleRight // image在右，label在左
-};
-
 @interface UIButton (Ext)
 
 /**
@@ -41,15 +31,6 @@ typedef NS_ENUM(NSUInteger, UIButtonEdgeInsetsStyle) {
  *  @param waitTittle  倒计时结束后显示的文字
  */
 -(void)mb_startTime:(NSInteger )timeout title:(NSString *)tittle waitTittle:(NSString *)waitTittle;
-
-/**
- *  @brief  调整图片文字布局
- *
- *  @param style 布局类型
- *  @param space 图片和文字的间隙
- */
-- (void)mb_setButtonEdgeInsetsStyle:(UIButtonEdgeInsetsStyle)style
-                              space:(CGFloat)space;
 
 @end
 
