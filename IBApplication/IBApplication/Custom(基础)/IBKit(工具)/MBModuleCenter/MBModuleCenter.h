@@ -11,6 +11,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/**
+ 模块中心，拆分AppDelegate的功能
+ */
 @interface MBModuleCenter : NSObject <MBModuleProtocol>
 
 + (instancetype)defaultCenter;
@@ -21,7 +24,6 @@ NS_ASSUME_NONNULL_BEGIN
  @param protocol 遵守MBModuleProtocol协议的对象
  */
 - (void)registerModule:(id<MBModuleProtocol>)protocol;
-
 
 /**
  解除注册模块
