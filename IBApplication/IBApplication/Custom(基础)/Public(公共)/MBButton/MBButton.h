@@ -32,6 +32,11 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic, assign) CGFloat spaceBetweenTextAndImage;
 
+/**
+ 重复点击的间隔
+ */
+@property (nonatomic, assign) NSTimeInterval acceptEventInterval;
+
 @end
 
 NS_ASSUME_NONNULL_END

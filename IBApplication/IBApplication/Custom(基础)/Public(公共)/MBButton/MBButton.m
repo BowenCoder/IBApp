@@ -8,7 +8,26 @@
 
 #import "MBButton.h"
 
+@interface MBButton ()
+
+@property (nonatomic, assign) NSTimeInterval acceptEventTime;
+
+@end
+
 @implementation MBButton
+
+- (void)sendAction:(SEL)action to:(id)target forEvent:(UIEvent *)event
+{
+    if ([NSDate date].timeIntervalSince1970 - self.acceptEventTime < self.acceptEventInterval) {
+        return;
+    }
+    
+    if (self.acceptEventInterval > 0) {
+        self.acceptEventTime = [NSDate date].timeIntervalSince1970;
+    }
+    
+    [super sendAction:action to:target forEvent:event];
+}
 
 - (void)layoutSubviews
 {

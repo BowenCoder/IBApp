@@ -166,7 +166,6 @@
 		4A78077420E9FCAF00E60ACA /* YYClassInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A78077120E9FCAE00E60ACA /* YYClassInfo.m */; };
 		4A78077A20EA482E00E60ACA /* niconiconi@2x.gif in Resources */ = {isa = PBXBuildFile; fileRef = 4A78077920EA482E00E60ACA /* niconiconi@2x.gif */; };
 		4A7AED9423028CC4004D1D8F /* MBContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A7AED9323028CC4004D1D8F /* MBContext.m */; };
-		4A81F339212560C400A99CE3 /* UIControl+Repeat.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A81F338212560C400A99CE3 /* UIControl+Repeat.m */; };
 		4A84CBB7229B917100CA4794 /* MBMediator.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A84CBB6229B917100CA4794 /* MBMediator.m */; };
 		4A84CBBA229B938700CA4794 /* MBRouterRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A84CBB9229B938700CA4794 /* MBRouterRequest.m */; };
 		4A84CBBD229B976500CA4794 /* MBRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A84CBBC229B976500CA4794 /* MBRouter.m */; };
@@ -665,8 +664,6 @@
 		4A78077D20EA493900E60ACA /* SDWebImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWebImage.h; sourceTree = "<group>"; };
 		4A7AED9223028CC4004D1D8F /* MBContext.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBContext.h; sourceTree = "<group>"; };
 		4A7AED9323028CC4004D1D8F /* MBContext.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBContext.m; sourceTree = "<group>"; };
-		4A81F337212560C400A99CE3 /* UIControl+Repeat.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIControl+Repeat.h"; sourceTree = "<group>"; };
-		4A81F338212560C400A99CE3 /* UIControl+Repeat.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIControl+Repeat.m"; sourceTree = "<group>"; };
 		4A84CBB5229B917100CA4794 /* MBMediator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBMediator.h; sourceTree = "<group>"; };
 		4A84CBB6229B917100CA4794 /* MBMediator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBMediator.m; sourceTree = "<group>"; };
 		4A84CBB8229B938700CA4794 /* MBRouterRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBRouterRequest.h; sourceTree = "<group>"; };
@@ -1842,15 +1839,6 @@
 			path = IBPopoverView;
 			sourceTree = "<group>";
 		};
-		4A81F3332125604F00A99CE3 /* UIControl */ = {
-			isa = PBXGroup;
-			children = (
-				4A81F337212560C400A99CE3 /* UIControl+Repeat.h */,
-				4A81F338212560C400A99CE3 /* UIControl+Repeat.m */,
-			);
-			path = UIControl;
-			sourceTree = "<group>";
-		};
 		4A84CBB4229B914B00CA4794 /* MBRouter */ = {
 			isa = PBXGroup;
 			children = (
@@ -2669,7 +2657,6 @@
 			children = (
 				4A35EAAE22891D1100FADE23 /* UITableView */,
 				4AE24BDD214F74FF006448DC /* UIFont */,
-				4A81F3332125604F00A99CE3 /* UIControl */,
 				4ACC56A520DFC747001352AE /* UITextField */,
 				4ACC563620DD6C3C001352AE /* UIBarButtonItem */,
 				4ACC564820DD7589001352AE /* UIButton */,
@@ -3475,7 +3462,6 @@
 				4A22DE1E228AF3B500D4CFA6 /* DDAbstractDatabaseLogger.m in Sources */,
 				4AC29F91210F18C700F218FE /* IBTableCell.m in Sources */,
 				4A6F199620E3AC7F00EAF1A7 /* IBSocketPacket.m in Sources */,
-				4A81F339212560C400A99CE3 /* UIControl+Repeat.m in Sources */,
 				4A89D634228B17490072FB23 /* sha1.m in Sources */,
 				4A6F19B420E3FBDE00EAF1A7 /* IBNetworkStatus.m in Sources */,
 				4AD770BC2297CD1300FEB76B /* YYTextWeakProxy.m in Sources */,
