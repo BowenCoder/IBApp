@@ -21,6 +21,9 @@
 		4A06E17A2130049A00227583 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A06E1792130049A00227583 /* libsqlite3.tbd */; };
 		4A06E17E2133197200227583 /* IBShareManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A06E17D2133197100227583 /* IBShareManager.m */; };
 		4A0800E82302B82000EF25BE /* MBButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A0800E72302B82000EF25BE /* MBButton.m */; };
+		4A0800EE2303BE8F00EF25BE /* IBHTTPEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A0800ED2303BE8F00EF25BE /* IBHTTPEngine.m */; };
+		4A0800F1230414AC00EF25BE /* IBURLRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A0800F0230414AB00EF25BE /* IBURLRequest.m */; };
+		4A0800F423041C0C00EF25BE /* IBURLResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A0800F323041C0C00EF25BE /* IBURLResponse.m */; };
 		4A1ECD7222B76A4F0070338B /* IBNetworkConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A1ECD7122B76A4F0070338B /* IBNetworkConfig.m */; };
 		4A1ECD7822B7B92D0070338B /* IBHTTPManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A1ECD7722B7B92D0070338B /* IBHTTPManager.m */; };
 		4A1FB09720E811FA0056A026 /* UIView+draggable.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A1FB09520E811FA0056A026 /* UIView+draggable.m */; };
@@ -383,6 +386,12 @@
 		4A06E17D2133197100227583 /* IBShareManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBShareManager.m; sourceTree = "<group>"; };
 		4A0800E62302B82000EF25BE /* MBButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBButton.h; sourceTree = "<group>"; };
 		4A0800E72302B82000EF25BE /* MBButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBButton.m; sourceTree = "<group>"; };
+		4A0800EC2303BE8F00EF25BE /* IBHTTPEngine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBHTTPEngine.h; sourceTree = "<group>"; };
+		4A0800ED2303BE8F00EF25BE /* IBHTTPEngine.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBHTTPEngine.m; sourceTree = "<group>"; };
+		4A0800EF230414AB00EF25BE /* IBURLRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBURLRequest.h; sourceTree = "<group>"; };
+		4A0800F0230414AB00EF25BE /* IBURLRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBURLRequest.m; sourceTree = "<group>"; };
+		4A0800F223041C0C00EF25BE /* IBURLResponse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBURLResponse.h; sourceTree = "<group>"; };
+		4A0800F323041C0C00EF25BE /* IBURLResponse.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBURLResponse.m; sourceTree = "<group>"; };
 		4A1ECD7022B76A4F0070338B /* IBNetworkConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBNetworkConfig.h; sourceTree = "<group>"; };
 		4A1ECD7122B76A4F0070338B /* IBNetworkConfig.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBNetworkConfig.m; sourceTree = "<group>"; };
 		4A1ECD7622B7B92D0070338B /* IBHTTPManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBHTTPManager.h; sourceTree = "<group>"; };
@@ -1160,6 +1169,15 @@
 			path = MBButton;
 			sourceTree = "<group>";
 		};
+		4A0800EB2303BDEC00EF25BE /* Engine */ = {
+			isa = PBXGroup;
+			children = (
+				4A0800EC2303BE8F00EF25BE /* IBHTTPEngine.h */,
+				4A0800ED2303BE8F00EF25BE /* IBHTTPEngine.m */,
+			);
+			path = Engine;
+			sourceTree = "<group>";
+		};
 		4A1ECD6C22B7443B0070338B /* OldClient */ = {
 			isa = PBXGroup;
 			children = (
@@ -1255,6 +1273,7 @@
 			isa = PBXGroup;
 			children = (
 				4A1ECD6E22B748B30070338B /* Atom */,
+				4A0800EB2303BDEC00EF25BE /* Engine */,
 				4AA2862822C8DB9F00C34336 /* Error */,
 				4A1ECD7522B7B90F0070338B /* Manager */,
 				4A6F19B120E3FB9E00EAF1A7 /* NetworkStatus */,
@@ -3010,6 +3029,10 @@
 			children = (
 				F33F610E22D1112C00D6CADA /* IBRequest.h */,
 				F33F610F22D1112C00D6CADA /* IBRequest.m */,
+				4A0800EF230414AB00EF25BE /* IBURLRequest.h */,
+				4A0800F0230414AB00EF25BE /* IBURLRequest.m */,
+				4A0800F223041C0C00EF25BE /* IBURLResponse.h */,
+				4A0800F323041C0C00EF25BE /* IBURLResponse.m */,
 				F33F610B22D0F39000D6CADA /* IBResponse.h */,
 				F33F610C22D0F39000D6CADA /* IBResponse.m */,
 			);
@@ -3339,6 +3362,7 @@
 				4A89D5F8228B09440072FB23 /* NSThread+SequenceNumber.m in Sources */,
 				4A1FB0BC20E8EE6B0056A026 /* AFHTTPSessionManager.m in Sources */,
 				4A44437820F9C506001B2350 /* IBNaviConfig.m in Sources */,
+				4A0800F1230414AC00EF25BE /* IBURLRequest.m in Sources */,
 				F3E79EEC20E2A217000AC50A /* IBImage.m in Sources */,
 				4A1ECD7822B7B92D0070338B /* IBHTTPManager.m in Sources */,
 				4A6F19A520E3F0D700EAF1A7 /* IBSocketConfig.m in Sources */,
@@ -3435,6 +3459,7 @@
 				4AD770AD2297CD1300FEB76B /* YYTextKeyboardManager.m in Sources */,
 				4A03B8E3229AFC3700173765 /* MBUserManager.m in Sources */,
 				4A06E178213002A900227583 /* IBSocialHandle.m in Sources */,
+				4A0800EE2303BE8F00EF25BE /* IBHTTPEngine.m in Sources */,
 				4AAA78FE20EE097300CF5639 /* IBScrollController.m in Sources */,
 				4A1FB09A20E89FD10056A026 /* IBModelController.m in Sources */,
 				4A6F19AD20E3F40C00EAF1A7 /* GCDAsyncSocket.m in Sources */,
@@ -3464,6 +3489,7 @@
 				4A6F199620E3AC7F00EAF1A7 /* IBSocketPacket.m in Sources */,
 				4A89D634228B17490072FB23 /* sha1.m in Sources */,
 				4A6F19B420E3FBDE00EAF1A7 /* IBNetworkStatus.m in Sources */,
+				4A0800F423041C0C00EF25BE /* IBURLResponse.m in Sources */,
 				4AD770BC2297CD1300FEB76B /* YYTextWeakProxy.m in Sources */,
 				F3FCB42B22A2F9F600C4870B /* RSKTouchView.m in Sources */,
 				4A03B8E6229B06A200173765 /* MBUserModel.m in Sources */,

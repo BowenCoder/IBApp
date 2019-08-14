@@ -16,7 +16,6 @@
 #import "IBColor.h"
 #import "IBNaviBar+Config.h"
 #import "AXWebViewController.h"
-#import "UIControl+Repeat.h"
 #import "IBCheckbox.h"
 #import "IBPopupManager.h"
 #import "IBPopup.h"

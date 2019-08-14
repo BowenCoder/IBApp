@@ -363,10 +363,10 @@
             for (NSDictionary *dict in blocks) {
                 IBResponseBlock completion = [dict objectForKey:@"completion"];
                 id<IBResponseProtocol> response = [dict objectForKey:@"response"];
-                [response parseResponse];
                 response.errorCode = IBSUCCESS;
                 response.data = data;
                 response.task = task;
+                [response parseResponse];
                 if (completion) {
                     completion(response);
                 }
