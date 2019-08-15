@@ -26,7 +26,14 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)sendRequest:(IBURLRequest *)request;
 
 /**
- 取消请求
+ 取消网络请求
+
+ @param request 请求
+ */
+- (void)cancelRequest:(IBURLRequest *)request;
+
+/**
+ 取消所有网络请求
  */
 - (void)cancelAllOperations;
 

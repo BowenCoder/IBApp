@@ -18,7 +18,7 @@
 
 @property (nonatomic, strong) dispatch_queue_t httpQueue;
 @property (nonatomic, strong) AFHTTPSessionManager *manager;
-@property (nonatomic, strong) NSMutableDictionary *tasks;
+@property (nonatomic, strong) NSMutableDictionary *sessionTasks;
 @property (nonatomic, strong) dispatch_semaphore_t semaphore;
 
 @end
@@ -39,9 +39,9 @@
 - (void)setup
 {
     self.semaphore = dispatch_semaphore_create(1);
-    _tasks = [NSMutableDictionary dictionary];
-    _manager = [AFHTTPSessionManager manager];
-    _manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    self.sessionTasks = [NSMutableDictionary dictionary];
+    self.manager = [AFHTTPSessionManager manager];
+    self.manager.responseSerializer = [AFHTTPResponseSerializer serializer];
 }
 
 - (void)sendRequest:(IBURLRequest *)request
@@ -73,9 +73,20 @@
         [self requestFailure:request dataTask:dataTask error:error];
     }];
     
+    request.requestTask = dataTask;
+    
     [self setSesssionTask:dataTask forKey:requestKey];
     
     [dataTask resume];
+}
+
+- (void)cancelRequest:(IBURLRequest *)request
+{
+    NSString *requestKey = [IBEncode md5WithString:request.url];
+    NSURLSessionDataTask *dataTask = [self sessionTaskForKey:requestKey];
+    [dataTask cancel];
+    [self removeSessionTaskForKey:requestKey];
+    [request clearBlock];
 }
 
 - (void)cancelAllOperations
@@ -166,6 +177,7 @@
 - (void)requestSuccess:(IBURLRequest *)request dataTask:(NSURLSessionDataTask *)dataTask respData:(NSData *)respData
 {
     if (!request.successBlock) {
+        [request clearBlock];
         return;
     }
     IBURLResponse *response = request.response;
@@ -173,13 +185,16 @@
     response.task = dataTask;
     response.data = respData;
     [response parseResponse];
-    request.successBlock(response);
-    [request clearBlock];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        request.successBlock(response);
+        [request clearBlock];
+    });
 }
 
 - (void)requestFailure:(IBURLRequest *)request dataTask:(NSURLSessionDataTask *)dataTask error:(NSError *)error
 {
     if (!request.failureBlock) {
+        [request clearBlock];
         return;
     }
     IBErrorCode code = error.code == NSURLErrorTimedOut ? IBTimeout : error.code;
@@ -187,8 +202,10 @@
     response.errorMsg = error.localizedDescription;
     response.errorCode = code;
     response.task = dataTask;
-    request.failureBlock(response);
-    [request clearBlock];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        request.failureBlock(response);
+        [request clearBlock];
+    });
 }
 
 - (NSURLSessionDataTask *)sessionTaskForKey:(NSString *)key
@@ -197,7 +214,7 @@
         return nil;
     }
     EngineLock;
-    NSURLSessionDataTask *dataTask = [self.tasks objectForKey:key];
+    NSURLSessionDataTask *dataTask = [self.sessionTasks objectForKey:key];
     EngineUnlock;
     return dataTask;
 }
@@ -208,7 +225,7 @@
         return;
     }
     EngineLock;
-    [self.tasks removeObjectForKey:key];
+    [self.sessionTasks removeObjectForKey:key];
     EngineUnlock;
 }
 
@@ -218,7 +235,7 @@
         return;
     }
     EngineLock;
-    [self.tasks setObject:task forKey:key];
+    [self.sessionTasks setObject:task forKey:key];
     EngineUnlock;
 }
 

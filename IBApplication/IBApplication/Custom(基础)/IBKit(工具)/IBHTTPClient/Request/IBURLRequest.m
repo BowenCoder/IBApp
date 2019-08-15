@@ -74,9 +74,9 @@
 
 - (NSString *)description {
     if (self.method == IBHTTPMethodPOST) {
-        return [NSString stringWithFormat:@"#网络请求# <%@: %p> {URL: %@} {method: %d} {body: %@}",NSStringFromClass([self class]), self, self.url, self.method, self.body];
+        return [NSString stringWithFormat:@"#网络请求# <%@: %p> {URL: %@} {method: %ld} {body: %@}",NSStringFromClass([self class]), self, self.url, (long)self.method, self.body];
     } else {
-        return [NSString stringWithFormat:@"#网络请求# <%@: %p> {URL: %@} {method: %d}",NSStringFromClass([self class]), self, self.url, self.method];
+        return [NSString stringWithFormat:@"#网络请求# <%@: %p> {URL: %@} {method: %ld}",NSStringFromClass([self class]), self, self.url, (long)self.method];
     }
 }
 
