@@ -28,6 +28,10 @@ typedef NS_ENUM(NSInteger, IBErrorCode) {
      */
     IBURLError = -3,
     /**
+     *  请求错误
+     */
+    IBRequestError = -4,
+    /**
      *  请求参数错误
      */
     IBArgumentError = 499,
@@ -47,7 +51,6 @@ typedef NS_ENUM(NSInteger, IBErrorCode) {
      *  内容非法：包含敏感词
      */
     IBContentError = 982,
-
 };
 
 

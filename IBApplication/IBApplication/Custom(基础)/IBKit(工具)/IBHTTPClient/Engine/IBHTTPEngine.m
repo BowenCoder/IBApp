@@ -47,16 +47,15 @@
 - (void)sendRequest:(IBURLRequest *)request
 {
     NSString *requestKey = [IBEncode md5WithString:request.url];
-    NSURLSessionDataTask *oldTask = [self sessionTaskForKey:requestKey];
-    if (oldTask) { // 去除重复网络请求
-        [request clearBlock];
-        return;
-    }
+    BOOL isError = [self tolerateRequest:request key:requestKey];
+    if (isError) return;
+    
     NSString *method = [self methodStringWithType:request.method];
     NSString *url = request.url;
     NSDictionary *params = request.params;
     AFHTTPRequestSerializer *serialier = [self requestSerializerWithRequest:request];
-    MBLogD(@"%@", request.description);
+    MBLogD(@"%@", request);
+    
     NSURLSessionDataTask *dataTask = [self dataTaskWithSerializer:serialier method:method URLString:url parameters:params uploadProgress:^(NSProgress *uploadProgress) {
         if (request.uploadProgressBlock) {
             request.uploadProgressBlock(uploadProgress);
@@ -172,6 +171,30 @@
                                }];
     
     return dataTask;
+}
+
+// 容错处理
+- (BOOL)tolerateRequest:(IBURLRequest *)request key:(NSString *)requestKey
+{
+    BOOL result = NO;
+    NSString *errmsg;
+    NSURLSessionDataTask *oldTask = [self sessionTaskForKey:requestKey];
+    if (oldTask) { // 去除重复网络请求
+        result = YES;
+        errmsg = @"重复请求";
+    }
+    
+    if (kIsEmptyString(request.url)) { // 请求url为空
+        result = YES;
+        errmsg = @"请求url为空";
+    }
+    
+    if (result) {
+        NSError *error = [NSError errorWithDomain:errmsg code:IBRequestError userInfo:nil];
+        [self requestFailure:request dataTask:nil error:error];
+    }
+    
+    return result;
 }
 
 - (void)requestSuccess:(IBURLRequest *)request dataTask:(NSURLSessionDataTask *)dataTask respData:(NSData *)respData
