@@ -98,8 +98,7 @@
     return [image resizableImageWithCapInsets:UIEdgeInsetsMake(top, left, bottom, right) resizingMode:UIImageResizingModeStretch];
 }
 
-+ (UIImage *)resizedImage:(UIImage *)image size:(CGSize)newSize
-{
++ (UIImage *)resizedImage:(UIImage *)image size:(CGSize)newSize {
     return [self resizedImage:image size:newSize radius:0];
 }
 
@@ -115,6 +114,36 @@
     UIGraphicsEndImageContext();
     return newImage;
 }
+
++ (UIImage *)clipImage:(UIImage *)image size:(CGSize)newSize {
+    
+    CGFloat x, y, width, height;
+    
+    width = newSize.width;
+    height = newSize.height;
+    
+    if (width > image.size.width) {
+        width = image.size.width;
+    }
+    if (height > image.size.height) {
+        height = image.size.height;
+    }
+    
+    x = (image.size.width - width) / 2.0;
+    y = (image.size.height - height) / 2.0;
+    
+    UIImage *clipImage = [self clipImage:image frame:CGRectMake(x, y, width, height)];
+    
+    return clipImage;
+}
+
++ (UIImage *)clipImage:(UIImage *)image frame:(CGRect)frame {
+    CGImageRef clipCGImage = CGImageCreateWithImageInRect(image.CGImage, frame);
+    UIImage *clipImage = [UIImage imageWithCGImage:clipCGImage scale:image.scale orientation:image.imageOrientation];
+    CGImageRelease(clipCGImage);
+    return clipImage;
+}
+
 
 + (BOOL)equalToImage:(UIImage *)image anotherImage:(UIImage *)anotherImage {
     NSData *orginalData = UIImagePNGRepresentation(image);

@@ -211,6 +211,8 @@
 		4ABB57FA22BB637500CADB8F /* UIViewController+Ext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ABB57F922BB637500CADB8F /* UIViewController+Ext.m */; };
 		4ABF2FC622FEDEA700645809 /* MBGradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ABF2FC522FEDEA700645809 /* MBGradientView.m */; };
 		4ABF2FCA22FEF42A00645809 /* MBDeliveryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ABF2FC922FEF42A00645809 /* MBDeliveryView.m */; };
+		4AC102E1230FFAB300DE39CD /* MBImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC102E0230FFAB300DE39CD /* MBImageView.m */; };
+		4AC102E4230FFC6300DE39CD /* MBBlurImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC102E3230FFC6300DE39CD /* MBBlurImageView.m */; };
 		4AC29F7A210F04A900F218FE /* UIScrollView+MJRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC29F4C210F04A900F218FE /* UIScrollView+MJRefresh.m */; };
 		4AC29F7B210F04A900F218FE /* MJRefreshConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC29F4D210F04A900F218FE /* MJRefreshConst.m */; };
 		4AC29F7C210F04A900F218FE /* MJRefresh.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4AC29F51210F04A900F218FE /* MJRefresh.bundle */; };
@@ -764,6 +766,10 @@
 		4ABF2FC522FEDEA700645809 /* MBGradientView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBGradientView.m; sourceTree = "<group>"; };
 		4ABF2FC822FEF42A00645809 /* MBDeliveryView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBDeliveryView.h; sourceTree = "<group>"; };
 		4ABF2FC922FEF42A00645809 /* MBDeliveryView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBDeliveryView.m; sourceTree = "<group>"; };
+		4AC102DF230FFAB300DE39CD /* MBImageView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBImageView.h; sourceTree = "<group>"; };
+		4AC102E0230FFAB300DE39CD /* MBImageView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBImageView.m; sourceTree = "<group>"; };
+		4AC102E2230FFC6300DE39CD /* MBBlurImageView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBBlurImageView.h; sourceTree = "<group>"; };
+		4AC102E3230FFC6300DE39CD /* MBBlurImageView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBBlurImageView.m; sourceTree = "<group>"; };
 		4AC29F4C210F04A900F218FE /* UIScrollView+MJRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+MJRefresh.m"; sourceTree = "<group>"; };
 		4AC29F4D210F04A900F218FE /* MJRefreshConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshConst.m; sourceTree = "<group>"; };
 		4AC29F4E210F04A900F218FE /* UIScrollView+MJExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+MJExtension.h"; sourceTree = "<group>"; };
@@ -2047,6 +2053,17 @@
 			path = MBDeliveryView;
 			sourceTree = "<group>";
 		};
+		4AC102DE230FFA8300DE39CD /* MBImageView */ = {
+			isa = PBXGroup;
+			children = (
+				4AC102DF230FFAB300DE39CD /* MBImageView.h */,
+				4AC102E0230FFAB300DE39CD /* MBImageView.m */,
+				4AC102E2230FFC6300DE39CD /* MBBlurImageView.h */,
+				4AC102E3230FFC6300DE39CD /* MBBlurImageView.m */,
+			);
+			path = MBImageView;
+			sourceTree = "<group>";
+		};
 		4AC29F4B210F04A900F218FE /* MJRefresh */ = {
 			isa = PBXGroup;
 			children = (
@@ -2503,6 +2520,7 @@
 		4ACC55C620DB5F3E001352AE /* Public(公共) */ = {
 			isa = PBXGroup;
 			children = (
+				4AC102DE230FFA8300DE39CD /* MBImageView */,
 				4A0800E52302B80100EF25BE /* MBButton */,
 				4AD688FA23014A6600D3A248 /* MBAlignmentLabel */,
 				4ABF2FC722FEF28600645809 /* MBDeliveryView */,
@@ -3269,6 +3287,7 @@
 				4ACC564E20DD75AB001352AE /* UIButton+Ext.m in Sources */,
 				4AE24BE0214F7518006448DC /* UIFont+Ext.m in Sources */,
 				4A1FB22020E92D5E0056A026 /* SDWebImageWebPCoder.m in Sources */,
+				4AC102E1230FFAB300DE39CD /* MBImageView.m in Sources */,
 				F367404F212C54B000E614A0 /* IBPopupController.m in Sources */,
 				4A89D637228B17490072FB23 /* aestab.m in Sources */,
 				4A78076820E9F1BB00E60ACA /* View+MASAdditions.m in Sources */,
@@ -3419,6 +3438,7 @@
 				4A1FB21620E92D5E0056A026 /* NSImage+WebCache.m in Sources */,
 				4ACC569B20DEC694001352AE /* IBApp.m in Sources */,
 				4AED64C0215378EF0082280F /* IBPopoverView.m in Sources */,
+				4AC102E4230FFC6300DE39CD /* MBBlurImageView.m in Sources */,
 				4A1FB20C20E92D5E0056A026 /* UIImage+ForceDecode.m in Sources */,
 				4AC81CD720F37C6B00A1F246 /* IBCollectionController.m in Sources */,
 				4A1FB22220E92D5E0056A026 /* SDWebImageDownloaderOperation.m in Sources */,

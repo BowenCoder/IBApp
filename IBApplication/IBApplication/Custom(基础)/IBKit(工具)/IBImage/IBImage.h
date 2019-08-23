@@ -101,7 +101,7 @@ typedef NS_ENUM(NSInteger, IBImageGradientType) {
 + (UIImage *)resizedImage:(UIImage*)image size:(CGSize)newSize;
 
 /**
- *  压缩图片，带圆角
+ *  压缩图片，带圆角。尺寸不等比，存在变形
  *
  *  @param image   要压缩的图片
  *  @param newSize 压缩后的图片的像素尺寸
@@ -110,6 +110,24 @@ typedef NS_ENUM(NSInteger, IBImageGradientType) {
  *  @return 压缩好的图片
  */
 + (UIImage *)resizedImage:(UIImage *)image size:(CGSize)newSize radius:(CGFloat)radius;
+
+/**
+ 中心裁剪图片，不存在变形
+
+ @param image 图片
+ @param newSize 尺寸
+ @return 图片
+ */
++ (UIImage *)clipImage:(UIImage *)image size:(CGSize)newSize;
+
+/**
+ 裁剪图片，不存在变形
+ 
+ @param image 图片
+ @param frame frame
+ @return 图片
+ */
++ (UIImage *)clipImage:(UIImage *)image frame:(CGRect)frame;
 
 /**
  判断相等

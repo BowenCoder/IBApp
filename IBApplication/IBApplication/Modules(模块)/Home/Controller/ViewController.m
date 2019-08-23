@@ -37,6 +37,7 @@
 #import "MBGestureView.h"
 #import "MBAlignmentLabel.h"
 #import "Masonry.h"
+#import "MBImageView.h"
 
 @interface ViewController ()<UITableViewDataSource, UITableViewDelegate>
 
@@ -54,7 +55,11 @@
     // Do any additional setup after loading the view, typically from a nib.
     self.navigationItem.title = @"主界面";
 
-    self.config = [[IBNaviConfig alloc] initWithBarOptions:IBNaviBarOptionShow | IBNaviBarOptionColor tintColor:[UIColor orangeColor] backgroundColor:[UIColor redColor] backgroundImage:nil backgroundImgID:nil];    
+    self.config = [[IBNaviConfig alloc] initWithBarOptions:IBNaviBarOptionShow | IBNaviBarOptionColor tintColor:[UIColor orangeColor] backgroundColor:[UIColor redColor] backgroundImage:nil backgroundImgID:nil];
+    
+    
+    self.camera = [[MBLibraryCamera alloc] init];
+    [self.camera openCamera:self];
 
     
 }
