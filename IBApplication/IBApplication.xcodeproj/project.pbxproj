@@ -337,6 +337,8 @@
 		F3674050212C54B000E614A0 /* IBPopupNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = F3674048212C54B000E614A0 /* IBPopupNavigationBar.m */; };
 		F3674051212C54B000E614A0 /* UIResponder+IBPopup.m in Sources */ = {isa = PBXBuildFile; fileRef = F3674049212C54B000E614A0 /* UIResponder+IBPopup.m */; };
 		F3674052212C54B000E614A0 /* IBPopupControllerTransitioningFade.m in Sources */ = {isa = PBXBuildFile; fileRef = F367404A212C54B000E614A0 /* IBPopupControllerTransitioningFade.m */; };
+		F383B4C72316E03B003E0D4D /* MBTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = F383B4C62316E03B003E0D4D /* MBTimer.m */; };
+		F383B4CB2316E45B003E0D4D /* MBPermenantThread.m in Sources */ = {isa = PBXBuildFile; fileRef = F383B4CA2316E45B003E0D4D /* MBPermenantThread.m */; };
 		F3A5C8E4212C7422005D9174 /* WeiboSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F3A5C8E0212C7422005D9174 /* WeiboSDK.bundle */; };
 		F3A5C8E5212C7422005D9174 /* libWeiboSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F3A5C8E1212C7422005D9174 /* libWeiboSDK.a */; };
 		F3A5C8EC212C7459005D9174 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = F3A5C8E9212C7459005D9174 /* README.txt */; };
@@ -1024,6 +1026,10 @@
 		F3674049212C54B000E614A0 /* UIResponder+IBPopup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIResponder+IBPopup.m"; sourceTree = "<group>"; };
 		F367404A212C54B000E614A0 /* IBPopupControllerTransitioningFade.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IBPopupControllerTransitioningFade.m; sourceTree = "<group>"; };
 		F367404B212C54B000E614A0 /* IBPopupLeftBarItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBPopupLeftBarItem.h; sourceTree = "<group>"; };
+		F383B4C52316E03B003E0D4D /* MBTimer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBTimer.h; sourceTree = "<group>"; };
+		F383B4C62316E03B003E0D4D /* MBTimer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBTimer.m; sourceTree = "<group>"; };
+		F383B4C92316E45B003E0D4D /* MBPermenantThread.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBPermenantThread.h; sourceTree = "<group>"; };
+		F383B4CA2316E45B003E0D4D /* MBPermenantThread.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBPermenantThread.m; sourceTree = "<group>"; };
 		F3A5C8E0212C7422005D9174 /* WeiboSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = WeiboSDK.bundle; sourceTree = "<group>"; };
 		F3A5C8E1212C7422005D9174 /* libWeiboSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeiboSDK.a; sourceTree = "<group>"; };
 		F3A5C8E2212C7422005D9174 /* WBHttpRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBHttpRequest.h; sourceTree = "<group>"; };
@@ -2791,9 +2797,11 @@
 				4A6F198920E3A5DD00EAF1A7 /* IBString */,
 				4ACC569420DEC59D001352AE /* IBTouchID */,
 				4A03B8D2229ACCA600173765 /* MBModuleCenter */,
+				F383B4C82316E429003E0D4D /* MBPermenantThread */,
 				4AE8D63823025CCB00A73011 /* MBPluginManager */,
 				4A84CBB4229B914B00CA4794 /* MBRouter */,
 				4AD688F22301155C00D3A248 /* MBStorage */,
+				F383B4C42316E01D003E0D4D /* MBTimer */,
 				4AD688F62301164900D3A248 /* MBWeakProxy */,
 			);
 			path = "IBKit(工具)";
@@ -3065,6 +3073,24 @@
 				F33F611322D123FF00D6CADA /* IBHTTPManagerProtocol.h */,
 			);
 			path = Protocol;
+			sourceTree = "<group>";
+		};
+		F383B4C42316E01D003E0D4D /* MBTimer */ = {
+			isa = PBXGroup;
+			children = (
+				F383B4C52316E03B003E0D4D /* MBTimer.h */,
+				F383B4C62316E03B003E0D4D /* MBTimer.m */,
+			);
+			path = MBTimer;
+			sourceTree = "<group>";
+		};
+		F383B4C82316E429003E0D4D /* MBPermenantThread */ = {
+			isa = PBXGroup;
+			children = (
+				F383B4C92316E45B003E0D4D /* MBPermenantThread.h */,
+				F383B4CA2316E45B003E0D4D /* MBPermenantThread.m */,
+			);
+			path = MBPermenantThread;
 			sourceTree = "<group>";
 		};
 		F3A5C8DF212C7421005D9174 /* WeiboSDK */ = {
@@ -3351,6 +3377,7 @@
 				4A1ECD7222B76A4F0070338B /* IBNetworkConfig.m in Sources */,
 				4AAA78EB20ECB4F200CF5639 /* IBDebug.m in Sources */,
 				4AC81CE420F37D4600A1F246 /* IBViewModel.m in Sources */,
+				F383B4CB2316E45B003E0D4D /* MBPermenantThread.m in Sources */,
 				4AD770B52297CD1300FEB76B /* YYTextUtilities.m in Sources */,
 				4AC29F89210F04A900F218FE /* MJRefreshFooter.m in Sources */,
 				4AE64C53212BB7E8003DE328 /* IBPopupManager.m in Sources */,
@@ -3438,6 +3465,7 @@
 				4A1FB21620E92D5E0056A026 /* NSImage+WebCache.m in Sources */,
 				4ACC569B20DEC694001352AE /* IBApp.m in Sources */,
 				4AED64C0215378EF0082280F /* IBPopoverView.m in Sources */,
+				F383B4C72316E03B003E0D4D /* MBTimer.m in Sources */,
 				4AC102E4230FFC6300DE39CD /* MBBlurImageView.m in Sources */,
 				4A1FB20C20E92D5E0056A026 /* UIImage+ForceDecode.m in Sources */,
 				4AC81CD720F37C6B00A1F246 /* IBCollectionController.m in Sources */,
