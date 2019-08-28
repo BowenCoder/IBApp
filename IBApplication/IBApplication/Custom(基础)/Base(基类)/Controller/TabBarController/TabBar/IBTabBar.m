@@ -81,7 +81,7 @@
         item.isSelect = index == idx; // 当前点击的调整选中，其他否定
     }];
     // 动画逻辑
-    @weakify(self); // 2.通过回调点击事件让代理去执行切换选项卡的任务
+    weakify(self); // 2.通过回调点击事件让代理去执行切换选项卡的任务
     IBTabBarItem *item = self.items[index];
     if (item.itemModel.isRepeatClick) { // 允许重复点击触发动画
         if (animation) [item startAnimation]; // 开始执行设置的动画效果

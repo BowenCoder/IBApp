@@ -80,9 +80,9 @@ static const NSUInteger TimeOut = -1;
 - (void)contect {
     
     if ([self isConnected]) return;
-    @weakify(self)
+    weakify(self)
     [self dispatchOnSocketQueue:^{
-        @strongify(self)
+        strongify(self)
         [self disconnect];
         
         self.asyncSocket = [[GCDAsyncSocket alloc] initWithDelegate:self delegateQueue:self.socketQueue];
@@ -99,9 +99,9 @@ static const NSUInteger TimeOut = -1;
 // 异步
 - (void)disconnect {
     
-    @weakify(self)
+    weakify(self)
     [self dispatchOnSocketQueue:^{
-        @strongify(self)
+        strongify(self)
         if (NULL == self.asyncSocket) return;
         [self.asyncSocket disconnect];
         self.asyncSocket.delegate = nil;
@@ -133,9 +133,9 @@ static const NSUInteger TimeOut = -1;
 
 - (void)writeData:(NSData *)data timeout:(NSTimeInterval)timeout {
     
-    @weakify(self)
+    weakify(self)
     [self dispatchOnSocketQueue:^{
-        @strongify(self)
+        strongify(self)
         [self.asyncSocket writeData:data withTimeout:timeout tag:10086];
     } async:YES];
 }

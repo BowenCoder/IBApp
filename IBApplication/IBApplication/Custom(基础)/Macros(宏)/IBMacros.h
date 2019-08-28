@@ -76,14 +76,12 @@ blue:(b) / 255.0  \
 alpha:(a)])
 
 //线程处理
-#ifndef dispatch_main_async_safe
 #define dispatch_main_async_safe(block)\
 if (strcmp(dispatch_queue_get_label(DISPATCH_CURRENT_QUEUE_LABEL), dispatch_queue_get_label(dispatch_get_main_queue())) == 0) {\
     block();\
 } else {\
     dispatch_async(dispatch_get_main_queue(), block);\
 }
-#endif
 
 #define dispatch_main_sync_safe(block) \
 if ([NSThread isMainThread]) { \
@@ -101,46 +99,29 @@ if ([NSThread isMainThread]) { \
     finallyBlock(); \
 }
 
-
 //日志打印
 #ifdef DEBUG
-#define executeInDebug(block) block()
-#define NSLog(...) NSLog(__VA_ARGS__)
+    #define executeInDebug(block) block()
+    #define NSLog(...) NSLog(__VA_ARGS__);
 #else
-#define executeInDebug(block)
-#define NSLog(...)
+    #define executeInDebug(block)
+    #define NSLog(...);
 #endif
 
 //循环引用
 #ifndef weakify
-    #if DEBUG
-        #if __has_feature(objc_arc)
-        #define weakify(object) autoreleasepool{} __weak __typeof__(object) weak##object = object;
-        #else
-        #define weakify(object) autoreleasepool{} __block __typeof__(object) block##object = object;
-        #endif
+    #if __has_feature(objc_arc)
+        #define weakify(object) __weak __typeof__(object) weak##object = object;
     #else
-        #if __has_feature(objc_arc)
-        #define weakify(object) try{} @finally{} {} __weak __typeof__(object) weak##object = object;
-        #else
-        #define weakify(object) try{} @finally{} {} __block __typeof__(object) block##object = object;
-        #endif
+        #define weakify(object) __block __typeof__(object) block##object = object;
     #endif
 #endif
 
 #ifndef strongify
-    #if DEBUG
-        #if __has_feature(objc_arc)
-        #define strongify(object) autoreleasepool{} __typeof__(object) object = weak##object;
-        #else
-        #define strongify(object) autoreleasepool{} __typeof__(object) object = block##object;
-        #endif
+    #if __has_feature(objc_arc)
+        #define strongify(object) __typeof__(object) object = weak##object; if (!object) return;
     #else
-        #if __has_feature(objc_arc)
-        #define strongify(object) try{} @finally{} __typeof__(object) object = weak##object;
-        #else
-        #define strongify(object) try{} @finally{} __typeof__(object) object = block##object;
-        #endif
+        #define strongify(object) __typeof__(object) object = block##object; if (!object) return;
     #endif
 #endif
 

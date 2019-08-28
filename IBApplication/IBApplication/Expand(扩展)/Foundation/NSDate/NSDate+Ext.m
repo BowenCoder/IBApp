@@ -65,14 +65,38 @@ static const unsigned unitFlags = (NSCalendarUnitYear| NSCalendarUnitMonth| NSCa
     return [self timeIntervalSince1970] * 1000.f;
 }
 
-//时间戳转换成日期（10位时间戳）
++ (NSString *)mb_timestampFormat:(NSInteger)interval {
+    
+    int hour = (int)(interval / 3600);
+    int min = (interval % 3600) / 60;
+    int second = interval % 60;
+    NSString *h = [NSString stringWithFormat:@"%02d", hour];
+    NSString *m = [NSString stringWithFormat:@"%02d", min];
+    NSString *s = [NSString stringWithFormat:@"%02d", second];
+    
+    if ([h isEqualToString:@"00"]) {
+        return [NSString stringWithFormat:@"%@:%@", m, s];
+    }
+    return [NSString stringWithFormat:@"%@:%@:%@", h, m, s];
+}
+
+//时间戳转换成日期
 + (NSDate *)mb_timestampToDate:(NSInteger)timestamp {
     
+    if (timestamp / 1000000000 > 10) {
+        // 毫秒级时间戳->秒
+        timestamp = timestamp / 1000;
+    }
     return [NSDate dateWithTimeIntervalSince1970:timestamp];
 }
 
-//时间戳转换成时间字符串（10位时间戳）
+//时间戳转换成时间字符串
 + (NSString *)mb_timestampToTime:(NSInteger)timestamp formatter:(NSString *)format {
+    
+    if (timestamp / 1000000000 > 10) {
+        // 毫秒级时间戳->秒
+        timestamp = timestamp / 1000;
+    }
     
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateStyle:NSDateFormatterMediumStyle];
@@ -159,6 +183,113 @@ static const unsigned unitFlags = (NSCalendarUnitYear| NSCalendarUnitMonth| NSCa
     }
     
     return nil;
+}
+
+- (NSString *)mb_constellation {
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy-MM-dd"];
+    NSString *birthStr = [formatter stringFromDate:self];
+    
+    //将获取的时间转换为数组
+    NSArray *birthArr = [birthStr componentsSeparatedByString:@"-"];
+    
+    //获取月份和日期
+    NSInteger mouth = [[birthArr objectAtIndex:1] integerValue];
+    NSInteger day = [[birthArr objectAtIndex:2] integerValue];
+    
+    NSString *constellationStr;
+    //根据日子得到相应的星座
+    switch (mouth) {
+        case 1:
+            if (day > 0 && day < 20) {
+                constellationStr = @"摩羯座";
+            } else {
+                constellationStr = @"水瓶座";
+            }
+            break;
+        case 2:
+            if (day > 0 && day < 19) {
+                constellationStr = @"水瓶座";
+            } else {
+                constellationStr = @"双鱼座";
+            }
+            break;
+        case 3:
+            if (day > 0 && day < 21) {
+                constellationStr = @"双鱼座";
+            } else {
+                constellationStr = @"白羊座";
+            }
+            break;
+        case 4:
+            if (day > 0 && day < 20) {
+                constellationStr = @"白羊座";
+            } else {
+                constellationStr = @"金牛座";
+            }
+            break;
+        case 5:
+            if (day > 0 && day < 21) {
+                constellationStr = @"金牛座";
+            } else {
+                constellationStr = @"双子座";
+            }
+            break;
+        case 6:
+            if (day > 0 && day < 22) {
+                constellationStr = @"双子座";
+            } else {
+                constellationStr = @"巨蟹座";
+            }
+            break;
+        case 7:
+            if (day > 0 && day < 23) {
+                constellationStr = @"巨蟹座";
+            } else {
+                constellationStr = @"狮子座";
+            }
+            break;
+        case 8:
+            if (day > 0 && day < 23) {
+                constellationStr = @"狮子座";
+            } else {
+                constellationStr = @"处女座";
+            }
+            break;
+        case 9:
+            if (day > 0 && day < 23) {
+                constellationStr = @"处女座";
+            } else {
+                constellationStr = @"天秤座";
+            }
+            break;
+            
+        case 10:
+            if (day > 0 && day < 24) {
+                constellationStr = @"天秤座";
+            } else {
+                constellationStr = @"天蝎座";
+            }
+            break;
+        case 11:
+            if (day > 0 && day < 23) {
+                constellationStr = @"天蝎座";
+            } else {
+                constellationStr = @"射手座";
+            }
+            break;
+        case 12:
+            if (day > 0 && day < 22) {
+                constellationStr = @"射手座";
+            } else {
+                constellationStr = @"摩羯座";
+            }
+            break;
+        default:
+            break;
+    }
+    return constellationStr;
 }
 
 @end

@@ -36,18 +36,23 @@ typedef NS_ENUM(NSInteger, IBTimeOption) {
 - (IBDateInfo)mb_dateInfo;
 
 /**
- 获取时间戳（毫秒），建议使用
+ 获取时间戳（秒），建议使用
 
  @return 返回时间戳
  */
 - (long)mb_timestamp;
 
 /**
- 获取时间戳（微秒）
+ 获取时间戳（毫秒）
  
  @return 返回时间戳
  */
 - (long)mb_microsecond;
+
+/**
+ 把一段时间间隔按"时：分：秒"的格式显示
+ */
++ (NSString *)mb_timestampFormat:(NSInteger)interval;
 
 /**
  时间戳转化成日期
@@ -58,7 +63,7 @@ typedef NS_ENUM(NSInteger, IBTimeOption) {
 + (NSDate *)mb_timestampToDate:(NSInteger)timestamp;
 
 /**
- 时间戳转换成日期字符串（10位时间戳）
+ 时间戳转换成日期字符串
 
  @param timestamp 时间戳
  @param format 时间格式 例如,YYYY-MM-dd HH:mm:ss
@@ -91,6 +96,11 @@ typedef NS_ENUM(NSInteger, IBTimeOption) {
  @return 星期字符串
  */
 + (NSString *)mb_displayWeek:(NSDate *)date;
+
+/**
+ 星座
+ */
+- (NSString *)mb_constellation;
 
 @end
 

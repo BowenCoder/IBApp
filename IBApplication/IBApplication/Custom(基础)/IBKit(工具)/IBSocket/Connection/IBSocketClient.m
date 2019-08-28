@@ -80,9 +80,9 @@
         NSLog(@"Warning: RHSocket asyncSendPacket packet is nil ...");
         return;
     };
-    @weakify(self)
+    weakify(self)
     [self dispatchOnSocketQueue:^{
-        @strongify(self)
+        strongify(self)
         [self.dataEncoder encodeUpPacket:packet output:self];
     } async:YES];
 }
@@ -216,9 +216,9 @@
     NSTimeInterval minInterval = MAX(5, interval);
     self.reconnectTimer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, dispatch_get_main_queue());
     dispatch_source_set_timer(self.reconnectTimer, dispatch_walltime(NULL, 0), minInterval * NSEC_PER_SEC, 0);
-    @weakify(self)
+    weakify(self)
     dispatch_source_set_event_handler(self.reconnectTimer, ^{
-        @strongify(self)
+        strongify(self)
         
         NSLog(@"1.开启重连....");
         self.connectCount++;

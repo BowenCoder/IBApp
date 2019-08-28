@@ -203,12 +203,12 @@
 
 - (void)_retryRequest:(id<IBRequestProtocol>)request resp:(id<IBResponseProtocol>)resp isRetry:(BOOL)isRetry completion:(IBResponseBlock)completion
 {
-    @weakify(self)
+    weakify(self)
     
     request.retryTimes -= 1;
 
     [self _request:request resp:resp isRetry:isRetry completion:^(id<IBResponseProtocol> response) {
-        @strongify(self)
+        strongify(self)
         IBErrorCode errorCode = response.errorCode;
         if (errorCode != IBSUCCESS && request.retryTimes > 1) {
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(request.retryInterval * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -222,7 +222,7 @@
 
 - (void)_request:(id<IBRequestProtocol>)request resp:(id<IBResponseProtocol>)resp isRetry:(BOOL)isRetry completion:(IBResponseBlock)completion
 {
-    @weakify(self);
+    weakify(self)
     
     BOOL isError = [self _handlerRequestError:request resp:resp completion:completion];
     if (isError) {
@@ -236,7 +236,7 @@
     MBLog(@"#网络请求# url is: %@", request.url);
     
     dispatch_async(self.httpQueue, ^{
-        @strongify(self);
+        strongify(self)
         
         NSString *url        = request.url;
         NSString *requestKey = [IBEncode md5WithString:url];
@@ -346,9 +346,9 @@
 
 - (void)_requestSuccessWithKey:(NSString *)requestKey task:(NSURLSessionDataTask *)task data:(NSData *)data cacheTime:(NSUInteger)secs
 {
-    @weakify(self)
+    weakify(self)
     dispatch_async(self.httpQueue, ^{
-        @strongify(self)
+        strongify(self)
         
         if (secs > 0) {
             [self _addCacheItemWithKey:requestKey data:data cacheTime:secs];
@@ -377,9 +377,9 @@
 
 - (void)_requestFailureWithKey:(NSString *)requestKey task:(NSURLSessionDataTask *)task error:(NSError *)error
 {
-    @weakify(self)
+    weakify(self)
     dispatch_async(self.httpQueue, ^{
-        @strongify(self)
+        strongify(self)
         
         NSMutableArray *blocks = [self _blocksForKey:requestKey];
         
