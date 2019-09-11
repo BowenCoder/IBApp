@@ -86,7 +86,7 @@
     [self performSelectorInPlugins:_cmd context:context isContextValided:YES];
 }
 
-- (void)willDealloc:(MBContext *)context
+- (void)pluginWillDealloc:(MBContext *)context
 {
     [self performSelectorInPlugins:_cmd context:context isContextValided:YES];
 }

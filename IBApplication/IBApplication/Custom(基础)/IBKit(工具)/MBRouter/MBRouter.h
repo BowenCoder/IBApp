@@ -25,7 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)registerWithScheme:(NSString *)scheme handler:(Class<MBRouterProtocol>)handler;
 
 /**
- *  每个模块注册自己的路由跳转处理，scheme默认使用 IKRouterDefaultScheme
+ *  每个模块注册自己的路由跳转处理，scheme 默认使用 kRouterDefaultScheme
  *
  *  @param pName 页面名称
  *  @param handler 处理跳转的类
@@ -41,6 +41,13 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (void)registerWithScheme:(NSString *)scheme pName:(nullable NSString *)pName handler:(Class<MBRouterProtocol>)handler;
 
+/**
+ 根据scheme移除路由
+
+ @param scheme scheme 默认使用 kRouterDefaultScheme
+ @param pName 页面名称 默认使用 kRouterDefaultScheme
+ */
+- (void)unregisterWithScheme:(NSString *)scheme pName:(nullable NSString *)pName;
 
 /**
  *  打开指定的url （在主线程调用）

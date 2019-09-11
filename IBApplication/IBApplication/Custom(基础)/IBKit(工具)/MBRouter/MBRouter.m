@@ -9,12 +9,11 @@
 #import "MBRouter.h"
 #import "IBMacros.h"
 
-#define kRouterDefaultPName @"^default^"
+static NSString *const kRouterDefaultPName  = @"pName";
+static NSString *const kRouterDefaultScheme = @"scheme";
 
 @interface MBRouter()
 
-@property(nonatomic, strong) NSMutableSet<NSString *> *protoTypes;
-@property(nonatomic, strong) NSMutableSet<id<MBRouterProtocol>> *protols;
 @property (nonatomic, strong) NSMutableDictionary<NSString *, NSMutableArray *> *schemeMapper;
 
 @end
@@ -39,8 +38,6 @@
 {
     self = [super init];
     if (self) {
-        _protols    = [NSMutableSet set];
-        _protoTypes = [NSMutableSet set];
         _schemeMapper = [NSMutableDictionary dictionary];
     }
     return self;
@@ -48,7 +45,7 @@
 
 - (void)registerWithScheme:(NSString *)scheme handler:(Class<MBRouterProtocol>)handler
 {
-    [self registerWithScheme:scheme pName:nil handler:handler];
+    [self registerWithScheme:scheme pName:kRouterDefaultScheme handler:handler];
 }
 
 - (void)registerWithPName:(nullable NSString *)pName handler:(Class<MBRouterProtocol>)handler
@@ -79,6 +76,31 @@
         }
         [someArray addObject:@{pName : NSStringFromClass(handler)}];
         [_schemeMapper setValue:someArray forKey:scheme];
+    }
+}
+
+- (void)unregisterWithScheme:(NSString *)scheme pName:(nullable NSString *)pName
+{
+    if (!scheme.length) {
+        scheme = kRouterDefaultScheme;
+    }
+    if (!pName.length) {
+        pName = kRouterDefaultPName;
+    }
+    pName = [pName lowercaseString];
+    
+    @synchronized (_schemeMapper) {
+        NSMutableArray *handlers = [_schemeMapper valueForKey:scheme];
+        for (NSDictionary *tempDict in handlers) {
+            NSString *handler = [tempDict valueForKey:pName];
+            if (handler) {
+                [handlers removeObject:tempDict];
+                if (handlers.count == 0) {
+                    [_schemeMapper removeObjectForKey:scheme];
+                }
+                break;
+            }
+        }
     }
 }
 

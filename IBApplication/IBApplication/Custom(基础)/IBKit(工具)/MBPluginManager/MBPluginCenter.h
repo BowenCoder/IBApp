@@ -24,7 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)viewDidDisappear:(MBContext *)context;
 
-- (void)willDealloc:(MBContext *)context;
+- (void)pluginWillDealloc:(MBContext *)context;
 
 - (void)didReceiveMemoryWarning;
 
