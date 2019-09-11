@@ -11,7 +11,7 @@
 @interface MBPluginCenter ()
 
 @property (nonatomic, strong) NSMutableDictionary <NSString *, id<MBPluginCenterProtocol>> *plugins;
-@property (nonatomic, strong) MBPluginCenterService *centerService;
+@property (nonatomic, strong) MBServiceManager *serviceManager;
 
 @end
 
@@ -39,24 +39,24 @@
     }
 }
 
-- (id<MBPluginCenterServiceProtocol>)service
+- (id<MBServiceManagerProtocol>)service
 {
-    return self.centerService;
+    return self.serviceManager;
 }
 
 - (id)serviceInstance:(Protocol *)protocol
 {
-    return [self.centerService service:protocol];
+    return [self.serviceManager serviceInstance:protocol];
 }
 
 - (void)removeService:(Protocol *)protocol
 {
-    [self.centerService removeService:protocol];
+    [self.serviceManager removeService:protocol];
 }
 
 - (void)clearService
 {
-    [self.centerService clear];
+    [self.serviceManager clear];
 }
 
 #pragma mark - MBPluginCenterProtocol
@@ -131,11 +131,11 @@
     return _plugins;
 }
 
-- (MBPluginCenterService *)centerService {
-    if(!_centerService){
-        _centerService = [[MBPluginCenterService alloc] init];
+- (MBServiceManager *)serviceManager {
+    if(!_serviceManager){
+        _serviceManager = [[MBServiceManager alloc] init];
     }
-    return _centerService;
+    return _serviceManager;
 }
 
 @end

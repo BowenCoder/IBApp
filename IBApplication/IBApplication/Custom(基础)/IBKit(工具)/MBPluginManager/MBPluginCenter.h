@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "MBPluginCenterService.h"
+#import "MBServiceManager.h"
 #import "MBContext.h"
 
 NS_ASSUME_NONNULL_BEGIN
@@ -43,7 +43,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)unregisterPlugin:(id<MBPluginCenterProtocol>)module;
 
-- (id<MBPluginCenterServiceProtocol>)service;
+- (id<MBServiceManagerProtocol>)service;
 
 /**
  返回一个已经创建好的对象，如果没有则创建一个返回

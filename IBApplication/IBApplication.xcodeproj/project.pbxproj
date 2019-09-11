@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4A0254D02328AAD2004D4B25 /* MBServiceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A0254CF2328AAD2004D4B25 /* MBServiceManager.m */; };
 		4A03B8D6229ADCCB00173765 /* MBModuleCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A03B8D5229ADCCB00173765 /* MBModuleCenter.m */; };
 		4A03B8DC229AEFCE00173765 /* MBLaunchManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A03B8DB229AEFCE00173765 /* MBLaunchManager.m */; };
 		4A03B8DF229AEFE400173765 /* MBLaunchSetup.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A03B8DE229AEFE400173765 /* MBLaunchSetup.m */; };
@@ -320,7 +321,6 @@
 		4AE64C49212ACFF7003DE328 /* IBCheckbox.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE64C48212ACFF7003DE328 /* IBCheckbox.m */; };
 		4AE64C53212BB7E8003DE328 /* IBPopupManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE64C52212BB7E8003DE328 /* IBPopupManager.m */; };
 		4AE8D63B23025D1700A73011 /* MBPluginCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE8D63A23025D1700A73011 /* MBPluginCenter.m */; };
-		4AE8D63E23025DE700A73011 /* MBPluginCenterService.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE8D63D23025DE700A73011 /* MBPluginCenterService.m */; };
 		4AED64C0215378EF0082280F /* IBPopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AED64BF215378EF0082280F /* IBPopoverView.m */; };
 		4AEEA7A9213D0EFB00CFAA3D /* IBActionItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AEEA7A8213D0EFA00CFAA3D /* IBActionItem.m */; };
 		4AEEA7AC213D148500CFAA3D /* IBActionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AEEA7AB213D148500CFAA3D /* IBActionCell.m */; };
@@ -361,6 +361,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4A0254CE2328AAD2004D4B25 /* MBServiceManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBServiceManager.h; sourceTree = "<group>"; };
+		4A0254CF2328AAD2004D4B25 /* MBServiceManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBServiceManager.m; sourceTree = "<group>"; };
 		4A03B8D3229ACD0B00173765 /* MBModuleProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBModuleProtocol.h; sourceTree = "<group>"; };
 		4A03B8D4229ADCCB00173765 /* MBModuleCenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBModuleCenter.h; sourceTree = "<group>"; };
 		4A03B8D5229ADCCB00173765 /* MBModuleCenter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBModuleCenter.m; sourceTree = "<group>"; };
@@ -988,8 +990,6 @@
 		4AE64C52212BB7E8003DE328 /* IBPopupManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBPopupManager.m; sourceTree = "<group>"; };
 		4AE8D63923025D1700A73011 /* MBPluginCenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBPluginCenter.h; sourceTree = "<group>"; };
 		4AE8D63A23025D1700A73011 /* MBPluginCenter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBPluginCenter.m; sourceTree = "<group>"; };
-		4AE8D63C23025DE700A73011 /* MBPluginCenterService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBPluginCenterService.h; sourceTree = "<group>"; };
-		4AE8D63D23025DE700A73011 /* MBPluginCenterService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBPluginCenterService.m; sourceTree = "<group>"; };
 		4AED64BE215378EF0082280F /* IBPopoverView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBPopoverView.h; sourceTree = "<group>"; };
 		4AED64BF215378EF0082280F /* IBPopoverView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBPopoverView.m; sourceTree = "<group>"; };
 		4AEEA7A7213D0EFA00CFAA3D /* IBActionItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBActionItem.h; sourceTree = "<group>"; };
@@ -1087,6 +1087,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4A0254CD2328AA94004D4B25 /* MBServiceManager */ = {
+			isa = PBXGroup;
+			children = (
+				4A0254CE2328AAD2004D4B25 /* MBServiceManager.h */,
+				4A0254CF2328AAD2004D4B25 /* MBServiceManager.m */,
+			);
+			path = MBServiceManager;
+			sourceTree = "<group>";
+		};
 		4A03B8D2229ACCA600173765 /* MBModuleCenter */ = {
 			isa = PBXGroup;
 			children = (
@@ -2800,6 +2809,7 @@
 				F383B4C82316E429003E0D4D /* MBPermenantThread */,
 				4AE8D63823025CCB00A73011 /* MBPluginManager */,
 				4A84CBB4229B914B00CA4794 /* MBRouter */,
+				4A0254CD2328AA94004D4B25 /* MBServiceManager */,
 				4AD688F22301155C00D3A248 /* MBStorage */,
 				F383B4C42316E01D003E0D4D /* MBTimer */,
 				4AD688F62301164900D3A248 /* MBWeakProxy */,
@@ -2991,8 +3001,6 @@
 				4A7AED9323028CC4004D1D8F /* MBContext.m */,
 				4AE8D63923025D1700A73011 /* MBPluginCenter.h */,
 				4AE8D63A23025D1700A73011 /* MBPluginCenter.m */,
-				4AE8D63C23025DE700A73011 /* MBPluginCenterService.h */,
-				4AE8D63D23025DE700A73011 /* MBPluginCenterService.m */,
 			);
 			path = MBPluginManager;
 			sourceTree = "<group>";
@@ -3416,7 +3424,6 @@
 				4A6F197220E23FB900EAF1A7 /* IBEncode.m in Sources */,
 				4A22DE1C228AF3B500D4CFA6 /* DDLog.m in Sources */,
 				4AC29F80210F04A900F218FE /* MJRefreshBackGifFooter.m in Sources */,
-				4AE8D63E23025DE700A73011 /* MBPluginCenterService.m in Sources */,
 				4AD770BB2297CD1300FEB76B /* YYTextAsyncLayer.m in Sources */,
 				4ACC56B020E0001E001352AE /* NSDate+Ext.m in Sources */,
 				F33F610522D0E5E200D6CADA /* IBSerialization.m in Sources */,
@@ -3524,6 +3531,7 @@
 				4A1FB13120E921E90056A026 /* MWTapDetectingImageView.m in Sources */,
 				4AD770B92297CD1300FEB76B /* YYTextTransaction.m in Sources */,
 				4AC455C421368840007CBEF0 /* IBAuthManager.m in Sources */,
+				4A0254D02328AAD2004D4B25 /* MBServiceManager.m in Sources */,
 				4AC29F7E210F04A900F218FE /* NSBundle+MJRefresh.m in Sources */,
 				4AC81CE020F37D2800A1F246 /* IBModel.m in Sources */,
 				4AC29F7B210F04A900F218FE /* MJRefreshConst.m in Sources */,
