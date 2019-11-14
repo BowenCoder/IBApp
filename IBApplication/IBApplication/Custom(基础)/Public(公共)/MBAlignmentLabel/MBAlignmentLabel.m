@@ -12,8 +12,17 @@
 
 - (CGRect)textRectForBounds:(CGRect)bounds limitedToNumberOfLines:(NSInteger)numberOfLines
 {
-    CGRect textRect = [super textRectForBounds:bounds limitedToNumberOfLines:numberOfLines];
+    UIEdgeInsets insets = self.contentEdgeInsets;
+        
+    CGRect textRect = [super textRectForBounds:UIEdgeInsetsInsetRect(bounds, insets) limitedToNumberOfLines:numberOfLines];
     
+    // 设置内边距
+    textRect.origin.x    -= insets.left;
+    textRect.origin.y    -= insets.top;
+    textRect.size.width  += (insets.left + insets.right);
+    textRect.size.height += (insets.top + insets.bottom);
+    
+    // 设置对齐方式
     switch (self.textAlign) {
         case MBTextAlignmentLeftTop:
             textRect.origin.x = bounds.origin.x;
@@ -59,8 +68,10 @@
 
 - (void)drawTextInRect:(CGRect)rect
 {
-    rect = [self textRectForBounds:rect limitedToNumberOfLines:self.numberOfLines];
-    [super drawTextInRect:rect];
+    if (self.textAlign != MBTextAlignmentDefault) {
+        rect = [self textRectForBounds:rect limitedToNumberOfLines:self.numberOfLines];
+    }
+    [super drawTextInRect:UIEdgeInsetsInsetRect(rect, self.contentEdgeInsets)];
 }
 
 @end

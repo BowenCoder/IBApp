@@ -57,9 +57,16 @@
 
     self.config = [[IBNaviConfig alloc] initWithBarOptions:IBNaviBarOptionShow | IBNaviBarOptionColor tintColor:[UIColor orangeColor] backgroundColor:[UIColor redColor] backgroundImage:nil backgroundImgID:nil];
     
-    
-    self.camera = [[MBLibraryCamera alloc] init];
-    [self.camera openCamera:self];
+    MBAlignmentLabel *label = [[MBAlignmentLabel alloc] init];
+    label.textAlign = MBTextAlignmentLeftTop;
+    label.contentEdgeInsets = UIEdgeInsetsMake(20, 20, 20, 20);
+    label.backgroundColor = UIColor.redColor;
+    label.text = @"123456789";
+    [self.view addSubview:label];
+    [label mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.center.equalTo(self.view);
+        make.height.mas_equalTo(200);
+    }];
 
     
 }

@@ -9,7 +9,8 @@
 #import <UIKit/UIKit.h>
 
 typedef NS_ENUM(NSInteger, MBTextAlignment) {
-    MBTextAlignmentLeftTop = 0,  // 左上
+    MBTextAlignmentDefault = 0,  // 默认系统方法
+    MBTextAlignmentLeftTop = 1,  // 左上
     MBTextAlignmentLeftCenter,   // 左中
     MBTextAlignmentLeftBottom,   // 左下
     MBTextAlignmentRightTop,     // 右上
@@ -25,6 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface MBAlignmentLabel : UILabel
 
 @property (nonatomic, assign) MBTextAlignment textAlign;
+@property (nonatomic, assign) UIEdgeInsets contentEdgeInsets;
 
 @end
 
