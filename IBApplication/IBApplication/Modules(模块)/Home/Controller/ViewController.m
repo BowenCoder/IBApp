@@ -66,6 +66,7 @@
     [label mas_makeConstraints:^(MASConstraintMaker *make) {
         make.center.equalTo(self.view);
         make.height.mas_equalTo(200);
+        make.width.mas_equalTo(200);
     }];
 
     
@@ -85,19 +86,10 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [self.view endEditing:YES];    
-    MBLog(@"%@", [IBAtomFactory sharedInstance].atomDict);
-    MBLog(@"%@", [IBApp UUID]);
-    return;
 
     IBMineController *mine = [[IBMineController alloc] init];
     mine.config = [[IBNaviConfig alloc] initWithBarOptions:IBNaviBarOptionShow|IBNaviBarOptionColor tintColor:[UIColor orangeColor] backgroundColor:[UIColor purpleColor] backgroundImage:nil backgroundImgID:nil];
     [self.navigationController pushViewController:mine animated:YES];
-}
-
-- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    [self.view endEditing:YES];
-
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -118,10 +110,8 @@
     return cell;
 }
 
-
-
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    CGFloat contentY = scrollView.contentOffset.y;
+//    CGFloat contentY = scrollView.contentOffset.y;
 //    [self.naviController updateNavBarAlphaWithOffset:contentY range:500];
     
 }

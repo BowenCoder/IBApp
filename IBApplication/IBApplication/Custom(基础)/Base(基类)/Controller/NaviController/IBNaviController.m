@@ -42,6 +42,7 @@
 #pragma mark - UIGestureRecognizerDelegate
 
 BeginIgnoreClangWarning("-Wundeclared-selector");
+
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
     if (gestureRecognizer == self.interactivePopGestureRecognizer) {
         BOOL forbid = NO;
@@ -52,6 +53,7 @@ BeginIgnoreClangWarning("-Wundeclared-selector");
     }
     return YES;
 }
+
 EndIgnoreClangWarning
 
 #pragma mark - UINavigationControllerDelegate

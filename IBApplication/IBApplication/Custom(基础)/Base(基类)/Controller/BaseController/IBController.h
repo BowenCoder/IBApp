@@ -44,7 +44,6 @@
  */
 - (void)setBackgroundImage:(UIImage *)image;
 
-
 /**
  进入登录页
  */
@@ -83,7 +82,6 @@
  @param button 按钮
  */
 - (void)leftBarItemClick:(UIButton *)button;
-
 
 /**
  是否禁止左滑返回
