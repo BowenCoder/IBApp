@@ -52,13 +52,6 @@
     return YES;
 }
 
-- (void)appendAtomParams
-{
-    if (self.isAllowAtom) {
-        self.url = [[IBAtomFactory sharedInstance] appendAtomParams:self.url];
-    }
-}
-
 - (void)encryptUrl
 {
     // 加密url
@@ -72,11 +65,19 @@
     self.failureBlock = nil;
 }
 
+- (NSString *)sendUrl {
+    NSString *url = self.url;
+    if (self.isAllowAtom) {
+        url = [[IBAtomFactory sharedInstance] appendAtomParams:self.url];
+    }
+    return url;
+}
+
 - (NSString *)description {
     if (self.method == IBHTTPMethodPOST) {
-        return [NSString stringWithFormat:@"#网络请求# <%@: %p> {URL: %@} {method: %ld} {body: %@}",NSStringFromClass([self class]), self, self.url, (long)self.method, self.body];
+        return [NSString stringWithFormat:@"#网络请求# <%@: %p> {URL: %@} {method: %ld} {body: %@}",NSStringFromClass([self class]), self, self.sendUrl, (long)self.method, self.body];
     } else {
-        return [NSString stringWithFormat:@"#网络请求# <%@: %p> {URL: %@} {method: %ld}",NSStringFromClass([self class]), self, self.url, (long)self.method];
+        return [NSString stringWithFormat:@"#网络请求# <%@: %p> {URL: %@} {method: %ld}",NSStringFromClass([self class]), self, self.sendUrl, (long)self.method];
     }
 }
 

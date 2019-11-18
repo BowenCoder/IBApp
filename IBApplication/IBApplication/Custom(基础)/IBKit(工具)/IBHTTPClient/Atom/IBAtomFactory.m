@@ -81,9 +81,15 @@
     if (kIsString(_networkMode)) {
         [temp appendFormat:@"&conn=%@", _networkMode];
     }
+    if (kIsString(self.userId)) {
+        [temp appendFormat:@"&uid=%@", self.userId];
+    }
+    if (kIsString(self.sessionId)) {
+        [temp appendFormat:@"&sid=%@", self.sessionId];
+    }
     if (CLLocationCoordinate2DIsValid(_coordinate)) {
-        [temp appendFormat:@"&lat=%@",   [NSString stringWithFormat:@"%lf", _coordinate.latitude]];
-        [temp appendFormat:@"&lng=%@",   [NSString stringWithFormat:@"%lf", _coordinate.longitude]];
+        [temp appendFormat:@"&lat=%@", [NSString stringWithFormat:@"%lf", _coordinate.latitude]];
+        [temp appendFormat:@"&lng=%@", [NSString stringWithFormat:@"%lf", _coordinate.longitude]];
     }
     
     return temp.copy;
@@ -94,8 +100,6 @@
  */
 - (NSDictionary *)atomDict
 {
-    _networkMode = [[IBNetworkStatus shareInstance] specificNetworkMode];
-
     NSMutableDictionary *dict = @{}.mutableCopy;
     
     if (kIsString(_license)) {
@@ -122,9 +126,6 @@
     if (kIsString(_userAgent)) {
         [dict setObject:_userAgent forKey:@"ua"];
     }
-    if (kIsString(_networkMode)) {
-        [dict setObject:_networkMode forKey:@"cnn"];
-    }
     if (kIsString(_userId)) {
         [dict setObject:_userId forKey:@"uid"];
     }
@@ -137,18 +138,6 @@
     }
     
     return dict;
-}
-
-- (void)setUserId:(NSString *)userId
-{
-    _userId = userId;
-    _constantQuery = [_constantQuery stringByAppendingFormat:@"&uid=%@", userId];
-}
-
-- (void)setSessionId:(NSString *)sessionId
-{
-    _sessionId = sessionId;
-    _constantQuery = [_constantQuery stringByAppendingFormat:@"&sid=%@", sessionId];
 }
 
 @end

@@ -27,6 +27,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, copy) NSString *url;
 
+@property (nonatomic, copy) NSString *sendUrl;
+
 @property (nonatomic, assign) BOOL isAllowAtom;
 
 @property (nonatomic, strong) NSDictionary *body;

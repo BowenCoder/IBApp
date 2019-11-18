@@ -49,14 +49,16 @@
     NSString *requestKey = [IBEncode md5WithString:request.url];
     BOOL isError = [self tolerateRequest:request key:requestKey];
     if (isError) return;
+        
+    NSString      *url = request.sendUrl;
+    NSString   *method = [self methodStringWithType:request.method];
+    NSDictionary *body = request.body;
     
-    NSString *method = [self methodStringWithType:request.method];
-    NSString *url = request.url;
-    NSDictionary *params = request.params;
-    AFHTTPRequestSerializer *serialier = [self requestSerializerWithRequest:request];
     MBLogD(@"%@", request);
     
-    NSURLSessionDataTask *dataTask = [self dataTaskWithSerializer:serialier method:method URLString:url parameters:params uploadProgress:^(NSProgress *uploadProgress) {
+    AFHTTPRequestSerializer *serialier = [self requestSerializerWithRequest:request];
+    
+    NSURLSessionDataTask *dataTask = [self dataTaskWithSerializer:serialier method:method URLString:url parameters:body uploadProgress:^(NSProgress *uploadProgress) {
         if (request.uploadProgressBlock) {
             request.uploadProgressBlock(uploadProgress);
         }
