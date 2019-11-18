@@ -15,8 +15,6 @@
 
 @property (nonatomic, copy) NSString *constantQuery; // 生成不变的query
 
-@property (nonatomic, assign) time_t lastNetUpdateTime;
-
 @end
 
 @implementation IBAtomInfo
