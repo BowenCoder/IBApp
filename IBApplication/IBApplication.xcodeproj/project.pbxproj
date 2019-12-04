@@ -325,6 +325,7 @@
 		4AEEA7A9213D0EFB00CFAA3D /* IBActionItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AEEA7A8213D0EFA00CFAA3D /* IBActionItem.m */; };
 		4AEEA7AC213D148500CFAA3D /* IBActionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AEEA7AB213D148500CFAA3D /* IBActionCell.m */; };
 		4AEEA7B2213D2AA700CFAA3D /* IBActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AEEA7B1213D2AA700CFAA3D /* IBActionSheet.m */; };
+		4AF2091E23978EB800EFB85D /* MBPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AF2091D23978EB800EFB85D /* MBPresenter.m */; };
 		F323F5EB22A4341D008BC303 /* RSKImageCropViewController+Ext.m in Sources */ = {isa = PBXBuildFile; fileRef = F323F5EA22A4341D008BC303 /* RSKImageCropViewController+Ext.m */; };
 		F333517B22A2C448005B968E /* MBLibraryCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = F333517A22A2C448005B968E /* MBLibraryCamera.m */; };
 		F33F610522D0E5E200D6CADA /* IBSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = F33F610422D0E5E200D6CADA /* IBSerialization.m */; };
@@ -998,6 +999,8 @@
 		4AEEA7AB213D148500CFAA3D /* IBActionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBActionCell.m; sourceTree = "<group>"; };
 		4AEEA7B0213D2AA700CFAA3D /* IBActionSheet.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBActionSheet.h; sourceTree = "<group>"; };
 		4AEEA7B1213D2AA700CFAA3D /* IBActionSheet.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBActionSheet.m; sourceTree = "<group>"; };
+		4AF2091C23978EB800EFB85D /* MBPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBPresenter.h; sourceTree = "<group>"; };
+		4AF2091D23978EB800EFB85D /* MBPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBPresenter.m; sourceTree = "<group>"; };
 		F323F5E922A4341D008BC303 /* RSKImageCropViewController+Ext.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RSKImageCropViewController+Ext.h"; sourceTree = "<group>"; };
 		F323F5EA22A4341D008BC303 /* RSKImageCropViewController+Ext.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "RSKImageCropViewController+Ext.m"; sourceTree = "<group>"; };
 		F333517922A2C448005B968E /* MBLibraryCamera.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBLibraryCamera.h; sourceTree = "<group>"; };
@@ -2554,6 +2557,7 @@
 		4ACC55C720DB5F3E001352AE /* Base(基类) */ = {
 			isa = PBXGroup;
 			children = (
+				4AF2091B23978EB800EFB85D /* Presenter */,
 				4AC81CD820F37CDE00A1F246 /* Controller */,
 				4AC81CDD20F37D1300A1F246 /* Model */,
 				4AC81CD920F37CF700A1F246 /* View */,
@@ -3044,6 +3048,15 @@
 				4A1FB0A920E8EA9C0056A026 /* MBProgressHUD.bundle */,
 			);
 			path = Source;
+			sourceTree = "<group>";
+		};
+		4AF2091B23978EB800EFB85D /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				4AF2091C23978EB800EFB85D /* MBPresenter.h */,
+				4AF2091D23978EB800EFB85D /* MBPresenter.m */,
+			);
+			path = Presenter;
 			sourceTree = "<group>";
 		};
 		F333517822A2C404005B968E /* MBLibraryCamera */ = {
@@ -3571,6 +3584,7 @@
 				4AD770AC2297CD1300FEB76B /* YYTextSelectionView.m in Sources */,
 				4A78076A20E9F1BB00E60ACA /* MASViewConstraint.m in Sources */,
 				4A89D633228B17490072FB23 /* fileenc.m in Sources */,
+				4AF2091E23978EB800EFB85D /* MBPresenter.m in Sources */,
 				4AC29F8C210F04A900F218FE /* MJRefreshAutoFooter.m in Sources */,
 				4A6F19A920E3F3D700EAF1A7 /* IBSocketConnection.m in Sources */,
 				F323F5EB22A4341D008BC303 /* RSKImageCropViewController+Ext.m in Sources */,
