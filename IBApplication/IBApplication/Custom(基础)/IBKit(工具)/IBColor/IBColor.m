@@ -123,6 +123,21 @@ CGFloat colorComponentFrom(NSString *string, NSUInteger start, NSUInteger length
     return NO;
 }
 
++ (UIColor *)transitionColor:(UIColor *)startColor endColor:(UIColor *)endColor progress:(CGFloat)progress
+{
+    CGFloat startRed = 0.0, startGreen = 0.0, startBlue = 0.0, startAlpha = 0.0;
+    CGFloat endRed = 0.0, endGreen = 0.0, endBlue = 0.0, endAlpha = 0.0;
+    [startColor getRed:&startRed green:&startGreen blue:&startBlue alpha:&startAlpha];
+    [endColor getRed:&endRed green:&endGreen blue:&endBlue alpha:&endAlpha];
+    
+    CGFloat red = startRed + progress * (endRed - startRed);
+    CGFloat green = startGreen + progress * (endGreen - startGreen);
+    CGFloat blue = startBlue + progress * (endBlue - startBlue);
+    CGFloat alpha = startAlpha + progress * (endAlpha - startAlpha);
+    
+    return [UIColor colorWithRed:red green:green blue:blue alpha:alpha];
+}
+
 + (void)_radialGradient:(CGContextRef)context path:(CGPathRef)path startColor:(CGColorRef)startColor endColor:(CGColorRef)endColor {
     
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();

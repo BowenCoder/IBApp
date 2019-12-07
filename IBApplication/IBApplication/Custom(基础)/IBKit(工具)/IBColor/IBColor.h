@@ -54,7 +54,6 @@ typedef NS_ENUM(NSInteger, IBGradientColorDirection) {
  */
 + (UIColor *)radialGradient:(UIColor *)centerColor outColor:(UIColor *)outColor size:(CGSize)size;
 
-
 /**
  判断颜色是否相等
 
@@ -63,5 +62,15 @@ typedef NS_ENUM(NSInteger, IBGradientColorDirection) {
  @return YES,相等
  */
 + (BOOL)equalToColor:(UIColor *)color anotherColor:(UIColor *)anotherColor;
+
+/**
+颜色平滑过渡
+
+@param startColor 开始颜色
+@param endColor 结束颜色
+@param progress 系数（0.0~1.0）
+@return 过渡颜色
+*/
++ (UIColor *)transitionColor:(UIColor *)startColor endColor:(UIColor *)endColor progress:(CGFloat)progress;
 
 @end
