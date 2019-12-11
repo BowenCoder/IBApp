@@ -940,21 +940,3 @@ static CGFloat randomValue(int i, int j) {
 }
 
 @end
-
-@implementation UIViewController (IBPopupManager)
-
-- (IBPopupManager *)popupManager {
-    id popupManager = objc_getAssociatedObject(self, _cmd);
-    if (nil == popupManager) {
-        popupManager = [[IBPopupManager alloc] init];
-        self.popupManager = popupManager;
-    }
-    return popupManager;
-}
-
-- (void)setPopupManager:(IBPopupManager *)popupManager {
-    objc_setAssociatedObject(self, @selector(popupManager), popupManager, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-}
-
-
-@end

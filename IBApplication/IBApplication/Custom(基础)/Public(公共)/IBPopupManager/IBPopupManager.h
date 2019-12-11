@@ -144,10 +144,4 @@ typedef NS_ENUM(NSInteger, IBPopupSlideStyle) {
 
 @end
 
-@interface UIViewController (IBPopupManager)
-
-@property (nonatomic, strong) IBPopupManager *popupManager; // Suggested that direct use of popupManager.
-
-@end
-
 NS_ASSUME_NONNULL_END
