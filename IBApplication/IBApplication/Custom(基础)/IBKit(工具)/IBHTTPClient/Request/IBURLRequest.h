@@ -18,30 +18,34 @@ typedef NS_ENUM(NSInteger, IBHTTPMethod) {
     IBHTTPMethodDELETE = 5,
 };
 
-typedef void (^IBProgressBlock)(NSProgress * _Nullable progress);
-typedef void (^IBResponseBlock)(IBURLResponse * _Nullable response);
+typedef NS_ENUM(NSInteger, IBHTTPCacheType) {
+    IBHTTPCacheTypeNone = 0,
+    IBHTTPCacheTypeCache,
+};
 
 NS_ASSUME_NONNULL_BEGIN
+
+typedef void (^IBProgressHandler)(NSProgress *progress);
+typedef void (^IBCompletionHandler)(IBURLResponse *response);
+typedef void (^IBHTTPCompletion)(IBErrorCode errorCode, NSString *errorMsg, NSDictionary *response);
 
 @interface IBURLRequest : NSObject
 
 @property (nonatomic, copy) NSString *url;
 
-@property (nonatomic, copy) NSString *sendUrl;
-
-@property (nonatomic, assign) BOOL isAllowAtom;
+@property (nonatomic, strong) NSDictionary *params;
 
 @property (nonatomic, strong) NSDictionary *body;
 
 @property (nonatomic, assign) IBHTTPMethod method;
-
-@property (nonatomic, strong) NSDictionary *params;
 
 @property (nonatomic, assign) NSTimeInterval timeoutInterval;
 
 @property (nonatomic, assign) NSTimeInterval cacheTime;
 
 @property (nonatomic, assign) NSInteger retryTimes;
+
+@property (nonatomic, assign) BOOL isAllowAtom;
 
 /// 格式@[@"Username", @"Password"]
 @property (nonatomic, strong) NSArray *authHeaderFields;
@@ -52,13 +56,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) IBURLResponse *response;
 
-@property (nonatomic, copy, nullable) IBResponseBlock successBlock;
+@property (nonatomic, copy, nullable) IBCompletionHandler successHandler;
 
-@property (nonatomic, copy, nullable) IBResponseBlock failureBlock;
+@property (nonatomic, copy, nullable) IBCompletionHandler failureHandler;
 
-@property (nonatomic, copy, nullable) IBProgressBlock downloadProgressBlock;
+@property (nonatomic, copy, nullable) IBProgressHandler downloadProgressHandler;
 
-@property (nonatomic, copy, nullable) IBProgressBlock uploadProgressBlock;
+@property (nonatomic, copy, nullable) IBProgressHandler uploadProgressHandler;
 
 - (BOOL)useCDN;
 
@@ -66,9 +70,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (NSString *)cdnUrl;
 
+- (NSString *)sendUrl;
+
 - (BOOL)allowsCellularAccess;
 
-- (void)clearBlock;
+- (void)clearHandler;
 
 @end
 

@@ -321,6 +321,8 @@
 		4AE64C49212ACFF7003DE328 /* IBCheckbox.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE64C48212ACFF7003DE328 /* IBCheckbox.m */; };
 		4AE64C53212BB7E8003DE328 /* IBPopupManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE64C52212BB7E8003DE328 /* IBPopupManager.m */; };
 		4AE8D63B23025D1700A73011 /* MBPluginCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE8D63A23025D1700A73011 /* MBPluginCenter.m */; };
+		4AE95541239FC66E00A5C172 /* IBHTTPService.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE95540239FC66E00A5C172 /* IBHTTPService.m */; };
+		4AE95DB223A0F92A00A5C172 /* MBRouterSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE95DB123A0F92A00A5C172 /* MBRouterSerialization.m */; };
 		4AED64C0215378EF0082280F /* IBPopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AED64BF215378EF0082280F /* IBPopoverView.m */; };
 		4AEEA7A9213D0EFB00CFAA3D /* IBActionItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AEEA7A8213D0EFA00CFAA3D /* IBActionItem.m */; };
 		4AEEA7AC213D148500CFAA3D /* IBActionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AEEA7AB213D148500CFAA3D /* IBActionCell.m */; };
@@ -876,7 +878,7 @@
 		4AC81CDF20F37D2800A1F246 /* IBModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBModel.m; sourceTree = "<group>"; };
 		4AC81CE220F37D4600A1F246 /* IBViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBViewModel.h; sourceTree = "<group>"; };
 		4AC81CE320F37D4600A1F246 /* IBViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBViewModel.m; sourceTree = "<group>"; };
-		4ACC55AB20DB5100001352AE /* IBApplication.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IBApplication.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4ACC55AB20DB5100001352AE /* App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = App.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4ACC55CC20DB5F3E001352AE /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		4ACC55CD20DB5F3E001352AE /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		4ACC55D320DB5F3E001352AE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -991,6 +993,10 @@
 		4AE64C52212BB7E8003DE328 /* IBPopupManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBPopupManager.m; sourceTree = "<group>"; };
 		4AE8D63923025D1700A73011 /* MBPluginCenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBPluginCenter.h; sourceTree = "<group>"; };
 		4AE8D63A23025D1700A73011 /* MBPluginCenter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBPluginCenter.m; sourceTree = "<group>"; };
+		4AE9553F239FC66E00A5C172 /* IBHTTPService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBHTTPService.h; sourceTree = "<group>"; };
+		4AE95540239FC66E00A5C172 /* IBHTTPService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBHTTPService.m; sourceTree = "<group>"; };
+		4AE95DB023A0F92A00A5C172 /* MBRouterSerialization.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBRouterSerialization.h; sourceTree = "<group>"; };
+		4AE95DB123A0F92A00A5C172 /* MBRouterSerialization.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBRouterSerialization.m; sourceTree = "<group>"; };
 		4AED64BE215378EF0082280F /* IBPopoverView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBPopoverView.h; sourceTree = "<group>"; };
 		4AED64BF215378EF0082280F /* IBPopoverView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBPopoverView.m; sourceTree = "<group>"; };
 		4AEEA7A7213D0EFA00CFAA3D /* IBActionItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBActionItem.h; sourceTree = "<group>"; };
@@ -1247,6 +1253,8 @@
 			children = (
 				4A1ECD7622B7B92D0070338B /* IBHTTPManager.h */,
 				4A1ECD7722B7B92D0070338B /* IBHTTPManager.m */,
+				4AE9553F239FC66E00A5C172 /* IBHTTPService.h */,
+				4AE95540239FC66E00A5C172 /* IBHTTPService.m */,
 				4AA2862C22C8E19E00C34336 /* IBUrlManager.h */,
 				4AA2862D22C8E19E00C34336 /* IBUrlManager.m */,
 			);
@@ -1887,11 +1895,13 @@
 			children = (
 				4A84CBB5229B917100CA4794 /* MBMediator.h */,
 				4A84CBB6229B917100CA4794 /* MBMediator.m */,
-				4A84CBB8229B938700CA4794 /* MBRouterRequest.h */,
-				4A84CBB9229B938700CA4794 /* MBRouterRequest.m */,
 				4A84CBBB229B976500CA4794 /* MBRouter.h */,
 				4A84CBBC229B976500CA4794 /* MBRouter.m */,
 				4A84CBBE229B98AE00CA4794 /* MBRouterProtocol.h */,
+				4A84CBB8229B938700CA4794 /* MBRouterRequest.h */,
+				4A84CBB9229B938700CA4794 /* MBRouterRequest.m */,
+				4AE95DB023A0F92A00A5C172 /* MBRouterSerialization.h */,
+				4AE95DB123A0F92A00A5C172 /* MBRouterSerialization.m */,
 			);
 			path = MBRouter;
 			sourceTree = "<group>";
@@ -2492,7 +2502,7 @@
 		4ACC55AC20DB5100001352AE /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				4ACC55AB20DB5100001352AE /* IBApplication.app */,
+				4ACC55AB20DB5100001352AE /* App.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -3217,7 +3227,7 @@
 			);
 			name = IBApplication;
 			productName = IBApplication;
-			productReference = 4ACC55AB20DB5100001352AE /* IBApplication.app */;
+			productReference = 4ACC55AB20DB5100001352AE /* App.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -3391,6 +3401,7 @@
 				4A89D62B228B17490072FB23 /* unzip.m in Sources */,
 				4A35EAB122891D2B00FADE23 /* UITableView+Extension.m in Sources */,
 				4AD770BA2297CD1300FEB76B /* UIView+YYText.m in Sources */,
+				4AE95DB223A0F92A00A5C172 /* MBRouterSerialization.m in Sources */,
 				4A1FB21920E92D5E0056A026 /* SDWebImageFrame.m in Sources */,
 				4A1FB20920E92D5E0056A026 /* SDImageCache.m in Sources */,
 				4A95F6F0222E5A9500EE07B9 /* NullSafe.m in Sources */,
@@ -3472,6 +3483,7 @@
 				4AC29F86210F04A900F218FE /* MJRefreshNormalHeader.m in Sources */,
 				4A44437E21006150001B2350 /* IBTabBarBadge.m in Sources */,
 				4AC29FD32111CAD700F218FE /* AXBarProgressView.m in Sources */,
+				4AE95541239FC66E00A5C172 /* IBHTTPService.m in Sources */,
 				4A1FB13420E921E90056A026 /* MWTapDetectingView.m in Sources */,
 				4A686D2920EB668A00C8328E /* IBLoadingView.m in Sources */,
 				4A06E17E2133197200227583 /* IBShareManager.m in Sources */,
@@ -3648,6 +3660,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				APP_NAME = App;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -3699,7 +3712,11 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bowen.application;
+				PRODUCT_NAME = App;
 				SDKROOT = iphoneos;
+				SERVICE_BACKUP_URL = "https://serviceinfo.test.bowen.cn/serviceinfo/info";
+				SERVICE_URL = "https://serviceinfo.test.bowen.cn/serviceinfo/info";
 			};
 			name = Debug;
 		};
@@ -3707,6 +3724,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				APP_NAME = App;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -3751,7 +3769,11 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bowen.application;
+				PRODUCT_NAME = App;
 				SDKROOT = iphoneos;
+				SERVICE_BACKUP_URL = "https://serviceinfo.bowen.cn/serviceinfo/info";
+				SERVICE_URL = "https://serviceinfo.bowen.cn/serviceinfo/info";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -3786,8 +3808,8 @@
 					"-Objc",
 					"-all_load",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.bowen.application;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = "$(inherited)";
+				PRODUCT_NAME = "$(inherited)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -3823,12 +3845,309 @@
 					"-Objc",
 					"-all_load",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.bowen.application;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = "$(inherited)";
+				PRODUCT_NAME = "$(inherited)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
+		};
+		4AE95DAA23A0F33800A5C172 /* Product */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				APP_NAME = App;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bowen.application;
+				PRODUCT_NAME = App;
+				SDKROOT = iphoneos;
+				SERVICE_BACKUP_URL = "https://serviceinfo.bowen.cn/serviceinfo/info";
+				SERVICE_URL = "https://serviceinfo.bowen.cn/serviceinfo/info";
+			};
+			name = Product;
+		};
+		4AE95DAB23A0F33800A5C172 /* Product */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 7Q62N6S7X8;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/IBApplication/SDKFile(集成)/TencentSDK",
+					"$(PROJECT_DIR)/IBApplication/SDKFile(集成)/AlipaySDK",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/IBApplication/Resource(资源)/PrefixHeader.pch";
+				HEADER_SEARCH_PATHS = " '$(SDKROOT)/usr/include/libxml2'";
+				INFOPLIST_FILE = "$(SRCROOT)/IBApplication/Resource(资源)/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/IBApplication/SDKFile(集成)/WeiboSDK",
+					"$(PROJECT_DIR)/IBApplication/SDKFile(集成)/WechatSDK",
+				);
+				OTHER_LDFLAGS = (
+					"-Objc",
+					"-all_load",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "$(inherited)";
+				PRODUCT_NAME = "$(inherited)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Product;
+		};
+		4AE95DAC23A0F40B00A5C172 /* Enterprise_Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				APP_NAME = "App企业版";
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bowen.application.enterprise;
+				PRODUCT_NAME = App;
+				SDKROOT = iphoneos;
+				SERVICE_BACKUP_URL = "https://serviceinfo.test.bowen.cn/serviceinfo/info";
+				SERVICE_URL = "https://serviceinfo.test.bowen.cn/serviceinfo/info";
+			};
+			name = Enterprise_Debug;
+		};
+		4AE95DAD23A0F40B00A5C172 /* Enterprise_Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 7Q62N6S7X8;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/IBApplication/SDKFile(集成)/TencentSDK",
+					"$(PROJECT_DIR)/IBApplication/SDKFile(集成)/AlipaySDK",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/IBApplication/Resource(资源)/PrefixHeader.pch";
+				HEADER_SEARCH_PATHS = " '$(SDKROOT)/usr/include/libxml2'";
+				INFOPLIST_FILE = "$(SRCROOT)/IBApplication/Resource(资源)/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/IBApplication/SDKFile(集成)/WeiboSDK",
+					"$(PROJECT_DIR)/IBApplication/SDKFile(集成)/WechatSDK",
+				);
+				OTHER_LDFLAGS = (
+					"-Objc",
+					"-all_load",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "$(inherited)";
+				PRODUCT_NAME = "$(inherited)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Enterprise_Debug;
+		};
+		4AE95DAE23A0F42000A5C172 /* Enterprise_Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				APP_NAME = "App企业版";
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bowen.application.enterprise;
+				PRODUCT_NAME = App;
+				SDKROOT = iphoneos;
+				SERVICE_BACKUP_URL = "https://serviceinfo.bowen.cn/serviceinfo/info";
+				SERVICE_URL = "https://serviceinfo.bowen.cn/serviceinfo/info";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Enterprise_Release;
+		};
+		4AE95DAF23A0F42000A5C172 /* Enterprise_Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 7Q62N6S7X8;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/IBApplication/SDKFile(集成)/TencentSDK",
+					"$(PROJECT_DIR)/IBApplication/SDKFile(集成)/AlipaySDK",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/IBApplication/Resource(资源)/PrefixHeader.pch";
+				HEADER_SEARCH_PATHS = " '$(SDKROOT)/usr/include/libxml2'";
+				INFOPLIST_FILE = "$(SRCROOT)/IBApplication/Resource(资源)/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/IBApplication/SDKFile(集成)/WeiboSDK",
+					"$(PROJECT_DIR)/IBApplication/SDKFile(集成)/WechatSDK",
+				);
+				OTHER_LDFLAGS = (
+					"-Objc",
+					"-all_load",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "$(inherited)";
+				PRODUCT_NAME = "$(inherited)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Enterprise_Release;
 		};
 /* End XCBuildConfiguration section */
 
@@ -3837,7 +4156,10 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4ACC55BF20DB5101001352AE /* Debug */,
+				4AE95DAC23A0F40B00A5C172 /* Enterprise_Debug */,
+				4AE95DAA23A0F33800A5C172 /* Product */,
 				4ACC55C020DB5101001352AE /* Release */,
+				4AE95DAE23A0F42000A5C172 /* Enterprise_Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -3846,7 +4168,10 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4ACC55C220DB5101001352AE /* Debug */,
+				4AE95DAD23A0F40B00A5C172 /* Enterprise_Debug */,
+				4AE95DAB23A0F33800A5C172 /* Product */,
 				4ACC55C320DB5101001352AE /* Release */,
+				4AE95DAF23A0F42000A5C172 /* Enterprise_Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

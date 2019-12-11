@@ -12,6 +12,8 @@
 	<string>6.0</string>
 	<key>CFBundleName</key>
 	<string>$(PRODUCT_NAME)</string>
+	<key>CFBundleDisplayName</key>
+	<string>$(APP_NAME)</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
@@ -149,14 +151,10 @@
 	</dict>
 	<key>serviceinfo</key>
 	<dict>
+		<key>url</key>
+		<string>$(SERVICE_URL)</string>
 		<key>url_backup</key>
-		<string>http://service.bowen.com/api/v1/serviceinfo/info</string>
-		<key>url_dev</key>
-		<string>http://develop.bowen.com/api/v1/serviceinfo/info </string>
-		<key>url_pro</key>
-		<string>http://service.bowen.com/api/v1/serviceinfo/info</string>
-		<key>url_test</key>
-		<string>http://test.bowen.com/api/v1/serviceinfo/info </string>
+		<string>$(SERVICE_BACKUP_URL)</string>
 	</dict>
 </dict>
 </plist>

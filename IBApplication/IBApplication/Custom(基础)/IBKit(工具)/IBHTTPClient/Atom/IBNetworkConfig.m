@@ -89,17 +89,7 @@
 + (NSString *)enterUrl
 {
     NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
-    NSString *url;
-    IBServerEnvironment env = [IBServerManager shareInstance].env;
-    if (env == IBServerEnvProduct) {
-        url = [infoDictionary valueForKeyPath:@"serviceinfo.url_pro"];
-    }
-    if (env == IBServerEnvDevelop) {
-        url = [infoDictionary valueForKeyPath:@"serviceinfo.url_dev"];
-    }
-    if (env == IBServerEnvTest) {
-        url = [infoDictionary valueForKeyPath:@"serviceinfo.url_test"];
-    }
+    NSString *url = [infoDictionary valueForKeyPath:@"serviceinfo.url"];
     NSAssert(url != nil && [url isKindOfClass:[NSString class]],
              @"appconfig error");
     return url;

@@ -34,7 +34,6 @@
 - (void)willFinishLaunching:(NSDictionary *)launchOptions
 {
     [MBLaunchSetup loggerSetup];
-    [MBLaunchSetup networkSetup];
     [MBLaunchSetup userSetup];
     [MBLaunchSetup moduleSetup];
 }

@@ -57,16 +57,19 @@
     // 加密url
 }
 
-- (void)clearBlock
+- (void)clearHandler
 {
-    self.uploadProgressBlock = nil;
-    self.downloadProgressBlock = nil;
-    self.successBlock = nil;
-    self.failureBlock = nil;
+    self.uploadProgressHandler = nil;
+    self.downloadProgressHandler = nil;
+    self.successHandler = nil;
+    self.failureHandler = nil;
 }
 
 - (NSString *)sendUrl {
     NSString *url = self.url;
+    if (![self.url hasPrefix:@"http://"] && ![self.url hasPrefix:@"https://"]) {
+        url = [NSString stringWithFormat:@"%@/%@", [self baseUrl], self.url];
+    }
     if (self.isAllowAtom) {
         url = [[IBAtomFactory sharedInstance] appendAtomParams:self.url];
     }
@@ -75,9 +78,9 @@
 
 - (NSString *)description {
     if (self.method == IBHTTPMethodPOST) {
-        return [NSString stringWithFormat:@"#网络请求# <%@: %p> {URL: %@} {method: %ld} {body: %@}",NSStringFromClass([self class]), self, self.sendUrl, (long)self.method, self.body];
+        return [NSString stringWithFormat:@"#网络请求# <%@: %p> {URL: %@} {method: %ld} {body: %@}",NSStringFromClass([self class]), self, [self sendUrl], (long)self.method, self.body];
     } else {
-        return [NSString stringWithFormat:@"#网络请求# <%@: %p> {URL: %@} {method: %ld}",NSStringFromClass([self class]), self, self.sendUrl, (long)self.method];
+        return [NSString stringWithFormat:@"#网络请求# <%@: %p> {URL: %@} {method: %ld}",NSStringFromClass([self class]), self, [self sendUrl], (long)self.method];
     }
 }
 

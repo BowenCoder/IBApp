@@ -9,16 +9,10 @@
 #import "MBLaunchSetup.h"
 #import <WebKit/WKWebsiteDataRecord.h>
 #import <WebKit/WKWebsiteDataStore.h>
-#import "IBServerManager.h"
 #import "MBLogger.h"
 #import "MBUserManager.h"
 
 @implementation MBLaunchSetup
-
-+ (void)networkSetup
-{
-    [IBServerManager shareInstance].env = IBServerEnvDevelop;
-}
 
 + (void)loggerSetup
 {

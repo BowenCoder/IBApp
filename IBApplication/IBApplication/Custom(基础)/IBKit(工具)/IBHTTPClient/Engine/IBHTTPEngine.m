@@ -10,9 +10,10 @@
 #import "MBLogger.h"
 #import "AFNetworking.h"
 #import "AFNetworkActivityIndicatorManager.h"
+#import "IBNetworkStatus.h"
 
-#define EngineLock dispatch_semaphore_wait(self.semaphore, DISPATCH_TIME_FOREVER)
-#define EngineUnlock dispatch_semaphore_signal(self.semaphore)
+#define SemaphoreEngineLock dispatch_semaphore_wait(self.semaphore, DISPATCH_TIME_FOREVER)
+#define SemaphoreEngineUnlock dispatch_semaphore_signal(self.semaphore)
 
 @interface IBHTTPEngine ()
 
@@ -49,8 +50,8 @@
     NSString *requestKey = [IBEncode md5WithString:request.url];
     BOOL isError = [self tolerateRequest:request key:requestKey];
     if (isError) return;
-        
-    NSString      *url = request.sendUrl;
+    
+    NSString      *url = [request sendUrl];
     NSString   *method = [self methodStringWithType:request.method];
     NSDictionary *body = request.body;
     
@@ -59,12 +60,12 @@
     AFHTTPRequestSerializer *serialier = [self requestSerializerWithRequest:request];
     
     NSURLSessionDataTask *dataTask = [self dataTaskWithSerializer:serialier method:method URLString:url parameters:body uploadProgress:^(NSProgress *uploadProgress) {
-        if (request.uploadProgressBlock) {
-            request.uploadProgressBlock(uploadProgress);
+        if (request.uploadProgressHandler) {
+            request.uploadProgressHandler(uploadProgress);
         }
     } downloadProgress:^(NSProgress *downloadProgress) {
-        if (request.downloadProgressBlock) {
-            request.downloadProgressBlock(downloadProgress);
+        if (request.downloadProgressHandler) {
+            request.downloadProgressHandler(downloadProgress);
         }
     } success:^(NSURLSessionDataTask *dataTask, id resp) {
         [self removeSessionTaskForKey:requestKey];
@@ -87,7 +88,7 @@
     NSURLSessionDataTask *dataTask = [self sessionTaskForKey:requestKey];
     [dataTask cancel];
     [self removeSessionTaskForKey:requestKey];
-    [request clearBlock];
+    [request clearHandler];
 }
 
 - (void)cancelAllOperations
@@ -127,7 +128,7 @@
     if (kIsArray(authFields)) {
         [requestSerializer setAuthorizationHeaderFieldWithUsername:authFields.firstObject password:authFields.lastObject];
     }
-
+    
     NSDictionary *headerFields = request.headerFields;
     if (kIsDictionary(headerFields)) {
         for (NSString *headerField in headerFields.allKeys) {
@@ -181,14 +182,19 @@
     BOOL result = NO;
     NSString *errmsg;
     NSURLSessionDataTask *oldTask = [self sessionTaskForKey:requestKey];
-    if (oldTask) { // 去除重复网络请求
+    if (oldTask) {
         result = YES;
         errmsg = @"重复请求";
     }
     
-    if (kIsEmptyString(request.url)) { // 请求url为空
+    if (kIsEmptyString(request.url)) {
         result = YES;
         errmsg = @"请求url为空";
+    }
+    
+    if ([IBNetworkStatus shareInstance].currentNetworkStatus == IBNetworkStatusNotReachable) {
+        result = YES;
+        errmsg = @"网络不可用";
     }
     
     if (result) {
@@ -201,8 +207,8 @@
 
 - (void)requestSuccess:(IBURLRequest *)request dataTask:(NSURLSessionDataTask *)dataTask respData:(NSData *)respData
 {
-    if (!request.successBlock) {
-        [request clearBlock];
+    if (!request.successHandler) {
+        [request clearHandler];
         return;
     }
     IBURLResponse *response = request.response;
@@ -211,15 +217,15 @@
     response.data = respData;
     [response parseResponse];
     dispatch_async(dispatch_get_main_queue(), ^{
-        request.successBlock(response);
-        [request clearBlock];
+        request.successHandler(response);
+        [request clearHandler];
     });
 }
 
 - (void)requestFailure:(IBURLRequest *)request dataTask:(NSURLSessionDataTask *)dataTask error:(NSError *)error
 {
-    if (!request.failureBlock) {
-        [request clearBlock];
+    if (!request.failureHandler) {
+        [request clearHandler];
         return;
     }
     IBErrorCode code = error.code == NSURLErrorTimedOut ? IBTimeout : error.code;
@@ -228,8 +234,8 @@
     response.errorCode = code;
     response.task = dataTask;
     dispatch_async(dispatch_get_main_queue(), ^{
-        request.failureBlock(response);
-        [request clearBlock];
+        request.failureHandler(response);
+        [request clearHandler];
     });
 }
 
@@ -238,9 +244,9 @@
     if (kIsEmptyString(key)) {
         return nil;
     }
-    EngineLock;
+    SemaphoreEngineLock;
     NSURLSessionDataTask *dataTask = [self.sessionTasks objectForKey:key];
-    EngineUnlock;
+    SemaphoreEngineUnlock;
     return dataTask;
 }
 
@@ -249,9 +255,9 @@
     if (kIsEmptyString(key)) {
         return;
     }
-    EngineLock;
+    SemaphoreEngineLock;
     [self.sessionTasks removeObjectForKey:key];
-    EngineUnlock;
+    SemaphoreEngineUnlock;
 }
 
 - (void)setSesssionTask:(NSURLSessionDataTask *)task forKey:(NSString *)key
@@ -259,9 +265,9 @@
     if (kIsEmptyObject(task) || kIsEmptyString(key)) {
         return;
     }
-    EngineLock;
+    SemaphoreEngineLock;
     [self.sessionTasks setObject:task forKey:key];
-    EngineUnlock;
+    SemaphoreEngineUnlock;
 }
 
 - (NSString *)methodStringWithType:(IBHTTPMethod)method

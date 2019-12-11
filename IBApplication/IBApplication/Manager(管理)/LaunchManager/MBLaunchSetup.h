@@ -12,8 +12,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface MBLaunchSetup : NSObject
 
-+ (void)networkSetup;
-
 + (void)loggerSetup;
 
 + (void)userSetup;

@@ -15,22 +15,11 @@
         2、在willFinishLaunching初始化
  */
 
-typedef NS_ENUM(NSInteger, IBServerEnvironment) {
-    IBServerEnvNone = 0,
-    IBServerEnvTest,    // 测试环境
-    IBServerEnvDevelop, // 开发环境
-    IBServerEnvProduct, // 生产环境
-};
-
 NS_ASSUME_NONNULL_BEGIN
 
 @interface IBServerManager : NSObject
 
-// 环境配置，在外部初始化
-@property (nonatomic, assign) IBServerEnvironment env;
-
 + (instancetype)shareInstance;
-
 
 /**
  开始刷新ServerInfo
