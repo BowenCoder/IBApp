@@ -22,7 +22,7 @@ typedef NS_ENUM(NSInteger, IBErrorCode) {
     /**
      *  超时
      */
-    IBTimeout = -2,
+    IBTimeout = -1001,
     /**
      *  请求链接错误
      */

@@ -38,6 +38,7 @@
 #import "MBAlignmentLabel.h"
 #import "Masonry.h"
 #import "MBImageView.h"
+#import "IBHTTPManager.h"
 
 @interface ViewController ()<UITableViewDataSource, UITableViewDelegate>
 
@@ -69,7 +70,9 @@
         make.width.mas_equalTo(200);
     }];
 
-    
+    [IBHTTPManager GET:@"" params:@"" completion:^(IBErrorCode errorCode, IBURLResponse *resp) {
+        
+    }];
 }
 
 - (BOOL)prefersStatusBarHidden

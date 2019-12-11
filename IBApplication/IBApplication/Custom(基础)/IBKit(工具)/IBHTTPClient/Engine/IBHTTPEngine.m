@@ -17,7 +17,6 @@
 
 @interface IBHTTPEngine ()
 
-@property (nonatomic, strong) dispatch_queue_t httpQueue;
 @property (nonatomic, strong) AFHTTPSessionManager *manager;
 @property (nonatomic, strong) NSMutableDictionary *sessionTasks;
 @property (nonatomic, strong) dispatch_semaphore_t semaphore;
@@ -25,17 +24,6 @@
 @end
 
 @implementation IBHTTPEngine
-
-+ (instancetype)sharedInstance
-{
-    static IBHTTPEngine *instance;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        instance = [[self alloc] init];
-        [instance setup];
-    });
-    return instance;
-}
 
 - (void)setup
 {
@@ -182,6 +170,7 @@
     BOOL result = NO;
     NSString *errmsg;
     NSURLSessionDataTask *oldTask = [self sessionTaskForKey:requestKey];
+    
     if (oldTask) {
         result = YES;
         errmsg = @"重复请求";
@@ -192,12 +181,18 @@
         errmsg = @"请求url为空";
     }
     
+    if (request.method == IBHTTPNone) {
+        result = YES;
+        errmsg = @"请求method为none";
+    }
+    
     if ([IBNetworkStatus shareInstance].currentNetworkStatus == IBNetworkStatusNotReachable) {
         result = YES;
         errmsg = @"网络不可用";
     }
     
     if (result) {
+        MBLogE(@"#网络请求# 请求失败 %@", errmsg);
         NSError *error = [NSError errorWithDomain:errmsg code:IBRequestError userInfo:nil];
         [self requestFailure:request dataTask:nil error:error];
     }
@@ -207,34 +202,33 @@
 
 - (void)requestSuccess:(IBURLRequest *)request dataTask:(NSURLSessionDataTask *)dataTask respData:(NSData *)respData
 {
-    if (!request.successHandler) {
+    if (!request.completionHandler) {
         [request clearHandler];
         return;
     }
     IBURLResponse *response = request.response;
-    response.errorCode = IBSUCCESS;
     response.task = dataTask;
     response.data = respData;
     [response parseResponse];
     dispatch_async(dispatch_get_main_queue(), ^{
-        request.successHandler(response);
+        request.completionHandler(response);
         [request clearHandler];
     });
 }
 
 - (void)requestFailure:(IBURLRequest *)request dataTask:(NSURLSessionDataTask *)dataTask error:(NSError *)error
 {
-    if (!request.failureHandler) {
+    if (!request.completionHandler) {
         [request clearHandler];
         return;
     }
-    IBErrorCode code = error.code == NSURLErrorTimedOut ? IBTimeout : error.code;
+    
     IBURLResponse *response = request.response;
-    response.errorMsg = error.localizedDescription;
-    response.errorCode = code;
+    response.message = error.localizedDescription;
+    response.code = error.code;
     response.task = dataTask;
     dispatch_async(dispatch_get_main_queue(), ^{
-        request.failureHandler(response);
+        request.completionHandler(response);
         [request clearHandler];
     });
 }
@@ -274,12 +268,12 @@
 {
     NSString *methodString;
     switch (method) {
-        case IBHTTPMethodGET: methodString = @"GET"; break;
-        case IBHTTPMethodPOST: methodString = @"POST"; break;
-        case IBHTTPMethodPUT: methodString = @"PUT"; break;
-        case IBHTTPMethodHEAD: methodString = @"HEAD"; break;
-        case IBHTTPMethodPATCH: methodString = @"PATCH"; break;
-        case IBHTTPMethodDELETE: methodString = @"DELETE"; break;
+        case IBHTTPGET: methodString = @"GET"; break;
+        case IBHTTPPOST: methodString = @"POST"; break;
+        case IBHTTPPUT: methodString = @"PUT"; break;
+        case IBHTTPHEAD: methodString = @"HEAD"; break;
+        case IBHTTPPATCH: methodString = @"PATCH"; break;
+        case IBHTTPDELETE: methodString = @"DELETE"; break;
         default: methodString = @"GET"; break;
     }
     return methodString;

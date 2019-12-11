@@ -26,7 +26,6 @@
 		4A0800F1230414AC00EF25BE /* IBURLRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A0800F0230414AB00EF25BE /* IBURLRequest.m */; };
 		4A0800F423041C0C00EF25BE /* IBURLResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A0800F323041C0C00EF25BE /* IBURLResponse.m */; };
 		4A1ECD7222B76A4F0070338B /* IBNetworkConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A1ECD7122B76A4F0070338B /* IBNetworkConfig.m */; };
-		4A1ECD7822B7B92D0070338B /* IBHTTPManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A1ECD7722B7B92D0070338B /* IBHTTPManager.m */; };
 		4A1FB09720E811FA0056A026 /* UIView+draggable.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A1FB09520E811FA0056A026 /* UIView+draggable.m */; };
 		4A1FB09A20E89FD10056A026 /* IBModelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A1FB09920E89FD10056A026 /* IBModelController.m */; };
 		4A1FB0A820E8EA630056A026 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A1FB0A620E8EA630056A026 /* MBProgressHUD.m */; };
@@ -201,7 +200,7 @@
 		4AA2862E22C8E19E00C34336 /* IBUrlManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA2862D22C8E19E00C34336 /* IBUrlManager.m */; };
 		4AA2863222C9230700C34336 /* MBGestureView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA2863122C9230700C34336 /* MBGestureView.m */; };
 		4AA2863622C92A5000C34336 /* SDiOSVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA2863522C92A5000C34336 /* SDiOSVersion.m */; };
-		4AA2863922C92BFB00C34336 /* IBServerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA2863822C92BFB00C34336 /* IBServerManager.m */; };
+		4AA2863922C92BFB00C34336 /* IBServiceInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA2863822C92BFB00C34336 /* IBServiceInfo.m */; };
 		4AAA27C02107379100B0C256 /* IBNaviBar+Config.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AAA27BF2107379100B0C256 /* IBNaviBar+Config.m */; };
 		4AAA78EB20ECB4F200CF5639 /* IBDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AAA78EA20ECB4F200CF5639 /* IBDebug.m */; };
 		4AAA78F220ECBCB200CF5639 /* IBFPSLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AAA78F120ECBCB200CF5639 /* IBFPSLabel.m */; };
@@ -321,8 +320,9 @@
 		4AE64C49212ACFF7003DE328 /* IBCheckbox.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE64C48212ACFF7003DE328 /* IBCheckbox.m */; };
 		4AE64C53212BB7E8003DE328 /* IBPopupManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE64C52212BB7E8003DE328 /* IBPopupManager.m */; };
 		4AE8D63B23025D1700A73011 /* MBPluginCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE8D63A23025D1700A73011 /* MBPluginCenter.m */; };
-		4AE95541239FC66E00A5C172 /* IBHTTPService.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE95540239FC66E00A5C172 /* IBHTTPService.m */; };
+		4AE95541239FC66E00A5C172 /* IBHTTPManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE95540239FC66E00A5C172 /* IBHTTPManager.m */; };
 		4AE95DB223A0F92A00A5C172 /* MBRouterSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE95DB123A0F92A00A5C172 /* MBRouterSerialization.m */; };
+		4AE95F5323A12C4A00A5C172 /* IBHTTPCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE95F5223A12C4900A5C172 /* IBHTTPCache.m */; };
 		4AED64C0215378EF0082280F /* IBPopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AED64BF215378EF0082280F /* IBPopoverView.m */; };
 		4AEEA7A9213D0EFB00CFAA3D /* IBActionItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AEEA7A8213D0EFA00CFAA3D /* IBActionItem.m */; };
 		4AEEA7AC213D148500CFAA3D /* IBActionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AEEA7AB213D148500CFAA3D /* IBActionCell.m */; };
@@ -331,8 +331,6 @@
 		F323F5EB22A4341D008BC303 /* RSKImageCropViewController+Ext.m in Sources */ = {isa = PBXBuildFile; fileRef = F323F5EA22A4341D008BC303 /* RSKImageCropViewController+Ext.m */; };
 		F333517B22A2C448005B968E /* MBLibraryCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = F333517A22A2C448005B968E /* MBLibraryCamera.m */; };
 		F33F610522D0E5E200D6CADA /* IBSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = F33F610422D0E5E200D6CADA /* IBSerialization.m */; };
-		F33F610D22D0F39000D6CADA /* IBResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = F33F610C22D0F39000D6CADA /* IBResponse.m */; };
-		F33F611022D1112C00D6CADA /* IBRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = F33F610F22D1112C00D6CADA /* IBRequest.m */; };
 		F367404C212C54B000E614A0 /* IBPopupLeftBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F367403D212C54AF00E614A0 /* IBPopupLeftBarItem.m */; };
 		F367404D212C54B000E614A0 /* UIViewController+IBPopup.m in Sources */ = {isa = PBXBuildFile; fileRef = F367403E212C54AF00E614A0 /* UIViewController+IBPopup.m */; };
 		F367404E212C54B000E614A0 /* IBPopupControllerTransitioningSlideVertical.m in Sources */ = {isa = PBXBuildFile; fileRef = F367403F212C54AF00E614A0 /* IBPopupControllerTransitioningSlideVertical.m */; };
@@ -403,8 +401,6 @@
 		4A0800F323041C0C00EF25BE /* IBURLResponse.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBURLResponse.m; sourceTree = "<group>"; };
 		4A1ECD7022B76A4F0070338B /* IBNetworkConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBNetworkConfig.h; sourceTree = "<group>"; };
 		4A1ECD7122B76A4F0070338B /* IBNetworkConfig.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBNetworkConfig.m; sourceTree = "<group>"; };
-		4A1ECD7622B7B92D0070338B /* IBHTTPManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBHTTPManager.h; sourceTree = "<group>"; };
-		4A1ECD7722B7B92D0070338B /* IBHTTPManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBHTTPManager.m; sourceTree = "<group>"; };
 		4A1ECD8122B7CF320070338B /* IBApplication.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = IBApplication.entitlements; sourceTree = "<group>"; };
 		4A1FB09520E811FA0056A026 /* UIView+draggable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+draggable.m"; sourceTree = "<group>"; };
 		4A1FB09620E811FA0056A026 /* UIView+draggable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+draggable.h"; sourceTree = "<group>"; };
@@ -751,8 +747,8 @@
 		4AA2863122C9230700C34336 /* MBGestureView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBGestureView.m; sourceTree = "<group>"; };
 		4AA2863422C92A5000C34336 /* SDiOSVersion.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SDiOSVersion.h; sourceTree = "<group>"; };
 		4AA2863522C92A5000C34336 /* SDiOSVersion.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SDiOSVersion.m; sourceTree = "<group>"; };
-		4AA2863722C92BFB00C34336 /* IBServerManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBServerManager.h; sourceTree = "<group>"; };
-		4AA2863822C92BFB00C34336 /* IBServerManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBServerManager.m; sourceTree = "<group>"; };
+		4AA2863722C92BFB00C34336 /* IBServiceInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBServiceInfo.h; sourceTree = "<group>"; };
+		4AA2863822C92BFB00C34336 /* IBServiceInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBServiceInfo.m; sourceTree = "<group>"; };
 		4AAA27BE2107379100B0C256 /* IBNaviBar+Config.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "IBNaviBar+Config.h"; sourceTree = "<group>"; };
 		4AAA27BF2107379100B0C256 /* IBNaviBar+Config.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "IBNaviBar+Config.m"; sourceTree = "<group>"; };
 		4AAA78E920ECB4F200CF5639 /* IBDebug.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBDebug.h; sourceTree = "<group>"; };
@@ -993,10 +989,12 @@
 		4AE64C52212BB7E8003DE328 /* IBPopupManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBPopupManager.m; sourceTree = "<group>"; };
 		4AE8D63923025D1700A73011 /* MBPluginCenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBPluginCenter.h; sourceTree = "<group>"; };
 		4AE8D63A23025D1700A73011 /* MBPluginCenter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBPluginCenter.m; sourceTree = "<group>"; };
-		4AE9553F239FC66E00A5C172 /* IBHTTPService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBHTTPService.h; sourceTree = "<group>"; };
-		4AE95540239FC66E00A5C172 /* IBHTTPService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBHTTPService.m; sourceTree = "<group>"; };
+		4AE9553F239FC66E00A5C172 /* IBHTTPManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBHTTPManager.h; sourceTree = "<group>"; };
+		4AE95540239FC66E00A5C172 /* IBHTTPManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBHTTPManager.m; sourceTree = "<group>"; };
 		4AE95DB023A0F92A00A5C172 /* MBRouterSerialization.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBRouterSerialization.h; sourceTree = "<group>"; };
 		4AE95DB123A0F92A00A5C172 /* MBRouterSerialization.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBRouterSerialization.m; sourceTree = "<group>"; };
+		4AE95F5123A12C4900A5C172 /* IBHTTPCache.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBHTTPCache.h; sourceTree = "<group>"; };
+		4AE95F5223A12C4900A5C172 /* IBHTTPCache.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBHTTPCache.m; sourceTree = "<group>"; };
 		4AED64BE215378EF0082280F /* IBPopoverView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBPopoverView.h; sourceTree = "<group>"; };
 		4AED64BF215378EF0082280F /* IBPopoverView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBPopoverView.m; sourceTree = "<group>"; };
 		4AEEA7A7213D0EFA00CFAA3D /* IBActionItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBActionItem.h; sourceTree = "<group>"; };
@@ -1013,13 +1011,6 @@
 		F333517A22A2C448005B968E /* MBLibraryCamera.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBLibraryCamera.m; sourceTree = "<group>"; };
 		F33F610322D0E5E200D6CADA /* IBSerialization.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBSerialization.h; sourceTree = "<group>"; };
 		F33F610422D0E5E200D6CADA /* IBSerialization.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBSerialization.m; sourceTree = "<group>"; };
-		F33F610A22D0F15D00D6CADA /* IBResponseProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBResponseProtocol.h; sourceTree = "<group>"; };
-		F33F610B22D0F39000D6CADA /* IBResponse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBResponse.h; sourceTree = "<group>"; };
-		F33F610C22D0F39000D6CADA /* IBResponse.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBResponse.m; sourceTree = "<group>"; };
-		F33F610E22D1112C00D6CADA /* IBRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBRequest.h; sourceTree = "<group>"; };
-		F33F610F22D1112C00D6CADA /* IBRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBRequest.m; sourceTree = "<group>"; };
-		F33F611122D1114A00D6CADA /* IBRequestProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBRequestProtocol.h; sourceTree = "<group>"; };
-		F33F611322D123FF00D6CADA /* IBHTTPManagerProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBHTTPManagerProtocol.h; sourceTree = "<group>"; };
 		F367403D212C54AF00E614A0 /* IBPopupLeftBarItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IBPopupLeftBarItem.m; sourceTree = "<group>"; };
 		F367403E212C54AF00E614A0 /* UIViewController+IBPopup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+IBPopup.m"; sourceTree = "<group>"; };
 		F367403F212C54AF00E614A0 /* IBPopupControllerTransitioningSlideVertical.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IBPopupControllerTransitioningSlideVertical.m; sourceTree = "<group>"; };
@@ -1240,8 +1231,10 @@
 		4A1ECD6F22B748C50070338B /* Util */ = {
 			isa = PBXGroup;
 			children = (
-				4AA2863722C92BFB00C34336 /* IBServerManager.h */,
-				4AA2863822C92BFB00C34336 /* IBServerManager.m */,
+				4AA2863722C92BFB00C34336 /* IBServiceInfo.h */,
+				4AA2863822C92BFB00C34336 /* IBServiceInfo.m */,
+				4AE95F5123A12C4900A5C172 /* IBHTTPCache.h */,
+				4AE95F5223A12C4900A5C172 /* IBHTTPCache.m */,
 				F33F610322D0E5E200D6CADA /* IBSerialization.h */,
 				F33F610422D0E5E200D6CADA /* IBSerialization.m */,
 			);
@@ -1251,10 +1244,8 @@
 		4A1ECD7522B7B90F0070338B /* Manager */ = {
 			isa = PBXGroup;
 			children = (
-				4A1ECD7622B7B92D0070338B /* IBHTTPManager.h */,
-				4A1ECD7722B7B92D0070338B /* IBHTTPManager.m */,
-				4AE9553F239FC66E00A5C172 /* IBHTTPService.h */,
-				4AE95540239FC66E00A5C172 /* IBHTTPService.m */,
+				4AE9553F239FC66E00A5C172 /* IBHTTPManager.h */,
+				4AE95540239FC66E00A5C172 /* IBHTTPManager.m */,
 				4AA2862C22C8E19E00C34336 /* IBUrlManager.h */,
 				4AA2862D22C8E19E00C34336 /* IBUrlManager.m */,
 			);
@@ -1310,7 +1301,6 @@
 				4A1ECD7522B7B90F0070338B /* Manager */,
 				4A6F19B120E3FB9E00EAF1A7 /* NetworkStatus */,
 				4A1ECD6C22B7443B0070338B /* OldClient */,
-				F33F611222D123C500D6CADA /* Protocol */,
 				F33F610622D0F0EF00D6CADA /* Request */,
 				4A1ECD6D22B748970070338B /* Security */,
 				4A1ECD6F22B748C50070338B /* Util */,
@@ -3084,26 +3074,12 @@
 		F33F610622D0F0EF00D6CADA /* Request */ = {
 			isa = PBXGroup;
 			children = (
-				F33F610E22D1112C00D6CADA /* IBRequest.h */,
-				F33F610F22D1112C00D6CADA /* IBRequest.m */,
 				4A0800EF230414AB00EF25BE /* IBURLRequest.h */,
 				4A0800F0230414AB00EF25BE /* IBURLRequest.m */,
 				4A0800F223041C0C00EF25BE /* IBURLResponse.h */,
 				4A0800F323041C0C00EF25BE /* IBURLResponse.m */,
-				F33F610B22D0F39000D6CADA /* IBResponse.h */,
-				F33F610C22D0F39000D6CADA /* IBResponse.m */,
 			);
 			path = Request;
-			sourceTree = "<group>";
-		};
-		F33F611222D123C500D6CADA /* Protocol */ = {
-			isa = PBXGroup;
-			children = (
-				F33F611122D1114A00D6CADA /* IBRequestProtocol.h */,
-				F33F610A22D0F15D00D6CADA /* IBResponseProtocol.h */,
-				F33F611322D123FF00D6CADA /* IBHTTPManagerProtocol.h */,
-			);
-			path = Protocol;
 			sourceTree = "<group>";
 		};
 		F383B4C42316E01D003E0D4D /* MBTimer */ = {
@@ -3380,7 +3356,6 @@
 				4A1FB21020E92D5E0056A026 /* UIView+WebCacheOperation.m in Sources */,
 				4AC81CDC20F37D0C00A1F246 /* IBView.m in Sources */,
 				4A84CBB7229B917100CA4794 /* MBMediator.m in Sources */,
-				F33F610D22D0F39000D6CADA /* IBResponse.m in Sources */,
 				4AC29F9921106C0800F218FE /* IBRefreshHeader.m in Sources */,
 				4A89D62F228B17490072FB23 /* SSZipArchive.m in Sources */,
 				4A6F197F20E345F500EAF1A7 /* IBHelper.m in Sources */,
@@ -3442,7 +3417,6 @@
 				4A44437820F9C506001B2350 /* IBNaviConfig.m in Sources */,
 				4A0800F1230414AC00EF25BE /* IBURLRequest.m in Sources */,
 				F3E79EEC20E2A217000AC50A /* IBImage.m in Sources */,
-				4A1ECD7822B7B92D0070338B /* IBHTTPManager.m in Sources */,
 				4A6F19A520E3F0D700EAF1A7 /* IBSocketConfig.m in Sources */,
 				4AD7706F2297C92400FEB76B /* YYMemoryCache.m in Sources */,
 				4A6F197220E23FB900EAF1A7 /* IBEncode.m in Sources */,
@@ -3483,7 +3457,7 @@
 				4AC29F86210F04A900F218FE /* MJRefreshNormalHeader.m in Sources */,
 				4A44437E21006150001B2350 /* IBTabBarBadge.m in Sources */,
 				4AC29FD32111CAD700F218FE /* AXBarProgressView.m in Sources */,
-				4AE95541239FC66E00A5C172 /* IBHTTPService.m in Sources */,
+				4AE95541239FC66E00A5C172 /* IBHTTPManager.m in Sources */,
 				4A1FB13420E921E90056A026 /* MWTapDetectingView.m in Sources */,
 				4A686D2920EB668A00C8328E /* IBLoadingView.m in Sources */,
 				4A06E17E2133197200227583 /* IBShareManager.m in Sources */,
@@ -3519,7 +3493,7 @@
 				4AC29F7A210F04A900F218FE /* UIScrollView+MJRefresh.m in Sources */,
 				4A1FB22F20E931350056A026 /* MBProgressHUD+Ext.m in Sources */,
 				4A06E172212FE42A00227583 /* IBSocialManager.m in Sources */,
-				4AA2863922C92BFB00C34336 /* IBServerManager.m in Sources */,
+				4AA2863922C92BFB00C34336 /* IBServiceInfo.m in Sources */,
 				4A1FB22B20E92D810056A026 /* FLAnimatedImageView.m in Sources */,
 				4A22DE24228AF3B500D4CFA6 /* DDFileLogger+Buffering.m in Sources */,
 				4A03B8DF229AEFE400173765 /* MBLaunchSetup.m in Sources */,
@@ -3563,6 +3537,7 @@
 				4A78076520E9F1BB00E60ACA /* MASConstraintMaker.m in Sources */,
 				4A1FB22120E92D5E0056A026 /* SDWebImageDownloader.m in Sources */,
 				4A6F199B20E3B37200EAF1A7 /* IBSocketPacketDecode.m in Sources */,
+				4AE95F5323A12C4A00A5C172 /* IBHTTPCache.m in Sources */,
 				4A89D630228B17490072FB23 /* aeskey.m in Sources */,
 				4AC29F7D210F04A900F218FE /* UIScrollView+MJExtension.m in Sources */,
 				4A22DE1E228AF3B500D4CFA6 /* DDAbstractDatabaseLogger.m in Sources */,
@@ -3619,7 +3594,6 @@
 				4AC29FD42111CAD700F218FE /* AXGradientProgressView.m in Sources */,
 				4A89D602228B11C40072FB23 /* MBLogEncryptFormatter.m in Sources */,
 				4AC29FE02111CB8800F218FE /* AXBreachedAnnulusIndicatorView.m in Sources */,
-				F33F611022D1112C00D6CADA /* IBRequest.m in Sources */,
 				4AC29F8A210F04A900F218FE /* MJRefreshHeader.m in Sources */,
 				4AC29F7F210F04A900F218FE /* UIView+MJExtension.m in Sources */,
 				4ACC56A120DF72D9001352AE /* UIView+Ext.m in Sources */,

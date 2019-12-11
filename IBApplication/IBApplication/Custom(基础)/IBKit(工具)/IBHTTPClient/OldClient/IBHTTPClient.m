@@ -7,7 +7,7 @@
 //
 
 #import "IBHTTPClient.h"
-#import "IBServerManager.h"
+#import "IBServiceInfo.h"
 #import "AFNetworkActivityIndicatorManager.h"
 
 @implementation IBHTTPClient

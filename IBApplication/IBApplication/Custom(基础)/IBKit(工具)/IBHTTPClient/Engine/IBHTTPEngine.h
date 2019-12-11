@@ -14,10 +14,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface IBHTTPEngine : NSObject
 
-- (instancetype)init NS_UNAVAILABLE;
-
-+ (instancetype)sharedInstance;
-
 /**
  发送网络请求
 

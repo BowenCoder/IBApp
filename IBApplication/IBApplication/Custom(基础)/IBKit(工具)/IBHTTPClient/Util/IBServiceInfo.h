@@ -1,5 +1,5 @@
 //
-//  IBServerManager.h
+//  IBServiceInfo.h
 //  IBApplication
 //
 //  Created by Bowen on 2019/7/1.
@@ -17,14 +17,12 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface IBServerManager : NSObject
-
-+ (instancetype)shareInstance;
+@interface IBServiceInfo : NSObject
 
 /**
  开始刷新ServerInfo
  */
-- (void)refreshServerInfo;
+- (void)refreshServiceInfo;
 
 /**
  停止刷新ServerInfo
@@ -35,10 +33,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 NS_ASSUME_NONNULL_END
 
-
 //=========================== 老版本 =============================//
 
-//内部版本号 每次发版递增
+// 内部版本号 每次发版递增
 #define KVersionCode 1
 
 /*

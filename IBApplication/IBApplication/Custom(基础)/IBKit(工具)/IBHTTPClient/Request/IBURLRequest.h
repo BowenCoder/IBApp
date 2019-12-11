@@ -10,24 +10,20 @@
 #import "IBURLResponse.h"
 
 typedef NS_ENUM(NSInteger, IBHTTPMethod) {
-    IBHTTPMethodGET    = 0,
-    IBHTTPMethodPOST   = 1,
-    IBHTTPMethodPUT    = 2,
-    IBHTTPMethodHEAD   = 3,
-    IBHTTPMethodPATCH  = 4,
-    IBHTTPMethodDELETE = 5,
-};
-
-typedef NS_ENUM(NSInteger, IBHTTPCacheType) {
-    IBHTTPCacheTypeNone = 0,
-    IBHTTPCacheTypeCache,
+    IBHTTPNone   = 0,
+    IBHTTPGET    = 1,
+    IBHTTPPOST   = 2,
+    IBHTTPPUT    = 3,
+    IBHTTPHEAD   = 4,
+    IBHTTPPATCH  = 5,
+    IBHTTPDELETE = 6,
 };
 
 NS_ASSUME_NONNULL_BEGIN
 
 typedef void (^IBProgressHandler)(NSProgress *progress);
 typedef void (^IBCompletionHandler)(IBURLResponse *response);
-typedef void (^IBHTTPCompletion)(IBErrorCode errorCode, NSString *errorMsg, NSDictionary *response);
+typedef void (^IBHTTPCompletion)(IBErrorCode errorCode, IBURLResponse *response);
 
 @interface IBURLRequest : NSObject
 
@@ -37,15 +33,17 @@ typedef void (^IBHTTPCompletion)(IBErrorCode errorCode, NSString *errorMsg, NSDi
 
 @property (nonatomic, strong) NSDictionary *body;
 
+@property (nonatomic, assign) BOOL isAllowAtom;
+
 @property (nonatomic, assign) IBHTTPMethod method;
 
 @property (nonatomic, assign) NSTimeInterval timeoutInterval;
 
 @property (nonatomic, assign) NSTimeInterval cacheTime;
 
-@property (nonatomic, assign) NSInteger retryTimes;
+@property (nonatomic, assign) CGFloat retryTimes;
 
-@property (nonatomic, assign) BOOL isAllowAtom;
+@property (nonatomic, assign) CGFloat retryInterval;
 
 /// 格式@[@"Username", @"Password"]
 @property (nonatomic, strong) NSArray *authHeaderFields;
@@ -56,9 +54,7 @@ typedef void (^IBHTTPCompletion)(IBErrorCode errorCode, NSString *errorMsg, NSDi
 
 @property (nonatomic, strong) IBURLResponse *response;
 
-@property (nonatomic, copy, nullable) IBCompletionHandler successHandler;
-
-@property (nonatomic, copy, nullable) IBCompletionHandler failureHandler;
+@property (nonatomic, copy, nullable) IBCompletionHandler completionHandler;
 
 @property (nonatomic, copy, nullable) IBProgressHandler downloadProgressHandler;
 

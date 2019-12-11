@@ -27,9 +27,11 @@
 - (void)setupData
 {
     self.cacheTime = 0;
-    self.retryTimes = 0;
+    self.retryTimes = 0.0;
+    self.retryInterval = 0.0;
     self.timeoutInterval = 10;
     self.isAllowAtom = YES;
+    self.response = [[IBURLResponse alloc] init];
 }
 
 - (NSString *)baseUrl
@@ -59,10 +61,9 @@
 
 - (void)clearHandler
 {
+    self.completionHandler = nil;
     self.uploadProgressHandler = nil;
     self.downloadProgressHandler = nil;
-    self.successHandler = nil;
-    self.failureHandler = nil;
 }
 
 - (NSString *)sendUrl {
@@ -77,7 +78,7 @@
 }
 
 - (NSString *)description {
-    if (self.method == IBHTTPMethodPOST) {
+    if (self.method == IBHTTPPOST) {
         return [NSString stringWithFormat:@"#网络请求# <%@: %p> {URL: %@} {method: %ld} {body: %@}",NSStringFromClass([self class]), self, [self sendUrl], (long)self.method, self.body];
     } else {
         return [NSString stringWithFormat:@"#网络请求# <%@: %p> {URL: %@} {method: %ld}",NSStringFromClass([self class]), self, [self sendUrl], (long)self.method];
