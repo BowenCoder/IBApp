@@ -323,6 +323,7 @@
 		4AE95541239FC66E00A5C172 /* IBHTTPManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE95540239FC66E00A5C172 /* IBHTTPManager.m */; };
 		4AE95DB223A0F92A00A5C172 /* MBRouterSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE95DB123A0F92A00A5C172 /* MBRouterSerialization.m */; };
 		4AE95F5323A12C4A00A5C172 /* IBHTTPCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE95F5223A12C4900A5C172 /* IBHTTPCache.m */; };
+		4AE9665823A1F18200A5C172 /* IBAtomInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE9665723A1F18200A5C172 /* IBAtomInfo.m */; };
 		4AED64C0215378EF0082280F /* IBPopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AED64BF215378EF0082280F /* IBPopoverView.m */; };
 		4AEEA7A9213D0EFB00CFAA3D /* IBActionItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AEEA7A8213D0EFA00CFAA3D /* IBActionItem.m */; };
 		4AEEA7AC213D148500CFAA3D /* IBActionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AEEA7AB213D148500CFAA3D /* IBActionCell.m */; };
@@ -995,6 +996,8 @@
 		4AE95DB123A0F92A00A5C172 /* MBRouterSerialization.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBRouterSerialization.m; sourceTree = "<group>"; };
 		4AE95F5123A12C4900A5C172 /* IBHTTPCache.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBHTTPCache.h; sourceTree = "<group>"; };
 		4AE95F5223A12C4900A5C172 /* IBHTTPCache.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBHTTPCache.m; sourceTree = "<group>"; };
+		4AE9665623A1F18200A5C172 /* IBAtomInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBAtomInfo.h; sourceTree = "<group>"; };
+		4AE9665723A1F18200A5C172 /* IBAtomInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBAtomInfo.m; sourceTree = "<group>"; };
 		4AED64BE215378EF0082280F /* IBPopoverView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBPopoverView.h; sourceTree = "<group>"; };
 		4AED64BF215378EF0082280F /* IBPopoverView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBPopoverView.m; sourceTree = "<group>"; };
 		4AEEA7A7213D0EFA00CFAA3D /* IBActionItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBActionItem.h; sourceTree = "<group>"; };
@@ -1222,6 +1225,8 @@
 			children = (
 				4A03B8ED229B102E00173765 /* IBAtomFactory.h */,
 				4A03B8EE229B102E00173765 /* IBAtomFactory.m */,
+				4AE9665623A1F18200A5C172 /* IBAtomInfo.h */,
+				4AE9665723A1F18200A5C172 /* IBAtomInfo.m */,
 				4A1ECD7022B76A4F0070338B /* IBNetworkConfig.h */,
 				4A1ECD7122B76A4F0070338B /* IBNetworkConfig.m */,
 			);
@@ -3431,6 +3436,7 @@
 				F333517B22A2C448005B968E /* MBLibraryCamera.m in Sources */,
 				4A1FB12B20E921E90056A026 /* DALabeledCircularProgressView.m in Sources */,
 				4A1FB22620E92D5E0056A026 /* SDWebImageTransition.m in Sources */,
+				4AE9665823A1F18200A5C172 /* IBAtomInfo.m in Sources */,
 				4AC428EE215A569C008C93D4 /* IBPopoverLabel.m in Sources */,
 				4A89D5FC228B0E260072FB23 /* MBFilterLogger.m in Sources */,
 				4ACC55E720DB5F3E001352AE /* main.m in Sources */,

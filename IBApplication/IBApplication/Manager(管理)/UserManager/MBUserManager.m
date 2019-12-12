@@ -106,9 +106,11 @@
 - (void)refreshAtom
 {
     if (_user) {
-        [[IBAtomFactory sharedInstance] updateUserId:[@(_user.uid) stringValue] sessionId:NSStringNONil(_user.session)];
+        [[IBAtomFactory sharedInstance] updateUserId:[@(_user.uid) stringValue]];
+        [[IBAtomFactory sharedInstance] updateSessionId:_user.session];
     } else {
-        [[IBAtomFactory sharedInstance] updateUserId:@"" sessionId:@""];
+        [[IBAtomFactory sharedInstance] updateUserId:@""];
+        [[IBAtomFactory sharedInstance] updateSessionId:@""];
     }
 }
 

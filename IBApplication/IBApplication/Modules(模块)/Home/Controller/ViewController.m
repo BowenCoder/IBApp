@@ -70,9 +70,6 @@
         make.width.mas_equalTo(200);
     }];
 
-    [IBHTTPManager GET:@"" params:@"" completion:^(IBErrorCode errorCode, IBURLResponse *resp) {
-        
-    }];
 }
 
 - (BOOL)prefersStatusBarHidden

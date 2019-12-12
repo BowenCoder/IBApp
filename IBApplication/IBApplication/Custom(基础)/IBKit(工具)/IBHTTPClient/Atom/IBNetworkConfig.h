@@ -33,6 +33,9 @@ NS_ASSUME_NONNULL_BEGIN
 /** 手机类型 */
 + (NSString *)iPhoneType;
 
+/** 设备名称 */
++ (NSString *)deviceName;
+
 /** 广告商的标志符 */
 + (NSString *)idfa;
 

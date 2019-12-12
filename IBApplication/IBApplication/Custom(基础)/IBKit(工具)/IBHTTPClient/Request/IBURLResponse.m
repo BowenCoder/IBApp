@@ -18,11 +18,11 @@
 
 - (void)parseResponse
 {
-    if (kIsEmptyData(self.data)) {
-        return;
-    }
     self.dict = [IBSerialization unSerializeWithJsonData:self.data error:nil];
     if (kIsEmptyDict(self.dict)) {
+        self.code = IBContentError;
+        self.message = @"服务返回数据错误";
+    } else {
         self.code = [[self.dict objectForKey:@"error_code"] integerValue];
         self.message = [self.dict objectForKey:@"error_msg"];
     }

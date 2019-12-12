@@ -7,34 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <CoreLocation/CoreLocation.h>
+#import "IBAtomInfo.h"
 
 NS_ASSUME_NONNULL_BEGIN
-
-@interface IBAtomInfo : NSObject
-
-#pragma mark - 自动获取
-
-@property (copy, readonly, nonatomic) NSString *idfa;
-@property (copy, readonly, nonatomic) NSString *idfv;
-
-@property (copy, readonly, nonatomic) NSString *proto;
-@property (copy, readonly, nonatomic) NSString *license;
-@property (copy, readonly, nonatomic) NSString *channel;
-@property (copy, readonly, nonatomic) NSString *userAgent;
-@property (copy, readonly, nonatomic) NSString *systemVersion;
-@property (copy, readonly, nonatomic) NSString *clientVersion;
-
-@property (atomic, copy) NSString *networkMode; // 网络类型
-
-#pragma mark - 手动设置
-
-@property (nonatomic, copy) NSString *userId;
-@property (nonatomic, copy) NSString *sessionId;
-@property (nonatomic, assign) CLLocationCoordinate2D coordinate;
-
-@end
-
 
 @interface IBAtomFactory : NSObject
 
@@ -45,13 +20,20 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  更新原子参数
  */
+- (void)updateSmid:(NSString *)smid;
+
+- (void)updateLogId:(NSString *)logId;
+
+- (void)updateUserId:(NSString *)userId;
+
+- (void)updateSessionId:(NSString *)sessionId;
+
 - (void)updateCoordinate:(CLLocationCoordinate2D)coord;
-- (void)updateUserId:(NSString *)userId sessionId:(NSString *)sessionId;
 
 /**
  往url后附加Atom参数
  */
-- (NSString *)appendAtomParams:(NSString *)url;
+- (NSString *)appendAtomInfo:(NSString *)url;
 
 /**
  服务入口地址

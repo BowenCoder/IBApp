@@ -81,8 +81,8 @@
     request.url = url;
     request.params = params;
     request.cacheTime = secs;
-    request.timeoutInterval = interval;
     request.method = IBHTTPGET;
+    request.timeoutInterval = interval ?: request.timeoutInterval;
     [self sendRequest:request completion:completion];
 }
 
@@ -113,8 +113,8 @@
     request.url = url;
     request.params = params;
     request.body = body;
-    request.timeoutInterval = interval;
     request.method = IBHTTPPOST;
+    request.timeoutInterval = interval ?: request.timeoutInterval;
     [self sendRequest:request completion:completion];
 }
 
@@ -124,32 +124,32 @@
     request.url = url;
     request.params = params;
     request.body = body;
-    request.timeoutInterval = interval;
     request.retryTimes = 3.0;
     request.retryInterval = 5.0;
     request.method = IBHTTPPOST;
+    request.timeoutInterval = interval ?: request.timeoutInterval;
     [self sendRequest:request completion:completion];
 }
 
 + (void)sendRequest:(IBURLRequest *)request completion:(IBHTTPCompletion)completion
 {
-    [self cacheForRequest:request completion:completion];
+    [self objectForRequest:request completion:completion];
 
-    __weak typeof(request) weakRequest = request;
+    __weak typeof(request) weakSend = request;
     request.completionHandler = ^(IBURLResponse *response) {
-        __strong typeof(weakRequest) strongRequest = weakRequest;
+        __strong typeof(weakSend) strongSend = weakSend;
         if (response.code != IBSUCCESS) {
-            if (strongRequest.retryTimes > 0) {
-                strongRequest.retryTimes--;
-                CGFloat interval = strongRequest.retryInterval - strongRequest.retryTimes;
+            if (strongSend.retryTimes > 0) {
+                strongSend.retryTimes--;
+                CGFloat interval = strongSend.retryInterval - strongSend.retryTimes;
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(interval * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    [self sendRequest:strongRequest completion:completion];
+                    [self sendRequest:strongSend completion:completion];
                 });
             } else {
                 completion(response.code, response);
             }
         } else {
-            [self cacheObjectForRequest:strongRequest resp:response.dict];
+            [self setObjectForRequest:strongSend resp:response.dict];
             completion(response.code, response);
         }
     };
@@ -177,7 +177,7 @@
     [[IBHTTPManager sharedManager].engine setSecurityPolicyWithCerName:name validatesDomainName:validatesDomainName];
 }
 
-+ (void)cacheForRequest:(IBURLRequest *)request completion:(IBHTTPCompletion)completion
++ (void)objectForRequest:(IBURLRequest *)request completion:(IBHTTPCompletion)completion
 {
     [[IBHTTPManager sharedManager].cache objectForUrl:request.url withBlock:^(id<NSCoding> object) {
         MBLog(@"#网络请求# 命中缓存 url = %@", request.url);
@@ -187,7 +187,7 @@
     } cacheTime:request.cacheTime];
 }
 
-+ (void)cacheObjectForRequest:(IBURLRequest *)request resp:(NSDictionary *)dict
++ (void)setObjectForRequest:(IBURLRequest *)request resp:(NSDictionary *)dict
 {
     [[IBHTTPManager sharedManager].cache setObject:dict forUrl:request.url cacheTime:request.cacheTime];
 }

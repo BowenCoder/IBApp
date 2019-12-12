@@ -25,6 +25,15 @@
 
 @implementation IBHTTPEngine
 
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        [self setup];
+    }
+    return self;
+}
+
 - (void)setup
 {
     self.semaphore = dispatch_semaphore_create(1);

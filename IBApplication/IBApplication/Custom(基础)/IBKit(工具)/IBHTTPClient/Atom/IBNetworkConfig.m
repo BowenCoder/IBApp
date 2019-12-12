@@ -66,6 +66,11 @@
     return [IBApp machineModel];
 }
 
++ (NSString *)deviceName
+{
+    return [UIDevice currentDevice].name;
+}
+
 + (NSString *)idfa
 {
     return [IBApp idfa];

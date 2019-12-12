@@ -12,25 +12,21 @@
 
 typedef NS_ENUM(NSInteger, IBErrorCode) {
     /**
-     *  成功
+     *  超时
      */
-    IBSUCCESS = 0,
+    IBTimeout = -1001,
+    /**
+     *  请求错误
+     */
+    IBRequestError = -4,
     /**
      *  未知错误
      */
     IBOtherError = -1,
     /**
-     *  超时
+     *  成功
      */
-    IBTimeout = -1001,
-    /**
-     *  请求链接错误
-     */
-    IBURLError = -3,
-    /**
-     *  请求错误
-     */
-    IBRequestError = -4,
+    IBSUCCESS = 0,
     /**
      *  请求参数错误
      */
@@ -38,7 +34,7 @@ typedef NS_ENUM(NSInteger, IBErrorCode) {
     /**
      *  服务内部发生错误
      */
-    IBSystemError = 500,
+    IBServiceError = 500,
     /**
      *  权限错误
      */
@@ -48,7 +44,7 @@ typedef NS_ENUM(NSInteger, IBErrorCode) {
      */
     IBSessionError = 604,
     /**
-     *  内容非法：包含敏感词
+     *  内容非法错误
      */
     IBContentError = 982,
 };
