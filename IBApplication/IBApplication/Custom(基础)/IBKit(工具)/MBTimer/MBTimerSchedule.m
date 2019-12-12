@@ -67,6 +67,7 @@
 
 - (void)stopSchedule
 {
+    self.timerCounter = 0;
     [self.timer destroy];
 }
 

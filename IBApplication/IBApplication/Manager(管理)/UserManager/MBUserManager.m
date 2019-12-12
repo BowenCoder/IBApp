@@ -89,7 +89,6 @@
 
 - (void)logout
 {
-    [[IBSecurity sharedInstance] clear];
     [[IBAtomFactory sharedInstance] clear];
     [self clear];
 }

@@ -325,6 +325,8 @@
 		4AE95F5323A12C4A00A5C172 /* IBHTTPCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE95F5223A12C4900A5C172 /* IBHTTPCache.m */; };
 		4AE9665823A1F18200A5C172 /* IBAtomInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE9665723A1F18200A5C172 /* IBAtomInfo.m */; };
 		4AE9665B23A2193A00A5C172 /* MBTimerSchedule.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE9665A23A2193A00A5C172 /* MBTimerSchedule.m */; };
+		4AE9665F23A248A600A5C172 /* IBNetApiKeyInner.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE9665E23A248A600A5C172 /* IBNetApiKeyInner.m */; };
+		4AE9674123A266D700A5C172 /* IBServiceInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE9674023A266D700A5C172 /* IBServiceInfoModel.m */; };
 		4AED64C0215378EF0082280F /* IBPopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AED64BF215378EF0082280F /* IBPopoverView.m */; };
 		4AEEA7A9213D0EFB00CFAA3D /* IBActionItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AEEA7A8213D0EFA00CFAA3D /* IBActionItem.m */; };
 		4AEEA7AC213D148500CFAA3D /* IBActionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AEEA7AB213D148500CFAA3D /* IBActionCell.m */; };
@@ -1001,6 +1003,10 @@
 		4AE9665723A1F18200A5C172 /* IBAtomInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBAtomInfo.m; sourceTree = "<group>"; };
 		4AE9665923A2193A00A5C172 /* MBTimerSchedule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBTimerSchedule.h; sourceTree = "<group>"; };
 		4AE9665A23A2193A00A5C172 /* MBTimerSchedule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBTimerSchedule.m; sourceTree = "<group>"; };
+		4AE9665D23A248A600A5C172 /* IBNetApiKeyInner.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBNetApiKeyInner.h; sourceTree = "<group>"; };
+		4AE9665E23A248A600A5C172 /* IBNetApiKeyInner.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBNetApiKeyInner.m; sourceTree = "<group>"; };
+		4AE9673F23A266D700A5C172 /* IBServiceInfoModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBServiceInfoModel.h; sourceTree = "<group>"; };
+		4AE9674023A266D700A5C172 /* IBServiceInfoModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBServiceInfoModel.m; sourceTree = "<group>"; };
 		4AED64BE215378EF0082280F /* IBPopoverView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBPopoverView.h; sourceTree = "<group>"; };
 		4AED64BF215378EF0082280F /* IBPopoverView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBPopoverView.m; sourceTree = "<group>"; };
 		4AEEA7A7213D0EFA00CFAA3D /* IBActionItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBActionItem.h; sourceTree = "<group>"; };
@@ -1239,8 +1245,6 @@
 		4A1ECD6F22B748C50070338B /* Util */ = {
 			isa = PBXGroup;
 			children = (
-				4AA2863722C92BFB00C34336 /* IBServiceInfo.h */,
-				4AA2863822C92BFB00C34336 /* IBServiceInfo.m */,
 				4AE95F5123A12C4900A5C172 /* IBHTTPCache.h */,
 				4AE95F5223A12C4900A5C172 /* IBHTTPCache.m */,
 				F33F610322D0E5E200D6CADA /* IBSerialization.h */,
@@ -1254,8 +1258,6 @@
 			children = (
 				4AE9553F239FC66E00A5C172 /* IBHTTPManager.h */,
 				4AE95540239FC66E00A5C172 /* IBHTTPManager.m */,
-				4AA2862C22C8E19E00C34336 /* IBUrlManager.h */,
-				4AA2862D22C8E19E00C34336 /* IBUrlManager.m */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -1303,6 +1305,7 @@
 		4A1FB0AB20E8EAF70056A026 /* IBHTTPClient */ = {
 			isa = PBXGroup;
 			children = (
+				4AE9665C23A2483B00A5C172 /* Api */,
 				4A1ECD6E22B748B30070338B /* Atom */,
 				4A0800EB2303BDEC00EF25BE /* Engine */,
 				4AA2862822C8DB9F00C34336 /* Error */,
@@ -1311,6 +1314,7 @@
 				4A1ECD6C22B7443B0070338B /* OldClient */,
 				F33F610622D0F0EF00D6CADA /* Request */,
 				4A1ECD6D22B748970070338B /* Security */,
+				4AE9673E23A2590600A5C172 /* ServiceInfo */,
 				4A1ECD6F22B748C50070338B /* Util */,
 			);
 			path = IBHTTPClient;
@@ -3017,6 +3021,28 @@
 			path = MBPluginManager;
 			sourceTree = "<group>";
 		};
+		4AE9665C23A2483B00A5C172 /* Api */ = {
+			isa = PBXGroup;
+			children = (
+				4AE9665D23A248A600A5C172 /* IBNetApiKeyInner.h */,
+				4AE9665E23A248A600A5C172 /* IBNetApiKeyInner.m */,
+			);
+			path = Api;
+			sourceTree = "<group>";
+		};
+		4AE9673E23A2590600A5C172 /* ServiceInfo */ = {
+			isa = PBXGroup;
+			children = (
+				4AA2863722C92BFB00C34336 /* IBServiceInfo.h */,
+				4AA2863822C92BFB00C34336 /* IBServiceInfo.m */,
+				4AE9673F23A266D700A5C172 /* IBServiceInfoModel.h */,
+				4AE9674023A266D700A5C172 /* IBServiceInfoModel.m */,
+				4AA2862C22C8E19E00C34336 /* IBUrlManager.h */,
+				4AA2862D22C8E19E00C34336 /* IBUrlManager.m */,
+			);
+			path = ServiceInfo;
+			sourceTree = "<group>";
+		};
 		4AEEA7A6213D0D3400CFAA3D /* IBActionSheet */ = {
 			isa = PBXGroup;
 			children = (
@@ -3469,6 +3495,7 @@
 				4A44437E21006150001B2350 /* IBTabBarBadge.m in Sources */,
 				4AC29FD32111CAD700F218FE /* AXBarProgressView.m in Sources */,
 				4AE95541239FC66E00A5C172 /* IBHTTPManager.m in Sources */,
+				4AE9665F23A248A600A5C172 /* IBNetApiKeyInner.m in Sources */,
 				4A1FB13420E921E90056A026 /* MWTapDetectingView.m in Sources */,
 				4AE9665B23A2193A00A5C172 /* MBTimerSchedule.m in Sources */,
 				4A686D2920EB668A00C8328E /* IBLoadingView.m in Sources */,
@@ -3564,6 +3591,7 @@
 				4A6F19BA20E401CC00EAF1A7 /* IBSocketClient.m in Sources */,
 				4ACC56A820DFC7AC001352AE /* UITextField+Ext.m in Sources */,
 				4ACC569220DEC463001352AE /* IBPassword.m in Sources */,
+				4AE9674123A266D700A5C172 /* IBServiceInfoModel.m in Sources */,
 				4A1FB22C20E92D810056A026 /* FLAnimatedImage.m in Sources */,
 				4AC29FBD2111CA7600F218FE /* Aspects.m in Sources */,
 				4AC29FD22111CAD700F218FE /* AXCircleProgressView.m in Sources */,
@@ -3882,7 +3910,7 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
+					"PRODUCT=1",
 					"$(inherited)",
 				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;

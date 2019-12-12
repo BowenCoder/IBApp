@@ -93,16 +93,6 @@
     return url;
 }
 
-- (NSString *)enterUrl
-{
-    return [IBNetworkConfig enterUrl];
-}
-
-- (NSString *)backupEnterUrl
-{
-    return [IBNetworkConfig backupUrl];
-}
-
 - (void)clear
 {
     [self updateUserId:@""];

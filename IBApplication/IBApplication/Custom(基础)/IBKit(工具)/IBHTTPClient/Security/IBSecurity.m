@@ -8,31 +8,31 @@
 
 #import "IBSecurity.h"
 
+@interface IBSecurity ()
+
+@property (nonatomic, strong) NSMutableDictionary *headerDict;
+
+@end
+
 @implementation IBSecurity
 
-+ (instancetype)sharedInstance
-{
-    static IBSecurity *instance;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        instance = [[IBSecurity alloc] init];
-    });
-    return instance;
-}
-
-- (NSDictionary *)securityHeadersWithUri:(NSString *)uri
-{
-    return nil;
-}
-
-- (void)start
+- (void)requestData
 {
     
 }
 
-- (void)clear
+- (NSDictionary *)headerFields
 {
-    
+    return self.headerDict;
+}
+
+#pragma mark - getter
+
+- (NSMutableDictionary *)headerDict {
+    if(!_headerDict){
+        _headerDict = [NSMutableDictionary dictionary];
+    }
+    return _headerDict;
 }
 
 @end

@@ -34,17 +34,6 @@ NS_ASSUME_NONNULL_BEGIN
  往url后附加Atom参数
  */
 - (NSString *)appendAtomInfo:(NSString *)url;
-
-/**
- 服务入口地址
- */
-- (NSString *)enterUrl;
-
-/**
- 服务入口备份
- */
-- (NSString *)backupEnterUrl;
-
 /**
  清除
  */

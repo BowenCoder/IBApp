@@ -15,16 +15,19 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @interface IBUrlManager : NSObject
 
-@property (nonatomic, copy) NSString *md5;
-
 + (instancetype)sharedInstance;
+
+/// 服务数据准备（url, switche）
+- (void)prepare;
 
 /**
  *  更新线上URL配置(变动更新)
  *
  *  @param aConfig aConfig description
+ *
+ *  @return return value description
  */
-- (void)updateUrlConfig:(NSDictionary *)aConfig;
+- (NSDictionary *)updateUrlConfig:(NSDictionary *)aConfig;
 
 /**
  *  获取指定key的URL

@@ -18,7 +18,7 @@
     
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        shareInstance = [[IBHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:IBBaseurl]]; //需要配置
+        shareInstance = [[IBHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:@""]]; //需要配置
         shareInstance.requestSerializer.timeoutInterval = 10;
         shareInstance.requestSerializer = [AFJSONRequestSerializer serializer];
         shareInstance.responseSerializer = [AFJSONResponseSerializer serializer];

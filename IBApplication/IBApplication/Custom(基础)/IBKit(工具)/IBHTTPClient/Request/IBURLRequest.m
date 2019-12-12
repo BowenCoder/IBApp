@@ -8,6 +8,7 @@
 
 #import "IBURLRequest.h"
 #import "IBAtomFactory.h"
+#import "IBNetApiKeyInner.h"
 
 @interface IBURLRequest ()
 
@@ -36,7 +37,7 @@
 
 - (NSString *)baseUrl
 {
-    return @"";
+    return kNETBaseUrl;
 }
 
 - (NSString *)cdnUrl

@@ -9,12 +9,14 @@
 #import "IBHTTPManager.h"
 #import "IBHTTPEngine.h"
 #import "IBHTTPCache.h"
+#import "IBSecurity.h"
 #import "MBLogger.h"
 
 @interface IBHTTPManager ()
 
 @property (nonatomic, strong) IBHTTPEngine *engine;
 @property (nonatomic, strong) IBHTTPCache *cache;
+@property (nonatomic, strong) IBSecurity *security;
 
 @end
 
@@ -43,6 +45,7 @@
 {
     self.engine = [[IBHTTPEngine alloc] init];
     self.cache = [[IBHTTPCache alloc] init];
+    self.security = [[IBSecurity alloc] init];
 }
 
 + (void)GET:(NSString *)url params:(NSDictionary *)params completion:(IBHTTPCompletion)completion
@@ -134,7 +137,7 @@
 + (void)sendRequest:(IBURLRequest *)request completion:(IBHTTPCompletion)completion
 {
     [self objectForRequest:request completion:completion];
-
+    
     __weak typeof(request) weakSend = request;
     request.completionHandler = ^(IBURLResponse *response) {
         __strong typeof(weakSend) strongSend = weakSend;
@@ -154,8 +157,11 @@
         }
     };
     
+    request.headerFields = [[IBHTTPManager sharedManager].security headerFields];
     [[IBHTTPManager sharedManager].engine sendRequest:request];
 }
+
+#pragma mark - 其他操作
 
 + (void)cancelAllOperations
 {
