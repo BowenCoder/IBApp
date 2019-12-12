@@ -68,7 +68,6 @@
 - (void)stopSchedule
 {
     [self.timer destroy];
-    [self.schedules removeAllObjects];
 }
 
 - (void)scheduledExcute
