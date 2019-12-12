@@ -324,6 +324,7 @@
 		4AE95DB223A0F92A00A5C172 /* MBRouterSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE95DB123A0F92A00A5C172 /* MBRouterSerialization.m */; };
 		4AE95F5323A12C4A00A5C172 /* IBHTTPCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE95F5223A12C4900A5C172 /* IBHTTPCache.m */; };
 		4AE9665823A1F18200A5C172 /* IBAtomInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE9665723A1F18200A5C172 /* IBAtomInfo.m */; };
+		4AE9665B23A2193A00A5C172 /* MBTimerSchedule.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE9665A23A2193A00A5C172 /* MBTimerSchedule.m */; };
 		4AED64C0215378EF0082280F /* IBPopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AED64BF215378EF0082280F /* IBPopoverView.m */; };
 		4AEEA7A9213D0EFB00CFAA3D /* IBActionItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AEEA7A8213D0EFA00CFAA3D /* IBActionItem.m */; };
 		4AEEA7AC213D148500CFAA3D /* IBActionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AEEA7AB213D148500CFAA3D /* IBActionCell.m */; };
@@ -998,6 +999,8 @@
 		4AE95F5223A12C4900A5C172 /* IBHTTPCache.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBHTTPCache.m; sourceTree = "<group>"; };
 		4AE9665623A1F18200A5C172 /* IBAtomInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBAtomInfo.h; sourceTree = "<group>"; };
 		4AE9665723A1F18200A5C172 /* IBAtomInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBAtomInfo.m; sourceTree = "<group>"; };
+		4AE9665923A2193A00A5C172 /* MBTimerSchedule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBTimerSchedule.h; sourceTree = "<group>"; };
+		4AE9665A23A2193A00A5C172 /* MBTimerSchedule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBTimerSchedule.m; sourceTree = "<group>"; };
 		4AED64BE215378EF0082280F /* IBPopoverView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBPopoverView.h; sourceTree = "<group>"; };
 		4AED64BF215378EF0082280F /* IBPopoverView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBPopoverView.m; sourceTree = "<group>"; };
 		4AEEA7A7213D0EFA00CFAA3D /* IBActionItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBActionItem.h; sourceTree = "<group>"; };
@@ -3092,6 +3095,8 @@
 			children = (
 				F383B4C52316E03B003E0D4D /* MBTimer.h */,
 				F383B4C62316E03B003E0D4D /* MBTimer.m */,
+				4AE9665923A2193A00A5C172 /* MBTimerSchedule.h */,
+				4AE9665A23A2193A00A5C172 /* MBTimerSchedule.m */,
 			);
 			path = MBTimer;
 			sourceTree = "<group>";
@@ -3465,6 +3470,7 @@
 				4AC29FD32111CAD700F218FE /* AXBarProgressView.m in Sources */,
 				4AE95541239FC66E00A5C172 /* IBHTTPManager.m in Sources */,
 				4A1FB13420E921E90056A026 /* MWTapDetectingView.m in Sources */,
+				4AE9665B23A2193A00A5C172 /* MBTimerSchedule.m in Sources */,
 				4A686D2920EB668A00C8328E /* IBLoadingView.m in Sources */,
 				4A06E17E2133197200227583 /* IBShareManager.m in Sources */,
 				4A1FB12C20E921E90056A026 /* DACircularProgressView.m in Sources */,

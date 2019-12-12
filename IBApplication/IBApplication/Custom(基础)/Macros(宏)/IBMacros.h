@@ -102,10 +102,10 @@ if ([NSThread isMainThread]) { \
 //日志打印
 #ifdef DEBUG
     #define executeInDebug(block) block()
-    #define NSLog(...) NSLog(__VA_ARGS__);
+    #define NSLog(...) NSLog(__VA_ARGS__)
 #else
     #define executeInDebug(block)
-    #define NSLog(...);
+    #define NSLog(...)
 #endif
 
 //循环引用

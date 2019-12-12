@@ -11,6 +11,7 @@
 @interface MBTimer ()
 
 @property (nonatomic, strong) dispatch_source_t dispatchSource;
+@property (nonatomic, assign) BOOL isResuming;
 
 @end
 
@@ -22,6 +23,7 @@
 
 - (instancetype)init {
     if (self = [super init]) {
+        self.isResuming = NO;
         self.dispatchSource = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0));
     }
     return self;
@@ -73,10 +75,18 @@
 }
 
 - (void)start {
+    if (self.isResuming) {
+        return;
+    }
+    self.isResuming = YES;
     dispatch_resume(self.dispatchSource);
 }
 
 - (void)destroy {
+    if (!self.isResuming) {
+        return;
+    }
+    self.isResuming = NO;
     dispatch_source_cancel(self.dispatchSource);
 }
 

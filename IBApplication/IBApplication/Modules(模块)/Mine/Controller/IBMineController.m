@@ -10,15 +10,20 @@
 //#import "UINavigationController+FDFullscreenPopGesture.h"
 #import "IBNaviController.h"
 #import "IBPopoverView.h"
+#import "MBTimerSchedule.h"
 
-
-@interface IBMineController ()<UINavigationControllerDelegate>
+@interface IBMineController ()<UINavigationControllerDelegate, MBTimerScheduleProtocol>
 
 @property (nonatomic, strong) UIButton *btn;
+@property (nonatomic, strong) MBTimerSchedule *schedule;
 
 @end
 
 @implementation IBMineController
+
+- (void)dealloc
+{
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -39,6 +44,14 @@
     [btn addTarget:self action:@selector(test) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:btn];
     self.btn = btn;
+    
+    self.schedule = [[MBTimerSchedule alloc] init];
+    [self.schedule registerSchedule:self];
+}
+
+- (void)scheduledTrigged:(NSUInteger)timerCounter
+{
+    NSLog(@"bowen scheduledTrigged %ld", timerCounter);
 }
 
 - (void)test {
