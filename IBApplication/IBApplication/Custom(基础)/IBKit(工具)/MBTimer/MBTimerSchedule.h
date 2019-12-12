@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol MBTimerScheduleProtocol <NSObject>
 
-/// 500ms调度一次
+/// 1s调度一次
 /// @param timerCounter 计数器
 - (void)scheduledTrigged:(NSUInteger)timerCounter;
 
