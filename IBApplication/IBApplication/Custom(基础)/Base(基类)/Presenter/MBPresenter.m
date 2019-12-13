@@ -14,7 +14,7 @@
 
 @implementation MBPresenter
 
-+ (instancetype)setup:(id<MBPresenterControllerProtocol>)controller
++ (instancetype)setup:(id<MBPresenterProtocol>)controller
 {
     MBPresenter *present = [[self alloc] init];
     present.controller = controller;

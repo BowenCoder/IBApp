@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 /// 控制器应该遵循的协议
-@protocol MBPresenterControllerProtocol <NSObject>
+@protocol MBPresenterProtocol <NSObject>
 
 @end
 
@@ -31,7 +31,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 构造函数
 /// @param controller 控制器
-+ (instancetype)setup:(id<MBPresenterControllerProtocol>)controller;
++ (instancetype)setup:(id<MBPresenterProtocol>)controller;
 
 /// 绑定视图
 /// @param view 要绑定的视图
