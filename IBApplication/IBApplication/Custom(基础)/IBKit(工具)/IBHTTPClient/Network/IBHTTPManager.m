@@ -7,14 +7,14 @@
 //
 
 #import "IBHTTPManager.h"
-#import "IBHTTPEngine.h"
+#import "IBNetworkEngine.h"
 #import "IBHTTPCache.h"
 #import "IBSecurity.h"
 #import "MBLogger.h"
 
 @interface IBHTTPManager ()
 
-@property (nonatomic, strong) IBHTTPEngine *engine;
+@property (nonatomic, strong) IBNetworkEngine *engine;
 @property (nonatomic, strong) IBHTTPCache *cache;
 @property (nonatomic, strong) IBSecurity *security;
 
@@ -43,7 +43,7 @@
 
 - (void)setupData
 {
-    self.engine = [IBHTTPEngine defaultEngine];
+    self.engine = [IBNetworkEngine defaultEngine];
     self.cache = [[IBHTTPCache alloc] init];
     self.security = [[IBSecurity alloc] init];
 }

@@ -22,7 +22,7 @@
 		4A06E17A2130049A00227583 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A06E1792130049A00227583 /* libsqlite3.tbd */; };
 		4A06E17E2133197200227583 /* IBShareManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A06E17D2133197100227583 /* IBShareManager.m */; };
 		4A0800E82302B82000EF25BE /* MBButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A0800E72302B82000EF25BE /* MBButton.m */; };
-		4A0800EE2303BE8F00EF25BE /* IBHTTPEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A0800ED2303BE8F00EF25BE /* IBHTTPEngine.m */; };
+		4A0800EE2303BE8F00EF25BE /* IBNetworkEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A0800ED2303BE8F00EF25BE /* IBNetworkEngine.m */; };
 		4A0800F1230414AC00EF25BE /* IBURLRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A0800F0230414AB00EF25BE /* IBURLRequest.m */; };
 		4A0800F423041C0C00EF25BE /* IBURLResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A0800F323041C0C00EF25BE /* IBURLResponse.m */; };
 		4A1ECD7222B76A4F0070338B /* IBNetworkConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A1ECD7122B76A4F0070338B /* IBNetworkConfig.m */; };
@@ -36,7 +36,6 @@
 		4A1FB0BE20E8EE6B0056A026 /* AFURLRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A1FB0B520E8EE6B0056A026 /* AFURLRequestSerialization.m */; };
 		4A1FB0BF20E8EE6B0056A026 /* AFNetworkReachabilityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A1FB0B720E8EE6B0056A026 /* AFNetworkReachabilityManager.m */; };
 		4A1FB0C020E8EE6B0056A026 /* AFSecurityPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A1FB0B820E8EE6B0056A026 /* AFSecurityPolicy.m */; };
-		4A1FB0E120E8F0D80056A026 /* IBHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A1FB0E020E8F0D80056A026 /* IBHTTPClient.m */; };
 		4A1FB12B20E921E90056A026 /* DALabeledCircularProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A1FB0EE20E921E90056A026 /* DALabeledCircularProgressView.m */; };
 		4A1FB12C20E921E90056A026 /* DACircularProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A1FB0EF20E921E90056A026 /* DACircularProgressView.m */; };
 		4A1FB12D20E921E90056A026 /* MWPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A1FB0F520E921E90056A026 /* MWPhotoBrowser.m */; };
@@ -326,6 +325,8 @@
 		4AE9665B23A2193A00A5C172 /* MBTimerSchedule.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE9665A23A2193A00A5C172 /* MBTimerSchedule.m */; };
 		4AE9665F23A248A600A5C172 /* IBNetApiKeyInner.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE9665E23A248A600A5C172 /* IBNetApiKeyInner.m */; };
 		4AE9674123A266D700A5C172 /* IBServiceInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE9674023A266D700A5C172 /* IBServiceInfoModel.m */; };
+		4AE9674423A3A3DA00A5C172 /* IBUploader.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE9674323A3A3DA00A5C172 /* IBUploader.m */; };
+		4AE9674723A3A3F100A5C172 /* IBDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE9674623A3A3F100A5C172 /* IBDownloader.m */; };
 		4AED64C0215378EF0082280F /* IBPopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AED64BF215378EF0082280F /* IBPopoverView.m */; };
 		4AEEA7A9213D0EFB00CFAA3D /* IBActionItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AEEA7A8213D0EFA00CFAA3D /* IBActionItem.m */; };
 		4AEEA7AC213D148500CFAA3D /* IBActionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AEEA7AB213D148500CFAA3D /* IBActionCell.m */; };
@@ -396,8 +397,8 @@
 		4A06E17D2133197100227583 /* IBShareManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBShareManager.m; sourceTree = "<group>"; };
 		4A0800E62302B82000EF25BE /* MBButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBButton.h; sourceTree = "<group>"; };
 		4A0800E72302B82000EF25BE /* MBButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBButton.m; sourceTree = "<group>"; };
-		4A0800EC2303BE8F00EF25BE /* IBHTTPEngine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBHTTPEngine.h; sourceTree = "<group>"; };
-		4A0800ED2303BE8F00EF25BE /* IBHTTPEngine.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBHTTPEngine.m; sourceTree = "<group>"; };
+		4A0800EC2303BE8F00EF25BE /* IBNetworkEngine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBNetworkEngine.h; sourceTree = "<group>"; };
+		4A0800ED2303BE8F00EF25BE /* IBNetworkEngine.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBNetworkEngine.m; sourceTree = "<group>"; };
 		4A0800EF230414AB00EF25BE /* IBURLRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBURLRequest.h; sourceTree = "<group>"; };
 		4A0800F0230414AB00EF25BE /* IBURLRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBURLRequest.m; sourceTree = "<group>"; };
 		4A0800F223041C0C00EF25BE /* IBURLResponse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBURLResponse.h; sourceTree = "<group>"; };
@@ -426,8 +427,6 @@
 		4A1FB0B820E8EE6B0056A026 /* AFSecurityPolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFSecurityPolicy.m; sourceTree = "<group>"; };
 		4A1FB0B920E8EE6B0056A026 /* AFCompatibilityMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFCompatibilityMacros.h; sourceTree = "<group>"; };
 		4A1FB0BA20E8EE6B0056A026 /* AFHTTPSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPSessionManager.h; sourceTree = "<group>"; };
-		4A1FB0DF20E8F0D80056A026 /* IBHTTPClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBHTTPClient.h; sourceTree = "<group>"; };
-		4A1FB0E020E8F0D80056A026 /* IBHTTPClient.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBHTTPClient.m; sourceTree = "<group>"; };
 		4A1FB0EC20E921E90056A026 /* MWTapDetectingImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWTapDetectingImageView.h; sourceTree = "<group>"; };
 		4A1FB0EE20E921E90056A026 /* DALabeledCircularProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DALabeledCircularProgressView.m; sourceTree = "<group>"; };
 		4A1FB0EF20E921E90056A026 /* DACircularProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DACircularProgressView.m; sourceTree = "<group>"; };
@@ -1004,6 +1003,10 @@
 		4AE9665E23A248A600A5C172 /* IBNetApiKeyInner.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBNetApiKeyInner.m; sourceTree = "<group>"; };
 		4AE9673F23A266D700A5C172 /* IBServiceInfoModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBServiceInfoModel.h; sourceTree = "<group>"; };
 		4AE9674023A266D700A5C172 /* IBServiceInfoModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBServiceInfoModel.m; sourceTree = "<group>"; };
+		4AE9674223A3A3DA00A5C172 /* IBUploader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBUploader.h; sourceTree = "<group>"; };
+		4AE9674323A3A3DA00A5C172 /* IBUploader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBUploader.m; sourceTree = "<group>"; };
+		4AE9674523A3A3F100A5C172 /* IBDownloader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBDownloader.h; sourceTree = "<group>"; };
+		4AE9674623A3A3F100A5C172 /* IBDownloader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBDownloader.m; sourceTree = "<group>"; };
 		4AED64BE215378EF0082280F /* IBPopoverView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBPopoverView.h; sourceTree = "<group>"; };
 		4AED64BF215378EF0082280F /* IBPopoverView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBPopoverView.m; sourceTree = "<group>"; };
 		4AEEA7A7213D0EFA00CFAA3D /* IBActionItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBActionItem.h; sourceTree = "<group>"; };
@@ -1202,19 +1205,10 @@
 		4A0800EB2303BDEC00EF25BE /* Engine */ = {
 			isa = PBXGroup;
 			children = (
-				4A0800EC2303BE8F00EF25BE /* IBHTTPEngine.h */,
-				4A0800ED2303BE8F00EF25BE /* IBHTTPEngine.m */,
+				4A0800EC2303BE8F00EF25BE /* IBNetworkEngine.h */,
+				4A0800ED2303BE8F00EF25BE /* IBNetworkEngine.m */,
 			);
 			path = Engine;
-			sourceTree = "<group>";
-		};
-		4A1ECD6C22B7443B0070338B /* OldClient */ = {
-			isa = PBXGroup;
-			children = (
-				4A1FB0DF20E8F0D80056A026 /* IBHTTPClient.h */,
-				4A1FB0E020E8F0D80056A026 /* IBHTTPClient.m */,
-			);
-			path = OldClient;
 			sourceTree = "<group>";
 		};
 		4A1ECD6D22B748970070338B /* Security */ = {
@@ -1250,13 +1244,17 @@
 			path = Util;
 			sourceTree = "<group>";
 		};
-		4A1ECD7522B7B90F0070338B /* Manager */ = {
+		4A1ECD7522B7B90F0070338B /* Network */ = {
 			isa = PBXGroup;
 			children = (
 				4AE9553F239FC66E00A5C172 /* IBHTTPManager.h */,
 				4AE95540239FC66E00A5C172 /* IBHTTPManager.m */,
+				4AE9674223A3A3DA00A5C172 /* IBUploader.h */,
+				4AE9674323A3A3DA00A5C172 /* IBUploader.m */,
+				4AE9674523A3A3F100A5C172 /* IBDownloader.h */,
+				4AE9674623A3A3F100A5C172 /* IBDownloader.m */,
 			);
-			path = Manager;
+			path = Network;
 			sourceTree = "<group>";
 		};
 		4A1FB09320E7B2F40056A026 /* IBAnimation */ = {
@@ -1306,9 +1304,8 @@
 				4A1ECD6E22B748B30070338B /* Atom */,
 				4A0800EB2303BDEC00EF25BE /* Engine */,
 				4AA2862822C8DB9F00C34336 /* Error */,
-				4A1ECD7522B7B90F0070338B /* Manager */,
+				4A1ECD7522B7B90F0070338B /* Network */,
 				4A6F19B120E3FB9E00EAF1A7 /* NetworkStatus */,
-				4A1ECD6C22B7443B0070338B /* OldClient */,
 				F33F610622D0F0EF00D6CADA /* Request */,
 				4A1ECD6D22B748970070338B /* Security */,
 				4AE9673E23A2590600A5C172 /* ServiceInfo */,
@@ -3405,6 +3402,7 @@
 				4AD770B42297CD1300FEB76B /* YYTextRubyAnnotation.m in Sources */,
 				F367404E212C54B000E614A0 /* IBPopupControllerTransitioningSlideVertical.m in Sources */,
 				4A89D62B228B17490072FB23 /* unzip.m in Sources */,
+				4AE9674723A3A3F100A5C172 /* IBDownloader.m in Sources */,
 				4A35EAB122891D2B00FADE23 /* UITableView+Extension.m in Sources */,
 				4AD770BA2297CD1300FEB76B /* UIView+YYText.m in Sources */,
 				4AE95DB223A0F92A00A5C172 /* MBRouterSerialization.m in Sources */,
@@ -3435,7 +3433,6 @@
 				F3FCB42A22A2F9F600C4870B /* RSKInternalUtility.m in Sources */,
 				4A6F197620E26B3800EAF1A7 /* IBCrypto.m in Sources */,
 				4A78076920E9F1BB00E60ACA /* MASConstraint.m in Sources */,
-				4A1FB0E120E8F0D80056A026 /* IBHTTPClient.m in Sources */,
 				4AC29FB42111C90B00F218FE /* NJKWebViewProgress.m in Sources */,
 				F3674052212C54B000E614A0 /* IBPopupControllerTransitioningFade.m in Sources */,
 				4A22DE20228AF3B500D4CFA6 /* DDASLLogCapture.m in Sources */,
@@ -3546,7 +3543,7 @@
 				4AD770AD2297CD1300FEB76B /* YYTextKeyboardManager.m in Sources */,
 				4A03B8E3229AFC3700173765 /* MBUserManager.m in Sources */,
 				4A06E178213002A900227583 /* IBSocialHandle.m in Sources */,
-				4A0800EE2303BE8F00EF25BE /* IBHTTPEngine.m in Sources */,
+				4A0800EE2303BE8F00EF25BE /* IBNetworkEngine.m in Sources */,
 				4AAA78FE20EE097300CF5639 /* IBScrollController.m in Sources */,
 				4A1FB09A20E89FD10056A026 /* IBModelController.m in Sources */,
 				4A6F19AD20E3F40C00EAF1A7 /* GCDAsyncSocket.m in Sources */,
@@ -3613,6 +3610,7 @@
 				4AE8D63B23025D1700A73011 /* MBPluginCenter.m in Sources */,
 				4AC29F84210F04A900F218FE /* MJRefreshAutoGifFooter.m in Sources */,
 				4A1FB13220E921E90056A026 /* MWPhoto.m in Sources */,
+				4AE9674423A3A3DA00A5C172 /* IBUploader.m in Sources */,
 				4AD770B62297CD1300FEB76B /* NSParagraphStyle+YYText.m in Sources */,
 				4AAA78F220ECBCB200CF5639 /* IBFPSLabel.m in Sources */,
 				4ABF2FCA22FEF42A00645809 /* MBDeliveryView.m in Sources */,
