@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "IBMacros.h"
-#import "IBError.h"
+#import "IBErrorCode.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

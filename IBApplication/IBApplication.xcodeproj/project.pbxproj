@@ -196,11 +196,10 @@
 		4A95F6E8222E4B7500EE07B9 /* ONOXMLDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A95F6E6222E4B7500EE07B9 /* ONOXMLDocument.m */; };
 		4A95F6ED222E509300EE07B9 /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A95F6E9222E4F5800EE07B9 /* libxml2.tbd */; };
 		4A95F6F0222E5A9500EE07B9 /* NullSafe.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A95F6EF222E5A9500EE07B9 /* NullSafe.m */; };
-		4AA2862B22C8DDD600C34336 /* IBError.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA2862A22C8DDD500C34336 /* IBError.m */; };
 		4AA2862E22C8E19E00C34336 /* IBUrlManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA2862D22C8E19E00C34336 /* IBUrlManager.m */; };
 		4AA2863222C9230700C34336 /* MBGestureView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA2863122C9230700C34336 /* MBGestureView.m */; };
 		4AA2863622C92A5000C34336 /* SDiOSVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA2863522C92A5000C34336 /* SDiOSVersion.m */; };
-		4AA2863922C92BFB00C34336 /* IBServiceInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA2863822C92BFB00C34336 /* IBServiceInfo.m */; };
+		4AA2863922C92BFB00C34336 /* IBServiceInfoHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA2863822C92BFB00C34336 /* IBServiceInfoHandler.m */; };
 		4AAA27C02107379100B0C256 /* IBNaviBar+Config.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AAA27BF2107379100B0C256 /* IBNaviBar+Config.m */; };
 		4AAA78EB20ECB4F200CF5639 /* IBDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AAA78EA20ECB4F200CF5639 /* IBDebug.m */; };
 		4AAA78F220ECBCB200CF5639 /* IBFPSLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AAA78F120ECBCB200CF5639 /* IBFPSLabel.m */; };
@@ -743,16 +742,14 @@
 		4A95F6E6222E4B7500EE07B9 /* ONOXMLDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ONOXMLDocument.m; sourceTree = "<group>"; };
 		4A95F6E9222E4F5800EE07B9 /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = usr/lib/libxml2.tbd; sourceTree = SDKROOT; };
 		4A95F6EF222E5A9500EE07B9 /* NullSafe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NullSafe.m; sourceTree = "<group>"; };
-		4AA2862922C8DDD500C34336 /* IBError.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBError.h; sourceTree = "<group>"; };
-		4AA2862A22C8DDD500C34336 /* IBError.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBError.m; sourceTree = "<group>"; };
 		4AA2862C22C8E19E00C34336 /* IBUrlManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBUrlManager.h; sourceTree = "<group>"; };
 		4AA2862D22C8E19E00C34336 /* IBUrlManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBUrlManager.m; sourceTree = "<group>"; };
 		4AA2863022C9230700C34336 /* MBGestureView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBGestureView.h; sourceTree = "<group>"; };
 		4AA2863122C9230700C34336 /* MBGestureView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBGestureView.m; sourceTree = "<group>"; };
 		4AA2863422C92A5000C34336 /* SDiOSVersion.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SDiOSVersion.h; sourceTree = "<group>"; };
 		4AA2863522C92A5000C34336 /* SDiOSVersion.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SDiOSVersion.m; sourceTree = "<group>"; };
-		4AA2863722C92BFB00C34336 /* IBServiceInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBServiceInfo.h; sourceTree = "<group>"; };
-		4AA2863822C92BFB00C34336 /* IBServiceInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBServiceInfo.m; sourceTree = "<group>"; };
+		4AA2863722C92BFB00C34336 /* IBServiceInfoHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBServiceInfoHandler.h; sourceTree = "<group>"; };
+		4AA2863822C92BFB00C34336 /* IBServiceInfoHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBServiceInfoHandler.m; sourceTree = "<group>"; };
 		4AAA27BE2107379100B0C256 /* IBNaviBar+Config.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "IBNaviBar+Config.h"; sourceTree = "<group>"; };
 		4AAA27BF2107379100B0C256 /* IBNaviBar+Config.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "IBNaviBar+Config.m"; sourceTree = "<group>"; };
 		4AAA78E920ECB4F200CF5639 /* IBDebug.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBDebug.h; sourceTree = "<group>"; };
@@ -2002,8 +1999,6 @@
 		4AA2862822C8DB9F00C34336 /* Error */ = {
 			isa = PBXGroup;
 			children = (
-				4AA2862922C8DDD500C34336 /* IBError.h */,
-				4AA2862A22C8DDD500C34336 /* IBError.m */,
 				4AC455C52137C9B0007CBEF0 /* IBErrorCode.h */,
 			);
 			path = Error;
@@ -3033,8 +3028,8 @@
 		4AE9673E23A2590600A5C172 /* ServiceInfo */ = {
 			isa = PBXGroup;
 			children = (
-				4AA2863722C92BFB00C34336 /* IBServiceInfo.h */,
-				4AA2863822C92BFB00C34336 /* IBServiceInfo.m */,
+				4AA2863722C92BFB00C34336 /* IBServiceInfoHandler.h */,
+				4AA2863822C92BFB00C34336 /* IBServiceInfoHandler.m */,
 				4AE9673F23A266D700A5C172 /* IBServiceInfoModel.h */,
 				4AE9674023A266D700A5C172 /* IBServiceInfoModel.m */,
 				4AA2862C22C8E19E00C34336 /* IBUrlManager.h */,
@@ -3524,7 +3519,6 @@
 				4A78076420E9F1BB00E60ACA /* MASCompositeConstraint.m in Sources */,
 				4A1FB21A20E92D5E0056A026 /* SDWebImageCodersManager.m in Sources */,
 				4A03B8E9229B091100173765 /* MBPhoneNumber.m in Sources */,
-				4AA2862B22C8DDD600C34336 /* IBError.m in Sources */,
 				4AD688F52301159E00D3A248 /* MBStorage.m in Sources */,
 				4AC29FAB2111C77D00F218FE /* AXWebViewControllerActivity.m in Sources */,
 				4AE64C49212ACFF7003DE328 /* IBCheckbox.m in Sources */,
@@ -3532,7 +3526,7 @@
 				4AC29F7A210F04A900F218FE /* UIScrollView+MJRefresh.m in Sources */,
 				4A1FB22F20E931350056A026 /* MBProgressHUD+Ext.m in Sources */,
 				4A06E172212FE42A00227583 /* IBSocialManager.m in Sources */,
-				4AA2863922C92BFB00C34336 /* IBServiceInfo.m in Sources */,
+				4AA2863922C92BFB00C34336 /* IBServiceInfoHandler.m in Sources */,
 				4A1FB22B20E92D810056A026 /* FLAnimatedImageView.m in Sources */,
 				4A22DE24228AF3B500D4CFA6 /* DDFileLogger+Buffering.m in Sources */,
 				4A03B8DF229AEFE400173765 /* MBLaunchSetup.m in Sources */,

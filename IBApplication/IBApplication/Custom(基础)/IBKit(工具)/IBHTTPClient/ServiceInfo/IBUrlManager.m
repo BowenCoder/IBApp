@@ -12,7 +12,7 @@
 #import "IBNetApiKeyInner.h"
 #import "IBServiceInfoModel.h"
 #import "MBLogger.h"
-#import "IBServiceInfo.h"
+#import "IBServiceInfoHandler.h"
 
 @interface IBUrlManager ()
 
@@ -20,7 +20,7 @@
 
 @property (nonatomic, strong) IBServiceInfoModel *model;
 
-@property (nonatomic, strong) IBServiceInfo *serviceInfo;
+@property (nonatomic, strong) IBServiceInfoHandler *serviceInfo;
 
 @end
 
@@ -148,9 +148,9 @@
     return _model;
 }
 
-- (IBServiceInfo *)serviceInfo {
+- (IBServiceInfoHandler *)serviceInfo {
     if(!_serviceInfo){
-        _serviceInfo = [[IBServiceInfo alloc] init];
+        _serviceInfo = [[IBServiceInfoHandler alloc] init];
     }
     return _serviceInfo;
 }

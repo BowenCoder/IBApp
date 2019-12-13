@@ -7,7 +7,7 @@
 //
 
 #import "IBNetworkConfig.h"
-#import "IBServiceInfo.h"
+#import "IBServiceInfoHandler.h"
 #import "IBApp.h"
 
 @implementation IBNetworkConfig

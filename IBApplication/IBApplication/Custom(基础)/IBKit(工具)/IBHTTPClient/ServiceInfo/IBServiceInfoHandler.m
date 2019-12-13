@@ -1,12 +1,12 @@
 //
-//  IBServiceInfo.m
+//  IBServiceInfoHandler.m
 //  IBApplication
 //
 //  Created by Bowen on 2019/7/1.
 //  Copyright © 2019 BowenCoder. All rights reserved.
 //
 
-#import "IBServiceInfo.h"
+#import "IBServiceInfoHandler.h"
 #import "IBHTTPManager.h"
 #import "IBUrlManager.h"
 #import "IBNetworkConfig.h"
@@ -14,7 +14,7 @@
 #import "IBFile.h"
 #import "MBLogger.h"
 
-@interface IBServiceInfo ()
+@interface IBServiceInfoHandler ()
 
 @property (nonatomic, copy) NSString *enterUrl;
 @property (nonatomic, copy) NSString *filePath;
@@ -22,7 +22,7 @@
 
 @end
 
-@implementation IBServiceInfo
+@implementation IBServiceInfoHandler
 
 - (instancetype)init
 {

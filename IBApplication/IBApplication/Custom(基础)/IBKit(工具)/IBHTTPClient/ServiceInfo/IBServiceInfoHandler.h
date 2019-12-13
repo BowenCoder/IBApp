@@ -1,5 +1,5 @@
 //
-//  IBServiceInfo.h
+//  IBServiceInfoHandler.h
 //  IBApplication
 //
 //  Created by Bowen on 2019/7/1.
@@ -16,7 +16,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface IBServiceInfo : NSObject
+@interface IBServiceInfoHandler : NSObject
 
 - (void)loadServiceInfo;
 
