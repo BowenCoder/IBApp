@@ -43,7 +43,7 @@
 
 - (void)setupData
 {
-    self.engine = [[IBHTTPEngine alloc] init];
+    self.engine = [IBHTTPEngine defaultEngine];
     self.cache = [[IBHTTPCache alloc] init];
     self.security = [[IBSecurity alloc] init];
 }
@@ -158,10 +158,15 @@
     };
     
     request.headerFields = [[IBHTTPManager sharedManager].security headerFields];
-    [[IBHTTPManager sharedManager].engine sendRequest:request];
+    [[IBHTTPManager sharedManager].engine sendHTTPRequest:request];
 }
 
 #pragma mark - 其他操作
+
++ (void)cancelRequestWithUrl:(NSString *)url
+{
+    [[IBHTTPManager sharedManager].engine cancelRequestWithUrl:url];
+}
 
 + (void)cancelAllOperations
 {

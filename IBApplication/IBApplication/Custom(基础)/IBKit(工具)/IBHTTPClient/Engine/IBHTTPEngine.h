@@ -14,19 +14,23 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface IBHTTPEngine : NSObject
 
+- (instancetype)init NS_UNAVAILABLE;
+
++ (instancetype)defaultEngine;
+
 /**
- 发送网络请求
+ 发送HTTP网络请求
 
  @param request 请求
  */
-- (void)sendRequest:(IBURLRequest *)request;
+- (void)sendHTTPRequest:(IBURLRequest *)request;
 
 /**
  取消网络请求
 
- @param request 请求
+ @param url 链接
  */
-- (void)cancelRequest:(IBURLRequest *)request;
+- (void)cancelRequestWithUrl:(NSString *)url;
 
 /**
  取消所有网络请求

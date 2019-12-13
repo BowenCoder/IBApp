@@ -110,6 +110,13 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark - 其他操作
 
 /**
+ 取消网络请求
+
+ @param url 链接
+ */
++ (void)cancelRequestWithUrl:(NSString *)url;
+
+/**
  取消请求
  */
 + (void)cancelAllOperations;

@@ -25,6 +25,16 @@
 
 @implementation IBHTTPEngine
 
++ (instancetype)defaultEngine
+{
+    static IBHTTPEngine *engine;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        engine = [[self alloc] init];
+    });
+    return engine;
+}
+
 - (instancetype)init
 {
     self = [super init];
@@ -42,7 +52,7 @@
     self.manager.responseSerializer = [AFHTTPResponseSerializer serializer];
 }
 
-- (void)sendRequest:(IBURLRequest *)request
+- (void)sendHTTPRequest:(IBURLRequest *)request
 {
     NSString *requestKey = [IBEncode md5WithString:request.url];
     BOOL isError = [self tolerateRequest:request key:requestKey];
@@ -79,13 +89,12 @@
     [dataTask resume];
 }
 
-- (void)cancelRequest:(IBURLRequest *)request
+- (void)cancelRequestWithUrl:(NSString *)url
 {
-    NSString *requestKey = [IBEncode md5WithString:request.url];
+    NSString *requestKey = [IBEncode md5WithString:url];
     NSURLSessionDataTask *dataTask = [self sessionTaskForKey:requestKey];
     [dataTask cancel];
     [self removeSessionTaskForKey:requestKey];
-    [request clearHandler];
 }
 
 - (void)cancelAllOperations

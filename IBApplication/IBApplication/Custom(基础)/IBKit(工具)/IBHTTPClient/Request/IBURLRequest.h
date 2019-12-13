@@ -45,8 +45,7 @@ typedef void (^IBHTTPCompletion)(IBErrorCode errorCode, IBURLResponse *response)
 
 @property (nonatomic, assign) CGFloat retryInterval;
 
-/// 格式@[@"Username", @"Password"]
-@property (nonatomic, strong) NSArray *authHeaderFields;
+@property (nonatomic, strong) NSArray *authHeaderFields; // 格式@[@"Username", @"Password"]
 
 @property (nonatomic, strong) NSDictionary *headerFields;
 
