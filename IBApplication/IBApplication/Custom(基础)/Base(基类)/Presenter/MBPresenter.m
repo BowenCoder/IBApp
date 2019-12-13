@@ -32,4 +32,9 @@
     self.attachView = nil;
 }
 
+- (void)requestData
+{
+    
+}
+
 @end

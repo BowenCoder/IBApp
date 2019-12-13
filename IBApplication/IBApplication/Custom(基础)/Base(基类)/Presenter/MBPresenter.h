@@ -40,6 +40,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// 解除绑定
 - (void)detachView;
 
+/// 请求数据
+- (void)requestData;
+
 @end
 
 NS_ASSUME_NONNULL_END
