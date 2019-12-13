@@ -49,6 +49,7 @@
     self.semaphore = dispatch_semaphore_create(1);
     self.sessionTasks = [NSMutableDictionary dictionary];
     self.manager = [AFHTTPSessionManager manager];
+    self.manager.operationQueue.maxConcurrentOperationCount = 2;
     self.manager.responseSerializer = [AFHTTPResponseSerializer serializer];
 }
 
@@ -97,9 +98,19 @@
     [self removeSessionTaskForKey:requestKey];
 }
 
-- (void)cancelAllOperations
+- (void)cancelAllTasks
 {
-    [self.manager.operationQueue cancelAllOperations];
+    [self.manager.tasks makeObjectsPerformSelector:@selector(cancel)];
+}
+
+- (void)cancelAllUploadTasks
+{
+    [self.manager.uploadTasks makeObjectsPerformSelector:@selector(cancel)];
+}
+
+- (void)cancelAllDownloadTasks
+{
+    [self.manager.downloadTasks makeObjectsPerformSelector:@selector(cancel)];
 }
 
 - (void)openNetworkActivityIndicator:(BOOL)open
@@ -186,32 +197,38 @@
 - (BOOL)tolerateRequest:(IBURLRequest *)request key:(NSString *)requestKey
 {
     BOOL result = NO;
-    NSString *errmsg;
+    NSString *message;
+    IBURLErrorCode code = IBURLErrorUnknown;
+    
     NSURLSessionDataTask *oldTask = [self sessionTaskForKey:requestKey];
     
     if (oldTask) {
         result = YES;
-        errmsg = @"重复请求";
+        code = IBURLErrorDouble;
+        message = @"重复请求";
     }
     
     if (kIsEmptyString(request.url)) {
         result = YES;
-        errmsg = @"请求url为空";
+        code = IBURLErrorAddress;
+        message = @"请求地址为空";
     }
     
     if (request.method == IBHTTPNone) {
         result = YES;
-        errmsg = @"请求method为none";
+        code = IBURLErrorMethod;
+        message = @"请求方法为空";
     }
     
     if ([IBNetworkStatus shareInstance].currentNetworkStatus == IBNetworkStatusNotReachable) {
         result = YES;
-        errmsg = @"网络不可用";
+        code = IBURLErrorBadNet;
+        message = @"网络不可用";
     }
     
     if (result) {
-        MBLogE(@"#网络请求# 请求失败 %@", errmsg);
-        NSError *error = [NSError errorWithDomain:errmsg code:IBRequestError userInfo:nil];
+        MBLogE(@"#网络请求# 请求失败 %@", message);
+        NSError *error = [NSError errorWithDomain:message code:code userInfo:nil];
         [self requestFailure:request dataTask:nil error:error];
     }
     

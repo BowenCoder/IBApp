@@ -20,7 +20,7 @@
 {
     self.dict = [IBSerialization unSerializeWithJsonData:self.data error:nil];
     if (kIsEmptyDict(self.dict)) {
-        self.code = IBContentError;
+        self.code = IBURLErrorContent;
         self.message = @"服务返回数据错误";
     } else {
         self.code = [[self.dict objectForKey:@"error_code"] integerValue];

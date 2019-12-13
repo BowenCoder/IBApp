@@ -23,7 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 typedef void (^IBProgressHandler)(NSProgress *progress);
 typedef void (^IBCompletionHandler)(IBURLResponse *response);
-typedef void (^IBHTTPCompletion)(IBErrorCode errorCode, IBURLResponse *response);
+typedef void (^IBHTTPCompletion)(IBURLErrorCode errorCode, IBURLResponse *response);
 
 @interface IBURLRequest : NSObject
 

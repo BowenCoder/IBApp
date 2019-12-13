@@ -119,7 +119,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  取消请求
  */
-+ (void)cancelAllOperations;
++ (void)cancelAllTasks;
 
 /**
  * 移除所有缓存

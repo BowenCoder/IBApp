@@ -26,6 +26,20 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)sendHTTPRequest:(IBURLRequest *)request;
 
 /**
+发送上传网络请求
+
+@param request 请求
+*/
+- (void)sendUploadRequest:(IBURLRequest *)request;
+
+/**
+发送下载网络请求
+
+@param request 请求
+*/
+- (void)sendDownloadRequest:(IBURLRequest *)request;
+
+/**
  取消网络请求
 
  @param url 链接
@@ -35,7 +49,17 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  取消所有网络请求
  */
-- (void)cancelAllOperations;
+- (void)cancelAllTasks;
+
+/**
+取消所有上传请求
+*/
+- (void)cancelAllUploadTasks;
+
+/**
+取消所有下载请求
+*/
+- (void)cancelAllDownloadTasks;
 
 /**
  *  是否打开网络状态转圈菊花:默认打开

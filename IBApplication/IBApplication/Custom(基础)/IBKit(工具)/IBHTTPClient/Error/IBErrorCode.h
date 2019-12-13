@@ -9,44 +9,32 @@
 #ifndef IBErrorCode_h
 #define IBErrorCode_h
 
+/**
+ 网络错误参考：NSURLErrorDomain
+ */
+typedef NS_ENUM(NSInteger, IBURLErrorCode) {
+    
+    IBURLErrorTimeout = -1001, // 超时
+    
+    IBURLErrorMethod = -6, // 请求method错误
+    
+    IBURLErrorParameter = -5, // 参数错误
+    
+    IBURLErrorAddress = -4, // 地址错误
+    
+    IBURLErrorDouble = -3, // 重复请求
+    
+    IBURLErrorBadNet = -2, // 网络错误
+    
+    IBURLErrorUnknown = -1, // 未知错误
+    
+    IBURLErrorSuccess = 0, // 成功
 
-typedef NS_ENUM(NSInteger, IBErrorCode) {
-    /**
-     *  超时
-     */
-    IBTimeout = -1001,
-    /**
-     *  请求错误
-     */
-    IBRequestError = -4,
-    /**
-     *  未知错误
-     */
-    IBOtherError = -1,
-    /**
-     *  成功
-     */
-    IBSUCCESS = 0,
-    /**
-     *  请求参数错误
-     */
-    IBArgumentError = 499,
-    /**
-     *  服务内部发生错误
-     */
-    IBServiceError = 500,
-    /**
-     *  权限错误
-     */
-    IBAuthError = 600,
-    /**
-     *  session错误
-     */
-    IBSessionError = 604,
-    /**
-     *  内容非法错误
-     */
-    IBContentError = 982,
+    IBURLErrorService = 500, // 服务内部发生错误
+
+    IBURLErrrorSession = 604, // session错误
+
+    IBURLErrorContent = 982, // 内容非法错误
 };
 
 

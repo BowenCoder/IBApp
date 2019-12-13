@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSData *data;
 @property (nonatomic, strong) NSDictionary *dict;
 @property (nonatomic, strong) NSURLSessionTask *task;
-@property (nonatomic, assign) IBErrorCode code;
+@property (nonatomic, assign) IBURLErrorCode code;
 @property (nonatomic, copy) NSString *message;
 
 + (instancetype)response;

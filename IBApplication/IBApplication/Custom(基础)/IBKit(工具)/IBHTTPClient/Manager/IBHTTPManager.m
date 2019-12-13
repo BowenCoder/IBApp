@@ -141,7 +141,7 @@
     __weak typeof(request) weakSend = request;
     request.completionHandler = ^(IBURLResponse *response) {
         __strong typeof(weakSend) strongSend = weakSend;
-        if (response.code != IBSUCCESS) {
+        if (response.code != IBURLErrorSuccess) {
             if (strongSend.retryTimes > 0) {
                 strongSend.retryTimes--;
                 CGFloat interval = strongSend.retryInterval - strongSend.retryTimes;
@@ -168,9 +168,9 @@
     [[IBHTTPManager sharedManager].engine cancelRequestWithUrl:url];
 }
 
-+ (void)cancelAllOperations
++ (void)cancelAllTasks
 {
-    [[IBHTTPManager sharedManager].engine cancelAllOperations];
+    [[IBHTTPManager sharedManager].engine cancelAllTasks];
 }
 
 + (void)removeHttpCaches
@@ -194,7 +194,7 @@
         MBLog(@"#网络请求# 命中缓存 url = %@", request.url);
         IBURLResponse *response = [IBURLResponse response];
         response.dict = (NSDictionary *)object;
-        completion(IBSUCCESS, response);
+        completion(IBURLErrorSuccess, response);
     } cacheTime:request.cacheTime];
 }
 

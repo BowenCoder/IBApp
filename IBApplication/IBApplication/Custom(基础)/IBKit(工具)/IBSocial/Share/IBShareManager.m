@@ -9,7 +9,6 @@
 #import "IBShareManager.h"
 #import "IBMacros.h"
 #import "UIMacros.h"
-#import "IBErrorCode.h"
 
 @interface IBShareManager () <IBSocialDelegate>
 
@@ -28,7 +27,7 @@
 
 - (void)shareImage:(IBShareObject *)model success:(IBSuccessBlock)success failure:(IBFailureBlock)failure {
     if (model.platformType == IBSharePlatformUnkown) {
-        NSError *error = [NSError errorWithDomain:@"入参错误，请填写平台类型" code:IBArgumentError userInfo:nil];
+        NSError *error = [NSError errorWithDomain:@"入参错误，请填写平台类型" code:-1000 userInfo:nil];
         failure(error);
         return;
     }
@@ -58,7 +57,7 @@
 
 - (void)shareLink:(IBShareObject *)model success:(IBSuccessBlock)success failure:(IBFailureBlock)failure {
     if (model.platformType == IBSharePlatformUnkown) {
-        NSError *error = [NSError errorWithDomain:@"入参错误，请填写平台类型" code:IBArgumentError userInfo:nil];
+        NSError *error = [NSError errorWithDomain:@"入参错误，请填写平台类型" code:-1000 userInfo:nil];
         failure(error);
         return;
     }
@@ -93,7 +92,7 @@
         SendMessageToQQReq *req = [SendMessageToQQReq reqWithContent:imageObject];
         [QQApiInterface sendReq:req];
     } else {
-        NSError *error = [NSError errorWithDomain:@"入参错误，分享图片缺失" code:IBArgumentError userInfo:nil];
+        NSError *error = [NSError errorWithDomain:@"入参错误，分享图片缺失" code:-1000 userInfo:nil];
         self.failureBlock ? self.failureBlock(error) : nil;
         [self clearData];
     }
@@ -106,7 +105,7 @@
         SendMessageToQQReq *req = [SendMessageToQQReq reqWithContent:imageObj];
         [QQApiInterface SendReqToQZone:req];
     } else {
-        NSError *error = [NSError errorWithDomain:@"入参错误，分享图片缺失" code:IBArgumentError userInfo:nil];
+        NSError *error = [NSError errorWithDomain:@"入参错误，分享图片缺失" code:-1000 userInfo:nil];
         self.failureBlock ? self.failureBlock(error) : nil;
         [self clearData];
 
@@ -123,7 +122,7 @@
         WBSendMessageToWeiboRequest *request = [WBSendMessageToWeiboRequest requestWithMessage:message];
         [WeiboSDK sendRequest:request];
     } else {
-        NSError *error = [NSError errorWithDomain:@"入参错误，分享链接缺失" code:IBArgumentError userInfo:nil];
+        NSError *error = [NSError errorWithDomain:@"入参错误，分享链接缺失" code:-1000 userInfo:nil];
         self.failureBlock ? self.failureBlock(error) : nil;
         [self clearData];
     }
@@ -153,7 +152,7 @@
         }
         [WXApi sendReq:req];
     } else {
-        NSError *error = [NSError errorWithDomain:@"入参错误，分享图片缺失" code:IBArgumentError userInfo:nil];
+        NSError *error = [NSError errorWithDomain:@"入参错误，分享图片缺失" code:-1000 userInfo:nil];
         self.failureBlock ? self.failureBlock(error) : nil;
         [self clearData];
     }
@@ -176,7 +175,7 @@
         SendMessageToQQReq *req = [SendMessageToQQReq reqWithContent:newsObject];
         [QQApiInterface sendReq:req];
     } else {
-        NSError *error = [NSError errorWithDomain:@"入参错误，分享链接缺失" code:IBArgumentError userInfo:nil];
+        NSError *error = [NSError errorWithDomain:@"入参错误，分享链接缺失" code:-1000 userInfo:nil];
         self.failureBlock ? self.failureBlock(error) : nil;
         [self clearData];
     }
@@ -197,7 +196,7 @@
         SendMessageToQQReq *req = [SendMessageToQQReq reqWithContent:newsObject];
         [QQApiInterface SendReqToQZone:req];
     } else {
-        NSError *error = [NSError errorWithDomain:@"入参错误，分享链接缺失" code:IBArgumentError userInfo:nil];
+        NSError *error = [NSError errorWithDomain:@"入参错误，分享链接缺失" code:-1000 userInfo:nil];
         self.failureBlock ? self.failureBlock(error) : nil;
         [self clearData];
     }
@@ -219,7 +218,7 @@
         WBSendMessageToWeiboRequest *request = [WBSendMessageToWeiboRequest requestWithMessage:message authInfo:authRequest access_token:nil];
         [WeiboSDK sendRequest:request];
     } else {
-        NSError *error = [NSError errorWithDomain:@"入参错误，分享链接缺失" code:IBArgumentError userInfo:nil];
+        NSError *error = [NSError errorWithDomain:@"入参错误，分享链接缺失" code:-1000 userInfo:nil];
         self.failureBlock ? self.failureBlock(error) : nil;
         [self clearData];
     }
@@ -248,7 +247,7 @@
         }
         [WXApi sendReq:req];
     } else {
-        NSError *error = [NSError errorWithDomain:@"入参错误，分享链接缺失" code:IBArgumentError userInfo:nil];
+        NSError *error = [NSError errorWithDomain:@"入参错误，分享链接缺失" code:-1000 userInfo:nil];
         self.failureBlock ? self.failureBlock(error) : nil;
         [self clearData];
     }

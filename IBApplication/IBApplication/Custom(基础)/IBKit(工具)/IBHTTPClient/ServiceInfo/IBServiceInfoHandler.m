@@ -55,8 +55,8 @@
 - (void)loadServiceInfo
 {
     NSDictionary *params = @{@"version": self.version};
-    [IBHTTPManager GETRetry:self.enterUrl params:params completion:^(IBErrorCode errorCode, IBURLResponse *response) {
-        if (errorCode == IBSUCCESS) {
+    [IBHTTPManager GETRetry:self.enterUrl params:params completion:^(IBURLErrorCode errorCode, IBURLResponse *response) {
+        if (errorCode == IBURLErrorSuccess) {
             NSDictionary *dict = [response.dict objectForKey:@"data"];
             NSDictionary *serviceInfo = [[IBUrlManager sharedInstance] updateUrlConfig:dict];
             NSString *version = [serviceInfo mb_stringForKey:@"version"];
