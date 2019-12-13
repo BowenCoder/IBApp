@@ -18,6 +18,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (id)modelWithOptions:(NSDictionary *)options model:(Class)cls;
 
++ (NSString *)routerLinkFormat:(NSString *)pName params:(NSDictionary *)params;
+
 @end
 
 NS_ASSUME_NONNULL_END

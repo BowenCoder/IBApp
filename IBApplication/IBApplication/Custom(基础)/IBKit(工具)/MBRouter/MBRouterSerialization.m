@@ -8,6 +8,7 @@
 
 #import "MBRouterSerialization.h"
 #import "NSDictionary+Ext.h"
+#import "IBHelper.h"
 #import "YYModel.h"
 
 @implementation MBRouterSerialization
@@ -33,6 +34,13 @@
     NSData *data = [params dataUsingEncoding:NSUTF8StringEncoding];
     NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
     return [cls yy_modelWithDictionary:dict];
+}
+
++ (NSString *)routerLinkFormat:(NSString *)pName params:(NSDictionary *)params
+{
+    NSString *link = [self routerLinkFormat:pName];
+    NSString *query = [IBHelper URLQueryString:params];
+    return [NSString stringWithFormat:@"%@%@", link, query];
 }
 
 @end
