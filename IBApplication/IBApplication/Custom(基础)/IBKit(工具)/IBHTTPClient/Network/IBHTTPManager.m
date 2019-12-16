@@ -143,14 +143,14 @@
         __strong typeof(weakSend) strongSend = weakSend;
         if (response.code == IBURLErrorSuccess) {
             completion(response.code, response);
-            CGFloat interval = strongSend.retryInterval - strongSend.retryTimes;
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(interval * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                [self sendRequest:strongSend completion:completion];
-            });
+            [self setObjectForRequest:strongSend resp:response.dict];
         } else {
             if (strongSend.retryTimes > 0) {
                 strongSend.retryTimes--;
-                [self sendRequest:strongSend completion:completion];
+                CGFloat interval = strongSend.retryInterval - strongSend.retryTimes;
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(interval * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [self sendRequest:strongSend completion:completion];
+                });
             } else {
                 completion(response.code, response);
             }
