@@ -9,8 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "IBURLRequest.h"
 
-NS_ASSUME_NONNULL_BEGIN
-
 @interface IBDownloader : NSObject
 
 /// 下载文件
@@ -40,5 +38,3 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 @end
-
-NS_ASSUME_NONNULL_END

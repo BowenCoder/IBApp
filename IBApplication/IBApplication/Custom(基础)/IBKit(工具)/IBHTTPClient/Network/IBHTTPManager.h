@@ -9,8 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "IBURLRequest.h"
 
-NS_ASSUME_NONNULL_BEGIN
-
 @interface IBHTTPManager : NSObject
 
 #pragma mark - GET
@@ -143,5 +141,3 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 @end
-
-NS_ASSUME_NONNULL_END

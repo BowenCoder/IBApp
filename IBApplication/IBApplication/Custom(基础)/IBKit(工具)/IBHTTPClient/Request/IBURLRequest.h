@@ -49,10 +49,6 @@ typedef void (^IBHTTPCompletion)(IBURLErrorCode errorCode, IBURLResponse *respon
 
 @property (nonatomic, strong) NSDictionary *headerFields;
 
-@property (nonatomic, strong) NSURLSessionTask *requestTask;
-
-@property (nonatomic, strong) IBURLResponse *response;
-
 @property (nonatomic, copy, nullable) IBCompletionHandler completionHandler;
 
 @property (nonatomic, copy, nullable) IBProgressHandler downloadProgressHandler;

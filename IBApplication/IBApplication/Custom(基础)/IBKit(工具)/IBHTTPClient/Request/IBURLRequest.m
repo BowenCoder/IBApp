@@ -32,7 +32,6 @@
     self.retryInterval = 0.0;
     self.timeoutInterval = 10;
     self.isAllowAtom = YES;
-    self.response = [[IBURLResponse alloc] init];
 }
 
 - (NSString *)baseUrl

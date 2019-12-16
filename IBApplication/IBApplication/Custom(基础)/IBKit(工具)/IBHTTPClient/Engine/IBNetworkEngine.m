@@ -76,8 +76,6 @@
         [self requestCompletion:request task:dataTask resp:nil error:error];
     }];
     
-    request.requestTask = dataTask;
-    
     [self setSesssionTask:dataTask forKey:requestKey];
     
     [dataTask resume];
@@ -100,8 +98,6 @@
         [self requestCompletion:request task:task resp:responseObject error:error];
     }];
     
-    request.requestTask = uploadTask;
-     
     [self setSesssionTask:uploadTask forKey:requestKey];
      
     [uploadTask resume];
@@ -125,8 +121,6 @@
         [self requestCompletion:request task:task resp:responseObject error:error];
     }];
     
-    request.requestTask = uploadTask;
-     
     [self setSesssionTask:uploadTask forKey:requestKey];
      
     [uploadTask resume];
@@ -156,8 +150,6 @@
         [self requestCompletion:request task:task resp:nil error:error];
     }];
     
-    request.requestTask = dataTask;
-    
     [self setSesssionTask:dataTask forKey:requestKey];
     
     [dataTask resume];
@@ -179,8 +171,6 @@
         [self removeSessionTaskForKey:requestKey];
         [self downloadCompletion:request task:downloadTask path:filePath error:error];
     }];
-    
-    request.requestTask = downloadTask;
     
     [self setSesssionTask:downloadTask forKey:requestKey];
     
@@ -403,7 +393,7 @@
         return;
     }
     
-    IBURLResponse *response = request.response;
+    IBURLResponse *response = [[IBURLResponse alloc] init];
     response.task = task;
     
     if (error) {
@@ -427,7 +417,7 @@
         return;
     }
     
-    IBURLResponse *response = request.response;
+    IBURLResponse *response = [[IBURLResponse alloc] init];
     response.task = task;
     
     if (error) {

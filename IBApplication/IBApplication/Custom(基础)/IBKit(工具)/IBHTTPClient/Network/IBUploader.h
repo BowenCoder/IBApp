@@ -9,8 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "IBURLRequest.h"
 
-NS_ASSUME_NONNULL_BEGIN
-
 @interface IBUploader : NSObject
 
 /// 上传图片
@@ -65,5 +63,3 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 @end
-
-NS_ASSUME_NONNULL_END
