@@ -141,23 +141,24 @@
     __weak typeof(request) weakSend = request;
     request.completionHandler = ^(IBURLResponse *response) {
         __strong typeof(weakSend) strongSend = weakSend;
-        if (response.code != IBURLErrorSuccess) {
+        if (response.code == IBURLErrorSuccess) {
+            completion(response.code, response);
+            CGFloat interval = strongSend.retryInterval - strongSend.retryTimes;
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(interval * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [self sendRequest:strongSend completion:completion];
+            });
+        } else {
             if (strongSend.retryTimes > 0) {
                 strongSend.retryTimes--;
-                CGFloat interval = strongSend.retryInterval - strongSend.retryTimes;
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(interval * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    [self sendRequest:strongSend completion:completion];
-                });
+                [self sendRequest:strongSend completion:completion];
             } else {
                 completion(response.code, response);
             }
-        } else {
-            [self setObjectForRequest:strongSend resp:response.dict];
-            completion(response.code, response);
         }
     };
     
     request.headerFields = [[IBHTTPManager sharedManager].security headerFields];
+
     [[IBHTTPManager sharedManager].engine sendHTTPRequest:request];
 }
 
@@ -190,6 +191,9 @@
 
 + (void)objectForRequest:(IBURLRequest *)request completion:(IBHTTPCompletion)completion
 {
+    if (!request.cacheTime) {
+        return;
+    }
     [[IBHTTPManager sharedManager].cache objectForUrl:request.url withBlock:^(id<NSCoding> object) {
         MBLog(@"#网络请求# 命中缓存 url = %@", request.url);
         IBURLResponse *response = [IBURLResponse response];
@@ -200,6 +204,9 @@
 
 + (void)setObjectForRequest:(IBURLRequest *)request resp:(NSDictionary *)dict
 {
+    if (!request.cacheTime) {
+        return;
+    }
     [[IBHTTPManager sharedManager].cache setObject:dict forUrl:request.url cacheTime:request.cacheTime];
 }
 

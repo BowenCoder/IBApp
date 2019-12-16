@@ -40,9 +40,6 @@
 
 - (void)setObject:(id<NSCoding>)object forUrl:(NSString *)url cacheTime:(NSTimeInterval)time
 {
-    if (!time) {
-        return;
-    }
     NSString *key = [IBEncode md5WithString:url];
     NSDate *expireTime = [NSDate dateWithTimeIntervalSinceNow:time];
     NSArray *cacheItem = [NSArray arrayWithObjects:expireTime, object, nil];
@@ -51,9 +48,6 @@
 
 - (void)objectForUrl:(NSString *)url withBlock:(void(^)(id<NSCoding> object))block cacheTime:(NSTimeInterval)time
 {
-    if (!time) {
-        return;
-    }
     NSString *key = [IBEncode md5WithString:url];
     
     if (![self containsObjectForKey:key]) {
