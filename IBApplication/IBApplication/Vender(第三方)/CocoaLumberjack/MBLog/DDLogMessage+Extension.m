@@ -102,42 +102,6 @@
     return newMessage;
 }
 
-/*
-- (void)callOriginalMethod:(SEL)selector
-                   message:(NSString *)message
-                     level:(DDLogLevel)level
-                      flag:(DDLogFlag)flag
-                   context:(NSInteger)context
-                      file:(NSString *)file
-                  function:(NSString *)function
-                      line:(NSUInteger)line
-                       tag:(id)tag
-                   options:(DDLogMessageOptions)options
-                 timestamp:(NSDate *)timestamp {
-
-    unsigned int count;
-    unsigned int index = 0;
-
-    //获得指向该类所有方法的指针
-    Method *methods = class_copyMethodList([self class], &count);
-
-    for (int i = 0; i < count; i++) {
-        //获得该类的一个方法指针
-        Method method = methods[i];
-        //获取方法
-        SEL methodSEL = method_getName(method);
-        if (methodSEL == selector) {
-            index = i;
-        }
-    }
-    SEL fontSEL = method_getName(methods[index]);
-    IMP fontIMP = method_getImplementation(methods[index]);
-    ((void (*)(id, SEL, id, DDLogLevel, DDLogFlag, NSInteger, NSString *, NSString *, NSUInteger, id, DDLogMessageOptions, NSDate *))fontIMP)(self, fontSEL, message, level, flag, context, file, function, line, tag, options, timestamp);
-
-    free(methods);
-}
-*/
-
 @end
 
 #pragma clang diagnostic pop
