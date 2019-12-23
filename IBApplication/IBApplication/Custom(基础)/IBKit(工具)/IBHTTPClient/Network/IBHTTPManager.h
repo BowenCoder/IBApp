@@ -20,7 +20,7 @@
  *  @param params     params description
  *  @param completion completion description
  */
-+ (void)GET:(NSString *)url params:(NSDictionary *)params completion:(IBHTTPCompletion)completion;
++ (IBURLRequest *)GET:(NSString *)url params:(NSDictionary *)params completion:(IBHTTPCompletion)completion;
 
 /**
  *  GET 不支持缓存 请求不需要附加ATOM信息的
@@ -29,7 +29,7 @@
  *  @param params     params description
  *  @param completion completion description
  */
-+ (void)GETWithoutAtom:(NSString *)url params:(NSDictionary *)params completion:(IBHTTPCompletion)completion;
++ (IBURLRequest *)GETWithoutAtom:(NSString *)url params:(NSDictionary *)params completion:(IBHTTPCompletion)completion;
 
 /**
  *  GET请求 会重试三次 重试间隔至少为：5s
@@ -38,7 +38,7 @@
  *  @param params          params description
  *  @param completion      completion description
  */
-+ (void)GETRetry:(NSString *)url params:(NSDictionary *)params completion:(IBHTTPCompletion)completion;
++ (IBURLRequest *)GETRetry:(NSString *)url params:(NSDictionary *)params completion:(IBHTTPCompletion)completion;
 
 /**
  *  GET请求  支持缓存和超时可配置
@@ -49,7 +49,7 @@
  *  @param interval        interval description
  *  @param completion      completion description
  */
-+ (void)GET:(NSString *)url params:(NSDictionary *)params cacheTime:(NSUInteger)secs timeout:(NSUInteger)interval completion:(IBHTTPCompletion)completion;
++ (IBURLRequest *)GET:(NSString *)url params:(NSDictionary *)params cacheTime:(NSUInteger)secs timeout:(NSUInteger)interval completion:(IBHTTPCompletion)completion;
 
 #pragma mark - POST
 
@@ -61,7 +61,7 @@
  *  @param body       body description
  *  @param completion completion description
  */
-+ (void)POST:(NSString *)url params:(NSDictionary *)params body:(NSDictionary *)body completion:(IBHTTPCompletion)completion;
++ (IBURLRequest *)POST:(NSString *)url params:(NSDictionary *)params body:(NSDictionary *)body completion:(IBHTTPCompletion)completion;
 
 /**
  *  POST 请求不需要附加ATOM信息的
@@ -71,7 +71,7 @@
  *  @param body       body description
  *  @param completion completion description
  */
-+ (void)POSTWithoutAtom:(NSString *)url params:(NSDictionary *)params body:(NSDictionary *)body completion:(IBHTTPCompletion)completion;
++ (IBURLRequest *)POSTWithoutAtom:(NSString *)url params:(NSDictionary *)params body:(NSDictionary *)body completion:(IBHTTPCompletion)completion;
 
 /**
  *  POST
@@ -82,7 +82,7 @@
  *  @param interval        interval description
  *  @param completion      completion description
  */
-+ (void)POST:(NSString *)url params:(NSDictionary *)params body:(NSDictionary *)body timeout:(NSUInteger)interval completion:(IBHTTPCompletion)completion;
++ (IBURLRequest *)POST:(NSString *)url params:(NSDictionary *)params body:(NSDictionary *)body timeout:(NSUInteger)interval completion:(IBHTTPCompletion)completion;
 
 /**
  *  POST请求 会重试三次 重试间隔至少为：5s
@@ -93,7 +93,7 @@
  *  @param interval        interval description
  *  @param completion      completion description
  */
-+ (void)POSTRetry:(NSString *)url params:(NSDictionary *)params body:(NSDictionary *)body timeout:(NSUInteger)interval completion:(IBHTTPCompletion)completion;
++ (IBURLRequest *)POSTRetry:(NSString *)url params:(NSDictionary *)params body:(NSDictionary *)body timeout:(NSUInteger)interval completion:(IBHTTPCompletion)completion;
 
 #pragma mark - 基本请求
 
@@ -110,9 +110,9 @@
 /**
  取消网络请求
 
- @param url 链接
+ @param request 请求
  */
-+ (void)cancelRequestWithUrl:(NSString *)url;
++ (void)cancelRequest:(IBURLRequest *)request;
 
 /**
  取消请求

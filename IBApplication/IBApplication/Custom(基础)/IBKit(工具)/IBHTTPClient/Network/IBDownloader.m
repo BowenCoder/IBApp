@@ -11,17 +11,18 @@
 
 @implementation IBDownloader
 
-+ (void)downloadFileWithUrl:(NSString *)url path:(NSString *)path completion:(IBHTTPCompletion)completion
++ (IBURLRequest *)downloadFileWithUrl:(NSString *)url path:(NSString *)path completion:(IBHTTPCompletion)completion
 {
-    [self downloadFileWithUrl:url path:path progress:^(CGFloat progress) {
+    return [self downloadFileWithUrl:url path:path progress:^(CGFloat progress) {
         
     } completion:completion];
 }
 
-+ (void)downloadFileWithUrl:(NSString *)url path:(NSString *)path progress:(void (^)(CGFloat progress))downloadProgress completion:(IBHTTPCompletion)completion
++ (IBURLRequest *)downloadFileWithUrl:(NSString *)url path:(NSString *)path progress:(void (^)(CGFloat progress))downloadProgress completion:(IBHTTPCompletion)completion
 {
     IBURLRequest *request = [[IBURLRequest alloc] init];
     request.url = url;
+    request.method = IBHTTPGET;
     
     request.downloadProgressHandler = ^(NSProgress *progress) {
         if (downloadProgress) {
@@ -37,11 +38,13 @@
     };
     
     [[IBNetworkEngine defaultEngine] sendDownloadRequest:request path:path];
+    
+    return request;
 }
 
-+ (void)cancelRequestWithUrl:(NSString *)url
++ (void)cancelRequest:(IBURLRequest *)request
 {
-    [[IBNetworkEngine defaultEngine] cancelRequestWithUrl:url];
+    [[IBNetworkEngine defaultEngine] cancelRequest:request];
 }
 
 + (void)cancelAllDownloadTasks

@@ -15,7 +15,7 @@
 /// @param image 图片
 /// @param url url
 /// @param completion 回调
-+ (void)uploadImage:(UIImage *)image url:(NSString *)url completion:(IBHTTPCompletion)completion;
++ (IBURLRequest *)uploadImage:(UIImage *)image url:(NSString *)url completion:(IBHTTPCompletion)completion;
 
 /// 上传图片
 /// @param image 图片
@@ -23,21 +23,21 @@
 /// @param quality 压缩质量
 /// @param uploadProgress 进度
 /// @param completion 回调
-+ (void)uploadImage:(UIImage *)image url:(NSString *)url compressionQuality:(CGFloat)quality progress:(void (^)(CGFloat progress))uploadProgress completion:(IBHTTPCompletion)completion;
++ (IBURLRequest *)uploadImage:(UIImage *)image url:(NSString *)url compressionQuality:(CGFloat)quality progress:(void (^)(CGFloat progress))uploadProgress completion:(IBHTTPCompletion)completion;
 
 /// 上传二进制数据
 /// @param data 数据
 /// @param url url
 /// @param uploadProgress 进度
 /// @param completion 回调
-+ (void)uploadData:(NSData *)data url:(NSString *)url progress:(void (^)(CGFloat progress))uploadProgress completion:(IBHTTPCompletion)completion;
++ (IBURLRequest *)uploadData:(NSData *)data url:(NSString *)url progress:(void (^)(CGFloat progress))uploadProgress completion:(IBHTTPCompletion)completion;
 
 /// 上传文件
 /// @param path 路径
 /// @param url url
 /// @param uploadProgress 进度
 /// @param completion 回调
-+ (void)uploadFile:(NSString *)path url:(NSString *)url progress:(void (^)(CGFloat progress))uploadProgress completion:(IBHTTPCompletion)completion;
++ (IBURLRequest *)uploadFile:(NSString *)path url:(NSString *)url progress:(void (^)(CGFloat progress))uploadProgress completion:(IBHTTPCompletion)completion;
 
 /// 上传二进制数据
 /// @param data 数据
@@ -47,14 +47,14 @@
 /// @param url url
 /// @param uploadProgress 进度
 /// @param completion 回调
-+ (void)uploadData:(NSData *)data fieldName:(NSString *)fieldName fileName:(NSString *)fileName mimeType:(NSString *)mimeType url:(NSString *)url progress:(void (^)(CGFloat progress))uploadProgress completion:(IBHTTPCompletion)completion;
++ (IBURLRequest *)uploadData:(NSData *)data fieldName:(NSString *)fieldName fileName:(NSString *)fileName mimeType:(NSString *)mimeType url:(NSString *)url progress:(void (^)(CGFloat progress))uploadProgress completion:(IBHTTPCompletion)completion;
 
 /**
  取消网络请求
 
- @param url 链接
+ @param request 请求
  */
-+ (void)cancelRequestWithUrl:(NSString *)url;
++ (void)cancelRequest:(IBURLRequest *)request;
 
 /**
 取消所有上传请求

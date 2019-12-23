@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "AFNetworking.h"
 #import "IBURLRequest.h"
-#import "IBEncode.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -60,9 +59,9 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  取消网络请求
  
- @param url 链接
+ @param request 请求
  */
-- (void)cancelRequestWithUrl:(NSString *)url;
+- (void)cancelRequest:(IBURLRequest *)request;
 
 /**
  取消所有网络请求

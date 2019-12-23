@@ -8,8 +8,8 @@
 
 #import "IBNetworkEngine.h"
 #import "MBLogger.h"
-#import "AFNetworkActivityIndicatorManager.h"
 #import "IBNetworkStatus.h"
+#import "AFNetworkActivityIndicatorManager.h"
 
 #define SemaphoreEngineLock dispatch_semaphore_wait(self.semaphore, DISPATCH_TIME_FOREVER)
 #define SemaphoreEngineUnlock dispatch_semaphore_signal(self.semaphore)
@@ -54,7 +54,7 @@
 
 - (void)sendHTTPRequest:(IBURLRequest *)request
 {
-    NSString *requestKey = [IBEncode md5WithString:request.url];
+    NSString *requestKey = [request requestKey];
     BOOL isError = [self handleRequest:request key:requestKey];
     if (isError) return;
     
@@ -83,7 +83,7 @@
 
 - (void)sendUploadRequest:(IBURLRequest *)request path:(NSString *)path
 {
-    NSString *requestKey = [IBEncode md5WithString:request.url];
+    NSString *requestKey = [request requestKey];
     BOOL isError = [self handleRequest:request key:requestKey];
     if (isError) return;
     
@@ -106,7 +106,7 @@
 
 - (void)sendUploadRequest:(IBURLRequest *)request data:(NSData *)data
 {
-    NSString *requestKey = [IBEncode md5WithString:request.url];
+    NSString *requestKey = [request requestKey];
     BOOL isError = [self handleRequest:request key:requestKey];
     if (isError) return;
     
@@ -128,7 +128,7 @@
 
 - (void)sendUploadRequest:(IBURLRequest *)request constructingBody:(void (^)(id <AFMultipartFormData> formData))block;
 {
-    NSString *requestKey = [IBEncode md5WithString:request.url];
+    NSString *requestKey = [request requestKey];
     BOOL isError = [self handleRequest:request key:requestKey];
     if (isError) return;
     
@@ -157,7 +157,7 @@
 
 - (void)sendDownloadRequest:(IBURLRequest *)request path:(NSString *)path
 {
-    NSString *requestKey = [IBEncode md5WithString:request.url];
+    NSString *requestKey = [request requestKey];
     BOOL isError = [self handleRequest:request key:requestKey];
     if (isError) return;
     
@@ -177,9 +177,9 @@
     [downloadTask resume];
 }
 
-- (void)cancelRequestWithUrl:(NSString *)url
+- (void)cancelRequest:(IBURLRequest *)request
 {
-    NSString *requestKey = [IBEncode md5WithString:url];
+    NSString *requestKey = [request requestKey];
     NSURLSessionDataTask *dataTask = [self sessionTaskForKey:requestKey];
     [dataTask cancel];
     [self removeSessionTaskForKey:requestKey];
@@ -369,9 +369,9 @@
         result = YES; code = IBURLErrorAddress; message = @"请求的地址为空";
     }
     
-//    if (request.method == IBHTTPNone) {
-//        result = YES; code = IBURLErrorMethod; message = @"请求的方法为空";
-//    }
+    if (request.method == IBHTTPNone) {
+        result = YES; code = IBURLErrorMethod; message = @"请求的方法为空";
+    }
     
     if ([IBNetworkStatus shareInstance].currentNetworkStatus == IBNetworkStatusNotReachable) {
         result = YES; code = IBURLErrorBadNet; message = @"当前网络不可用";

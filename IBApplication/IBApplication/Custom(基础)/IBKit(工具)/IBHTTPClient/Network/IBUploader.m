@@ -11,20 +11,20 @@
 
 @implementation IBUploader
 
-+ (void)uploadImage:(UIImage *)image url:(NSString *)url completion:(IBHTTPCompletion)completion
++ (IBURLRequest *)uploadImage:(UIImage *)image url:(NSString *)url completion:(IBHTTPCompletion)completion
 {
-    [self uploadImage:image url:url compressionQuality:0.5 progress:^(CGFloat progress) {
+    return [self uploadImage:image url:url compressionQuality:0.5 progress:^(CGFloat progress) {
         
     } completion:completion];
 }
 
-+ (void)uploadImage:(UIImage *)image url:(NSString *)url compressionQuality:(CGFloat)quality progress:(void (^)(CGFloat progress))uploadProgress completion:(IBHTTPCompletion)completion
++ (IBURLRequest *)uploadImage:(UIImage *)image url:(NSString *)url compressionQuality:(CGFloat)quality progress:(void (^)(CGFloat progress))uploadProgress completion:(IBHTTPCompletion)completion
 {
     NSData *imageData = UIImageJPEGRepresentation(image, quality);
-    [self uploadData:imageData url:url progress:uploadProgress completion:completion];
+    return [self uploadData:imageData url:url progress:uploadProgress completion:completion];
 }
 
-+ (void)uploadData:(NSData *)data url:(NSString *)url progress:(void (^)(CGFloat progress))uploadProgress completion:(IBHTTPCompletion)completion
++ (IBURLRequest *)uploadData:(NSData *)data url:(NSString *)url progress:(void (^)(CGFloat progress))uploadProgress completion:(IBHTTPCompletion)completion
 {
     IBURLRequest *request = [[IBURLRequest alloc] init];
     request.url = url;
@@ -44,9 +44,11 @@
     };
     
     [[IBNetworkEngine defaultEngine] sendUploadRequest:request data:data];
+    
+    return request;
 }
 
-+ (void)uploadFile:(NSString *)path url:(NSString *)url progress:(void (^)(CGFloat progress))uploadProgress completion:(IBHTTPCompletion)completion
++ (IBURLRequest *)uploadFile:(NSString *)path url:(NSString *)url progress:(void (^)(CGFloat progress))uploadProgress completion:(IBHTTPCompletion)completion
 {
     IBURLRequest *request = [[IBURLRequest alloc] init];
     request.url = url;
@@ -66,9 +68,11 @@
     };
     
     [[IBNetworkEngine defaultEngine] sendUploadRequest:request path:path];
+    
+    return request;
 }
 
-+ (void)uploadData:(NSData *)data fieldName:(NSString *)fieldName fileName:(NSString *)fileName mimeType:(NSString *)mimeType url:(NSString *)url progress:(void (^)(CGFloat progress))uploadProgress completion:(IBHTTPCompletion)completion
++ (IBURLRequest *)uploadData:(NSData *)data fieldName:(NSString *)fieldName fileName:(NSString *)fileName mimeType:(NSString *)mimeType url:(NSString *)url progress:(void (^)(CGFloat progress))uploadProgress completion:(IBHTTPCompletion)completion
 {
     IBURLRequest *request = [[IBURLRequest alloc] init];
     request.url = url;
@@ -90,11 +94,13 @@
     [[IBNetworkEngine defaultEngine] sendUploadRequest:request constructingBody:^(id<AFMultipartFormData> formData) {
         [formData appendPartWithFileData:data name:fieldName fileName:fileName mimeType:mimeType];
     }];
+    
+    return request;
 }
 
-+ (void)cancelRequestWithUrl:(NSString *)url
++ (void)cancelRequest:(IBURLRequest *)request
 {
-    [[IBNetworkEngine defaultEngine] cancelRequestWithUrl:url];
+    [[IBNetworkEngine defaultEngine] cancelRequest:request];
 }
 
 + (void)cancelAllUploadTasks

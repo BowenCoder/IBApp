@@ -7,10 +7,14 @@
 //
 
 #import "IBURLRequest.h"
+#import "IBHelper.h"
+#import "IBEncode.h"
 #import "IBAtomFactory.h"
 #import "IBNetApiKeyInner.h"
 
 @interface IBURLRequest ()
+
+@property (nonatomic, copy) NSString *requestKey;
 
 @end
 
@@ -75,6 +79,19 @@
         url = [[IBAtomFactory sharedInstance] appendAtomInfo:self.url];
     }
     return url;
+}
+
+- (NSString *)requestKey {
+    if(!_requestKey){
+        NSString *url = self.url;
+        if (![self.url hasPrefix:@"http://"] && ![self.url hasPrefix:@"https://"]) {
+            url = [NSString stringWithFormat:@"%@/%@", [self baseUrl], self.url];
+        }
+        NSString *fullUrl = [IBHelper fullURL:url params:self.params];
+        
+        _requestKey = [IBEncode md5WithString:fullUrl];
+    }
+    return _requestKey;
 }
 
 - (NSString *)description {

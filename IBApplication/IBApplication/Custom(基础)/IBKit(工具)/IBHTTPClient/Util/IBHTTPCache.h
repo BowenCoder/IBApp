@@ -12,9 +12,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface IBHTTPCache : NSObject
 
-- (void)setObject:(id<NSCoding>)object forUrl:(NSString *)url cacheTime:(NSTimeInterval)time;
+- (void)setObject:(id<NSCoding>)object forKey:(NSString *)key cacheTime:(NSTimeInterval)time;
 
-- (void)objectForUrl:(NSString *)url withBlock:(void(^)(id<NSCoding> object))block cacheTime:(NSTimeInterval)time;
+- (void)objectForKey:(NSString *)key withBlock:(void(^)(id<NSCoding> object))block cacheTime:(NSTimeInterval)time;
 
 - (void)removeAllCaches;
 

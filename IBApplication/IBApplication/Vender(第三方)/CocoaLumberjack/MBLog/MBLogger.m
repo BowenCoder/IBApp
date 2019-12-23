@@ -51,9 +51,9 @@ const DDLogLevel ddLogLevel = DDLogLevelInfo;
     [[DDTTYLogger sharedInstance] setLogFormatter:[MBLogDebugFormatter new]];
     [DDTTYLogger sharedInstance].colorsEnabled = YES;
     [DDLog addLogger:[DDTTYLogger sharedInstance] withLevel:ddLogLevel];
-    // Mac控制台打印
-    [[DDASLLogger sharedInstance] setLogFormatter:[MBLogDebugFormatter new]];
-    [DDLog addLogger:[DDASLLogger sharedInstance] withLevel:ddLogLevel];
+//    // Mac控制台打印，还不太理想
+//    [[DDASLLogger sharedInstance] setLogFormatter:[MBLogDebugFormatter new]];
+//    [DDLog addLogger:[DDASLLogger sharedInstance] withLevel:ddLogLevel];
 #endif
     // 日志本地化
     _fileLogger = [[DDFileLogger alloc] init];

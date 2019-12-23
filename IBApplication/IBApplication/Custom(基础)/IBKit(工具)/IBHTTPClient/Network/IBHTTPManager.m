@@ -48,16 +48,17 @@
     self.security = [[IBSecurity alloc] init];
 }
 
-+ (void)GET:(NSString *)url params:(NSDictionary *)params completion:(IBHTTPCompletion)completion
++ (IBURLRequest *)GET:(NSString *)url params:(NSDictionary *)params completion:(IBHTTPCompletion)completion
 {
     IBURLRequest *request = [[IBURLRequest alloc] init];
     request.url = url;
     request.params = params;
     request.method = IBHTTPGET;
     [self sendRequest:request completion:completion];
+    return request;
 }
 
-+ (void)GETWithoutAtom:(NSString *)url params:(NSDictionary *)params completion:(IBHTTPCompletion)completion
++ (IBURLRequest *)GETWithoutAtom:(NSString *)url params:(NSDictionary *)params completion:(IBHTTPCompletion)completion
 {
     IBURLRequest *request = [[IBURLRequest alloc] init];
     request.url = url;
@@ -65,9 +66,10 @@
     request.isAllowAtom = NO;
     request.method = IBHTTPGET;
     [self sendRequest:request completion:completion];
+    return request;
 }
 
-+ (void)GETRetry:(NSString *)url params:(NSDictionary *)params completion:(IBHTTPCompletion)completion
++ (IBURLRequest *)GETRetry:(NSString *)url params:(NSDictionary *)params completion:(IBHTTPCompletion)completion
 {
     IBURLRequest *request = [[IBURLRequest alloc] init];
     request.url = url;
@@ -76,9 +78,10 @@
     request.retryInterval = 5.0;
     request.method = IBHTTPGET;
     [self sendRequest:request completion:completion];
+    return request;
 }
 
-+ (void)GET:(NSString *)url params:(NSDictionary *)params cacheTime:(NSUInteger)secs timeout:(NSUInteger)interval completion:(IBHTTPCompletion)completion
++ (IBURLRequest *)GET:(NSString *)url params:(NSDictionary *)params cacheTime:(NSUInteger)secs timeout:(NSUInteger)interval completion:(IBHTTPCompletion)completion
 {
     IBURLRequest *request = [[IBURLRequest alloc] init];
     request.url = url;
@@ -87,9 +90,10 @@
     request.method = IBHTTPGET;
     request.timeoutInterval = interval ?: request.timeoutInterval;
     [self sendRequest:request completion:completion];
+    return request;
 }
 
-+ (void)POST:(NSString *)url params:(NSDictionary *)params body:(NSDictionary *)body completion:(IBHTTPCompletion)completion
++ (IBURLRequest *)POST:(NSString *)url params:(NSDictionary *)params body:(NSDictionary *)body completion:(IBHTTPCompletion)completion
 {
     IBURLRequest *request = [[IBURLRequest alloc] init];
     request.url = url;
@@ -98,9 +102,10 @@
     request.isAllowAtom = NO;
     request.method = IBHTTPPOST;
     [self sendRequest:request completion:completion];
+    return request;
 }
 
-+ (void)POSTWithoutAtom:(NSString *)url params:(NSDictionary *)params body:(NSDictionary *)body completion:(IBHTTPCompletion)completion
++ (IBURLRequest *)POSTWithoutAtom:(NSString *)url params:(NSDictionary *)params body:(NSDictionary *)body completion:(IBHTTPCompletion)completion
 {
     IBURLRequest *request = [[IBURLRequest alloc] init];
     request.url = url;
@@ -108,9 +113,10 @@
     request.body = body;
     request.method = IBHTTPPOST;
     [self sendRequest:request completion:completion];
+    return request;
 }
 
-+ (void)POST:(NSString *)url params:(NSDictionary *)params body:(NSDictionary *)body timeout:(NSUInteger)interval completion:(IBHTTPCompletion)completion
++ (IBURLRequest *)POST:(NSString *)url params:(NSDictionary *)params body:(NSDictionary *)body timeout:(NSUInteger)interval completion:(IBHTTPCompletion)completion
 {
     IBURLRequest *request = [[IBURLRequest alloc] init];
     request.url = url;
@@ -119,9 +125,10 @@
     request.method = IBHTTPPOST;
     request.timeoutInterval = interval ?: request.timeoutInterval;
     [self sendRequest:request completion:completion];
+    return request;
 }
 
-+ (void)POSTRetry:(NSString *)url params:(NSDictionary *)params body:(NSDictionary *)body timeout:(NSUInteger)interval completion:(IBHTTPCompletion)completion
++ (IBURLRequest *)POSTRetry:(NSString *)url params:(NSDictionary *)params body:(NSDictionary *)body timeout:(NSUInteger)interval completion:(IBHTTPCompletion)completion
 {
     IBURLRequest *request = [[IBURLRequest alloc] init];
     request.url = url;
@@ -132,6 +139,7 @@
     request.method = IBHTTPPOST;
     request.timeoutInterval = interval ?: request.timeoutInterval;
     [self sendRequest:request completion:completion];
+    return request;
 }
 
 + (void)sendRequest:(IBURLRequest *)request completion:(IBHTTPCompletion)completion
@@ -164,9 +172,9 @@
 
 #pragma mark - 其他操作
 
-+ (void)cancelRequestWithUrl:(NSString *)url
++ (void)cancelRequest:(IBURLRequest *)request
 {
-    [[IBHTTPManager sharedManager].engine cancelRequestWithUrl:url];
+    [[IBHTTPManager sharedManager].engine cancelRequest:request];
 }
 
 + (void)cancelAllTasks
@@ -194,7 +202,7 @@
     if (!request.cacheTime) {
         return;
     }
-    [[IBHTTPManager sharedManager].cache objectForUrl:request.url withBlock:^(id<NSCoding> object) {
+    [[IBHTTPManager sharedManager].cache objectForKey:[request requestKey] withBlock:^(id<NSCoding> object) {
         MBLog(@"#网络请求# 命中缓存 url = %@", request.url);
         IBURLResponse *response = [IBURLResponse response];
         response.dict = (NSDictionary *)object;
@@ -207,7 +215,7 @@
     if (!request.cacheTime) {
         return;
     }
-    [[IBHTTPManager sharedManager].cache setObject:dict forUrl:request.url cacheTime:request.cacheTime];
+    [[IBHTTPManager sharedManager].cache setObject:dict forKey:[request requestKey] cacheTime:request.cacheTime];
 }
 
 @end

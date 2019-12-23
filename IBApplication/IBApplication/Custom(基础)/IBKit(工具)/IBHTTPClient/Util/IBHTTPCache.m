@@ -8,7 +8,6 @@
 
 #import "IBHTTPCache.h"
 #import "YYCache.h"
-#import "IBEncode.h"
 
 @interface IBHTTPCache ()
 
@@ -38,18 +37,15 @@
     self.cache.diskCache.costLimit = 10 * 1024 * 1024;
 }
 
-- (void)setObject:(id<NSCoding>)object forUrl:(NSString *)url cacheTime:(NSTimeInterval)time
+- (void)setObject:(id<NSCoding>)object forKey:(NSString *)key cacheTime:(NSTimeInterval)time
 {
-    NSString *key = [IBEncode md5WithString:url];
     NSDate *expireTime = [NSDate dateWithTimeIntervalSinceNow:time];
     NSArray *cacheItem = [NSArray arrayWithObjects:expireTime, object, nil];
     [self.cache setObject:cacheItem forKey:key];
 }
 
-- (void)objectForUrl:(NSString *)url withBlock:(void(^)(id<NSCoding> object))block cacheTime:(NSTimeInterval)time
+- (void)objectForKey:(NSString *)key withBlock:(void(^)(id<NSCoding> object))block cacheTime:(NSTimeInterval)time
 {
-    NSString *key = [IBEncode md5WithString:url];
-    
     if (![self containsObjectForKey:key]) {
         return;
     }
