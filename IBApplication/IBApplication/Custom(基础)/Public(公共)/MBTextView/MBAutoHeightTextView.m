@@ -88,6 +88,10 @@
     self.textView.textColor = textColor;
 }
 
+- (void)setCursorColor:(UIColor *)cursorColor {
+    self.textView.tintColor = cursorColor;
+}
+
 - (void)setPlaceholder:(NSString *)placeholder {
     self.textView.placeholder = placeholder;
 }

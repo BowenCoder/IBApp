@@ -55,6 +55,7 @@
     
     self.view.backgroundColor = [UIColor lightGrayColor];
     self.textView = [[MBAutoHeightTextView alloc] initWithDataSource:nil];
+    self.textView.cursorColor = [UIColor orangeColor];
     [self.view addSubview:self.textView];
     [self.textView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(line).insets(UIEdgeInsetsMake(10, 58, 10, 58));

@@ -28,6 +28,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *text;
 /** 文本颜色 */
 @property (nonatomic, strong) UIColor *textColor;
+/** 光标颜色 */
+@property (nonatomic, strong) UIColor *cursorColor;
 /** 占位字符 */
 @property (nonatomic, copy) NSString *placeholder;
 /** 占位字符颜色 */
