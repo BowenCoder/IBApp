@@ -134,6 +134,7 @@
 		4A44438421008BE2001B2350 /* IBTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A44438321008BE2001B2350 /* IBTabBar.m */; };
 		4A686D2520EB229000C8328E /* IBEmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A686D2420EB229000C8328E /* IBEmptyView.m */; };
 		4A686D2920EB668A00C8328E /* IBLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A686D2820EB668A00C8328E /* IBLoadingView.m */; };
+		4A6DFF3523B5EF450002D3BB /* MBAutoHeightTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6DFF3423B5EF450002D3BB /* MBAutoHeightTextView.m */; };
 		4A6F196C20E0923000EAF1A7 /* NSDateTimeAgo.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4A6F196B20E0923000EAF1A7 /* NSDateTimeAgo.bundle */; };
 		4A6F197220E23FB900EAF1A7 /* IBEncode.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6F197120E23FB900EAF1A7 /* IBEncode.m */; };
 		4A6F197620E26B3800EAF1A7 /* IBCrypto.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6F197520E26B3800EAF1A7 /* IBCrypto.m */; };
@@ -199,6 +200,7 @@
 		4AA2863222C9230700C34336 /* MBGestureView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA2863122C9230700C34336 /* MBGestureView.m */; };
 		4AA2863622C92A5000C34336 /* SDiOSVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA2863522C92A5000C34336 /* SDiOSVersion.m */; };
 		4AA2863922C92BFB00C34336 /* IBServiceInfoHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA2863822C92BFB00C34336 /* IBServiceInfoHandler.m */; };
+		4AA85A0223B36564003D610F /* MBTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA85A0123B36564003D610F /* MBTextView.m */; };
 		4AAA27C02107379100B0C256 /* IBNaviBar+Config.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AAA27BF2107379100B0C256 /* IBNaviBar+Config.m */; };
 		4AAA78EB20ECB4F200CF5639 /* IBDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AAA78EA20ECB4F200CF5639 /* IBDebug.m */; };
 		4AAA78F220ECBCB200CF5639 /* IBFPSLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AAA78F120ECBCB200CF5639 /* IBFPSLabel.m */; };
@@ -600,6 +602,8 @@
 		4A686D2420EB229000C8328E /* IBEmptyView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBEmptyView.m; sourceTree = "<group>"; };
 		4A686D2720EB668A00C8328E /* IBLoadingView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBLoadingView.h; sourceTree = "<group>"; };
 		4A686D2820EB668A00C8328E /* IBLoadingView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBLoadingView.m; sourceTree = "<group>"; };
+		4A6DFF3323B5EF450002D3BB /* MBAutoHeightTextView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBAutoHeightTextView.h; sourceTree = "<group>"; };
+		4A6DFF3423B5EF450002D3BB /* MBAutoHeightTextView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBAutoHeightTextView.m; sourceTree = "<group>"; };
 		4A6F196B20E0923000EAF1A7 /* NSDateTimeAgo.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = NSDateTimeAgo.bundle; sourceTree = "<group>"; };
 		4A6F196D20E093E700EAF1A7 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		4A6F196E20E093E700EAF1A7 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
@@ -749,6 +753,8 @@
 		4AA2863522C92A5000C34336 /* SDiOSVersion.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SDiOSVersion.m; sourceTree = "<group>"; };
 		4AA2863722C92BFB00C34336 /* IBServiceInfoHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBServiceInfoHandler.h; sourceTree = "<group>"; };
 		4AA2863822C92BFB00C34336 /* IBServiceInfoHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBServiceInfoHandler.m; sourceTree = "<group>"; };
+		4AA85A0023B36564003D610F /* MBTextView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBTextView.h; sourceTree = "<group>"; };
+		4AA85A0123B36564003D610F /* MBTextView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBTextView.m; sourceTree = "<group>"; };
 		4AAA27BE2107379100B0C256 /* IBNaviBar+Config.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "IBNaviBar+Config.h"; sourceTree = "<group>"; };
 		4AAA27BF2107379100B0C256 /* IBNaviBar+Config.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "IBNaviBar+Config.m"; sourceTree = "<group>"; };
 		4AAA78E920ECB4F200CF5639 /* IBDebug.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBDebug.h; sourceTree = "<group>"; };
@@ -2019,6 +2025,17 @@
 			path = SDVersion;
 			sourceTree = "<group>";
 		};
+		4AA859FF23B3644B003D610F /* MBTextView */ = {
+			isa = PBXGroup;
+			children = (
+				4AA85A0023B36564003D610F /* MBTextView.h */,
+				4AA85A0123B36564003D610F /* MBTextView.m */,
+				4A6DFF3323B5EF450002D3BB /* MBAutoHeightTextView.h */,
+				4A6DFF3423B5EF450002D3BB /* MBAutoHeightTextView.m */,
+			);
+			path = MBTextView;
+			sourceTree = "<group>";
+		};
 		4AAA78E820ECB4CA00CF5639 /* IBDebug */ = {
 			isa = PBXGroup;
 			children = (
@@ -2542,6 +2559,7 @@
 		4ACC55C620DB5F3E001352AE /* Public(公共) */ = {
 			isa = PBXGroup;
 			children = (
+				4AA859FF23B3644B003D610F /* MBTextView */,
 				4AC102DE230FFA8300DE39CD /* MBImageView */,
 				4A0800E52302B80100EF25BE /* MBButton */,
 				4AD688FA23014A6600D3A248 /* MBAlignmentLabel */,
@@ -3420,6 +3438,7 @@
 				4AD688FD23014AD700D3A248 /* MBAlignmentLabel.m in Sources */,
 				4AD770AE2297CD1300FEB76B /* YYTextDebugOption.m in Sources */,
 				4A22DE1D228AF3B500D4CFA6 /* DDLoggerNames.m in Sources */,
+				4AA85A0223B36564003D610F /* MBTextView.m in Sources */,
 				4ACC55EA20DB5F3E001352AE /* AppDelegate.m in Sources */,
 				4A6F197B20E3332000EAF1A7 /* IBColor.m in Sources */,
 				4AD770B32297CD1300FEB76B /* YYTextArchiver.m in Sources */,
@@ -3572,6 +3591,7 @@
 				4AC29F7D210F04A900F218FE /* UIScrollView+MJExtension.m in Sources */,
 				4A22DE1E228AF3B500D4CFA6 /* DDAbstractDatabaseLogger.m in Sources */,
 				4AC29F91210F18C700F218FE /* IBTableCell.m in Sources */,
+				4A6DFF3523B5EF450002D3BB /* MBAutoHeightTextView.m in Sources */,
 				4A6F199620E3AC7F00EAF1A7 /* IBSocketPacket.m in Sources */,
 				4A89D634228B17490072FB23 /* sha1.m in Sources */,
 				4A6F19B420E3FBDE00EAF1A7 /* IBNetworkStatus.m in Sources */,

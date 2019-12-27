@@ -12,11 +12,14 @@
 #import "IBPopoverView.h"
 #import "MBTimerSchedule.h"
 #import "IBHTTPManager.h"
+#import "MBAutoHeightTextView.h"
+#import "Masonry.h"
 
 @interface IBMineController ()<UINavigationControllerDelegate, MBTimerScheduleProtocol>
 
 @property (nonatomic, strong) UIButton *btn;
 @property (nonatomic, strong) MBTimerSchedule *schedule;
+@property (nonatomic, strong) MBAutoHeightTextView *textView;
 
 @end
 
@@ -46,8 +49,34 @@
     [self.view addSubview:btn];
     self.btn = btn;
     
-    self.schedule = [[MBTimerSchedule alloc] init];
-    [self.schedule registerSchedule:self];
+//    self.schedule = [[MBTimerSchedule alloc] init];
+//    [self.schedule registerSchedule:self];
+    
+    UIView *line = [[UIView alloc] init];
+    line.backgroundColor = [UIColor redColor];
+    [self.view addSubview:line];
+    [line mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(self.view).offset(-300);
+        make.left.right.equalTo(self.view);
+        make.height.mas_equalTo(10);
+    }];
+    
+    self.view.backgroundColor = [UIColor lightGrayColor];
+    self.textView = [[MBAutoHeightTextView alloc] initWithFrame:CGRectZero delegate:self];
+    [self.view addSubview:self.textView];
+    [self.textView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(self.view).offset(-300);
+        make.centerX.equalTo(self.view);
+        make.width.mas_equalTo(300);
+    }];
+        
+}
+
+
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    [self.view endEditing:YES];
 }
 
 - (void)scheduledTrigged:(NSUInteger)timerCounter
@@ -65,7 +94,6 @@
     pop.preferredWidth = 300.0;
     pop.contentView.frame = CGRectMake(0, 0, 50, 50);
     [pop showFromRect:self.btn.frame inView:self.view animated:YES duration:20];
-
 }
 
 - (void)viewDidAppear:(BOOL)animated {
