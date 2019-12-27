@@ -10,21 +10,31 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@protocol MBAutoHeightTextViewDelegate <NSObject>
+@protocol MBAutoHeightTextViewDataSource <NSObject>
 
-- (UIFont *)textViewFont;
-- (UIColor *)textViewTextColor;
-- (UIColor *)textViewPlaceholderTextColor;
-- (NSUInteger)textViewMinNumberOfLines;
-- (NSUInteger)textViewMaxNumberOfLines;
+@optional
+- (UIFont *)textFont;
+- (UIEdgeInsets)textEdgeInsets;
+- (NSUInteger)textMinNumberOfLines;
+- (NSUInteger)textMaxNumberOfLines;
 
 @end
 
 @interface MBAutoHeightTextView : UIView
 
-- (instancetype)initWithFrame:(CGRect)frame delegate:(id<MBAutoHeightTextViewDelegate>)delegate;
+- (instancetype)initWithDataSource:(nullable id<MBAutoHeightTextViewDataSource>)dataSource;
 
-@property (nonatomic, assign) UIEdgeInsets edgeInsets;
+/** 文本 */
+@property (nonatomic, copy) NSString *text;
+/** 文本颜色 */
+@property (nonatomic, strong) UIColor *textColor;
+/** 占位字符 */
+@property (nonatomic, copy) NSString *placeholder;
+/** 占位字符颜色 */
+@property (nonatomic, strong) UIColor *placeholderTextColor;
+
+/** 文本回调 */
+@property (nonatomic, copy) void(^textViewDidChange)(NSString *text);
 
 @end
 

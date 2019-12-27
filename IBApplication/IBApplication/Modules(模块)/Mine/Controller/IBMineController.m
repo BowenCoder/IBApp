@@ -31,16 +31,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-//    [self reloadData];
 
-//    self.navigationController.navigationBar.barTintColor = [UIColor redColor];
-//    self.navigationController.navigationBar.frame = CGRectMake(0, 0, self.view.frame.size.width, 200);
-//    self.navigationController.navigationBar.translucent = YES;
     self.navigationItem.title = @"123";
     [self rightBarItemWithTitle:@"关注" titleColor:nil imageName:nil];
-//    [self rightBarItemWithTitle:@"关注" titleColor:[UIColor redColor] imageName:@"bubble"];
-//    [self leftBarItemWithTitle:@"关注" titleColor:[UIColor redColor] imageName:@"bubble"];
     
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
     btn.frame= CGRectMake(100, 200, 100, 44);
@@ -49,8 +42,8 @@
     [self.view addSubview:btn];
     self.btn = btn;
     
-//    self.schedule = [[MBTimerSchedule alloc] init];
-//    [self.schedule registerSchedule:self];
+    self.schedule = [[MBTimerSchedule alloc] init];
+    [self.schedule registerSchedule:self];
     
     UIView *line = [[UIView alloc] init];
     line.backgroundColor = [UIColor redColor];
@@ -58,16 +51,13 @@
     [line mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.equalTo(self.view).offset(-300);
         make.left.right.equalTo(self.view);
-        make.height.mas_equalTo(10);
     }];
     
     self.view.backgroundColor = [UIColor lightGrayColor];
-    self.textView = [[MBAutoHeightTextView alloc] initWithFrame:CGRectZero delegate:self];
+    self.textView = [[MBAutoHeightTextView alloc] initWithDataSource:nil];
     [self.view addSubview:self.textView];
     [self.textView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(self.view).offset(-300);
-        make.centerX.equalTo(self.view);
-        make.width.mas_equalTo(300);
+        make.edges.equalTo(line).insets(UIEdgeInsetsMake(10, 58, 10, 58));
     }];
         
 }

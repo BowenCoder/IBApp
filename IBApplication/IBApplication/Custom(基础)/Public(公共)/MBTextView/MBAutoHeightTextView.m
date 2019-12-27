@@ -13,17 +13,18 @@
 @interface MBAutoHeightTextView ()
 
 @property (nonatomic, strong) MBTextView *textView;
-@property (nonatomic, weak) id<MBAutoHeightTextViewDelegate> delegate;
+@property (nonatomic, assign) UIEdgeInsets textEdgeInsets;
+@property (nonatomic, weak) id<MBAutoHeightTextViewDataSource> dataSource;
 
 @end
 
 @implementation MBAutoHeightTextView
 
-- (instancetype)initWithFrame:(CGRect)frame delegate:(id<MBAutoHeightTextViewDelegate>)delegate
+- (instancetype)initWithDataSource:(id<MBAutoHeightTextViewDataSource>)dataSource;
 {
-    self = [super initWithFrame:frame];
+    self = [super init];
     if (self) {
-        self.delegate = delegate;
+        self.dataSource = dataSource;
         [self setupView];
     }
     return self;
@@ -31,47 +32,75 @@
 
 - (void)setupView
 {
-    self.backgroundColor = [UIColor orangeColor];
-    self.edgeInsets = UIEdgeInsetsMake(5, 5, 5, 5);
+    __weak typeof(self) weakself = self;
+
+    self.backgroundColor = [UIColor whiteColor];
+    self.textEdgeInsets = UIEdgeInsetsMake(5, 5, 5, 5);
     
     self.textView = [[MBTextView alloc] init];
     self.textView.isAutoHeight = YES;
-    self.textView.minRowNumber = 1;
-    self.textView.maxRowNumber = 3;
+    
+    if (self.dataSource && [self.dataSource respondsToSelector:@selector(textFont)]) {
+        self.textView.font = [self.dataSource textFont];
+    }
+    
+    if (self.dataSource && [self.dataSource respondsToSelector:@selector(textMinNumberOfLines)]) {
+        self.textView.minRowNumber = [self.dataSource textMinNumberOfLines];
+    }
+    
+    if (self.dataSource && [self.dataSource respondsToSelector:@selector(textMaxNumberOfLines)]) {
+        self.textView.maxRowNumber = [self.dataSource textMaxNumberOfLines];
+    }
+    
+    if (self.dataSource && [self.dataSource respondsToSelector:@selector(textEdgeInsets)]) {
+        self.textEdgeInsets = [self.dataSource textEdgeInsets];
+    }
     
     self.textView.textViewDidChange = ^(NSString *text) {
-        
+        if (weakself.textViewDidChange) {
+            weakself.textViewDidChange(text);
+        }
     };
     
-    __weak typeof(self) weakself = self;
     self.textView.textViewAutoHeight = ^(CGFloat textHeight) {
-        [weakself layoutTextView:textHeight];
+        [weakself.textView mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.height.mas_equalTo(textHeight);
+        }];
+        [UIView animateWithDuration:0.1 animations:^{
+            [weakself.superview layoutIfNeeded];
+        }];
     };
     
     [self addSubview:self.textView];
     [self.textView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(self).insets(self.edgeInsets);
+        make.edges.equalTo(self).insets(self.textEdgeInsets);
     }];
     
 }
 
-- (void)layoutTextView:(CGFloat)height
-{
-    if (self.textView.superview) {
-        [self.textView mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.edges.equalTo(self).insets(self.edgeInsets);
-            make.height.mas_equalTo(height).priorityHigh();
-        }];
-    } else {
-        [self.textView mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.height.mas_equalTo(height);
-        }];
-    }
-    
-    [UIView animateWithDuration:0.1 animations:^{
-        [self layoutIfNeeded];
-    }];
+#pragma mark - getter, setter
 
+- (void)setText:(NSString *)text {
+    self.textView.text = text;
 }
+
+- (void)setTextColor:(UIColor *)textColor {
+    self.textView.textColor = textColor;
+}
+
+- (void)setPlaceholder:(NSString *)placeholder {
+    self.textView.placeholder = placeholder;
+}
+
+- (void)setPlaceholderTextColor:(UIColor *)placeholderTextColor {
+    self.textView.placeholderTextColor = placeholderTextColor;
+}
+
+- (void)setPlaceholderAttributedText:(NSAttributedString *)placeholderAttributedText {
+    self.textView.placeholderAttributedText = placeholderAttributedText;
+}
+
+
+
 
 @end

@@ -250,11 +250,4 @@
     return [self.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 }
 
-- (CGFloat)defaultHeight {
-    CGFloat height = 0.0;
-    CGFloat margin = self.textContainerInset.top + self.textContainerInset.bottom;
-    height = self.minRowNumber * self.fontHeight + margin;
-    return height;
-}
-
 @end

@@ -48,9 +48,6 @@ typedef NS_ENUM(NSInteger, MBTextViewInputState) {
 /** 清除首位的空格和换行 */
 - (NSString *)formatText;
 
-/** 默认最小高度 */
-- (CGFloat)defaultHeight;
-
 @end
 
 NS_ASSUME_NONNULL_END
