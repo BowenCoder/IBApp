@@ -37,9 +37,7 @@ typedef NS_ENUM(NSInteger, IBPopupSlideStyle) {
     IBPopupSlideStyleFromRight,
     IBPopupSlideStyleShrinkInOut1 = 4,
     IBPopupSlideStyleShrinkInOut2,
-    IBPopupSlideStyleFade, // default
-    
-    IBPopupSlideStyleShrinkInOut __attribute__((deprecated("Use IBPopupSlideStyleShrinkInOut1"))) = 4
+    IBPopupSlideStyleFade, // default    
 };
 
 @protocol IBPopupManagerDelegate;

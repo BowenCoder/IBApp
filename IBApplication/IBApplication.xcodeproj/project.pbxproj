@@ -258,6 +258,10 @@
 		4AC428F1215A56A8008C93D4 /* IBPopoverMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC428F0215A56A8008C93D4 /* IBPopoverMenu.m */; };
 		4AC455C421368840007CBEF0 /* IBAuthManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC455C321368840007CBEF0 /* IBAuthManager.m */; };
 		4AC456AD22FD283400BBC9AC /* AFNetworkActivityIndicatorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC456AB22FD283300BBC9AC /* AFNetworkActivityIndicatorManager.m */; };
+		4AC7AF2523C33CBD00446C03 /* MBMessageBarManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC7AF2423C33CBD00446C03 /* MBMessageBarManager.m */; };
+		4AC7AF2823C3433D00446C03 /* MBMessageBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC7AF2723C3433D00446C03 /* MBMessageBarView.m */; };
+		4AC7AF2A23C3483C00446C03 /* MBMessageBar.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4AC7AF2923C3483C00446C03 /* MBMessageBar.bundle */; };
+		4AC7AF2D23C35D0500446C03 /* MBMessageBarStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC7AF2C23C35D0500446C03 /* MBMessageBarStyle.m */; };
 		4AC81CCC20F3200400A1F246 /* IBTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC81CCB20F3200400A1F246 /* IBTabBarController.m */; };
 		4AC81CD220F37BFE00A1F246 /* IBWebController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC81CD120F37BFE00A1F246 /* IBWebController.m */; };
 		4AC81CD720F37C6B00A1F246 /* IBCollectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC81CD620F37C6B00A1F246 /* IBCollectionController.m */; };
@@ -868,6 +872,13 @@
 		4AC455C52137C9B0007CBEF0 /* IBErrorCode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBErrorCode.h; sourceTree = "<group>"; };
 		4AC456AB22FD283300BBC9AC /* AFNetworkActivityIndicatorManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFNetworkActivityIndicatorManager.m; sourceTree = "<group>"; };
 		4AC456AC22FD283300BBC9AC /* AFNetworkActivityIndicatorManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworkActivityIndicatorManager.h; sourceTree = "<group>"; };
+		4AC7AF2323C33CBD00446C03 /* MBMessageBarManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBMessageBarManager.h; sourceTree = "<group>"; };
+		4AC7AF2423C33CBD00446C03 /* MBMessageBarManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBMessageBarManager.m; sourceTree = "<group>"; };
+		4AC7AF2623C3433D00446C03 /* MBMessageBarView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBMessageBarView.h; sourceTree = "<group>"; };
+		4AC7AF2723C3433D00446C03 /* MBMessageBarView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBMessageBarView.m; sourceTree = "<group>"; };
+		4AC7AF2923C3483C00446C03 /* MBMessageBar.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MBMessageBar.bundle; sourceTree = "<group>"; };
+		4AC7AF2B23C35D0500446C03 /* MBMessageBarStyle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBMessageBarStyle.h; sourceTree = "<group>"; };
+		4AC7AF2C23C35D0500446C03 /* MBMessageBarStyle.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBMessageBarStyle.m; sourceTree = "<group>"; };
 		4AC81CCA20F3200400A1F246 /* IBTabBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBTabBarController.h; sourceTree = "<group>"; };
 		4AC81CCB20F3200400A1F246 /* IBTabBarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBTabBarController.m; sourceTree = "<group>"; };
 		4AC81CD020F37BFE00A1F246 /* IBWebController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBWebController.h; sourceTree = "<group>"; };
@@ -2384,6 +2395,20 @@
 			path = Auth;
 			sourceTree = "<group>";
 		};
+		4AC7AE2523C32B4C00446C03 /* MBMessageBar */ = {
+			isa = PBXGroup;
+			children = (
+				4AC7AF2323C33CBD00446C03 /* MBMessageBarManager.h */,
+				4AC7AF2423C33CBD00446C03 /* MBMessageBarManager.m */,
+				4AC7AF2B23C35D0500446C03 /* MBMessageBarStyle.h */,
+				4AC7AF2C23C35D0500446C03 /* MBMessageBarStyle.m */,
+				4AC7AF2623C3433D00446C03 /* MBMessageBarView.h */,
+				4AC7AF2723C3433D00446C03 /* MBMessageBarView.m */,
+				4AC7AF2923C3483C00446C03 /* MBMessageBar.bundle */,
+			);
+			path = MBMessageBar;
+			sourceTree = "<group>";
+		};
 		4AC7FBD8212C42C200203C92 /* IBPopupController */ = {
 			isa = PBXGroup;
 			children = (
@@ -2559,6 +2584,7 @@
 		4ACC55C620DB5F3E001352AE /* Public(公共) */ = {
 			isa = PBXGroup;
 			children = (
+				4AC7AE2523C32B4C00446C03 /* MBMessageBar */,
 				4AA859FF23B3644B003D610F /* MBTextView */,
 				4AC102DE230FFA8300DE39CD /* MBImageView */,
 				4A0800E52302B80100EF25BE /* MBButton */,
@@ -3332,6 +3358,7 @@
 				4A1FB13A20E921E90056A026 /* UIBarButtonItemGrid.png in Resources */,
 				4A1FB14720E921E90056A026 /* ImageError.png in Resources */,
 				F3A5C8EC212C7459005D9174 /* README.txt in Resources */,
+				4AC7AF2A23C3483C00446C03 /* MBMessageBar.bundle in Resources */,
 				4A1FB14C20E921E90056A026 /* UIBarButtonItemArrowLeft@2x.png in Resources */,
 				4A1FB13C20E921E90056A026 /* VideoOverlay@2x.png in Resources */,
 				4ACC55E420DB5F3E001352AE /* Assets.xcassets in Resources */,
@@ -3405,6 +3432,7 @@
 				4AC29F9921106C0800F218FE /* IBRefreshHeader.m in Sources */,
 				4A89D62F228B17490072FB23 /* SSZipArchive.m in Sources */,
 				4A6F197F20E345F500EAF1A7 /* IBHelper.m in Sources */,
+				4AC7AF2523C33CBD00446C03 /* MBMessageBarManager.m in Sources */,
 				4AD770B72297CD1300FEB76B /* NSAttributedString+YYText.m in Sources */,
 				4AC29FD52111CAD700F218FE /* AXPracticalHUD.m in Sources */,
 				4A89D635228B17490072FB23 /* prng.m in Sources */,
@@ -3587,6 +3615,7 @@
 				4A1FB22120E92D5E0056A026 /* SDWebImageDownloader.m in Sources */,
 				4A6F199B20E3B37200EAF1A7 /* IBSocketPacketDecode.m in Sources */,
 				4AE95F5323A12C4A00A5C172 /* IBHTTPCache.m in Sources */,
+				4AC7AF2D23C35D0500446C03 /* MBMessageBarStyle.m in Sources */,
 				4A89D630228B17490072FB23 /* aeskey.m in Sources */,
 				4AC29F7D210F04A900F218FE /* UIScrollView+MJExtension.m in Sources */,
 				4A22DE1E228AF3B500D4CFA6 /* DDAbstractDatabaseLogger.m in Sources */,
@@ -3609,6 +3638,7 @@
 				4A89D641228BC2DC0072FB23 /* NSObject+Ext.m in Sources */,
 				4A22DE23228AF3B500D4CFA6 /* DDDispatchQueueLogFormatter.m in Sources */,
 				4A84CBBD229B976500CA4794 /* MBRouter.m in Sources */,
+				4AC7AF2823C3433D00446C03 /* MBMessageBarView.m in Sources */,
 				4A22DE21228AF3B500D4CFA6 /* CLIColor.m in Sources */,
 				4AC29FAA2111C77D00F218FE /* AXSecurityPolicy.m in Sources */,
 				4A03B8D6229ADCCB00173765 /* MBModuleCenter.m in Sources */,
