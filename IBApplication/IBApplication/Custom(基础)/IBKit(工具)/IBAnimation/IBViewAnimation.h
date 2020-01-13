@@ -49,9 +49,7 @@ typedef void(^IBViewAnimationHandle)(CAAnimation *animation);
 
 + (CGFloat)maxBorderDiameterForPoint:(CGPoint)point onView:(UIView *)view;
 
-@end
-
-@interface IBViewAnimation (Animation)
+#pragma mark - UIViewAnimation
 
 /** 视图震动效果 */
 + (void)shake:(UIView *)view;
@@ -80,14 +78,12 @@ typedef void(^IBViewAnimationHandle)(CAAnimation *animation);
 /** 移动 */
 + (void)move:(UIView *)view duration:(float)duration distance:(CGFloat)distance direction:(IBViewAnimationDirection)direction completion:(void (^)(void))completion;
 
-@end
-
 
 /**
- 核心动画操作的是呈现图层，实际上模型图层没有变
- 注意点，载入屏幕，视图需要在开始时添加上去；移出屏幕，视图需要在结束时移除
- */
-@interface IBViewAnimation (CoreAnimation)
+核心动画操作的是呈现图层，实际上模型图层没有变
+注意点，载入屏幕，视图需要在开始时添加上去；移出屏幕，视图需要在结束时移除
+*/
+#pragma mark - CoreAnimation
 
 /**
  移动动画

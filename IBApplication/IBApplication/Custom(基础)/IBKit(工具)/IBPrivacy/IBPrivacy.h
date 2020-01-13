@@ -36,7 +36,7 @@ typedef NS_ENUM(NSUInteger,IBPrivacyAuthorizationStatus) {
 
 @interface IBPrivacy : NSObject
 
-+ (void)accessPrivacyPermissionWithType:(IBPrivacyPermissionType)type completion:(void(^)(BOOL response,IBPrivacyAuthorizationStatus status))completion;
++ (void)accessPrivacyPermissionWithType:(IBPrivacyPermissionType)type completion:(void(^)(BOOL result,IBPrivacyAuthorizationStatus status))completion;
 
 
 @end

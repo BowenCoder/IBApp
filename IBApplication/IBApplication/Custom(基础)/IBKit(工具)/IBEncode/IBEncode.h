@@ -33,10 +33,7 @@ typedef NS_ENUM(NSInteger, IBEncodeHashOption) {
  */
 @interface IBEncode : NSObject
 
-
-@end
-
-@interface IBEncode (MD5)
+#pragma mark - MD5
 
 //计算NSString的MD5值
 + (NSString *)md5WithString:(NSString *)string;
@@ -47,9 +44,7 @@ typedef NS_ENUM(NSInteger, IBEncodeHashOption) {
 //计算大文件的MD5值
 + (NSString*)md5WithFile:(NSString*)path;
 
-@end
-
-@interface IBEncode (NSDataBase64)
+#pragma mark - NSDataBase64
 
 /**
  *  @brief  base64字符串解码
@@ -67,9 +62,7 @@ typedef NS_ENUM(NSInteger, IBEncodeHashOption) {
  */
 + (NSString *)encodeBase64:(NSData *)data;
 
-@end
-
-@interface IBEncode (NSDataHash)
+#pragma mark - NSDataHash
 
 /**
  *  @brief           键控哈希算法
@@ -92,9 +85,7 @@ typedef NS_ENUM(NSInteger, IBEncodeHashOption) {
  */
 + (NSData *)hash:(NSData *)data option:(IBEncodeHashOption)option;
 
-@end
-
-@interface IBEncode (NSDataGzip)
+#pragma mark - NSDataGzip
 
 /**
  *  @brief  compressedData 压缩后的数据
@@ -121,9 +112,7 @@ typedef NS_ENUM(NSInteger, IBEncodeHashOption) {
  */
 + (NSData *)gunzippedData:(NSData *)data;
 
-@end
-
-@interface IBEncode (NSStringEncode)
+#pragma mark - NSStringEncode
 
 /**
  *  对url进行编码

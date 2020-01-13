@@ -25,6 +25,8 @@ typedef NS_ENUM(NSInteger, MBProgressBarMode) {
 
 @interface MBProgressHUD (Ext)
 
+#pragma mark - Toast
+
 /** 显示成功 */
 + (void)showSuccess:(UIView *)superview title:(NSString *)title;
 
@@ -61,9 +63,7 @@ typedef NS_ENUM(NSInteger, MBProgressBarMode) {
 /** 隐藏（从window）*/
 + (void)hideHUD;
 
-@end
-
-@interface MBProgressHUD (EmptyView)
+#pragma mark - EmptyView
 
 + (void)showNoInternet:(UIView *)superview reload:(void(^)(void))reload;
 
@@ -74,9 +74,7 @@ typedef NS_ENUM(NSInteger, MBProgressBarMode) {
 
 + (void)hideEmpty:(UIView *)superview;
 
-@end
-
-@interface MBProgressHUD (Loading)
+#pragma mark - Loading
 
 + (void)showBallLoadingView:(UIView *)superview;
 + (void)hideBallLoadingView:(UIView *)superview;

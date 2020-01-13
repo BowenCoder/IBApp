@@ -1,5 +1,5 @@
 //
-//  IBLoadingView.h
+//  MBLoadingView.h
 //  IBApplication
 //
 //  Created by Bowen on 2018/7/3.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface IBBallLoadingView : UIView
+@interface MBBallLoadingView : UIView
 
 @property (nonatomic, assign) BOOL isAnimating;
 
@@ -18,7 +18,7 @@
 @end
 
 
-@interface IBCircleLoadingView : UIView
+@interface MBCircleLoadingView : UIView
 
 @property (nonatomic, strong) NSMutableArray *colorArray;
 @property (nonatomic, assign) CGFloat lineWidth;
@@ -31,7 +31,7 @@
 @end
 
 
-@interface IBTriangleLoadingView : UIView
+@interface MBTriangleLoadingView : UIView
 
 @property (nonatomic, assign) BOOL isAnimating;
 
@@ -40,7 +40,7 @@
 
 @end
 
-@interface IBSwapLoadingView : UIView
+@interface MBSwapLoadingView : UIView
 
 @property (nonatomic, assign) BOOL isAnimating;
 

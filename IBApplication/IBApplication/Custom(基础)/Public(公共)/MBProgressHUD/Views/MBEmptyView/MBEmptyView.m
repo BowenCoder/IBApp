@@ -1,16 +1,16 @@
 //
-//  IBEmptyView.m
+//  MBEmptyView.m
 //  IBApplication
 //
 //  Created by Bowen on 2018/7/3.
 //  Copyright © 2018年 BowenCoder. All rights reserved.
 //
 
-#import "IBEmptyView.h"
+#import "MBEmptyView.h"
 #import "Masonry.h"
 #import "IBColor.h"
 
-@interface IBEmptyView ()
+@interface MBEmptyView ()
 
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, copy) NSString *detail;
@@ -25,7 +25,7 @@
 
 @end
 
-@implementation IBEmptyView
+@implementation MBEmptyView
 
 #pragma mark - life cycle
 

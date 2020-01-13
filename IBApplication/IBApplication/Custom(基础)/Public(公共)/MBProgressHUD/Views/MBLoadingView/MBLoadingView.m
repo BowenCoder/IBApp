@@ -1,16 +1,16 @@
 //
-//  IBLoadingView.m
+//  MBLoadingView.m
 //  IBApplication
 //
 //  Created by Bowen on 2018/7/3.
 //  Copyright © 2018年 BowenCoder. All rights reserved.
 //
 
-#import "IBLoadingView.h"
+#import "MBLoadingView.h"
 
 #define margin 12
 
-@interface IBBallLoadingView () <CAAnimationDelegate>
+@interface MBBallLoadingView () <CAAnimationDelegate>
 
 @property (nonatomic, strong) CALayer *redLayer;
 @property (nonatomic, strong) CALayer *yellowLayer;
@@ -21,7 +21,7 @@
 
 @end
 
-@implementation IBBallLoadingView
+@implementation MBBallLoadingView
 
 - (void)dealloc {
     NSLog(@"%s", __func__);
@@ -90,7 +90,7 @@
     
 }
 
-void resetData(IBBallLoadingView *obj,CALayer **firstLayer, CALayer **secondLayer, float *radius, CGPoint *point) {
+void resetData(MBBallLoadingView *obj,CALayer **firstLayer, CALayer **secondLayer, float *radius, CGPoint *point) {
     
     CGFloat tx, ty;
     *radius = (obj.redLayer.position.x - obj.blueLayer.position.x)/2;
@@ -162,7 +162,7 @@ void resetData(IBBallLoadingView *obj,CALayer **firstLayer, CALayer **secondLaye
 
 @end
 
-@interface IBCircleLoadingView ()
+@interface MBCircleLoadingView ()
 
 @property (nonatomic, strong) CAShapeLayer *circleLayer;
 @property (nonatomic, strong) CAAnimationGroup *strokeLineAnimation;
@@ -171,7 +171,7 @@ void resetData(IBBallLoadingView *obj,CALayer **firstLayer, CALayer **secondLaye
 
 @end
 
-@implementation IBCircleLoadingView
+@implementation MBCircleLoadingView
 
 - (void)dealloc {
     NSLog(@"%s", __func__);
@@ -304,14 +304,14 @@ void resetData(IBBallLoadingView *obj,CALayer **firstLayer, CALayer **secondLaye
 @end
 
 
-@interface IBTriangleLoadingView ()
+@interface MBTriangleLoadingView ()
 
 @property (nonatomic, strong) CALayer *triangleLayer;
 
 @end
 
 
-@implementation IBTriangleLoadingView
+@implementation MBTriangleLoadingView
 
 - (void)dealloc {
     NSLog(@"%s", __func__);
@@ -424,7 +424,7 @@ void resetData(IBBallLoadingView *obj,CALayer **firstLayer, CALayer **secondLaye
 @end
 
 
-@interface IBSwapLoadingView () <CAAnimationDelegate>
+@interface MBSwapLoadingView () <CAAnimationDelegate>
 
 @property (nonatomic, strong) CALayer *redLayer;
 @property (nonatomic, strong) CALayer *yellowLayer;
@@ -438,7 +438,7 @@ void resetData(IBBallLoadingView *obj,CALayer **firstLayer, CALayer **secondLaye
 
 @end
 
-@implementation IBSwapLoadingView
+@implementation MBSwapLoadingView
 
 - (void)dealloc {
     NSLog(@"%s", __func__);

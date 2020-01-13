@@ -1,5 +1,5 @@
 //
-//  IBEmptyView.h
+//  MBEmptyView.h
 //  IBApplication
 //
 //  Created by Bowen on 2018/7/3.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface IBEmptyView : UIView
+@interface MBEmptyView : UIView
 
 - (instancetype)initWithFrame:(CGRect)frame
                         title:(NSString *)title

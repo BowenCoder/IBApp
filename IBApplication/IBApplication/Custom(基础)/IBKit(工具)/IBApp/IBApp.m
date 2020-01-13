@@ -28,6 +28,8 @@
 
 @implementation IBApp
 
+#pragma mark - Basic
+
 + (NSString *)UUID {
     
     if([[[UIDevice currentDevice] systemVersion] floatValue] > 6.0) {
@@ -245,9 +247,7 @@
     return folderSize;
 }
 
-@end
-
-@implementation IBApp (Open)
+#pragma mark - Open
 
 + (BOOL)canOpenURL:(NSURL *)url {
     return [[UIApplication sharedApplication] canOpenURL:url];
@@ -287,9 +287,7 @@
     [self openURL:url];
 }
 
-@end
-
-@implementation IBApp (Device)
+#pragma mark - Device
 
 + (BOOL)isSimulator {
 #if TARGET_OS_SIMULATOR

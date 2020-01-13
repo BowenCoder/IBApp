@@ -160,9 +160,7 @@ NSString *const IBViewAnimationFlyoutName = @"IBViewAnimationFlyoutName";
     return radius * 2.0;
 }
 
-@end
-
-@implementation IBViewAnimation (Animation)
+#pragma mark - UIViewAnimation
 
 + (void)shake:(UIView *)view {
     
@@ -329,9 +327,7 @@ NSString *const IBViewAnimationFlyoutName = @"IBViewAnimationFlyoutName";
     }];
 }
 
-@end
-
-@implementation IBViewAnimation (CoreAnimation)
+#pragma mark - CoreAnimation
 
 - (CAAnimation *)slideAnimation:(UIView *)view
                          inView:(UIView *)enclosingView

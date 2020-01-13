@@ -7,22 +7,16 @@
 //
 
 #import "IBEncode.h"
-
 #import <zlib.h>
 #import <Availability.h>
 #include <CommonCrypto/CommonCrypto.h>
 
 #define FileHashDefaultChunkSizeForReadingData 1024*8 // 8K
-
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+#define SCFW_CHUNK_SIZE 16384
 
 @implementation IBEncode
 
-
-@end
-
-@implementation IBEncode (MD5)
+#pragma mark - MD5
 
 /**
  *  返回md5编码的字符串
@@ -163,11 +157,7 @@ done:
     return result;
 }
 
-
-@end
-
-
-@implementation IBEncode (NSDataBase64)
+#pragma mark - NSDataBase64
 
 /**
  *  @brief  base64字符串解码
@@ -182,8 +172,6 @@ done:
     NSData *decoded = nil;
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) {
         decoded = [[NSData alloc] initWithBase64EncodedString:string options:NSDataBase64DecodingIgnoreUnknownCharacters];
-    } else {
-        decoded = [[NSData alloc] initWithBase64Encoding:[string stringByReplacingOccurrencesOfString:@"[^A-Za-z0-9+/=]" withString:@"" options:NSRegularExpressionSearch range:NSMakeRange(0, [string length])]];
     }
     return decoded;
 }
@@ -211,20 +199,18 @@ done:
     if (![data length]) return nil;
     NSString *encoded = nil;
     
-    if ([[[UIDevice currentDevice] systemVersion] floatValue] <= 7.0) {
-        encoded = [data base64Encoding];
-    } else {
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) {
         switch (width) {
-            case 64: {
-                return [data base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
-            }
-            case 76: {
-                return [data base64EncodedStringWithOptions:NSDataBase64Encoding76CharacterLineLength];
-            }
-            default: {
-                encoded = [data base64EncodedStringWithOptions:(NSDataBase64EncodingOptions)0];
-            }
-        }
+             case 64: {
+                 return [data base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
+             }
+             case 76: {
+                 return [data base64EncodedStringWithOptions:NSDataBase64Encoding76CharacterLineLength];
+             }
+             default: {
+                 encoded = [data base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
+             }
+         }
     }
     
     if (!width || width >= [encoded length]) {
@@ -243,10 +229,7 @@ done:
     return result;
 }
 
-
-@end
-
-@implementation IBEncode (NSDataHash)
+#pragma mark - NSDataHash
 
 /**
  *  @brief           键控哈希算法
@@ -353,12 +336,7 @@ done:
     return newData;
 }
 
-@end
-
-
-@implementation IBEncode (NSDataGzip)
-
-#define SCFW_CHUNK_SIZE 16384
+#pragma mark - NSDataGzip
 
 /**
  *  @brief  compressedData 压缩后的数据
@@ -423,8 +401,6 @@ done:
     return nil;
 }
 
-
-
 /**
  *  @brief  GZIP压缩
  *
@@ -463,9 +439,7 @@ done:
     return nil;
 }
 
-@end
-
-@implementation IBEncode (NSStringEncode)
+#pragma mark - NSStringEncode
 
 /**
  *  对url进行编码
@@ -477,14 +451,12 @@ done:
 + (NSString *)URLEncode:(NSString *)string {
     
     if ([string isKindOfClass:[NSNull class]]) {
-        return @"";
+        return nil;
     }
     if([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) {
         return [string stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLPathAllowedCharacterSet]];
-    } else {
-        NSString *encoded = (NSString*)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,(CFStringRef)string,NULL,CFSTR("!*'();:@&=+$,/?%#[]"),kCFStringEncodingUTF8));
-        return encoded;
     }
+    return nil;
 }
 
 /**
@@ -497,15 +469,12 @@ done:
 + (NSString *)URLDecode:(NSString *)string {
     
     if ([string isKindOfClass:[NSNull class]]) {
-        return @"";
+        return nil;
     }
     if([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) {
         return [string stringByRemovingPercentEncoding];
-    } else {
-        NSString *decoded =(__bridge NSString *)CFURLCreateStringByReplacingPercentEscapesUsingEncoding(kCFAllocatorDefault,(CFStringRef)string,CFSTR(""),kCFStringEncodingUTF8);
-        return decoded;
     }
-
+    return nil;
 }
 
 /**
@@ -538,7 +507,6 @@ done:
     NSData *data = [IBEncode decodeBase64:string];
     return [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 }
-
 
 /**
  *  返回sha1编码的字符串
@@ -580,7 +548,4 @@ done:
 }
 
 @end
-
-
-#pragma clang diagnostic pop
 

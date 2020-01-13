@@ -42,6 +42,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface IBApp : NSObject
 
+#pragma mark - Basic
+
 /**
  获取随机 UUID 例如 E621E1F8-C36C-495A-93FC-0C247A3E6E5F
 
@@ -132,9 +134,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (void)checkAppVersionInStore:(NSString *)appID block:(void(^)(NSString *storeVersion, NSString *openUrl,BOOL update))block;
 
-@end
-
-@interface IBApp (Open)
+#pragma mark - Open
 
 /** 可以用来判断设备是否安装app等 */
 + (BOOL)canOpenURL:(NSURL *)url;
@@ -153,9 +153,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (void)openSettings;
 
-@end
-
-@interface IBApp (Device)
+#pragma mark - Device
 
 /** 判断是否是模拟器 */
 + (BOOL)isSimulator;

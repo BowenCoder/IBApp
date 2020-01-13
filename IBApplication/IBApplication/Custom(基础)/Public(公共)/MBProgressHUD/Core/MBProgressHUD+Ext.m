@@ -9,8 +9,8 @@
 #import "MBProgressHUD+Ext.h"
 #import "IBImage.h"
 #import "UIImage+GIF.h"
-#import "IBEmptyView.h"
-#import "IBLoadingView.h"
+#import "MBEmptyView.h"
+#import "MBLoadingView.h"
 
 CGFloat const delayTime = 1.2;
 
@@ -22,6 +22,8 @@ typedef NS_ENUM(NSInteger, MBStyle) {
 };
 
 @implementation MBProgressHUD (Ext)
+
+#pragma mark - Toast
 
 NS_INLINE MBProgressHUD *setup(UIView *view, NSString *title, MBStyle style,BOOL autoHidden) {
     
@@ -178,9 +180,7 @@ NS_INLINE void setupPosition(MBProgressHUD *hud, MBPosition position) {
     [self hideHUDForView:nil];
 }
 
-@end
-
-@implementation MBProgressHUD (EmptyView)
+#pragma mark - EmptyView
 
 + (void)showNoInternet:(UIView *)superview reload:(void(^)(void))reload {
     [self hideEmpty:superview];
@@ -193,7 +193,7 @@ NS_INLINE void setupPosition(MBProgressHUD *hud, MBPosition position) {
 }
 
 + (void)showEmpty:(UIView *)superview title:(NSString *)title detail:(NSString *)detail imageName:(NSString *)name reload:(void(^)(void))reload {
-    IBEmptyView *empty = [[IBEmptyView alloc] initWithFrame:superview.frame title:title detail:detail imageName:name reload:reload];
+    MBEmptyView *empty = [[MBEmptyView alloc] initWithFrame:superview.frame title:title detail:detail imageName:name reload:reload];
     [superview addSubview:empty];
 }
 
@@ -201,7 +201,7 @@ NS_INLINE void setupPosition(MBProgressHUD *hud, MBPosition position) {
     
     NSEnumerator *subviewsEnum = [superview.subviews reverseObjectEnumerator];
     for (UIView *subview in subviewsEnum) {
-        if ([subview isKindOfClass: [IBEmptyView class]]) {
+        if ([subview isKindOfClass: [MBEmptyView class]]) {
             [subview setAlpha:1.0];
             [UIView animateWithDuration:0.5 animations:^{
                 [subview setAlpha:0.0];
@@ -213,14 +213,12 @@ NS_INLINE void setupPosition(MBProgressHUD *hud, MBPosition position) {
     }
 }
 
-@end
-
-@implementation MBProgressHUD (Loading)
+#pragma mark - Loading
 
 + (void)showBallLoadingView:(UIView *)superview {
     
     [self hideBallLoadingView:superview];
-    IBBallLoadingView *loadingView = [[IBBallLoadingView alloc] initWithFrame:superview.frame];
+    MBBallLoadingView *loadingView = [[MBBallLoadingView alloc] initWithFrame:superview.frame];
     [loadingView startAnimation];
     [superview addSubview:loadingView];
 }
@@ -229,8 +227,8 @@ NS_INLINE void setupPosition(MBProgressHUD *hud, MBPosition position) {
     
     NSEnumerator *subviewsEnum = [superview.subviews reverseObjectEnumerator];
     for (UIView *subview in subviewsEnum) {
-        if ([subview isKindOfClass: [IBBallLoadingView class]]) {
-            IBBallLoadingView *loadingView = (IBBallLoadingView *)subview;
+        if ([subview isKindOfClass: [MBBallLoadingView class]]) {
+            MBBallLoadingView *loadingView = (MBBallLoadingView *)subview;
             [loadingView stopAnimation];
             [loadingView removeFromSuperview];
             break;
@@ -241,7 +239,7 @@ NS_INLINE void setupPosition(MBProgressHUD *hud, MBPosition position) {
 + (void)showCircleLoadingView:(UIView *)superview {
     
     [self hideCircleLoadingView:superview];
-    IBCircleLoadingView *circle = [[IBCircleLoadingView alloc] initWithFrame:superview.frame];
+    MBCircleLoadingView *circle = [[MBCircleLoadingView alloc] initWithFrame:superview.frame];
     circle.lineWidth = 2;
     circle.colorArray = @[[UIColor redColor], [UIColor purpleColor], [UIColor blueColor]].mutableCopy;
     [superview addSubview:circle];
@@ -252,8 +250,8 @@ NS_INLINE void setupPosition(MBProgressHUD *hud, MBPosition position) {
     
     NSEnumerator *subviewsEnum = [superview.subviews reverseObjectEnumerator];
     for (UIView *subview in subviewsEnum) {
-        if ([subview isKindOfClass: [IBCircleLoadingView class]]) {
-            IBCircleLoadingView *loadingView = (IBCircleLoadingView *)subview;
+        if ([subview isKindOfClass: [MBCircleLoadingView class]]) {
+            MBCircleLoadingView *loadingView = (MBCircleLoadingView *)subview;
             [loadingView stopAnimation];
             [loadingView removeFromSuperview];
             break;
@@ -264,7 +262,7 @@ NS_INLINE void setupPosition(MBProgressHUD *hud, MBPosition position) {
 + (void)showTriangleLoadingView:(UIView *)superview {
     
     [MBProgressHUD hideCircleLoadingView:superview];
-    IBTriangleLoadingView *tri = [[IBTriangleLoadingView alloc] initWithFrame:superview.frame];
+    MBTriangleLoadingView *tri = [[MBTriangleLoadingView alloc] initWithFrame:superview.frame];
     [tri startAnimation];
     [superview addSubview:tri];
 }
@@ -273,8 +271,8 @@ NS_INLINE void setupPosition(MBProgressHUD *hud, MBPosition position) {
     
     NSEnumerator *subviewsEnum = [superview.subviews reverseObjectEnumerator];
     for (UIView *subview in subviewsEnum) {
-        if ([subview isKindOfClass: [IBTriangleLoadingView class]]) {
-            IBTriangleLoadingView *loadingView = (IBTriangleLoadingView *)subview;
+        if ([subview isKindOfClass: [MBTriangleLoadingView class]]) {
+            MBTriangleLoadingView *loadingView = (MBTriangleLoadingView *)subview;
             [loadingView stopAnimation];
             [loadingView removeFromSuperview];
             break;
@@ -285,7 +283,7 @@ NS_INLINE void setupPosition(MBProgressHUD *hud, MBPosition position) {
 + (void)showSwapLoadingView:(UIView *)superview {
     
     [MBProgressHUD hideSwapLoadingView:superview];
-    IBSwapLoadingView *swap = [[IBSwapLoadingView alloc] initWithFrame:superview.frame];
+    MBSwapLoadingView *swap = [[MBSwapLoadingView alloc] initWithFrame:superview.frame];
     [swap startAnimation];
     [superview addSubview:swap];
 }
@@ -294,15 +292,14 @@ NS_INLINE void setupPosition(MBProgressHUD *hud, MBPosition position) {
     
     NSEnumerator *subviewsEnum = [superview.subviews reverseObjectEnumerator];
     for (UIView *subview in subviewsEnum) {
-        if ([subview isKindOfClass: [IBSwapLoadingView class]]) {
-            IBSwapLoadingView *loadingView = (IBSwapLoadingView *)subview;
+        if ([subview isKindOfClass: [MBSwapLoadingView class]]) {
+            MBSwapLoadingView *loadingView = (MBSwapLoadingView *)subview;
             [loadingView stopAnimation];
             [loadingView removeFromSuperview];
             break;
         }
     }
 }
-
 
 @end
 

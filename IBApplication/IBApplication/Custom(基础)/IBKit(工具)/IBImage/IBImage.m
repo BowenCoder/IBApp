@@ -12,6 +12,8 @@
 
 @implementation IBImage
 
+#pragma mark - Basic
+
 + (UIImage *)imageWithFileName:(NSString *)name {
     
     return [self imageWithName:name inBundle:nil];
@@ -154,9 +156,7 @@
     return NO;
 }
 
-@end
-
-@implementation IBImage (Special)
+#pragma mark - Special
 
 + (UIImage *)flip:(UIImage *)image horizontal:(BOOL)horizontal {
     
@@ -400,9 +400,7 @@
     return image;
 }
 
-@end
-
-@implementation IBImage (Merge)
+#pragma mark - Merge
 
 + (UIImage*)mergeImage:(UIImage*)firstImage withImage:(UIImage*)secondImage {
     

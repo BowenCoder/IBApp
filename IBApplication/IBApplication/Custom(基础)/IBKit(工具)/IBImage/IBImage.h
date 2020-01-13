@@ -33,6 +33,8 @@ typedef NS_ENUM(NSInteger, IBImageGradientType) {
 
 @interface IBImage : NSObject
 
+#pragma mark - Basic
+
 /**
  *  @brief  根据mainBundle中的文件名读取图片
  *
@@ -138,9 +140,7 @@ typedef NS_ENUM(NSInteger, IBImageGradientType) {
  */
 + (BOOL)equalToImage:(UIImage *)image anotherImage:(UIImage *)anotherImage;
 
-@end
-
-@interface IBImage (Special)
+#pragma mark - Special
 
 /**
  *  @brief 图片翻转 :YES,水平翻转，NO，垂直翻转
@@ -201,10 +201,7 @@ typedef NS_ENUM(NSInteger, IBImageGradientType) {
  */
 + (UIImage *)gradientImageWithSize:(CGSize)size gradientColors:(NSArray *)colors percentage:(NSArray *)percents gradientType:(IBImageGradientType)gradientType;
 
-
-@end
-
-@interface IBImage (Merge)
+#pragma mark - Merge
 
 /**
  *  @brief  合并两个图片

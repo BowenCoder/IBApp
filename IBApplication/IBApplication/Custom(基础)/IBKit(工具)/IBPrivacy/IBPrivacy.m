@@ -21,7 +21,7 @@
 
 @implementation IBPrivacy
 
-+ (void)accessPrivacyPermissionWithType:(IBPrivacyPermissionType)type completion:(void(^)(BOOL response,IBPrivacyAuthorizationStatus status))completion {
++ (void)accessPrivacyPermissionWithType:(IBPrivacyPermissionType)type completion:(void(^)(BOOL result, IBPrivacyAuthorizationStatus status))completion {
     
     switch (type) {
         case IBPrivacyPermissionPhoto:{
