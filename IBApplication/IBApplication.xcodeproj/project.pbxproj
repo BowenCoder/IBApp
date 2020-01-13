@@ -331,7 +331,7 @@
 		4AE9674423A3A3DA00A5C172 /* IBUploader.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE9674323A3A3DA00A5C172 /* IBUploader.m */; };
 		4AE9674723A3A3F100A5C172 /* IBDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE9674623A3A3F100A5C172 /* IBDownloader.m */; };
 		4AED517223CC779800B38F59 /* IBPopupManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AED517123CC779800B38F59 /* IBPopupManager.m */; };
-		4AED64C0215378EF0082280F /* MBPopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AED64BF215378EF0082280F /* MBPopoverView.m */; };
+		4AED64C0215378EF0082280F /* MBPopupArrowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AED64BF215378EF0082280F /* MBPopupArrowView.m */; };
 		4AEEA7A9213D0EFB00CFAA3D /* IBActionItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AEEA7A8213D0EFA00CFAA3D /* IBActionItem.m */; };
 		4AEEA7AC213D148500CFAA3D /* IBActionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AEEA7AB213D148500CFAA3D /* IBActionCell.m */; };
 		4AEEA7B2213D2AA700CFAA3D /* IBActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AEEA7B1213D2AA700CFAA3D /* IBActionSheet.m */; };
@@ -1011,8 +1011,8 @@
 		4AE9674623A3A3F100A5C172 /* IBDownloader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBDownloader.m; sourceTree = "<group>"; };
 		4AED517023CC779800B38F59 /* IBPopupManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBPopupManager.h; sourceTree = "<group>"; };
 		4AED517123CC779800B38F59 /* IBPopupManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IBPopupManager.m; sourceTree = "<group>"; };
-		4AED64BE215378EF0082280F /* MBPopoverView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBPopoverView.h; sourceTree = "<group>"; };
-		4AED64BF215378EF0082280F /* MBPopoverView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBPopoverView.m; sourceTree = "<group>"; };
+		4AED64BE215378EF0082280F /* MBPopupArrowView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBPopupArrowView.h; sourceTree = "<group>"; };
+		4AED64BF215378EF0082280F /* MBPopupArrowView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBPopupArrowView.m; sourceTree = "<group>"; };
 		4AEEA7A7213D0EFA00CFAA3D /* IBActionItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBActionItem.h; sourceTree = "<group>"; };
 		4AEEA7A8213D0EFA00CFAA3D /* IBActionItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBActionItem.m; sourceTree = "<group>"; };
 		4AEEA7AA213D148500CFAA3D /* IBActionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBActionCell.h; sourceTree = "<group>"; };
@@ -1266,13 +1266,13 @@
 			path = BaseController;
 			sourceTree = "<group>";
 		};
-		4A1FB0A420E8E5290056A026 /* IBPopupView */ = {
+		4A1FB0A420E8E5290056A026 /* MBPopupArrowView */ = {
 			isa = PBXGroup;
 			children = (
-				4A7D3A352142696700310E7B /* IBPopoverView */,
-				4AEEA7A6213D0D3400CFAA3D /* IBActionSheet */,
+				4AED64BE215378EF0082280F /* MBPopupArrowView.h */,
+				4AED64BF215378EF0082280F /* MBPopupArrowView.m */,
 			);
-			path = IBPopupView;
+			path = MBPopupArrowView;
 			sourceTree = "<group>";
 		};
 		4A1FB0A520E8EA320056A026 /* MBProgressHUD */ = {
@@ -1864,14 +1864,6 @@
 			path = YYModel;
 			sourceTree = "<group>";
 		};
-		4A7D3A352142696700310E7B /* IBPopoverView */ = {
-			isa = PBXGroup;
-			children = (
-				4AC428E9215A5624008C93D4 /* Core */,
-			);
-			path = IBPopoverView;
-			sourceTree = "<group>";
-		};
 		4A84CBB4229B914B00CA4794 /* MBRouter */ = {
 			isa = PBXGroup;
 			children = (
@@ -2328,15 +2320,6 @@
 			path = AXIndicatorView;
 			sourceTree = "<group>";
 		};
-		4AC428E9215A5624008C93D4 /* Core */ = {
-			isa = PBXGroup;
-			children = (
-				4AED64BE215378EF0082280F /* MBPopoverView.h */,
-				4AED64BF215378EF0082280F /* MBPopoverView.m */,
-			);
-			path = Core;
-			sourceTree = "<group>";
-		};
 		4AC455C121368823007CBEF0 /* Auth */ = {
 			isa = PBXGroup;
 			children = (
@@ -2525,8 +2508,9 @@
 				F333517822A2C404005B968E /* MBLibraryCamera */,
 				4A1FB0A520E8EA320056A026 /* MBProgressHUD */,
 				4AE64C46212ACFA4003DE328 /* IBCheckbox */,
+				4AEEA7A6213D0D3400CFAA3D /* IBActionSheet */,
 				4AED516F23CC779800B38F59 /* IBPopupManager */,
-				4A1FB0A420E8E5290056A026 /* IBPopupView */,
+				4A1FB0A420E8E5290056A026 /* MBPopupArrowView */,
 			);
 			path = "Public(公共)";
 			sourceTree = "<group>";
@@ -3470,7 +3454,7 @@
 				4A6F199E20E3B56C00EAF1A7 /* IBSocketPacketEncode.m in Sources */,
 				4A1FB21620E92D5E0056A026 /* NSImage+WebCache.m in Sources */,
 				4ACC569B20DEC694001352AE /* IBApp.m in Sources */,
-				4AED64C0215378EF0082280F /* MBPopoverView.m in Sources */,
+				4AED64C0215378EF0082280F /* MBPopupArrowView.m in Sources */,
 				F383B4C72316E03B003E0D4D /* MBTimer.m in Sources */,
 				4AC102E4230FFC6300DE39CD /* MBBlurImageView.m in Sources */,
 				4A1FB20C20E92D5E0056A026 /* UIImage+ForceDecode.m in Sources */,

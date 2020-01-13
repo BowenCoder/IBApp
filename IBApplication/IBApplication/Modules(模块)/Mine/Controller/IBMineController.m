@@ -9,7 +9,7 @@
 #import "IBMineController.h"
 //#import "UINavigationController+FDFullscreenPopGesture.h"
 #import "IBNaviController.h"
-#import "MBPopoverView.h"
+#import "MBPopupArrowView.h"
 #import "MBTimerSchedule.h"
 #import "IBHTTPManager.h"
 #import "MBAutoHeightTextView.h"
@@ -76,14 +76,13 @@
 }
 
 - (void)test {
-    MBPopoverView *pop = [[MBPopoverView alloc] initWithFrame:CGRectMake(50, 100, 100, 100)];
-    pop.priority = IBPopoverPriorityHorizontal;
+    MBPopupArrowView *pop = [[MBPopupArrowView alloc] initWithFrame:CGRectMake(50, 100, 100, 100)];
+    pop.priority = MBPopupArrowPriorityHorizontal;
     pop.dimBackground = YES;
-    pop.preferredArrowDirection = IBPopoverArrowDirectionAny;
+    pop.preferredArrowDirection = MBPopupArrowDirectionAny;
     pop.translucent = NO;
-    pop.translucentStyle = IBPopoverTranslucentDefault;
+    pop.translucentStyle = MBPopupArrowStyleDefault;
     pop.preferredWidth = 300.0;
-    pop.contentView.frame = CGRectMake(0, 0, 50, 50);
     [pop showFromRect:self.btn.frame inView:self.view animated:YES duration:20];
 }
 

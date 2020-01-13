@@ -8,38 +8,38 @@
 
 #import <UIKit/UIKit.h>
 
-@class MBPopoverView;
+@class MBPopupArrowView;
 
-typedef void(^IBPopoverViewConfiguration)(MBPopoverView *popoverView);
+typedef void(^IBPopoverViewConfiguration)(MBPopupArrowView *popoverView);
 
-typedef NS_ENUM(NSUInteger, IBPopoverArrowDirection) {
-    IBPopoverArrowDirectionAny,
-    IBPopoverArrowDirectionTop,
-    IBPopoverArrowDirectionLeft,
-    IBPopoverArrowDirectionBottom,
-    IBPopoverArrowDirectionRight
+typedef NS_ENUM(NSUInteger, MBPopupArrowDirection) {
+    MBPopupArrowDirectionAny,
+    MBPopupArrowDirectionTop,
+    MBPopupArrowDirectionLeft,
+    MBPopupArrowDirectionBottom,
+    MBPopupArrowDirectionRight
 };
 
-typedef NS_ENUM(NSUInteger, IBPopoverTranslucentStyle) {
-    IBPopoverTranslucentDefault,
-    IBPopoverTranslucentLight
+typedef NS_ENUM(NSUInteger, MBPopupArrowStyle) {
+    MBPopupArrowStyleDefault,
+    MBPopupArrowStyleLight
 };
 
-typedef NS_ENUM(NSInteger, IBPopoverPriorityDirection) {
-    IBPopoverPriorityHorizontal,
-    IBPopoverPriorityVertical
+typedef NS_ENUM(NSInteger, MBPopupArrowPriority) {
+    MBPopupArrowPriorityHorizontal,
+    MBPopupArrowPriorityVertical
 };
 
-@interface MBPopoverView : UIView
+@interface MBPopupArrowView : UIView
 
 @property (nonatomic, assign) CGPoint offsets UI_APPEARANCE_SELECTOR;
 @property (nonatomic, assign) CGFloat cornerRadius UI_APPEARANCE_SELECTOR;
 @property (nonatomic, assign) CGFloat arrowAngle UI_APPEARANCE_SELECTOR;
 @property (nonatomic, assign) CGFloat arrowSize UI_APPEARANCE_SELECTOR;
 @property (nonatomic, assign) CGFloat arrowCornerRadius UI_APPEARANCE_SELECTOR;
-@property (nonatomic, assign) IBPopoverArrowDirection preferredArrowDirection UI_APPEARANCE_SELECTOR;
-@property (nonatomic, assign) IBPopoverTranslucentStyle translucentStyle UI_APPEARANCE_SELECTOR;
-@property (nonatomic, assign) IBPopoverPriorityDirection priority UI_APPEARANCE_SELECTOR;
+@property (nonatomic, assign) MBPopupArrowDirection preferredArrowDirection UI_APPEARANCE_SELECTOR;
+@property (nonatomic, assign) MBPopupArrowStyle translucentStyle UI_APPEARANCE_SELECTOR;
+@property (nonatomic, assign) MBPopupArrowPriority priority UI_APPEARANCE_SELECTOR;
 @property (nonatomic, strong) UIColor *backgroundDrawingColor UI_APPEARANCE_SELECTOR;
 @property (nonatomic, assign) CGFloat preferredWidth UI_APPEARANCE_SELECTOR;
 @property (nonatomic, assign) UIEdgeInsets contentInsets UI_APPEARANCE_SELECTOR;
@@ -65,17 +65,6 @@ typedef NS_ENUM(NSInteger, IBPopoverPriorityDirection) {
 - (void)unregisterScrollView;
 
 @end
-
-@interface UIView (IBPopover)
-
-@property (nonatomic, readonly) NSUInteger referenceCount;
-@property (nonatomic, readonly) NSMutableArray *registeredPopoverViews;
-
-- (void)registerPopoverView:(MBPopoverView *)popoverView;
-- (void)unregisterPopoverView:(MBPopoverView *)popoverView;
-
-@end
-
 
 
 

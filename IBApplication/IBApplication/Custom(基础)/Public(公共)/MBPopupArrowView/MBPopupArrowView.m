@@ -6,10 +6,9 @@
 //  Copyright © 2018年 BowenCoder. All rights reserved.
 //
 
-#import "MBPopoverView.h"
-#import <objc/runtime.h>
+#import "MBPopupArrowView.h"
 
-@interface MBPopoverView ()
+@interface MBPopupArrowView ()
 
 @property (nonatomic, assign) CGRect targetRect;
 @property (nonatomic, assign) BOOL isShowing;
@@ -30,11 +29,11 @@
 @property (nonatomic, readonly) CGPoint arrowPosition;
 @property (nonatomic, readonly) CGPoint animatedFromPoint;
 @property (nonatomic, readonly) UIEdgeInsets contentViewInsets;
-@property (nonatomic, readonly) IBPopoverArrowDirection arrowDirection;
+@property (nonatomic, readonly) MBPopupArrowDirection arrowDirection;
 
 @end
 
-@implementation MBPopoverView
+@implementation MBPopupArrowView
 
 - (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
     UIView *hitView = [super hitTest:point withEvent:event];
@@ -47,7 +46,6 @@
 }
 
 - (void)dealloc {
-    [self.parentView unregisterPopoverView:self];
     [self unregisterScrollView];
 }
 
@@ -71,9 +69,9 @@
     _arrowAngle = 90;
     _arrowSize = 10;
     _offsets = CGPointMake(8, 8);
-    _arrowDirection = IBPopoverArrowDirectionBottom;
-    _preferredArrowDirection = IBPopoverArrowDirectionAny;
-    _priority = IBPopoverPriorityVertical;
+    _arrowDirection = MBPopupArrowDirectionBottom;
+    _preferredArrowDirection = MBPopupArrowDirectionAny;
+    _priority = MBPopupArrowPriorityVertical;
     _dimBackground = NO;
     _backgroundDrawingColor = [UIColor colorWithRed:0.165f green:0.639f blue:0.937f alpha:1.00f];
     _hideOnTouch = YES;
@@ -97,7 +95,8 @@
     if (!_parentView) {
         _parentView = [UIApplication sharedApplication].keyWindow;
     }
-    [_parentView registerPopoverView:self];
+    [_parentView addSubview:self.backgroundView];
+    [_parentView addSubview:self];
     [self layoutSubviews];
     if (completion) _showsCompletion = [completion copy];
     self.layer.anchorPoint = self.arrowPosition;
@@ -114,7 +113,6 @@
         }
     }];
     
-    // animated to dim background
     if (_dimBackground) {
         [UIView animateWithDuration:0.05 animations:^{
             self.backgroundView.hidden = NO;
@@ -152,16 +150,11 @@
     
     [UIView animateWithDuration:animationDuration animations:^{
         view.alpha = 0.0;
+        self.backgroundView.alpha = 0.0;
     } completion:NULL];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(animationDuration * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [self viewDidHide:animated];
     });
-    
-    if (self.parentView.referenceCount == 1) {
-        [UIView animateWithDuration:animationDuration animations:^{
-            self.backgroundView.alpha = 0.0;
-        } completion:nil];
-    }
 }
 
 - (void)hide:(BOOL)animated afterDelay:(NSTimeInterval)delay completion:(dispatch_block_t)completion {
@@ -175,14 +168,16 @@
 }
 
 - (void)showFromRect:(CGRect)rect inView:(UIView *)view animated:(BOOL)animated duration:(NSTimeInterval)duration {
+    __weak typeof(self) weakSelf = self;
     [self showFromRect:rect inView:view animated:animated completion:^{
-        [self hide:animated afterDelay:duration completion:nil];
+        [weakSelf hide:animated afterDelay:duration completion:nil];
     }];
 }
 
 - (void)showFromView:(UIView *)view inView:(UIView *)aView animated:(BOOL)animated duration:(NSTimeInterval)duration {
+    __weak typeof(self) weakSelf = self;
     [self showFromView:view inView:aView animated:animated completion:^{
-        [self hide:animated afterDelay:duration completion:nil];
+        [weakSelf hide:animated afterDelay:duration completion:nil];
     }];
 }
 
@@ -217,12 +212,8 @@
     
     [self setNeedsLayout];
     [NSObject cancelPreviousPerformRequestsWithTarget:self];
-    for (UIView *view in self.parentView.subviews) {
-        if ([view isKindOfClass:NSClassFromString(@"_UIReplicantView")]) {
-            [view removeFromSuperview];
-        }
-    }
-    [self.parentView unregisterPopoverView:self];
+    [self removeFromSuperview];
+    [self.backgroundView removeFromSuperview];
     if (_hidesCompletion) _hidesCompletion();
 }
 
@@ -233,16 +224,16 @@
     
     NSMutableArray *popoverViews = [NSMutableArray array];
     for (UIView *view in popoverView.subviews) {
-        if ([view isKindOfClass:[MBPopoverView class]]) {
+        if ([view isKindOfClass:[MBPopupArrowView class]]) {
             [popoverViews addObject:view];
         }
     }
     for (UIView *view in popoverView.subviews) {
-        if ([view isKindOfClass:[MBPopoverView class]]) {
+        if ([view isKindOfClass:[MBPopupArrowView class]]) {
             [popoverViews addObject:view];
         }
     }
-    for (MBPopoverView *popoverView in popoverViews) {
+    for (MBPopupArrowView *popoverView in popoverViews) {
         [popoverView hide:animated afterDelay:0.0 completion:nil];
     }
 }
@@ -263,7 +254,6 @@
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context {
-    NSLog(@"123");
     if ([keyPath isEqualToString:@"contentOffset"]) {
         CGPoint point = [[change objectForKey:NSKeyValueChangeNewKey] CGPointValue];
         CGAffineTransform transform = CGAffineTransformMakeTranslation(-(point.x + _scrollView.contentInset.left), -(point.y + _scrollView.contentInset.top));
@@ -313,9 +303,9 @@
 
 - (CGSize)minSize {
     CGSize size = CGSizeMake(_cornerRadius + 20, _cornerRadius + 20);
-    if (_arrowDirection == IBPopoverArrowDirectionBottom || _arrowDirection == IBPopoverArrowDirectionTop) {
+    if (_arrowDirection == MBPopupArrowDirectionBottom || _arrowDirection == MBPopupArrowDirectionTop) {
         size.height += _arrowSize;
-    } else if (_arrowDirection == IBPopoverArrowDirectionLeft || _arrowDirection == IBPopoverArrowDirectionRight) {
+    } else if (_arrowDirection == MBPopupArrowDirectionLeft || _arrowDirection == MBPopupArrowDirectionRight) {
         size.width += _arrowSize;
     }
     return size;
@@ -328,16 +318,16 @@
     CGFloat bottomOffsets = 0.;
     CGFloat rightOffsets = 0.;
     switch (_arrowDirection) {
-        case IBPopoverArrowDirectionTop:
+        case MBPopupArrowDirectionTop:
             topOffsets = _arrowSize;
             break;
-        case IBPopoverArrowDirectionLeft:
+        case MBPopupArrowDirectionLeft:
             leftOffsets = _arrowSize;
             break;
-        case IBPopoverArrowDirectionBottom:
+        case MBPopupArrowDirectionBottom:
             bottomOffsets = _arrowSize;
             break;
-        case IBPopoverArrowDirectionRight:
+        case MBPopupArrowDirectionRight:
             rightOffsets = _arrowSize;
             break;
         default:
@@ -352,21 +342,21 @@
 
 - (CGPoint)animatedFromPoint {
     CGRect originalFrame = CGRectMake(0, 0, 0, 0);
-    IBPopoverArrowDirection direction = [self directionWithRect:_targetRect];
+    MBPopupArrowDirection direction = [self directionWithRect:_targetRect];
     switch (direction) {
-        case IBPopoverArrowDirectionBottom:
+        case MBPopupArrowDirectionBottom:
             originalFrame.origin.x = CGRectGetMidX(_targetRect);
             originalFrame.origin.y = CGRectGetMinY(_targetRect);
             break;
-        case IBPopoverArrowDirectionLeft:
+        case MBPopupArrowDirectionLeft:
             originalFrame.origin.x = CGRectGetMaxX(_targetRect);
             originalFrame.origin.y = CGRectGetMidY(_targetRect);
             break;
-        case IBPopoverArrowDirectionRight:
+        case MBPopupArrowDirectionRight:
             originalFrame.origin.x = CGRectGetMinX(_targetRect);
             originalFrame.origin.y = CGRectGetMidY(_targetRect);
             break;
-        case IBPopoverArrowDirectionTop:
+        case MBPopupArrowDirectionTop:
             originalFrame.origin.x = CGRectGetMidX(_targetRect);
             originalFrame.origin.y = CGRectGetMaxY(_targetRect);
             break;
@@ -396,12 +386,12 @@
     [self setNeedsDisplay];
 }
 
-- (void)setArrowDirection:(IBPopoverArrowDirection)arrowDirection {
+- (void)setArrowDirection:(MBPopupArrowDirection)arrowDirection {
     _arrowDirection = arrowDirection;
     [self setNeedsDisplay];
 }
 
-- (void)setPriority:(IBPopoverPriorityDirection)priority {
+- (void)setPriority:(MBPopupArrowPriority)priority {
     _priority = priority;
     [self setNeedsDisplay];
 }
@@ -430,10 +420,10 @@
     [self setNeedsDisplay];
 }
 
-- (void)setTranslucentStyle:(IBPopoverTranslucentStyle)translucentStyle {
+- (void)setTranslucentStyle:(MBPopupArrowStyle)translucentStyle {
     _translucentStyle = translucentStyle;
     switch (_translucentStyle) {
-        case IBPopoverTranslucentLight:
+        case MBPopupArrowStyleLight:
             _effectView.effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight];
             break;
         default:
@@ -457,78 +447,75 @@
     [self setNeedsLayout];
 }
 
-
 #pragma mark - 布局
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    
     [self updateFrameWithRect:self.targetRect];
 }
 
-
-- (IBPopoverArrowDirection)directionWithRect:(CGRect)rect {
+- (MBPopupArrowDirection)directionWithRect:(CGRect)rect {
     UIEdgeInsets margins = UIEdgeInsetsMake(rect.origin.y, rect.origin.x, self.parentView.bounds.size.height - CGRectGetMaxY(rect), self.parentView.bounds.size.width - CGRectGetMaxX(rect));
     NSMutableArray *availableDirections = [NSMutableArray array];
-    if (_priority == IBPopoverPriorityHorizontal) {
+    if (_priority == MBPopupArrowPriorityHorizontal) {
         CGFloat margin=.0;
         if (margins.left >= CGRectGetWidth(self.bounds)) {// Show on left.
-            [availableDirections addObject:@(IBPopoverArrowDirectionRight)];
+            [availableDirections addObject:@(MBPopupArrowDirectionRight)];
             margin = margins.left;
         } if (margins.right >= CGRectGetWidth(self.bounds)) {// Show on right.
             if (margins.right >= margin) {
-                [availableDirections insertObject:@(IBPopoverArrowDirectionLeft) atIndex:0];
+                [availableDirections insertObject:@(MBPopupArrowDirectionLeft) atIndex:0];
             } else {
-                [availableDirections addObject:@(IBPopoverArrowDirectionLeft)];
+                [availableDirections addObject:@(MBPopupArrowDirectionLeft)];
             }
             margin = margins.right;
         } if (margins.top >= CGRectGetHeight(self.bounds)) {// Show on top.
             if (margins.top >= margin) {
-                [availableDirections insertObject:@(IBPopoverArrowDirectionBottom) atIndex:0];
+                [availableDirections insertObject:@(MBPopupArrowDirectionBottom) atIndex:0];
             } else {
-                [availableDirections addObject:@(IBPopoverArrowDirectionBottom)];
+                [availableDirections addObject:@(MBPopupArrowDirectionBottom)];
             }
             margin = margins.top;
         } if (margins.bottom >= CGRectGetHeight(self.bounds)) {// Show on bottom.
             if (margins.bottom >= margin) {
-                [availableDirections insertObject:@(IBPopoverArrowDirectionTop) atIndex:0];
+                [availableDirections insertObject:@(MBPopupArrowDirectionTop) atIndex:0];
             } else {
-                [availableDirections addObject:@(IBPopoverArrowDirectionTop)];
+                [availableDirections addObject:@(MBPopupArrowDirectionTop)];
             }
         }
     } else {
         CGFloat margin=.0;
         if (margins.top >= CGRectGetHeight(self.bounds)) {// Show on top.
             if (margins.top >= margin) {
-                [availableDirections insertObject:@(IBPopoverArrowDirectionBottom) atIndex:0];
+                [availableDirections insertObject:@(MBPopupArrowDirectionBottom) atIndex:0];
             } else {
-                [availableDirections addObject:@(IBPopoverArrowDirectionBottom)];
+                [availableDirections addObject:@(MBPopupArrowDirectionBottom)];
             }
             margin = margins.top;
         } if (margins.bottom >= CGRectGetHeight(self.bounds)) {// Show on bottom.
             if (margins.bottom >= margin) {
-                [availableDirections insertObject:@(IBPopoverArrowDirectionTop) atIndex:0];
+                [availableDirections insertObject:@(MBPopupArrowDirectionTop) atIndex:0];
             } else {
-                [availableDirections addObject:@(IBPopoverArrowDirectionTop)];
+                [availableDirections addObject:@(MBPopupArrowDirectionTop)];
             }
             margin = margins.bottom;
         } if (margins.left >= CGRectGetWidth(self.bounds)) {// Show on left.
             if (margins.left >= margin) {
-                [availableDirections insertObject:@(IBPopoverArrowDirectionRight) atIndex:0];
+                [availableDirections insertObject:@(MBPopupArrowDirectionRight) atIndex:0];
             } else {
-                [availableDirections addObject:@(IBPopoverArrowDirectionRight)];
+                [availableDirections addObject:@(MBPopupArrowDirectionRight)];
             }
             margin = margins.left;
         } if (margins.right >= CGRectGetWidth(self.bounds)) {// Show on right.
             if (margins.right >= margin) {
-                [availableDirections insertObject:@(IBPopoverArrowDirectionLeft) atIndex:0];
+                [availableDirections insertObject:@(MBPopupArrowDirectionLeft) atIndex:0];
             } else {
-                [availableDirections addObject:@(IBPopoverArrowDirectionLeft)];
+                [availableDirections addObject:@(MBPopupArrowDirectionLeft)];
             }
         }
     }
     if (availableDirections.count > 0) {
-        if (_preferredArrowDirection != IBPopoverArrowDirectionAny) {
+        if (_preferredArrowDirection != MBPopupArrowDirectionAny) {
             if ([availableDirections containsObject:@(_preferredArrowDirection)]) {
                 return _preferredArrowDirection;
             } else
@@ -536,15 +523,15 @@
         } else
             return [[availableDirections firstObject] integerValue];
     }
-    return IBPopoverArrowDirectionAny;
+    return MBPopupArrowDirectionAny;
 }
 
 - (void)updateFrameWithRect:(CGRect)rct {
     CGRect rect = self.frame;
-    IBPopoverArrowDirection direction = [self directionWithRect:rct];
+    MBPopupArrowDirection direction = [self directionWithRect:rct];
     _arrowDirection = direction;
-    if (direction == IBPopoverArrowDirectionBottom || direction == IBPopoverArrowDirectionTop) {
-        if (direction == IBPopoverArrowDirectionBottom) {
+    if (direction == MBPopupArrowDirectionBottom || direction == MBPopupArrowDirectionTop) {
+        if (direction == MBPopupArrowDirectionBottom) {
             rect.origin.y = CGRectGetMinY(rct) - CGRectGetHeight(rect);
             _arrowPosition.y = 1;
         } else {
@@ -564,8 +551,8 @@
             rect.origin.x = CGRectGetWidth(self.parentView.bounds) - (CGRectGetWidth(rect) + _offsets.x);
             _arrowPosition.x = (CGRectGetWidth(rect) - (CGRectGetWidth(self.parentView.bounds) - CGRectGetMidX(rct) - _offsets.x))/CGRectGetWidth(rect);
         }
-    } else if (direction == IBPopoverArrowDirectionLeft | direction == IBPopoverArrowDirectionRight) {
-        if (direction == IBPopoverArrowDirectionRight) {
+    } else if (direction == MBPopupArrowDirectionLeft | direction == MBPopupArrowDirectionRight) {
+        if (direction == MBPopupArrowDirectionRight) {
             rect.origin.x = CGRectGetMinX(rct) - CGRectGetWidth(rect);
             _arrowPosition.x = 1;
         } else {
@@ -608,16 +595,16 @@
     CGFloat bottomOffsets = 0.;
     CGFloat rightOffsets = 0.;
     switch (self.arrowDirection) {
-        case IBPopoverArrowDirectionTop:
+        case MBPopupArrowDirectionTop:
             topOffsets = _arrowSize;
             break;
-        case IBPopoverArrowDirectionLeft:
+        case MBPopupArrowDirectionLeft:
             leftOffsets = _arrowSize;
             break;
-        case IBPopoverArrowDirectionBottom:
+        case MBPopupArrowDirectionBottom:
             bottomOffsets = _arrowSize;
             break;
-        case IBPopoverArrowDirectionRight:
+        case MBPopupArrowDirectionRight:
             rightOffsets = _arrowSize;
             break;
         default:
@@ -625,13 +612,13 @@
     }
     // the origin point
     CGContextMoveToPoint(cxt, CGRectGetMinX(rect) + _cornerRadius + leftOffsets, CGRectGetMinY(rect) + topOffsets);
-    if (_arrowDirection == IBPopoverArrowDirectionTop) {
+    if (_arrowDirection == MBPopupArrowDirectionTop) {
         [self addTopArrowPointWithContext:cxt arrowAngle:_arrowAngle arrowHeight:_arrowSize arrowPositionX:CGRectGetWidth(rect)*_arrowPosition.x];
     }
     CGContextAddLineToPoint(cxt, CGRectGetMaxX(rect) - _cornerRadius - rightOffsets, CGRectGetMinY(rect) + topOffsets);
     // top right arc drawing
     CGContextAddArcToPoint(cxt, CGRectGetMaxX(rect) - rightOffsets, CGRectGetMinY(rect) + topOffsets, CGRectGetMaxX(rect) - rightOffsets, CGRectGetMinY(rect) + _cornerRadius + topOffsets, _cornerRadius);
-    if (_arrowDirection == IBPopoverArrowDirectionRight) {
+    if (_arrowDirection == MBPopupArrowDirectionRight) {
         [self addRightArrowPointWithContext:cxt arrowAngle:_arrowAngle arrowWidth:_arrowSize arrowPositionY:CGRectGetHeight(rect)*_arrowPosition.y];
     }
     // right line drawing
@@ -639,13 +626,13 @@
     // bottom right arc drawing
     CGContextAddArcToPoint(cxt, CGRectGetMaxX(rect) - rightOffsets, CGRectGetMaxY(rect) - bottomOffsets, CGRectGetMaxX(rect) - _cornerRadius - rightOffsets, CGRectGetMaxY(rect) - bottomOffsets, _cornerRadius);
     // bottom line drawing
-    if (_arrowDirection == IBPopoverArrowDirectionBottom) {
+    if (_arrowDirection == MBPopupArrowDirectionBottom) {
         [self addBottomArrowPointWithContext:cxt arrowAngle:_arrowAngle arrowHeight:_arrowSize arrowPositionX:CGRectGetWidth(rect)*_arrowPosition.x];
     }
     CGContextAddLineToPoint(cxt, CGRectGetMinX(rect) + _cornerRadius + leftOffsets, CGRectGetMaxY(rect) - bottomOffsets);
     // bottom left arc drawing
     CGContextAddArcToPoint(cxt, CGRectGetMinX(rect) + leftOffsets, CGRectGetMaxY(rect) - bottomOffsets, CGRectGetMinX(rect) + leftOffsets, CGRectGetMaxY(rect) - _cornerRadius - bottomOffsets, _cornerRadius);
-    if (_arrowDirection == IBPopoverArrowDirectionLeft) {
+    if (_arrowDirection == MBPopupArrowDirectionLeft) {
         [self addLeftArrowPointWithContext:cxt arrowAngle:_arrowAngle arrowWidth:_arrowSize arrowPositionY:CGRectGetHeight(rect)*_arrowPosition.y];
     }
     // left line drawing
@@ -772,38 +759,4 @@
     }
 }
 
-@end
-
-
-@implementation UIView(IBPopover)
-
-- (NSUInteger)referenceCount {
-    return [self.registeredPopoverViews count];
-}
-
-- (NSMutableArray *)registeredPopoverViews {
-    NSMutableArray *views = objc_getAssociatedObject(self, _cmd);
-    if (!views) {
-        views = [NSMutableArray array];
-        objc_setAssociatedObject(self, _cmd, views, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    }
-    return views;
-}
-
-- (void)registerPopoverView:(MBPopoverView *)popoverView {
-    [self addSubview:popoverView.backgroundView];
-    [self addSubview:popoverView];
-    [self bringSubviewToFront:popoverView.backgroundView];
-    [self bringSubviewToFront:popoverView];
-    [self.registeredPopoverViews removeObject:popoverView];
-    [self.registeredPopoverViews addObject:popoverView];
-}
-
-- (void)unregisterPopoverView:(MBPopoverView *)popoverView {
-    [popoverView removeFromSuperview];
-    [popoverView.backgroundView removeFromSuperview];
-    @synchronized(self) {
-        [self.registeredPopoverViews removeObject:popoverView];
-    }
-}
 @end

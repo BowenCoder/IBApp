@@ -23,7 +23,7 @@
 #import "MBProgressHUD+Ext.h"
 #import "NSDictionary+Ext.h"
 #import "NSArray+Ext.h"
-#import "MBPopoverView.h"
+#import "MBPopupArrowView.h"
 #import "MBErrorCheck.h"
 #import "MBLogger.h"
 #import "IBHelper.h"
