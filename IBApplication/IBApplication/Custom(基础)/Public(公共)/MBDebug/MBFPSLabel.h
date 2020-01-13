@@ -1,17 +1,15 @@
 //
-//  IBDebug.h
+//  MBFPSLabel.h
 //  IBApplication
 //
 //  Created by Bowen on 2018/7/4.
 //  Copyright © 2018年 BowenCoder. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
-@interface IBDebug : NSObject
+@interface MBFPSLabel : UILabel
 
-+ (void)openFPS;
-
-+ (void)closeFPS;
+- (void)invalidate;
 
 @end

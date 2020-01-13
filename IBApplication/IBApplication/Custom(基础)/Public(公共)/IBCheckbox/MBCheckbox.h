@@ -8,26 +8,26 @@
 
 #import <UIKit/UIKit.h>
 
-typedef NS_ENUM(NSUInteger ,IBCheckmarkStyle){
-    IBCheckmarkStyleSquare = 1, // ■
-    IBCheckmarkStyleCircle,     // ●
-    IBCheckmarkStyleCross,      // ╳
-    IBCheckmarkStyleTick,       // ✓
+typedef NS_ENUM(NSUInteger, MBCheckmarkStyle){
+    MBCheckmarkStyleSquare = 1, // ■
+    MBCheckmarkStyleCircle,     // ●
+    MBCheckmarkStyleCross,      // ╳
+    MBCheckmarkStyleTick,       // ✓
 };
-typedef NS_ENUM(NSUInteger ,IBBorderStyle){
-    IBBorderStyleSquare  = 1, // ▢
-    IBBorderStyleCircle,      // ◯
+typedef NS_ENUM(NSUInteger, MBBorderStyle){
+    MBBorderStyleSquare  = 1, // 方形
+    MBBorderStyleCircle,      // 圆形
 };
 
-@interface IBCheckbox : UIControl
+@interface MBCheckbox : UIControl
 
 /** 是否选中 */
 @property (nonatomic, assign) BOOL isChecked;
 
 /** 默认IBCheckmarkStyleSquare */
-@property (nonatomic, assign) IBCheckmarkStyle checkmarkStyle;
+@property (nonatomic, assign) MBCheckmarkStyle checkmarkStyle;
 /** 默认IBBorderStyleSquare */
-@property (nonatomic, assign) IBBorderStyle borderStyle;
+@property (nonatomic, assign) MBBorderStyle borderStyle;
 /** 默认为1 */
 @property (nonatomic, assign) CGFloat borderWidth;
 /** 默认为0.5 */

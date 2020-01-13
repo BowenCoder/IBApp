@@ -9,7 +9,7 @@
 #import "AppDelegate.h"
 #import "IBApp.h"
 #import "ViewController.h"
-#import "IBDebug.h"
+#import "MBDebug.h"
 #import "IBNaviController.h"
 #import "IBTabBarController.h"
 #import "WXApi.h"
@@ -48,7 +48,7 @@
 
     self.window.rootViewController = tab;
     [self.window makeKeyAndVisible];
-    [IBDebug openFPS];
+    [MBDebug openFPS];
 
     [IBApp onFirstStartForVersion:APP_VERSION block:^(BOOL isFirstStartForVersion) {
         if (isFirstStartForVersion) {

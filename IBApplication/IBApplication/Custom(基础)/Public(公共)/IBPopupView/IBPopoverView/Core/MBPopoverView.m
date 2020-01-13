@@ -1,15 +1,15 @@
 //
-//  IBPopoverView.m
+//  MBPopoverView.m
 //  IBApplication
 //
 //  Created by Bowen on 2018/9/20.
 //  Copyright © 2018年 BowenCoder. All rights reserved.
 //
 
-#import "IBPopoverView.h"
+#import "MBPopoverView.h"
 #import <objc/runtime.h>
 
-@interface IBPopoverView ()
+@interface MBPopoverView ()
 
 @property (nonatomic, assign) CGRect targetRect;
 @property (nonatomic, assign) BOOL isShowing;
@@ -34,7 +34,7 @@
 
 @end
 
-@implementation IBPopoverView
+@implementation MBPopoverView
 
 - (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
     UIView *hitView = [super hitTest:point withEvent:event];
@@ -233,16 +233,16 @@
     
     NSMutableArray *popoverViews = [NSMutableArray array];
     for (UIView *view in popoverView.subviews) {
-        if ([view isKindOfClass:[IBPopoverView class]]) {
+        if ([view isKindOfClass:[MBPopoverView class]]) {
             [popoverViews addObject:view];
         }
     }
     for (UIView *view in popoverView.subviews) {
-        if ([view isKindOfClass:[IBPopoverView class]]) {
+        if ([view isKindOfClass:[MBPopoverView class]]) {
             [popoverViews addObject:view];
         }
     }
-    for (IBPopoverView *popoverView in popoverViews) {
+    for (MBPopoverView *popoverView in popoverViews) {
         [popoverView hide:animated afterDelay:0.0 completion:nil];
     }
 }
@@ -790,7 +790,7 @@
     return views;
 }
 
-- (void)registerPopoverView:(IBPopoverView *)popoverView {
+- (void)registerPopoverView:(MBPopoverView *)popoverView {
     [self addSubview:popoverView.backgroundView];
     [self addSubview:popoverView];
     [self bringSubviewToFront:popoverView.backgroundView];
@@ -799,7 +799,7 @@
     [self.registeredPopoverViews addObject:popoverView];
 }
 
-- (void)unregisterPopoverView:(IBPopoverView *)popoverView {
+- (void)unregisterPopoverView:(MBPopoverView *)popoverView {
     [popoverView removeFromSuperview];
     [popoverView.backgroundView removeFromSuperview];
     @synchronized(self) {

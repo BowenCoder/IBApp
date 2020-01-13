@@ -6,15 +6,15 @@
 //  Copyright © 2018年 BowenCoder. All rights reserved.
 //
 
-#import "IBCheckbox.h"
+#import "MBCheckbox.h"
 
-@interface IBCheckbox ()
+@interface MBCheckbox ()
 
 @property (nonatomic, strong) UIImpactFeedbackGenerator *feedbackGenerator API_AVAILABLE(ios(10.0));
 
 @end
 
-@implementation IBCheckbox
+@implementation MBCheckbox
 
 - (instancetype)initWithFrame:(CGRect)frame{
     
@@ -32,8 +32,8 @@
 }
 
 - (void)setupDefaults{
-    _checkmarkStyle = IBCheckmarkStyleSquare;
-    _borderStyle    = IBBorderStyleSquare;
+    _checkmarkStyle = MBCheckmarkStyleSquare;
+    _borderStyle    = MBBorderStyleSquare;
     _borderWidth    = 2.0;
     _checkmarkSize   = 0.5;
     _checkboxBackgroundColor = [UIColor clearColor];
@@ -69,12 +69,12 @@
     }
 }
 
-- (void)drawBorder:(IBBorderStyle)shappe frame:(CGRect)frame{
+- (void)drawBorder:(MBBorderStyle)shappe frame:(CGRect)frame{
     switch (shappe) {
-        case IBBorderStyleCircle:
+        case MBBorderStyleCircle:
             [self circleBorder:frame];
             break;
-        case IBBorderStyleSquare:
+        case MBBorderStyleSquare:
             [self  squareBorder:frame];
             break;
         default:
@@ -111,20 +111,20 @@
     [ovalPath fill];
 }
 
-- (void)drawCheckmark:(IBCheckmarkStyle)style frame:(CGRect)frame{
+- (void)drawCheckmark:(MBCheckmarkStyle)style frame:(CGRect)frame{
     
     CGRect adjustedRect = [self checkmarkRect:frame];
     switch (style) {
-        case IBCheckmarkStyleSquare:
+        case MBCheckmarkStyleSquare:
             [self squareCheckmark:adjustedRect];
             break;
-        case IBCheckmarkStyleCircle:
+        case MBCheckmarkStyleCircle:
             [self circleCheckmark:adjustedRect];
             break;
-        case IBCheckmarkStyleCross:
+        case MBCheckmarkStyleCross:
             [self crossCheckmark:adjustedRect];
             break;
-        case IBCheckmarkStyleTick:
+        case MBCheckmarkStyleTick:
             [self tickCheckmark:adjustedRect];
             break;
         default:

@@ -1,25 +1,25 @@
 //
-//  IBDebug.m
+//  MBDebug.m
 //  IBApplication
 //
 //  Created by Bowen on 2018/7/4.
 //  Copyright © 2018年 BowenCoder. All rights reserved.
 //
 
-#import "IBDebug.h"
-#import "IBFPSLabel.h"
+#import "MBDebug.h"
+#import "MBFPSLabel.h"
 #import "UIMacros.h"
 
-@interface IBDebug ()
+@interface MBDebug ()
 
 @end
 
 
-@implementation IBDebug
+@implementation MBDebug
 
 + (void)openFPS {
     
-    IBFPSLabel *fps = [[IBFPSLabel alloc] initWithFrame:CGRectMake(([[UIScreen mainScreen] bounds].size.width-50)/2+50, 0, 60, 20)];
+    MBFPSLabel *fps = [[MBFPSLabel alloc] initWithFrame:CGRectMake(([[UIScreen mainScreen] bounds].size.width-50)/2+50, 0, 60, 20)];
     if (kIphoneX) {
         fps.frame = CGRectMake(([[UIScreen mainScreen] bounds].size.width)/2-30, 26, 60, 20);
     }
@@ -35,8 +35,8 @@
     
     NSArray *views = [UIApplication sharedApplication].keyWindow.subviews;
     for (UIView *view in views) {
-        if ([view isKindOfClass:[IBFPSLabel class]]) {
-            IBFPSLabel *fps = (IBFPSLabel *)view;
+        if ([view isKindOfClass:[MBFPSLabel class]]) {
+            MBFPSLabel *fps = (MBFPSLabel *)view;
             [fps invalidate];
         }
     }

@@ -1,5 +1,5 @@
 //
-//  IBPopoverView.h
+//  MBPopoverView.h
 //  IBApplication
 //
 //  Created by Bowen on 2018/9/20.
@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@class IBPopoverView;
+@class MBPopoverView;
 
-typedef void(^IBPopoverViewConfiguration)(IBPopoverView *popoverView);
+typedef void(^IBPopoverViewConfiguration)(MBPopoverView *popoverView);
 
 typedef NS_ENUM(NSUInteger, IBPopoverArrowDirection) {
     IBPopoverArrowDirectionAny,
@@ -30,7 +30,7 @@ typedef NS_ENUM(NSInteger, IBPopoverPriorityDirection) {
     IBPopoverPriorityVertical
 };
 
-@interface IBPopoverView : UIView
+@interface MBPopoverView : UIView
 
 @property (nonatomic, assign) CGPoint offsets UI_APPEARANCE_SELECTOR;
 @property (nonatomic, assign) CGFloat cornerRadius UI_APPEARANCE_SELECTOR;
@@ -71,8 +71,8 @@ typedef NS_ENUM(NSInteger, IBPopoverPriorityDirection) {
 @property (nonatomic, readonly) NSUInteger referenceCount;
 @property (nonatomic, readonly) NSMutableArray *registeredPopoverViews;
 
-- (void)registerPopoverView:(IBPopoverView *)popoverView;
-- (void)unregisterPopoverView:(IBPopoverView *)popoverView;
+- (void)registerPopoverView:(MBPopoverView *)popoverView;
+- (void)unregisterPopoverView:(MBPopoverView *)popoverView;
 
 @end
 
