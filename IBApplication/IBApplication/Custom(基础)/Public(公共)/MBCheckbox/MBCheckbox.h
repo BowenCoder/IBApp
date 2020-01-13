@@ -1,5 +1,5 @@
 //
-//  IBCheckbox.h
+//  MBCheckbox.h
 //  IBApplication
 //
 //  Created by Bowen on 2018/8/20.

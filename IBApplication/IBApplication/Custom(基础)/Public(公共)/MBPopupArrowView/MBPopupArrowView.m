@@ -76,8 +76,6 @@
     _backgroundDrawingColor = [UIColor colorWithRed:0.165f green:0.639f blue:0.937f alpha:1.00f];
     _hideOnTouch = YES;
     _translucent = YES;
-    _contentInsets = UIEdgeInsetsZero;
-    _padding = 4;
     _preferredWidth = CGRectGetWidth([UIScreen mainScreen].bounds) - (self.contentViewInsets.left + self.contentViewInsets.right + self.offsets.x*2);
     self.clipsToBounds = YES;
     self.backgroundColor = [UIColor clearColor];
@@ -313,10 +311,10 @@
 
 - (UIEdgeInsets)contentViewInsets {
     UIEdgeInsets insets = UIEdgeInsetsMake(_cornerRadius, _cornerRadius, _cornerRadius, _cornerRadius);
-    CGFloat topOffsets = 0.;
-    CGFloat leftOffsets = 0.;
-    CGFloat bottomOffsets = 0.;
-    CGFloat rightOffsets = 0.;
+    CGFloat topOffsets = 0.0;
+    CGFloat leftOffsets = 0.0;
+    CGFloat bottomOffsets = 0.0;
+    CGFloat rightOffsets = 0.0;
     switch (_arrowDirection) {
         case MBPopupArrowDirectionTop:
             topOffsets = _arrowSize;
@@ -437,20 +435,17 @@
     [self setNeedsLayout];
 }
 
-- (void)setContentInsets:(UIEdgeInsets)contentInsets {
-    _contentInsets = contentInsets;
-    [self setNeedsLayout];
-}
-
-- (void)setPadding:(CGFloat)padding {
-    _padding = padding;
-    [self setNeedsLayout];
-}
-
 #pragma mark - 布局
 
 - (void)layoutSubviews {
     [super layoutSubviews];
+    UIEdgeInsets contentInsets = self.contentViewInsets;
+    CGRect contentFrame = CGRectZero;
+    contentFrame.origin.x = contentInsets.left;
+    contentFrame.origin.y = contentInsets.top;
+    contentFrame.size.height = self.frame.size.height - contentInsets.top - contentInsets.bottom;
+    contentFrame.size.width = self.frame.size.width - contentInsets.left - contentInsets.right;
+    self.contentView.frame = contentFrame;
     [self updateFrameWithRect:self.targetRect];
 }
 

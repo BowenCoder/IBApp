@@ -42,8 +42,6 @@ typedef NS_ENUM(NSInteger, MBPopupArrowPriority) {
 @property (nonatomic, assign) MBPopupArrowPriority priority UI_APPEARANCE_SELECTOR;
 @property (nonatomic, strong) UIColor *backgroundDrawingColor UI_APPEARANCE_SELECTOR;
 @property (nonatomic, assign) CGFloat preferredWidth UI_APPEARANCE_SELECTOR;
-@property (nonatomic, assign) UIEdgeInsets contentInsets UI_APPEARANCE_SELECTOR;
-@property (nonatomic, assign) CGFloat padding UI_APPEARANCE_SELECTOR;
 
 @property (nonatomic, assign) BOOL translucent;
 @property (nonatomic, assign) BOOL dimBackground;

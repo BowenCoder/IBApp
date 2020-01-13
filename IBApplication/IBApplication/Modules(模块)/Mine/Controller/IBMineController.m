@@ -79,7 +79,7 @@
     MBPopupArrowView *pop = [[MBPopupArrowView alloc] initWithFrame:CGRectMake(50, 100, 100, 100)];
     pop.priority = MBPopupArrowPriorityHorizontal;
     pop.dimBackground = YES;
-    pop.preferredArrowDirection = MBPopupArrowDirectionAny;
+    pop.preferredArrowDirection = MBPopupArrowDirectionLeft;
     pop.translucent = NO;
     pop.translucentStyle = MBPopupArrowStyleDefault;
     pop.preferredWidth = 300.0;

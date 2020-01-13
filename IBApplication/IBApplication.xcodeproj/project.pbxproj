@@ -2507,7 +2507,7 @@
 				4AAA78E820ECB4CA00CF5639 /* MBDebug */,
 				F333517822A2C404005B968E /* MBLibraryCamera */,
 				4A1FB0A520E8EA320056A026 /* MBProgressHUD */,
-				4AE64C46212ACFA4003DE328 /* IBCheckbox */,
+				4AE64C46212ACFA4003DE328 /* MBCheckbox */,
 				4AEEA7A6213D0D3400CFAA3D /* IBActionSheet */,
 				4AED516F23CC779800B38F59 /* IBPopupManager */,
 				4A1FB0A420E8E5290056A026 /* MBPopupArrowView */,
@@ -2941,13 +2941,13 @@
 			path = UIFont;
 			sourceTree = "<group>";
 		};
-		4AE64C46212ACFA4003DE328 /* IBCheckbox */ = {
+		4AE64C46212ACFA4003DE328 /* MBCheckbox */ = {
 			isa = PBXGroup;
 			children = (
 				4AE64C47212ACFF7003DE328 /* MBCheckbox.h */,
 				4AE64C48212ACFF7003DE328 /* MBCheckbox.m */,
 			);
-			path = IBCheckbox;
+			path = MBCheckbox;
 			sourceTree = "<group>";
 		};
 		4AE8D63823025CCB00A73011 /* MBPluginManager */ = {
