@@ -132,6 +132,7 @@
 		4A44437E21006150001B2350 /* IBTabBarBadge.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A44437D21006150001B2350 /* IBTabBarBadge.m */; };
 		4A4443812100797E001B2350 /* IBTabBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A4443802100797E001B2350 /* IBTabBarItem.m */; };
 		4A44438421008BE2001B2350 /* IBTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A44438321008BE2001B2350 /* IBTabBar.m */; };
+		4A63CB7C23CDC0B700684FC5 /* MBAutoScrollLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A63CB7B23CDC0B700684FC5 /* MBAutoScrollLabel.m */; };
 		4A686D2520EB229000C8328E /* MBEmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A686D2420EB229000C8328E /* MBEmptyView.m */; };
 		4A686D2920EB668A00C8328E /* MBLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A686D2820EB668A00C8328E /* MBLoadingView.m */; };
 		4A6DFF3523B5EF450002D3BB /* MBAutoHeightTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6DFF3423B5EF450002D3BB /* MBAutoHeightTextView.m */; };
@@ -593,6 +594,8 @@
 		4A4443802100797E001B2350 /* IBTabBarItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBTabBarItem.m; sourceTree = "<group>"; };
 		4A44438221008BE2001B2350 /* IBTabBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBTabBar.h; sourceTree = "<group>"; };
 		4A44438321008BE2001B2350 /* IBTabBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBTabBar.m; sourceTree = "<group>"; };
+		4A63CB7A23CDC0B700684FC5 /* MBAutoScrollLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBAutoScrollLabel.h; sourceTree = "<group>"; };
+		4A63CB7B23CDC0B700684FC5 /* MBAutoScrollLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBAutoScrollLabel.m; sourceTree = "<group>"; };
 		4A686D2320EB229000C8328E /* MBEmptyView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBEmptyView.h; sourceTree = "<group>"; };
 		4A686D2420EB229000C8328E /* MBEmptyView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBEmptyView.m; sourceTree = "<group>"; };
 		4A686D2720EB668A00C8328E /* MBLoadingView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBLoadingView.h; sourceTree = "<group>"; };
@@ -1647,6 +1650,15 @@
 			path = IBPrivacy;
 			sourceTree = "<group>";
 		};
+		4A63CB7923CDC08600684FC5 /* MBAutoScrollLabel */ = {
+			isa = PBXGroup;
+			children = (
+				4A63CB7A23CDC0B700684FC5 /* MBAutoScrollLabel.h */,
+				4A63CB7B23CDC0B700684FC5 /* MBAutoScrollLabel.m */,
+			);
+			path = MBAutoScrollLabel;
+			sourceTree = "<group>";
+		};
 		4A686D2220EB224F00C8328E /* MBEmptyView */ = {
 			isa = PBXGroup;
 			children = (
@@ -2498,6 +2510,7 @@
 			children = (
 				4AEEA7A6213D0D3400CFAA3D /* MBActionSheet */,
 				4AD688FA23014A6600D3A248 /* MBAlignmentLabel */,
+				4A63CB7923CDC08600684FC5 /* MBAutoScrollLabel */,
 				4A0800E52302B80100EF25BE /* MBButton */,
 				4AE64C46212ACFA4003DE328 /* MBCheckbox */,
 				4AAA78E820ECB4CA00CF5639 /* MBDebug */,
@@ -3523,6 +3536,7 @@
 				4AC7AF2D23C35D0500446C03 /* MBMessageBarStyle.m in Sources */,
 				4A89D630228B17490072FB23 /* aeskey.m in Sources */,
 				4AC29F7D210F04A900F218FE /* UIScrollView+MJExtension.m in Sources */,
+				4A63CB7C23CDC0B700684FC5 /* MBAutoScrollLabel.m in Sources */,
 				4A22DE1E228AF3B500D4CFA6 /* DDAbstractDatabaseLogger.m in Sources */,
 				4AC29F91210F18C700F218FE /* IBTableCell.m in Sources */,
 				4A6DFF3523B5EF450002D3BB /* MBAutoHeightTextView.m in Sources */,
