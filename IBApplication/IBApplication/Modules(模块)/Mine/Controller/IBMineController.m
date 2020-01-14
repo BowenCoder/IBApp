@@ -76,7 +76,7 @@
 }
 
 - (void)test {
-    MBPopupArrowView *pop = [[MBPopupArrowView alloc] initWithFrame:CGRectMake(50, 100, 100, 100)];
+    MBPopupArrowView *pop = [[MBPopupArrowView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
     pop.priority = MBPopupArrowPriorityHorizontal;
     pop.dimBackground = YES;
     pop.preferredArrowDirection = MBPopupArrowDirectionLeft;

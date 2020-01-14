@@ -1,94 +1,82 @@
 //
-//  IBPopupManager.m
+//  MBPopupController.m
 //  IBApplication
 //
-//  Created by Bowen on 2018/8/21.
-//  Copyright © 2018年 BowenCoder. All rights reserved.
+//  Created by Bowen on 2020/1/14.
+//  Copyright © 2020 BowenCoder. All rights reserved.
 //
 
-#import "IBPopupManager.h"
+#import "MBPopupController.h"
 #import <objc/runtime.h>
 
-@interface IBPopupManager () <UIGestureRecognizerDelegate>
+static void *MBPopupControllerParametersKey = &MBPopupControllerParametersKey;
+static void *MBPopupControllerNSTimerKey = &MBPopupControllerNSTimerKey;
 
-@property (nonatomic, strong, readonly) UIView *superview;
-@property (nonatomic, strong, readonly) UIView *maskView;
-@property (nonatomic, strong, readonly) UIView *contentView;
-@property (nonatomic, assign, readonly) CGFloat dropAngle;
-@property (nonatomic, assign, readonly) CGPoint markerCenter;
-@property (nonatomic, assign, readonly) IBPopupMaskType maskType;
+@interface MBPopupController () <UIGestureRecognizerDelegate>
+
+@property (nonatomic, strong) UIView *superview;
+@property (nonatomic, strong) UIView *maskView;
+@property (nonatomic, strong) UIView *contentView;
+@property (nonatomic, assign) CGFloat dropAngle;
+@property (nonatomic, assign) CGPoint markerCenter;
+@property (nonatomic, assign) MBPopupMaskType maskType;
 
 @end
 
-static void *IBPopupManagerParametersKey = &IBPopupManagerParametersKey;
-static void *IBPopupManagerNSTimerKey = &IBPopupManagerNSTimerKey;
+@implementation MBPopupController
 
-@implementation IBPopupManager
-
-+ (instancetype)popupManagerWithMaskType:(IBPopupMaskType)maskType {
++ (instancetype)popupControllerWithMaskType:(MBPopupMaskType)maskType {
     return [[self alloc] initWithMaskType:maskType];
 }
 
 - (instancetype)init {
-    return [self initWithMaskType:IBPopupMaskTypeBlackTranslucent];
+    return [self initWithMaskType:MBPopupMaskTypeBlackTranslucent];
 }
 
-- (instancetype)initWithMaskType:(IBPopupMaskType)maskType {
+- (instancetype)initWithMaskType:(MBPopupMaskType)maskType {
     if (self = [super init]) {
         _isPresenting = NO;
         _maskType = maskType;
-        _layoutType = IBPopupLayoutTypeCenter;
+        _layoutType = MBPopupLayoutTypeCenter;
         _dismissOnMaskTouched = YES;
         
         // setter
         self.maskAlpha = 0.5f;
-        self.slideStyle = IBPopupSlideStyleFade;
+        self.slideStyle = MBPopupSlideStyleFade;
         self.dismissOppositeDirection = NO;
         self.allowPan = NO;
-        
+    
         // superview
         _superview = [self frontWindow];
         
         // maskView
-        if (maskType == IBPopupMaskTypeBlackBlur || maskType == IBPopupMaskTypeWhiteBlur) {
-            if ([[UIDevice currentDevice].systemVersion compare:@"8.0" options:NSNumericSearch] == NSOrderedAscending) {
-                _maskView = [[UIToolbar alloc] initWithFrame:_superview.bounds];
-            } else {
-                _maskView = [[UIView alloc] initWithFrame:_superview.bounds];
-                UIVisualEffectView *visualEffectView;
-                visualEffectView = [[UIVisualEffectView alloc] init];
-                visualEffectView.effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
-                visualEffectView.frame = _superview.bounds;
-                [_maskView insertSubview:visualEffectView atIndex:0];
-            }
+        if (maskType == MBPopupMaskTypeBlackBlur || maskType == MBPopupMaskTypeWhiteBlur) {
+            _maskView = [[UIView alloc] initWithFrame:_superview.bounds];
+            UIVisualEffectView *visualEffectView;
+            visualEffectView = [[UIVisualEffectView alloc] init];
+            visualEffectView.effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+            visualEffectView.frame = _superview.bounds;
+            [_maskView insertSubview:visualEffectView atIndex:0];
         } else {
             _maskView = [[UIView alloc] initWithFrame:_superview.bounds];
         }
         
         switch (maskType) {
-            case IBPopupMaskTypeBlackBlur: {
-                if ([_maskView isKindOfClass:[UIToolbar class]]) {
-                    [(UIToolbar *)_maskView setBarStyle:UIBarStyleBlack];
-                } else {
-                    UIVisualEffectView *effectView = (UIVisualEffectView *)_maskView.subviews.firstObject;
-                    effectView.effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
-                }
+            case MBPopupMaskTypeBlackBlur: {
+                UIVisualEffectView *effectView = (UIVisualEffectView *)_maskView.subviews.firstObject;
+                effectView.effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
             } break;
-            case IBPopupMaskTypeWhiteBlur: {
-                if ([_maskView isKindOfClass:[UIToolbar class]]) {
-                    [(UIToolbar *)_maskView setBarStyle:UIBarStyleDefault];
-                } else {
-                    UIVisualEffectView *effectView = (UIVisualEffectView *)_maskView.subviews.firstObject;
-                    effectView.effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
-                }
+            case MBPopupMaskTypeWhiteBlur: {
+                UIVisualEffectView *effectView = (UIVisualEffectView *)_maskView.subviews.firstObject;
+                effectView.effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
             } break;
-            case IBPopupMaskTypeWhite:
+            case MBPopupMaskTypeWhite:
                 _maskView.backgroundColor = [UIColor whiteColor];
                 break;
-            case IBPopupMaskTypeClear:
+            case MBPopupMaskTypeClear:
                 _maskView.backgroundColor = [UIColor clearColor];
                 break;
-            default: // IBPopupMaskTypeBlackTranslucent
+            default: // MBPopupMaskTypeBlackTranslucent
                 _maskView.backgroundColor = [UIColor colorWithWhite:0.0 alpha:_maskAlpha];
                 break;
         }
@@ -119,13 +107,13 @@ static void *IBPopupManagerNSTimerKey = &IBPopupManagerNSTimerKey;
     objc_setAssociatedObject(self, _cmd, @(dismissOppositeDirection), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
-- (void)setSlideStyle:(IBPopupSlideStyle)slideStyle {
+- (void)setSlideStyle:(MBPopupSlideStyle)slideStyle {
     _slideStyle = slideStyle;
     objc_setAssociatedObject(self, _cmd, @(slideStyle), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 - (void)setMaskAlpha:(CGFloat)maskAlpha {
-    if (_maskType != IBPopupMaskTypeBlackTranslucent) return;
+    if (_maskType != MBPopupMaskTypeBlackTranslucent) return;
     _maskAlpha = maskAlpha;
     _maskView.backgroundColor = [UIColor colorWithWhite:0.0 alpha:_maskAlpha];
 }
@@ -165,19 +153,15 @@ static void *IBPopupManagerNSTimerKey = &IBPopupManagerNSTimerKey;
             springAnimated:(BOOL)isSpringAnimated
                     inView:(UIView *)sView
                displayTime:(NSTimeInterval)displayTime {
-    
+ 
     if (self.isPresenting) return;
     NSMutableDictionary *parameters = [NSMutableDictionary dictionaryWithCapacity:2];
-    [parameters setValue:@(duration) forKey:@"duration"];
-    [parameters setValue:@(isSpringAnimated) forKey:@"springAnimated"];
-    objc_setAssociatedObject(self, IBPopupManagerParametersKey, parameters, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    [parameters setValue:@(duration) forKey:@"MB_duration"];
+    [parameters setValue:@(isSpringAnimated) forKey:@"MB_springAnimated"];
+    objc_setAssociatedObject(self, MBPopupControllerParametersKey, parameters, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     
     if (nil != self.willPresent) {
         self.willPresent(self);
-    } else {
-        if ([self.delegate respondsToSelector:@selector(popupManagerWillPresent:)]) {
-            [self.delegate popupManagerWillPresent:self];
-        }
     }
     
     if (nil != sView) {
@@ -193,29 +177,26 @@ static void *IBPopupManagerNSTimerKey = &IBPopupManagerNSTimerKey;
     [self prepareBackground];
     _popupView.userInteractionEnabled = NO;
     _popupView.center = [self prepareCenter];
+    
     void (^presentCallback)(void) = ^() {
         self->_isPresenting = YES;
-        self->_popupView.userInteractionEnabled = YES;
+        self.popupView.userInteractionEnabled = YES;
         if (nil != self.didPresent) {
             self.didPresent(self);
-        } else {
-            if ([self.delegate respondsToSelector:@selector(popupManagerDidPresent:)]) {
-                [self.delegate popupManagerDidPresent:self];
-            }
         }
-        
         if (displayTime) {
             NSTimer *timer = [NSTimer timerWithTimeInterval:displayTime target:self selector:@selector(dismiss) userInfo:nil repeats:NO];
             [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
-            objc_setAssociatedObject(self, IBPopupManagerNSTimerKey, timer, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+            objc_setAssociatedObject(self, MBPopupControllerNSTimerKey, timer, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
         }
     };
     
     if (isSpringAnimated) {
         [UIView animateWithDuration:duration delay:0.f usingSpringWithDamping:0.6 initialSpringVelocity:0.2 options:UIViewAnimationOptionCurveLinear animations:^{
+            
             [self finishedDropAnimated];
             [self finishedBackground];
-            self->_popupView.center = [self finishedCenter];
+            self.popupView.center = [self finishedCenter];
             
         } completion:^(BOOL finished) {
             
@@ -224,9 +205,10 @@ static void *IBPopupManagerNSTimerKey = &IBPopupManagerNSTimerKey;
         }];
     } else {
         [UIView animateWithDuration:duration delay:0.f options:UIViewAnimationOptionCurveLinear animations:^{
+            
             [self finishedDropAnimated];
             [self finishedBackground];
-            self->_popupView.center = [self finishedCenter];
+            self.popupView.center = [self finishedCenter];
             
         } completion:^(BOOL finished) {
             
@@ -240,18 +222,18 @@ static void *IBPopupManagerNSTimerKey = &IBPopupManagerNSTimerKey;
 
 - (void)fadeDismiss {
     objc_setAssociatedObject(self, _cmd, @(_slideStyle), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    _slideStyle = IBPopupSlideStyleFade;
+    _slideStyle = MBPopupSlideStyleFade;
     [self dismiss];
 }
 
 - (void)dismiss {
-    id object = objc_getAssociatedObject(self, IBPopupManagerParametersKey);
+    id object = objc_getAssociatedObject(self, MBPopupControllerParametersKey);
     if (object && [object isKindOfClass:[NSDictionary class]]) {
         NSTimeInterval duration = 0.0;
-        NSNumber *durationNumber = [object valueForKey:@"duration"];
+        NSNumber *durationNumber = [object valueForKey:@"MB_duration"];
         if (nil != durationNumber) duration = durationNumber.doubleValue;
         BOOL flag = NO;
-        NSNumber *flagNumber = [object valueForKey:@"springAnimated"];
+        NSNumber *flagNumber = [object valueForKey:@"MB_springAnimated"];
         if (nil != flagNumber) flag = flagNumber.boolValue;
         [self dismissWithDuration:duration springAnimated:flag];
     }
@@ -264,27 +246,19 @@ static void *IBPopupManagerNSTimerKey = &IBPopupManagerNSTimerKey;
     
     if (nil != self.willDismiss) {
         self.willDismiss(self);
-    } else {
-        if ([self.delegate respondsToSelector:@selector(popupManagerWillDismiss:)]) {
-            [self.delegate popupManagerWillDismiss:self];
-        }
     }
     void (^dismissCallback)(void) = ^() {
-        self->_slideStyle = [objc_getAssociatedObject(self, @selector(fadeDismiss)) integerValue];
+        self.slideStyle = [objc_getAssociatedObject(self, @selector(fadeDismiss)) integerValue];
         [self removeSubviews];
         self->_isPresenting = NO;
-        self->_popupView.transform = CGAffineTransformIdentity;
+        self.popupView.transform = CGAffineTransformIdentity;
         if (nil != self.didDismiss) {
             self.didDismiss(self);
-        } else {
-            if ([self.delegate respondsToSelector:@selector(popupManagerDidDismiss:)]) {
-                [self.delegate popupManagerDidDismiss:self];
-            }
         }
     };
     
-    UIViewAnimationOptions (^animOpts)(IBPopupSlideStyle) = ^(IBPopupSlideStyle slide){
-        if (slide != IBPopupSlideStyleShrinkInOut1) {
+    UIViewAnimationOptions (^animOpts)(MBPopupSlideStyle) = ^(MBPopupSlideStyle slide){
+        if (slide != MBPopupSlideStyleShrinkInOut) {
             return UIViewAnimationOptionCurveLinear;
         }
         return UIViewAnimationOptionCurveEaseInOut;
@@ -297,14 +271,14 @@ static void *IBPopupManagerNSTimerKey = &IBPopupManagerNSTimerKey;
         [UIView animateWithDuration:duration1 delay:0.f options:UIViewAnimationOptionCurveEaseInOut animations:^{
             
             [self bufferBackground];
-            self->_popupView.center = [self bufferCenter:30];
+            self.popupView.center = [self bufferCenter:30];
             
         } completion:^(BOOL finished) {
             [UIView animateWithDuration:duration2 delay:0.f options:animOpts(self.slideStyle) animations:^{
                 
                 [self dismissedDropAnimated];
                 [self dismissedBackground];
-                self->_popupView.center = [self dismissedCenter];
+                self.popupView.center = [self dismissedCenter];
                 
             } completion:^(BOOL finished) {
                 if (finished) dismissCallback();
@@ -317,8 +291,8 @@ static void *IBPopupManagerNSTimerKey = &IBPopupManagerNSTimerKey;
             
             [self dismissedDropAnimated];
             [self dismissedBackground];
-            self->_popupView.center = [self dismissedCenter];
-            
+            self.popupView.center = [self dismissedCenter];
+
         } completion:^(BOOL finished) {
             if (finished) dismissCallback();
         }];
@@ -357,14 +331,14 @@ static void *IBPopupManagerNSTimerKey = &IBPopupManagerNSTimerKey;
 
 - (void)dropAnimatedWithRotateAngle:(CGFloat)angle {
     _dropAngle = angle;
-    _slideStyle = IBPopupSlideStyleFromTop;
+    _slideStyle = MBPopupSlideStyleFromTop;
 }
 
 - (BOOL)dropSupport {
-    return (_layoutType == IBPopupLayoutTypeCenter && _slideStyle == IBPopupSlideStyleFromTop);
+    return (_layoutType == MBPopupLayoutTypeCenter && _slideStyle == MBPopupSlideStyleFromTop);
 }
 
-static CGFloat randomValue(int i, int j) {
+static CGFloat MB_randomValue(int i, int j) {
     if (arc4random() % 2) return i;
     return j;
 }
@@ -375,7 +349,7 @@ static CGFloat randomValue(int i, int j) {
         CGFloat ty = (_maskView.bounds.size.height + _popupView.frame.size.height) / 2;
         CATransform3D transform = CATransform3DMakeTranslation(0, -ty, 0);
         transform = CATransform3DRotate(transform,
-                                        randomValue(_dropAngle, -_dropAngle) * M_PI / 180,
+                                        MB_randomValue(_dropAngle, -_dropAngle) * M_PI / 180,
                                         0, 0, 1.0);
         _popupView.layer.transform = transform;
     }
@@ -392,7 +366,7 @@ static CGFloat randomValue(int i, int j) {
         CGFloat ty = _maskView.bounds.size.height;
         CATransform3D transform = CATransform3DMakeTranslation(0, ty, 0);
         transform = CATransform3DRotate(transform,
-                                        randomValue(_dropAngle, -_dropAngle) * M_PI / 180,
+                                        MB_randomValue(_dropAngle, -_dropAngle) * M_PI / 180,
                                         0, 0, 1.0);
         _popupView.layer.transform = transform;
     }
@@ -402,8 +376,8 @@ static CGFloat randomValue(int i, int j) {
 
 - (void)prepareBackground {
     switch (_maskType) {
-        case IBPopupMaskTypeBlackBlur:
-        case IBPopupMaskTypeWhiteBlur:
+        case MBPopupMaskTypeBlackBlur:
+        case MBPopupMaskTypeWhiteBlur:
             _maskView.alpha = 1;
             break;
         default:
@@ -414,13 +388,13 @@ static CGFloat randomValue(int i, int j) {
 
 - (void)finishedBackground {
     switch (_maskType) {
-        case IBPopupMaskTypeBlackTranslucent:
+        case MBPopupMaskTypeBlackTranslucent:
             _maskView.backgroundColor = [UIColor colorWithWhite:0.0 alpha:_maskAlpha];
             break;
-        case IBPopupMaskTypeWhite:
+        case MBPopupMaskTypeWhite:
             _maskView.backgroundColor = [UIColor whiteColor];
             break;
-        case IBPopupMaskTypeClear:
+        case MBPopupMaskTypeClear:
             _maskView.backgroundColor = [UIColor clearColor];
             break;
         default: break;
@@ -429,9 +403,9 @@ static CGFloat randomValue(int i, int j) {
 
 - (void)bufferBackground {
     switch (_maskType) {
-        case IBPopupMaskTypeBlackBlur:
-        case IBPopupMaskTypeWhiteBlur: break;
-        case IBPopupMaskTypeBlackTranslucent:
+        case MBPopupMaskTypeBlackBlur:
+        case MBPopupMaskTypeWhiteBlur: break;
+        case MBPopupMaskTypeBlackTranslucent:
             _maskView.backgroundColor = [UIColor colorWithWhite:0.0 alpha:_maskAlpha - _maskAlpha * 0.15];
             break;
         default: break;
@@ -440,8 +414,8 @@ static CGFloat randomValue(int i, int j) {
 
 - (void)dismissedBackground {
     switch (_maskType) {
-        case IBPopupMaskTypeBlackBlur:
-        case IBPopupMaskTypeWhiteBlur:
+        case MBPopupMaskTypeBlackBlur:
+        case MBPopupMaskTypeWhiteBlur:
             _maskView.alpha = 0;
             break;
         default:
@@ -472,13 +446,13 @@ static CGFloat randomValue(int i, int j) {
 }
 
 - (CGPoint)prepareCenter {
-    if (_layoutType == IBPopupLayoutTypeCenter) {
+    if (_layoutType == MBPopupLayoutTypeCenter) {
         CGPoint point = _maskView.center;
-        if (_slideStyle == IBPopupSlideStyleShrinkInOut1) {
+        if (_slideStyle == MBPopupSlideStyleShrinkInOut) {
             _popupView.transform = CGAffineTransformMakeScale(0.15, 0.15);
-        } else if (_slideStyle == IBPopupSlideStyleShrinkInOut2) {
+        } else if (_slideStyle == MBPopupSlideStyleShrinkInGrowOut) {
             _popupView.transform = CGAffineTransformMakeScale(0.8, 0.8);
-        } else if (_slideStyle == IBPopupSlideStyleFade) {
+        } else if (_slideStyle == MBPopupSlideStyleFade) {
             _maskView.alpha = 0;
         } else {
             point = [self prepareCenterFrom:_slideStyle viewRef:_maskView];
@@ -491,76 +465,76 @@ static CGFloat randomValue(int i, int j) {
 - (CGPoint)finishedCenter {
     CGPoint point = _maskView.center;
     switch (_layoutType) {
-        case IBPopupLayoutTypeTop:
+        case MBPopupLayoutTypeTop:
             return CGPointMake(point.x,
                                _popupView.bounds.size.height / 2);
-        case IBPopupLayoutTypeBottom:
+        case MBPopupLayoutTypeBottom:
             return CGPointMake(point.x,
                                _maskView.bounds.size.height - _popupView.bounds.size.height / 2);
-        case IBPopupLayoutTypeLeft:
+        case MBPopupLayoutTypeLeft:
             return CGPointMake(_popupView.bounds.size.width / 2,
                                point.y);
-        case IBPopupLayoutTypeRight:
+        case MBPopupLayoutTypeRight:
             return CGPointMake(_maskView.bounds.size.width - _popupView.bounds.size.width / 2,
                                point.y);
-        default: // IBPopupLayoutTypeCenter
+        default: // MBPopupLayoutTypeCenter
         {
-            if (_slideStyle == IBPopupSlideStyleShrinkInOut1 ||
-                _slideStyle == IBPopupSlideStyleShrinkInOut2) {
+            if (_slideStyle == MBPopupSlideStyleShrinkInOut ||
+                _slideStyle == MBPopupSlideStyleShrinkInGrowOut) {
                 _popupView.transform = CGAffineTransformIdentity;
-            } else if (_slideStyle == IBPopupSlideStyleFade) {
+            } else if (_slideStyle == MBPopupSlideStyleFade) {
                 _maskView.alpha = 1;
             }
         }
-            return point;
+        return point;
     }
 }
 
 - (CGPoint)dismissedCenter {
-    if (_layoutType != IBPopupLayoutTypeCenter) {
+    if (_layoutType != MBPopupLayoutTypeCenter) {
         return [self prepareCenterFrom:_layoutType viewRef:_popupView];
     }
     switch (_slideStyle) {
-        case IBPopupSlideStyleFromTop:
+        case MBPopupSlideStyleFromTop:
             return _dismissOppositeDirection ?
             CGPointMake(_popupView.center.x,
                         _maskView.bounds.size.height + _popupView.bounds.size.height / 2) :
             CGPointMake(_popupView.center.x,
                         -_popupView.bounds.size.height / 2);
             
-        case IBPopupSlideStyleFromBottom:
+        case MBPopupSlideStyleFromBottom:
             return _dismissOppositeDirection ?
             CGPointMake(_popupView.center.x,
                         -_popupView.bounds.size.height / 2) :
             CGPointMake(_popupView.center.x,
                         _maskView.bounds.size.height + _popupView.bounds.size.height / 2);
             
-        case IBPopupSlideStyleFromLeft:
+        case MBPopupSlideStyleFromLeft:
             return _dismissOppositeDirection ?
             CGPointMake(_maskView.bounds.size.width + _popupView.bounds.size.width / 2,
                         _popupView.center.y) :
             CGPointMake(-_popupView.bounds.size.width / 2,
                         _popupView.center.y);
             
-        case IBPopupSlideStyleFromRight:
+        case MBPopupSlideStyleFromRight:
             return _dismissOppositeDirection ?
             CGPointMake(-_popupView.bounds.size.width / 2,
                         _popupView.center.y) :
             CGPointMake(_maskView.bounds.size.width + _popupView.bounds.size.width / 2,
                         _popupView.center.y);
             
-        case IBPopupSlideStyleShrinkInOut1:
+        case MBPopupSlideStyleShrinkInOut:
             _popupView.transform = _dismissOppositeDirection ?
             CGAffineTransformMakeScale(1.75, 1.75) :
             CGAffineTransformMakeScale(0.25, 0.25);
             break;
             
-        case IBPopupSlideStyleShrinkInOut2:
+        case MBPopupSlideStyleShrinkInGrowOut:
             _popupView.transform = _dismissOppositeDirection ?
             CGAffineTransformMakeScale(1.2, 1.2) :
             CGAffineTransformMakeScale(0.75, 0.75);
             
-        case IBPopupSlideStyleFade:
+        case MBPopupSlideStyleFade:
             _maskView.alpha = 0;
         default: break;
     }
@@ -572,34 +546,34 @@ static CGFloat randomValue(int i, int j) {
 - (CGPoint)bufferCenter:(CGFloat)move {
     CGPoint point = _popupView.center;
     switch (_layoutType) {
-        case IBPopupLayoutTypeTop:
+        case MBPopupLayoutTypeTop:
             point.y += move;
             break;
-        case IBPopupLayoutTypeBottom:
+        case MBPopupLayoutTypeBottom:
             point.y -= move;
             break;
-        case IBPopupLayoutTypeLeft:
+        case MBPopupLayoutTypeLeft:
             point.x += move;
             break;
-        case IBPopupLayoutTypeRight:
+        case MBPopupLayoutTypeRight:
             point.x -= move;
             break;
-        case IBPopupLayoutTypeCenter: {
+        case MBPopupLayoutTypeCenter: {
             switch (_slideStyle) {
-                case IBPopupSlideStyleFromTop:
+                case MBPopupSlideStyleFromTop:
                     point.y += _dismissOppositeDirection ? -move : move;
                     break;
-                case IBPopupSlideStyleFromBottom:
+                case MBPopupSlideStyleFromBottom:
                     point.y += _dismissOppositeDirection ? move : -move;
                     break;
-                case IBPopupSlideStyleFromLeft:
+                case MBPopupSlideStyleFromLeft:
                     point.x += _dismissOppositeDirection ? -move : move;
                     break;
-                case IBPopupSlideStyleFromRight:
+                case MBPopupSlideStyleFromRight:
                     point.x += _dismissOppositeDirection ? move : -move;
                     break;
-                case IBPopupSlideStyleShrinkInOut1:
-                case IBPopupSlideStyleShrinkInOut2:
+                case MBPopupSlideStyleShrinkInOut:
+                case MBPopupSlideStyleShrinkInGrowOut:
                     _popupView.transform = _dismissOppositeDirection ?
                     CGAffineTransformMakeScale(0.95, 0.95) :
                     CGAffineTransformMakeScale(1.05, 1.05);
@@ -615,10 +589,10 @@ static CGFloat randomValue(int i, int j) {
 #pragma mark - Destroy timer
 
 - (void)destroyTimer {
-    id value = objc_getAssociatedObject(self, IBPopupManagerNSTimerKey);
+    id value = objc_getAssociatedObject(self, MBPopupControllerNSTimerKey);
     if (value) {
         [(NSTimer *)value invalidate];
-        objc_setAssociatedObject(self, IBPopupManagerNSTimerKey, nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        objc_setAssociatedObject(self, MBPopupControllerNSTimerKey, nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
 }
 
@@ -634,7 +608,7 @@ static CGFloat randomValue(int i, int j) {
         }
     }
     UIWindow *applicationWindow = [[UIApplication sharedApplication].delegate window];
-    if (!applicationWindow) NSLog(@"** IBPopupManager ** Window is nil!");
+    if (!applicationWindow) NSLog(@"** MBPopupController ** Window is nil!");
     return applicationWindow;
 }
 
@@ -692,16 +666,16 @@ static CGFloat randomValue(int i, int j) {
     UIViewAnimationOptions options = curve << 16;
     
     NSTimeInterval duration = [userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
-    
+
     [UIView animateWithDuration:duration delay:0 options:options animations:^{
         if (keyboardHeight > 0) {
             
             CGFloat offsetSpacing = self.offsetSpacingOfKeyboard, changeHeight = 0;
             
-            switch (self->_layoutType) {
-                case IBPopupLayoutTypeTop:
+            switch (self.layoutType) {
+                case MBPopupLayoutTypeTop:
                     break;
-                case IBPopupLayoutTypeBottom:
+                case MBPopupLayoutTypeBottom:
                     changeHeight = keyboardHeight + offsetSpacing;
                     break;
                 default:
@@ -709,19 +683,19 @@ static CGFloat randomValue(int i, int j) {
                     break;
             }
             
-            if (!CGPointEqualToPoint(CGPointZero, self->_markerCenter)) {
-                self->_popupView.center = CGPointMake(self->_markerCenter.x, self->_markerCenter.y - changeHeight);
+            if (!CGPointEqualToPoint(CGPointZero, self.markerCenter)) {
+                self.popupView.center = CGPointMake(self.markerCenter.x, self.markerCenter.y - changeHeight);
             } else {
-                self->_popupView.center = CGPointMake(self->_popupView.center.x, self->_popupView.center.y - changeHeight);
+                self.popupView.center = CGPointMake(self.popupView.center.x, self.popupView.center.y - changeHeight);
             }
             
         } else {
             if (self.isPresenting) {
-                self->_popupView.center = [self finishedCenter];
+                self.popupView.center = [self finishedCenter];
             }
         }
     } completion:^(BOOL finished) {
-        self->_markerCenter = [self finishedCenter];
+        self.markerCenter = [self finishedCenter];
     }];
 }
 
@@ -788,12 +762,12 @@ static CGFloat randomValue(int i, int j) {
             break;
         case UIGestureRecognizerStateChanged: {
             switch (_layoutType) {
-                case IBPopupLayoutTypeCenter: {
+                case MBPopupLayoutTypeCenter: {
                     
                     BOOL isTransformationVertical = NO;
                     switch (_slideStyle) {
-                        case IBPopupSlideStyleFromLeft:
-                        case IBPopupSlideStyleFromRight: break;
+                        case MBPopupSlideStyleFromLeft:
+                        case MBPopupSlideStyleFromRight: break;
                         default:
                             isTransformationVertical = YES;
                             break;
@@ -810,26 +784,26 @@ static CGFloat randomValue(int i, int j) {
                     }
                     CGFloat alpha = factor / 2 - fabs(changeValue - factor / 2);
                     [UIView animateWithDuration:0.15 animations:^{
-                        self->_maskView.alpha = alpha;
+                        self.maskView.alpha = alpha;
                     } completion:NULL];
                     
                 } break;
-                case IBPopupLayoutTypeBottom: {
+                case MBPopupLayoutTypeBottom: {
                     if (g.view.frame.origin.y + translation.y > _maskView.bounds.size.height - g.view.bounds.size.height) {
                         g.view.center = CGPointMake(g.view.center.x, g.view.center.y + translation.y);
                     }
                 } break;
-                case IBPopupLayoutTypeTop: {
+                case MBPopupLayoutTypeTop: {
                     if (g.view.frame.origin.y + g.view.frame.size.height + translation.y  < g.view.bounds.size.height) {
                         g.view.center = CGPointMake(g.view.center.x, g.view.center.y + translation.y);
                     }
                 } break;
-                case IBPopupLayoutTypeLeft: {
+                case MBPopupLayoutTypeLeft: {
                     if (g.view.frame.origin.x + g.view.frame.size.width + translation.x < g.view.bounds.size.width) {
                         g.view.center = CGPointMake(g.view.center.x + translation.x, g.view.center.y);
                     }
                 } break;
-                case IBPopupLayoutTypeRight: {
+                case MBPopupLayoutTypeRight: {
                     if (g.view.frame.origin.x + translation.x > _maskView.bounds.size.width - g.view.bounds.size.width) {
                         g.view.center = CGPointMake(g.view.center.x + translation.x, g.view.center.y);
                     }
@@ -842,7 +816,7 @@ static CGFloat randomValue(int i, int j) {
             
             BOOL isWillDismiss = YES, isStyleCentered = NO;
             switch (_layoutType) {
-                case IBPopupLayoutTypeCenter: {
+                case MBPopupLayoutTypeCenter: {
                     isStyleCentered = YES;
                     if (g.view.center.y != _maskView.center.y) {
                         if (g.view.center.y > _maskView.bounds.size.height * 0.25 &&
@@ -856,16 +830,16 @@ static CGFloat randomValue(int i, int j) {
                         }
                     }
                 } break;
-                case IBPopupLayoutTypeBottom:
+                case MBPopupLayoutTypeBottom:
                     isWillDismiss = g.view.frame.origin.y > _maskView.bounds.size.height - g.view.frame.size.height * 0.75;
                     break;
-                case IBPopupLayoutTypeTop:
+                case MBPopupLayoutTypeTop:
                     isWillDismiss = g.view.frame.origin.y + g.view.frame.size.height < g.view.frame.size.height * 0.75;
                     break;
-                case IBPopupLayoutTypeLeft:
+                case MBPopupLayoutTypeLeft:
                     isWillDismiss = g.view.frame.origin.x + g.view.frame.size.width < g.view.frame.size.width * 0.75;
                     break;
-                case IBPopupLayoutTypeRight:
+                case MBPopupLayoutTypeRight:
                     isWillDismiss = g.view.frame.origin.x > _maskView.bounds.size.width - g.view.frame.size.width * 0.75;
                     break;
                 default: break;
@@ -873,28 +847,28 @@ static CGFloat randomValue(int i, int j) {
             if (isWillDismiss) {
                 if (isStyleCentered) {
                     switch (_slideStyle) {
-                        case IBPopupSlideStyleShrinkInOut1:
-                        case IBPopupSlideStyleShrinkInOut2:
-                        case IBPopupSlideStyleFade: {
+                        case MBPopupSlideStyleShrinkInOut:
+                        case MBPopupSlideStyleShrinkInGrowOut:
+                        case MBPopupSlideStyleFade: {
                             if (g.view.center.y < _maskView.bounds.size.height * 0.25) {
-                                _slideStyle = IBPopupSlideStyleFromTop;
+                                _slideStyle = MBPopupSlideStyleFromTop;
                             } else {
                                 if (g.view.center.y > _maskView.bounds.size.height * 0.75) {
-                                    _slideStyle = IBPopupSlideStyleFromBottom;
+                                    _slideStyle = MBPopupSlideStyleFromBottom;
                                 }
                             }
                             _dismissOppositeDirection = NO;
                         } break;
-                        case IBPopupSlideStyleFromTop:
+                        case MBPopupSlideStyleFromTop:
                             _dismissOppositeDirection = !(g.view.center.y < _maskView.bounds.size.height * 0.25);
                             break;
-                        case IBPopupSlideStyleFromBottom:
+                        case MBPopupSlideStyleFromBottom:
                             _dismissOppositeDirection = g.view.center.y < _maskView.bounds.size.height * 0.25;
                             break;
-                        case IBPopupSlideStyleFromLeft:
+                        case MBPopupSlideStyleFromLeft:
                             _dismissOppositeDirection = !(g.view.center.x < _maskView.bounds.size.width * 0.25);
                             break;
-                        case IBPopupSlideStyleFromRight:
+                        case MBPopupSlideStyleFromRight:
                             _dismissOppositeDirection = g.view.center.x < _maskView.bounds.size.width * 0.25;
                             break;
                         default: break;
@@ -905,14 +879,14 @@ static CGFloat randomValue(int i, int j) {
                 
             } else {
                 // restore view location.
-                id object = objc_getAssociatedObject(self, IBPopupManagerParametersKey);
-                NSNumber *flagNumber = [object valueForKey:@"springAnimated"];
+                id object = objc_getAssociatedObject(self, MBPopupControllerParametersKey);
+                NSNumber *flagNumber = [object valueForKey:@"MB_springAnimated"];
                 BOOL flag = NO;
                 if (nil != flagNumber) {
                     flag = flagNumber.boolValue;
                 }
                 NSTimeInterval duration = 0.25;
-                NSNumber* durationNumber = [object valueForKey:@"duration"];
+                NSNumber* durationNumber = [object valueForKey:@"MB_duration"];
                 if (nil != durationNumber) {
                     duration = durationNumber.doubleValue;
                 }

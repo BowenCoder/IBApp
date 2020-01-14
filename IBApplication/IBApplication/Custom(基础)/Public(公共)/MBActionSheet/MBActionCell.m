@@ -1,21 +1,21 @@
 //
-//  IBActionCell.m
+//  MBActionCell.m
 //  IBApplication
 //
 //  Created by Bowen on 2018/9/3.
 //  Copyright © 2018年 BowenCoder. All rights reserved.
 //
 
-#import "IBActionCell.h"
+#import "MBActionCell.h"
 
-@interface IBActionCell ()
+@interface MBActionCell ()
 
 @property (nonatomic, strong) UIButton *titleButton;
 @property (nonatomic, strong) UIView *topLine; ///< 顶部线条
 
 @end
 
-@implementation IBActionCell
+@implementation MBActionCell
 
 + (NSString *)identifier {
     return NSStringFromClass(self);
@@ -30,10 +30,10 @@
 
 - (void)setupCell {
     
-    self.backgroundColor = [IBColor colorWithHexString:IBActionRowNormalColor];
+    self.backgroundColor = [IBColor colorWithHexString:MBActionRowNormalColor];
     self.contentView.backgroundColor = self.backgroundColor;
     self.selectionStyle = UITableViewCellSelectionStyleNone;
-    self.contentAlignment = IBContentAlignmentCenter;
+    self.contentAlignment = MBContentAlignmentCenter;
     
     [self.contentView addSubview:self.titleButton];
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_titleButton]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_titleButton)]];
@@ -48,14 +48,14 @@
 // 更新button图片与标题的edge
 - (void)updateButtonContentEdge {
     if (!self.item.image) return;
-    if (self.contentAlignment == IBContentAlignmentRight) {
+    if (self.contentAlignment == MBContentAlignmentRight) {
         CGFloat titleWidth = [[self.titleButton titleForState:UIControlStateNormal] sizeWithAttributes:@{NSFontAttributeName:self.titleButton.titleLabel.font}].width;
         _titleButton.imageEdgeInsets = UIEdgeInsetsMake(0, titleWidth, 1, -titleWidth);
-        _titleButton.titleEdgeInsets = UIEdgeInsetsMake(1, -self.item.image.size.width-IBActionItemContentSpacing,
-                                                        0, self.item.image.size.width+IBActionItemContentSpacing);
+        _titleButton.titleEdgeInsets = UIEdgeInsetsMake(1, -self.item.image.size.width-MBActionItemContentSpacing,
+                                                        0, self.item.image.size.width+MBActionItemContentSpacing);
     } else {
-        _titleButton.imageEdgeInsets = UIEdgeInsetsMake(0, -IBActionItemContentSpacing/2, 1, IBActionItemContentSpacing/2);
-        _titleButton.titleEdgeInsets = UIEdgeInsetsMake(1, IBActionItemContentSpacing/2, 0, -IBActionItemContentSpacing/2);
+        _titleButton.imageEdgeInsets = UIEdgeInsetsMake(0, -MBActionItemContentSpacing/2, 1, MBActionItemContentSpacing/2);
+        _titleButton.titleEdgeInsets = UIEdgeInsetsMake(1, MBActionItemContentSpacing/2, 0, -MBActionItemContentSpacing/2);
     }
 }
 
@@ -70,7 +70,7 @@
     [super setHighlighted:highlighted animated:animated];
     
     if (highlighted) {
-        self.contentView.backgroundColor = [IBColor colorWithHexString:IBActionRowHighlightedColor];
+        self.contentView.backgroundColor = [IBColor colorWithHexString:MBActionRowHighlightedColor];
     } else {
         [UIView animateWithDuration:0.25 animations:^{
             self.contentView.backgroundColor = self.backgroundColor;
@@ -78,7 +78,7 @@
     }
 }
 
-- (void)setItem:(IBActionItem *)item {
+- (void)setItem:(MBActionItem *)item {
     _item = item;
     
     // 前景色设置
@@ -86,21 +86,21 @@
     if (_item.tintColor) {
         tintColor = _item.tintColor;
     } else {
-        if (_item.type == IBActionTypeNormal) {
-            tintColor = [IBColor colorWithHexString:IBActionItemNormalColor];
+        if (_item.type == MBActionTypeNormal) {
+            tintColor = [IBColor colorWithHexString:MBActionItemNormalColor];
         } else {
-            tintColor = [IBColor colorWithHexString:IBActionItemHighlightedColor];
+            tintColor = [IBColor colorWithHexString:MBActionItemHighlightedColor];
         }
     }
     // 调整图片与标题的间距
-    CGFloat imgLeft = _item.image ? -IBActionItemContentSpacing / 2 : 0;
+    CGFloat imgLeft = _item.image ? -MBActionItemContentSpacing / 2 : 0;
     CGFloat imgBottom = _item.image ? 1 : 0;
-    CGFloat imgRight = _item.image ? IBActionItemContentSpacing / 2 : 0;
+    CGFloat imgRight = _item.image ? MBActionItemContentSpacing / 2 : 0;
     self.titleButton.imageEdgeInsets = UIEdgeInsetsMake(0, imgLeft, imgBottom, imgRight);
     
     CGFloat titleTop = _item.image ? 1 : 0;
-    CGFloat titleLeft = _item.image ? IBActionItemContentSpacing / 2 : 0;
-    CGFloat titleRight = _item.image ? IBActionItemContentSpacing / 2 : 0;
+    CGFloat titleLeft = _item.image ? MBActionItemContentSpacing / 2 : 0;
+    CGFloat titleRight = _item.image ? MBActionItemContentSpacing / 2 : 0;
     self.titleButton.titleEdgeInsets = UIEdgeInsetsMake(titleTop, titleLeft, 0, titleRight);
     
     // 设置图片与标题
@@ -109,7 +109,7 @@
     [self.titleButton setImage:_item.image forState:UIControlStateNormal];
 }
 
-- (void)setContentAlignment:(IBContentAlignment)contentAlignment {
+- (void)setContentAlignment:(MBContentAlignment)contentAlignment {
     if (_contentAlignment == contentAlignment) return;
 
     _contentAlignment = contentAlignment;
@@ -117,19 +117,19 @@
     [self updateButtonContentEdge];
     // 设置内容偏移
     switch (_contentAlignment) {
-        case IBContentAlignmentLeft: { // 局左
+        case MBContentAlignmentLeft: { // 局左
             _titleButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-            _titleButton.contentEdgeInsets = UIEdgeInsetsMake(0, IBActionDefaultMargin, 0, -IBActionDefaultMargin);
+            _titleButton.contentEdgeInsets = UIEdgeInsetsMake(0, MBActionDefaultMargin, 0, -MBActionDefaultMargin);
             break;
         }
-        case IBContentAlignmentCenter: { // 居中
+        case MBContentAlignmentCenter: { // 居中
             _titleButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
             _titleButton.contentEdgeInsets = UIEdgeInsetsZero;
             break;
         }
-        case IBContentAlignmentRight: { // 居右
+        case MBContentAlignmentRight: { // 居右
             _titleButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
-            _titleButton.contentEdgeInsets = UIEdgeInsetsMake(0, -IBActionDefaultMargin, 0, IBActionDefaultMargin);
+            _titleButton.contentEdgeInsets = UIEdgeInsetsMake(0, -MBActionDefaultMargin, 0, MBActionDefaultMargin);
             break;
         }
     }
@@ -138,8 +138,8 @@
 - (UIButton *)titleButton {
     if(!_titleButton){
         _titleButton = [UIButton buttonWithType:UIButtonTypeSystem];
-        _titleButton.tintColor = [IBColor colorWithHexString:IBActionItemNormalColor];
-        _titleButton.titleLabel.font = [UIFont systemFontOfSize:IBActionItemTitleFontSize];
+        _titleButton.tintColor = [IBColor colorWithHexString:MBActionItemNormalColor];
+        _titleButton.titleLabel.font = [UIFont systemFontOfSize:MBActionItemTitleFontSize];
         _titleButton.userInteractionEnabled = NO;
         _titleButton.translatesAutoresizingMaskIntoConstraints = NO;
 
@@ -150,7 +150,7 @@
 - (UIView *)topLine {
     if(!_topLine){
         _topLine = [[UIView alloc] init];
-        _topLine.backgroundColor = [IBColor colorWithHexString:IBActionRowTopLineColor];
+        _topLine.backgroundColor = [IBColor colorWithHexString:MBActionRowTopLineColor];
         _topLine.translatesAutoresizingMaskIntoConstraints = NO;
     }
     return _topLine;

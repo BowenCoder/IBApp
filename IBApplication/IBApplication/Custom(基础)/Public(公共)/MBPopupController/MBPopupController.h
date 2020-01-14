@@ -1,53 +1,45 @@
 //
-//  IBPopupManager.h
+//  MBPopupController.h
 //  <https://github.com/snail-z/zhPopupController.git>
-//  IBApplication
-//
-//  Created by Bowen on 2018/8/21.
-//  Copyright © 2018年 BowenCoder. All rights reserved.
+
+//  Created by Bowen on 2020/1/14.
+//  Copyright © 2020 BowenCoder. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-// Control mask view of type.
-typedef NS_ENUM(NSUInteger, IBPopupMaskType) {
-    IBPopupMaskTypeBlackBlur = 0,
-    IBPopupMaskTypeWhiteBlur,
-    IBPopupMaskTypeWhite,
-    IBPopupMaskTypeClear,
-    IBPopupMaskTypeBlackTranslucent // default
+typedef NS_ENUM(NSUInteger, MBPopupMaskType) {
+    MBPopupMaskTypeBlackBlur = 0,
+    MBPopupMaskTypeWhiteBlur,
+    MBPopupMaskTypeWhite,
+    MBPopupMaskTypeClear,
+    MBPopupMaskTypeBlackTranslucent // default
 };
 
-// Control content View shows of layout type, when end of the animation.
-typedef NS_ENUM(NSUInteger, IBPopupLayoutType) {
-    IBPopupLayoutTypeTop = 0,
-    IBPopupLayoutTypeBottom,
-    IBPopupLayoutTypeLeft,
-    IBPopupLayoutTypeRight,
-    IBPopupLayoutTypeCenter // default
+typedef NS_ENUM(NSUInteger, MBPopupLayoutType) {
+    MBPopupLayoutTypeTop = 0,
+    MBPopupLayoutTypeBottom,
+    MBPopupLayoutTypeLeft,
+    MBPopupLayoutTypeRight,
+    MBPopupLayoutTypeCenter // default
 };
 
-// Control content view from a direction sliding out of style.
-typedef NS_ENUM(NSInteger, IBPopupSlideStyle) {
-    IBPopupSlideStyleFromTop = 0,
-    IBPopupSlideStyleFromBottom,
-    IBPopupSlideStyleFromLeft,
-    IBPopupSlideStyleFromRight,
-    IBPopupSlideStyleShrinkInOut1 = 4,
-    IBPopupSlideStyleShrinkInOut2,
-    IBPopupSlideStyleFade, // default    
+typedef NS_ENUM(NSInteger, MBPopupSlideStyle) {
+    MBPopupSlideStyleFromTop = 0,
+    MBPopupSlideStyleFromBottom,
+    MBPopupSlideStyleFromLeft,
+    MBPopupSlideStyleFromRight,
+    MBPopupSlideStyleShrinkInOut = 4,
+    MBPopupSlideStyleShrinkInGrowOut,
+    MBPopupSlideStyleFade, // default
 };
 
-@protocol IBPopupManagerDelegate;
+@interface MBPopupController : NSObject
 
-@interface IBPopupManager : NSObject
-
-@property (nonatomic, weak) id <IBPopupManagerDelegate> _Nullable delegate;
-
-/// Convenient to initialize and set maske type. (Through the `- init` initialization, maskType is IBPopupMaskTypeBlackTranslucent)
-+ (instancetype)popupManagerWithMaskType:(IBPopupMaskType)maskType;
+/// Convenient to initialize and set maske type. (Through the `- init` initialization, maskType is MBPopupMaskTypeBlackTranslucent)
++ (instancetype)popupControllerWithMaskType:(MBPopupMaskType)maskType;
 
 /// The `popupView` is the parent view of your custom contentView
 @property (nonatomic, strong, readonly) UIView *popupView;
@@ -55,20 +47,20 @@ typedef NS_ENUM(NSInteger, IBPopupSlideStyle) {
 /// Whether contentView is presenting.
 @property (nonatomic, assign, readonly) BOOL isPresenting;
 
-/// Set popup view display position. default is IBPopupLayoutTypeCenter
-@property (nonatomic, assign) IBPopupLayoutType layoutType;
+/// Set popup view display position. default is MBPopupLayoutTypeCenter
+@property (nonatomic, assign) MBPopupLayoutType layoutType;
 
-/// Set popup view slide Style. default is IBPopupSlideStyleFade
-@property (nonatomic, assign) IBPopupSlideStyle slideStyle; // When `layoutType = IBPopupLayoutTypeCenter` is vaild.
+/// Set popup view slide Style. default is MBPopupSlideStyleFade
+@property (nonatomic, assign) MBPopupSlideStyle slideStyle; // When `layoutType = MBPopupLayoutTypeCenter` is vaild.
 
 /// set mask view of transparency, default is 0.5
-@property (nonatomic, assign) CGFloat maskAlpha; // When set maskType is IBPopupMaskTypeBlackTranslucent vaild.
+@property (nonatomic, assign) CGFloat maskAlpha; // When set maskType is MBPopupMaskTypeBlackTranslucent vaild.
 
 /// default is YES. if NO, Mask view will not respond to events.
 @property (nonatomic, assign) BOOL dismissOnMaskTouched;
 
 /// default is NO. if YES, Popup view disappear from the opposite direction.
-@property (nonatomic, assign) BOOL dismissOppositeDirection; // When `layoutType = IBPopupLayoutTypeCenter` is vaild.
+@property (nonatomic, assign) BOOL dismissOppositeDirection; // When `layoutType = MBPopupLayoutTypeCenter` is vaild.
 
 /// Content view whether to allow drag, default is NO
 @property (nonatomic, assign) BOOL allowPan; // 1.The view will support dragging when popup view of position is at the center of the screen or at the edge of the screen. 2.The pan gesture will be invalid when the keyboard appears.
@@ -80,20 +72,20 @@ typedef NS_ENUM(NSInteger, IBPopupSlideStyle) {
 - (void)dropAnimatedWithRotateAngle:(CGFloat)angle;
 
 /// Block gets called when mask touched.
-@property (nonatomic, copy) void (^maskTouched)(IBPopupManager *popupManager);
+@property (nonatomic, copy) void (^maskTouched)(MBPopupController *popupController);
 
 /// - Should implement this block before the presenting. 应在present前实现的block ☟
 /// Block gets called when contentView will present.
-@property (nonatomic, copy) void (^willPresent)(IBPopupManager *popupManager);
+@property (nonatomic, copy) void (^willPresent)(MBPopupController *popupController);
 
 /// Block gets called when contentView did present.
-@property (nonatomic, copy) void (^didPresent)(IBPopupManager *popupManager);
+@property (nonatomic, copy) void (^didPresent)(MBPopupController *popupController);
 
 /// Block gets called when contentView will dismiss.
-@property (nonatomic, copy) void (^willDismiss)(IBPopupManager *popupManager);
+@property (nonatomic, copy) void (^willDismiss)(MBPopupController *popupController);
 
 /// Block gets called when contentView did dismiss.
-@property (nonatomic, copy) void (^didDismiss)(IBPopupManager *popupManager);
+@property (nonatomic, copy) void (^didDismiss)(MBPopupController *popupController);
 
 /**
  present your content view.
@@ -120,25 +112,17 @@ typedef NS_ENUM(NSInteger, IBPopupSlideStyle) {
 
 - (void)presentContentView:(nullable UIView *)contentView displayTime:(NSTimeInterval)displayTime;;
 
-- (void)presentContentView:(nullable UIView *)contentView; // duration is 0.25 / springAnimated is NO / show in window
+/// duration is 0.25 / springAnimated is NO / show in window
+- (void)presentContentView:(nullable UIView *)contentView;
 
 /// dismiss your content view.
 - (void)dismissWithDuration:(NSTimeInterval)duration springAnimated:(BOOL)isSpringAnimated;
 
-- (void)dismiss; // Will use the present parameter values.
+/// Will use the present parameter values.
+- (void)dismiss;
 
 /// fade out of your content view.
 - (void)fadeDismiss;
-
-@end
-
-@protocol IBPopupManagerDelegate <NSObject>
-@optional
-// - The Delegate method, block is preferred.
-- (void)popupManagerWillPresent:(nonnull IBPopupManager *)popupManager;
-- (void)popupManagerDidPresent:(nonnull IBPopupManager *)popupManager;
-- (void)popupManagerWillDismiss:(nonnull IBPopupManager *)popupManager;
-- (void)popupManagerDidDismiss:(nonnull IBPopupManager *)popupManager;
 
 @end
 

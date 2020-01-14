@@ -1,5 +1,5 @@
 //
-//  IBActionCell.h
+//  MBActionCell.h
 //  IBApplication
 //
 //  Created by Bowen on 2018/9/3.
@@ -8,13 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "IBColor.h"
-#import "IBActionItem.h"
+#import "MBActionItem.h"
 
-@interface IBActionCell : UITableViewCell
+@interface MBActionCell : UITableViewCell
 
 @property (nonatomic, assign) BOOL hideTopLine; ///< 是否隐藏顶部线条
-@property (nonatomic, strong) IBActionItem *item;
-@property (nonatomic, assign) IBContentAlignment contentAlignment;
+@property (nonatomic, strong) MBActionItem *item;
+@property (nonatomic, assign) MBContentAlignment contentAlignment;
 
 + (NSString *)identifier;
 

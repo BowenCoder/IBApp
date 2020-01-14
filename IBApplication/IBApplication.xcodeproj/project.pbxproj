@@ -330,11 +330,11 @@
 		4AE9674123A266D700A5C172 /* IBServiceInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE9674023A266D700A5C172 /* IBServiceInfoModel.m */; };
 		4AE9674423A3A3DA00A5C172 /* IBUploader.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE9674323A3A3DA00A5C172 /* IBUploader.m */; };
 		4AE9674723A3A3F100A5C172 /* IBDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE9674623A3A3F100A5C172 /* IBDownloader.m */; };
-		4AED517223CC779800B38F59 /* IBPopupManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AED517123CC779800B38F59 /* IBPopupManager.m */; };
+		4AED556023CD937B00B38F59 /* MBPopupController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AED555F23CD937B00B38F59 /* MBPopupController.m */; };
 		4AED64C0215378EF0082280F /* MBPopupArrowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AED64BF215378EF0082280F /* MBPopupArrowView.m */; };
-		4AEEA7A9213D0EFB00CFAA3D /* IBActionItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AEEA7A8213D0EFA00CFAA3D /* IBActionItem.m */; };
-		4AEEA7AC213D148500CFAA3D /* IBActionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AEEA7AB213D148500CFAA3D /* IBActionCell.m */; };
-		4AEEA7B2213D2AA700CFAA3D /* IBActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AEEA7B1213D2AA700CFAA3D /* IBActionSheet.m */; };
+		4AEEA7A9213D0EFB00CFAA3D /* MBActionItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AEEA7A8213D0EFA00CFAA3D /* MBActionItem.m */; };
+		4AEEA7AC213D148500CFAA3D /* MBActionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AEEA7AB213D148500CFAA3D /* MBActionCell.m */; };
+		4AEEA7B2213D2AA700CFAA3D /* MBActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AEEA7B1213D2AA700CFAA3D /* MBActionSheet.m */; };
 		4AF2091E23978EB800EFB85D /* MBPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AF2091D23978EB800EFB85D /* MBPresenter.m */; };
 		F323F5EB22A4341D008BC303 /* RSKImageCropViewController+Ext.m in Sources */ = {isa = PBXBuildFile; fileRef = F323F5EA22A4341D008BC303 /* RSKImageCropViewController+Ext.m */; };
 		F333517B22A2C448005B968E /* MBLibraryCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = F333517A22A2C448005B968E /* MBLibraryCamera.m */; };
@@ -1009,16 +1009,16 @@
 		4AE9674323A3A3DA00A5C172 /* IBUploader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBUploader.m; sourceTree = "<group>"; };
 		4AE9674523A3A3F100A5C172 /* IBDownloader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBDownloader.h; sourceTree = "<group>"; };
 		4AE9674623A3A3F100A5C172 /* IBDownloader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBDownloader.m; sourceTree = "<group>"; };
-		4AED517023CC779800B38F59 /* IBPopupManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBPopupManager.h; sourceTree = "<group>"; };
-		4AED517123CC779800B38F59 /* IBPopupManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IBPopupManager.m; sourceTree = "<group>"; };
+		4AED555E23CD937B00B38F59 /* MBPopupController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBPopupController.h; sourceTree = "<group>"; };
+		4AED555F23CD937B00B38F59 /* MBPopupController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBPopupController.m; sourceTree = "<group>"; };
 		4AED64BE215378EF0082280F /* MBPopupArrowView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBPopupArrowView.h; sourceTree = "<group>"; };
 		4AED64BF215378EF0082280F /* MBPopupArrowView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBPopupArrowView.m; sourceTree = "<group>"; };
-		4AEEA7A7213D0EFA00CFAA3D /* IBActionItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBActionItem.h; sourceTree = "<group>"; };
-		4AEEA7A8213D0EFA00CFAA3D /* IBActionItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBActionItem.m; sourceTree = "<group>"; };
-		4AEEA7AA213D148500CFAA3D /* IBActionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBActionCell.h; sourceTree = "<group>"; };
-		4AEEA7AB213D148500CFAA3D /* IBActionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBActionCell.m; sourceTree = "<group>"; };
-		4AEEA7B0213D2AA700CFAA3D /* IBActionSheet.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBActionSheet.h; sourceTree = "<group>"; };
-		4AEEA7B1213D2AA700CFAA3D /* IBActionSheet.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBActionSheet.m; sourceTree = "<group>"; };
+		4AEEA7A7213D0EFA00CFAA3D /* MBActionItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBActionItem.h; sourceTree = "<group>"; };
+		4AEEA7A8213D0EFA00CFAA3D /* MBActionItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBActionItem.m; sourceTree = "<group>"; };
+		4AEEA7AA213D148500CFAA3D /* MBActionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBActionCell.h; sourceTree = "<group>"; };
+		4AEEA7AB213D148500CFAA3D /* MBActionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBActionCell.m; sourceTree = "<group>"; };
+		4AEEA7B0213D2AA700CFAA3D /* MBActionSheet.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBActionSheet.h; sourceTree = "<group>"; };
+		4AEEA7B1213D2AA700CFAA3D /* MBActionSheet.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBActionSheet.m; sourceTree = "<group>"; };
 		4AF2091C23978EB800EFB85D /* MBPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBPresenter.h; sourceTree = "<group>"; };
 		4AF2091D23978EB800EFB85D /* MBPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBPresenter.m; sourceTree = "<group>"; };
 		F323F5E922A4341D008BC303 /* RSKImageCropViewController+Ext.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RSKImageCropViewController+Ext.h"; sourceTree = "<group>"; };
@@ -2496,21 +2496,21 @@
 		4ACC55C620DB5F3E001352AE /* Public(公共) */ = {
 			isa = PBXGroup;
 			children = (
-				4AC7AE2523C32B4C00446C03 /* MBMessageBar */,
-				4AA859FF23B3644B003D610F /* MBTextView */,
-				4AC102DE230FFA8300DE39CD /* MBImageView */,
-				4A0800E52302B80100EF25BE /* MBButton */,
+				4AEEA7A6213D0D3400CFAA3D /* MBActionSheet */,
 				4AD688FA23014A6600D3A248 /* MBAlignmentLabel */,
-				4ABF2FC722FEF28600645809 /* MBDeliveryView */,
-				4ABF2FC322FEDE8200645809 /* MBGradientView */,
-				4AA2862F22C922DA00C34336 /* MBGestureView */,
-				4AAA78E820ECB4CA00CF5639 /* MBDebug */,
-				F333517822A2C404005B968E /* MBLibraryCamera */,
-				4A1FB0A520E8EA320056A026 /* MBProgressHUD */,
+				4A0800E52302B80100EF25BE /* MBButton */,
 				4AE64C46212ACFA4003DE328 /* MBCheckbox */,
-				4AEEA7A6213D0D3400CFAA3D /* IBActionSheet */,
-				4AED516F23CC779800B38F59 /* IBPopupManager */,
+				4AAA78E820ECB4CA00CF5639 /* MBDebug */,
+				4ABF2FC722FEF28600645809 /* MBDeliveryView */,
+				4AA2862F22C922DA00C34336 /* MBGestureView */,
+				4ABF2FC322FEDE8200645809 /* MBGradientView */,
+				4AC102DE230FFA8300DE39CD /* MBImageView */,
+				F333517822A2C404005B968E /* MBLibraryCamera */,
+				4AC7AE2523C32B4C00446C03 /* MBMessageBar */,
 				4A1FB0A420E8E5290056A026 /* MBPopupArrowView */,
+				4AED555D23CD925100B38F59 /* MBPopupController */,
+				4A1FB0A520E8EA320056A026 /* MBProgressHUD */,
+				4AA859FF23B3644B003D610F /* MBTextView */,
 			);
 			path = "Public(公共)";
 			sourceTree = "<group>";
@@ -2983,26 +2983,26 @@
 			path = ServiceInfo;
 			sourceTree = "<group>";
 		};
-		4AED516F23CC779800B38F59 /* IBPopupManager */ = {
+		4AED555D23CD925100B38F59 /* MBPopupController */ = {
 			isa = PBXGroup;
 			children = (
-				4AED517023CC779800B38F59 /* IBPopupManager.h */,
-				4AED517123CC779800B38F59 /* IBPopupManager.m */,
+				4AED555E23CD937B00B38F59 /* MBPopupController.h */,
+				4AED555F23CD937B00B38F59 /* MBPopupController.m */,
 			);
-			path = IBPopupManager;
+			path = MBPopupController;
 			sourceTree = "<group>";
 		};
-		4AEEA7A6213D0D3400CFAA3D /* IBActionSheet */ = {
+		4AEEA7A6213D0D3400CFAA3D /* MBActionSheet */ = {
 			isa = PBXGroup;
 			children = (
-				4AEEA7B0213D2AA700CFAA3D /* IBActionSheet.h */,
-				4AEEA7B1213D2AA700CFAA3D /* IBActionSheet.m */,
-				4AEEA7A7213D0EFA00CFAA3D /* IBActionItem.h */,
-				4AEEA7A8213D0EFA00CFAA3D /* IBActionItem.m */,
-				4AEEA7AA213D148500CFAA3D /* IBActionCell.h */,
-				4AEEA7AB213D148500CFAA3D /* IBActionCell.m */,
+				4AEEA7B0213D2AA700CFAA3D /* MBActionSheet.h */,
+				4AEEA7B1213D2AA700CFAA3D /* MBActionSheet.m */,
+				4AEEA7A7213D0EFA00CFAA3D /* MBActionItem.h */,
+				4AEEA7A8213D0EFA00CFAA3D /* MBActionItem.m */,
+				4AEEA7AA213D148500CFAA3D /* MBActionCell.h */,
+				4AEEA7AB213D148500CFAA3D /* MBActionCell.m */,
 			);
-			path = IBActionSheet;
+			path = MBActionSheet;
 			sourceTree = "<group>";
 		};
 		4AEEA7AD213D284100CFAA3D /* Views */ = {
@@ -3301,7 +3301,7 @@
 				4A1FB21220E92D5E0056A026 /* MKAnnotationView+WebCache.m in Sources */,
 				4A78077420E9FCAF00E60ACA /* YYClassInfo.m in Sources */,
 				4AD770AB2297CD1300FEB76B /* YYTextLine.m in Sources */,
-				4AEEA7A9213D0EFB00CFAA3D /* IBActionItem.m in Sources */,
+				4AEEA7A9213D0EFB00CFAA3D /* MBActionItem.m in Sources */,
 				4ACC561920DD59F5001352AE /* NSArray+Ext.m in Sources */,
 				4ACC564E20DD75AB001352AE /* UIButton+Ext.m in Sources */,
 				4AE24BE0214F7518006448DC /* UIFont+Ext.m in Sources */,
@@ -3316,7 +3316,7 @@
 				F3FCB43022A2F9F600C4870B /* RSKImageScrollView.m in Sources */,
 				4A1FB20B20E92D5E0056A026 /* UIImage+WebP.m in Sources */,
 				4A06E16F212FDCD300227583 /* IBSocialObject.m in Sources */,
-				4AEEA7AC213D148500CFAA3D /* IBActionCell.m in Sources */,
+				4AEEA7AC213D148500CFAA3D /* MBActionCell.m in Sources */,
 				4A89D605228B13160072FB23 /* MBLogger.m in Sources */,
 				4AC29F87210F04A900F218FE /* MJRefreshStateHeader.m in Sources */,
 				4AE24BDB214F5470006448DC /* NSDictionary+Ext.m in Sources */,
@@ -3325,7 +3325,7 @@
 				4AD770A92297CD1300FEB76B /* YYTextInput.m in Sources */,
 				4A1FB20E20E92D5E0056A026 /* UIImage+MultiFormat.m in Sources */,
 				4AD770A82297CD1300FEB76B /* YYTextEffectWindow.m in Sources */,
-				4AEEA7B2213D2AA700CFAA3D /* IBActionSheet.m in Sources */,
+				4AEEA7B2213D2AA700CFAA3D /* MBActionSheet.m in Sources */,
 				4A22DE22228AF3B500D4CFA6 /* DDContextFilterLogFormatter.m in Sources */,
 				4AA2862E22C8E19E00C34336 /* IBUrlManager.m in Sources */,
 				4A89D5FF228B0F720072FB23 /* MBLogFormatter.m in Sources */,
@@ -3374,6 +3374,7 @@
 				4AC29F89210F04A900F218FE /* MJRefreshFooter.m in Sources */,
 				4AD688FD23014AD700D3A248 /* MBAlignmentLabel.m in Sources */,
 				4AD770AE2297CD1300FEB76B /* YYTextDebugOption.m in Sources */,
+				4AED556023CD937B00B38F59 /* MBPopupController.m in Sources */,
 				4A22DE1D228AF3B500D4CFA6 /* DDLoggerNames.m in Sources */,
 				4AA85A0223B36564003D610F /* MBTextView.m in Sources */,
 				4ACC55EA20DB5F3E001352AE /* AppDelegate.m in Sources */,
@@ -3476,7 +3477,6 @@
 				4A1FB22F20E931350056A026 /* MBProgressHUD+Ext.m in Sources */,
 				4A06E172212FE42A00227583 /* IBSocialManager.m in Sources */,
 				4AA2863922C92BFB00C34336 /* IBServiceInfoHandler.m in Sources */,
-				4AED517223CC779800B38F59 /* IBPopupManager.m in Sources */,
 				4A1FB22B20E92D810056A026 /* FLAnimatedImageView.m in Sources */,
 				4A22DE24228AF3B500D4CFA6 /* DDFileLogger+Buffering.m in Sources */,
 				4A03B8DF229AEFE400173765 /* MBLaunchSetup.m in Sources */,

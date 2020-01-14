@@ -16,10 +16,10 @@
 #import "IBNaviBar+Config.h"
 #import "AXWebViewController.h"
 #import "MBCheckbox.h"
-#import "IBPopupManager.h"
+#import "MBPopupController.h"
 #import "IBShareManager.h"
 #import "IBAuthManager.h"
-#import "IBActionSheet.h"
+#import "MBActionSheet.h"
 #import "MBProgressHUD+Ext.h"
 #import "NSDictionary+Ext.h"
 #import "NSArray+Ext.h"
@@ -69,9 +69,11 @@
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
-    IBMineController *mine = [[IBMineController alloc] init];
-    mine.config = [[IBNaviConfig alloc] initWithBarOptions:IBNaviBarOptionShow|IBNaviBarOptionColor tintColor:[UIColor orangeColor] backgroundColor:[UIColor purpleColor] backgroundImage:nil backgroundImgID:nil];
-    [self.navigationController pushViewController:mine animated:YES];
+//    IBMineController *mine = [[IBMineController alloc] init];
+//    mine.config = [[IBNaviConfig alloc] initWithBarOptions:IBNaviBarOptionShow|IBNaviBarOptionColor tintColor:[UIColor orangeColor] backgroundColor:[UIColor purpleColor] backgroundImage:nil backgroundImgID:nil];
+//    [self.navigationController pushViewController:mine animated:YES];
+    
+    
 
 }
 

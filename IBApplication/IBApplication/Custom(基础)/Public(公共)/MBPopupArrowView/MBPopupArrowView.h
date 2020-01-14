@@ -10,8 +10,6 @@
 
 @class MBPopupArrowView;
 
-typedef void(^IBPopoverViewConfiguration)(MBPopupArrowView *popoverView);
-
 typedef NS_ENUM(NSUInteger, MBPopupArrowDirection) {
     MBPopupArrowDirectionAny,
     MBPopupArrowDirectionTop,
