@@ -49,12 +49,13 @@
     [MBLaunchSetup buglySetup];
     [MBLaunchSetup routerSetup];
     [MBLaunchSetup shareSetup];
+    [MBLaunchSetup trackSetup];
     [MBLaunchSetup WKWebViewSetup];
 }
 
 - (void)launchVC
 {
-    [self loadWindow];
+//    [self loadWindow];
     BOOL isLogin;
     if (!isLogin) {
         

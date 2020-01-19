@@ -24,6 +24,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (void)buglySetup;
 
++ (void)trackSetup;
+
 + (void)buglyUidSetup:(NSInteger)uid;
 
 + (void)WKWebViewSetup;

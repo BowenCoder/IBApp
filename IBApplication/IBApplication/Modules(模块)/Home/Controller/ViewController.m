@@ -14,7 +14,6 @@
 #import "IBApp.h"
 #import "IBColor.h"
 #import "IBNaviBar+Config.h"
-#import "AXWebViewController.h"
 #import "MBCheckbox.h"
 #import "MBPopupController.h"
 #import "IBShareManager.h"
@@ -73,8 +72,6 @@
 //    mine.config = [[IBNaviConfig alloc] initWithBarOptions:IBNaviBarOptionShow|IBNaviBarOptionColor tintColor:[UIColor orangeColor] backgroundColor:[UIColor purpleColor] backgroundImage:nil backgroundImgID:nil];
 //    [self.navigationController pushViewController:mine animated:YES];
     
-    
-
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {

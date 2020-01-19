@@ -11,6 +11,7 @@
 #import <WebKit/WKWebsiteDataStore.h>
 #import "MBLogger.h"
 #import "MBUserManager.h"
+#import "MBAutoTrackerModule.h"
 
 @implementation MBLaunchSetup
 
@@ -40,6 +41,11 @@
 + (void)buglySetup
 {
     
+}
+
++ (void)trackSetup
+{
+    [[MBAutoTrackerModule module] setup];
 }
 
 + (void)buglyUidSetup:(NSInteger)uid
