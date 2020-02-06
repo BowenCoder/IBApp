@@ -184,7 +184,7 @@ typedef NS_ENUM(NSInteger, IBImageGradientType) {
  *  生成毛玻璃效果的图片
  *
  *  @param image      要模糊化的图片
- *  @param blurValue 模糊化指数0~2
+ *  @param blurValue 模糊化指数0~1
  *
  *  @return 返回模糊化之后的图片
  */

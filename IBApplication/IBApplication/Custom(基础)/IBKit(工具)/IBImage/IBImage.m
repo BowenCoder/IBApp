@@ -294,7 +294,7 @@
 
 + (UIImage *)blurredImage:(UIImage *)image blurValue:(CGFloat)blurValue {
     
-    if (blurValue < 0.0 || blurValue > 2.0) {
+    if (blurValue < 0.0 || blurValue > 1.0) {
         blurValue = 0.5;
     }
     CGImageRef img = image.CGImage;
@@ -315,18 +315,23 @@
     
     pixelBuffer = malloc(CGImageGetBytesPerRow(img) * CGImageGetHeight(img));
     
+    if (pixelBuffer == NULL) {
+        NSLog(@"No pixelbuffer");
+        return image;
+    }
+    
     outBuffer.data = pixelBuffer;
     outBuffer.width = CGImageGetWidth(img);
     outBuffer.height = CGImageGetHeight(img);
     outBuffer.rowBytes = CGImageGetBytesPerRow(img);
-    int boxSize = blurValue * 40;
+    int boxSize = blurValue * 100;
     boxSize = boxSize - (boxSize % 2) + 1;
     error = vImageBoxConvolve_ARGB8888(&inBuffer, &outBuffer, NULL, 0, 0, boxSize, boxSize, NULL, kvImageEdgeExtend);
-    if (!error)
-    {
-        error = vImageBoxConvolve_ARGB8888(&outBuffer, &inBuffer, NULL, 0, 0, boxSize, boxSize, NULL, kvImageEdgeExtend);
+    if (error) {
+        NSLog(@"error from convolution %ld", error);
+        return image;
     }
-    
+
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
     
     CGContextRef ctx = CGBitmapContextCreate(outBuffer.data,
