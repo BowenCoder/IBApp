@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>project_name</key>
+	<string>Assassin</string>
+	<key>project_path</key>
+	<string>./</string>
+	<key>project_version</key>
+	<string>1.0</string>
+	<key>options</key>
+	<string>./Xcodebuild/EnterpriseExportOptions.plist</string>
+	<key>scheme</key>
+	<string>AssassinENT</string>
+	<key>platform</key>
+	<string>pgyer</string>
+	<key>configuration</key>
+	<string>Enterprise</string>
+	<key>pgyer_user</key>
+	<string>65d0818c92ec33292fb20ff339e71b3e</string>
+	<key>pgyer_api</key>
+	<string>f13370294647db44c391cf4d56497789</string>
+	<key>pgyer_pwd</key>
+	<string>123456</string>
+	<key>fir_token</key>
+	<string></string>
+	<key>apple_account</key>
+	<string></string>
+	<key>apple_password</key>
+	<string></string>
+</dict>
+</plist>
