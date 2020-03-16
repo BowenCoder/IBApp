@@ -108,12 +108,12 @@ platform :ios do
 
     if build_type.include?"AssassinENT"
 
-      app_identifier = "com.inke.assassin.enterprise"
-      provisioning_profile = "inke_boom_ent_dis"
+      app_identifier = "com.bowen.assassin.enterprise"
+      provisioning_profile = "bowen_boom_ent_dis"
 
     else
 
-      app_identifier = "com.inke.assassin"
+      app_identifier = "com.bowen.assassin"
       provisioning_profile = "Assassin_dev"
 
     end
