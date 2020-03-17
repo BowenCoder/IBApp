@@ -72,6 +72,13 @@
 //    mine.config = [[IBNaviConfig alloc] initWithBarOptions:IBNaviBarOptionShow|IBNaviBarOptionColor tintColor:[UIColor orangeColor] backgroundColor:[UIColor purpleColor] backgroundImage:nil backgroundImgID:nil];
 //    [self.navigationController pushViewController:mine animated:YES];
     
+    MBLogD(@"#bowen# 123");
+    test();
+}
+
+void test()
+{
+    MBLogD(@"#bowen# 456");
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {

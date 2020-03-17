@@ -22,26 +22,35 @@ extern const DDLogLevel ddLogLevel;
 @property(nonatomic, readonly) NSString *logsDirectory;
 
 + (instancetype)sharedInstance;
+
 - (instancetype)init NS_UNAVAILABLE;
 
-- (void)start;
+/// 日志本地化
+- (void)startFileLog;
+
+/// Xcode控制台
+- (void)startXcodeLog;
+
+/// 苹果的日志系统
+- (void)startASLLog;
+
+/// 清除日志
 - (void)stop;
+
 - (NSString *)zipLogFiles;
 
 @end
 
 @interface MBLogTraceStack : NSObject
 
-- (instancetype)initWithFile: (const char*)file Function: (const char*)func Line: (int)line;
-- (void)nothing;
++ (instancetype)traceWithFile:(const char*)file Function:(const char*)func Line:(int)line;
 
 @end
 
 #define MBTraceStack \
 MBLogTraceStack *__MBTraceStack__; \
 if(ddLogLevel != DDLogLevelOff){\
-    __MBTraceStack__ = [[MBLogTraceStack alloc] initWithFile:__FILE__ Function:__PRETTY_FUNCTION__ Line:__LINE__];\
-    [__MBTraceStack__ nothing];\
+    __MBTraceStack__ = [MBLogTraceStack traceWithFile:__FILE__ Function:__PRETTY_FUNCTION__ Line:__LINE__];\
 }\
 
 

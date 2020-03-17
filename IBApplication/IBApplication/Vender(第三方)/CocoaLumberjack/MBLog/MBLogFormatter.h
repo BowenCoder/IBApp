@@ -14,7 +14,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface MBLogDebugFormatter : DDDispatchQueueLogFormatter<DDLogFormatter>
+@interface MBXcodeLogFormatter : DDDispatchQueueLogFormatter <DDLogFormatter>
+
+@end
+
+@interface MBASLLogFormatter : DDDispatchQueueLogFormatter <DDLogFormatter>
 
 @end
 

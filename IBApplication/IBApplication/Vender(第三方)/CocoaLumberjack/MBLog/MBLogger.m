@@ -44,28 +44,33 @@ const DDLogLevel ddLogLevel = DDLogLevelInfo;
     return [_fileLogger.logFileManager logsDirectory];
 }
 
-- (void)start
+- (void)startFileLog
 {
-#ifdef DEBUG
-    // Xcode控制台打印
-    [[DDTTYLogger sharedInstance] setLogFormatter:[MBLogDebugFormatter new]];
-    [DDTTYLogger sharedInstance].colorsEnabled = YES;
-    [DDLog addLogger:[DDTTYLogger sharedInstance] withLevel:ddLogLevel];
-//    // Mac控制台打印，还不太理想
-//    [[DDASLLogger sharedInstance] setLogFormatter:[MBLogDebugFormatter new]];
-//    [DDLog addLogger:[DDASLLogger sharedInstance] withLevel:ddLogLevel];
-#endif
     // 日志本地化
     _fileLogger = [[DDFileLogger alloc] init];
     [_fileLogger setLogFormatter:[[MBLogEncryptFormatter alloc] initWithEncryptKey:@"bowen"]];
     [_fileLogger setRollingFrequency: kSeconds1Day];
     [_fileLogger setMaximumFileSize: 10 * kMegaByte];
     [_fileLogger.logFileManager setMaximumNumberOfLogFiles:7];
-    [DDLog addLogger:_fileLogger withLevel:ddLogLevel];
+    [DDLog addLogger:_fileLogger withLevel:DDLogLevelInfo];
     
-    _filterLogger = [MBFilterLogger new];
-    [_filterLogger setLogFormatter:[MBLogFormatter new]];
-    [DDLog addLogger:_filterLogger withLevel:ddLogLevel];
+    // 日志过滤
+//    _filterLogger = [MBFilterLogger new];
+//    [_filterLogger setLogFormatter:[MBLogFormatter new]];
+//    [DDLog addLogger:_filterLogger withLevel:DDLogLevelInfo];
+}
+
+- (void)startXcodeLog
+{
+    [DDTTYLogger sharedInstance].colorsEnabled = YES;
+    [DDLog addLogger:[DDTTYLogger sharedInstance] withLevel:ddLogLevel];
+    [[DDTTYLogger sharedInstance] setLogFormatter:[MBXcodeLogFormatter new]];
+}
+
+- (void)startASLLog
+{
+    [DDLog addLogger:[DDASLLogger sharedInstance] withLevel:ddLogLevel];
+    [[DDASLLogger sharedInstance] setLogFormatter:[MBASLLogFormatter new]];
 }
 
 - (void)stop
@@ -151,6 +156,11 @@ MBExit:
     int         _line;
 }
 
++ (instancetype)traceWithFile:(const char*)file Function:(const char*)func Line:(int)line
+{
+    return [[MBLogTraceStack alloc] initWithFile:file Function:func Line:line];
+}
+
 - (instancetype)initWithFile:(const char*)file Function:(const char*)func Line: (int)line
 {
     self = [super init];
@@ -160,20 +170,25 @@ MBExit:
         _line     = line;
         _function = func;
         
-        [DDLog log:YES level:DDLogLevelInfo flag:DDLogFlagInfo context:0 file:_file function:_function line:_line tag:nil format:@"[IN]", nil];
+        [self traceIn];
     }
     
     return self;
 }
 
-- (void)nothing
+- (void)traceIn
 {
-    
+    [DDLog log:YES level:DDLogLevelInfo flag:DDLogFlagInfo context:0 file:_file function:_function line:_line tag:nil format:@"[IN]", nil];
+}
+
+- (void)traceOut
+{
+    [DDLog log:YES level:DDLogLevelInfo flag:DDLogFlagInfo context:0 file:_file function:_function line:_line tag:nil format:@"[OUT]", nil];
 }
 
 - (void)dealloc
 {
-    [DDLog log:YES level:DDLogLevelInfo flag:DDLogFlagInfo context:0 file:_file function:_function line:_line tag:nil format:@"[OUT]", nil];
+    [self traceOut];
 }
 
 @end

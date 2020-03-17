@@ -59,14 +59,14 @@
 
 @end
 
-@interface MBLogDebugFormatter ()
+@interface MBXcodeLogFormatter ()
 
 @property (nonatomic, strong) NSDateFormatter *formatter;
 
 @end
 
 
-@implementation MBLogDebugFormatter
+@implementation MBXcodeLogFormatter
 
 - (NSString *)formatLogMessage:(DDLogMessage *)logMessage
 {
@@ -85,7 +85,7 @@
     
     logLevel = [NSString stringWithFormat:@"[%@]", logLevel];
     
-    NSString *formattedLog = [NSString stringWithFormat:@"%@ %@ %d:%ld 🍎 %@(%lu) ⚽️ %@ 🖍\n %@",
+    NSString *formattedLog = [NSString stringWithFormat:@"%@ %@ %d:%ld 🍎 %@(%lu) ⚽️ %@ 🖍 %@",
                               dateAndTime,
                               logLevel,
                               [[NSProcessInfo processInfo] processIdentifier],
@@ -109,3 +109,30 @@
 
 @end
 
+
+@implementation MBASLLogFormatter
+
+- (NSString *)formatLogMessage:(DDLogMessage *)logMessage
+{
+    NSString *logLevel = nil;
+    switch (logMessage.flag) {
+        case DDLogFlagError     : logLevel = @"E"; break;
+        case DDLogFlagWarning   : logLevel = @"W"; break;
+        case DDLogFlagInfo      : logLevel = @"I"; break;
+        case DDLogFlagDebug     : logLevel = @"D"; break;
+        case DDLogFlagVerbose   : logLevel = @"V"; break;
+        default                 : logLevel = @"?"; break;
+    }
+    logLevel = [NSString stringWithFormat:@"[%@]", logLevel];
+    
+    NSString *formattedLog = [NSString stringWithFormat:@"%@ 🍎 %@(%lu) ⚽️ %@ 🖍 %@",
+                              logLevel,
+                              logMessage.file.lastPathComponent,
+                              (unsigned long)logMessage.line,
+                              logMessage.function,
+                              logMessage.message];
+    
+    return formattedLog;
+}
+
+@end

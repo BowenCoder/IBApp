@@ -17,7 +17,9 @@
 
 + (void)loggerSetup
 {
-    [[MBLogger sharedInstance] start];
+    [[MBLogger sharedInstance] startFileLog];
+    [[MBLogger sharedInstance] startASLLog];
+//    [[MBLogger sharedInstance] startXcodeLog];
 }
 
 + (void)userSetup
