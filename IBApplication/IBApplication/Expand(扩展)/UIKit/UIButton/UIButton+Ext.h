@@ -16,6 +16,11 @@
 @property (nonatomic, assign) UIEdgeInsets extraAreaInsets;
 
 /**
+*  @brief 响应边界扩大倍数
+*/
+@property (nonatomic, assign) CGFloat hitScale;
+
+/**
  *  @brief  使用颜色设置按钮背景
  *
  *  @param backgroundColor 背景颜色

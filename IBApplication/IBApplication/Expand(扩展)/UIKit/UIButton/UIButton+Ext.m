@@ -16,16 +16,32 @@ static NSString *const kButtonTextObjectKey = @"buttonTextObject";
 @implementation UIButton (Ext)
 
 - (UIEdgeInsets)extraAreaInsets {
-    
     return [objc_getAssociatedObject(self, @selector(extraAreaInsets)) UIEdgeInsetsValue];
 }
+
 - (void)setExtraAreaInsets:(UIEdgeInsets)touchAreaInsets {
-    
     NSValue *value = [NSValue valueWithUIEdgeInsets:touchAreaInsets];
     objc_setAssociatedObject(self, @selector(extraAreaInsets), value, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
+- (CGFloat)hitScale {
+    return [objc_getAssociatedObject(self, @selector(hitScale)) floatValue];
+}
+
+- (void)setHitScale:(CGFloat)hitScale {
+    CGFloat width = self.bounds.size.width * hitScale;
+    CGFloat height = self.bounds.size.height * hitScale;
+    self.extraAreaInsets = UIEdgeInsetsMake(-height, -width,-height, -width);
+    objc_setAssociatedObject(self, @selector(hitScale), @(hitScale), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
 - (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event {
+    
+    // 如果 button 边界值无变化  失效 隐藏 或者透明 直接返回
+    if(UIEdgeInsetsEqualToEdgeInsets(self.extraAreaInsets, UIEdgeInsetsZero) ||
+       !self.enabled || self.hidden || self.alpha == 0 ) {
+        return [super pointInside:point withEvent:event];
+    }
     
     UIEdgeInsets touchAreaInsets = self.extraAreaInsets;
     CGRect bounds = self.bounds;
