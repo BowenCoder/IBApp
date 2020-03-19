@@ -69,7 +69,7 @@ green:((float)((rgbValue & 0xFF00) >> 8)) / 255.0 \
 blue:((float)(rgbValue & 0xFF)) / 255.0 alpha:alphaValue]
 
 ///< format：22,22,22,0.5
-#define kRGB(r, g, b) kRGBA(r, g, b, a)
+#define kRGB(r, g, b) kRGBA(r, g, b, 1.0)
 #define kRGBA(r, g, b, a) ([UIColor colorWithRed:(r) / 255.0  \
 green:(g) / 255.0  \
 blue:(b) / 255.0  \

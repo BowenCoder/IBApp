@@ -63,17 +63,6 @@ typedef NS_ENUM(NSInteger, MBProgressBarMode) {
 /** 隐藏（从window）*/
 + (void)hideHUD;
 
-#pragma mark - EmptyView
-
-+ (void)showNoInternet:(UIView *)superview reload:(void(^)(void))reload;
-
-+ (void)showNoData:(UIView *)superview reload:(void(^)(void))reload;
-
-/** 显示空视图，文字过多使用\n换行 */
-+ (void)showEmpty:(UIView *)superview title:(NSString *)title detail:(NSString *)detail imageName:(NSString *)name reload:(void(^)(void))reload;
-
-+ (void)hideEmpty:(UIView *)superview;
-
 #pragma mark - Loading
 
 + (void)showBallLoadingView:(UIView *)superview;

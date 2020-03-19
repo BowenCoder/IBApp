@@ -182,6 +182,13 @@
     return [self clearHTML:mString];
 }
 
+/// 清除所有空白
+/// @param text 文本
++ (NSString *)clearAllWhitespace:(NSString *)text {
+    
+    return [text stringByReplacingOccurrencesOfString:@"\\s" withString:@"" options:NSRegularExpressionSearch range:NSMakeRange(0, text.length)];
+}
+
 /**
  *  @brief  清除空格，并判断是否过滤特殊字符
  *
@@ -197,6 +204,13 @@
     } else {
         return [text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     }
+}
+
+/// 将文字中的换行符替换为空格
+/// @param text 文本
++ (NSString *)clearLineBreak:(NSString *)text {
+    
+    return [text stringByReplacingOccurrencesOfString:@"[\r\n]" withString:@" " options:NSRegularExpressionSearch range:NSMakeRange(0, text.length)];
 }
 
 /**
@@ -634,5 +648,31 @@
     return modifiedString;
 }
 
+#pragma mark - 其他
+
+/// 首字母大写
+/// @param text 文本
++ (NSString *)capitalizedString:(NSString *)text
+{
+    if (text.length)
+        return [NSString stringWithFormat:@"%@%@", [text substringToIndex:1].uppercaseString, [text substringFromIndex:1]].copy;
+    return nil;
+}
+
+/// 按照中文 2 个字符、英文 1 个字符的方式来计算文本长度
+/// @param text 其他
++ (NSUInteger)countingTextLength:(NSString *)text
+{
+    NSUInteger length = 0;
+    for (NSUInteger i = 0, l = text.length; i < l; i++) {
+        unichar character = [text characterAtIndex:i];
+        if (isascii(character)) {
+            length += 1;
+        } else {
+            length += 2;
+        }
+    }
+    return length;
+}
 
 @end

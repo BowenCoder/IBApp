@@ -35,7 +35,7 @@
         [self.socketByte writeInt32:packetType useHost:YES];
         
         if (!kIsEmptyDict(content)) {
-            NSString *param = [IBHelper JSONStringFromDict:content];
+            NSString *param = [IBHelper jsonStringFromDict:content];
             [self.socketByte writeInt16:param.length useHost:YES];
             [self.socketByte writeString:param];
         }

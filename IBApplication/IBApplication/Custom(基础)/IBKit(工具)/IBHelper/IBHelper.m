@@ -31,7 +31,7 @@
  *
  *  @return  JSON字符串
  */
-+ (NSString *)JSONStringFromDict:(NSDictionary *)dict {
++ (NSString *)jsonStringFromDict:(NSDictionary *)dict {
     
     NSError *error = nil;
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dict
@@ -45,7 +45,7 @@
     return jsonString;
 }
 
-+ (NSString *)JSONStringFromArray:(NSArray *)array {
++ (NSString *)jsonStringFromArray:(NSArray *)array {
     NSString *json = nil;
     NSError *error = nil;
     NSData *data = [NSJSONSerialization dataWithJSONObject:array options:0 error:&error];

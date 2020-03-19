@@ -247,6 +247,9 @@
 		4AC29F91210F18C700F218FE /* IBTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC29F90210F18C700F218FE /* IBTableCell.m */; };
 		4AC29F9921106C0800F218FE /* IBRefreshHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC29F9821106C0800F218FE /* IBRefreshHeader.m */; };
 		4AC29F9C211073D700F218FE /* IBRefreshFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC29F9B211073D700F218FE /* IBRefreshFooter.m */; };
+		4AC3058C2423772E004911D6 /* MBFloatLayoutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC3058B2423772E004911D6 /* MBFloatLayoutView.m */; };
+		4AC3074724238A70004911D6 /* MBAttributeString.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC3074624238A70004911D6 /* MBAttributeString.m */; };
+		4AC3074A2423AC64004911D6 /* MBGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC307492423AC64004911D6 /* MBGridView.m */; };
 		4AC455C421368840007CBEF0 /* IBAuthManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC455C321368840007CBEF0 /* IBAuthManager.m */; };
 		4AC456AD22FD283400BBC9AC /* AFNetworkActivityIndicatorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC456AB22FD283300BBC9AC /* AFNetworkActivityIndicatorManager.m */; };
 		4AC7AF2523C33CBD00446C03 /* MBMessageBarManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC7AF2423C33CBD00446C03 /* MBMessageBarManager.m */; };
@@ -834,6 +837,12 @@
 		4AC29F9821106C0800F218FE /* IBRefreshHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBRefreshHeader.m; sourceTree = "<group>"; };
 		4AC29F9A211073D700F218FE /* IBRefreshFooter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBRefreshFooter.h; sourceTree = "<group>"; };
 		4AC29F9B211073D700F218FE /* IBRefreshFooter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBRefreshFooter.m; sourceTree = "<group>"; };
+		4AC3058A2423772E004911D6 /* MBFloatLayoutView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBFloatLayoutView.h; sourceTree = "<group>"; };
+		4AC3058B2423772E004911D6 /* MBFloatLayoutView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBFloatLayoutView.m; sourceTree = "<group>"; };
+		4AC3074524238A70004911D6 /* MBAttributeString.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBAttributeString.h; sourceTree = "<group>"; };
+		4AC3074624238A70004911D6 /* MBAttributeString.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBAttributeString.m; sourceTree = "<group>"; };
+		4AC307482423AC64004911D6 /* MBGridView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBGridView.h; sourceTree = "<group>"; };
+		4AC307492423AC64004911D6 /* MBGridView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBGridView.m; sourceTree = "<group>"; };
 		4AC455C221368840007CBEF0 /* IBAuthManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBAuthManager.h; sourceTree = "<group>"; };
 		4AC455C321368840007CBEF0 /* IBAuthManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBAuthManager.m; sourceTree = "<group>"; };
 		4AC455C52137C9B0007CBEF0 /* IBErrorCode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBErrorCode.h; sourceTree = "<group>"; };
@@ -2220,6 +2229,33 @@
 			path = ScrollController;
 			sourceTree = "<group>";
 		};
+		4AC3058924237705004911D6 /* MBFloatLayoutView */ = {
+			isa = PBXGroup;
+			children = (
+				4AC3058A2423772E004911D6 /* MBFloatLayoutView.h */,
+				4AC3058B2423772E004911D6 /* MBFloatLayoutView.m */,
+			);
+			path = MBFloatLayoutView;
+			sourceTree = "<group>";
+		};
+		4AC3058D24237D91004911D6 /* MBGridView */ = {
+			isa = PBXGroup;
+			children = (
+				4AC307482423AC64004911D6 /* MBGridView.h */,
+				4AC307492423AC64004911D6 /* MBGridView.m */,
+			);
+			path = MBGridView;
+			sourceTree = "<group>";
+		};
+		4AC3074424238A3D004911D6 /* MBAttributeString */ = {
+			isa = PBXGroup;
+			children = (
+				4AC3074524238A70004911D6 /* MBAttributeString.h */,
+				4AC3074624238A70004911D6 /* MBAttributeString.m */,
+			);
+			path = MBAttributeString;
+			sourceTree = "<group>";
+		};
 		4AC455C121368823007CBEF0 /* Auth */ = {
 			isa = PBXGroup;
 			children = (
@@ -2386,6 +2422,8 @@
 		4ACC55C620DB5F3E001352AE /* Public(公共) */ = {
 			isa = PBXGroup;
 			children = (
+				4AC3058D24237D91004911D6 /* MBGridView */,
+				4AC3058924237705004911D6 /* MBFloatLayoutView */,
 				4AEEA7A6213D0D3400CFAA3D /* MBActionSheet */,
 				4AD688FA23014A6600D3A248 /* MBAlignmentLabel */,
 				4A63CB7923CDC08600684FC5 /* MBAutoScrollLabel */,
@@ -2646,6 +2684,7 @@
 		4ACC569C20DF4D9C001352AE /* IBKit(工具) */ = {
 			isa = PBXGroup;
 			children = (
+				4AC3074424238A3D004911D6 /* MBAttributeString */,
 				4A1FB09320E7B2F40056A026 /* IBAnimation */,
 				4ACC569820DEC678001352AE /* IBApp */,
 				4A6F197820E3323A00EAF1A7 /* IBColor */,
@@ -3221,6 +3260,7 @@
 				4A22DE22228AF3B500D4CFA6 /* DDContextFilterLogFormatter.m in Sources */,
 				4AA2862E22C8E19E00C34336 /* IBUrlManager.m in Sources */,
 				4A89D5FF228B0F720072FB23 /* MBLogFormatter.m in Sources */,
+				4AC3074724238A70004911D6 /* MBAttributeString.m in Sources */,
 				4A78076720E9F1BB00E60ACA /* NSArray+MASAdditions.m in Sources */,
 				4A1FB21B20E92D5E0056A026 /* SDWebImageCoderHelper.m in Sources */,
 				4A4443812100797E001B2350 /* IBTabBarItem.m in Sources */,
@@ -3334,6 +3374,7 @@
 				4A1FB13420E921E90056A026 /* MWTapDetectingView.m in Sources */,
 				4AE9665B23A2193A00A5C172 /* MBTimerSchedule.m in Sources */,
 				4A686D2920EB668A00C8328E /* MBLoadingView.m in Sources */,
+				4AC3058C2423772E004911D6 /* MBFloatLayoutView.m in Sources */,
 				4A06E17E2133197200227583 /* IBShareManager.m in Sources */,
 				4A1FB12C20E921E90056A026 /* DACircularProgressView.m in Sources */,
 				4A1FB13620E921E90056A026 /* MWGridCell.m in Sources */,
@@ -3426,6 +3467,7 @@
 				4ACC569220DEC463001352AE /* IBPassword.m in Sources */,
 				4AE9674123A266D700A5C172 /* IBServiceInfoModel.m in Sources */,
 				4A1FB22C20E92D810056A026 /* FLAnimatedImage.m in Sources */,
+				4AC3074A2423AC64004911D6 /* MBGridView.m in Sources */,
 				4A89D641228BC2DC0072FB23 /* NSObject+Ext.m in Sources */,
 				4A0D464523D4495F00B5F9DF /* MBAutoTrackerModule.m in Sources */,
 				4A22DE23228AF3B500D4CFA6 /* DDDispatchQueueLogFormatter.m in Sources */,

@@ -180,39 +180,6 @@ NS_INLINE void setupPosition(MBProgressHUD *hud, MBPosition position) {
     [self hideHUDForView:nil];
 }
 
-#pragma mark - EmptyView
-
-+ (void)showNoInternet:(UIView *)superview reload:(void(^)(void))reload {
-    [self hideEmpty:superview];
-    [MBProgressHUD showEmpty:superview title:@"无法连接到网络" detail:@"请检查网络设置" imageName:@"MBProgressHUD.bundle/noNetwork" reload:reload];
-}
-
-+ (void)showNoData:(UIView *)superview reload:(void(^)(void))reload {
-    [self hideEmpty:superview];
-    [MBProgressHUD showEmpty:superview title:@"当前页面没有数据" detail:@"确定" imageName:@"MBProgressHUD.bundle/noNetwork" reload:reload];
-}
-
-+ (void)showEmpty:(UIView *)superview title:(NSString *)title detail:(NSString *)detail imageName:(NSString *)name reload:(void(^)(void))reload {
-    MBEmptyView *empty = [[MBEmptyView alloc] initWithFrame:superview.frame title:title detail:detail imageName:name reload:reload];
-    [superview addSubview:empty];
-}
-
-+ (void)hideEmpty:(UIView *)superview {
-    
-    NSEnumerator *subviewsEnum = [superview.subviews reverseObjectEnumerator];
-    for (UIView *subview in subviewsEnum) {
-        if ([subview isKindOfClass: [MBEmptyView class]]) {
-            [subview setAlpha:1.0];
-            [UIView animateWithDuration:0.5 animations:^{
-                [subview setAlpha:0.0];
-            } completion:^(BOOL finished) {
-                [subview removeFromSuperview];
-            }];
-            break;
-        }
-    }
-}
-
 #pragma mark - Loading
 
 + (void)showBallLoadingView:(UIView *)superview {

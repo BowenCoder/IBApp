@@ -93,8 +93,12 @@
  */
 + (NSString *)clearJS:(NSString *)js;
 
+/// 清除所有空白字符
+/// @param text 文本
++ (NSString *)clearAllWhitespace:(NSString *)text;
+
 /**
- *  @brief  清除空格，并判断是否过滤特殊字符
+ *  @brief  清除首尾空格，并判断是否过滤特殊字符
  *
  *  @param  text   字符串
  *  @param  filter 是否过滤
@@ -102,6 +106,10 @@
  *  @return 清楚空格后的结果
  */
 + (NSString *)clearWhitespace:(NSString *)text filter:(BOOL)filter;
+
+/// 将文字中的换行符替换为空格
+/// @param text 文本
++ (NSString *)clearLineBreak:(NSString *)text;
 
 /**
  调整html返回的字符串的内容格式
@@ -211,8 +219,19 @@
  */
 + (BOOL)isEmoji:(NSString *)emoji;
 
-/** 去掉 表情符号 可能漏了一些 */
+/**
+ *  去掉 表情符号 可能漏了一些
+ */
 + (NSString *)disableEmoji:(NSString *)text;
 
+#pragma mark - 其他
+
+/// 首字母大写
+/// @param text 文本
++ (NSString *)capitalizedString:(NSString *)text;
+
+/// 按照中文 2 个字符、英文 1 个字符的方式来计算文本长度
+/// @param text 其他
++ (NSUInteger)countingTextLength:(NSString *)text;
 
 @end
