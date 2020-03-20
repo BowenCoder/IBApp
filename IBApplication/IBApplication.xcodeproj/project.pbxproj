@@ -3676,7 +3676,7 @@
 					"$(PROJECT_DIR)/IBApplication/SDKFile(集成)/TencentSDK",
 					"$(PROJECT_DIR)/IBApplication/SDKFile(集成)/AlipaySDK",
 				);
-				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/IBApplication/Resource(资源)/PrefixHeader.pch";
 				HEADER_SEARCH_PATHS = " '$(SDKROOT)/usr/include/libxml2'";
 				INFOPLIST_FILE = "$(SRCROOT)/IBApplication/Resource(资源)/Info.plist";
@@ -3713,7 +3713,7 @@
 					"$(PROJECT_DIR)/IBApplication/SDKFile(集成)/TencentSDK",
 					"$(PROJECT_DIR)/IBApplication/SDKFile(集成)/AlipaySDK",
 				);
-				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/IBApplication/Resource(资源)/PrefixHeader.pch";
 				HEADER_SEARCH_PATHS = " '$(SDKROOT)/usr/include/libxml2'";
 				INFOPLIST_FILE = "$(SRCROOT)/IBApplication/Resource(资源)/Info.plist";
@@ -3814,7 +3814,7 @@
 					"$(PROJECT_DIR)/IBApplication/SDKFile(集成)/TencentSDK",
 					"$(PROJECT_DIR)/IBApplication/SDKFile(集成)/AlipaySDK",
 				);
-				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/IBApplication/Resource(资源)/PrefixHeader.pch";
 				HEADER_SEARCH_PATHS = " '$(SDKROOT)/usr/include/libxml2'";
 				INFOPLIST_FILE = "$(SRCROOT)/IBApplication/Resource(资源)/Info.plist";
@@ -3915,7 +3915,7 @@
 					"$(PROJECT_DIR)/IBApplication/SDKFile(集成)/TencentSDK",
 					"$(PROJECT_DIR)/IBApplication/SDKFile(集成)/AlipaySDK",
 				);
-				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/IBApplication/Resource(资源)/PrefixHeader.pch";
 				HEADER_SEARCH_PATHS = " '$(SDKROOT)/usr/include/libxml2'";
 				INFOPLIST_FILE = "$(SRCROOT)/IBApplication/Resource(资源)/Info.plist";
@@ -4010,7 +4010,7 @@
 					"$(PROJECT_DIR)/IBApplication/SDKFile(集成)/TencentSDK",
 					"$(PROJECT_DIR)/IBApplication/SDKFile(集成)/AlipaySDK",
 				);
-				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/IBApplication/Resource(资源)/PrefixHeader.pch";
 				HEADER_SEARCH_PATHS = " '$(SDKROOT)/usr/include/libxml2'";
 				INFOPLIST_FILE = "$(SRCROOT)/IBApplication/Resource(资源)/Info.plist";

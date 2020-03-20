@@ -180,6 +180,11 @@ typedef NS_ENUM(NSInteger, IBImageGradientType) {
  */
 + (UIImage *)blendImage:(UIImage *)image tintColor:(UIColor *)tintColor;
 
+/// 改变图片透明度
+/// @param image 图片
+/// @param alpha 透明度
++ (UIImage *)blendImage:(UIImage *)image alpha:(CGFloat)alpha;
+
 /**
  *  生成毛玻璃效果的图片
  *

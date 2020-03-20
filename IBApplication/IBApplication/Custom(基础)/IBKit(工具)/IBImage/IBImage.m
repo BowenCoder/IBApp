@@ -161,7 +161,7 @@
 + (UIImage *)flip:(UIImage *)image horizontal:(BOOL)horizontal {
     
     CGRect rect = CGRectMake(0, 0, image.size.width, image.size.height);
-    UIGraphicsBeginImageContextWithOptions(rect.size, NO, 0);
+    UIGraphicsBeginImageContextWithOptions(rect.size, NO, image.scale);
     CGContextRef ctx = UIGraphicsGetCurrentContext();
     CGContextClipToRect(ctx, rect);
     if (horizontal) {
@@ -253,7 +253,7 @@
     imageH = imageW;
     CGSize imageSize = CGSizeMake(imageW, imageH);
     //新建一个图形上下文
-    UIGraphicsBeginImageContextWithOptions(imageSize, NO, 0.0);
+    UIGraphicsBeginImageContextWithOptions(imageSize, NO, image.scale);
     CGContextRef ctx = UIGraphicsGetCurrentContext();
     [color set];
     //画大圆
@@ -277,7 +277,7 @@
 
 + (UIImage *)blendImage:(UIImage *)image tintColor:(UIColor *)tintColor {
     
-    UIGraphicsBeginImageContextWithOptions(image.size, NO, 0.0f);
+    UIGraphicsBeginImageContextWithOptions(image.size, NO, image.scale);
     [tintColor setFill];
     CGRect bounds = CGRectMake(0, 0, image.size.width, image.size.height);
     UIRectFill(bounds);
@@ -290,6 +290,14 @@
     UIGraphicsEndImageContext();
     
     return tintedImage;
+}
+
++ (UIImage *)blendImage:(UIImage *)image alpha:(CGFloat)alpha {
+    UIGraphicsBeginImageContextWithOptions(image.size, NO, image.scale);
+    [image drawInRect:CGRectMake(0, 0, image.size.width, image.size.height) blendMode:kCGBlendModeNormal alpha:alpha];
+    UIImage *imageOut = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return imageOut;
 }
 
 + (UIImage *)blurredImage:(UIImage *)image blurValue:(CGFloat)blurValue {
@@ -429,7 +437,7 @@
     CGSize size = image.size;
     CGRect rect = (CGRect){CGPointZero, size};
     //新建图片图形上下文
-    UIGraphicsBeginImageContextWithOptions(size, NO, 0.0f);
+    UIGraphicsBeginImageContextWithOptions(size, NO, image.scale);
     //绘制图片
     [image drawInRect:rect];
     //绘制文本
@@ -448,7 +456,7 @@
     CGSize size = image.size;
     CGRect rect = (CGRect){CGPointZero, size};
     //新建图片图形上下文
-    UIGraphicsBeginImageContextWithOptions(size, NO, 0.0f);
+    UIGraphicsBeginImageContextWithOptions(size, NO, image.scale);
     //绘制图片
     [image drawInRect:rect];
     //计算水印的rect
