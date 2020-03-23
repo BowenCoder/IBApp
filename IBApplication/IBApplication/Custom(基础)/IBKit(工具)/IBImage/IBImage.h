@@ -185,6 +185,31 @@ typedef NS_ENUM(NSInteger, IBImageGradientType) {
 /// @param alpha 透明度
 + (UIImage *)blendImage:(UIImage *)image alpha:(CGFloat)alpha;
 
+/// 生成类似UIBlurEffectStyleLight的图片
+/// @param image 图片
++ (UIImage *)lightEffectImage:(UIImage *)image;
+
+/// 生成类似UIBlurEffectStyleExtraLight的图片
+/// @param image 图片
++ (UIImage *)extraLightEffectImage:(UIImage *)image;
+
+/// 生成类似UIBlurEffectStyleDark的图片
+/// @param image 图片
++ (UIImage *)darkEffectImage:(UIImage *)image;
+
+/// 改变颜色生成毛玻璃
+/// @param inputImage 图片
+/// @param tintColor 颜色
++ (UIImage *)tintEffectImage:(UIImage*)inputImage tintColor:(UIColor *)tintColor;
+
+/// 生成毛玻璃效果的图片，自定义尺度大
+/// @param inputImage 图片
+/// @param blurValue 模糊指数
+/// @param tintColor 颜色
+/// @param saturationFactor 饱和度
+/// @param maskImage 遮罩
++ (UIImage *)blurredImage:(UIImage *)inputImage blurValue:(CGFloat)blurValue tintColor:(UIColor *)tintColor saturationFactor:(CGFloat)saturationFactor maskImage:(UIImage *)maskImage;
+
 /**
  *  生成毛玻璃效果的图片
  *
