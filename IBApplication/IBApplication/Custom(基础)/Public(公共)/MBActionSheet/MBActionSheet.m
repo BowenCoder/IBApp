@@ -7,7 +7,7 @@
 //
 
 #import "MBActionSheet.h"
-#import "MBPopupController.h"
+#import "MBPopupView.h"
 #import "IBString.h"
 #import "UIMacros.h"
 
@@ -19,7 +19,7 @@
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) UILabel *titleLabel;
 
-@property (nonatomic, strong) MBPopupController *popup;
+@property (nonatomic, strong) MBPopupView *popup;
 
 @end
 
@@ -289,9 +289,9 @@
     return _titleLabel;
 }
 
-- (MBPopupController *)popup {
+- (MBPopupView *)popup {
     if(!_popup){
-        _popup = [[MBPopupController alloc] init];
+        _popup = [[MBPopupView alloc] init];
         _popup.layoutType = MBPopupLayoutTypeBottom;
     }
     return _popup;

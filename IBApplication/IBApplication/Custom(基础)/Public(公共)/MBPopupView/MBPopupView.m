@@ -1,18 +1,18 @@
 //
-//  MBPopupController.m
+//  MBPopupView.m
 //  IBApplication
 //
 //  Created by Bowen on 2020/1/14.
 //  Copyright © 2020 BowenCoder. All rights reserved.
 //
 
-#import "MBPopupController.h"
+#import "MBPopupView.h"
 #import <objc/runtime.h>
 
-static void *MBPopupControllerParametersKey = &MBPopupControllerParametersKey;
-static void *MBPopupControllerNSTimerKey = &MBPopupControllerNSTimerKey;
+static void *MBPopupViewParametersKey = &MBPopupViewParametersKey;
+static void *MBPopupViewNSTimerKey = &MBPopupViewNSTimerKey;
 
-@interface MBPopupController () <UIGestureRecognizerDelegate>
+@interface MBPopupView () <UIGestureRecognizerDelegate>
 
 @property (nonatomic, strong) UIView *superview;
 @property (nonatomic, strong) UIView *maskView;
@@ -23,9 +23,9 @@ static void *MBPopupControllerNSTimerKey = &MBPopupControllerNSTimerKey;
 
 @end
 
-@implementation MBPopupController
+@implementation MBPopupView
 
-+ (instancetype)popupControllerWithMaskType:(MBPopupMaskType)maskType {
++ (instancetype)popupViewWithMaskType:(MBPopupMaskType)maskType {
     return [[self alloc] initWithMaskType:maskType];
 }
 
@@ -158,7 +158,7 @@ static void *MBPopupControllerNSTimerKey = &MBPopupControllerNSTimerKey;
     NSMutableDictionary *parameters = [NSMutableDictionary dictionaryWithCapacity:2];
     [parameters setValue:@(duration) forKey:@"MB_duration"];
     [parameters setValue:@(isSpringAnimated) forKey:@"MB_springAnimated"];
-    objc_setAssociatedObject(self, MBPopupControllerParametersKey, parameters, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    objc_setAssociatedObject(self, MBPopupViewParametersKey, parameters, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     
     if (nil != self.willPresent) {
         self.willPresent(self);
@@ -187,7 +187,7 @@ static void *MBPopupControllerNSTimerKey = &MBPopupControllerNSTimerKey;
         if (displayTime) {
             NSTimer *timer = [NSTimer timerWithTimeInterval:displayTime target:self selector:@selector(dismiss) userInfo:nil repeats:NO];
             [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
-            objc_setAssociatedObject(self, MBPopupControllerNSTimerKey, timer, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+            objc_setAssociatedObject(self, MBPopupViewNSTimerKey, timer, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
         }
     };
     
@@ -227,7 +227,7 @@ static void *MBPopupControllerNSTimerKey = &MBPopupControllerNSTimerKey;
 }
 
 - (void)dismiss {
-    id object = objc_getAssociatedObject(self, MBPopupControllerParametersKey);
+    id object = objc_getAssociatedObject(self, MBPopupViewParametersKey);
     if (object && [object isKindOfClass:[NSDictionary class]]) {
         NSTimeInterval duration = 0.0;
         NSNumber *durationNumber = [object valueForKey:@"MB_duration"];
@@ -589,10 +589,10 @@ static CGFloat MB_randomValue(int i, int j) {
 #pragma mark - Destroy timer
 
 - (void)destroyTimer {
-    id value = objc_getAssociatedObject(self, MBPopupControllerNSTimerKey);
+    id value = objc_getAssociatedObject(self, MBPopupViewNSTimerKey);
     if (value) {
         [(NSTimer *)value invalidate];
-        objc_setAssociatedObject(self, MBPopupControllerNSTimerKey, nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        objc_setAssociatedObject(self, MBPopupViewNSTimerKey, nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
 }
 
@@ -608,7 +608,7 @@ static CGFloat MB_randomValue(int i, int j) {
         }
     }
     UIWindow *applicationWindow = [[UIApplication sharedApplication].delegate window];
-    if (!applicationWindow) NSLog(@"** MBPopupController ** Window is nil!");
+    if (!applicationWindow) NSLog(@"** MBPopupView ** Window is nil!");
     return applicationWindow;
 }
 
@@ -879,7 +879,7 @@ static CGFloat MB_randomValue(int i, int j) {
                 
             } else {
                 // restore view location.
-                id object = objc_getAssociatedObject(self, MBPopupControllerParametersKey);
+                id object = objc_getAssociatedObject(self, MBPopupViewParametersKey);
                 NSNumber *flagNumber = [object valueForKey:@"MB_springAnimated"];
                 BOOL flag = NO;
                 if (nil != flagNumber) {

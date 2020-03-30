@@ -36,10 +36,10 @@ typedef NS_ENUM(NSInteger, MBPopupSlideStyle) {
     MBPopupSlideStyleFade, // default
 };
 
-@interface MBPopupController : NSObject
+@interface MBPopupView : NSObject
 
 /// Convenient to initialize and set maske type. (Through the `- init` initialization, maskType is MBPopupMaskTypeBlackTranslucent)
-+ (instancetype)popupControllerWithMaskType:(MBPopupMaskType)maskType;
++ (instancetype)popupViewWithMaskType:(MBPopupMaskType)maskType;
 
 /// The `popupView` is the parent view of your custom contentView
 @property (nonatomic, strong, readonly) UIView *popupView;
@@ -72,20 +72,20 @@ typedef NS_ENUM(NSInteger, MBPopupSlideStyle) {
 - (void)dropAnimatedWithRotateAngle:(CGFloat)angle;
 
 /// Block gets called when mask touched.
-@property (nonatomic, copy) void (^maskTouched)(MBPopupController *popupController);
+@property (nonatomic, copy) void (^maskTouched)(MBPopupView *popupView);
 
 /// - Should implement this block before the presenting. 应在present前实现的block ☟
 /// Block gets called when contentView will present.
-@property (nonatomic, copy) void (^willPresent)(MBPopupController *popupController);
+@property (nonatomic, copy) void (^willPresent)(MBPopupView *popupView);
 
 /// Block gets called when contentView did present.
-@property (nonatomic, copy) void (^didPresent)(MBPopupController *popupController);
+@property (nonatomic, copy) void (^didPresent)(MBPopupView *popupView);
 
 /// Block gets called when contentView will dismiss.
-@property (nonatomic, copy) void (^willDismiss)(MBPopupController *popupController);
+@property (nonatomic, copy) void (^willDismiss)(MBPopupView *popupView);
 
 /// Block gets called when contentView did dismiss.
-@property (nonatomic, copy) void (^didDismiss)(MBPopupController *popupController);
+@property (nonatomic, copy) void (^didDismiss)(MBPopupView *popupView);
 
 /**
  present your content view.

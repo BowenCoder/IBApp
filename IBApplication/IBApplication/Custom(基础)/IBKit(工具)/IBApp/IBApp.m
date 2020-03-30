@@ -289,6 +289,20 @@
 
 #pragma mark - Device
 
++ (BOOL)isIPad {
+    return UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad;
+}
+
++ (BOOL)isIPod {
+    NSString *string = [[UIDevice currentDevice] model];
+    return [string rangeOfString:@"iPod touch"].location != NSNotFound;
+}
+
++ (BOOL)isIPhone {
+    NSString *string = [[UIDevice currentDevice] model];
+    return [string rangeOfString:@"iPhone"].location != NSNotFound;
+}
+
 + (BOOL)isSimulator {
 #if TARGET_OS_SIMULATOR
     return YES;

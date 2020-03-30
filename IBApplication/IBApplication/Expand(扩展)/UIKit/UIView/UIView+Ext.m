@@ -49,6 +49,18 @@
     return nil;
 }
 
+- (id)mb_findFirstResponder {
+    if (self.isFirstResponder) {
+        return self;
+    }
+    for (UIView *subView in self.subviews) {
+        id responder = [subView mb_findFirstResponder];
+        if (responder) return responder;
+    }
+    return nil;
+}
+
+
 - (void)mb_setBackgroundImage:(UIImage *)image pattern:(BOOL)pattern {
     
     if (image == nil || [image isKindOfClass:[NSNull class]]) {

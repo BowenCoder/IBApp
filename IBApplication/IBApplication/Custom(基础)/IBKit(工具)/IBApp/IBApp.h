@@ -155,6 +155,15 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - Device
 
+/** 判断是否是平板 */
++ (BOOL)isIPad;
+
+/** 判断是否是iPod */
++ (BOOL)isIPod;
+
+/** 判断是否是手机 */
++ (BOOL)isIPhone;
+
 /** 判断是否是模拟器 */
 + (BOOL)isSimulator;
 

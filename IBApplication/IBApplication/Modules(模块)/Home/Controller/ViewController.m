@@ -15,7 +15,6 @@
 #import "IBColor.h"
 #import "IBNaviBar+Config.h"
 #import "MBCheckbox.h"
-#import "MBPopupController.h"
 #import "IBShareManager.h"
 #import "IBAuthManager.h"
 #import "MBActionSheet.h"

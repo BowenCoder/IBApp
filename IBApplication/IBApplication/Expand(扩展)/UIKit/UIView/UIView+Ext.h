@@ -30,6 +30,9 @@
  */
 - (UIViewController *)mb_viewController;
 
+/// 找到第一响应者
+- (id)mb_findFirstResponder;
+
 /**
  设置背景图片
 
