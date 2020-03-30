@@ -136,6 +136,10 @@
 		4A22DE23228AF3B500D4CFA6 /* DDDispatchQueueLogFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A22DE12228AF3B500D4CFA6 /* DDDispatchQueueLogFormatter.m */; };
 		4A22DE24228AF3B500D4CFA6 /* DDFileLogger+Buffering.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A22DE13228AF3B500D4CFA6 /* DDFileLogger+Buffering.m */; };
 		4A22DE25228AF3B500D4CFA6 /* DDMultiFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A22DE16228AF3B500D4CFA6 /* DDMultiFormatter.m */; };
+		4A321DC92431958600283EC1 /* MBMultipleDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A321DC82431958600283EC1 /* MBMultipleDelegate.m */; };
+		4A321DCD243198ED00283EC1 /* NSPointerArray+Ext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A321DCC243198ED00283EC1 /* NSPointerArray+Ext.m */; };
+		4A321DD124319A2500283EC1 /* NSMethodSignature+Ext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A321DD024319A2500283EC1 /* NSMethodSignature+Ext.m */; };
+		4A321DD52431CC1000283EC1 /* MBPropertyDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A321DD42431CC1000283EC1 /* MBPropertyDescriptor.m */; };
 		4A35EAB122891D2B00FADE23 /* UITableView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A35EAB022891D2B00FADE23 /* UITableView+Extension.m */; };
 		4A44437520F89833001B2350 /* IBPrivacy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A44437420F89833001B2350 /* IBPrivacy.m */; };
 		4A44437820F9C506001B2350 /* IBNaviConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A44437720F9C506001B2350 /* IBNaviConfig.m */; };
@@ -596,6 +600,15 @@
 		4A22DE16228AF3B500D4CFA6 /* DDMultiFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDMultiFormatter.m; sourceTree = "<group>"; };
 		4A22DE17228AF3B500D4CFA6 /* DDFileLogger+Buffering.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DDFileLogger+Buffering.h"; sourceTree = "<group>"; };
 		4A22DE18228AF3B500D4CFA6 /* DDDispatchQueueLogFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDDispatchQueueLogFormatter.h; sourceTree = "<group>"; };
+		4A321DC72431958600283EC1 /* MBMultipleDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBMultipleDelegate.h; sourceTree = "<group>"; };
+		4A321DC82431958600283EC1 /* MBMultipleDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBMultipleDelegate.m; sourceTree = "<group>"; };
+		4A321DCB243198ED00283EC1 /* NSPointerArray+Ext.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSPointerArray+Ext.h"; sourceTree = "<group>"; };
+		4A321DCC243198ED00283EC1 /* NSPointerArray+Ext.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSPointerArray+Ext.m"; sourceTree = "<group>"; };
+		4A321DCF24319A2500283EC1 /* NSMethodSignature+Ext.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSMethodSignature+Ext.h"; sourceTree = "<group>"; };
+		4A321DD024319A2500283EC1 /* NSMethodSignature+Ext.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSMethodSignature+Ext.m"; sourceTree = "<group>"; };
+		4A321DD32431CC1000283EC1 /* MBPropertyDescriptor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBPropertyDescriptor.h; sourceTree = "<group>"; };
+		4A321DD42431CC1000283EC1 /* MBPropertyDescriptor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBPropertyDescriptor.m; sourceTree = "<group>"; };
+		4A321DD62431CCFA00283EC1 /* MBInline.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBInline.h; sourceTree = "<group>"; };
 		4A35EAAF22891D2B00FADE23 /* UITableView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+Extension.h"; sourceTree = "<group>"; };
 		4A35EAB022891D2B00FADE23 /* UITableView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+Extension.m"; sourceTree = "<group>"; };
 		4A44437320F89833001B2350 /* IBPrivacy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBPrivacy.h; sourceTree = "<group>"; };
@@ -1650,6 +1663,42 @@
 			path = MBLog;
 			sourceTree = "<group>";
 		};
+		4A321DC62431954000283EC1 /* MBMultipleDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				4A321DC72431958600283EC1 /* MBMultipleDelegate.h */,
+				4A321DC82431958600283EC1 /* MBMultipleDelegate.m */,
+			);
+			path = MBMultipleDelegate;
+			sourceTree = "<group>";
+		};
+		4A321DCA243198C300283EC1 /* NSPointerArray */ = {
+			isa = PBXGroup;
+			children = (
+				4A321DCB243198ED00283EC1 /* NSPointerArray+Ext.h */,
+				4A321DCC243198ED00283EC1 /* NSPointerArray+Ext.m */,
+			);
+			path = NSPointerArray;
+			sourceTree = "<group>";
+		};
+		4A321DCE24319A0D00283EC1 /* NSMethodSignature */ = {
+			isa = PBXGroup;
+			children = (
+				4A321DCF24319A2500283EC1 /* NSMethodSignature+Ext.h */,
+				4A321DD024319A2500283EC1 /* NSMethodSignature+Ext.m */,
+			);
+			path = NSMethodSignature;
+			sourceTree = "<group>";
+		};
+		4A321DD22431CBE400283EC1 /* MBPropertyDescriptor */ = {
+			isa = PBXGroup;
+			children = (
+				4A321DD32431CC1000283EC1 /* MBPropertyDescriptor.h */,
+				4A321DD42431CC1000283EC1 /* MBPropertyDescriptor.m */,
+			);
+			path = MBPropertyDescriptor;
+			sourceTree = "<group>";
+		};
 		4A35EAAE22891D1100FADE23 /* UITableView */ = {
 			isa = PBXGroup;
 			children = (
@@ -2572,6 +2621,7 @@
 			isa = PBXGroup;
 			children = (
 				4ACC55F820DBC6BA001352AE /* IBMacros.h */,
+				4A321DD62431CCFA00283EC1 /* MBInline.h */,
 				4ACC55F620DBC4F4001352AE /* SDKMacros.h */,
 				4ACC55F420DBB709001352AE /* UIMacros.h */,
 			);
@@ -2581,6 +2631,8 @@
 		4ACC55FD20DCB8A8001352AE /* Foundation */ = {
 			isa = PBXGroup;
 			children = (
+				4A321DCE24319A0D00283EC1 /* NSMethodSignature */,
+				4A321DCA243198C300283EC1 /* NSPointerArray */,
 				4A89D63E228BC2BF0072FB23 /* NSObject */,
 				4AE24BD8214F544B006448DC /* NSDictionary */,
 				4ACC56AA20DFFFF3001352AE /* NSDate */,
@@ -2684,6 +2736,8 @@
 		4ACC569C20DF4D9C001352AE /* IBKit(工具) */ = {
 			isa = PBXGroup;
 			children = (
+				4A321DD22431CBE400283EC1 /* MBPropertyDescriptor */,
+				4A321DC62431954000283EC1 /* MBMultipleDelegate */,
 				4A1FB09320E7B2F40056A026 /* IBAnimation */,
 				4ACC569820DEC678001352AE /* IBApp */,
 				4A6F197820E3323A00EAF1A7 /* IBColor */,
@@ -3225,6 +3279,7 @@
 				4AD770B12297CD1300FEB76B /* YYTextParser.m in Sources */,
 				4AD770A62297CD1300FEB76B /* YYTextMagnifier.m in Sources */,
 				4A1FB22320E92D5E0056A026 /* SDWebImageManager.m in Sources */,
+				4A321DD52431CC1000283EC1 /* MBPropertyDescriptor.m in Sources */,
 				4A78076320E9F1BB00E60ACA /* ViewController+MASAdditions.m in Sources */,
 				4A0D462D23D3FDC800B5F9DF /* Aspects.m in Sources */,
 				4A1FB21220E92D5E0056A026 /* MKAnnotationView+WebCache.m in Sources */,
@@ -3294,6 +3349,7 @@
 				4AD770BA2297CD1300FEB76B /* UIView+YYText.m in Sources */,
 				4AE95DB223A0F92A00A5C172 /* MBRouterSerialization.m in Sources */,
 				4A1FB21920E92D5E0056A026 /* SDWebImageFrame.m in Sources */,
+				4A321DD124319A2500283EC1 /* NSMethodSignature+Ext.m in Sources */,
 				4A1FB20920E92D5E0056A026 /* SDImageCache.m in Sources */,
 				4A95F6F0222E5A9500EE07B9 /* NullSafe.m in Sources */,
 				4A22DE1A228AF3B500D4CFA6 /* DDOSLogger.m in Sources */,
@@ -3410,6 +3466,7 @@
 				4A1FB22B20E92D810056A026 /* FLAnimatedImageView.m in Sources */,
 				4A22DE24228AF3B500D4CFA6 /* DDFileLogger+Buffering.m in Sources */,
 				4A03B8DF229AEFE400173765 /* MBLaunchSetup.m in Sources */,
+				4A321DC92431958600283EC1 /* MBMultipleDelegate.m in Sources */,
 				4A7AED9423028CC4004D1D8F /* MBContext.m in Sources */,
 				4AC29F8D210F04A900F218FE /* MJRefreshComponent.m in Sources */,
 				4A1FB21420E92D5E0056A026 /* NSButton+WebCache.m in Sources */,
@@ -3488,6 +3545,7 @@
 				4AF2091E23978EB800EFB85D /* MBPresenter.m in Sources */,
 				4AC29F8C210F04A900F218FE /* MJRefreshAutoFooter.m in Sources */,
 				4A6F19A920E3F3D700EAF1A7 /* IBSocketConnection.m in Sources */,
+				4A321DCD243198ED00283EC1 /* NSPointerArray+Ext.m in Sources */,
 				F323F5EB22A4341D008BC303 /* RSKImageCropViewController+Ext.m in Sources */,
 				4AC29F82210F04A900F218FE /* MJRefreshBackNormalFooter.m in Sources */,
 				4AE8D63B23025D1700A73011 /* MBPluginCenter.m in Sources */,

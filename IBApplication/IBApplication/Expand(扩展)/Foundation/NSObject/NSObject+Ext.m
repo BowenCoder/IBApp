@@ -12,6 +12,14 @@
 
 @implementation NSObject (Ext)
 
+- (void)setFb_delegatesSelf:(BOOL)fb_delegatesSelf {
+    objc_setAssociatedObject(self, @selector(fb_delegatesSelf), @(fb_delegatesSelf), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (BOOL)fb_delegatesSelf {
+    return [objc_getAssociatedObject(self, @selector(fb_delegatesSelf)) boolValue];
+}
+
 - (BOOL)fb_overrideMethod:(SEL)selector superclass:(Class)superclass
 {
     return [NSObject fb_overrideMethod:selector currentClass:self.class superclass:superclass];

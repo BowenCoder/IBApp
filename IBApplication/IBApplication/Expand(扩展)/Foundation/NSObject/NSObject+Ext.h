@@ -12,6 +12,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface NSObject (Ext)
 
+/// 用于标志“xxx.delegate = xxx”的情况
+@property (nonatomic, assign) BOOL fb_delegatesSelf;
+
 /**
 判断当前类是否有重写某个父类的指定方法
 

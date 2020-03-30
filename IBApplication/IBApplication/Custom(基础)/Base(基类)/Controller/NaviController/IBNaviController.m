@@ -54,7 +54,7 @@ BeginIgnoreClangWarning("-Wundeclared-selector");
     return YES;
 }
 
-EndIgnoreClangWarning
+EndIgnoreClangWarning;
 
 #pragma mark - UINavigationControllerDelegate
 
