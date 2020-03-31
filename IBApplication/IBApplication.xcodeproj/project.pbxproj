@@ -139,6 +139,8 @@
 		4A2E740F2431F34000DBA2AB /* MBKeyboardManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A2E740E2431F34000DBA2AB /* MBKeyboardManager.m */; };
 		4A2E74132431FD8500DBA2AB /* UIResponder+Ext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A2E74122431FD8500DBA2AB /* UIResponder+Ext.m */; };
 		4A2E74172432E44C00DBA2AB /* MBPopupController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A2E74162432E44C00DBA2AB /* MBPopupController.m */; };
+		4A2E741B2433102E00DBA2AB /* MBAlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A2E741A2433102E00DBA2AB /* MBAlertController.m */; };
+		4A2E75992433469F00DBA2AB /* MBTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A2E75982433469F00DBA2AB /* MBTextField.m */; };
 		4A321DC92431958600283EC1 /* MBMultipleDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A321DC82431958600283EC1 /* MBMultipleDelegate.m */; };
 		4A321DCD243198ED00283EC1 /* NSPointerArray+Ext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A321DCC243198ED00283EC1 /* NSPointerArray+Ext.m */; };
 		4A321DD124319A2500283EC1 /* NSMethodSignature+Ext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A321DD024319A2500283EC1 /* NSMethodSignature+Ext.m */; };
@@ -336,9 +338,6 @@
 		4AE9674723A3A3F100A5C172 /* IBDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE9674623A3A3F100A5C172 /* IBDownloader.m */; };
 		4AED556023CD937B00B38F59 /* MBPopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AED555F23CD937B00B38F59 /* MBPopupView.m */; };
 		4AED64C0215378EF0082280F /* MBPopupArrowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AED64BF215378EF0082280F /* MBPopupArrowView.m */; };
-		4AEEA7A9213D0EFB00CFAA3D /* MBActionItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AEEA7A8213D0EFA00CFAA3D /* MBActionItem.m */; };
-		4AEEA7AC213D148500CFAA3D /* MBActionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AEEA7AB213D148500CFAA3D /* MBActionCell.m */; };
-		4AEEA7B2213D2AA700CFAA3D /* MBActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AEEA7B1213D2AA700CFAA3D /* MBActionSheet.m */; };
 		4AF2091E23978EB800EFB85D /* MBPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AF2091D23978EB800EFB85D /* MBPresenter.m */; };
 		F323F5EB22A4341D008BC303 /* RSKImageCropViewController+Ext.m in Sources */ = {isa = PBXBuildFile; fileRef = F323F5EA22A4341D008BC303 /* RSKImageCropViewController+Ext.m */; };
 		F333517B22A2C448005B968E /* MBLibraryCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = F333517A22A2C448005B968E /* MBLibraryCamera.m */; };
@@ -611,6 +610,10 @@
 		4A2E74122431FD8500DBA2AB /* UIResponder+Ext.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIResponder+Ext.m"; sourceTree = "<group>"; };
 		4A2E74152432E44C00DBA2AB /* MBPopupController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBPopupController.h; sourceTree = "<group>"; };
 		4A2E74162432E44C00DBA2AB /* MBPopupController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBPopupController.m; sourceTree = "<group>"; };
+		4A2E74192433102E00DBA2AB /* MBAlertController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBAlertController.h; sourceTree = "<group>"; };
+		4A2E741A2433102E00DBA2AB /* MBAlertController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBAlertController.m; sourceTree = "<group>"; };
+		4A2E75972433469F00DBA2AB /* MBTextField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBTextField.h; sourceTree = "<group>"; };
+		4A2E75982433469F00DBA2AB /* MBTextField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBTextField.m; sourceTree = "<group>"; };
 		4A321DC72431958600283EC1 /* MBMultipleDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBMultipleDelegate.h; sourceTree = "<group>"; };
 		4A321DC82431958600283EC1 /* MBMultipleDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBMultipleDelegate.m; sourceTree = "<group>"; };
 		4A321DCB243198ED00283EC1 /* NSPointerArray+Ext.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSPointerArray+Ext.h"; sourceTree = "<group>"; };
@@ -1028,12 +1031,6 @@
 		4AED555F23CD937B00B38F59 /* MBPopupView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBPopupView.m; sourceTree = "<group>"; };
 		4AED64BE215378EF0082280F /* MBPopupArrowView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBPopupArrowView.h; sourceTree = "<group>"; };
 		4AED64BF215378EF0082280F /* MBPopupArrowView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBPopupArrowView.m; sourceTree = "<group>"; };
-		4AEEA7A7213D0EFA00CFAA3D /* MBActionItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBActionItem.h; sourceTree = "<group>"; };
-		4AEEA7A8213D0EFA00CFAA3D /* MBActionItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBActionItem.m; sourceTree = "<group>"; };
-		4AEEA7AA213D148500CFAA3D /* MBActionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBActionCell.h; sourceTree = "<group>"; };
-		4AEEA7AB213D148500CFAA3D /* MBActionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBActionCell.m; sourceTree = "<group>"; };
-		4AEEA7B0213D2AA700CFAA3D /* MBActionSheet.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBActionSheet.h; sourceTree = "<group>"; };
-		4AEEA7B1213D2AA700CFAA3D /* MBActionSheet.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBActionSheet.m; sourceTree = "<group>"; };
 		4AF2091C23978EB800EFB85D /* MBPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBPresenter.h; sourceTree = "<group>"; };
 		4AF2091D23978EB800EFB85D /* MBPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBPresenter.m; sourceTree = "<group>"; };
 		F323F5E922A4341D008BC303 /* RSKImageCropViewController+Ext.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RSKImageCropViewController+Ext.h"; sourceTree = "<group>"; };
@@ -1703,6 +1700,24 @@
 				4A2E74162432E44C00DBA2AB /* MBPopupController.m */,
 			);
 			path = MBPopupController;
+			sourceTree = "<group>";
+		};
+		4A2E74182433102E00DBA2AB /* MBAlertController */ = {
+			isa = PBXGroup;
+			children = (
+				4A2E74192433102E00DBA2AB /* MBAlertController.h */,
+				4A2E741A2433102E00DBA2AB /* MBAlertController.m */,
+			);
+			path = MBAlertController;
+			sourceTree = "<group>";
+		};
+		4A2E75962433462800DBA2AB /* MBTextField */ = {
+			isa = PBXGroup;
+			children = (
+				4A2E75972433469F00DBA2AB /* MBTextField.h */,
+				4A2E75982433469F00DBA2AB /* MBTextField.m */,
+			);
+			path = MBTextField;
 			sourceTree = "<group>";
 		};
 		4A321DC62431954000283EC1 /* MBMultipleDelegate */ = {
@@ -2531,7 +2546,7 @@
 		4ACC55C620DB5F3E001352AE /* Public(公共) */ = {
 			isa = PBXGroup;
 			children = (
-				4AEEA7A6213D0D3400CFAA3D /* MBActionSheet */,
+				4A2E74182433102E00DBA2AB /* MBAlertController */,
 				4AD688FA23014A6600D3A248 /* MBAlignmentLabel */,
 				4A63CB7923CDC08600684FC5 /* MBAutoScrollLabel */,
 				4A0800E52302B80100EF25BE /* MBButton */,
@@ -2549,6 +2564,7 @@
 				4A2E74142432E40700DBA2AB /* MBPopupController */,
 				4AED555D23CD925100B38F59 /* MBPopupView */,
 				4A1FB0A520E8EA320056A026 /* MBProgressHUD */,
+				4A2E75962433462800DBA2AB /* MBTextField */,
 				4AA859FF23B3644B003D610F /* MBTextView */,
 				4A3222C82431E2B900283EC1 /* MBVisualEffectView */,
 			);
@@ -3042,19 +3058,6 @@
 			path = MBPopupView;
 			sourceTree = "<group>";
 		};
-		4AEEA7A6213D0D3400CFAA3D /* MBActionSheet */ = {
-			isa = PBXGroup;
-			children = (
-				4AEEA7B0213D2AA700CFAA3D /* MBActionSheet.h */,
-				4AEEA7B1213D2AA700CFAA3D /* MBActionSheet.m */,
-				4AEEA7A7213D0EFA00CFAA3D /* MBActionItem.h */,
-				4AEEA7A8213D0EFA00CFAA3D /* MBActionItem.m */,
-				4AEEA7AA213D148500CFAA3D /* MBActionCell.h */,
-				4AEEA7AB213D148500CFAA3D /* MBActionCell.m */,
-			);
-			path = MBActionSheet;
-			sourceTree = "<group>";
-		};
 		4AEEA7AD213D284100CFAA3D /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -3350,7 +3353,6 @@
 				4A1FB21220E92D5E0056A026 /* MKAnnotationView+WebCache.m in Sources */,
 				4A78077420E9FCAF00E60ACA /* YYClassInfo.m in Sources */,
 				4AD770AB2297CD1300FEB76B /* YYTextLine.m in Sources */,
-				4AEEA7A9213D0EFB00CFAA3D /* MBActionItem.m in Sources */,
 				4ACC561920DD59F5001352AE /* NSArray+Ext.m in Sources */,
 				4ACC564E20DD75AB001352AE /* UIButton+Ext.m in Sources */,
 				4A0D463C23D42DBF00B5F9DF /* UICollectionView+TrackData.m in Sources */,
@@ -3366,7 +3368,6 @@
 				F3FCB43022A2F9F600C4870B /* RSKImageScrollView.m in Sources */,
 				4A1FB20B20E92D5E0056A026 /* UIImage+WebP.m in Sources */,
 				4A06E16F212FDCD300227583 /* IBSocialObject.m in Sources */,
-				4AEEA7AC213D148500CFAA3D /* MBActionCell.m in Sources */,
 				4A89D605228B13160072FB23 /* MBLogger.m in Sources */,
 				4AC29F87210F04A900F218FE /* MJRefreshStateHeader.m in Sources */,
 				4AE24BDB214F5470006448DC /* NSDictionary+Ext.m in Sources */,
@@ -3376,7 +3377,6 @@
 				4AD770A92297CD1300FEB76B /* YYTextInput.m in Sources */,
 				4A1FB20E20E92D5E0056A026 /* UIImage+MultiFormat.m in Sources */,
 				4AD770A82297CD1300FEB76B /* YYTextEffectWindow.m in Sources */,
-				4AEEA7B2213D2AA700CFAA3D /* MBActionSheet.m in Sources */,
 				4A22DE22228AF3B500D4CFA6 /* DDContextFilterLogFormatter.m in Sources */,
 				4AA2862E22C8E19E00C34336 /* IBUrlManager.m in Sources */,
 				4A89D5FF228B0F720072FB23 /* MBLogFormatter.m in Sources */,
@@ -3429,6 +3429,7 @@
 				4AED556023CD937B00B38F59 /* MBPopupView.m in Sources */,
 				4A22DE1D228AF3B500D4CFA6 /* DDLoggerNames.m in Sources */,
 				4AA85A0223B36564003D610F /* MBTextView.m in Sources */,
+				4A2E741B2433102E00DBA2AB /* MBAlertController.m in Sources */,
 				4ACC55EA20DB5F3E001352AE /* AppDelegate.m in Sources */,
 				4A0D463923D4071C00B5F9DF /* UITableView+TrackData.m in Sources */,
 				4A6F197B20E3332000EAF1A7 /* IBColor.m in Sources */,
@@ -3495,6 +3496,7 @@
 				4AE9665F23A248A600A5C172 /* IBNetApiKeyInner.m in Sources */,
 				4A1FB13420E921E90056A026 /* MWTapDetectingView.m in Sources */,
 				4AE9665B23A2193A00A5C172 /* MBTimerSchedule.m in Sources */,
+				4A2E75992433469F00DBA2AB /* MBTextField.m in Sources */,
 				4A686D2920EB668A00C8328E /* MBLoadingView.m in Sources */,
 				4AC3058C2423772E004911D6 /* MBFloatLayoutView.m in Sources */,
 				4A06E17E2133197200227583 /* IBShareManager.m in Sources */,

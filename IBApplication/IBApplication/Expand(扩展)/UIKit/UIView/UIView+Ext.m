@@ -8,8 +8,39 @@
 
 #import "UIView+Ext.h"
 #import "IBImage.h"
+#import "UIMacros.h"
+#import "RSSwizzle.h"
+
+const CGFloat MBUIViewSelfSizingHeight = INFINITY;
 
 @implementation UIView (Ext)
+
++ (void)load
+{
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        RSSwizzleInstanceMethod([UIView class],
+                                @selector(setFrame:),
+                                RSSWReturnType(void),
+                                RSSWArguments(CGRect frame),
+                                RSSWReplacement(
+        {
+            // MBUIViewSelfSizingHeight 的功能
+            if (CGRectGetWidth(frame) > 0 && isinf(CGRectGetHeight(frame))) {
+                CGFloat height = flat([self sizeThatFits:CGSizeMake(CGRectGetWidth(frame), CGFLOAT_MAX)].height);
+                frame = CGRectSetHeight(frame, height);
+            }
+            
+            // 对非法的 frame，Debug 下中 assert，Release 下会将其中的 NaN 改为 0，避免 crash
+            if (CGRectIsNaN(frame)) {
+                NSLog(@"%@ setFrame:%@，参数包含 NaN，已被拦截并处理为 0。%@", self, NSStringFromCGRect(frame), [NSThread callStackSymbols]);
+                frame = CGRectSafeValue(frame);
+            }
+            
+            return RSSWCallOriginal(frame);
+        }), RSSwizzleModeAlways, "app.view.setFrame.inf");
+    });
+}
 
 - (UIView *)mb_topView {
     

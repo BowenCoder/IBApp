@@ -7,6 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MBButton.h"
+#import "MBTextField.h"
+#import "MBPopupController.h"
 
 @class MBAlertController;
 
@@ -54,22 +57,22 @@ typedef NS_ENUM(NSInteger, MBAlertControllerStyle) {
 + (instancetype)actionWithTitle:(nullable NSString *)title style:(MBAlertActionStyle)style handler:(nullable void (^)(__kindof MBAlertController *aAlertController, MBAlertAction *action))handler;
 
 /// `MBAlertAction`对应的 button 对象
-@property(nonatomic, strong, readonly) MBButton *button;
+@property (nonatomic, strong, readonly) MBButton *button;
 
 /// `MBAlertAction`对应的标题
-@property(nullable, nonatomic, copy, readonly) NSString *title;
+@property (nullable, nonatomic, copy, readonly) NSString *title;
 
 /// `MBAlertAction`对应的样式
-@property(nonatomic, assign, readonly) MBAlertActionStyle style;
+@property (nonatomic, assign, readonly) MBAlertActionStyle style;
 
 /// `MBAlertAction`是否允许操作
-@property(nonatomic, assign, getter=isEnabled) BOOL enabled;
+@property (nonatomic, assign, getter=isEnabled) BOOL enabled;
 
 /// `MBAlertAction`按钮样式，默认nil。当此值为nil的时候，则使用`MBAlertController`的`alertButtonAttributes`或者`sheetButtonAttributes`的值。
-@property(nullable, nonatomic, strong) NSDictionary<NSAttributedStringKey, id> *buttonAttributes;
+@property (nullable, nonatomic, strong) NSDictionary<NSAttributedStringKey, id> *buttonAttributes;
 
 /// 原理同上`buttonAttributes`
-@property(nullable, nonatomic, strong) NSDictionary<NSAttributedStringKey, id> *buttonDisabledAttributes;
+@property (nullable, nonatomic, strong) NSDictionary<NSAttributedStringKey, id> *buttonDisabledAttributes;
 
 @end
 
@@ -86,113 +89,113 @@ typedef NS_ENUM(NSInteger, MBAlertControllerStyle) {
 }
 
 /// alert距离屏幕四边的间距，默认UIEdgeInsetsMake(0, 0, 0, 0)。alert的宽度最终是通过屏幕宽度减去水平的 alertContentMargin 和 alertContentMaximumWidth 决定的。
-@property(nonatomic, assign) UIEdgeInsets alertContentMargin;
+@property (nonatomic, assign) UIEdgeInsets alertContentMargin;
 
 /// alert的最大宽度，默认270。
-@property(nonatomic, assign) CGFloat alertContentMaximumWidth;
+@property (nonatomic, assign) CGFloat alertContentMaximumWidth;
 
 /// alert上分隔线颜色，默认UIColorMake(211, 211, 219)。
-@property(nullable, nonatomic, strong) UIColor *alertSeparatorColor;
+@property (nullable, nonatomic, strong) UIColor *alertSeparatorColor;
 
-/// alert标题样式，默认@{NSForegroundColorAttributeName:UIColorBlack,NSFontAttributeName:UIFontBoldMake(17),NSParagraphStyleAttributeName:[NSMutableParagraphStyle qmui_paragraphStyleWithLineHeight:0 lineBreakMode:NSLineBreakByTruncatingTail]}
-@property(nullable, nonatomic, strong) NSDictionary<NSAttributedStringKey, id> *alertTitleAttributes;
+/// alert标题样式
+@property (nullable, nonatomic, strong) NSDictionary<NSAttributedStringKey, id> *alertTitleAttributes;
 
-/// alert信息样式，默认@{NSForegroundColorAttributeName:UIColorBlack,NSFontAttributeName:UIFontMake(13),NSParagraphStyleAttributeName:[NSMutableParagraphStyle qmui_paragraphStyleWithLineHeight:0 lineBreakMode:NSLineBreakByTruncatingTail]}
-@property(nullable, nonatomic, strong) NSDictionary<NSAttributedStringKey, id> *alertMessageAttributes;
+/// alert信息样式
+@property (nullable, nonatomic, strong) NSDictionary<NSAttributedStringKey, id> *alertMessageAttributes;
 
-/// alert按钮样式，默认@{NSForegroundColorAttributeName:UIColorBlue,NSFontAttributeName:UIFontMake(17),NSKernAttributeName:@(0)}
-@property(nullable, nonatomic, strong) NSDictionary<NSAttributedStringKey, id> *alertButtonAttributes;
+/// alert按钮样式
+@property (nullable, nonatomic, strong) NSDictionary<NSAttributedStringKey, id> *alertButtonAttributes;
 
-/// alert按钮disabled时的样式，默认@{NSForegroundColorAttributeName:UIColorMake(129, 129, 129),NSFontAttributeName:UIFontMake(17),NSKernAttributeName:@(0)}
-@property(nullable, nonatomic, strong) NSDictionary<NSAttributedStringKey, id> *alertButtonDisabledAttributes;
+/// alert按钮disabled时的样式
+@property (nullable, nonatomic, strong) NSDictionary<NSAttributedStringKey, id> *alertButtonDisabledAttributes;
 
-/// alert cancel 按钮样式，默认@{NSForegroundColorAttributeName:UIColorBlue,NSFontAttributeName:UIFontBoldMake(17),NSKernAttributeName:@(0)}
-@property(nullable, nonatomic, strong) NSDictionary<NSAttributedStringKey, id> *alertCancelButtonAttributes;
+/// alert cancel 按钮样式
+@property (nullable, nonatomic, strong) NSDictionary<NSAttributedStringKey, id> *alertCancelButtonAttributes;
 
-/// alert destructive 按钮样式，默认@{NSForegroundColorAttributeName:UIColorRed,NSFontAttributeName:UIFontMake(17),NSKernAttributeName:@(0)}
-@property(nullable, nonatomic, strong) NSDictionary<NSAttributedStringKey, id> *alertDestructiveButtonAttributes;
+/// alert destructive 按钮样式
+@property (nullable, nonatomic, strong) NSDictionary<NSAttributedStringKey, id> *alertDestructiveButtonAttributes;
 
 /// alert圆角大小，默认值是 13，以保持与系统默认样式一致
-@property(nonatomic, assign) CGFloat alertContentCornerRadius;
+@property (nonatomic, assign) CGFloat alertContentCornerRadius;
 
 /// alert按钮高度，默认44pt
-@property(nonatomic, assign) CGFloat alertButtonHeight;
+@property (nonatomic, assign) CGFloat alertButtonHeight;
 
-/// alert头部（非按钮部分）背景色，默认值是：UIColorMakeWithRGBA(247, 247, 247, 1)
-@property(nullable, nonatomic, strong) UIColor *alertHeaderBackgroundColor;
+/// alert头部（非按钮部分）背景色，默认值是：UIColorMaRGBA(247, 247, 247, 1)
+@property (nullable, nonatomic, strong) UIColor *alertHeaderBackgroundColor;
 
 /// alert按钮背景色，默认值同`alertHeaderBackgroundColor`
-@property(nullable, nonatomic, strong) UIColor *alertButtonBackgroundColor;
+@property (nullable, nonatomic, strong) UIColor *alertButtonBackgroundColor;
 
 /// alert按钮高亮背景色，默认UIColorMake(232, 232, 232)
-@property(nullable, nonatomic, strong) UIColor *alertButtonHighlightBackgroundColor;
+@property (nullable, nonatomic, strong) UIColor *alertButtonHighlightBackgroundColor;
 
 /// alert头部四边insets间距
-@property(nonatomic, assign) UIEdgeInsets alertHeaderInsets;
+@property (nonatomic, assign) UIEdgeInsets alertHeaderInsets;
 
 /// alert头部title和message之间的间距，默认3pt
-@property(nonatomic, assign) CGFloat alertTitleMessageSpacing;
+@property (nonatomic, assign) CGFloat alertTitleMessageSpacing;
 
 /// alert 内部 textField 的字体
-@property(nullable, nonatomic, strong) UIFont *alertTextFieldFont;
+@property (nullable, nonatomic, strong) UIFont *alertTextFieldFont;
 
 /// alert 内部 textField 的文字颜色
-@property(nullable, nonatomic, strong) UIColor *alertTextFieldTextColor;
+@property (nullable, nonatomic, strong) UIColor *alertTextFieldTextColor;
 
 /// alert 内部 textField 的边框颜色，如果不需要边框，可设置为 nil
-@property(nullable, nonatomic, strong) UIColor *alertTextFieldBorderColor;
+@property (nullable, nonatomic, strong) UIColor *alertTextFieldBorderColor;
 
 
 /// sheet距离屏幕四边的间距，默认UIEdgeInsetsMake(10, 10, 10, 10)。
-@property(nonatomic, assign) UIEdgeInsets sheetContentMargin;
+@property (nonatomic, assign) UIEdgeInsets sheetContentMargin;
 
 /// sheet的最大宽度，默认值是5.5英寸的屏幕的宽度减去水平的 sheetContentMargin
-@property(nonatomic, assign) CGFloat sheetContentMaximumWidth;
+@property (nonatomic, assign) CGFloat sheetContentMaximumWidth;
 
 /// sheet分隔线颜色，默认UIColorMake(211, 211, 219)
-@property(nullable, nonatomic, strong) UIColor *sheetSeparatorColor;
+@property (nullable, nonatomic, strong) UIColor *sheetSeparatorColor;
 
-/// sheet标题样式，默认@{NSForegroundColorAttributeName:UIColorMake(143, 143, 143),NSFontAttributeName:UIFontBoldMake(13),NSParagraphStyleAttributeName:[NSMutableParagraphStyle qmui_paragraphStyleWithLineHeight:0 lineBreakMode:NSLineBreakByTruncatingTail]}
-@property(nullable, nonatomic, copy) NSDictionary<NSAttributedStringKey, id> *sheetTitleAttributes;
+/// sheet标题样式
+@property (nullable, nonatomic, copy) NSDictionary<NSAttributedStringKey, id> *sheetTitleAttributes;
 
-/// sheet信息样式，默认@{NSForegroundColorAttributeName:UIColorMake(143, 143, 143),NSFontAttributeName:UIFontMake(13),NSParagraphStyleAttributeName:[NSMutableParagraphStyle qmui_paragraphStyleWithLineHeight:0 lineBreakMode:NSLineBreakByTruncatingTail]}
-@property(nullable, nonatomic, copy) NSDictionary<NSAttributedStringKey, id> *sheetMessageAttributes;
+/// sheet信息样式
+@property (nullable, nonatomic, copy) NSDictionary<NSAttributedStringKey, id> *sheetMessageAttributes;
 
-/// sheet按钮样式，默认@{NSForegroundColorAttributeName:UIColorBlue,NSFontAttributeName:UIFontMake(20),NSKernAttributeName:@(0)}
-@property(nullable, nonatomic, copy) NSDictionary<NSAttributedStringKey, id> *sheetButtonAttributes;
+/// sheet按钮样式
+@property (nullable, nonatomic, copy) NSDictionary<NSAttributedStringKey, id> *sheetButtonAttributes;
 
-/// sheet按钮disabled时的样式，默认@{NSForegroundColorAttributeName:UIColorMake(129, 129, 129),NSFontAttributeName:UIFontMake(20),NSKernAttributeName:@(0)}
-@property(nullable, nonatomic, copy) NSDictionary<NSAttributedStringKey, id> *sheetButtonDisabledAttributes;
+/// sheet按钮disabled时的样式
+@property (nullable, nonatomic, copy) NSDictionary<NSAttributedStringKey, id> *sheetButtonDisabledAttributes;
 
-/// sheet cancel 按钮样式，默认@{NSForegroundColorAttributeName:UIColorBlue,NSFontAttributeName:UIFontBoldMake(20),NSKernAttributeName:@(0)}
-@property(nullable, nonatomic, copy) NSDictionary<NSAttributedStringKey, id> *sheetCancelButtonAttributes;
+/// sheet cancel 按钮样式
+@property (nullable, nonatomic, copy) NSDictionary<NSAttributedStringKey, id> *sheetCancelButtonAttributes;
 
-/// sheet destructive 按钮样式，默认@{NSForegroundColorAttributeName:UIColorRed,NSFontAttributeName:UIFontMake(20),NSKernAttributeName:@(0)}
-@property(nullable, nonatomic, copy) NSDictionary<NSAttributedStringKey, id> *sheetDestructiveButtonAttributes;
+/// sheet destructive 按钮样式
+@property (nullable, nonatomic, copy) NSDictionary<NSAttributedStringKey, id> *sheetDestructiveButtonAttributes;
 
 /// sheet cancel 按钮距离其上面元素（按钮或者header）的间距，默认8pt
-@property(nonatomic, assign) CGFloat sheetCancelButtonMarginTop;
+@property (nonatomic, assign) CGFloat sheetCancelButtonMarginTop;
 
 /// sheet内容的圆角，默认值是 13，以保持与系统默认样式一致
-@property(nonatomic, assign) CGFloat sheetContentCornerRadius;
+@property (nonatomic, assign) CGFloat sheetContentCornerRadius;
 
 /// sheet按钮高度，默认值是 57，以保持与系统默认样式一致
-@property(nonatomic, assign) CGFloat sheetButtonHeight;
+@property (nonatomic, assign) CGFloat sheetButtonHeight;
 
-/// sheet头部（非按钮部分）背景色，默认值是：UIColorMakeWithRGBA(247, 247, 247, 1)
-@property(nullable, nonatomic, strong) UIColor *sheetHeaderBackgroundColor;
+/// sheet头部（非按钮部分）背景色
+@property (nullable, nonatomic, strong) UIColor *sheetHeaderBackgroundColor;
 
 /// sheet按钮背景色，默认值同`sheetHeaderBackgroundColor`
-@property(nullable, nonatomic, strong) UIColor *sheetButtonBackgroundColor;
+@property (nullable, nonatomic, strong) UIColor *sheetButtonBackgroundColor;
 
-/// sheet按钮高亮背景色，默认UIColorMake(232, 232, 232)
-@property(nullable, nonatomic, strong) UIColor *sheetButtonHighlightBackgroundColor;
+/// sheet按钮高亮背景色
+@property (nullable, nonatomic, strong) UIColor *sheetButtonHighlightBackgroundColor;
 
 /// sheet头部四边insets间距
-@property(nonatomic, assign) UIEdgeInsets sheetHeaderInsets;
+@property (nonatomic, assign) UIEdgeInsets sheetHeaderInsets;
 
 /// sheet头部title和message之间的间距，默认8pt
-@property(nonatomic, assign) CGFloat sheetTitleMessageSpacing;
+@property (nonatomic, assign) CGFloat sheetTitleMessageSpacing;
 
 
 /// 默认初始化方法
@@ -202,7 +205,7 @@ typedef NS_ENUM(NSInteger, MBAlertControllerStyle) {
 + (nonnull instancetype)alertControllerWithTitle:(nullable NSString *)title message:(nullable NSString *)message preferredStyle:(MBAlertControllerStyle)preferredStyle;
 
 /// @see `MBAlertControllerDelegate`
-@property(nullable, nonatomic,weak) id<MBAlertControllerDelegate>delegate;
+@property (nullable, nonatomic,weak) id<MBAlertControllerDelegate>delegate;
 
 /// 增加一个按钮
 - (void)addAction:(nonnull MBAlertAction *)action;
@@ -214,7 +217,7 @@ typedef NS_ENUM(NSInteger, MBAlertControllerStyle) {
 - (void)addTextFieldWithConfigurationHandler:(void (^_Nullable)(MBTextField *textField))configurationHandler;
 
 /// 是否应该自动管理输入框的键盘 Return 事件（切换多个输入框的焦点、自动响应某个按钮等），默认为 YES。你也可以通过 UITextFieldDelegate 自己管理，此时请将此属性置为 NO。
-@property(nonatomic, assign) BOOL shouldManageTextFieldsReturnEventAutomatically;
+@property (nonatomic, assign) BOOL shouldManageTextFieldsReturnEventAutomatically;
 
 /// 增加一个自定义的view作为`MBAlertController`的customView
 - (void)addCustomView:(UIView *_Nullable)view;
@@ -226,49 +229,49 @@ typedef NS_ENUM(NSInteger, MBAlertControllerStyle) {
 - (void)hideWithAnimated:(BOOL)animated;
 
 /// 所有`MBAlertAction`对象
-@property(nullable, nonatomic, copy, readonly) NSArray <MBAlertAction *> *actions;
+@property (nullable, nonatomic, copy, readonly) NSArray <MBAlertAction *> *actions;
 
 /// 当前所有通过`addTextFieldWithConfigurationHandler:`接口添加的输入框
-@property(nullable, nonatomic, copy, readonly) NSArray <MBTextField *> *textFields;
+@property (nullable, nonatomic, copy, readonly) NSArray <UITextField *> *textFields;
 
 /// 设置自定义view。通过`addCustomView:`方法添加一个自定义的view，`MBAlertController`会在布局的时候去调用这个view的`sizeThatFits:`方法来获取size，至于x和y坐标则由控件自己控制。
-@property(nullable, nonatomic, strong, readonly) UIView *customView;
+@property (nullable, nonatomic, strong, readonly) UIView *customView;
 
 /// 当前标题title
-@property(nullable, nonatomic, copy) NSString *title;
+@property (nullable, nonatomic, copy) NSString *title;
 
 /// 当前信息message
-@property(nullable, nonatomic, copy) NSString *message;
+@property (nullable, nonatomic, copy) NSString *message;
 
 /// 当前样式style
-@property(nonatomic, assign, readonly) MBAlertControllerStyle preferredStyle;
+@property (nonatomic, assign, readonly) MBAlertControllerStyle preferredStyle;
 
-/// 将`MBAlertController`弹出来的`MBModalPresentationViewController`对象
-@property(nullable, nonatomic, strong, readonly) MBModalPresentationViewController *modalPresentationViewController;
+/// 将`MBAlertController`弹出来的`MBPopupController`对象
+@property (nullable, nonatomic, strong, readonly) MBPopupController *popupController;
 
 /// 主体内容（alert 下指整个弹窗，actionSheet 下指取消按钮上方的那些 header 和 按钮）背后用来做背景样式的 view，默认为空白的 UIView，当你需要做磨砂效果时可以将一个 UIVisualEffectView 赋值给它（但推荐用 MBVisualEffectView）。当赋值为 nil 时，内部会自动创建一个空白的 UIView 代替，以保证这个属性不为空。
-@property(null_resettable, nonatomic, strong) UIView *mainVisualEffectView;
+@property (null_resettable, nonatomic, strong) UIView *mainVisualEffectView;
 
 /// actionSheet 下的取消按钮背后用来做背景样式的 view，默认为空白的 UIView，当你需要做磨砂效果时可以将一个 UIVisualEffectView 赋值给它（但推荐用 MBVisualEffectView）。alert 情况下不会出现。当赋值为 nil 时，内部会自动创建一个空白的 UIView 代替，以保证这个属性不为空。
-@property(null_resettable, nonatomic, strong) UIView *cancelButtonVisualEffectView;
+@property (null_resettable, nonatomic, strong) UIView *cancelButtonVisualEffectView;
 
 /**
  *  设置按钮的排序是否要由用户添加的顺序来决定，默认为NO，也即与系统原生`UIAlertController`一致，MBAlertActionStyleDestructive 类型的action必定在最后面。
  *
  *  @warning 注意 MBAlertActionStyleCancel 按钮不受这个属性的影响
  */
-@property(nonatomic, assign) BOOL orderActionsByAddedOrdered;
+@property (nonatomic, assign) BOOL orderActionsByAddedOrdered;
 
 /// maskView是否响应点击，alert默认为NO，sheet默认为YES
-@property(nonatomic, assign) BOOL shouldRespondMaskViewTouch;
+@property (nonatomic, assign) BOOL shouldRespondMaskViewTouch;
 
 /// 在 iPhoneX 机器上是否延伸底部背景色。因为在 iPhoneX 上我们会把整个面板往上移动 safeArea 的距离，如果你的面板本来就配置成撑满全屏的样式，那么就会露出底部的空隙，isExtendBottomLayout 可以帮助你把空暇填补上。默认为NO。
 /// @warning: 只对 sheet 类型有效
-@property(nonatomic, assign) BOOL isExtendBottomLayout UI_APPEARANCE_SELECTOR;
+@property (nonatomic, assign) BOOL isExtendBottomLayout;
 
 /// 在显示 alert 之前先降下键盘，默认为 YES。系统的 UIAlertController 也会在显示时降下键盘，但它能在消失后把键盘自动升起，并且这个过程不会触发 becomeFirstResponder/resignFirstResponder，MBAlertController 暂时做不到这样的效果，只负责降下，不负责恢复。
 /// iOS 10 及以上，一个 UIWindow 显示出来时默认就会降下键盘，所以这个属性只在 iOS 9 里有效，iOS 10 及以上即便设置为 NO 也没有效果。
-@property(nonatomic, assign) BOOL dismissKeyboardAutomatically;
+@property (nonatomic, assign) BOOL dismissKeyboardAutomatically;
 
 @end
 

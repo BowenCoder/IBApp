@@ -119,13 +119,13 @@ typedef NS_ENUM(NSUInteger, MBPopupControllerAnimation) {
  *  设置`contentView`布局时与外容器的间距，默认为(20, 20, 20, 20)
  *  @warning 当设置了`layoutBlock`属性时，此属性不生效
  */
-@property (nonatomic, assign) UIEdgeInsets contentViewMargins UI_APPEARANCE_SELECTOR;
+@property (nonatomic, assign) UIEdgeInsets contentViewMargins;
 
 /**
  *  限制`contentView`布局时的最大宽度，默认为 CGFLOAT_MAX，也即无限制。
  *  @warning 当设置了`layoutBlock`属性时，此属性不生效
  */
-@property (nonatomic, assign) CGFloat maximumContentViewWidth UI_APPEARANCE_SELECTOR;
+@property (nonatomic, assign) CGFloat maximumContentViewWidth;
 
 /**
  *  背景遮罩，默认为一个普通的`UIView`，背景色为`UIColorMask`，可设置为自己的view，注意`dimmingView`的大小将会盖满整个控件。
@@ -160,7 +160,7 @@ typedef NS_ENUM(NSUInteger, MBPopupControllerAnimation) {
  *  设置要使用的显示/隐藏动画的类型，默认为`QMUIModalPresentationAnimationStyleFade`。
  *  @warning 当使用了`showingAnimation`和`hidingAnimation`时，该属性无效
  */
-@property (nonatomic, assign) MBPopupControllerAnimation animationStyle UI_APPEARANCE_SELECTOR;
+@property (nonatomic, assign) MBPopupControllerAnimation animationStyle;
 
 /// 是否以 UIWindow 的方式显示，建议在显示之后才使用，否则可能不准确。
 @property (nonatomic, assign, readonly, getter=isShownInWindowMode) BOOL shownInWindowMode;

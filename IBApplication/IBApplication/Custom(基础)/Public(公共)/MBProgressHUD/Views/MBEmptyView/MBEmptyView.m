@@ -9,6 +9,7 @@
 #import "MBEmptyView.h"
 #import "UIMacros.h"
 #import "IBMacros.h"
+#import "UIView+Ext.h"
 
 @interface MBEmptyView ()
 

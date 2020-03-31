@@ -7,6 +7,12 @@
 //
 
 #import "MBAlertController.h"
+#import "IBMacros.h"
+#import "UIMacros.h"
+#import "UIView+Ext.h"
+#import "CALayer+Ext.h"
+#import "MBKeyboardManager.h"
+#import "IBImage.h"
 
 static NSUInteger alertControllerCount = 0;
 
@@ -70,7 +76,6 @@ static NSUInteger alertControllerCount = 0;
         _button = [[MBButton alloc] init];
         self.button.adjustsButtonWhenDisabled = NO;
         self.button.adjustsButtonWhenHighlighted = NO;
-        self.button.MB_automaticallyAdjustTouchHighlightedInScrollView = YES;
         [self.button addTarget:self action:@selector(handleAlertActionEvent:) forControlEvents:UIControlEventTouchUpInside];
     }
     return self;
@@ -92,10 +97,10 @@ static NSUInteger alertControllerCount = 0;
 
 #pragma mark - MBAlertController
 
-@interface MBAlertController () <MBAlertActionDelegate, MBModalPresentationContentViewControllerProtocol, MBModalPresentationViewControllerDelegate, MBTextFieldDelegate>
+@interface MBAlertController () <MBAlertActionDelegate, MBPopupControllerProtocol, MBPopupControllerDelegate, MBTextFieldDelegate>
 
 @property(nonatomic, assign, readwrite) MBAlertControllerStyle preferredStyle;
-@property(nonatomic, strong, readwrite) MBModalPresentationViewController *modalPresentationViewController;
+@property(nonatomic, strong, readwrite) MBPopupController *popupController;
 
 @property(nonatomic, strong) UIView *containerView;
 
@@ -150,47 +155,91 @@ static NSUInteger alertControllerCount = 0;
     return self;
 }
 
+- (NSMutableParagraphStyle *)paragraphStyle
+{
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    paragraphStyle.lineBreakMode = NSLineBreakByTruncatingTail;
+    paragraphStyle.alignment = NSTextAlignmentCenter;
+    return paragraphStyle;
+}
+
 - (void)didInitialize {
-    if (alertControllerAppearance) {
-        self.alertContentMargin = [MBAlertController appearance].alertContentMargin;
-        self.alertContentMaximumWidth = [MBAlertController appearance].alertContentMaximumWidth;
-        self.alertSeparatorColor = [MBAlertController appearance].alertSeparatorColor;
-        self.alertContentCornerRadius = [MBAlertController appearance].alertContentCornerRadius;
-        self.alertTitleAttributes = [MBAlertController appearance].alertTitleAttributes;
-        self.alertMessageAttributes = [MBAlertController appearance].alertMessageAttributes;
-        self.alertButtonAttributes = [MBAlertController appearance].alertButtonAttributes;
-        self.alertButtonDisabledAttributes = [MBAlertController appearance].alertButtonDisabledAttributes;
-        self.alertCancelButtonAttributes = [MBAlertController appearance].alertCancelButtonAttributes;
-        self.alertDestructiveButtonAttributes = [MBAlertController appearance].alertDestructiveButtonAttributes;
-        self.alertButtonHeight = [MBAlertController appearance].alertButtonHeight;
-        self.alertHeaderBackgroundColor = [MBAlertController appearance].alertHeaderBackgroundColor;
-        self.alertButtonBackgroundColor = [MBAlertController appearance].alertButtonBackgroundColor;
-        self.alertButtonHighlightBackgroundColor = [MBAlertController appearance].alertButtonHighlightBackgroundColor;
-        self.alertHeaderInsets = [MBAlertController appearance].alertHeaderInsets;
-        self.alertTitleMessageSpacing = [MBAlertController appearance].alertTitleMessageSpacing;
-        self.alertTextFieldFont = [MBAlertController appearance].alertTextFieldFont;
-        self.alertTextFieldTextColor = [MBAlertController appearance].alertTextFieldTextColor;
-        self.alertTextFieldBorderColor = [MBAlertController appearance].alertTextFieldBorderColor;
-        
-        self.sheetContentMargin = [MBAlertController appearance].sheetContentMargin;
-        self.sheetContentMaximumWidth = [MBAlertController appearance].sheetContentMaximumWidth;
-        self.sheetSeparatorColor = [MBAlertController appearance].sheetSeparatorColor;
-        self.sheetTitleAttributes = [MBAlertController appearance].sheetTitleAttributes;
-        self.sheetMessageAttributes = [MBAlertController appearance].sheetMessageAttributes;
-        self.sheetButtonAttributes = [MBAlertController appearance].sheetButtonAttributes;
-        self.sheetButtonDisabledAttributes = [MBAlertController appearance].sheetButtonDisabledAttributes;
-        self.sheetCancelButtonAttributes = [MBAlertController appearance].sheetCancelButtonAttributes;
-        self.sheetDestructiveButtonAttributes = [MBAlertController appearance].sheetDestructiveButtonAttributes;
-        self.sheetCancelButtonMarginTop = [MBAlertController appearance].sheetCancelButtonMarginTop;
-        self.sheetContentCornerRadius = [MBAlertController appearance].sheetContentCornerRadius;
-        self.sheetButtonHeight = [MBAlertController appearance].sheetButtonHeight;
-        self.sheetHeaderBackgroundColor = [MBAlertController appearance].sheetHeaderBackgroundColor;
-        self.sheetButtonBackgroundColor = [MBAlertController appearance].sheetButtonBackgroundColor;
-        self.sheetButtonHighlightBackgroundColor = [MBAlertController appearance].sheetButtonHighlightBackgroundColor;
-        self.sheetHeaderInsets = [MBAlertController appearance].sheetHeaderInsets;
-        self.sheetTitleMessageSpacing = [MBAlertController appearance].sheetTitleMessageSpacing;
-        self.isExtendBottomLayout = [MBAlertController appearance].isExtendBottomLayout;
-    }
+    
+    self.alertContentMargin = UIEdgeInsetsZero;
+    self.alertContentMaximumWidth = 270;
+    self.alertSeparatorColor = kRGB(211, 211, 219);
+    self.alertContentCornerRadius = 13;
+    self.alertButtonHeight = 44;
+    self.alertHeaderBackgroundColor = kRGB(247, 247, 247);
+    self.alertButtonBackgroundColor = kRGB(247, 247, 247);
+    self.alertButtonHighlightBackgroundColor = kRGB(232, 232, 232);
+    self.alertHeaderInsets = UIEdgeInsetsMake(20, 16, 20, 16);
+    self.alertTitleMessageSpacing = 3;
+    self.alertTextFieldFont = [UIFont systemFontOfSize:14];
+    self.alertTextFieldTextColor = [UIColor blackColor];
+    self.alertTextFieldBorderColor = kRGB(210, 210, 210);
+    
+    self.alertTitleAttributes = @{NSForegroundColorAttributeName:[UIColor blackColor],
+                                  NSFontAttributeName:[UIFont boldSystemFontOfSize:17],
+                                  NSParagraphStyleAttributeName: [self paragraphStyle]};
+    
+    self.alertMessageAttributes = @{NSForegroundColorAttributeName:[UIColor blackColor],
+                                    NSFontAttributeName:[UIFont systemFontOfSize:13],
+                                    NSParagraphStyleAttributeName: [self paragraphStyle]};
+    
+    self.alertButtonAttributes = @{NSForegroundColorAttributeName:kRGB(49, 189, 243),
+                                   NSFontAttributeName:[UIFont systemFontOfSize:17],
+                                   NSKernAttributeName:@(0)};
+    
+    self.alertButtonDisabledAttributes = @{NSForegroundColorAttributeName:kRGB(129, 129, 129),
+                                           NSFontAttributeName:[UIFont systemFontOfSize:17],
+                                           NSKernAttributeName:@(0)};
+    
+    self.alertCancelButtonAttributes = @{NSForegroundColorAttributeName:kRGB(49, 189, 243),
+                                         NSFontAttributeName:[UIFont boldSystemFontOfSize:17],
+                                         NSKernAttributeName:@(0)};
+    
+    self.alertDestructiveButtonAttributes = @{NSForegroundColorAttributeName:kRGB(250, 58, 58),
+                                              NSFontAttributeName:[UIFont systemFontOfSize:17],
+                                              NSKernAttributeName:@(0)};
+    
+    self.sheetContentMargin = UIEdgeInsetsMake(10, 10, 10, 10);
+    self.sheetContentMaximumWidth = kScreenWidth - UIEdgeInsetsGetHorizontalValue(self.sheetContentMargin);
+    self.sheetSeparatorColor = kRGB(211, 211, 219);
+    self.sheetCancelButtonMarginTop = 8;
+    self.sheetContentCornerRadius = 13;
+    self.sheetButtonHeight = 53;
+    self.sheetHeaderBackgroundColor = kRGB(247, 247, 247);
+    self.sheetButtonBackgroundColor = kRGB(247, 247, 247);
+    self.sheetButtonHighlightBackgroundColor = kRGB(232, 232, 232);
+    self.sheetHeaderInsets = UIEdgeInsetsMake(16, 16, 16, 16);
+    self.sheetTitleMessageSpacing = 8;
+    self.isExtendBottomLayout = NO;
+    
+    self.sheetTitleAttributes = @{NSForegroundColorAttributeName:kRGB(143, 143, 143),
+                                  NSFontAttributeName:[UIFont boldSystemFontOfSize:17],
+                                  NSParagraphStyleAttributeName:[self paragraphStyle]};
+    
+    self.sheetMessageAttributes = @{NSForegroundColorAttributeName:kRGB(143, 143, 143),
+                                    NSFontAttributeName:[UIFont systemFontOfSize:13],
+                                    NSParagraphStyleAttributeName:[self paragraphStyle]};
+    
+    self.sheetButtonAttributes = @{NSForegroundColorAttributeName:kRGB(49, 189, 243),
+                                   NSFontAttributeName:[UIFont systemFontOfSize:20],
+                                   NSKernAttributeName:@(0)};
+    
+    self.sheetButtonDisabledAttributes = @{NSForegroundColorAttributeName:kRGB(129, 129, 129),
+                                           NSFontAttributeName:[UIFont systemFontOfSize:20],
+                                           NSKernAttributeName:@(0)};
+    
+    self.sheetCancelButtonAttributes = @{NSForegroundColorAttributeName:kRGB(49, 189, 243),
+                                         NSFontAttributeName:[UIFont boldSystemFontOfSize:20],
+                                         NSKernAttributeName:@(0)};
+    
+    self.sheetDestructiveButtonAttributes = @{NSForegroundColorAttributeName:kRGB(250, 58, 58),
+                                              NSFontAttributeName:[UIFont systemFontOfSize:20],
+                                              NSKernAttributeName:@(0)};
+    
     
     self.shouldManageTextFieldsReturnEventAutomatically = YES;
     self.dismissKeyboardAutomatically = YES;
@@ -308,7 +357,7 @@ static NSUInteger alertControllerCount = 0;
 - (void)updateSeparatorColor {
     UIColor *separatorColor = self.preferredStyle == MBAlertControllerStyleAlert ? self.alertSeparatorColor : self.sheetSeparatorColor;
     [self.alertActions enumerateObjectsUsingBlock:^(MBAlertAction * _Nonnull alertAction, NSUInteger idx, BOOL * _Nonnull stop) {
-        alertAction.button.MB_borderColor = separatorColor;
+//        alertAction.button.layer.borderColor = separatorColor.CGColor;
     }];
 }
 
@@ -352,21 +401,21 @@ static NSUInteger alertControllerCount = 0;
 
 - (void)setAlertTextFieldFont:(UIFont *)alertTextFieldFont {
     _alertTextFieldFont = alertTextFieldFont;
-    [self.textFields enumerateObjectsUsingBlock:^(MBTextField * _Nonnull textField, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self.textFields enumerateObjectsUsingBlock:^(UITextField * _Nonnull textField, NSUInteger idx, BOOL * _Nonnull stop) {
         textField.font = alertTextFieldFont;
     }];
 }
 
 - (void)setAlertTextFieldBorderColor:(UIColor *)alertTextFieldBorderColor {
     _alertTextFieldBorderColor = alertTextFieldBorderColor;
-    [self.textFields enumerateObjectsUsingBlock:^(MBTextField * _Nonnull textField, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self.textFields enumerateObjectsUsingBlock:^(UITextField * _Nonnull textField, NSUInteger idx, BOOL * _Nonnull stop) {
         textField.layer.borderColor = alertTextFieldBorderColor.CGColor;
     }];
 }
 
 - (void)setAlertTextFieldTextColor:(UIColor *)alertTextFieldTextColor {
     _alertTextFieldTextColor = alertTextFieldTextColor;
-    [self.textFields enumerateObjectsUsingBlock:^(MBTextField * _Nonnull textField, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self.textFields enumerateObjectsUsingBlock:^(UITextField * _Nonnull textField, NSUInteger idx, BOOL * _Nonnull stop) {
         textField.textColor = alertTextFieldTextColor;
     }];
 }
@@ -379,9 +428,9 @@ static NSUInteger alertControllerCount = 0;
     BOOL isValueChanged = _mainVisualEffectView != mainVisualEffectView;
     if (isValueChanged) {
         if ([_mainVisualEffectView isKindOfClass:[UIVisualEffectView class]]) {
-            [((UIVisualEffectView *)_mainVisualEffectView).contentView MB_removeAllSubviews];
+            [((UIVisualEffectView *)_mainVisualEffectView).contentView mb_removeAllSubviews];
         } else {
-            [_mainVisualEffectView MB_removeAllSubviews];
+            [_mainVisualEffectView mb_removeAllSubviews];
         }
         [_mainVisualEffectView removeFromSuperview];
         _mainVisualEffectView = nil;
@@ -401,9 +450,9 @@ static NSUInteger alertControllerCount = 0;
     BOOL isValueChanged = _cancelButtonVisualEffectView != cancelButtonVisualEffectView;
     if (isValueChanged) {
         if ([_cancelButtonVisualEffectView isKindOfClass:[UIVisualEffectView class]]) {
-            [((UIVisualEffectView *)_cancelButtonVisualEffectView).contentView MB_removeAllSubviews];
+            [((UIVisualEffectView *)_cancelButtonVisualEffectView).contentView mb_removeAllSubviews];
         } else {
-            [_cancelButtonVisualEffectView MB_removeAllSubviews];
+            [_cancelButtonVisualEffectView mb_removeAllSubviews];
         }
         [_cancelButtonVisualEffectView removeFromSuperview];
         _cancelButtonVisualEffectView = nil;
@@ -424,7 +473,7 @@ static NSUInteger alertControllerCount = 0;
     }
 }
 
-+ (nonnull instancetype)alertControllerWithTitle:(nullable NSString *)title message:(nullable NSString *)message preferredStyle:(MBAlertControllerStyle)preferredStyle {
++ (instancetype)alertControllerWithTitle:(nullable NSString *)title message:(nullable NSString *)message preferredStyle:(MBAlertControllerStyle)preferredStyle {
     MBAlertController *alertController = [[self alloc] initWithTitle:title message:message preferredStyle:preferredStyle];
     if (alertController) {
         return alertController;
@@ -432,12 +481,12 @@ static NSUInteger alertControllerCount = 0;
     return nil;
 }
 
-- (nonnull instancetype)initWithTitle:(nullable NSString *)title message:(nullable NSString *)message preferredStyle:(MBAlertControllerStyle)preferredStyle {
+- (instancetype)initWithTitle:(nullable NSString *)title message:(nullable NSString *)message preferredStyle:(MBAlertControllerStyle)preferredStyle {
     self = [self init];
     if (self) {
         
         self.preferredStyle = preferredStyle;
-    
+        
         self.shouldRespondMaskViewTouch = preferredStyle == MBAlertControllerStyleActionSheet;
         
         self.alertActions = [[NSMutableArray alloc] init];
@@ -448,7 +497,7 @@ static NSUInteger alertControllerCount = 0;
         
         self.maskView = [[UIControl alloc] init];
         self.maskView.alpha = 0;
-        self.maskView.backgroundColor = UIColorMask;
+        self.maskView.backgroundColor = kRGBA(0, 0, 0, 0.35);
         [self.maskView addTarget:self action:@selector(handleMaskViewEvent:) forControlEvents:UIControlEventTouchUpInside];
         
         self.scrollWrapView = [[UIView alloc] init];
@@ -465,7 +514,7 @@ static NSUInteger alertControllerCount = 0;
         
         self.extendLayer = [CALayer layer];
         self.extendLayer.hidden = !self.isExtendBottomLayout;
-        [self.extendLayer MB_removeDefaultAnimations];
+        [self.extendLayer fb_removeDefaultAnimations];
         
         self.title = title;
         self.message = message;
@@ -478,7 +527,7 @@ static NSUInteger alertControllerCount = 0;
 }
 
 - (MBAlertControllerStyle)preferredStyle {
-    return PreferredValueForDeviceIncludingiPad(1, 0, 0, 0, 0) > 0 ? MBAlertControllerStyleAlert : _preferredStyle;
+    return _preferredStyle;
 }
 
 - (void)viewDidLoad {
@@ -510,17 +559,19 @@ static NSUInteger alertControllerCount = 0;
         
         CGFloat contentPaddingTop = (hasTitle || hasMessage || hasTextField || hasCustomView) ? self.alertHeaderInsets.top : 0;
         CGFloat contentPaddingBottom = (hasTitle || hasMessage || hasTextField || hasCustomView) ? self.alertHeaderInsets.bottom : 0;
-        self.containerView.MB_width = fmin(self.alertContentMaximumWidth, CGRectGetWidth(self.view.bounds) - UIEdgeInsetsGetHorizontalValue(self.alertContentMargin));
-        self.scrollWrapView.MB_width = CGRectGetWidth(self.containerView.bounds);
+        self.containerView.width = fmin(self.alertContentMaximumWidth, CGRectGetWidth(self.view.bounds) - UIEdgeInsetsGetHorizontalValue(self.alertContentMargin));
+        self.scrollWrapView.width = CGRectGetWidth(self.containerView.bounds);
         self.headerScrollView.frame = CGRectMake(0, 0, CGRectGetWidth(self.scrollWrapView.bounds), 0);
         contentOriginY = contentPaddingTop;
         // 标题和副标题布局
         if (hasTitle) {
-            self.titleLabel.frame = CGRectFlatted(CGRectMake(contentPaddingLeft, contentOriginY, CGRectGetWidth(self.headerScrollView.bounds) - contentPaddingLeft - contentPaddingRight, MBViewSelfSizingHeight));
+            CGRect rect = CGRectMake(contentPaddingLeft, contentOriginY, CGRectGetWidth(self.headerScrollView.bounds) - contentPaddingLeft - contentPaddingRight, MBUIViewSelfSizingHeight);
+            self.titleLabel.frame = CGRectFlatted(rect);
             contentOriginY = CGRectGetMaxY(self.titleLabel.frame) + (hasMessage ? self.alertTitleMessageSpacing : contentPaddingBottom);
         }
         if (hasMessage) {
-            self.messageLabel.frame = CGRectFlatted(CGRectMake(contentPaddingLeft, contentOriginY, CGRectGetWidth(self.headerScrollView.bounds) - contentPaddingLeft - contentPaddingRight, MBViewSelfSizingHeight));
+            CGRect rect = CGRectMake(contentPaddingLeft, contentOriginY, CGRectGetWidth(self.headerScrollView.bounds) - contentPaddingLeft - contentPaddingRight, MBUIViewSelfSizingHeight);
+            self.messageLabel.frame = CGRectFlatted(rect);
             contentOriginY = CGRectGetMaxY(self.messageLabel.frame) + contentPaddingBottom;
         }
         // 输入框布局
@@ -552,8 +603,8 @@ static NSUInteger alertControllerCount = 0;
                 CGFloat halfWidth = CGRectGetWidth(self.buttonScrollView.bounds) / 2;
                 MBAlertAction *action1 = newOrderActions[0];
                 MBAlertAction *action2 = newOrderActions[1];
-                CGSize actionSize1 = [action1.button sizeThatFits:CGSizeMax];
-                CGSize actionSize2 = [action2.button sizeThatFits:CGSizeMax];
+                CGSize actionSize1 = [action1.button sizeThatFits:CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX)];
+                CGSize actionSize2 = [action2.button sizeThatFits:CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX)];
                 if (actionSize1.width < halfWidth && actionSize2.width < halfWidth) {
                     verticalLayout = NO;
                 }
@@ -562,16 +613,16 @@ static NSUInteger alertControllerCount = 0;
                 // 对齐系统，先 add 的在右边，后 add 的在左边
                 MBAlertAction *leftAction = newOrderActions[1];
                 leftAction.button.frame = CGRectMake(0, contentOriginY, CGRectGetWidth(self.buttonScrollView.bounds) / 2, self.alertButtonHeight);
-                leftAction.button.MB_borderPosition = MBViewBorderPositionTop|MBViewBorderPositionRight;
+//                leftAction.button.MB_borderPosition = MBViewBorderPositionTop|MBViewBorderPositionRight;
                 MBAlertAction *rightAction = newOrderActions[0];
                 rightAction.button.frame = CGRectMake(CGRectGetMaxX(leftAction.button.frame), contentOriginY, CGRectGetWidth(self.buttonScrollView.bounds) / 2, self.alertButtonHeight);
-                rightAction.button.MB_borderPosition = MBViewBorderPositionTop;
+//                rightAction.button.MB_borderPosition = MBViewBorderPositionTop;
                 contentOriginY = CGRectGetMaxY(leftAction.button.frame);
             } else {
                 for (int i = 0; i < newOrderActions.count; i++) {
                     MBAlertAction *action = newOrderActions[i];
                     action.button.frame = CGRectMake(0, contentOriginY, CGRectGetWidth(self.containerView.bounds), self.alertButtonHeight);
-                    action.button.MB_borderPosition = MBViewBorderPositionTop;
+//                    action.button.MB_borderPosition = MBViewBorderPositionTop;
                     contentOriginY = CGRectGetMaxY(action.button.frame);
                 }
             }
@@ -616,17 +667,17 @@ static NSUInteger alertControllerCount = 0;
         
         CGFloat contentPaddingTop = (hasTitle || hasMessage || hasTextField) ? self.sheetHeaderInsets.top : 0;
         CGFloat contentPaddingBottom = (hasTitle || hasMessage || hasTextField) ? self.sheetHeaderInsets.bottom : 0;
-        self.containerView.MB_width = fmin(self.sheetContentMaximumWidth, CGRectGetWidth(self.view.bounds) - UIEdgeInsetsGetHorizontalValue(self.sheetContentMargin));
-        self.scrollWrapView.MB_width = CGRectGetWidth(self.containerView.bounds);
+        self.containerView.width = fmin(self.sheetContentMaximumWidth, CGRectGetWidth(self.view.bounds) - UIEdgeInsetsGetHorizontalValue(self.sheetContentMargin));
+        self.scrollWrapView.width = CGRectGetWidth(self.containerView.bounds);
         self.headerScrollView.frame = CGRectMake(0, 0, CGRectGetWidth(self.containerView.bounds), 0);
         contentOriginY = contentPaddingTop;
         // 标题和副标题布局
         if (hasTitle) {
-            self.titleLabel.frame = CGRectFlatted(CGRectMake(contentPaddingLeft, contentOriginY, CGRectGetWidth(self.headerScrollView.bounds) - contentPaddingLeft - contentPaddingRight, MBViewSelfSizingHeight));
+            self.titleLabel.frame = CGRectFlatted(CGRectMake(contentPaddingLeft, contentOriginY, CGRectGetWidth(self.headerScrollView.bounds) - contentPaddingLeft - contentPaddingRight, MBUIViewSelfSizingHeight));
             contentOriginY = CGRectGetMaxY(self.titleLabel.frame) + (hasMessage ? self.sheetTitleMessageSpacing : contentPaddingBottom);
         }
         if (hasMessage) {
-            self.messageLabel.frame = CGRectFlatted(CGRectMake(contentPaddingLeft, contentOriginY, CGRectGetWidth(self.headerScrollView.bounds) - contentPaddingLeft - contentPaddingRight, MBViewSelfSizingHeight));
+            self.messageLabel.frame = CGRectFlatted(CGRectMake(contentPaddingLeft, contentOriginY, CGRectGetWidth(self.headerScrollView.bounds) - contentPaddingLeft - contentPaddingRight, MBUIViewSelfSizingHeight));
             contentOriginY = CGRectGetMaxY(self.messageLabel.frame) + contentPaddingBottom;
         }
         // 自定义view的布局 - 自动居中
@@ -651,7 +702,7 @@ static NSUInteger alertControllerCount = 0;
                     continue;
                 } else {
                     action.button.frame = CGRectMake(0, contentOriginY, CGRectGetWidth(self.buttonScrollView.bounds), self.sheetButtonHeight);
-                    action.button.MB_borderPosition = MBViewBorderPositionTop;
+//                    action.button.MB_borderPosition = MBViewBorderPositionTop;
                     contentOriginY = CGRectGetMaxY(action.button.frame);
                 }
             }
@@ -700,10 +751,10 @@ static NSUInteger alertControllerCount = 0;
             contentHeight -= self.sheetContentMargin.top;
         }
         
-        CGRect containerRect = CGRectMake((CGRectGetWidth(self.view.bounds) - CGRectGetWidth(self.containerView.bounds)) / 2, screenSpaceHeight - contentHeight - SafeAreaInsetsConstantForDeviceWithNotch.bottom, CGRectGetWidth(self.containerView.bounds), contentHeight + (self.isExtendBottomLayout ? SafeAreaInsetsConstantForDeviceWithNotch.bottom : 0));
+        CGRect containerRect = CGRectMake((CGRectGetWidth(self.view.bounds) - CGRectGetWidth(self.containerView.bounds)) / 2, screenSpaceHeight - contentHeight - kSafeAreaInsets.bottom, CGRectGetWidth(self.containerView.bounds), contentHeight + (self.isExtendBottomLayout ? kSafeAreaInsets.bottom : 0));
         self.containerView.frame = CGRectFlatted(CGRectApplyAffineTransform(containerRect, self.containerView.transform));
         
-        self.extendLayer.frame = CGRectFlatMake(0, CGRectGetHeight(self.containerView.bounds) - SafeAreaInsetsConstantForDeviceWithNotch.bottom - 1, CGRectGetWidth(self.containerView.bounds), SafeAreaInsetsConstantForDeviceWithNotch.bottom + 1);
+        self.extendLayer.frame = CGRectFlatMake(0, CGRectGetHeight(self.containerView.bounds) - kSafeAreaInsets.bottom - 1, CGRectGetWidth(self.containerView.bounds), kSafeAreaInsets.bottom + 1);
     }
 }
 
@@ -733,12 +784,12 @@ static NSUInteger alertControllerCount = 0;
 }
 
 - (void)initModalPresentationController {
-    _modalPresentationViewController = [[MBModalPresentationViewController alloc] init];
-    self.modalPresentationViewController.delegate = self;
-    self.modalPresentationViewController.maximumContentViewWidth = CGFLOAT_MAX;
-    self.modalPresentationViewController.contentViewMargins = UIEdgeInsetsZero;
-    self.modalPresentationViewController.dimmingView = nil;
-    self.modalPresentationViewController.contentViewController = self;
+    self.popupController = [[MBPopupController alloc] init];
+    self.popupController.delegate = self;
+    self.popupController.maximumContentViewWidth = CGFLOAT_MAX;
+    self.popupController.contentViewMargins = UIEdgeInsetsZero;
+    self.popupController.dimmingView = nil;
+    self.popupController.contentViewController = self;
     [self customModalPresentationControllerAnimation];
 }
 
@@ -746,17 +797,17 @@ static NSUInteger alertControllerCount = 0;
     
     __weak __typeof(self)weakSelf = self;
     
-    self.modalPresentationViewController.layoutBlock = ^(CGRect containerBounds, CGFloat keyboardHeight, CGRect contentViewDefaultFrame) {
+    self.popupController.layoutBlock = ^(CGRect containerBounds, CGFloat keyboardHeight, CGRect contentViewDefaultFrame) {
         weakSelf.view.frame = CGRectMake(0, 0, CGRectGetWidth(containerBounds), CGRectGetHeight(containerBounds));
         weakSelf.keyboardHeight = keyboardHeight;
         [weakSelf.view setNeedsLayout];
     };
     
-    self.modalPresentationViewController.showingAnimation = ^(UIView *dimmingView, CGRect containerBounds, CGFloat keyboardHeight, CGRect contentViewFrame, void(^completion)(BOOL finished)) {
+    self.popupController.showingAnimation = ^(UIView *dimmingView, CGRect containerBounds, CGFloat keyboardHeight, CGRect contentViewFrame, void(^completion)(BOOL finished)) {
         if (self.preferredStyle == MBAlertControllerStyleAlert) {
             weakSelf.containerView.alpha = 0;
             weakSelf.containerView.layer.transform = CATransform3DMakeScale(1.2, 1.2, 1.0);
-            [UIView animateWithDuration:0.25f delay:0 options:MBViewAnimationOptionsCurveOut animations:^{
+            [UIView animateWithDuration:0.25f delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
                 weakSelf.maskView.alpha = 1;
                 weakSelf.containerView.alpha = 1;
                 weakSelf.containerView.layer.transform = CATransform3DMakeScale(1.0, 1.0, 1.0);
@@ -767,7 +818,7 @@ static NSUInteger alertControllerCount = 0;
             }];
         } else if (self.preferredStyle == MBAlertControllerStyleActionSheet) {
             weakSelf.containerView.layer.transform = CATransform3DMakeTranslation(0, CGRectGetHeight(weakSelf.view.bounds) - CGRectGetMinY(weakSelf.containerView.frame), 0);
-            [UIView animateWithDuration:0.25f delay:0 options:MBViewAnimationOptionsCurveOut animations:^{
+            [UIView animateWithDuration:0.25f delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
                 weakSelf.maskView.alpha = 1;
                 weakSelf.containerView.layer.transform = CATransform3DIdentity;
             } completion:^(BOOL finished) {
@@ -778,9 +829,9 @@ static NSUInteger alertControllerCount = 0;
         }
     };
     
-    self.modalPresentationViewController.hidingAnimation = ^(UIView *dimmingView, CGRect containerBounds, CGFloat keyboardHeight, void(^completion)(BOOL finished)) {
+    self.popupController.hidingAnimation = ^(UIView *dimmingView, CGRect containerBounds, CGFloat keyboardHeight, void(^completion)(BOOL finished)) {
         if (self.preferredStyle == MBAlertControllerStyleAlert) {
-            [UIView animateWithDuration:0.25f delay:0 options:MBViewAnimationOptionsCurveOut animations:^{
+            [UIView animateWithDuration:0.25f delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
                 weakSelf.maskView.alpha = 0;
                 weakSelf.containerView.alpha = 0;
             } completion:^(BOOL finished) {
@@ -790,7 +841,7 @@ static NSUInteger alertControllerCount = 0;
                 }
             }];
         } else if (self.preferredStyle == MBAlertControllerStyleActionSheet) {
-            [UIView animateWithDuration:0.25f delay:0 options:MBViewAnimationOptionsCurveOut animations:^{
+            [UIView animateWithDuration:0.25f delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
                 weakSelf.maskView.alpha = 0;
                 weakSelf.containerView.layer.transform = CATransform3DMakeTranslation(0, CGRectGetHeight(weakSelf.view.bounds) - CGRectGetMinY(weakSelf.containerView.frame), 0);
             } completion:^(BOOL finished) {
@@ -837,7 +888,7 @@ static NSUInteger alertControllerCount = 0;
     
     __weak __typeof(self)weakSelf = self;
     
-    [self.modalPresentationViewController showWithAnimated:animated completion:^(BOOL finished) {
+    [self.popupController showWithAnimated:animated completion:^(BOOL finished) {
         weakSelf.maskView.alpha = 1;
         weakSelf.willShow = NO;
         weakSelf.showing = YES;
@@ -878,8 +929,8 @@ static NSUInteger alertControllerCount = 0;
     
     __weak __typeof(self)weakSelf = self;
     
-    [self.modalPresentationViewController hideWithAnimated:animated completion:^(BOOL finished) {
-        weakSelf.modalPresentationViewController = nil;
+    [self.popupController hideWithAnimated:animated completion:^(BOOL finished) {
+        weakSelf.popupController = nil;
         weakSelf.willShow = NO;
         weakSelf.showing = NO;
         weakSelf.maskView.alpha = 0;
@@ -940,14 +991,14 @@ static NSUInteger alertControllerCount = 0;
     MBTextField *textField = [[MBTextField alloc] init];
     textField.delegate = self;
     textField.borderStyle = UITextBorderStyleNone;
-    textField.backgroundColor = UIColorWhite;
+    textField.backgroundColor = [UIColor whiteColor];
     textField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
     textField.font = self.alertTextFieldFont;
     textField.textColor = self.alertTextFieldTextColor;
     textField.autocapitalizationType = UITextAutocapitalizationTypeNone;
     textField.clearButtonMode = UITextFieldViewModeWhileEditing;
     textField.layer.borderColor = self.alertTextFieldBorderColor.CGColor;
-    textField.layer.borderWidth = PixelOne;
+    textField.layer.borderWidth = kOnePixelLine;
     [self.headerScrollView addSubview:textField];
     [self.alertTextFields addObject:textField];
     if (configurationHandler) {
@@ -1031,7 +1082,7 @@ static NSUInteger alertControllerCount = 0;
         alertAction.button.clipsToBounds = alertAction.style == MBAlertActionStyleCancel;
         alertAction.button.backgroundColor = backgroundColor;
         alertAction.button.highlightedBackgroundColor = highlightBackgroundColor;
-        alertAction.button.MB_borderColor = borderColor;
+//        alertAction.button.MB_borderColor = borderColor;
         
         NSAttributedString *attributeString = nil;
         if (alertAction.style == MBAlertActionStyleCancel) {
@@ -1075,12 +1126,14 @@ static NSUInteger alertControllerCount = 0;
         if ([alertAction.button imageForState:UIControlStateNormal]) {
             NSRange range = NSMakeRange(0, attributeString.length);
             UIColor *disabledColor = [attributeString attribute:NSForegroundColorAttributeName atIndex:0 effectiveRange:&range];
-            [alertAction.button setImage:[[alertAction.button imageForState:UIControlStateNormal] MB_imageWithTintColor:disabledColor] forState:UIControlStateDisabled];
+            UIImage *image = [alertAction.button imageForState:UIControlStateNormal];
+            image = [IBImage blendImage:image tintColor:disabledColor];
+            [alertAction.button setImage:image forState:UIControlStateDisabled];
         }
     }
 }
 
-- (NSArray<MBTextField *> *)textFields {
+- (NSArray<UITextField *> *)textFields {
     return [self.alertTextFields copy];
 }
 
@@ -1102,7 +1155,7 @@ static NSUInteger alertControllerCount = 0;
 
 #pragma mark - <MBTextFieldDelegate>
 
-- (BOOL)textFieldShouldReturn:(MBTextField *)textField {
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
     if (!self.shouldManageTextFieldsReturnEventAutomatically) {
         return NO;
     }

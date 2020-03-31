@@ -17,7 +17,6 @@
 #import "MBCheckbox.h"
 #import "IBShareManager.h"
 #import "IBAuthManager.h"
-#import "MBActionSheet.h"
 #import "MBProgressHUD+Ext.h"
 #import "NSDictionary+Ext.h"
 #import "NSArray+Ext.h"
@@ -35,6 +34,8 @@
 #import "Masonry.h"
 #import "MBImageView.h"
 #import "IBHTTPManager.h"
+#import "MBAlertController.h"
+#import "MBMultipleDelegate.h"
 
 @interface ViewController ()<UITableViewDataSource, UITableViewDelegate>
 
@@ -51,7 +52,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     self.navigationItem.title = @"主界面";
-
     self.config = [[IBNaviConfig alloc] initWithBarOptions:IBNaviBarOptionShow | IBNaviBarOptionColor tintColor:[UIColor orangeColor] backgroundColor:[UIColor redColor] backgroundImage:nil backgroundImgID:nil];
     
 }
@@ -70,14 +70,19 @@
 //    IBMineController *mine = [[IBMineController alloc] init];
 //    mine.config = [[IBNaviConfig alloc] initWithBarOptions:IBNaviBarOptionShow|IBNaviBarOptionColor tintColor:[UIColor orangeColor] backgroundColor:[UIColor purpleColor] backgroundImage:nil backgroundImgID:nil];
 //    [self.navigationController pushViewController:mine animated:YES];
+    INFINITY;
+    MBAlertAction *action1 = [MBAlertAction actionWithTitle:@"取消" style:MBAlertActionStyleCancel handler:NULL];
+    MBAlertAction *action2 = [MBAlertAction actionWithTitle:@"删除" style:MBAlertActionStyleDestructive handler:NULL];
     
-    MBLogD(@"#bowen# 123");
-    test();
-}
+    MBAlertController *alertController = [MBAlertController alertControllerWithTitle:@"确定删除？" message:@"删除后将无法恢复，请慎重考虑" preferredStyle:MBAlertControllerStyleAlert];
+    [alertController addAction:action1];
+    [alertController addAction:action2];
+    [alertController addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+        
+    }];
+    [alertController showWithAnimated:YES];
 
-void test()
-{
-    MBLogD(@"#bowen# 456");
+    
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {

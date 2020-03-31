@@ -9,6 +9,8 @@
 #ifndef UIMacros_h
 #define UIMacros_h
 
+#import <UIKit/UIKit.h>
+
 #define kIphoneX ({ \
     BOOL isX = NO; \
     if (@available(iOS 11.0, *)) { \
@@ -16,6 +18,14 @@
     } \
     isX; \
 })
+
+#define kSafeAreaInsets ({ \
+    UIEdgeInsets insets = UIEdgeInsetsZero; \
+    if (@available(iOS 11.0, *)) { \
+        insets = [[UIApplication sharedApplication] delegate].window.safeAreaInsets; \
+    } \
+    insets; \
+}) 
 
 //获取屏幕宽高
 #define kScreenWidth     [[UIScreen mainScreen] bounds].size.width
@@ -72,19 +82,6 @@
 
 // 除去状态栏和标签栏，屏幕高度
 #define kViewHeight            (kSafeAreaHeight - kNavBarHeight - kBottomBarHeight)
-
-/**
-当某个 UIView 在 setFrame: 时高度传这个值，则会自动将 sizeThatFits 算出的高度设置为当前 view 的高度，相当于以下这段代码的简化：
-@code
-// 以前这么写
-CGSize size = [view sizeThatFits:CGSizeMake(width, CGFLOAT_MAX)];
-view.frame = CGRectMake(x, y, width, size.height);
-
-// 现在可以这么写：
-view.frame = CGRectMake(x, y, width, QMUIViewSelfSizingHeight);
-@endcode
-*/
-#define MBUIViewSelfSizingHeight INFINITY
 
 #pragma mark - CGFloat
 
