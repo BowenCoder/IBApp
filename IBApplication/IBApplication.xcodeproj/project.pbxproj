@@ -138,6 +138,7 @@
 		4A22DE25228AF3B500D4CFA6 /* DDMultiFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A22DE16228AF3B500D4CFA6 /* DDMultiFormatter.m */; };
 		4A2E740F2431F34000DBA2AB /* MBKeyboardManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A2E740E2431F34000DBA2AB /* MBKeyboardManager.m */; };
 		4A2E74132431FD8500DBA2AB /* UIResponder+Ext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A2E74122431FD8500DBA2AB /* UIResponder+Ext.m */; };
+		4A2E74172432E44C00DBA2AB /* MBPopupController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A2E74162432E44C00DBA2AB /* MBPopupController.m */; };
 		4A321DC92431958600283EC1 /* MBMultipleDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A321DC82431958600283EC1 /* MBMultipleDelegate.m */; };
 		4A321DCD243198ED00283EC1 /* NSPointerArray+Ext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A321DCC243198ED00283EC1 /* NSPointerArray+Ext.m */; };
 		4A321DD124319A2500283EC1 /* NSMethodSignature+Ext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A321DD024319A2500283EC1 /* NSMethodSignature+Ext.m */; };
@@ -608,6 +609,8 @@
 		4A2E740E2431F34000DBA2AB /* MBKeyboardManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBKeyboardManager.m; sourceTree = "<group>"; };
 		4A2E74112431FD8500DBA2AB /* UIResponder+Ext.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIResponder+Ext.h"; sourceTree = "<group>"; };
 		4A2E74122431FD8500DBA2AB /* UIResponder+Ext.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIResponder+Ext.m"; sourceTree = "<group>"; };
+		4A2E74152432E44C00DBA2AB /* MBPopupController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBPopupController.h; sourceTree = "<group>"; };
+		4A2E74162432E44C00DBA2AB /* MBPopupController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBPopupController.m; sourceTree = "<group>"; };
 		4A321DC72431958600283EC1 /* MBMultipleDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBMultipleDelegate.h; sourceTree = "<group>"; };
 		4A321DC82431958600283EC1 /* MBMultipleDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBMultipleDelegate.m; sourceTree = "<group>"; };
 		4A321DCB243198ED00283EC1 /* NSPointerArray+Ext.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSPointerArray+Ext.h"; sourceTree = "<group>"; };
@@ -1693,6 +1696,15 @@
 			path = UIResponder;
 			sourceTree = "<group>";
 		};
+		4A2E74142432E40700DBA2AB /* MBPopupController */ = {
+			isa = PBXGroup;
+			children = (
+				4A2E74152432E44C00DBA2AB /* MBPopupController.h */,
+				4A2E74162432E44C00DBA2AB /* MBPopupController.m */,
+			);
+			path = MBPopupController;
+			sourceTree = "<group>";
+		};
 		4A321DC62431954000283EC1 /* MBMultipleDelegate */ = {
 			isa = PBXGroup;
 			children = (
@@ -2519,7 +2531,6 @@
 		4ACC55C620DB5F3E001352AE /* Public(公共) */ = {
 			isa = PBXGroup;
 			children = (
-				4A3222C82431E2B900283EC1 /* MBVisualEffectView */,
 				4AEEA7A6213D0D3400CFAA3D /* MBActionSheet */,
 				4AD688FA23014A6600D3A248 /* MBAlignmentLabel */,
 				4A63CB7923CDC08600684FC5 /* MBAutoScrollLabel */,
@@ -2535,9 +2546,11 @@
 				F333517822A2C404005B968E /* MBLibraryCamera */,
 				4AC7AE2523C32B4C00446C03 /* MBMessageBar */,
 				4A1FB0A420E8E5290056A026 /* MBPopupArrowView */,
+				4A2E74142432E40700DBA2AB /* MBPopupController */,
 				4AED555D23CD925100B38F59 /* MBPopupView */,
 				4A1FB0A520E8EA320056A026 /* MBProgressHUD */,
 				4AA859FF23B3644B003D610F /* MBTextView */,
+				4A3222C82431E2B900283EC1 /* MBVisualEffectView */,
 			);
 			path = "Public(公共)";
 			sourceTree = "<group>";
@@ -3565,6 +3578,7 @@
 				4A89D630228B17490072FB23 /* aeskey.m in Sources */,
 				4AC29F7D210F04A900F218FE /* UIScrollView+MJExtension.m in Sources */,
 				4A63CB7C23CDC0B700684FC5 /* MBAutoScrollLabel.m in Sources */,
+				4A2E74172432E44C00DBA2AB /* MBPopupController.m in Sources */,
 				4A22DE1E228AF3B500D4CFA6 /* DDAbstractDatabaseLogger.m in Sources */,
 				4AC29F91210F18C700F218FE /* IBTableCell.m in Sources */,
 				4A6DFF3523B5EF450002D3BB /* MBAutoHeightTextView.m in Sources */,
