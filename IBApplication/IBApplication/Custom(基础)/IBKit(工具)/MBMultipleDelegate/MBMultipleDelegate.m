@@ -13,8 +13,12 @@
 #import "MBInline.h"
 #import "MBPropertyDescriptor.h"
 #import <objc/runtime.h>
+#import "RSSwizzle.h"
 
 @interface NSObject ()
+
+/// 用于标志“xxx.delegate = xxx”的情况
+@property (nonatomic, assign) BOOL fb_delegateSelf;
 
 @property (nonatomic, strong) NSMutableDictionary<NSString *, MBMultipleDelegate *> *fb_multipleDelegate;
 
@@ -76,15 +80,7 @@ static NSMutableSet<NSString *> *fb_methodsReplacedClasses;
     if (!self.fb_multipleDelegateEnabled) {
         return;
     }
-    
-    Class targetClass = [self class];
-    SEL originDelegateSetter = setterWithGetter(getter);
-    SEL newDelegateSetter = [self newSetterWithGetter:getter];
-    Method originMethod = class_getInstanceMethod(targetClass, originDelegateSetter);
-    if (!originMethod) {
-        return;
-    }
-    
+        
     // 为这个 selector 创建一个 MBMultipleDelegate 容器
     NSString *delegateGetterKey = NSStringFromSelector(getter);
     if (!self.fb_multipleDelegate[delegateGetterKey]) {
@@ -108,50 +104,48 @@ static NSMutableSet<NSString *> *fb_methodsReplacedClasses;
         self.fb_methodsReplacedClasses = [NSMutableSet set];
     }
     
+    Class targetClass = [self class];
+    SEL originDelegateSetter = setterWithGetter(getter);
+
     NSString *classAndMethodIdentifier = [NSString stringWithFormat:@"%@_%@", NSStringFromClass(targetClass), delegateGetterKey];
     
     if (![fb_methodsReplacedClasses containsObject:classAndMethodIdentifier]) {
+        
         [fb_methodsReplacedClasses addObject:classAndMethodIdentifier];
         
-        IMP originIMP = method_getImplementation(originMethod);
-        void (*originSelectorIMP)(id, SEL, id);
-        originSelectorIMP = (void (*)(id, SEL, id))originIMP;
-        
-        BOOL isAddedMethod = class_addMethod(targetClass,
-                                             newDelegateSetter,
-                                             imp_implementationWithBlock(^(NSObject *target, id delegate)
-        {
-            // 保护的原因：要自己加一下 class 的判断保护，保证只有 self.class 及 self.subclass 才执行。self.superclass不执行
-            if (!target.fb_multipleDelegateEnabled || target.class != targetClass) {
-                originSelectorIMP(target, originDelegateSetter, delegate);
-                return;
-            }
-            
-            MBMultipleDelegate *delegates = target.fb_multipleDelegate[delegateGetterKey];
-            
-            if (!delegate) {
-                // 对应 setDelegate:nil，表示清理所有的 delegate
-                [delegates removeAllDelegates];
-                target.fb_delegateSelf = NO;
-                return;
-            }
-            
-            if (delegate != delegates) {// 过滤掉容器自身，避免把 delegates 传进去 delegates 里，导致死循环
-                [delegates addDelegate:delegate];
-            }
-            
-            // 将类似 textView.delegate = textView 的情况标志起来，避免产生循环调用
-            target.fb_delegateSelf = [delegates.delegates fb_containsPointer:(__bridge void * _Nullable)(target)];
-            
-            originSelectorIMP(target, originDelegateSetter, nil);// 先置为 nil 再设置 delegates，从而避免部分情况多代理不相应
-            originSelectorIMP(target, originDelegateSetter, delegates);// 不管外面将什么 object 传给 setDelegate:，最终实际上传进去的都是 MBMultipleDelegate 容器
-            
-        }), method_getTypeEncoding(originMethod));
-        
-        if (isAddedMethod) {
-            Method newMethod = class_getInstanceMethod(targetClass, newDelegateSetter);
-            method_exchangeImplementations(originMethod, newMethod);
-        }
+        [RSSwizzle swizzleInstanceMethod:originDelegateSetter inClass:targetClass newImpFactory:^id(RSSwizzleInfo *swizzleInfo) {
+            return ^(NSObject *target, id delegate){
+                
+                void (*originSelectorIMP)(id, SEL, id);
+                originSelectorIMP = (__typeof(originSelectorIMP))[swizzleInfo getOriginalImplementation];
+                
+                // 保护的原因：要自己加一下 class 的判断保护，保证只有 self.class 及 self.subclass 才执行。self.superclass不执行
+                if (!target.fb_multipleDelegateEnabled || target.class != targetClass) {
+                    originSelectorIMP(target, originDelegateSetter, delegate);
+                    return;
+                }
+                
+                MBMultipleDelegate *delegates = target.fb_multipleDelegate[delegateGetterKey];
+                
+                if (!delegate) {
+                    // 对应 setDelegate:nil，表示清理所有的 delegate
+                    [delegates removeAllDelegates];
+                    target.fb_delegateSelf = NO;
+                    return;
+                }
+                
+                if (delegate != delegates) {// 过滤掉容器自身，避免把 delegates 传进去 delegates 里，导致死循环
+                    [delegates addDelegate:delegate];
+                }
+                
+                // 将类似 textView.delegate = textView 的情况标志起来，避免产生循环调用
+                target.fb_delegateSelf = [delegates.delegates fb_containsPointer:(__bridge void * _Nullable)(target)];
+                
+                originSelectorIMP(target, originDelegateSetter, nil);// 先置为 nil 再设置 delegates，从而避免部分情况多代理不相应
+                originSelectorIMP(target, originDelegateSetter, delegates);// 不管外面将什么 object 传给 setDelegate:，最终实际上传进去的都是 MBMultipleDelegate 容器
+
+            };
+        } mode:RSSwizzleModeAlways key:"app.multiple.delegate"];
     }
     
     // 如果原来已经有 delegate，则将其加到新建的容器里

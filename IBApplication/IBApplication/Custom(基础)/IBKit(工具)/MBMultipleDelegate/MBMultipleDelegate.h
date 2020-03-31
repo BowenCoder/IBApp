@@ -25,9 +25,6 @@ NS_ASSUME_NONNULL_BEGIN
 */
 @interface NSObject (delegates)
 
-/// 用于标志“xxx.delegate = xxx”的情况
-@property (nonatomic, assign) BOOL fb_delegateSelf;
-
 /// 当你需要当前的 class 支持多个 delegate，请将此属性置为 YES。默认为 NO。
 @property(nonatomic, assign) BOOL fb_multipleDelegateEnabled;
 
