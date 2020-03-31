@@ -54,16 +54,6 @@ extern const CGFloat MBUIViewSelfSizingHeight;
  */
 - (void)mb_setBackgroundImage:(UIImage *)image pattern:(BOOL)pattern;
 
-/**
- 画线
-
- @param points 起始点
- @param pointe 结束点
- @param color 颜色
- @return layer
- */
-+ (CAShapeLayer *)mb_drawLine:(CGPoint)points to:(CGPoint)pointe color:(UIColor *)color;
-
 @end
 
 @interface UIView (Frame)

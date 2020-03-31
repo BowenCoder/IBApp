@@ -106,21 +106,6 @@ const CGFloat MBUIViewSelfSizingHeight = INFINITY;
     }
 }
 
-//画线
-+ (CAShapeLayer *)mb_drawLine:(CGPoint)points to:(CGPoint)pointe color:(UIColor *)color {
-    
-    CAShapeLayer *shapeLayer = [CAShapeLayer layer];
-    UIBezierPath *path = [UIBezierPath bezierPath];
-    [path moveToPoint:points];
-    [path addLineToPoint:pointe];
-    [path closePath];
-    shapeLayer.path = path.CGPath;
-    shapeLayer.strokeColor = [color CGColor];
-    shapeLayer.fillColor = [[UIColor whiteColor] CGColor];
-    shapeLayer.lineWidth = 1;
-    return shapeLayer;
-}
-
 @end
 
 

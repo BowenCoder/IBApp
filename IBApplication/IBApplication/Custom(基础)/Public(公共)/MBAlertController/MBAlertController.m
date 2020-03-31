@@ -16,33 +16,6 @@
 
 static NSUInteger alertControllerCount = 0;
 
-@interface MBAlertButtonWrapView : UIView
-
-@property(nonatomic, strong) MBButton *button;
-
-@end
-
-@implementation MBAlertButtonWrapView
-
-- (instancetype)init {
-    self = [super init];
-    if (self) {
-        self.button = [[MBButton alloc] init];
-        self.button.adjustsButtonWhenDisabled = NO;
-        self.button.adjustsButtonWhenHighlighted = NO;
-        [self addSubview:self.button];
-    }
-    return self;
-}
-
-- (void)layoutSubviews {
-    [super layoutSubviews];
-    self.button.frame = self.bounds;
-}
-
-@end
-
-
 #pragma mark - MBAlertAction
 
 @protocol MBAlertActionDelegate <NSObject>

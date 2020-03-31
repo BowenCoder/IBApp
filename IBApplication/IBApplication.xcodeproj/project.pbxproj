@@ -137,7 +137,6 @@
 		4A22DE24228AF3B500D4CFA6 /* DDFileLogger+Buffering.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A22DE13228AF3B500D4CFA6 /* DDFileLogger+Buffering.m */; };
 		4A22DE25228AF3B500D4CFA6 /* DDMultiFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A22DE16228AF3B500D4CFA6 /* DDMultiFormatter.m */; };
 		4A2E740F2431F34000DBA2AB /* MBKeyboardManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A2E740E2431F34000DBA2AB /* MBKeyboardManager.m */; };
-		4A2E74132431FD8500DBA2AB /* UIResponder+Ext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A2E74122431FD8500DBA2AB /* UIResponder+Ext.m */; };
 		4A2E74172432E44C00DBA2AB /* MBPopupController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A2E74162432E44C00DBA2AB /* MBPopupController.m */; };
 		4A2E741B2433102E00DBA2AB /* MBAlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A2E741A2433102E00DBA2AB /* MBAlertController.m */; };
 		4A2E75992433469F00DBA2AB /* MBTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A2E75982433469F00DBA2AB /* MBTextField.m */; };
@@ -606,8 +605,6 @@
 		4A22DE18228AF3B500D4CFA6 /* DDDispatchQueueLogFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDDispatchQueueLogFormatter.h; sourceTree = "<group>"; };
 		4A2E740D2431F34000DBA2AB /* MBKeyboardManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBKeyboardManager.h; sourceTree = "<group>"; };
 		4A2E740E2431F34000DBA2AB /* MBKeyboardManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBKeyboardManager.m; sourceTree = "<group>"; };
-		4A2E74112431FD8500DBA2AB /* UIResponder+Ext.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIResponder+Ext.h"; sourceTree = "<group>"; };
-		4A2E74122431FD8500DBA2AB /* UIResponder+Ext.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIResponder+Ext.m"; sourceTree = "<group>"; };
 		4A2E74152432E44C00DBA2AB /* MBPopupController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBPopupController.h; sourceTree = "<group>"; };
 		4A2E74162432E44C00DBA2AB /* MBPopupController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBPopupController.m; sourceTree = "<group>"; };
 		4A2E74192433102E00DBA2AB /* MBAlertController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBAlertController.h; sourceTree = "<group>"; };
@@ -1684,15 +1681,6 @@
 			path = MBKeybordManager;
 			sourceTree = "<group>";
 		};
-		4A2E74102431FD3C00DBA2AB /* UIResponder */ = {
-			isa = PBXGroup;
-			children = (
-				4A2E74112431FD8500DBA2AB /* UIResponder+Ext.h */,
-				4A2E74122431FD8500DBA2AB /* UIResponder+Ext.m */,
-			);
-			path = UIResponder;
-			sourceTree = "<group>";
-		};
 		4A2E74142432E40700DBA2AB /* MBPopupController */ = {
 			isa = PBXGroup;
 			children = (
@@ -2731,7 +2719,6 @@
 		4ACC562E20DD6AE0001352AE /* UIKit */ = {
 			isa = PBXGroup;
 			children = (
-				4A2E74102431FD3C00DBA2AB /* UIResponder */,
 				4A3222CC2431E49D00283EC1 /* CALayer */,
 				4ACC563620DD6C3C001352AE /* UIBarButtonItem */,
 				4ACC564820DD7589001352AE /* UIButton */,
@@ -3449,7 +3436,6 @@
 				4AD770A52297CD1300FEB76B /* YYTextView.m in Sources */,
 				4A1FB09720E811FA0056A026 /* UIView+draggable.m in Sources */,
 				4A1FB13520E921E90056A026 /* MWGridViewController.m in Sources */,
-				4A2E74132431FD8500DBA2AB /* UIResponder+Ext.m in Sources */,
 				4A89D5F8228B09440072FB23 /* NSThread+SequenceNumber.m in Sources */,
 				4A1FB0BC20E8EE6B0056A026 /* AFHTTPSessionManager.m in Sources */,
 				4A44437820F9C506001B2350 /* IBNaviConfig.m in Sources */,
