@@ -16,9 +16,6 @@
 /** 正向传值使用 */
 @property (nonatomic, copy) NSDictionary *params;
 
-/** 开启键盘frame改变通知 */
-@property (nonatomic, assign) BOOL openKeyListener;
-
 /**
  UI初始化之前运行
  */
