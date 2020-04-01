@@ -1097,21 +1097,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		4A0254CD2328AA94004D4B25 /* MBServiceManager */ = {
-			isa = PBXGroup;
-			children = (
-				4A0254CE2328AAD2004D4B25 /* MBServiceManager.h */,
-				4A0254CF2328AAD2004D4B25 /* MBServiceManager.m */,
-			);
-			path = MBServiceManager;
-			sourceTree = "<group>";
-		};
 		4A03B8D2229ACCA600173765 /* MBModuleCenter */ = {
 			isa = PBXGroup;
 			children = (
 				4A03B8D3229ACD0B00173765 /* MBModuleProtocol.h */,
 				4A03B8D4229ADCCB00173765 /* MBModuleCenter.h */,
 				4A03B8D5229ADCCB00173765 /* MBModuleCenter.m */,
+				4A0254CE2328AAD2004D4B25 /* MBServiceManager.h */,
+				4A0254CF2328AAD2004D4B25 /* MBServiceManager.m */,
 			);
 			path = MBModuleCenter;
 			sourceTree = "<group>";
@@ -2827,7 +2820,6 @@
 				4AE8D63823025CCB00A73011 /* MBPluginManager */,
 				4A321DD22431CBE400283EC1 /* MBPropertyDescriptor */,
 				4A84CBB4229B914B00CA4794 /* MBRouter */,
-				4A0254CD2328AA94004D4B25 /* MBServiceManager */,
 				4AD688F22301155C00D3A248 /* MBStorage */,
 				F383B4C42316E01D003E0D4D /* MBTimer */,
 				4AD688F62301164900D3A248 /* MBWeakProxy */,
