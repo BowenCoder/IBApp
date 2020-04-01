@@ -140,6 +140,9 @@
 		4A2E74172432E44C00DBA2AB /* MBPopupController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A2E74162432E44C00DBA2AB /* MBPopupController.m */; };
 		4A2E741B2433102E00DBA2AB /* MBAlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A2E741A2433102E00DBA2AB /* MBAlertController.m */; };
 		4A2E75992433469F00DBA2AB /* MBTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A2E75982433469F00DBA2AB /* MBTextField.m */; };
+		4A2E75A02434871900DBA2AB /* MBAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A2E759F2434871900DBA2AB /* MBAsset.m */; };
+		4A2E75A32434874300DBA2AB /* MBAssetGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A2E75A22434874300DBA2AB /* MBAssetGroup.m */; };
+		4A2E75A62434875C00DBA2AB /* MBAssetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A2E75A52434875C00DBA2AB /* MBAssetManager.m */; };
 		4A321DC92431958600283EC1 /* MBMultipleDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A321DC82431958600283EC1 /* MBMultipleDelegate.m */; };
 		4A321DCD243198ED00283EC1 /* NSPointerArray+Ext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A321DCC243198ED00283EC1 /* NSPointerArray+Ext.m */; };
 		4A321DD124319A2500283EC1 /* NSMethodSignature+Ext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A321DD024319A2500283EC1 /* NSMethodSignature+Ext.m */; };
@@ -611,6 +614,12 @@
 		4A2E741A2433102E00DBA2AB /* MBAlertController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBAlertController.m; sourceTree = "<group>"; };
 		4A2E75972433469F00DBA2AB /* MBTextField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBTextField.h; sourceTree = "<group>"; };
 		4A2E75982433469F00DBA2AB /* MBTextField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBTextField.m; sourceTree = "<group>"; };
+		4A2E759E2434871900DBA2AB /* MBAsset.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBAsset.h; sourceTree = "<group>"; };
+		4A2E759F2434871900DBA2AB /* MBAsset.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBAsset.m; sourceTree = "<group>"; };
+		4A2E75A12434874300DBA2AB /* MBAssetGroup.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBAssetGroup.h; sourceTree = "<group>"; };
+		4A2E75A22434874300DBA2AB /* MBAssetGroup.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBAssetGroup.m; sourceTree = "<group>"; };
+		4A2E75A42434875C00DBA2AB /* MBAssetManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBAssetManager.h; sourceTree = "<group>"; };
+		4A2E75A52434875C00DBA2AB /* MBAssetManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBAssetManager.m; sourceTree = "<group>"; };
 		4A321DC72431958600283EC1 /* MBMultipleDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBMultipleDelegate.h; sourceTree = "<group>"; };
 		4A321DC82431958600283EC1 /* MBMultipleDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBMultipleDelegate.m; sourceTree = "<group>"; };
 		4A321DCB243198ED00283EC1 /* NSPointerArray+Ext.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSPointerArray+Ext.h"; sourceTree = "<group>"; };
@@ -1699,6 +1708,19 @@
 				4A2E75982433469F00DBA2AB /* MBTextField.m */,
 			);
 			path = MBTextField;
+			sourceTree = "<group>";
+		};
+		4A2E759D2434860900DBA2AB /* MBAssetLibrary */ = {
+			isa = PBXGroup;
+			children = (
+				4A2E759E2434871900DBA2AB /* MBAsset.h */,
+				4A2E759F2434871900DBA2AB /* MBAsset.m */,
+				4A2E75A12434874300DBA2AB /* MBAssetGroup.h */,
+				4A2E75A22434874300DBA2AB /* MBAssetGroup.m */,
+				4A2E75A42434875C00DBA2AB /* MBAssetManager.h */,
+				4A2E75A52434875C00DBA2AB /* MBAssetManager.m */,
+			);
+			path = MBAssetLibrary;
 			sourceTree = "<group>";
 		};
 		4A321DC62431954000283EC1 /* MBMultipleDelegate */ = {
@@ -2811,6 +2833,7 @@
 				4A6F198D20E3A84600EAF1A7 /* IBSocket */,
 				4A6F198920E3A5DD00EAF1A7 /* IBString */,
 				4ACC569420DEC59D001352AE /* IBTouchID */,
+				4A2E759D2434860900DBA2AB /* MBAssetLibrary */,
 				4AC3074424238A3D004911D6 /* MBAttributeString */,
 				4A0D3DE723D1C61600B5F9DF /* MBAutoTracker */,
 				4A2E740C2431F31100DBA2AB /* MBKeybordManager */,
@@ -3369,6 +3392,7 @@
 				4A89D62C228B17490072FB23 /* zip.m in Sources */,
 				4A1FB21020E92D5E0056A026 /* UIView+WebCacheOperation.m in Sources */,
 				4AC81CDC20F37D0C00A1F246 /* IBView.m in Sources */,
+				4A2E75A02434871900DBA2AB /* MBAsset.m in Sources */,
 				4A84CBB7229B917100CA4794 /* MBMediator.m in Sources */,
 				4AC29F9921106C0800F218FE /* IBRefreshHeader.m in Sources */,
 				4A89D62F228B17490072FB23 /* SSZipArchive.m in Sources */,
@@ -3470,6 +3494,7 @@
 				4AA2863222C9230700C34336 /* MBGestureView.m in Sources */,
 				4AC29F86210F04A900F218FE /* MJRefreshNormalHeader.m in Sources */,
 				4A44437E21006150001B2350 /* IBTabBarBadge.m in Sources */,
+				4A2E75A62434875C00DBA2AB /* MBAssetManager.m in Sources */,
 				4AE95541239FC66E00A5C172 /* IBHTTPManager.m in Sources */,
 				4AE9665F23A248A600A5C172 /* IBNetApiKeyInner.m in Sources */,
 				4A1FB13420E921E90056A026 /* MWTapDetectingView.m in Sources */,
@@ -3586,6 +3611,7 @@
 				4A22DE25228AF3B500D4CFA6 /* DDMultiFormatter.m in Sources */,
 				4ACC563C20DD6C62001352AE /* UIBarButtonItem+Ext.m in Sources */,
 				F3FCB42D22A2F9F600C4870B /* RSKImageCropViewController.m in Sources */,
+				4A2E75A32434874300DBA2AB /* MBAssetGroup.m in Sources */,
 				4A1FB22520E92D5E0056A026 /* SDWebImagePrefetcher.m in Sources */,
 				4AD770A72297CD1300FEB76B /* YYTextContainerView.m in Sources */,
 				4AC81CCC20F3200400A1F246 /* IBTabBarController.m in Sources */,
