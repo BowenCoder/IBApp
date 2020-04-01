@@ -8,6 +8,7 @@
 
 #import "UIView+Effect.h"
 #import <objc/runtime.h>
+#import "CALayer+Ext.h"
 
 @implementation UIView (Effect)
 
@@ -85,24 +86,18 @@
 
 @end
 
-static NSString *motionEffectFlag = @"motionEffectFlag";
-
 @implementation UIView (MotionEffect)
 
 - (void)setEffectGroup:(UIMotionEffectGroup *)effectGroup {
-    
     // 清除掉关联
-    objc_setAssociatedObject(self, &motionEffectFlag,
-                             nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    
+    objc_setAssociatedObject(self, @selector(effectGroup), nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     // 建立关联
-    objc_setAssociatedObject(self, &motionEffectFlag,
-                             effectGroup, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    objc_setAssociatedObject(self, @selector(effectGroup), effectGroup, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 - (UIMotionEffectGroup *)effectGroup {
     // 返回关联
-    return objc_getAssociatedObject(self, &motionEffectFlag);
+    return objc_getAssociatedObject(self, @selector(effectGroup));
 }
 
 - (void)mb_moveAxis:(CGFloat)dx dy:(CGFloat)dy {
@@ -132,6 +127,86 @@ static NSString *motionEffectFlag = @"motionEffectFlag";
 - (void)mb_cancelMotionEffect {
     
     [self removeMotionEffect:self.effectGroup];
+}
+
+@end
+
+@implementation UIView (Border)
+
+- (CAShapeLayer *)mb_borderLayer
+{
+    CAShapeLayer *layer = objc_getAssociatedObject(self, @selector(mb_borderLayer));
+    if (!layer) {
+        layer = [CAShapeLayer layer];
+        layer.frame = self.bounds;
+        layer.fillColor = [UIColor clearColor].CGColor;
+        [layer fb_removeDefaultAnimations];
+        [self.layer addSublayer:layer];
+        objc_setAssociatedObject(self, @selector(mb_borderLayer), layer, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    }
+    return layer;
+}
+
+- (void)mb_setBorderPosition:(MBViewBorderPosition)borderPosition
+{
+    UIBezierPath *path = [UIBezierPath bezierPath];
+    
+    CGFloat lineOffset = self.mb_borderLayer.lineWidth / 2.0;
+    
+    if ((borderPosition & MBViewBorderPositionTop) == MBViewBorderPositionTop) {
+        UIBezierPath *topPath = [UIBezierPath bezierPath];
+        [topPath moveToPoint:CGPointMake(0, lineOffset)];
+        [topPath addLineToPoint:CGPointMake(CGRectGetWidth(self.bounds), lineOffset)];
+        [path appendPath:topPath];
+    }
+    
+    if ((borderPosition & MBViewBorderPositionLeft) == MBViewBorderPositionLeft) {
+        UIBezierPath *leftPath = [UIBezierPath bezierPath];
+        [leftPath moveToPoint:CGPointMake(lineOffset, 0)];
+        [leftPath addLineToPoint:CGPointMake(lineOffset, CGRectGetHeight(self.bounds))];
+        [path appendPath:leftPath];
+    }
+    
+    if ((borderPosition & MBViewBorderPositionBottom) == MBViewBorderPositionBottom) {
+        UIBezierPath *bottomPath = [UIBezierPath bezierPath];
+        CGFloat y = CGRectGetHeight(self.bounds) - lineOffset;
+        [bottomPath moveToPoint:CGPointMake(0, y)];
+        [bottomPath addLineToPoint:CGPointMake(CGRectGetWidth(self.bounds), y)];
+        [path appendPath:bottomPath];
+    }
+    
+    if ((borderPosition & MBViewBorderPositionRight) == MBViewBorderPositionRight) {
+        UIBezierPath *rightPath = [UIBezierPath bezierPath];
+        CGFloat x = CGRectGetWidth(self.bounds) - lineOffset;
+        [rightPath moveToPoint:CGPointMake(x, CGRectGetHeight(self.bounds))];
+        [rightPath addLineToPoint:CGPointMake(x, 0)];
+        [path appendPath:rightPath];
+    }
+    
+    self.mb_borderLayer.path = path.CGPath;
+}
+
+- (void)mb_setBorderWidth:(CGFloat)borderWidth
+{
+    self.mb_borderLayer.lineWidth = borderWidth;
+}
+
+- (void)mb_setBorderColor:(UIColor *)borderColor
+{
+    self.mb_borderLayer.strokeColor = borderColor.CGColor;
+}
+
+- (void)mb_setDashPhase:(CGFloat)dashPhase
+{
+    self.mb_borderLayer.lineDashPhase = dashPhase;
+}
+
+- (void)mb_setDashPattern:(NSArray<NSNumber *> *)dashPattern
+{
+    if (dashPattern.count < 2) {
+        return;
+    }
+    self.mb_borderLayer.lineDashPattern = dashPattern;
 }
 
 @end

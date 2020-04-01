@@ -330,7 +330,7 @@ static NSUInteger alertControllerCount = 0;
 - (void)updateSeparatorColor {
     UIColor *separatorColor = self.preferredStyle == MBAlertControllerStyleAlert ? self.alertSeparatorColor : self.sheetSeparatorColor;
     [self.alertActions enumerateObjectsUsingBlock:^(MBAlertAction * _Nonnull alertAction, NSUInteger idx, BOOL * _Nonnull stop) {
-//        alertAction.button.layer.borderColor = separatorColor.CGColor;
+        [alertAction.button mb_setBorderColor:separatorColor];
     }];
 }
 
@@ -586,16 +586,16 @@ static NSUInteger alertControllerCount = 0;
                 // 对齐系统，先 add 的在右边，后 add 的在左边
                 MBAlertAction *leftAction = newOrderActions[1];
                 leftAction.button.frame = CGRectMake(0, contentOriginY, CGRectGetWidth(self.buttonScrollView.bounds) / 2, self.alertButtonHeight);
-//                leftAction.button.MB_borderPosition = MBViewBorderPositionTop|MBViewBorderPositionRight;
+                [leftAction.button mb_setBorderPosition:MBViewBorderPositionTop|MBViewBorderPositionRight];
                 MBAlertAction *rightAction = newOrderActions[0];
                 rightAction.button.frame = CGRectMake(CGRectGetMaxX(leftAction.button.frame), contentOriginY, CGRectGetWidth(self.buttonScrollView.bounds) / 2, self.alertButtonHeight);
-//                rightAction.button.MB_borderPosition = MBViewBorderPositionTop;
+                [rightAction.button mb_setBorderPosition:MBViewBorderPositionTop];
                 contentOriginY = CGRectGetMaxY(leftAction.button.frame);
             } else {
                 for (int i = 0; i < newOrderActions.count; i++) {
                     MBAlertAction *action = newOrderActions[i];
                     action.button.frame = CGRectMake(0, contentOriginY, CGRectGetWidth(self.containerView.bounds), self.alertButtonHeight);
-//                    action.button.MB_borderPosition = MBViewBorderPositionTop;
+                    [action.button mb_setBorderPosition:MBViewBorderPositionTop];
                     contentOriginY = CGRectGetMaxY(action.button.frame);
                 }
             }
@@ -675,7 +675,7 @@ static NSUInteger alertControllerCount = 0;
                     continue;
                 } else {
                     action.button.frame = CGRectMake(0, contentOriginY, CGRectGetWidth(self.buttonScrollView.bounds), self.sheetButtonHeight);
-//                    action.button.MB_borderPosition = MBViewBorderPositionTop;
+                    [action.button mb_setBorderPosition:MBViewBorderPositionTop];
                     contentOriginY = CGRectGetMaxY(action.button.frame);
                 }
             }
@@ -1055,7 +1055,7 @@ static NSUInteger alertControllerCount = 0;
         alertAction.button.clipsToBounds = alertAction.style == MBAlertActionStyleCancel;
         alertAction.button.backgroundColor = backgroundColor;
         alertAction.button.highlightedBackgroundColor = highlightBackgroundColor;
-//        alertAction.button.MB_borderColor = borderColor;
+        [alertAction.button mb_setBorderColor:borderColor];
         
         NSAttributedString *attributeString = nil;
         if (alertAction.style == MBAlertActionStyleCancel) {

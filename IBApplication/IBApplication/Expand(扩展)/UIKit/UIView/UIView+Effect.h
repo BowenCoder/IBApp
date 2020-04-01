@@ -8,6 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
+typedef NS_OPTIONS(NSUInteger, MBViewBorderPosition) {
+    MBViewBorderPositionNone      = 0,
+    MBViewBorderPositionTop       = 1 << 0,
+    MBViewBorderPositionLeft      = 1 << 1,
+    MBViewBorderPositionBottom    = 1 << 2,
+    MBViewBorderPositionRight     = 1 << 3
+};
+
 @interface UIView (Effect)
 
 /**
@@ -62,3 +72,26 @@
 
 @end
 
+@interface UIView (Border)
+
+/// 边框的大小
+- (void)mb_setBorderWidth:(CGFloat)borderWidth;
+
+/// 边框的颜色
+- (void)mb_setBorderColor:(UIColor *)borderColor;
+
+/// 设置边框类型，支持组合
+- (void)mb_setBorderPosition:(MBViewBorderPosition)borderPosition;
+
+/// 表示虚线起始的偏移
+- (void)mb_setDashPhase:(CGFloat)dashPhase;
+
+/// 表示“lineWidth，lineSpacing，lineWidth，lineSpacing...”的顺序，至少传 2 个。
+- (void)mb_setDashPattern:(NSArray<NSNumber *> *)dashPattern;
+
+/// 边框图层，已经添加到图层上
+- (CAShapeLayer *)mb_borderLayer;
+
+@end
+
+NS_ASSUME_NONNULL_END
