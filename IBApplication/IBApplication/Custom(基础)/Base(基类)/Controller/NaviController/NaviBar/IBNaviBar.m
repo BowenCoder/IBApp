@@ -56,7 +56,7 @@
 
 + (void)setTitleColor:(UIColor *)color fontSize:(CGFloat)fontSize {
     UINavigationBar *bar;
-    if (APPSystemVersion > 9) {
+    if (IOS_VERSION > 900000) {
         bar = [UINavigationBar appearanceWhenContainedInInstancesOfClasses:@[[UINavigationController class]]];
     } else {
         bar = [UINavigationBar appearanceWhenContainedIn:[UINavigationController class], nil];
@@ -71,7 +71,7 @@
 + (void)setItemTitleColor:(UIColor *)color fontSize:(CGFloat)fontSize {
     
     UIBarButtonItem *item;
-    if (APPSystemVersion > 9) {
+    if (IOS_VERSION > 900000) {
         item = [UIBarButtonItem appearanceWhenContainedInInstancesOfClasses:@[[UINavigationController class]]];
     } else {
         item = [UIBarButtonItem appearanceWhenContainedIn:[UINavigationController class], nil];

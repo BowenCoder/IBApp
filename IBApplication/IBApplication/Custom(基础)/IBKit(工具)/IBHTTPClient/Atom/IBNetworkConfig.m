@@ -58,7 +58,7 @@
 
 + (NSString *)systemVersion
 {
-    return [NSString stringWithFormat:@"ios_%f", [[[UIDevice currentDevice] systemVersion] floatValue]];
+    return [NSString stringWithFormat:@"ios_%@", [[UIDevice currentDevice] systemVersion]];
 }
 
 + (NSString *)iPhoneType

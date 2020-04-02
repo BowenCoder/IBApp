@@ -30,6 +30,27 @@
 
 #pragma mark - Basic
 
++ (NSInteger)OSVersion
+{
+    static NSInteger OSVersion = 0;
+    
+    if (OSVersion > 0) {
+        return OSVersion;
+    }
+    
+    NSString *systemVersion = [[UIDevice currentDevice] systemVersion];
+    NSArray *systemVersionArray = [systemVersion componentsSeparatedByString:@"."];
+    
+    NSInteger pos = 0;
+    
+    while ([systemVersionArray count] > pos && pos < 3) {
+        OSVersion += ([[systemVersionArray objectAtIndex:pos] integerValue] * pow(10, (4 - pos * 2)));
+        pos++;
+    }
+    
+    return OSVersion;
+}
+
 + (NSString *)UUID {
     
     if([[[UIDevice currentDevice] systemVersion] floatValue] > 6.0) {
@@ -194,7 +215,7 @@
     if (appID) {
         request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://itunes.apple.com/cn/lookup?id=%@",appID]]];
     } else {
-        request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://itunes.apple.com/lookup?bundleId=%@&country=cn",APP_BundleID]]];
+        request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://itunes.apple.com/lookup?bundleId=%@&country=cn",APP_BUNDLEID]]];
     }
     NSURLSession *session = [NSURLSession sharedSession];
     

@@ -8,41 +8,31 @@
 
 #import <UIKit/UIKit.h>
 
-/**
- *  Get App name
- */
 #define APP_NAME [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleDisplayName"]
 
-/**
- *  Get App build
- */
 #define APP_BUILD [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"]
 
-/**
- *  Get App version
- */
 #define APP_VERSION [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]
 
-/**
- *  Get App bundleIdentifier
- */
-#define APP_BundleID [[NSBundle mainBundle] bundleIdentifier]
+#define APP_BUNDLEID [[NSBundle mainBundle] bundleIdentifier]
 
-/**
- *  Get App system version
- */
-#define APPSystemVersion [[[UIDevice currentDevice] systemVersion] floatValue]
+#define APP_LANGUAGE [[NSLocale preferredLanguages] firstObject]
 
-/**
- *  Get App current language
- */
-#define APPLanguage [[NSLocale preferredLanguages] firstObject]
+#define IOS_VERSION [IBApp OSVersion]
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface IBApp : NSObject
 
 #pragma mark - Basic
+
+/**
+ 数字形式的操作系统版本号
+ 如 10.3.1版本 表示为 103010；根据 iOS 规范，版本号最多可能有3位
+ [[[UIDevice currentDevice] systemVersion] doubleValue] 只能获取到二级的版本号
+ 例如 10.3.1 只会得到 10.3
+ */
++ (NSInteger)OSVersion;
 
 /**
  获取随机 UUID 例如 E621E1F8-C36C-495A-93FC-0C247A3E6E5F
