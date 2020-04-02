@@ -1,25 +1,25 @@
 //
-//  IBTabBarController.m
+//  MBTabBarController.m
 //  IBApplication
 //
 //  Created by Bowen on 2018/7/9.
 //  Copyright © 2018年 BowenCoder. All rights reserved.
 //
 
-#import "IBTabBarController.h"
+#import "MBTabBarController.h"
 
-@interface IBTabBarController ()<IBTabBarDelegate>
+@interface MBTabBarController ()<MBTabBarDelegate>
 
-@property (nonatomic, strong) IBTabBar *internalTabBar;
+@property (nonatomic, strong) MBTabBar *internalTabBar;
 
 @end
 
-@implementation IBTabBarController
+@implementation MBTabBarController
 
 // 先设置vc再设置customTabBar，避免遮挡
-- (void)setViewControllers:(NSArray<UIViewController *> *)viewControllers itemModels:(NSArray<IBTabBarItemModel *> *)itemModels {
+- (void)setViewControllers:(NSArray<UIViewController *> *)viewControllers itemModels:(NSArray<MBTabBarItemModel *> *)itemModels {
     self.viewControllers = viewControllers;
-    self.internalTabBar = [[IBTabBar alloc] init];
+    self.internalTabBar = [[MBTabBar alloc] init];
     self.internalTabBar.itemModels = itemModels;
     self.internalTabBar.delegate = self;
     [self.tabBar addSubview:self.internalTabBar];
@@ -27,7 +27,7 @@
 
 #pragma mark - IBTabBarDelegate
 // 自定义的tabBar回调点击事件给TabBarVC，TabBarVC用父类的TabBarController函数完成切换
-- (void)tabBar:(IBTabBar *)tabbar selectIndex:(NSInteger)index {
+- (void)tabBar:(MBTabBar *)tabbar selectIndex:(NSInteger)index {
     [self setSelectedIndex:index];
 }
 
@@ -47,7 +47,7 @@
 }
 
 #pragma mark - 合成存取
-- (IBTabBar *)customTabBar {
+- (MBTabBar *)customTabBar {
     if (self.internalTabBar) {
         return self.internalTabBar;
     }

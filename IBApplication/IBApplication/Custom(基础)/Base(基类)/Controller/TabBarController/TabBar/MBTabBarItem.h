@@ -1,5 +1,5 @@
 //
-//  IBTabBarItem.h
+//  MBTabBarItem.h
 //  IBApplication
 //
 //  Created by Bowen on 2018/7/19.
@@ -7,24 +7,24 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "IBTabBarBadge.h"
+#import "MBTabBarBadge.h"
 
 // 凸出后的形状
-typedef NS_ENUM(NSInteger, IBTabBarBulgeStyle) {
-    IBTabBarBulgeNormal = 0,  // 无 默认
-    IBTabBarBulgeCircular,    // 圆形
-    IBTabBarBulgeSquare       // 方形
+typedef NS_ENUM(NSInteger, MBTabBarBulgeStyle) {
+    MBTabBarBulgeNormal = 0,  // 无 默认
+    MBTabBarBulgeCircular,    // 圆形
+    MBTabBarBulgeSquare       // 方形
 };
 
 // 点击触发时候的动画效果
-typedef NS_ENUM(NSInteger, IBTabBarItemAnimationStyle) {
-    IBTabBarItemAnimationNone,     // 无 默认
-    IBTabBarItemAnimationSpring,   // 放大放小弹簧效果
-    IBTabBarItemAnimationShake,    // 摇动动画效果
-    IBTabBarItemAnimationAlpha     // 透明动画效果
+typedef NS_ENUM(NSInteger, MBTabBarItemAnimationStyle) {
+    MBTabBarItemAnimationNone,     // 无 默认
+    MBTabBarItemAnimationSpring,   // 放大放小弹簧效果
+    MBTabBarItemAnimationShake,    // 摇动动画效果
+    MBTabBarItemAnimationAlpha     // 透明动画效果
 };
 
-@interface IBTabBarItemModel : NSObject
+@interface MBTabBarItemModel : NSObject
 
 #pragma mark - 标题控制类
 // item的标题
@@ -52,7 +52,7 @@ typedef NS_ENUM(NSInteger, IBTabBarItemAnimationStyle) {
 
 #pragma mark - item附加控制类
 // 凸出形变类型
-@property (nonatomic, assign) IBTabBarBulgeStyle bulgeStyle;
+@property (nonatomic, assign) MBTabBarBulgeStyle bulgeStyle;
 // 凸出高于TabBar多高 默认20
 @property (nonatomic, assign) CGFloat bulgeHeight;
 // 突出后圆角 默认0  如果是圆形的圆角，则会根据设置的ItemSize最大宽度自动裁切，设置后将按照此参数进行裁切
@@ -74,17 +74,17 @@ typedef NS_ENUM(NSInteger, IBTabBarItemAnimationStyle) {
 
 #pragma mark - item动画控制类
 // 点击触发后的动画效果
-@property (nonatomic, assign) IBTabBarItemAnimationStyle animationStyle;
+@property (nonatomic, assign) MBTabBarItemAnimationStyle animationStyle;
 // 是否允许重复点击触发动画 默认NO
 @property (nonatomic, assign) BOOL isRepeatClick;
 
 @end
 
 
-@interface IBTabBarItem : UIControl
+@interface MBTabBarItem : UIControl
 
 // 模型构造器
-@property (nonatomic, strong) IBTabBarItemModel *itemModel;
+@property (nonatomic, strong) MBTabBarItemModel *itemModel;
 // 角标内容
 @property (nonatomic, strong) NSString *badge;
 // item的所在索引
@@ -115,12 +115,12 @@ typedef NS_ENUM(NSInteger, IBTabBarItemAnimationStyle) {
 // imageView(无标题则居中)
 @property (nonatomic, strong) UIImageView *icomImgView;
 // 角标Label
-@property (nonatomic, strong) IBTabBarBadge *badgeLabel;
+@property (nonatomic, strong) MBTabBarBadge *badgeLabel;
 // 单个item的背景图
 @property (nonatomic, strong) UIImageView *backgroundImageView;
 
 // 构造
-- (instancetype)initWithModel:(IBTabBarItemModel *)itemModel;
+- (instancetype)initWithModel:(MBTabBarItemModel *)itemModel;
 
 // 开始执行动画
 - (void)startAnimation;

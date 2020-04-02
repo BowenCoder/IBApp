@@ -11,7 +11,7 @@
 #import "ViewController.h"
 #import "MBDebug.h"
 #import "IBNaviController.h"
-#import "IBTabBarController.h"
+#import "MBTabBarController.h"
 #import "IBSocialManager.h"
 #import "MBLaunchManager.h"
 #import "MBLogger.h"
@@ -42,7 +42,7 @@
     vc.tabBarItem.title = @"首页";
     vc.tabBarItem.image = [UIImage imageNamed:@"icon_tabbar_subscription_no"];
 
-    IBTabBarController *tab = [[IBTabBarController alloc] init];
+    MBTabBarController *tab = [[MBTabBarController alloc] init];
     IBNaviController *nav = [[IBNaviController alloc] initWithRootViewController:vc naviBar:[IBNaviBar class]];
     
     [tab addChildViewController: nav];

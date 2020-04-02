@@ -1,14 +1,14 @@
 //
-//  IBTabBarItem.m
+//  MBTabBarItem.m
 //  IBApplication
 //
 //  Created by Bowen on 2018/7/19.
 //  Copyright © 2018年 BowenCoder. All rights reserved.
 //
 
-#import "IBTabBarItem.h"
+#import "MBTabBarItem.h"
 
-@implementation IBTabBarItemModel
+@implementation MBTabBarItemModel
 
 - (instancetype)init{
     self = [super init];
@@ -28,9 +28,9 @@
 
 @end
 
-@implementation IBTabBarItem
+@implementation MBTabBarItem
 
-- (instancetype)initWithModel:(IBTabBarItemModel *)itemModel{
+- (instancetype)initWithModel:(MBTabBarItemModel *)itemModel{
     self = [super init];
     if (self) {
         [self setItemModel:itemModel];
@@ -95,21 +95,21 @@
 - (void)startAnimation {
     CAKeyframeAnimation *animation = [CAKeyframeAnimation animation];
     switch (self.itemModel.animationStyle) {
-        case IBTabBarItemAnimationNone: // 无
+        case MBTabBarItemAnimationNone: // 无
             break;
-        case IBTabBarItemAnimationSpring: { // 放大放小
+        case MBTabBarItemAnimationSpring: { // 放大放小
             animation.keyPath = @"transform.scale";
             animation.values = @[@1.0,@1.3,@0.9,@1.15,@0.95,@1.02,@1.0];
             animation.duration = 0.6;
             animation.calculationMode = kCAAnimationCubic;
         } break;
-        case IBTabBarItemAnimationShake: { // 摇动
+        case MBTabBarItemAnimationShake: { // 摇动
             animation.keyPath = @"transform.rotation";
             CGFloat angle = M_PI_4 / 10;
             animation.values = @[@(-angle), @(angle), @(-angle)];
             animation.duration = 0.2f;
         } break;
-        case IBTabBarItemAnimationAlpha: { // 透明
+        case MBTabBarItemAnimationAlpha: { // 透明
             animation.keyPath = @"opacity";
             animation.values = @[@1.0,@0.7,@0.5,@0.7,@1.0];
             animation.duration = 0.6;
@@ -120,7 +120,7 @@
     [self.layer addAnimation:animation forKey:nil];
 }
 
-- (void)setItemModel:(IBTabBarItemModel *)itemModel{
+- (void)setItemModel:(MBTabBarItemModel *)itemModel{
     _itemModel = itemModel;
     self.title = _itemModel.itemTitle;
     self.normalImage = [UIImage imageNamed:_itemModel.normalImageName];
@@ -182,9 +182,9 @@
 }
 
 #pragma mark - 懒加载
-- (IBTabBarBadge *)badgeLabel{
+- (MBTabBarBadge *)badgeLabel{
     if (!_badgeLabel) {
-        _badgeLabel = [[IBTabBarBadge alloc] init];
+        _badgeLabel = [[MBTabBarBadge alloc] init];
         [self addSubview:_badgeLabel];
     }
     return _badgeLabel;

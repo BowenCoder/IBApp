@@ -1,14 +1,14 @@
 //
-//  IBTabBarBadge.m
+//  MBTabBarBadge.m
 //  IBApplication
 //
 //  Created by Bowen on 2018/7/19.
 //  Copyright © 2018年 BowenCoder. All rights reserved.
 //
 
-#import "IBTabBarBadge.h"
+#import "MBTabBarBadge.h"
 
-@implementation IBTabBarBadge
+@implementation MBTabBarBadge
 
 - (instancetype)init {
     self = [super init];

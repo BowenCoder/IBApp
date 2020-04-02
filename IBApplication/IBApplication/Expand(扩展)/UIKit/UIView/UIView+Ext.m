@@ -267,5 +267,13 @@ const CGFloat MBUIViewSelfSizingHeight = INFINITY;
     self.frame = CGRectApplyAffineTransformWithAnchorPoint(frameApplyTransform, self.transform, self.layer.anchorPoint);
 }
 
+- (UIEdgeInsets)safeAreaEdgeInsets
+{
+    if (@available(iOS 11.0, *)) {
+        return self.safeAreaInsets;
+    }
+    return UIEdgeInsetsZero;
+}
+
 @end
 

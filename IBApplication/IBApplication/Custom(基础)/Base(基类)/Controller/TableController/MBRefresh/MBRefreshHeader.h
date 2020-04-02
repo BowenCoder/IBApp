@@ -1,5 +1,5 @@
 //
-//  IBRefreshHeader.h
+//  MBRefreshHeader.h
 //  IBApplication
 //
 //  Created by Bowen on 2018/7/31.
@@ -8,6 +8,6 @@
 
 #import "MJRefreshNormalHeader.h"
 
-@interface IBRefreshHeader : MJRefreshNormalHeader
+@interface MBRefreshHeader : MJRefreshNormalHeader
 
 @end

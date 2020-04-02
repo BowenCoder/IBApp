@@ -22,7 +22,8 @@
 #pragma mark - 重写方法
 
 - (void)dealloc {
-    MBLogD(@"#dealloc#");
+    MBLogD(@"#dealloc# %@", self);
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
@@ -32,7 +33,7 @@
     return self;
 }
 
-- (nullable instancetype)initWithCoder:(NSCoder *)aDecoder {
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
     if (self = [super initWithCoder:aDecoder]) {
         [self onInit];
     }
@@ -87,15 +88,18 @@
 
 #pragma mark - 空视图
 
-- (void)showEmptyView {
+- (void)showEmptyView
+{
     [self.view addSubview:self.emptyView];
 }
 
-- (void)hideEmptyView {
+- (void)hideEmptyView
+{
     [self.emptyView removeFromSuperview];
 }
 
-- (void)showEmptyViewWithLoading {
+- (void)showEmptyViewWithLoading
+{
     [self showEmptyView];
     [self.emptyView setImage:nil];
     [self.emptyView setLoadingViewHidden:NO];
@@ -107,7 +111,8 @@
 - (void)showEmptyViewWithText:(NSString *)text
                    detailText:(NSString *)detailText
                   buttonTitle:(NSString *)buttonTitle
-                 buttonAction:(SEL)action {
+                 buttonAction:(SEL)action
+{
     [self showEmptyViewWithLoading:NO image:nil text:text detailText:detailText buttonTitle:buttonTitle buttonAction:action];
 }
 
@@ -115,7 +120,8 @@
                           text:(NSString *)text
                     detailText:(NSString *)detailText
                    buttonTitle:(NSString *)buttonTitle
-                  buttonAction:(SEL)action {
+                  buttonAction:(SEL)action
+{
     [self showEmptyViewWithLoading:NO image:image text:text detailText:detailText buttonTitle:buttonTitle buttonAction:action];
 }
 
@@ -124,7 +130,8 @@
                             text:(NSString *)text
                       detailText:(NSString *)detailText
                      buttonTitle:(NSString *)buttonTitle
-                    buttonAction:(SEL)action {
+                    buttonAction:(SEL)action
+{
     [self showEmptyView];
     [self.emptyView setLoadingViewHidden:!showLoading];
     [self.emptyView setImage:image];
@@ -135,7 +142,8 @@
     [self.emptyView.actionButton addTarget:self action:action forControlEvents:UIControlEventTouchUpInside];
 }
 
-- (BOOL)layoutEmptyView {
+- (BOOL)layoutEmptyView
+{
     if (_emptyView) {
         // 由于为self.emptyView设置frame时会调用到self.view，为了避免导致viewDidLoad提前触发，这里需要判断一下self.view是否已经被初始化
         BOOL viewDidLoad = self.emptyView.superview && [self isViewLoaded];
@@ -148,11 +156,8 @@
             return YES;
         }
     }
-    
     return NO;
 }
-
-
 
 - (UIBarButtonItem *)rightBarItemWithTitle:(NSString *)title titleColor:(UIColor *)color imageName:(NSString *)name action:(SEL)action
 {

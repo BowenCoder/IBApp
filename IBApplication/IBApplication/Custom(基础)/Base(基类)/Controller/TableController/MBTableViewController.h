@@ -1,5 +1,5 @@
 //
-//  IBTableController.h
+//  MBTableViewController.h
 //  IBApplication
 //
 //  Created by Bowen on 2018/7/6.
@@ -8,7 +8,7 @@
 
 #import "MBCommonViewController.h"
 
-@interface IBTableController : MBCommonViewController <UITableViewDelegate, UITableViewDataSource>
+@interface MBTableViewController : MBCommonViewController <UITableViewDelegate, UITableViewDataSource>
 
 //列表控件
 @property (nonatomic, strong) UITableView *tableView;

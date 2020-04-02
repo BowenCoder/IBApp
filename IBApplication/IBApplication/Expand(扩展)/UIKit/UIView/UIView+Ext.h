@@ -90,8 +90,15 @@ extern const CGFloat MBUIViewSelfSizingHeight;
 /** 仿射变换矩阵ty */
 @property (nonatomic) CGFloat tty;
 
-/** 将要设置的 frame 用 CGRectApplyAffineTransformWithAnchorPoint 处理后再设置 */
+/**
+ 将要设置的 frame 用 CGRectApplyAffineTransformWithAnchorPoint 处理后再设置
+ */
 @property (nonatomic) CGRect frameApplyTransform;
+
+/**
+ 在 iOS 11 及之后的版本，此属性将返回系统已有的 self.safeAreaInsets。在之前的版本此属性返回 UIEdgeInsetsZero
+ */
+@property(nonatomic, assign, readonly) UIEdgeInsets safeAreaEdgeInsets;
 
 @end
 

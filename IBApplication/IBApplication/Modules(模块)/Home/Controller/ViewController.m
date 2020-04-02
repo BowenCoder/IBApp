@@ -11,6 +11,7 @@
 #import "UIView+Ext.h"
 #import "UIView+Effect.h"
 #import "MBAlertController.h"
+#import "MBTableViewController.h"
 
 @interface ViewController ()<UITableViewDataSource, UITableViewDelegate>
 
@@ -24,7 +25,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     self.navigationItem.title = @"主界面";
-    
+    [[MBTableViewController alloc] init];
 }
 
 - (BOOL)prefersStatusBarHidden

@@ -1,22 +1,22 @@
 //
-//  IBTableCell.m
+//  MBTableViewCell.m
 //  IBApplication
 //
 //  Created by Bowen on 2018/7/30.
 //  Copyright © 2018年 BowenCoder. All rights reserved.
 //
 
-#import "IBTableCell.h"
+#import "MBTableViewCell.h"
 #import "Masonry.h"
 
-@interface IBTableCell ()
+@interface MBTableViewCell ()
 
 @property (nonatomic, strong) UIView *topLine;
 @property (nonatomic, strong) UIView *bottomLine;
 
 @end
 
-@implementation IBTableCell
+@implementation MBTableViewCell
 
 + (NSString *)identifier {
     return NSStringFromClass(self);
@@ -24,11 +24,11 @@
 
 + (instancetype)tableCellWithTableView:(UITableView *)tableView {
     NSString *tableCellID = [self identifier];
-    IBTableCell *cell = [tableView dequeueReusableCellWithIdentifier:tableCellID];
+    MBTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:tableCellID];
     if (!cell) {
-        cell = [[IBTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:tableCellID];
+        cell = [[MBTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:tableCellID];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.separatorType = IBTableCellSeparatorNone;
+        cell.separatorType = MBTableViewCellSeparatorNone;
     }
     return cell;
 }
@@ -48,24 +48,24 @@
 - (void)updateConstraints {
 
     switch (self.separatorType) {
-        case IBTableCellSeparatorNone: {
+        case MBTableViewCellSeparatorNone: {
             self.topLine.hidden = YES;
             self.bottomLine.hidden = YES;
         }
             break;
-        case IBTableCellSeparatorTop: {
+        case MBTableViewCellSeparatorTop: {
             self.topLine.hidden = NO;
             self.bottomLine.hidden = YES;
             [self setTopLineLayout:YES bottomLayout:NO];
         }
             break;
-        case IBTableCellSeparatorBottom: {
+        case MBTableViewCellSeparatorBottom: {
             self.topLine.hidden = YES;
             self.bottomLine.hidden = NO;
             [self setTopLineLayout:NO bottomLayout:YES];
         }
             break;
-        case IBTableCellSeparatorBoth: {
+        case MBTableViewCellSeparatorBoth: {
             self.topLine.hidden = NO;
             self.bottomLine.hidden = NO;
             [self setTopLineLayout:YES bottomLayout:YES];
@@ -107,7 +107,7 @@
     self.bottomLine.backgroundColor = seperatorColor;
 }
 
-- (void)setSeparatorType:(IBTableCellSeparatorType)separatorType {
+- (void)setSeparatorType:(MBTableViewCellSeparatorType)separatorType {
     _separatorType = separatorType;
     [self setNeedsUpdateConstraints];
 }

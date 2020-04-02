@@ -11,7 +11,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface MBCommonViewController : UIViewController
+@interface MBCommonViewController : UIViewController {
+    MBEmptyView *_emptyView;
+}
 
 /** 反向传值使用 */
 @property (nonatomic, copy) void (^callback)(id);
@@ -38,15 +40,15 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) BOOL isForbidSwipeLeftBack;
 
 /** 空视图控件，支持显示提示文字、loading、操作按钮 */
-@property(nullable, nonatomic, strong) MBEmptyView *emptyView;
+@property (nonatomic, strong) MBEmptyView *emptyView;
 
 /** 当前空视图是否显示 */
-@property(nonatomic, assign, readonly, getter = isEmptyViewShowing) BOOL emptyViewShowing;
+@property (assign, readonly, getter = isEmptyViewShowing) BOOL emptyViewShowing;
 
 - (instancetype)initWithNibName:(nullable NSString *)nibNameOrNil
                          bundle:(nullable NSBundle *)nibBundleOrNil NS_DESIGNATED_INITIALIZER;
 
-- (nullable instancetype)initWithCoder:(NSCoder *)aDecoder NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithCoder:(NSCoder *)aDecoder NS_DESIGNATED_INITIALIZER;
 
 /**
  *  初始化时调用的方法，会在两个 NS_DESIGNATED_INITIALIZER 方法中被调用，所以子类如果需要同时支持两个 NS_DESIGNATED_INITIALIZER 方法，则建议把初始化时要做的事情放到这个方法里。否则仅需重写要支持的那个 NS_DESIGNATED_INITIALIZER 方法即可。

@@ -1,5 +1,5 @@
 //
-//  IBTabBarBadge.h
+//  MBTabBarBadge.h
 //  IBApplication
 //
 //  Created by Bowen on 2018/7/19.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface IBTabBarBadge : UILabel
+@interface MBTabBarBadge : UILabel
 
 // 文字或者数字(为1时是个点，为0时隐藏)
 @property (nonatomic, strong) NSString *badgeValue;

@@ -9,7 +9,7 @@
 #import "MBCommonViewController.h"
 
 //滚动视图控制器
-@interface IBScrollController : MBCommonViewController
+@interface MBScrollViewController : MBCommonViewController
 
 @property (nonatomic, strong) UIScrollView *contentView;
 

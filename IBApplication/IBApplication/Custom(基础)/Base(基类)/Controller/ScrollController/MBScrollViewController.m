@@ -6,15 +6,15 @@
 //  Copyright © 2018年 BowenCoder. All rights reserved.
 //
 
-#import "IBScrollController.h"
+#import "MBScrollViewController.h"
 #import "IBMacros.h"
 #import "UIMacros.h"
 
-@interface IBScrollController ()
+@interface MBScrollViewController ()
 
 @end
 
-@implementation IBScrollController
+@implementation MBScrollViewController
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -42,6 +42,9 @@
     self.contentView.showsVerticalScrollIndicator = NO;
     self.contentView.showsHorizontalScrollIndicator = NO;
     self.contentView.contentSize = kScreenBounds.size;
+    if (@available(iOS 11.0, *)) {
+        self.contentView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+    }
     [self.view addSubview:self.contentView];
 }
 
