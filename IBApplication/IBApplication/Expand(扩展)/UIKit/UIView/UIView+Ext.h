@@ -90,5 +90,8 @@ extern const CGFloat MBUIViewSelfSizingHeight;
 /** 仿射变换矩阵ty */
 @property (nonatomic) CGFloat tty;
 
+/** 将要设置的 frame 用 CGRectApplyAffineTransformWithAnchorPoint 处理后再设置 */
+@property (nonatomic) CGRect frameApplyTransform;
+
 @end
 

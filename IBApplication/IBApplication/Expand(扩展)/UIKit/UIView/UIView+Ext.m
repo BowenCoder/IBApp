@@ -257,5 +257,15 @@ const CGFloat MBUIViewSelfSizingHeight = INFINITY;
     self.transform=transform;
 }
 
+- (CGRect)frameApplyTransform
+{
+    return self.frame;
+}
+
+- (void)setFrameApplyTransform:(CGRect)frameApplyTransform
+{
+    self.frame = CGRectApplyAffineTransformWithAnchorPoint(frameApplyTransform, self.transform, self.layer.anchorPoint);
+}
+
 @end
 

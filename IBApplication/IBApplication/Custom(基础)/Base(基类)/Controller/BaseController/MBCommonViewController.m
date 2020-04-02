@@ -7,10 +7,11 @@
 //
 
 #import "MBCommonViewController.h"
-#import "UIView+Ext.h"
 #import "UIBarButtonItem+Ext.h"
+#import "UIView+Ext.h"
 #import "IBImage.h"
 #import "MBLogger.h"
+#import "UIMacros.h"
 
 @interface MBCommonViewController ()
 
@@ -42,6 +43,11 @@
     [super viewDidLoad];
     [self setupUI];
     [self setupData];
+}
+
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    [self layoutEmptyView];
 }
 
 #pragma mark - 公开方法
@@ -79,10 +85,74 @@
     
 }
 
-- (void)setBackgroundImage:(UIImage *)image
-{
-    [self.view mb_setBackgroundImage:image pattern:NO];
+#pragma mark - 空视图
+
+- (void)showEmptyView {
+    [self.view addSubview:self.emptyView];
 }
+
+- (void)hideEmptyView {
+    [self.emptyView removeFromSuperview];
+}
+
+- (void)showEmptyViewWithLoading {
+    [self showEmptyView];
+    [self.emptyView setImage:nil];
+    [self.emptyView setLoadingViewHidden:NO];
+    [self.emptyView setTextLabelText:nil];
+    [self.emptyView setDetailTextLabelText:nil];
+    [self.emptyView setActionButtonTitle:nil];
+}
+
+- (void)showEmptyViewWithText:(NSString *)text
+                   detailText:(NSString *)detailText
+                  buttonTitle:(NSString *)buttonTitle
+                 buttonAction:(SEL)action {
+    [self showEmptyViewWithLoading:NO image:nil text:text detailText:detailText buttonTitle:buttonTitle buttonAction:action];
+}
+
+- (void)showEmptyViewWithImage:(UIImage *)image
+                          text:(NSString *)text
+                    detailText:(NSString *)detailText
+                   buttonTitle:(NSString *)buttonTitle
+                  buttonAction:(SEL)action {
+    [self showEmptyViewWithLoading:NO image:image text:text detailText:detailText buttonTitle:buttonTitle buttonAction:action];
+}
+
+- (void)showEmptyViewWithLoading:(BOOL)showLoading
+                           image:(UIImage *)image
+                            text:(NSString *)text
+                      detailText:(NSString *)detailText
+                     buttonTitle:(NSString *)buttonTitle
+                    buttonAction:(SEL)action {
+    [self showEmptyView];
+    [self.emptyView setLoadingViewHidden:!showLoading];
+    [self.emptyView setImage:image];
+    [self.emptyView setTextLabelText:text];
+    [self.emptyView setDetailTextLabelText:detailText];
+    [self.emptyView setActionButtonTitle:buttonTitle];
+    [self.emptyView.actionButton removeTarget:nil action:NULL forControlEvents:UIControlEventAllEvents];
+    [self.emptyView.actionButton addTarget:self action:action forControlEvents:UIControlEventTouchUpInside];
+}
+
+- (BOOL)layoutEmptyView {
+    if (_emptyView) {
+        // 由于为self.emptyView设置frame时会调用到self.view，为了避免导致viewDidLoad提前触发，这里需要判断一下self.view是否已经被初始化
+        BOOL viewDidLoad = self.emptyView.superview && [self isViewLoaded];
+        if (viewDidLoad) {
+            CGSize newEmptyViewSize = self.emptyView.superview.bounds.size;
+            CGSize oldEmptyViewSize = self.emptyView.frame.size;
+            if (!CGSizeEqualToSize(newEmptyViewSize, oldEmptyViewSize)) {
+                self.emptyView.frameApplyTransform = CGRectFlatMake(CGRectGetMinX(self.emptyView.frame), CGRectGetMinY(self.emptyView.frame), newEmptyViewSize.width, newEmptyViewSize.height);
+            }
+            return YES;
+        }
+    }
+    
+    return NO;
+}
+
+
 
 - (UIBarButtonItem *)rightBarItemWithTitle:(NSString *)title titleColor:(UIColor *)color imageName:(NSString *)name action:(SEL)action
 {
@@ -104,27 +174,9 @@
     return item;
 }
 
-#pragma mark - 私有方法
-
-/** 自定义返回按钮，本文下面有三种设计方法 */
-- (void)setupBackBarItem
-{
-    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithTitle:@""
-                                                                 style:UIBarButtonItemStylePlain
-                                                                target:nil
-                                                                action:nil];
-    // 主要是以下两个图片设置
-    self.navigationController.navigationBar.backIndicatorImage = [UIImage imageNamed:@"back"];
-    self.navigationController.navigationBar.backIndicatorTransitionMaskImage = [UIImage imageNamed:@"back"];
-    self.navigationItem.backBarButtonItem = backItem;
-}
-
-
 #pragma mark - 触发事件
 
 #pragma mark - 回调事件
-
-#pragma mark - 合成存取
 
 #pragma mark - 侧滑返回
 
@@ -172,6 +224,40 @@
 - (UIInterfaceOrientationMask)supportedInterfaceOrientations
 {
     return self.supportedOrientationMask;
+}
+
+#pragma mark - 私有方法
+
+/** 自定义返回按钮，本文下面有三种设计方法 */
+- (void)setupBackBarItem
+{
+    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithTitle:@""
+                                                                 style:UIBarButtonItemStylePlain
+                                                                target:nil
+                                                                action:nil];
+    // 主要是以下两个图片设置
+    self.navigationController.navigationBar.backIndicatorImage = [UIImage imageNamed:@"back"];
+    self.navigationController.navigationBar.backIndicatorTransitionMaskImage = [UIImage imageNamed:@"back"];
+    self.navigationItem.backBarButtonItem = backItem;
+}
+
+#pragma mark - 合成存取
+
+- (void)setBackgroundImage:(UIImage *)backgroundImage
+{
+    _backgroundImage = backgroundImage;
+    [self.view mb_setBackgroundImage:backgroundImage pattern:NO];
+}
+
+- (MBEmptyView *)emptyView {
+    if (!_emptyView && self.isViewLoaded) {
+        _emptyView = [[MBEmptyView alloc] initWithFrame:self.view.bounds];
+    }
+    return _emptyView;
+}
+
+- (BOOL)isEmptyViewShowing {
+    return self.emptyView && self.emptyView.superview;
 }
 
 @end
