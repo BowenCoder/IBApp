@@ -33,7 +33,7 @@
     [super viewDidLoad];
 
     self.navigationItem.title = @"123";
-    [self rightBarItemWithTitle:@"关注" titleColor:nil imageName:nil];
+    [self rightBarItemWithTitle:@"关注" titleColor:nil imageName:nil action:nil];
     
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
     btn.frame= CGRectMake(100, 200, 100, 44);

@@ -19,8 +19,8 @@
 
 @implementation IBTableController
 
-- (void)initUI {
-    [super initUI];
+- (void)setupUI {
+    [super setupUI];
     [self.view addSubview:self.tableView];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.right.bottom.left.equalTo(self.view);
@@ -111,6 +111,9 @@
         _tableView.estimatedSectionHeaderHeight = 0;
         _tableView.estimatedSectionFooterHeight = 0;
         _tableView.tableFooterView = [[UIView alloc] init];
+        if (@available(iOS 11.0, *)) {
+            _tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+        }
     }
     return _tableView;
 }

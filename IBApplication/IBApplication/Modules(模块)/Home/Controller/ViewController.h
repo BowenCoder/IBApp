@@ -7,11 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-//#import "IBController.h"
-//#import "IBModelController.h"
-#import "IBTableController.h"
+#import "MBCommonViewController.h"
 
-@interface ViewController : UIViewController
+@interface ViewController : MBCommonViewController
 
 
 @end

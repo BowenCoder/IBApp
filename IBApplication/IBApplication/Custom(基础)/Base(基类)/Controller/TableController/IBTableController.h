@@ -6,9 +6,9 @@
 //  Copyright © 2018年 BowenCoder. All rights reserved.
 //
 
-#import "IBModelController.h"
+#import "MBCommonViewController.h"
 
-@interface IBTableController : IBModelController <UITableViewDelegate, UITableViewDataSource>
+@interface IBTableController : MBCommonViewController <UITableViewDelegate, UITableViewDataSource>
 
 //列表控件
 @property (nonatomic, strong) UITableView *tableView;

@@ -6,8 +6,8 @@
 //  Copyright © 2018年 BowenCoder. All rights reserved.
 //
 
-#import "IBModelController.h"
+#import "MBCommonViewController.h"
 
-@interface IBMineController : IBModelController
+@interface IBMineController : MBCommonViewController
 
 @end
