@@ -10,11 +10,15 @@
 #import "MBTimer.h"
 #import "IBMacros.h"
 
+#define Lock() dispatch_semaphore_wait(self.lock, DISPATCH_TIME_FOREVER)
+#define Unlock() dispatch_semaphore_signal(self.lock)
+
 @interface MBTimerSchedule ()
 
 @property (nonatomic, strong) MBTimer *timer;
 @property (nonatomic, assign) NSUInteger timerCounter;
 @property (nonatomic, strong) NSHashTable *schedules;
+@property (nonatomic, strong) dispatch_semaphore_t lock;
 
 @end
 
@@ -47,17 +51,17 @@
 
 - (void)registerSchedule:(id<MBTimerScheduleProtocol>)schedule
 {
-    dispatch_main_sync_safe(^{
-        [self.schedules addObject:schedule];
-    });
+    Lock();
+    [self.schedules addObject:schedule];
+    Unlock();
     [self startSchedule];
 }
 
 - (void)unregisterSchedule:(id<MBTimerScheduleProtocol>)schedule
 {
-    dispatch_main_sync_safe(^{
-        [self.schedules removeObject:schedule];
-    });
+    Lock();
+    [self.schedules removeObject:schedule];
+    Unlock();
 }
 
 - (void)startSchedule
@@ -77,8 +81,11 @@
         [self stopSchedule];
         return;
     }
+    Lock();
+    NSArray *schedules = self.schedules.allObjects;
+    Unlock();
     self.timerCounter++;
-    for (id<MBTimerScheduleProtocol> schedule in self.schedules) {
+    for (id<MBTimerScheduleProtocol> schedule in schedules) {
         if ([schedule respondsToSelector:@selector(scheduledTrigged:)]) {
             [schedule scheduledTrigged:self.timerCounter];
         }
