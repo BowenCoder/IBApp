@@ -237,6 +237,7 @@
 		4ABF2FCA22FEF42A00645809 /* MBDeliveryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ABF2FC922FEF42A00645809 /* MBDeliveryView.m */; };
 		4AC102E1230FFAB300DE39CD /* MBImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC102E0230FFAB300DE39CD /* MBImageView.m */; };
 		4AC102E4230FFC6300DE39CD /* MBBlurImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC102E3230FFC6300DE39CD /* MBBlurImageView.m */; };
+		4AC209B12463A70E00DFD301 /* MBJailbroken.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC209AF2463A70E00DFD301 /* MBJailbroken.m */; };
 		4AC29F7A210F04A900F218FE /* UIScrollView+MJRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC29F4C210F04A900F218FE /* UIScrollView+MJRefresh.m */; };
 		4AC29F7B210F04A900F218FE /* MJRefreshConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC29F4D210F04A900F218FE /* MJRefreshConst.m */; };
 		4AC29F7C210F04A900F218FE /* MJRefresh.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4AC29F51210F04A900F218FE /* MJRefresh.bundle */; };
@@ -827,6 +828,8 @@
 		4AC102E0230FFAB300DE39CD /* MBImageView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBImageView.m; sourceTree = "<group>"; };
 		4AC102E2230FFC6300DE39CD /* MBBlurImageView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBBlurImageView.h; sourceTree = "<group>"; };
 		4AC102E3230FFC6300DE39CD /* MBBlurImageView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBBlurImageView.m; sourceTree = "<group>"; };
+		4AC209AF2463A70E00DFD301 /* MBJailbroken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBJailbroken.m; sourceTree = "<group>"; };
+		4AC209B02463A70E00DFD301 /* MBJailbroken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBJailbroken.h; sourceTree = "<group>"; };
 		4AC29F4C210F04A900F218FE /* UIScrollView+MJRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+MJRefresh.m"; sourceTree = "<group>"; };
 		4AC29F4D210F04A900F218FE /* MJRefreshConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshConst.m; sourceTree = "<group>"; };
 		4AC29F4E210F04A900F218FE /* UIScrollView+MJExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+MJExtension.h"; sourceTree = "<group>"; };
@@ -2229,6 +2232,15 @@
 			path = MBImageView;
 			sourceTree = "<group>";
 		};
+		4AC209AE2463A6BD00DFD301 /* MBJailBroken */ = {
+			isa = PBXGroup;
+			children = (
+				4AC209B02463A70E00DFD301 /* MBJailbroken.h */,
+				4AC209AF2463A70E00DFD301 /* MBJailbroken.m */,
+			);
+			path = MBJailBroken;
+			sourceTree = "<group>";
+		};
 		4AC29F4B210F04A900F218FE /* MJRefresh */ = {
 			isa = PBXGroup;
 			children = (
@@ -2805,6 +2817,7 @@
 		4ACC569C20DF4D9C001352AE /* IBKit(工具) */ = {
 			isa = PBXGroup;
 			children = (
+				4AC209AE2463A6BD00DFD301 /* MBJailBroken */,
 				4A1FB09320E7B2F40056A026 /* IBAnimation */,
 				4ACC569820DEC678001352AE /* IBApp */,
 				4A6F197820E3323A00EAF1A7 /* IBColor */,
@@ -3621,6 +3634,7 @@
 				4A6F198C20E3A61400EAF1A7 /* IBString.m in Sources */,
 				4A89D62D228B17490072FB23 /* ioapi.m in Sources */,
 				4A1FB12E20E921E90056A026 /* MWCaptionView.m in Sources */,
+				4AC209B12463A70E00DFD301 /* MBJailbroken.m in Sources */,
 				4A72287B20F20C04008B8815 /* IBNaviBar.m in Sources */,
 				4AC29F85210F04A900F218FE /* MJRefreshAutoNormalFooter.m in Sources */,
 				4AD770B82297CD1300FEB76B /* UIPasteboard+YYText.m in Sources */,

@@ -9,19 +9,11 @@
 #import "IBApp.h"
 #import "IBFile.h"
 #import "IBMacros.h"
-
-#include <sys/types.h>
+#import "MBJailbroken.h"
+#import "MBLogger.h"
 #include <sys/sysctl.h>
-#import <sys/socket.h>
-#import <sys/param.h>
-#import <sys/mount.h>
-#import <sys/stat.h>
 #import <sys/utsname.h>
-#import <net/if.h>
-#import <net/if_dl.h>
 #import <mach/mach.h>
-#import <mach/mach_host.h>
-#import <mach/processor_info.h>
 #import <AdSupport/AdSupport.h>
 #import <AudioToolbox/AudioToolbox.h>
 #import <SystemConfiguration/CaptiveNetwork.h>
@@ -334,32 +326,12 @@
 
 + (BOOL)isJailbroken {
     if ([self isSimulator]) return NO; // 不要检查模拟器
-    
-    //  iOS9 URL Scheme查询更改...
-    // NSURL *cydiaURL = [NSURL URLWithString:@"cydia://package"];
-    // if ([[UIApplication sharedApplication] canOpenURL:cydiaURL]) return YES;
-    
-    NSArray *paths = @[@"/Applications/Cydia.app",
-                       @"/private/var/lib/apt/",
-                       @"/private/var/lib/cydia",
-                       @"/private/var/stash"];
-    for (NSString *path in paths) {
-        if ([[NSFileManager defaultManager] fileExistsAtPath:path]) return YES;
-    }
-    
-    FILE *bash = fopen("/bin/bash", "r");
-    if (bash != NULL) {
-        fclose(bash);
-        return YES;
-    }
-    
-    NSString *path = [NSString stringWithFormat:@"/private/%@", [self UUID]];
-    if ([@"test" writeToFile : path atomically : YES encoding : NSUTF8StringEncoding error : NULL]) {
-        [[NSFileManager defaultManager] removeItemAtPath:path error:nil];
-        return YES;
-    }
-    
-    return NO;
+    __block BOOL res = NO;
+    [MBJailbroken checkJailbroken:^(BOOL jailbroken, NSString * _Nonnull msg) {
+        res = jailbroken;
+        MBLogI(@"%@", msg);
+    }];
+    return res;
 }
 
 + (NSString *)machineModel {
