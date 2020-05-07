@@ -38,7 +38,7 @@
     
     SendAuthReq *req = [[SendAuthReq alloc] init];
     req.scope = @"snsapi_userinfo";
-    req.state = @"inke";
+    req.state = @"bowen";
     //第三方向微信终端发送一个SendAuthReq消息结构
     [WXApi sendReq:req];
 }

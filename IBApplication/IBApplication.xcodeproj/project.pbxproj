@@ -178,6 +178,7 @@
 		4A6F19B720E3FE9600EAF1A7 /* IBSocketService.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6F19B620E3FE9600EAF1A7 /* IBSocketService.m */; };
 		4A6F19BA20E401CC00EAF1A7 /* IBSocketClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6F19B920E401CC00EAF1A7 /* IBSocketClient.m */; };
 		4A6F19C320E5DD3100EAF1A7 /* IBViewAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6F19C220E5DD3100EAF1A7 /* IBViewAnimation.m */; };
+		4A7179B82463DDCD00D6EA39 /* UICKeyChainStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A7179B52463DDCD00D6EA39 /* UICKeyChainStore.m */; };
 		4A72287420F0CE3D008B8815 /* IBNaviController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A72287320F0CE3D008B8815 /* IBNaviController.m */; };
 		4A72287B20F20C04008B8815 /* IBNaviBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A72287A20F20C04008B8815 /* IBNaviBar.m */; };
 		4A78076220E9F1BB00E60ACA /* NSLayoutConstraint+MASDebugAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A78074920E9F1BB00E60ACA /* NSLayoutConstraint+MASDebugAdditions.m */; };
@@ -238,6 +239,14 @@
 		4AC102E1230FFAB300DE39CD /* MBImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC102E0230FFAB300DE39CD /* MBImageView.m */; };
 		4AC102E4230FFC6300DE39CD /* MBBlurImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC102E3230FFC6300DE39CD /* MBBlurImageView.m */; };
 		4AC209B12463A70E00DFD301 /* MBJailbroken.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC209AF2463A70E00DFD301 /* MBJailbroken.m */; };
+		4AC21AF92463B96900DFD301 /* MBAppStorePayLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC21AE82463B96800DFD301 /* MBAppStorePayLog.m */; };
+		4AC21AFA2463B96900DFD301 /* MBPayOrderItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC21AE92463B96800DFD301 /* MBPayOrderItem.m */; };
+		4AC21AFB2463B96900DFD301 /* MBPayChecker.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC21AEB2463B96800DFD301 /* MBPayChecker.m */; };
+		4AC21AFC2463B96900DFD301 /* MBPayRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC21AEF2463B96900DFD301 /* MBPayRequest.m */; };
+		4AC21AFD2463B96900DFD301 /* MBPayManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC21AF12463B96900DFD301 /* MBPayManager.m */; };
+		4AC21AFE2463B96900DFD301 /* MBPayOrderIDCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC21AF42463B96900DFD301 /* MBPayOrderIDCache.m */; };
+		4AC21AFF2463B96900DFD301 /* RMStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC21AF72463B96900DFD301 /* RMStore.m */; };
+		4AC21B002463B96900DFD301 /* MBApplePayModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC21AF82463B96900DFD301 /* MBApplePayModel.m */; };
 		4AC29F7A210F04A900F218FE /* UIScrollView+MJRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC29F4C210F04A900F218FE /* UIScrollView+MJRefresh.m */; };
 		4AC29F7B210F04A900F218FE /* MJRefreshConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC29F4D210F04A900F218FE /* MJRefreshConst.m */; };
 		4AC29F7C210F04A900F218FE /* MJRefresh.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4AC29F51210F04A900F218FE /* MJRefresh.bundle */; };
@@ -695,6 +704,9 @@
 		4A6F19B920E401CC00EAF1A7 /* IBSocketClient.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBSocketClient.m; sourceTree = "<group>"; };
 		4A6F19C120E5DD3100EAF1A7 /* IBViewAnimation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBViewAnimation.h; sourceTree = "<group>"; };
 		4A6F19C220E5DD3100EAF1A7 /* IBViewAnimation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBViewAnimation.m; sourceTree = "<group>"; };
+		4A7179B52463DDCD00D6EA39 /* UICKeyChainStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICKeyChainStore.m; sourceTree = "<group>"; };
+		4A7179B62463DDCD00D6EA39 /* UICKeyChainStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICKeyChainStore.h; sourceTree = "<group>"; };
+		4A7179BA2463E2E500D6EA39 /* IBHTTPClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBHTTPClient.h; sourceTree = "<group>"; };
 		4A72287220F0CE3D008B8815 /* IBNaviController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBNaviController.h; sourceTree = "<group>"; };
 		4A72287320F0CE3D008B8815 /* IBNaviController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBNaviController.m; sourceTree = "<group>"; };
 		4A72287920F20C04008B8815 /* IBNaviBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBNaviBar.h; sourceTree = "<group>"; };
@@ -830,6 +842,24 @@
 		4AC102E3230FFC6300DE39CD /* MBBlurImageView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBBlurImageView.m; sourceTree = "<group>"; };
 		4AC209AF2463A70E00DFD301 /* MBJailbroken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBJailbroken.m; sourceTree = "<group>"; };
 		4AC209B02463A70E00DFD301 /* MBJailbroken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBJailbroken.h; sourceTree = "<group>"; };
+		4AC21AE72463B96800DFD301 /* MBPayManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBPayManager.h; sourceTree = "<group>"; };
+		4AC21AE82463B96800DFD301 /* MBAppStorePayLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBAppStorePayLog.m; sourceTree = "<group>"; };
+		4AC21AE92463B96800DFD301 /* MBPayOrderItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBPayOrderItem.m; sourceTree = "<group>"; };
+		4AC21AEA2463B96800DFD301 /* MBPayOrderIDCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBPayOrderIDCache.h; sourceTree = "<group>"; };
+		4AC21AEB2463B96800DFD301 /* MBPayChecker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBPayChecker.m; sourceTree = "<group>"; };
+		4AC21AEC2463B96800DFD301 /* MBApplePayModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBApplePayModel.h; sourceTree = "<group>"; };
+		4AC21AED2463B96800DFD301 /* MBPayDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBPayDelegate.h; sourceTree = "<group>"; };
+		4AC21AEE2463B96800DFD301 /* RMStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMStore.h; sourceTree = "<group>"; };
+		4AC21AEF2463B96900DFD301 /* MBPayRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBPayRequest.m; sourceTree = "<group>"; };
+		4AC21AF02463B96900DFD301 /* MBPayCheckerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBPayCheckerProtocol.h; sourceTree = "<group>"; };
+		4AC21AF12463B96900DFD301 /* MBPayManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBPayManager.m; sourceTree = "<group>"; };
+		4AC21AF22463B96900DFD301 /* MBPayOrderItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBPayOrderItem.h; sourceTree = "<group>"; };
+		4AC21AF32463B96900DFD301 /* MBAppStorePayLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBAppStorePayLog.h; sourceTree = "<group>"; };
+		4AC21AF42463B96900DFD301 /* MBPayOrderIDCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBPayOrderIDCache.m; sourceTree = "<group>"; };
+		4AC21AF52463B96900DFD301 /* MBPayChecker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBPayChecker.h; sourceTree = "<group>"; };
+		4AC21AF62463B96900DFD301 /* MBPayRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBPayRequest.h; sourceTree = "<group>"; };
+		4AC21AF72463B96900DFD301 /* RMStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMStore.m; sourceTree = "<group>"; };
+		4AC21AF82463B96900DFD301 /* MBApplePayModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBApplePayModel.m; sourceTree = "<group>"; };
 		4AC29F4C210F04A900F218FE /* UIScrollView+MJRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+MJRefresh.m"; sourceTree = "<group>"; };
 		4AC29F4D210F04A900F218FE /* MJRefreshConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshConst.m; sourceTree = "<group>"; };
 		4AC29F4E210F04A900F218FE /* UIScrollView+MJExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+MJExtension.h"; sourceTree = "<group>"; };
@@ -1274,6 +1304,7 @@
 				4AE95F5223A12C4900A5C172 /* IBHTTPCache.m */,
 				F33F610322D0E5E200D6CADA /* IBSerialization.h */,
 				F33F610422D0E5E200D6CADA /* IBSerialization.m */,
+				4A7179BA2463E2E500D6EA39 /* IBHTTPClient.h */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -1953,6 +1984,15 @@
 			path = NetworkStatus;
 			sourceTree = "<group>";
 		};
+		4A7179B42463DDCD00D6EA39 /* UICKeyChainStore */ = {
+			isa = PBXGroup;
+			children = (
+				4A7179B62463DDCD00D6EA39 /* UICKeyChainStore.h */,
+				4A7179B52463DDCD00D6EA39 /* UICKeyChainStore.m */,
+			);
+			path = UICKeyChainStore;
+			sourceTree = "<group>";
+		};
 		4A72287120F0CDDD008B8815 /* NaviController */ = {
 			isa = PBXGroup;
 			children = (
@@ -2239,6 +2279,31 @@
 				4AC209AF2463A70E00DFD301 /* MBJailbroken.m */,
 			);
 			path = MBJailBroken;
+			sourceTree = "<group>";
+		};
+		4AC21AE62463B96800DFD301 /* MBApplePay */ = {
+			isa = PBXGroup;
+			children = (
+				4AC21AEC2463B96800DFD301 /* MBApplePayModel.h */,
+				4AC21AF82463B96900DFD301 /* MBApplePayModel.m */,
+				4AC21AF32463B96900DFD301 /* MBAppStorePayLog.h */,
+				4AC21AE82463B96800DFD301 /* MBAppStorePayLog.m */,
+				4AC21AF52463B96900DFD301 /* MBPayChecker.h */,
+				4AC21AEB2463B96800DFD301 /* MBPayChecker.m */,
+				4AC21AF02463B96900DFD301 /* MBPayCheckerProtocol.h */,
+				4AC21AED2463B96800DFD301 /* MBPayDelegate.h */,
+				4AC21AE72463B96800DFD301 /* MBPayManager.h */,
+				4AC21AF12463B96900DFD301 /* MBPayManager.m */,
+				4AC21AEA2463B96800DFD301 /* MBPayOrderIDCache.h */,
+				4AC21AF42463B96900DFD301 /* MBPayOrderIDCache.m */,
+				4AC21AF22463B96900DFD301 /* MBPayOrderItem.h */,
+				4AC21AE92463B96800DFD301 /* MBPayOrderItem.m */,
+				4AC21AF62463B96900DFD301 /* MBPayRequest.h */,
+				4AC21AEF2463B96900DFD301 /* MBPayRequest.m */,
+				4AC21AEE2463B96800DFD301 /* RMStore.h */,
+				4AC21AF72463B96900DFD301 /* RMStore.m */,
+			);
+			path = MBApplePay;
 			sourceTree = "<group>";
 		};
 		4AC29F4B210F04A900F218FE /* MJRefresh */ = {
@@ -2588,6 +2653,7 @@
 		4ACC55C820DB5F3E001352AE /* Vender(第三方) */ = {
 			isa = PBXGroup;
 			children = (
+				4A7179B42463DDCD00D6EA39 /* UICKeyChainStore */,
 				4A0D462A23D3FDA900B5F9DF /* AOP */,
 				4AA2863322C92A2C00C34336 /* SDVersion */,
 				4A89D606228B17480072FB23 /* SSZipArchive */,
@@ -2817,6 +2883,7 @@
 		4ACC569C20DF4D9C001352AE /* IBKit(工具) */ = {
 			isa = PBXGroup;
 			children = (
+				4AC21AE62463B96800DFD301 /* MBApplePay */,
 				4AC209AE2463A6BD00DFD301 /* MBJailBroken */,
 				4A1FB09320E7B2F40056A026 /* IBAnimation */,
 				4ACC569820DEC678001352AE /* IBApp */,
@@ -3345,6 +3412,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4AC21AFB2463B96900DFD301 /* MBPayChecker.m in Sources */,
 				4A1FB20D20E92D5E0056A026 /* UIImage+GIF.m in Sources */,
 				4AD770B12297CD1300FEB76B /* YYTextParser.m in Sources */,
 				4AD770A62297CD1300FEB76B /* YYTextMagnifier.m in Sources */,
@@ -3380,6 +3448,7 @@
 				4A1FB20E20E92D5E0056A026 /* UIImage+MultiFormat.m in Sources */,
 				4AD770A82297CD1300FEB76B /* YYTextEffectWindow.m in Sources */,
 				4A22DE22228AF3B500D4CFA6 /* DDContextFilterLogFormatter.m in Sources */,
+				4AC21AFC2463B96900DFD301 /* MBPayRequest.m in Sources */,
 				4AA2862E22C8E19E00C34336 /* IBUrlManager.m in Sources */,
 				4A89D5FF228B0F720072FB23 /* MBLogFormatter.m in Sources */,
 				4AC3074724238A70004911D6 /* MBAttributeString.m in Sources */,
@@ -3415,6 +3484,7 @@
 				4AE9674723A3A3F100A5C172 /* IBDownloader.m in Sources */,
 				4A35EAB122891D2B00FADE23 /* UITableView+Extension.m in Sources */,
 				4AD770BA2297CD1300FEB76B /* UIView+YYText.m in Sources */,
+				4AC21AFD2463B96900DFD301 /* MBPayManager.m in Sources */,
 				4AE95DB223A0F92A00A5C172 /* MBRouterSerialization.m in Sources */,
 				4A1FB21920E92D5E0056A026 /* SDWebImageFrame.m in Sources */,
 				4A321DD124319A2500283EC1 /* NSMethodSignature+Ext.m in Sources */,
@@ -3425,6 +3495,7 @@
 				4AAA78EB20ECB4F200CF5639 /* MBDebug.m in Sources */,
 				4AC81CE420F37D4600A1F246 /* IBViewModel.m in Sources */,
 				F383B4CB2316E45B003E0D4D /* MBPermenantThread.m in Sources */,
+				4AC21AFE2463B96900DFD301 /* MBPayOrderIDCache.m in Sources */,
 				4AD770B52297CD1300FEB76B /* YYTextUtilities.m in Sources */,
 				4AC29F89210F04A900F218FE /* MJRefreshFooter.m in Sources */,
 				4AD688FD23014AD700D3A248 /* MBAlignmentLabel.m in Sources */,
@@ -3469,6 +3540,7 @@
 				F33F610522D0E5E200D6CADA /* IBSerialization.m in Sources */,
 				4A6F19B720E3FE9600EAF1A7 /* IBSocketService.m in Sources */,
 				4A1FB20F20E92D5E0056A026 /* NSData+ImageContentType.m in Sources */,
+				4AC21AFA2463B96900DFD301 /* MBPayOrderItem.m in Sources */,
 				F333517B22A2C448005B968E /* MBLibraryCamera.m in Sources */,
 				4A1FB12B20E921E90056A026 /* DALabeledCircularProgressView.m in Sources */,
 				4A1FB22620E92D5E0056A026 /* SDWebImageTransition.m in Sources */,
@@ -3481,6 +3553,7 @@
 				4ACC567520DE5E29001352AE /* UIThemeManager.m in Sources */,
 				4A1FB21E20E92D5E0056A026 /* SDWebImageGIFCoder.m in Sources */,
 				4AD688F92301175900D3A248 /* MBWeakProxy.m in Sources */,
+				4AC21B002463B96900DFD301 /* MBApplePayModel.m in Sources */,
 				4A44437520F89833001B2350 /* IBPrivacy.m in Sources */,
 				4A89D632228B17490072FB23 /* aescrypt.m in Sources */,
 				4A1FB21C20E92D5E0056A026 /* SDWebImageCoder.m in Sources */,
@@ -3515,6 +3588,7 @@
 				4ACC569B20DEC694001352AE /* IBApp.m in Sources */,
 				4AED64C0215378EF0082280F /* MBPopupArrowView.m in Sources */,
 				F383B4C72316E03B003E0D4D /* MBTimer.m in Sources */,
+				4AC21AF92463B96900DFD301 /* MBAppStorePayLog.m in Sources */,
 				4AC102E4230FFC6300DE39CD /* MBBlurImageView.m in Sources */,
 				4A1FB20C20E92D5E0056A026 /* UIImage+ForceDecode.m in Sources */,
 				4A1FB22220E92D5E0056A026 /* SDWebImageDownloaderOperation.m in Sources */,
@@ -3538,6 +3612,7 @@
 				4AA2863922C92BFB00C34336 /* IBServiceInfoHandler.m in Sources */,
 				4A1FB22B20E92D810056A026 /* FLAnimatedImageView.m in Sources */,
 				4A22DE24228AF3B500D4CFA6 /* DDFileLogger+Buffering.m in Sources */,
+				4A7179B82463DDCD00D6EA39 /* UICKeyChainStore.m in Sources */,
 				4A03B8DF229AEFE400173765 /* MBLaunchSetup.m in Sources */,
 				4A321DC92431958600283EC1 /* MBMultipleDelegate.m in Sources */,
 				4A7AED9423028CC4004D1D8F /* MBContext.m in Sources */,
@@ -3638,6 +3713,7 @@
 				4A72287B20F20C04008B8815 /* IBNaviBar.m in Sources */,
 				4AC29F85210F04A900F218FE /* MJRefreshAutoNormalFooter.m in Sources */,
 				4AD770B82297CD1300FEB76B /* UIPasteboard+YYText.m in Sources */,
+				4AC21AFF2463B96900DFD301 /* RMStore.m in Sources */,
 				4A89D631228B17490072FB23 /* hmac.m in Sources */,
 				4A89D602228B11C40072FB23 /* MBLogEncryptFormatter.m in Sources */,
 				4AC29F8A210F04A900F218FE /* MJRefreshHeader.m in Sources */,

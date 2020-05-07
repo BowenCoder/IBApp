@@ -16,6 +16,8 @@ typedef NS_ENUM(NSInteger, IBURLErrorCode) {
     
     IBURLErrorTimeout = -1001, // 超时
     
+    IBURLErrorNetworkLost = -1005, // 网络丢失
+    
     IBURLErrorMethod = -6, // 请求method错误
     
     IBURLErrorParameter = -5, // 参数错误
