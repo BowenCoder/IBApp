@@ -198,6 +198,7 @@
 		4A84CBB7229B917100CA4794 /* MBMediator.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A84CBB6229B917100CA4794 /* MBMediator.m */; };
 		4A84CBBA229B938700CA4794 /* MBRouterRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A84CBB9229B938700CA4794 /* MBRouterRequest.m */; };
 		4A84CBBD229B976500CA4794 /* MBRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A84CBBC229B976500CA4794 /* MBRouter.m */; };
+		4A87B49F2465A01B00E6B93F /* MBPayVerificator.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A87B49E2465A01B00E6B93F /* MBPayVerificator.m */; };
 		4A89D5F8228B09440072FB23 /* NSThread+SequenceNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A89D5F7228B09440072FB23 /* NSThread+SequenceNumber.m */; };
 		4A89D5FC228B0E260072FB23 /* MBFilterLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A89D5FB228B0E260072FB23 /* MBFilterLogger.m */; };
 		4A89D5FF228B0F720072FB23 /* MBLogFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A89D5FE228B0F720072FB23 /* MBLogFormatter.m */; };
@@ -241,7 +242,6 @@
 		4AC209B12463A70E00DFD301 /* MBJailbroken.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC209AF2463A70E00DFD301 /* MBJailbroken.m */; };
 		4AC21AF92463B96900DFD301 /* MBAppStorePayLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC21AE82463B96800DFD301 /* MBAppStorePayLog.m */; };
 		4AC21AFA2463B96900DFD301 /* MBPayOrderItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC21AE92463B96800DFD301 /* MBPayOrderItem.m */; };
-		4AC21AFB2463B96900DFD301 /* MBPayChecker.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC21AEB2463B96800DFD301 /* MBPayChecker.m */; };
 		4AC21AFC2463B96900DFD301 /* MBPayRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC21AEF2463B96900DFD301 /* MBPayRequest.m */; };
 		4AC21AFD2463B96900DFD301 /* MBPayManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC21AF12463B96900DFD301 /* MBPayManager.m */; };
 		4AC21AFE2463B96900DFD301 /* MBPayOrderIDCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC21AF42463B96900DFD301 /* MBPayOrderIDCache.m */; };
@@ -754,6 +754,8 @@
 		4A84CBBB229B976500CA4794 /* MBRouter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBRouter.h; sourceTree = "<group>"; };
 		4A84CBBC229B976500CA4794 /* MBRouter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBRouter.m; sourceTree = "<group>"; };
 		4A84CBBE229B98AE00CA4794 /* MBRouterProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBRouterProtocol.h; sourceTree = "<group>"; };
+		4A87B49D2465A01B00E6B93F /* MBPayVerificator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBPayVerificator.h; sourceTree = "<group>"; };
+		4A87B49E2465A01B00E6B93F /* MBPayVerificator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBPayVerificator.m; sourceTree = "<group>"; };
 		4A89D5F5228B07C70072FB23 /* MBErrorCheck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBErrorCheck.h; sourceTree = "<group>"; };
 		4A89D5F6228B09440072FB23 /* NSThread+SequenceNumber.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSThread+SequenceNumber.h"; sourceTree = "<group>"; };
 		4A89D5F7228B09440072FB23 /* NSThread+SequenceNumber.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSThread+SequenceNumber.m"; sourceTree = "<group>"; };
@@ -846,17 +848,14 @@
 		4AC21AE82463B96800DFD301 /* MBAppStorePayLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBAppStorePayLog.m; sourceTree = "<group>"; };
 		4AC21AE92463B96800DFD301 /* MBPayOrderItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBPayOrderItem.m; sourceTree = "<group>"; };
 		4AC21AEA2463B96800DFD301 /* MBPayOrderIDCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBPayOrderIDCache.h; sourceTree = "<group>"; };
-		4AC21AEB2463B96800DFD301 /* MBPayChecker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBPayChecker.m; sourceTree = "<group>"; };
 		4AC21AEC2463B96800DFD301 /* MBApplePayModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBApplePayModel.h; sourceTree = "<group>"; };
 		4AC21AED2463B96800DFD301 /* MBPayDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBPayDelegate.h; sourceTree = "<group>"; };
 		4AC21AEE2463B96800DFD301 /* RMStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMStore.h; sourceTree = "<group>"; };
 		4AC21AEF2463B96900DFD301 /* MBPayRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBPayRequest.m; sourceTree = "<group>"; };
-		4AC21AF02463B96900DFD301 /* MBPayCheckerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBPayCheckerProtocol.h; sourceTree = "<group>"; };
 		4AC21AF12463B96900DFD301 /* MBPayManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBPayManager.m; sourceTree = "<group>"; };
 		4AC21AF22463B96900DFD301 /* MBPayOrderItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBPayOrderItem.h; sourceTree = "<group>"; };
 		4AC21AF32463B96900DFD301 /* MBAppStorePayLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBAppStorePayLog.h; sourceTree = "<group>"; };
 		4AC21AF42463B96900DFD301 /* MBPayOrderIDCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBPayOrderIDCache.m; sourceTree = "<group>"; };
-		4AC21AF52463B96900DFD301 /* MBPayChecker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBPayChecker.h; sourceTree = "<group>"; };
 		4AC21AF62463B96900DFD301 /* MBPayRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBPayRequest.h; sourceTree = "<group>"; };
 		4AC21AF72463B96900DFD301 /* RMStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMStore.m; sourceTree = "<group>"; };
 		4AC21AF82463B96900DFD301 /* MBApplePayModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBApplePayModel.m; sourceTree = "<group>"; };
@@ -2288,9 +2287,6 @@
 				4AC21AF82463B96900DFD301 /* MBApplePayModel.m */,
 				4AC21AF32463B96900DFD301 /* MBAppStorePayLog.h */,
 				4AC21AE82463B96800DFD301 /* MBAppStorePayLog.m */,
-				4AC21AF52463B96900DFD301 /* MBPayChecker.h */,
-				4AC21AEB2463B96800DFD301 /* MBPayChecker.m */,
-				4AC21AF02463B96900DFD301 /* MBPayCheckerProtocol.h */,
 				4AC21AED2463B96800DFD301 /* MBPayDelegate.h */,
 				4AC21AE72463B96800DFD301 /* MBPayManager.h */,
 				4AC21AF12463B96900DFD301 /* MBPayManager.m */,
@@ -2300,6 +2296,8 @@
 				4AC21AE92463B96800DFD301 /* MBPayOrderItem.m */,
 				4AC21AF62463B96900DFD301 /* MBPayRequest.h */,
 				4AC21AEF2463B96900DFD301 /* MBPayRequest.m */,
+				4A87B49D2465A01B00E6B93F /* MBPayVerificator.h */,
+				4A87B49E2465A01B00E6B93F /* MBPayVerificator.m */,
 				4AC21AEE2463B96800DFD301 /* RMStore.h */,
 				4AC21AF72463B96900DFD301 /* RMStore.m */,
 			);
@@ -3412,7 +3410,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4AC21AFB2463B96900DFD301 /* MBPayChecker.m in Sources */,
 				4A1FB20D20E92D5E0056A026 /* UIImage+GIF.m in Sources */,
 				4AD770B12297CD1300FEB76B /* YYTextParser.m in Sources */,
 				4AD770A62297CD1300FEB76B /* YYTextMagnifier.m in Sources */,
@@ -3692,6 +3689,7 @@
 				4AD770AC2297CD1300FEB76B /* YYTextSelectionView.m in Sources */,
 				4A78076A20E9F1BB00E60ACA /* MASViewConstraint.m in Sources */,
 				4A89D633228B17490072FB23 /* fileenc.m in Sources */,
+				4A87B49F2465A01B00E6B93F /* MBPayVerificator.m in Sources */,
 				4AF2091E23978EB800EFB85D /* MBPresenter.m in Sources */,
 				4AC29F8C210F04A900F218FE /* MJRefreshAutoFooter.m in Sources */,
 				4A6F19A920E3F3D700EAF1A7 /* IBSocketConnection.m in Sources */,

@@ -29,6 +29,11 @@
     return manager;
 }
 
+- (void)setup
+{
+    [self applePayModel];
+}
+
 - (void)prepareAppleProductList:(NSArray<MBPayProduct *> *)products
 {
     [self.applePayModel prepareAppleProductList:products];
@@ -40,19 +45,9 @@
     [self.applePayModel createPaymentWithProduct:request];
 }
 
-- (void)stopRetry
-{
-    [self.applePayModel stopRetry];
-}
-
 - (void)restoreIAP
 {
     [self.applePayModel restoreApplePay];
-}
-
-- (void)checkUnFinishedOrder
-{
-    [self.applePayModel checkUnFinishedOrder];
 }
 
 #pragma mark - getter

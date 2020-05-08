@@ -15,6 +15,11 @@
 + (instancetype)sharedInstance;
 
 /**
+ * 初始化，登录完成之后调用
+ */
+- (void)setup;
+
+/**
  * 预加载产品列表
  */
 - (void)prepareAppleProductList:(NSArray<MBPayProduct *> *)products;
@@ -33,10 +38,5 @@
  * 恢复购买，会通知历史所有订单购买成功
  */
 - (void)restoreIAP;
-
-/**
- * 检查未完成订单
- */
-- (void)checkUnFinishedOrder;
 
 @end

@@ -9,18 +9,17 @@
 #import "MBApplePayModel.h"
 #import "RMStore.h"
 #import "MBPayOrderIDCache.h"
-#import "MBPayChecker.h"
 #import "MBLogger.h"
 #import "MBAppStorePayLog.h"
 #import "IBHTTPClient.h"
 #import "MBJailbroken.h"
+#import "MBPayVerificator.h"
 
 NSString * const kVerifyReceiptUrl = @"kApplePayVerifyReceiptUrl";
 
-static const NSInteger maxRetryCount = 3;
-
 @interface MBApplePayModel ()<RMStoreObserver>
 
+@property (nonatomic, strong) MBPayVerificator *verificator;
 @property (nonatomic, strong) NSMutableArray *checkers;
 @property (nonatomic, copy)   NSString *uid;
 @property (nonatomic, strong) MBPayProduct *product;
@@ -36,6 +35,8 @@ static const NSInteger maxRetryCount = 3;
 {
     if (self = [super init]) {
         self.checkers = [NSMutableArray array];
+        self.verificator = [[MBPayVerificator alloc] init];
+        [RMStore defaultStore].receiptVerificator = self.verificator;
         [[RMStore defaultStore] addStoreObserver:self];
     }
     return self;
@@ -91,23 +92,10 @@ static const NSInteger maxRetryCount = 3;
     }
 }
 
-- (void)checkUnFinishedOrder
-{
-    [MBPayChecker checkUnFinishedOrder];
-}
-
 - (void)restoreApplePay
 {
     [[RMStore defaultStore] restoreTransactions];
     MBLogI(@"#apple.pay# name:restoreTransactions");
-}
-
-- (void)stopRetry
-{
-    for (MBPayChecker *checker in self.checkers) {
-        [checker stopRetry];
-    }
-    [self.checkers removeAllObjects];
 }
 
 - (void)requestServiceForCreatePayment:(MBPayRequest *)request
@@ -211,57 +199,13 @@ static const NSInteger maxRetryCount = 3;
 
 - (void)dealWithApplePaySuccessWithTransaction:(SKPaymentTransaction *)transaction
 {
-    __weak typeof(self) weakSelf = self;
-    
     self.paying = NO;
     
     MBPayOrderItem *item = [MBPayOrderIDCache orderWithProductId:transaction.payment.productIdentifier];
-    if (!item) {
-        item = [[MBPayOrderItem alloc] init];
-        item.productId = transaction.payment.productIdentifier;
-    }
-    
-    if (kIsEmptyString(item.transactionIdentifier)) {
-        item.transactionIdentifier = transaction.transactionIdentifier;
-    }
-    
-    if (kIsEmptyString(item.originTransationId)) {
-        item.originTransationId = [self originalTransactionIdentifier:transaction];
-    }
-    
-    if (!self.product) {
-        self.product = [[MBPayProduct alloc] init];
-    }
-    
-    if (kIsEmptyString(self.product.productId)) {
-        self.product.productId = item.productId;
-    }
-    
-    MBPayChecker *orderCheck = [[MBPayChecker alloc] init];
-    orderCheck.product = self.product;
-    
-    orderCheck.checkErrorBlock = ^(MBPAYERROR type)
-    {
-        [weakSelf dealWithError:type msg:nil];
-    };
-    
-    orderCheck.checkSuccessBlock = ^(NSString *orderId)
-    {
-        if ([weakSelf.delegate respondsToSelector:@selector(paymentCompletion:orderItem:)]) {
-            [weakSelf.delegate paymentCompletion:YES orderItem:item];
-        }
-    };
-    
-    orderCheck.deleteCheckerBlock = ^(id<MBPayCheckerProtocol> checker) {
-        [weakSelf.checkers removeObject:checker];
-    };
-    
-    [self.checkers addObject:orderCheck];
-    [orderCheck checkReceiptWithOrderItem:item];
     
     dispatch_async(dispatch_get_main_queue(), ^{
-        if (self.delegate && [self.delegate respondsToSelector:@selector(applePayResult:success:)]) {
-            [self.delegate applePayResult:item success:YES];
+        if (self.delegate && [self.delegate respondsToSelector:@selector(paymentVerifyReceipt:)]) {
+            [self.delegate paymentVerifyReceipt:item];
         }
     });
     
@@ -271,13 +215,9 @@ static const NSInteger maxRetryCount = 3;
 - (void)dealWithApplePayFailureWithTransaction:(SKPaymentTransaction *)transaction
 {
     self.paying = NO;
-            
+    
     MBPayOrderItem *item = [MBPayOrderIDCache orderWithProductId:transaction.payment.productIdentifier];
-    if (!item) {
-        item = [[MBPayOrderItem alloc] init];
-        item.productId = transaction.payment.productIdentifier;
-    }
-
+    
     NSInteger errCode = transaction.error.code;
     NSString *errMsg = transaction.error.localizedDescription;
     
@@ -292,8 +232,8 @@ static const NSInteger maxRetryCount = 3;
     }
     
     dispatch_async(dispatch_get_main_queue(), ^{
-        if (self.delegate && [self.delegate respondsToSelector:@selector(applePayResult:success:)]) {
-            [self.delegate applePayResult:item success:NO];
+        if (self.delegate && [self.delegate respondsToSelector:@selector(paymentResult:success:)]) {
+            [self.delegate paymentResult:item success:NO];
         }
     });
 }
@@ -324,51 +264,29 @@ static const NSInteger maxRetryCount = 3;
 {
     SKPaymentTransaction *transaction = [notification rm_transaction];
     MBLogI(@"#apple.pay# name:transaction.deferred productId:%@", transaction.payment.productIdentifier);
+    if (transaction.transactionState != SKPaymentTransactionStateRestored) {
+        [self dealWithApplePayFailureWithTransaction:transaction];
+    }
 }
 
 - (void)storeRestoreTransactionsFailed:(NSNotification *)notification
 {
     NSError *error = [notification rm_storeError];
     MBLogI(@"#apple.pay# name:restore.error value:%@", error);
+    if (self.delegate && [self.delegate respondsToSelector:@selector(paymentRestoreFailed:)]) {
+        [self.delegate paymentRestoreFailed:error];
+    }
 }
 
 - (void)storeRestoreTransactionsFinished:(NSNotification *)notification
 {
-    // 获取恢复购买数据
-    NSMutableArray *transations = [notification rm_transactions].mutableCopy;
-    MBLogI(@"#apple.pay# name:restore.finish count:%lu", (unsigned long)transations.count);
-    // 日期降序
-    NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"transactionDate" ascending:NO];
-    [transations sortUsingDescriptors:@[sort]];
-    
-    // 找出不同原始交易号的交易
-    NSMutableDictionary *transactionDict = @{}.mutableCopy;
-    for (SKPaymentTransaction *transaction in transations) {
-        NSString *transactionId = [self originalTransactionIdentifier:transaction];
-        if (![transactionDict.allKeys containsObject:transactionId]) {
-            [transactionDict setObject:transaction forKey:transactionId];
-        }  else {
-            MBLogI(@"#apple.pay# name:restore.finish.filter productId:%@", transaction.payment.productIdentifier);
-        }
-    }
-    
-    // 验证交易票据
-    for (SKPaymentTransaction *transaction in transactionDict.allValues) {
-        MBLogI(@"#apple.pay# name:restore.finish.result productId:%@", transaction.payment.productIdentifier);
-        [self dealWithApplePaySuccessWithTransaction:transaction];
+    MBLogI(@"#apple.pay# name:restore.finished");
+    if (self.delegate && [self.delegate respondsToSelector:@selector(paymentRestoreFinished)]) {
+        [self.delegate paymentRestoreFinished];
     }
 }
 
 #pragma mark - private
-
-- (NSString *)originalTransactionIdentifier:(SKPaymentTransaction *)transaction
-{
-    NSString *transactionId = transaction.originalTransaction.transactionIdentifier;
-    if (kIsEmptyString(transactionId)) {
-        transactionId = transaction.transactionIdentifier;
-    }
-    return transactionId;
-}
 
 - (void)checkJailbroken:(void(^)(BOOL jailbroken))complete
 {
