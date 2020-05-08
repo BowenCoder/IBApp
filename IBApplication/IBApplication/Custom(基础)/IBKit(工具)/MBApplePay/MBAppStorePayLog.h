@@ -23,6 +23,7 @@
 
 + (void)trackRequestFailedWithProductId:(NSString *)productId
                                   order:(NSString *)order
+                                errCode:(NSInteger)errCode
                                  errMsg:(NSString *)errMsg;
 
 + (void)trackIAPWithProductId:(NSString *)productId

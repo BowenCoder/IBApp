@@ -46,13 +46,15 @@
 
 + (void)trackRequestFailedWithProductId:(NSString *)productId
                                   order:(NSString *)order
-                                 errMsg:(NSString *)errMsg{
+                                errCode:(NSInteger)errCode
+                                 errMsg:(NSString *)errMsg {
     NSString *name = @"pay.failed";
     NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
     
     [dict setObject:NSStringNONil(productId) forKey:@"product_id"];
     [dict setObject:NSStringNONil(order) forKey:@"order"];
     [dict setObject:NSStringNONil(errMsg) forKey:@"errMsg"];
+    [dict setObject:@(errCode) forKey:@"code"];
     
     MBLogI(@"#apple.pay# name:%@ value:%@", name, dict);
 }

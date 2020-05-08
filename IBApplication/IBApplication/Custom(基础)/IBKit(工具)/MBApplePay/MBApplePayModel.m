@@ -229,9 +229,8 @@ static const NSInteger maxRetryCount = 3;
         } else {
             strongSelf.paying = NO;
             [strongSelf dealWithError:MBPAYERROR_NOPRODUCT msg:nil];
-            [MBAppStorePayLog trackRequestFailedWithProductId:mbproduct.productId order:orderid errMsg:@""];
+            [MBAppStorePayLog trackRequestFailedWithProductId:mbproduct.productId order:orderid errCode:MBPAYERROR_NOPRODUCT errMsg:@"购买商品不存在"];
         }
-        MBLogI(@"#apple.pay# name:requestProducts invalidProductId:%@", invalidProductIdentifiers);
     } failure:^(NSError *error) {
         __strong typeof(weakSelf) strongSelf = weakSelf;
         if (retryNum > 0) {
@@ -239,10 +238,9 @@ static const NSInteger maxRetryCount = 3;
             [strongSelf retryRequestProducts:idSet orderid:orderid retryCount:retryNum product:mbproduct];
         } else {
             strongSelf.paying = NO;
-            [MBAppStorePayLog trackRequestFailedWithProductId:mbproduct.productId order:orderid errMsg:error.localizedDescription];
-            [strongSelf dealWithError:error.code msg:error.localizedDescription];
+            [MBAppStorePayLog trackRequestFailedWithProductId:mbproduct.productId order:orderid errCode:error.code errMsg:error.localizedDescription];
+            [strongSelf dealWithError:MBPAYERROR_NOPRODUCT msg:@""];
         }
-        MBLogI(@"#apple.pay# name:requestProducts error:%@", error);
     }];
 }
 
@@ -256,14 +254,7 @@ static const NSInteger maxRetryCount = 3;
     
     NSArray *items = [MBPayOrderIDCache ordersWithProductId:transaction.payment.productIdentifier];
     MBPayOrderItem *item = [items firstObject];
-    
-    // 沙盒环境，平级订阅 1个月升3个月。先回调1个月成功，后回调3个月的失败，过滤掉此种case的成功事件。
-    if (item.productType == MBPayProductType_AutoRenewSubscription) {
-        if (![item.productId isEqualToString:transaction.payment.productIdentifier]) {
-            return;
-        }
-    }
-    
+        
     [MBPayOrderIDCache deleteOrder:item];
     
     item.transactionIdentifier = transaction.transactionIdentifier;
@@ -310,7 +301,7 @@ static const NSInteger maxRetryCount = 3;
         }
     });
     
-    [MBAppStorePayLog trackIAPWithProductId:transaction.payment.productIdentifier order:item.orderId transactionId:transaction.transactionIdentifier errCode:0 errMsg:@"成功"];
+    [MBAppStorePayLog trackIAPWithProductId:transaction.payment.productIdentifier order:item.orderId transactionId:transaction.transactionIdentifier errCode:0 errMsg:@"支付成功"];
 }
 
 - (void)dealWithApplePayFailureWithTransaction:(SKPaymentTransaction *)transaction
@@ -346,6 +337,12 @@ static const NSInteger maxRetryCount = 3;
 - (void)storePaymentTransactionFinished:(NSNotification *)notification
 {
     SKPaymentTransaction *transaction = [notification rm_transaction];
+
+    // 沙盒环境，平级订阅 1个月升3个月。先回调1个月成功，后回调3个月的失败，过滤掉此种case的成功事件。
+    if (self.product && ![self.product.productId isEqualToString:transaction.payment.productIdentifier]) {
+        return;
+    }
+    
     if (transaction.transactionState != SKPaymentTransactionStateRestored) {
         [self dealWithApplePaySuccessWithTransaction:transaction];
     }
