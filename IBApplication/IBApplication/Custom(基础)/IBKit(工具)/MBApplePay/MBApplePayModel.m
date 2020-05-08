@@ -12,7 +12,6 @@
 #import "MBPayChecker.h"
 #import "MBLogger.h"
 #import "MBAppStorePayLog.h"
-#import "MBUserManager.h"
 #import "IBHTTPClient.h"
 #import "MBJailbroken.h"
 
@@ -22,11 +21,12 @@ static const NSInteger maxRetryCount = 3;
 
 @interface MBApplePayModel ()<RMStoreObserver>
 
-@property (nonatomic, assign) BOOL paying;
+@property (nonatomic, copy)   NSString *uid;
+@property (nonatomic, copy)   NSString *currentOrderId;
 @property (nonatomic, strong) MBPayProduct *product;
 @property (nonatomic, strong) NSMutableArray *paymentCheckArr;
-@property (nonatomic, copy)   NSString *currentOrderId;
 @property (nonatomic, strong) NSDictionary *orderBusDic;
+@property (nonatomic, assign) BOOL paying;
 
 @end
 
@@ -74,8 +74,7 @@ static const NSInteger maxRetryCount = 3;
     __weak typeof(self) weakSelf = self;
     
     NSString *pid = request.product.productId;
-    NSString *uidStr = @([MBUserManager sharedManager].loginUser.uid).stringValue;
-    BOOL hasOneOrder = [MBPayOrderIDCache hasOneOrderWithProductId:pid uid:uidStr];
+    BOOL hasOneOrder = [MBPayOrderIDCache hasOneOrderWithProductId:pid uid:request.uid];
     // 检查用户权限
     if ([RMStore canMakePayments]) {
         [self checkJailbroken:^(BOOL jailbroken) {
@@ -148,7 +147,8 @@ static const NSInteger maxRetryCount = 3;
 
 - (void)requestServiceForCreatePayment:(MBPayRequest *)request
 {
-    self.paying = YES;
+    self.paying  = YES;
+    self.uid     = request.uid;
     self.product = request.product;
     
     NSString *url = request.url;
@@ -160,7 +160,7 @@ static const NSInteger maxRetryCount = 3;
         NSString *errMsg = response.message;
         
         if (errorCode == IBURLErrorSuccess) {
-            orderstr = [response.dict valueForKey:request.orderParseKey];
+            orderstr = [response.dict valueForKey:@"order_id"];
             weakSelf.orderBusDic = response.dict;
         }
         
@@ -200,13 +200,10 @@ static const NSInteger maxRetryCount = 3;
 - (void)startApplePayWithProduct:(SKProduct *)product orderid:(NSString *)orderid product:(MBPayProduct *)mbproduct
 {
     MBPayOrderItem *item = [[MBPayOrderItem alloc] init];
-    item.uid = @([MBUserManager sharedManager].loginUser.uid).stringValue;
+    item.uid = self.uid;
     item.orderId = orderid;
     item.productType = mbproduct.productType;
     item.productId = product.productIdentifier;
-    if (@available(iOS 11.2, *)) {
-        item.introductoryPrice = product.introductoryPrice.price.floatValue;
-    }
     
     [MBPayOrderIDCache addOrder:item];
     
@@ -522,11 +519,6 @@ static const NSInteger maxRetryCount = 3;
         case MBPAYERROR_OTHER:
         {
             msg = @"支付失败，请联系客服";
-        }
-            break;
-        case MBPAYERROR_SILENCE:
-        {
-            msg = nil;
         }
             break;
     }

@@ -13,12 +13,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface MBUserModel : IBModel
 
-@property (nonatomic, assign) NSInteger uid;
-@property (nonatomic, copy)   NSString *session;
-@property (nonatomic, copy)   NSString  *nick;
-@property (nonatomic, copy)   NSString  *portrait;
-@property (nonatomic, copy)   NSString  *birth;
-@property (nonatomic, copy)   MBPhoneNumber *phoneNumber;
+@property (nonatomic, copy) NSString *uid;
+@property (nonatomic, copy) NSString *session;
+@property (nonatomic, copy) NSString *nick;
+@property (nonatomic, copy) NSString *portrait;
+@property (nonatomic, copy) NSString *birth;
+@property (nonatomic, copy) MBPhoneNumber *phoneNumber;
 @property (nonatomic, assign) NSInteger age;
 @property (nonatomic, assign) CGFloat lat;
 @property (nonatomic, assign) CGFloat lng;

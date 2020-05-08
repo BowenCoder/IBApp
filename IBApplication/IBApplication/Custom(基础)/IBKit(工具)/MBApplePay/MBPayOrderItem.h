@@ -17,7 +17,6 @@
 @property (nonatomic, copy) NSString *originTransationId;
 @property (nonatomic, copy) NSString *transactionIdentifier;
 @property (nonatomic, assign) MBPayProductType productType;
-@property (nonatomic, assign) CGFloat introductoryPrice;
 
 - (NSString *)modelString;
 

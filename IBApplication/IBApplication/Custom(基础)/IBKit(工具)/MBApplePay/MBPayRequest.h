@@ -25,11 +25,10 @@ typedef NS_ENUM(NSInteger, MBPayProductType) {
 
 @interface MBPayRequest : NSObject
 
+@property (nonatomic, copy) NSString *uid;           // 用户的id
+@property (nonatomic, copy) NSString *url;           // 订单的url
+@property (nonatomic, copy) NSDictionary *params;    // 订单的params
 @property (nonatomic, strong) MBPayProduct *product; // 商品信息
-@property (nonatomic, copy) NSString *url;           // 创建订单的url
-@property (nonatomic, copy) NSDictionary *params;    // 自定义post的params
-@property (nonatomic, copy) NSDictionary *body;      // 自定义post的body
-@property (nonatomic, copy) NSString *orderParseKey; // 解析的keyPath 如ios_sub.order
 
 @end
 

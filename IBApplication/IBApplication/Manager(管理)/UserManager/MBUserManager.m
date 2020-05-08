@@ -50,7 +50,7 @@
         return;
     }
     NSDictionary *uidDic    = [IBFile readFileAtPathAsDictionary:lastUserPath];
-    NSInteger    lastUid    = [[uidDic valueForKey:@"uid"] integerValue];
+    NSString     *lastUid   = [uidDic valueForKey:@"uid"];
     NSString     *userFile  = [self userInfoFileName:lastUid];
     NSDictionary *userDic   = [IBFile readFileAtPathAsDictionary:userFile];
     MBUserModel  *userModel = [MBUserModel yy_modelWithDictionary:userDic];
@@ -58,9 +58,9 @@
     [self refreshAtom];
 }
 
-- (BOOL)isLoginUser:(NSInteger)uid
+- (BOOL)isLoginUser:(NSString *)uid
 {
-    return _user.uid == uid;
+    return [_user.uid isEqualToString:uid];
 }
 
 - (void)updateLoginUser:(MBUserModel *)user
@@ -77,7 +77,7 @@
      */
 }
 
-- (void)setLogin:(NSInteger)uid session:(NSString *)session phoneNum:(MBPhoneNumber *)phoneNumber
+- (void)setLogin:(NSString *)uid session:(NSString *)session phoneNum:(MBPhoneNumber *)phoneNumber
 {
     _user = [[MBUserModel alloc] init];
     _user.uid = uid;
@@ -105,7 +105,7 @@
 - (void)refreshAtom
 {
     if (_user) {
-        [[IBAtomFactory sharedInstance] updateUserId:[@(_user.uid) stringValue]];
+        [[IBAtomFactory sharedInstance] updateUserId:_user.uid];
         [[IBAtomFactory sharedInstance] updateSessionId:_user.session];
     } else {
         [[IBAtomFactory sharedInstance] updateUserId:@""];
@@ -165,9 +165,9 @@
     }
 }
 
-- (NSString *)userInfoFileName:(NSInteger)uid
+- (NSString *)userInfoFileName:(NSString *)uid
 {
-    NSString *filename = [NSString stringWithFormat:@"User/login_%ld.plist", (long)uid];
+    NSString *filename = [NSString stringWithFormat:@"User/login_%@.plist", uid];
     return [IBFile filePathInLibrary:filename];
 }
 

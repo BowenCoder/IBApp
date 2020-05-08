@@ -7,9 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "MBPayDelegate.h"
-#import <StoreKit/StoreKit.h>
-#import "MBPayRequest.h"
 #import "MBPayCheckerProtocol.h"
 
 /*

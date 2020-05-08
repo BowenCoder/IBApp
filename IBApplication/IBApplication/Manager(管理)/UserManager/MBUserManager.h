@@ -26,7 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  判断是否是登录用户
  */
-- (BOOL)isLoginUser:(NSInteger)uid;
+- (BOOL)isLoginUser:(NSString *)uid;
 
 /**
  更新或者设置用户数据
@@ -45,7 +45,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param session sessionID
  @param phoneNumber 电话
  */
-- (void)setLogin:(NSInteger)uid session:(NSString *)session phoneNum:(MBPhoneNumber *)phoneNumber;
+- (void)setLogin:(NSString *)uid session:(NSString *)session phoneNum:(MBPhoneNumber *)phoneNumber;
 
 @end
 

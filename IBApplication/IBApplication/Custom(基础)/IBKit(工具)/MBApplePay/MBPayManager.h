@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "MBPayRequest.h"
 #import "MBPayDelegate.h"
-#import "MBPayOrderItem.h"
 
 @interface MBPayManager : NSObject
 

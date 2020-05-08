@@ -24,8 +24,7 @@ typedef NS_ENUM(NSInteger , MBPAYERROR){
     MBPAYERROR_APPLEORDERINVALID = 7,     //苹果支付成功 但是返回订单号非法
     MBPAYERROR_SERVERCHECKFAIL   = 8,     //服务校验票据失败
     MBPAYERROR_GOLDNOTARRIVE     = 9,     //服务校验票据重试失败 金币稍后到账
-    MBPAYERROR_OTHER             = 10,
-    MBPAYERROR_SILENCE           = 11,
+    MBPAYERROR_OTHER             = 10,    //其他情况
     MBPAYERROR_PAYING            = 12,     //支付中
 };
 

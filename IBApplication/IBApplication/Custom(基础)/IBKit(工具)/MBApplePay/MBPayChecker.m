@@ -67,7 +67,6 @@
     dic[@"order"] = NSStringNONil(orderId);
     dic[@"order_uid"] = @([NSStringNONil(uid) integerValue]);
     dic[@"apple_product_id"] = NSStringNONil(transaction.payment.productIdentifier);
-    dic[@"apple_introductory_price"] = @(orderItem.introductoryPrice);
     
     if (transaction.originalTransaction) {
         dic[@"original_transaction_id"] = NSStringNONil(transaction.originalTransaction.transactionIdentifier);
