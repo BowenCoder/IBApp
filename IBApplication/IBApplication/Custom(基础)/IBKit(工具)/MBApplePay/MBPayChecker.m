@@ -12,10 +12,10 @@
 #import "MBApplePayModel.h"
 #import "IBMacros.h"
 #import "IBHTTPClient.h"
-#import "IBFile.h"
 #import "NSDictionary+Ext.h"
 #import "MBUserManager.h"
 #import "MBLogger.h"
+#import "MBPayOrderIDCache.h"
 
 @interface MBPayChecker ()
 
@@ -25,20 +25,19 @@
 @end
 
 @implementation MBPayChecker
+@synthesize product;
+@synthesize checkSuccessBlock;
+@synthesize checkErrorBlock;
+@synthesize deleteCheckerBlock;
 
 #pragma mark - out
 
-- (void)checkCachedReceiptWithDic:(NSDictionary *)tmpDic
++ (void)checkUnFinishedOrder
 {
-    NSString *orderId = [MBPayChecker orderidFromDic:tmpDic];
-    NSString *transactionid = [MBPayChecker transactionidFromDic:tmpDic];
-    NSDictionary *param = [MBPayChecker paramFromDic:tmpDic];
-    [self checkLocalOrderId:orderId transactionId:transactionid param:param];
-}
-
-- (void)checkLocalOrderId:(NSString *)orderId transactionId:(NSString *)transactionid param:(NSDictionary *)paramDict
-{
-    [self sendPaymentNoticeRequest:paramDict transactionId:transactionid orderId:orderId];
+    NSArray *items = [MBPayOrderIDCache allOrders];
+    for (MBPayOrderItem *item in items) {
+        [MBPayChecker checkOrder:item];
+    }
 }
 
 - (void)stopRetry
@@ -46,12 +45,11 @@
     self.isStopped = YES;
 }
 
-- (void)checkOrderIdWithServer:(SKPaymentTransaction *)transaction orderItem:(MBPayOrderItem *)orderItem
+- (void)checkReceiptWithOrderItem:(MBPayOrderItem *)orderItem
 {
     NSURL *receiptURL = [[NSBundle mainBundle] appStoreReceiptURL];
     NSData *receiptData = [NSData dataWithContentsOfURL:receiptURL];
     NSString *receiptStr = [receiptData base64EncodedStringWithOptions:NSDataBase64EncodingEndLineWithLineFeed];
-    NSString *transactionIdentifier = transaction.transactionIdentifier;
     
     MBLogI(@"#apple.pay# name:recipt value:%@",receiptStr);
     
@@ -62,31 +60,22 @@
         return;
     }
     
+    // 保存完整交易信息
+    [MBPayOrderIDCache addOrder:orderItem];
+    
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     dic[@"receipt_data"] = NSStringNONil(receiptStr);
     dic[@"order"] = NSStringNONil(orderItem.orderId);
     dic[@"order_uid"] = @([NSStringNONil(orderItem.uid) integerValue]);
-    dic[@"apple_product_id"] = NSStringNONil(transaction.payment.productIdentifier);
+    dic[@"apple_product_id"] = NSStringNONil(orderItem.productId);
+    dic[@"original_transaction_id"] = NSStringNONil(orderItem.originTransationId);
     
-    if (transaction.originalTransaction) {
-        dic[@"original_transaction_id"] = NSStringNONil(transaction.originalTransaction.transactionIdentifier);
-    }else {
-        dic[@"original_transaction_id"] = NSStringNONil(transaction.transactionIdentifier);
-    }
-    
-    [self sendPaymentNoticeRequest:dic transactionId:transactionIdentifier orderId:orderItem.orderId];
+    [self sendPaymentNoticeRequest:dic orderItem:orderItem];
+
 }
 
-- (void)sendPaymentNoticeRequest:(NSDictionary *)body transactionId:(NSString *)transactionid orderId:(NSString *)orderId
+- (void)sendPaymentNoticeRequest:(NSDictionary *)body orderItem:(MBPayOrderItem *)orderItem
 {
-    if (self.isStopped) {
-        return;
-    }
-    
-    if (self.retryTime == 0) {
-        [MBPayChecker saveOrderIdToLocal:body transactionId:transactionid orderId:orderId];
-    }
-    
     NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
     
     NSString *url = [[IBUrlManager sharedInstance] urlForKey:kVerifyReceiptUrl];
@@ -99,157 +88,62 @@
         
         if (errorCode == IBURLErrorSuccess) {
             if (weakSelf.checkSuccessBlock) {
-                weakSelf.checkSuccessBlock(orderId);
+                weakSelf.checkSuccessBlock(orderItem.orderId);
             }
-            
-            [MBPayChecker deleteOrderIdFromLocal:orderId];
-            [weakSelf deleteOrder];
+            [weakSelf removeOrder:orderItem];
         } else {
             if (errorCode == IBURLErrorService || errorCode == IBURLErrorTimeout ||
                 errorCode == IBURLErrorUnknown || errorCode == IBURLErrorNetworkLost) {
-                [weakSelf retry:body transactionId:transactionid orderId:orderId];
-                if (weakSelf.checkErrorBlock) {
-                    weakSelf.checkErrorBlock(MBPAYERROR_GOLDNOTARRIVE);
-                }
+                [weakSelf retry:body orderItem:orderItem];
             } else {
-                [weakSelf deleteOrder];
+                [weakSelf removeOrder:orderItem];
                 if (weakSelf.checkErrorBlock) {
                     weakSelf.checkErrorBlock(MBPAYERROR_SERVERCHECKFAIL);
                 }
             }
         }
         
-        [MBAppStorePayLog trackAgreeWithProductId:weakSelf.product.productId order:orderId transactionId:transactionid errCode:errorCode errMsg:errMsg body:body];
+        [MBAppStorePayLog trackAgreeWithProductId:weakSelf.product.productId order:orderItem.orderId transactionId:orderItem.transactionIdentifier errCode:errorCode errMsg:errMsg body:body];
     }];
 }
 
 // 重试逻辑
-- (void)retry:(NSDictionary *)body transactionId:(NSString *)transactionid orderId:(NSString *)orderId
+- (void)retry:(NSDictionary *)body orderItem:(MBPayOrderItem *)orderItem
 {
-    __weak typeof(self) weakSelf = self;
-    
     self.retryTime++;
     
-    NSInteger deltTime = self.retryTime >= 3 ? 60 : 1;
-    
-    if (self.retryTime == 3 && self.checkErrorBlock) {
-        self.checkErrorBlock(MBPAYERROR_GOLDNOTARRIVE);
+    if (self.retryTime > 3 && self.checkErrorBlock) {
+        self.checkErrorBlock(MBPAYERROR_RETRYFAIL);
+        return;
     }
     
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(deltTime * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        if (weakSelf.isStopped == YES) {
+    __weak typeof(self) weakSelf = self;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(self.retryTime * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        if (weakSelf.isStopped) {
             return;
         }
-        [weakSelf sendPaymentNoticeRequest:body transactionId:transactionid orderId:orderId];
+        [weakSelf sendPaymentNoticeRequest:body orderItem:orderItem];
     });
 }
 
-- (void)deleteOrder
+- (void)removeOrder:(MBPayOrderItem *)item
 {
-    [self stopRetry];
+    // 移除消耗性商品
+    if (item.productType == MBPayProductType_ConsumableItem) {
+        [MBPayOrderIDCache deleteOrder:item];
+    }
     
-    if (self.deleteOrderBlock) {
-        self.deleteOrderBlock(self);
+    if (self.deleteCheckerBlock) {
+        self.deleteCheckerBlock(self);
     }
 }
 
-#pragma mark - local storeage
-
-+ (void)saveOrderIdToLocal:(NSDictionary *)orderDic transactionId:(NSString *)transactionid orderId:(NSString *)orderId
-{
-    NSString *orderJson = [IBSerialization serializeJsonStringWithDict:orderDic];
-    NSData *tiddata = [transactionid dataUsingEncoding:NSUTF8StringEncoding];
-    NSString *Encodedtid = [tiddata base64EncodedStringWithOptions:0];
-    
-    NSDictionary *toCacheDict = @{@"id":NSStringNONil(orderId), @"order":NSStringNONil(orderJson), @"tid":NSStringNONil(Encodedtid)};
-    
-    NSArray *cachedArr = [self ordersFromLocal];
-    NSMutableArray *newArr;
-    
-    if (cachedArr != nil && [cachedArr isKindOfClass:[NSArray class]]) {
-        newArr = [cachedArr mutableCopy];
-        
-        for (NSDictionary *tmpDict in newArr) {
-            if (tmpDict && [[tmpDict valueForKey:@"order"] isEqualToString:orderJson]) {
-                return;
-            }
-        }
-    } else {
-        newArr = [NSMutableArray array];
-    }
-    
-    [newArr addObject:toCacheDict];
-    
-    NSString *filePath = [IBFile filePathInDataDirInLibrary:[self orderCacheFileName]];
-    [IBFile writeFileAtPath:filePath content:newArr error:nil];
-}
-
-+ (void)deleteOrderIdFromLocal:(NSString *)orderId
-{
-    NSArray *cachedArr = [self ordersFromLocal];
-    NSMutableArray *newCacheArr = [NSMutableArray array];
-    
-    if (cachedArr != nil && [cachedArr isKindOfClass:[NSArray class]]) {
-        for (NSDictionary *tmpDict in cachedArr) {
-            if (tmpDict && ![[tmpDict valueForKey:@"id"] isEqualToString:orderId]) {
-                [newCacheArr addObject:tmpDict];
-            }
-        }
-    }
-    
-    NSString *filePath = [IBFile filePathInDataDirInLibrary:[self orderCacheFileName]];
-    [IBFile writeFileAtPath:filePath content:newCacheArr error:nil];
-}
-
-+ (NSArray *)ordersFromLocal
-{
-    NSString *oidcachepath = [IBFile filePathInDataDirInLibrary:[self orderCacheFileName]];
-    NSArray *array = [NSArray arrayWithContentsOfFile:oidcachepath];
-    
-    return array;
-}
-
-+ (NSString *)transactionidFromDic:(NSDictionary *)dic
-{
-    NSString *encodeTid = [dic valueForKey:@"tid"];
-    
-    if (encodeTid != nil) {
-        NSData *data = [[NSData alloc]initWithBase64EncodedString:encodeTid options:0];
-        
-        if (data != nil) {
-            return [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
-        }
-    }
-    return nil;
-}
-
-+ (NSString *)orderidFromDic:(NSDictionary *)dic
-{
-    return [dic valueForKey:@"id"];
-}
-
-+ (NSDictionary *)paramFromDic:(NSDictionary *)dic
-{
-    NSString *paramsStr = [dic valueForKey:@"order"];
-    
-    if (paramsStr != nil) {
-        return [IBSerialization unSerializeWithJsonString:paramsStr error:nil];
-    }
-    
-    return nil;
-}
-
-+ (NSString *)orderCacheFileName
-{
-    return [NSString stringWithFormat:@"cacheorder_%@.plist", [MBUserManager sharedManager].loginUser.uid];
-}
-
-+ (void)checkLocalSubscribeOrder:(MBPayOrderItem *)orderItem
++ (void)checkOrder:(MBPayOrderItem *)orderItem
 {
     NSURL *receiptURL = [[NSBundle mainBundle] appStoreReceiptURL];
     NSData *receiptData = [NSData dataWithContentsOfURL:receiptURL];
     NSString *receiptStr = [receiptData base64EncodedStringWithOptions:NSDataBase64EncodingEndLineWithLineFeed];
-        
+    
     if (kIsEmptyString(receiptStr)) {
         return;
     }

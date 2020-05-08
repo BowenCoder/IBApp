@@ -20,9 +20,7 @@ extern NSString * const kVerifyReceiptUrl;
 
 - (void)prepareAppleProductList:(NSArray<MBPayProduct *> *)products;
 
-- (void)checkCachedApplePay;
-
-- (void)checkLocalSubscribeOrder;
+- (void)checkUnFinishedOrder;
 
 - (void)restoreApplePay;
 

@@ -43,7 +43,6 @@
     MBLogI(@"#apple.pay# name:%@ value:%@", name, dict);
 }
 
-
 + (void)trackRequestFailedWithProductId:(NSString *)productId
                                   order:(NSString *)order
                                 errCode:(NSInteger)errCode

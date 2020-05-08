@@ -23,9 +23,9 @@ typedef NS_ENUM(NSInteger , MBPAYERROR){
     MBPAYERROR_USERCANCLE        = 6,     //用户取消
     MBPAYERROR_APPLEORDERINVALID = 7,     //苹果支付成功 但是返回订单号非法
     MBPAYERROR_SERVERCHECKFAIL   = 8,     //服务校验票据失败
-    MBPAYERROR_GOLDNOTARRIVE     = 9,     //服务校验票据重试失败 金币稍后到账
-    MBPAYERROR_OTHER             = 10,    //其他情况
-    MBPAYERROR_PAYING            = 12,     //支付中
+    MBPAYERROR_RETRYFAIL         = 9,     //服务校验票据重试失败
+    MBPAYERROR_PAYING            = 10,    //支付中
+    MBPAYERROR_OTHER             = 11,    //其他情况
 };
 
 @protocol MBPayDelegate <NSObject>
@@ -39,7 +39,7 @@ typedef NS_ENUM(NSInteger , MBPAYERROR){
 - (void)applePayResult:(MBPayOrderItem *)orderItem success:(BOOL)isSuccess;
 
 /// 验证成功回调
-- (void)paymentCompletion:(BOOL)isSuccess orderBusDic:(NSDictionary *)orderBusDic orderItem:(MBPayOrderItem *)orderItem;
+- (void)paymentCompletion:(BOOL)isSuccess orderItem:(MBPayOrderItem *)orderItem;
 
 /// 失败回调
 - (void)paymentFailWithType:(MBPAYERROR)type errMsg:(NSString *)errMsg;

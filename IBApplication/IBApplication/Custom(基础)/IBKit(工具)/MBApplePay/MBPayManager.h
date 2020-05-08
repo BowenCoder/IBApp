@@ -35,13 +35,8 @@
 - (void)restoreIAP;
 
 /**
- * 启动把本地的订阅订单上报一次，触发一下服务的续订逻辑
+ * 检查未完成订单
  */
-- (void)checkLocalSubscribeOrder;
-
-/**
-* 登录等事件 检查已购项目上报服务核算
-*/
-- (void)checkCachedApplePay;
+- (void)checkUnFinishedOrder;
 
 @end

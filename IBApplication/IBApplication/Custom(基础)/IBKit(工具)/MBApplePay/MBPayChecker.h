@@ -17,8 +17,5 @@
 @property (nonatomic, strong) MBPayProduct *product;
 @property (nonatomic, copy) void(^checkErrorBlock)(MBPAYERROR type);
 @property (nonatomic, copy) void(^checkSuccessBlock)(NSString *orderId);
-@property (nonatomic, copy) void(^deleteOrderBlock)(id<MBPayCheckerProtocol> checker);
-
-+ (void)checkLocalSubscribeOrder:(MBPayOrderItem *)orderItem;
 
 @end

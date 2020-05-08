@@ -19,25 +19,20 @@
 @class MBPayOrderItem;
 @protocol MBPayCheckerProtocol<NSObject>
 
-@property(nonatomic, strong) MBPayProduct *product;
-@property(nonatomic, copy) void(^checkErrorBlock)(MBPAYERROR type);
-@property(nonatomic, copy) void(^checkSuccessBlock)(NSString *orderId);
-@property(nonatomic, copy) void(^deleteOrderBlock)(id<MBPayCheckerProtocol> checker);
+@property (nonatomic, strong) MBPayProduct *product;
+@property (nonatomic, copy) void(^checkErrorBlock)(MBPAYERROR type);
+@property (nonatomic, copy) void(^checkSuccessBlock)(NSString *orderId);
+@property (nonatomic, copy) void(^deleteCheckerBlock)(id<MBPayCheckerProtocol> checker);
 
 /**
  * 支付成功上报服务
  */
-- (void)checkOrderIdWithServer:(SKPaymentTransaction *)transaction orderItem:(MBPayOrderItem *)orderItem;
+- (void)checkReceiptWithOrderItem:(MBPayOrderItem *)orderItem;
 
 /**
- * 本地储存的已支付成功，但未上报服务购买成功的单
+ * 检查未完成订单
  */
-+ (NSArray *)ordersFromLocal;
-
-/**
- * 本地储存的已支付成功，但未上报服务购买成功的单，重试上报
- */
-- (void)checkCachedReceiptWithDic:(NSDictionary *)tmpDic;
++ (void)checkUnFinishedOrder;
 
 /**
  * 退出登录时，停止重试上报

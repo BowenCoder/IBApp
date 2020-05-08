@@ -13,17 +13,14 @@
 
 + (void)addOrder:(MBPayOrderItem *)order;
 
-//支付成功后存储订阅订单，之后的自动续订使用
-+ (void)saveSubScribeOrder:(MBPayOrderItem *)order;
-
 + (void)deleteOrder:(MBPayOrderItem *)order;
 
-+ (NSArray <MBPayOrderItem *>*)subscribeOrdersWithProductId:(NSString *)productId;
-
-+ (NSArray <MBPayOrderItem *>*)ordersWithProductId:(NSString *)productId;
++ (MBPayOrderItem *)orderWithProductId:(NSString *)productId;
 
 + (BOOL)hasOneOrderWithProductId:(NSString *)productId uid:(NSString *)uid;
 
 + (NSArray <MBPayOrderItem *>*)allSubscribeOrders;
+
++ (NSArray <MBPayOrderItem *>*)allOrders;
 
 @end

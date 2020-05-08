@@ -50,14 +50,9 @@
     [self.applePayModel restoreApplePay];
 }
 
-- (void)checkCachedApplePay
+- (void)checkUnFinishedOrder
 {
-    [self.applePayModel checkCachedApplePay];
-}
-
-- (void)checkLocalSubscribeOrder
-{
-    [self.applePayModel checkLocalSubscribeOrder];
+    [self.applePayModel checkUnFinishedOrder];
 }
 
 #pragma mark - getter
