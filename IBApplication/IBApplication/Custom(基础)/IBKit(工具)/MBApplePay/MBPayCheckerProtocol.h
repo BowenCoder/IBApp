@@ -27,7 +27,7 @@
 /**
  * 支付成功上报服务
  */
-- (void)checkOrderIdWithServer:(SKPaymentTransaction *)transaction orderId:(NSString *)orderId uid:(NSString *)uid orderItem:(MBPayOrderItem *)orderItem;
+- (void)checkOrderIdWithServer:(SKPaymentTransaction *)transaction orderItem:(MBPayOrderItem *)orderItem;
 
 /**
  * 本地储存的已支付成功，但未上报服务购买成功的单

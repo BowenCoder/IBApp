@@ -46,7 +46,7 @@
     self.isStopped = YES;
 }
 
-- (void)checkOrderIdWithServer:(SKPaymentTransaction *)transaction orderId:(NSString *)orderId uid:(NSString *)uid orderItem:(MBPayOrderItem *)orderItem
+- (void)checkOrderIdWithServer:(SKPaymentTransaction *)transaction orderItem:(MBPayOrderItem *)orderItem
 {
     NSURL *receiptURL = [[NSBundle mainBundle] appStoreReceiptURL];
     NSData *receiptData = [NSData dataWithContentsOfURL:receiptURL];
@@ -64,8 +64,8 @@
     
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     dic[@"receipt_data"] = NSStringNONil(receiptStr);
-    dic[@"order"] = NSStringNONil(orderId);
-    dic[@"order_uid"] = @([NSStringNONil(uid) integerValue]);
+    dic[@"order"] = NSStringNONil(orderItem.orderId);
+    dic[@"order_uid"] = @([NSStringNONil(orderItem.uid) integerValue]);
     dic[@"apple_product_id"] = NSStringNONil(transaction.payment.productIdentifier);
     
     if (transaction.originalTransaction) {
@@ -74,7 +74,7 @@
         dic[@"original_transaction_id"] = NSStringNONil(transaction.transactionIdentifier);
     }
     
-    [self sendPaymentNoticeRequest:dic transactionId:transactionIdentifier orderId:orderId];
+    [self sendPaymentNoticeRequest:dic transactionId:transactionIdentifier orderId:orderItem.orderId];
 }
 
 - (void)sendPaymentNoticeRequest:(NSDictionary *)body transactionId:(NSString *)transactionid orderId:(NSString *)orderId
@@ -241,7 +241,7 @@
 
 + (NSString *)orderCacheFileName
 {
-    return [NSString stringWithFormat:@"cacheorder_%ld.plist", (long)[MBUserManager sharedManager].loginUser.uid];
+    return [NSString stringWithFormat:@"cacheorder_%@.plist", [MBUserManager sharedManager].loginUser.uid];
 }
 
 + (void)checkLocalSubscribeOrder:(MBPayOrderItem *)orderItem

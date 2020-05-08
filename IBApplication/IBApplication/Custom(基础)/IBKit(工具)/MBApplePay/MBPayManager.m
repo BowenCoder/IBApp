@@ -22,8 +22,7 @@
     static MBPayManager *manager;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        if (manager == nil)
-        {
+        if (manager == nil) {
             manager = [[MBPayManager alloc] init];
         }
     });
@@ -65,8 +64,7 @@
 
 - (MBApplePayModel *)applePayModel
 {
-    if (!_applePayModel)
-    {
+    if (!_applePayModel) {
         _applePayModel = [[MBApplePayModel alloc] init];
     }
     return _applePayModel;

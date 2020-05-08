@@ -36,13 +36,13 @@ typedef NS_ENUM(NSInteger , MBPAYERROR){
 - (void)orderCreated:(NSString *)orderId;
 
 /// 付款成功回调
-- (void)applePayResult:(MBPayOrderItem *)orderItem isSuccess:(BOOL)isSuccess;
+- (void)applePayResult:(MBPayOrderItem *)orderItem success:(BOOL)isSuccess;
 
 /// 验证成功回调
 - (void)paymentCompletion:(BOOL)isSuccess orderBusDic:(NSDictionary *)orderBusDic orderItem:(MBPayOrderItem *)orderItem;
 
 /// 失败回调
-- (void)paymentFailWithType:(MBPAYERROR)type code:(NSInteger)error errMsg:(NSString *)errMsg;
+- (void)paymentFailWithType:(MBPAYERROR)type errMsg:(NSString *)errMsg;
 
 
 @end

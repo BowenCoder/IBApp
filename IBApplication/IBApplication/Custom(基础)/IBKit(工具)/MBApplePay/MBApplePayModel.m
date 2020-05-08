@@ -22,7 +22,6 @@ static const NSInteger maxRetryCount = 3;
 @interface MBApplePayModel ()<RMStoreObserver>
 
 @property (nonatomic, copy)   NSString *uid;
-@property (nonatomic, copy)   NSString *currentOrderId;
 @property (nonatomic, strong) MBPayProduct *product;
 @property (nonatomic, strong) NSMutableArray *paymentCheckArr;
 @property (nonatomic, strong) NSDictionary *orderBusDic;
@@ -79,17 +78,17 @@ static const NSInteger maxRetryCount = 3;
     if ([RMStore canMakePayments]) {
         [self checkJailbroken:^(BOOL jailbroken) {
             if (jailbroken) {
-                [weakSelf dealWithError:MBPAYERROR_JAILBROKEN code:IBURLErrorUnknown msg:nil];
+                [weakSelf dealWithError:MBPAYERROR_JAILBROKEN msg:nil];
             } else {
-                if ( weakSelf.paying == YES || hasOneOrder) {
-                    [weakSelf dealWithError:MBPAYERROR_PAYING code:IBURLErrorUnknown msg:nil];
+                if (weakSelf.paying == YES || hasOneOrder) {
+                    [weakSelf dealWithError:MBPAYERROR_PAYING msg:nil];
                 } else {
                     [weakSelf requestServiceForCreatePayment:request];
                 }
             }
         }];
     } else {
-        [weakSelf dealWithError:MBPAYERROR_NOPERMISSION code:IBURLErrorUnknown msg:nil];
+        [weakSelf dealWithError:MBPAYERROR_NOPERMISSION msg:nil];
     }
 }
 
@@ -119,6 +118,7 @@ static const NSInteger maxRetryCount = 3;
 - (void)restoreApplePay
 {
     [[RMStore defaultStore] restoreTransactions];
+    MBLogI(@"#apple.pay# name:restoreTransactions");
 }
 
 - (void)stopRetry
@@ -147,9 +147,10 @@ static const NSInteger maxRetryCount = 3;
 
 - (void)requestServiceForCreatePayment:(MBPayRequest *)request
 {
-    self.paying  = YES;
-    self.uid     = request.uid;
-    self.product = request.product;
+    self.paying      = YES;
+    self.uid         = request.uid;
+    self.product     = request.product;
+    self.orderBusDic = nil;
     
     NSString *url = request.url;
     
@@ -173,7 +174,7 @@ static const NSInteger maxRetryCount = 3;
             });
         } else {
             weakSelf.paying = NO;
-            [weakSelf dealWithError:MBPAYERROR_CREATEFAIL code:errorCode msg:errMsg];
+            [weakSelf dealWithError:MBPAYERROR_CREATEFAIL msg:errMsg];
         }
         
         [MBAppStorePayLog trackCreateWithProductId:request.product.productId order:orderstr money:request.product.money errCode:errorCode errMsg:errMsg];
@@ -182,8 +183,6 @@ static const NSInteger maxRetryCount = 3;
 
 - (void)requestAppleProductInfo:(NSString *)orderid product:(MBPayProduct *)mbproduct
 {
-    _currentOrderId = orderid;
-    
     __weak typeof(self) weakSelf = self;
     
     NSSet *idSet = [NSSet setWithObject:mbproduct.productId];
@@ -229,7 +228,7 @@ static const NSInteger maxRetryCount = 3;
             }
         } else {
             strongSelf.paying = NO;
-            [strongSelf dealWithError:MBPAYERROR_NOPRODUCT code:IBURLErrorUnknown msg:nil];
+            [strongSelf dealWithError:MBPAYERROR_NOPRODUCT msg:nil];
             [MBAppStorePayLog trackRequestFailedWithProductId:mbproduct.productId order:orderid errMsg:@""];
         }
         MBLogI(@"#apple.pay# name:requestProducts invalidProductId:%@", invalidProductIdentifiers);
@@ -241,7 +240,7 @@ static const NSInteger maxRetryCount = 3;
         } else {
             strongSelf.paying = NO;
             [MBAppStorePayLog trackRequestFailedWithProductId:mbproduct.productId order:orderid errMsg:error.localizedDescription];
-            [strongSelf dealWithError:MBPAYERROR_NOPRODUCT code:error.code msg:error.localizedDescription];
+            [strongSelf dealWithError:error.code msg:error.localizedDescription];
         }
         MBLogI(@"#apple.pay# name:requestProducts error:%@", error);
     }];
@@ -255,37 +254,18 @@ static const NSInteger maxRetryCount = 3;
     
     self.paying = NO;
     
-    NSString *orderUid;
-    NSString *orderid;
     NSArray *items = [MBPayOrderIDCache ordersWithProductId:transaction.payment.productIdentifier];
-    
     MBPayOrderItem *item = [items firstObject];
     
     // 沙盒环境，平级订阅 1个月升3个月。先回调1个月成功，后回调3个月的失败，过滤掉此种case的成功事件。
-    if (item && item.productType == MBPayProductType_AutoRenewSubscription) {
+    if (item.productType == MBPayProductType_AutoRenewSubscription) {
         if (![item.productId isEqualToString:transaction.payment.productIdentifier]) {
             return;
         }
     }
     
-    item = [items firstObject];
-    
-    NSString *userName = transaction.payment.applicationUsername;
-    if (userName) {
-        NSArray *userNameArr = [userName componentsSeparatedByString:@"__"];
-        orderUid = userNameArr.firstObject;
-        orderid = userNameArr.lastObject;
-    }else {
-        orderid = item.orderId;
-        orderUid = item.uid;
-    }
-    
-    if (kIsEmptyString(orderid)) {
-        orderid = _currentOrderId;
-    }
-    
     [MBPayOrderIDCache deleteOrder:item];
-        
+    
     item.transactionIdentifier = transaction.transactionIdentifier;
     
     if (item.productType == MBPayProductType_AutoRenewSubscription) {
@@ -302,21 +282,18 @@ static const NSInteger maxRetryCount = 3;
     }
     
     MBPayChecker *orderCheck = [[MBPayChecker alloc] init];
-    
     orderCheck.product = self.product;
+    
     orderCheck.checkErrorBlock = ^(MBPAYERROR type)
     {
-        [weakSelf dealWithError:type code:IBURLErrorUnknown msg:nil];
+        [weakSelf dealWithError:type msg:nil];
     };
     
     orderCheck.checkSuccessBlock = ^(NSString *orderId)
     {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            if (weakSelf.delegate && [weakSelf.delegate respondsToSelector:@selector(paymentCompletion:orderBusDic:orderItem:)])
-            {
-                [weakSelf.delegate paymentCompletion:YES orderBusDic:weakSelf.orderBusDic orderItem:item];
-            }
-        });
+        if ([weakSelf.delegate respondsToSelector:@selector(paymentCompletion:orderBusDic:orderItem:)]) {
+            [weakSelf.delegate paymentCompletion:YES orderBusDic:weakSelf.orderBusDic orderItem:item];
+        }
     };
     
     orderCheck.deleteOrderBlock = ^(id<MBPayCheckerProtocol> checker)
@@ -324,46 +301,27 @@ static const NSInteger maxRetryCount = 3;
         [weakSelf.paymentCheckArr removeObject:checker];
     };
     
-    [orderCheck checkOrderIdWithServer:transaction orderId:orderid uid:orderUid orderItem:item];
-    
     [self.paymentCheckArr addObject:orderCheck];
+    [orderCheck checkOrderIdWithServer:transaction orderItem:item];
     
     dispatch_async(dispatch_get_main_queue(), ^{
-        if (self.delegate && [self.delegate respondsToSelector:@selector(applePayResult:isSuccess:)]) {
-            [self.delegate applePayResult:item isSuccess:YES];
+        if (self.delegate && [self.delegate respondsToSelector:@selector(applePayResult:success:)]) {
+            [self.delegate applePayResult:item success:YES];
         }
     });
     
-    [MBAppStorePayLog trackIAPWithProductId:transaction.payment.productIdentifier order:orderid transactionId:transaction.transactionIdentifier errCode:0 errMsg:@"成功"];
+    [MBAppStorePayLog trackIAPWithProductId:transaction.payment.productIdentifier order:item.orderId transactionId:transaction.transactionIdentifier errCode:0 errMsg:@"成功"];
 }
 
 - (void)dealWithApplePayFailureWithTransaction:(SKPaymentTransaction *)transaction
 {
     self.paying = NO;
-    
-    NSString *userName = transaction.payment.applicationUsername;
-    
-    NSString *uid;
-    NSString *orderid;
-    
+            
     NSArray *items = [MBPayOrderIDCache ordersWithProductId:transaction.payment.productIdentifier];
     if (kIsEmptyArray(items)) {
         items = [MBPayOrderIDCache subscribeOrdersWithProductId:transaction.payment.productIdentifier];
     }
     MBPayOrderItem *item = [items firstObject];
-    
-    if (userName) {
-        NSArray *userNameArr = [userName componentsSeparatedByString:@"__"];
-        uid = userNameArr.firstObject;
-        orderid = userNameArr.lastObject;
-    } else {
-        orderid = item.orderId;
-        uid = item.uid;
-    }
-    
-    if (kIsEmptyString(orderid)) {
-        orderid = _currentOrderId;
-    }
     
     NSInteger errCode = transaction.error.code;
     NSString *errMsg = transaction.error.localizedDescription;
@@ -371,16 +329,16 @@ static const NSInteger maxRetryCount = 3;
     errCode = errCode == SKErrorUnknown ? -1 : errCode;
     
     if (errCode == SKErrorPaymentCancelled || errCode == -2) {
-        [self dealWithError:MBPAYERROR_USERCANCLE code:IBURLErrorUnknown msg:nil];
-        [MBAppStorePayLog trackUserCancelWithProductId:transaction.payment.productIdentifier order:orderid];
+        [self dealWithError:MBPAYERROR_USERCANCLE msg:nil];
+        [MBAppStorePayLog trackUserCancelWithProductId:transaction.payment.productIdentifier order:item.orderId];
     } else {
-        [self dealWithError:MBPAYERROR_APPLECONNECTFAIL code:IBURLErrorUnknown msg:nil];
-        [MBAppStorePayLog trackIAPWithProductId:transaction.payment.productIdentifier order:orderid transactionId:transaction.transactionIdentifier errCode:errCode errMsg:errMsg];
+        [self dealWithError:MBPAYERROR_APPLECONNECTFAIL msg:nil];
+        [MBAppStorePayLog trackIAPWithProductId:transaction.payment.productIdentifier order:item.orderId transactionId:transaction.transactionIdentifier errCode:errCode errMsg:errMsg];
     }
     
     dispatch_async(dispatch_get_main_queue(), ^{
-        if (self.delegate && [self.delegate respondsToSelector:@selector(applePayResult:isSuccess:)]) {
-            [self.delegate applePayResult:item isSuccess:NO];
+        if (self.delegate && [self.delegate respondsToSelector:@selector(applePayResult:success:)]) {
+            [self.delegate applePayResult:item success:NO];
         }
     });
 }
@@ -461,7 +419,7 @@ static const NSInteger maxRetryCount = 3;
     }];
 }
 
-- (void)dealWithError:(MBPAYERROR)error code:(NSInteger)code msg:(NSString *)msg
+- (void)dealWithError:(MBPAYERROR)error msg:(NSString *)msg
 {
     switch (error)
     {
@@ -524,8 +482,8 @@ static const NSInteger maxRetryCount = 3;
     }
     
     dispatch_async(dispatch_get_main_queue(), ^{
-        if (self.delegate && [self.delegate respondsToSelector:@selector(paymentFailWithType:code:errMsg:)]) {
-            [self.delegate paymentFailWithType:error code:code errMsg:msg];
+        if (self.delegate && [self.delegate respondsToSelector:@selector(paymentFailWithType:errMsg:)]) {
+            [self.delegate paymentFailWithType:error errMsg:msg];
         }
     });
 }

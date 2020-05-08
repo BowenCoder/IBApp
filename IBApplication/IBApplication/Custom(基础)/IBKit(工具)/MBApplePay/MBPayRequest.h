@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 typedef NS_ENUM(NSInteger, MBPayProductType) {
-    MBPayProductType_ConsumableItem,            // 消耗型项目
+    MBPayProductType_ConsumableItem = 1,        // 消耗型项目
     MBPayProductType_NonExpendableItem,         // 非消耗型项目
     MBPayProductType_AutoRenewSubscription,     // 自动续期订阅
     MBPayProductType_NonRenewalSubscription,    // 非续期订阅
