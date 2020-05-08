@@ -26,7 +26,6 @@
 		4A0800F1230414AC00EF25BE /* IBURLRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A0800F0230414AB00EF25BE /* IBURLRequest.m */; };
 		4A0800F423041C0C00EF25BE /* IBURLResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A0800F323041C0C00EF25BE /* IBURLResponse.m */; };
 		4A0D462D23D3FDC800B5F9DF /* Aspects.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A0D462C23D3FDC800B5F9DF /* Aspects.m */; };
-		4A0D463023D3FDDE00B5F9DF /* RSSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A0D462E23D3FDDE00B5F9DF /* RSSwizzle.m */; };
 		4A0D463323D3FF5F00B5F9DF /* UIView+TrackData.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A0D463223D3FF5F00B5F9DF /* UIView+TrackData.m */; };
 		4A0D463623D4019600B5F9DF /* MBAutoTrackerUpload.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A0D463523D4019600B5F9DF /* MBAutoTrackerUpload.m */; };
 		4A0D463923D4071C00B5F9DF /* UITableView+TrackData.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A0D463823D4071C00B5F9DF /* UITableView+TrackData.m */; };
@@ -365,6 +364,8 @@
 		F3A5C8F9212C7C71005D9174 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F3A5C8F8212C7C71005D9174 /* libc++.tbd */; };
 		F3A5C8FB212C7C88005D9174 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F3A5C8FA212C7C88005D9174 /* libz.tbd */; };
 		F3A5C8FD212C7CAD005D9174 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3A5C8FC212C7CAD005D9174 /* CoreMotion.framework */; };
+		F3B4948A2465C14500EC0C1D /* MBApplePay.m in Sources */ = {isa = PBXBuildFile; fileRef = F3B494892465C14500EC0C1D /* MBApplePay.m */; };
+		F3DA12FA2465C48C0047B428 /* RSSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = F3DA12F82465C48C0047B428 /* RSSwizzle.m */; };
 		F3E79EEC20E2A217000AC50A /* IBImage.m in Sources */ = {isa = PBXBuildFile; fileRef = F3E79EEB20E2A217000AC50A /* IBImage.m */; };
 		F3FCB42922A2F9F600C4870B /* CGGeometry+RSKImageCropper.m in Sources */ = {isa = PBXBuildFile; fileRef = F3FCB41722A2F9F600C4870B /* CGGeometry+RSKImageCropper.m */; };
 		F3FCB42A22A2F9F600C4870B /* RSKInternalUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = F3FCB41822A2F9F600C4870B /* RSKInternalUtility.m */; };
@@ -416,8 +417,6 @@
 		4A0800F323041C0C00EF25BE /* IBURLResponse.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBURLResponse.m; sourceTree = "<group>"; };
 		4A0D462B23D3FDC700B5F9DF /* Aspects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Aspects.h; sourceTree = "<group>"; };
 		4A0D462C23D3FDC800B5F9DF /* Aspects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Aspects.m; sourceTree = "<group>"; };
-		4A0D462E23D3FDDE00B5F9DF /* RSSwizzle.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = RSSwizzle.m; path = "/Users/bowencoder/Desktop/BowenCoder/IBApp/IBApplication/IBApplication/Vender(第三方)/AOP/RSSwizzle.m"; sourceTree = "<absolute>"; };
-		4A0D462F23D3FDDE00B5F9DF /* RSSwizzle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = RSSwizzle.h; path = "/Users/bowencoder/Desktop/BowenCoder/IBApp/IBApplication/IBApplication/Vender(第三方)/AOP/RSSwizzle.h"; sourceTree = "<absolute>"; };
 		4A0D463123D3FF5F00B5F9DF /* UIView+TrackData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+TrackData.h"; sourceTree = "<group>"; };
 		4A0D463223D3FF5F00B5F9DF /* UIView+TrackData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+TrackData.m"; sourceTree = "<group>"; };
 		4A0D463423D4019600B5F9DF /* MBAutoTrackerUpload.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBAutoTrackerUpload.h; sourceTree = "<group>"; };
@@ -1093,6 +1092,10 @@
 		F3A5C8F8212C7C71005D9174 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		F3A5C8FA212C7C88005D9174 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		F3A5C8FC212C7CAD005D9174 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		F3B494882465C14500EC0C1D /* MBApplePay.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBApplePay.h; sourceTree = "<group>"; };
+		F3B494892465C14500EC0C1D /* MBApplePay.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBApplePay.m; sourceTree = "<group>"; };
+		F3DA12F82465C48C0047B428 /* RSSwizzle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSSwizzle.m; sourceTree = "<group>"; };
+		F3DA12F92465C48C0047B428 /* RSSwizzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSSwizzle.h; sourceTree = "<group>"; };
 		F3E79EEA20E2A217000AC50A /* IBImage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBImage.h; sourceTree = "<group>"; };
 		F3E79EEB20E2A217000AC50A /* IBImage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBImage.m; sourceTree = "<group>"; };
 		F3FCB41722A2F9F600C4870B /* CGGeometry+RSKImageCropper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CGGeometry+RSKImageCropper.m"; sourceTree = "<group>"; };
@@ -1268,8 +1271,8 @@
 			children = (
 				4A0D462B23D3FDC700B5F9DF /* Aspects.h */,
 				4A0D462C23D3FDC800B5F9DF /* Aspects.m */,
-				4A0D462F23D3FDDE00B5F9DF /* RSSwizzle.h */,
-				4A0D462E23D3FDDE00B5F9DF /* RSSwizzle.m */,
+				F3DA12F92465C48C0047B428 /* RSSwizzle.h */,
+				F3DA12F82465C48C0047B428 /* RSSwizzle.m */,
 			);
 			path = AOP;
 			sourceTree = "<group>";
@@ -2283,6 +2286,8 @@
 		4AC21AE62463B96800DFD301 /* MBApplePay */ = {
 			isa = PBXGroup;
 			children = (
+				F3B494882465C14500EC0C1D /* MBApplePay.h */,
+				F3B494892465C14500EC0C1D /* MBApplePay.m */,
 				4AC21AEC2463B96800DFD301 /* MBApplePayModel.h */,
 				4AC21AF82463B96900DFD301 /* MBApplePayModel.m */,
 				4AC21AF32463B96900DFD301 /* MBAppStorePayLog.h */,
@@ -3427,7 +3432,6 @@
 				4A1FB22020E92D5E0056A026 /* SDWebImageWebPCoder.m in Sources */,
 				4AC102E1230FFAB300DE39CD /* MBImageView.m in Sources */,
 				4A89D637228B17490072FB23 /* aestab.m in Sources */,
-				4A0D463023D3FDDE00B5F9DF /* RSSwizzle.m in Sources */,
 				4A78076820E9F1BB00E60ACA /* View+MASAdditions.m in Sources */,
 				4AC29F83210F04A900F218FE /* MJRefreshAutoStateFooter.m in Sources */,
 				4A78076620E9F1BB00E60ACA /* MASLayoutConstraint.m in Sources */,
@@ -3460,6 +3464,7 @@
 				4AC81CDC20F37D0C00A1F246 /* IBView.m in Sources */,
 				4A2E75A02434871900DBA2AB /* MBAsset.m in Sources */,
 				4A84CBB7229B917100CA4794 /* MBMediator.m in Sources */,
+				F3B4948A2465C14500EC0C1D /* MBApplePay.m in Sources */,
 				4AC29F9921106C0800F218FE /* MBRefreshHeader.m in Sources */,
 				4A89D62F228B17490072FB23 /* SSZipArchive.m in Sources */,
 				4A6F197F20E345F500EAF1A7 /* IBHelper.m in Sources */,
@@ -3655,6 +3660,7 @@
 				4AC29F7D210F04A900F218FE /* UIScrollView+MJExtension.m in Sources */,
 				4A63CB7C23CDC0B700684FC5 /* MBAutoScrollLabel.m in Sources */,
 				4A2E74172432E44C00DBA2AB /* MBPopupController.m in Sources */,
+				F3DA12FA2465C48C0047B428 /* RSSwizzle.m in Sources */,
 				4A22DE1E228AF3B500D4CFA6 /* DDAbstractDatabaseLogger.m in Sources */,
 				4AC29F91210F18C700F218FE /* MBTableViewCell.m in Sources */,
 				4A6DFF3523B5EF450002D3BB /* MBAutoHeightTextView.m in Sources */,
@@ -3878,7 +3884,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 7Q62N6S7X8;
+				DEVELOPMENT_TEAM = ZW2AQ67NC5;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/IBApplication/SDKFile(集成)/TencentSDK",
@@ -3915,7 +3921,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 7Q62N6S7X8;
+				DEVELOPMENT_TEAM = ZW2AQ67NC5;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/IBApplication/SDKFile(集成)/TencentSDK",
@@ -4016,7 +4022,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 7Q62N6S7X8;
+				DEVELOPMENT_TEAM = ZW2AQ67NC5;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/IBApplication/SDKFile(集成)/TencentSDK",
@@ -4117,7 +4123,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 7Q62N6S7X8;
+				DEVELOPMENT_TEAM = ZW2AQ67NC5;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/IBApplication/SDKFile(集成)/TencentSDK",
@@ -4212,7 +4218,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 7Q62N6S7X8;
+				DEVELOPMENT_TEAM = ZW2AQ67NC5;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/IBApplication/SDKFile(集成)/TencentSDK",

@@ -46,6 +46,7 @@
 - (void)setup
 {
     self.timerCounter = 0;
+    self.lock = dispatch_semaphore_create(1);
     self.schedules = [NSHashTable weakObjectsHashTable];
 }
 
@@ -97,7 +98,9 @@
         dispatch_queue_t queue = dispatch_queue_create("timer.schedule.center", DISPATCH_QUEUE_CONCURRENT);
         _timer = [[MBTimer alloc] initWithQueue:queue];
         [_timer event:^{
-            [self scheduledExcute];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self scheduledExcute];
+            });
         } timeIntervalWithSecs:1.0];
     }
     return _timer;
