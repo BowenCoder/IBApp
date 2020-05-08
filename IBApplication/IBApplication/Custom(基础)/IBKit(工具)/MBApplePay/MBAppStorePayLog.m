@@ -20,7 +20,7 @@
 
 + (void)trackCreateWithProductId:(NSString *)productId order:(NSString *)order money:(NSInteger)money errCode:(NSInteger)errCode errMsg:(NSString *)errMsg {
     
-    NSString *name = @"apple.pay.order.create";
+    NSString *name = @"order.create";
 
     NSMutableDictionary* dict = [[NSMutableDictionary alloc] init];
     
@@ -34,7 +34,7 @@
 }
 
 + (void)trackStartPayWithProductId:(NSString *)productId order:(NSString *)order {
-    NSString *name = @"apple.pay.start.pay";
+    NSString *name = @"start.pay";
     NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
 
     [dict setObject:NSStringNONil(productId) forKey:@"product_id"];
@@ -47,7 +47,7 @@
 + (void)trackRequestFailedWithProductId:(NSString *)productId
                                   order:(NSString *)order
                                  errMsg:(NSString *)errMsg{
-    NSString *name = @"apple.pay.failed";
+    NSString *name = @"pay.failed";
     NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
     
     [dict setObject:NSStringNONil(productId) forKey:@"product_id"];
@@ -62,7 +62,7 @@
                         transactionId:(NSString *)transactionId
                               errCode:(NSInteger)errCode
                                errMsg:(NSString *)errMsg {
-    NSString *name = @"apple.pay.sdk";
+    NSString *name = @"pay.result";
     
     NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
     
@@ -76,7 +76,7 @@
 }
 
 + (void)trackUserCancelWithProductId:(NSString *)productId order:(NSString *)order {
-    NSString *name = @"apple.pay.user.cancel";
+    NSString *name = @"user.cancel";
     
     NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
     [dict setObject:NSStringNONil(productId) forKey:@"product_id"];
@@ -86,7 +86,7 @@
 }
 
 + (void)trackAgreeWithProductId:(NSString *)productId order:(NSString *)order transactionId:(NSString *)transactionId errCode:(NSInteger)errCode errMsg:(NSString *)errMsg body:(NSDictionary *)body {
-    NSString *name = @"apple.pay.verify.success";
+    NSString *name = @"pay.verify.success";
     
     NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
     [dict setObject:NSStringNONil(productId) forKey:@"product_id"];

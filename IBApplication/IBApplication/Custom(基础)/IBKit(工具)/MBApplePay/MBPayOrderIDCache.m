@@ -23,11 +23,10 @@
     if (!order) {
         return;
     }
-    NSString *service = MBPayKeyChainStoreServiceKey;
     
     NSString *itemKey = NSStringNONil(order.productId);
     NSString *itemValue = NSStringNONil([order modelString]);
-    UICKeyChainStore *store = [UICKeyChainStore keyChainStoreWithService:service];
+    UICKeyChainStore *store = [UICKeyChainStore keyChainStoreWithService:MBPayKeyChainStoreServiceKey];
     NSString *string = [store stringForKey:itemKey];
     NSArray *arr = [string componentsSeparatedByString:MBPayKeyChainStoreValueSeparateKey];
     NSMutableArray *muArr = [NSMutableArray arrayWithArray:arr];
@@ -52,13 +51,9 @@
         return;
     }
     
-    order.createTime = time(NULL);
-    NSString *service = MBPaySubscribeKeyChainStoreServiceKey;
-    
     NSString *itemKey = NSStringNONil(order.productId);
     NSString *itemValue = NSStringNONil([order modelString]);
-    UICKeyChainStore *store = [UICKeyChainStore keyChainStoreWithService:service];
-    [store removeAllItems];
+    UICKeyChainStore *store = [UICKeyChainStore keyChainStoreWithService:MBPaySubscribeKeyChainStoreServiceKey];
     
     NSString *string = [store stringForKey:itemKey];
     NSArray *arr = [string componentsSeparatedByString:MBPayKeyChainStoreValueSeparateKey];
@@ -79,13 +74,11 @@
     if (!order) {
         return;
     }
-    
-    NSString *service = MBPayKeyChainStoreServiceKey;
-    
+        
     NSString *itemKey = NSStringNONil(order.productId);
     NSString *itemValue = NSStringNONil([order modelString]);
     
-    UICKeyChainStore *store = [UICKeyChainStore keyChainStoreWithService:service];
+    UICKeyChainStore *store = [UICKeyChainStore keyChainStoreWithService:MBPayKeyChainStoreServiceKey];
 
     NSString *string = [store stringForKey:itemKey];
     NSArray *arr = [string componentsSeparatedByString:MBPayKeyChainStoreValueSeparateKey];
@@ -95,8 +88,7 @@
     
     if (kIsEmptyString(result)) {
         [store removeItemForKey:itemKey];
-    }else
-    {
+    } else {
         [store setString:result forKey:itemKey];
     }
 }
@@ -171,17 +163,13 @@
     NSArray *items = [self ordersWithProductId:productId];
     
     for (MBPayOrderItem *item in items) {
-        
-        if ([item.uid isEqualToString:uid] && (time(NULL) - item.createTime < 5 * 60)) {
-            return YES;
-        }else if ([item.uid isEqualToString:uid] && (time(NULL) - item.createTime > 24 * 60 * 60)) {
-            [self deleteOrder:item];
-        }
-        
-        MBLogI(@"#pay# keychain orders %@ %@ %@",
+        MBLogI(@"#apple.pay# keychain orders %@ %@ %@",
                NSStringNONil(item.productId),
                NSStringNONil(item.uid),
                NSStringNONil(item.orderId));
+        if ([item.uid isEqualToString:uid]) {
+            return YES;
+        }
     }
 
     return NO;

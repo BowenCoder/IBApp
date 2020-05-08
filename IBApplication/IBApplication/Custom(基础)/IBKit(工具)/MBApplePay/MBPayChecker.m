@@ -6,8 +6,8 @@
 //  Copyright © 2019 Bowen. All rights reserved.
 //
 
-#import "MBAppStorePayLog.h"
 #import "MBPayChecker.h"
+#import "MBAppStorePayLog.h"
 #import "MBPayOrderItem.h"
 #import "MBApplePayModel.h"
 #import "IBMacros.h"
@@ -53,7 +53,7 @@
     NSString *receiptStr = [receiptData base64EncodedStringWithOptions:NSDataBase64EncodingEndLineWithLineFeed];
     NSString *transactionIdentifier = transaction.transactionIdentifier;
     
-    MBLogI(@"#apple.pay# recipt %@",receiptStr);
+    MBLogI(@"#apple.pay# name:recipt value:%@",receiptStr);
     
     if (kIsEmptyString(receiptStr)) {
         if (self.checkErrorBlock) {
@@ -264,7 +264,7 @@
     
     NSString *url = [[IBUrlManager sharedInstance] urlForKey:kVerifyReceiptUrl];
     [IBHTTPManager POST:url params:nil body:dic completion:^(IBURLErrorCode errorCode, IBURLResponse * _Nonnull response) {
-        MBLogI(@"#apple.pay# name:apple.pay.verify.success value:%@",dic);
+        MBLogI(@"#apple.pay# name:launch.verify.success value:%@",dic);
     }];
     
 }
