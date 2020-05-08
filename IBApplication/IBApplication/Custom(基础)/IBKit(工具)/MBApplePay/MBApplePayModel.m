@@ -20,7 +20,6 @@ NSString * const kVerifyReceiptUrl = @"kApplePayVerifyReceiptUrl";
 @interface MBApplePayModel ()<RMStoreObserver>
 
 @property (nonatomic, strong) MBPayVerificator *verificator;
-@property (nonatomic, strong) NSMutableArray *checkers;
 @property (nonatomic, copy)   NSString *uid;
 @property (nonatomic, strong) MBPayProduct *product;
 @property (nonatomic, assign) BOOL paying;
@@ -34,7 +33,6 @@ NSString * const kVerifyReceiptUrl = @"kApplePayVerifyReceiptUrl";
 - (instancetype)init
 {
     if (self = [super init]) {
-        self.checkers = [NSMutableArray array];
         self.verificator = [[MBPayVerificator alloc] init];
         [RMStore defaultStore].receiptVerificator = self.verificator;
         [[RMStore defaultStore] addStoreObserver:self];
