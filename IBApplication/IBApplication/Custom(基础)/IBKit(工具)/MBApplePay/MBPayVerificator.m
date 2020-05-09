@@ -45,8 +45,6 @@ NSString * const kVerifyReceiptUrl = @"kApplePayVerifyReceiptUrl";
     NSData *receiptData = [NSData dataWithContentsOfURL:receiptURL];
     NSString *receiptStr = [receiptData base64EncodedStringWithOptions:NSDataBase64EncodingEndLineWithLineFeed];
     
-    MBLogI(@"#apple.pay# name:recipt value:%@",receiptStr);
-    
     if (kIsEmptyString(receiptStr)) {
         NSError *error = [NSError errorWithDomain:@"invalid recipt" code:MBPAYERROR_APPLEORDERINVALID userInfo:nil];
         if (failureBlock) {

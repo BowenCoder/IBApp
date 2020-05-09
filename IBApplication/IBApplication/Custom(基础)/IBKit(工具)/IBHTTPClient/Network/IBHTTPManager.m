@@ -99,7 +99,6 @@
     request.url = url;
     request.params = params;
     request.body = body;
-    request.isAllowAtom = NO;
     request.method = IBHTTPPOST;
     [self sendRequest:request completion:completion];
     return request;
@@ -111,6 +110,7 @@
     request.url = url;
     request.params = params;
     request.body = body;
+    request.isAllowAtom = NO;
     request.method = IBHTTPPOST;
     [self sendRequest:request completion:completion];
     return request;
@@ -203,7 +203,7 @@
         return;
     }
     [[IBHTTPManager sharedManager].cache objectForKey:[request requestKey] withBlock:^(id<NSCoding> object) {
-        MBLog(@"#网络请求# 命中缓存 url = %@", request.url);
+        MBLog(@"#network# name:hit.cache url:%@", request.url);
         IBURLResponse *response = [IBURLResponse response];
         response.dict = (NSDictionary *)object;
         completion(IBURLErrorSuccess, response);

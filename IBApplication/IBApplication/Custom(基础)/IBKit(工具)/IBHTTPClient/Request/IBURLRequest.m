@@ -87,7 +87,12 @@
         if (![self.url hasPrefix:@"http://"] && ![self.url hasPrefix:@"https://"]) {
             url = [NSString stringWithFormat:@"%@/%@", [self baseUrl], self.url];
         }
+                
         NSString *fullUrl = [IBHelper fullURL:url params:self.params];
+        
+        if (self.method == IBHTTPPOST) {
+            fullUrl = [IBHelper fullURL:url params:self.body];
+        }
         
         _requestKey = [IBEncode md5WithString:fullUrl];
     }
@@ -96,9 +101,9 @@
 
 - (NSString *)description {
     if (self.method == IBHTTPPOST) {
-        return [NSString stringWithFormat:@"#网络请求# {URL: %@} {method: %ld} {body: %@}", [self sendUrl], (long)self.method, self.body];
+        return [NSString stringWithFormat:@"#network# {URL: %@} {method: %ld} {body: %@}", [self sendUrl], (long)self.method, self.body];
     } else {
-        return [NSString stringWithFormat:@"#网络请求# {URL: %@} {method: %ld}", [self sendUrl], (long)self.method];
+        return [NSString stringWithFormat:@"#network# {URL: %@} {method: %ld}", [self sendUrl], (long)self.method];
     }
 }
 

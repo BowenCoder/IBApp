@@ -117,12 +117,17 @@
 
 + (NSString *)fullURL:(NSString *)url params:(NSDictionary *)params {
     
+    if (kIsEmptyDict(params)) {
+        return url;
+    }
+    
     NSMutableString *urlStr = [NSMutableString stringWithString:url];
     NSRange flag = [urlStr rangeOfString:@"?"];
     if(flag.location == NSNotFound) {
         [urlStr appendString:@"?"];
     }
     [urlStr appendString:[self URLQueryString:params]];
+    
     return urlStr.copy;
 }
 

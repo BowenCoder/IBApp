@@ -362,23 +362,23 @@
     NSURLSessionDataTask *oldTask = [self sessionTaskForKey:requestKey];
     
     if (oldTask) {
-        result = YES; code = IBURLErrorDouble; message = @"重复的网络请求";
+        result = YES; code = IBURLErrorDouble; message = @"repeated network requests";
     }
     
     if (kIsEmptyString(request.url)) {
-        result = YES; code = IBURLErrorAddress; message = @"请求的地址为空";
+        result = YES; code = IBURLErrorAddress; message = @"url is nil";
     }
     
     if (request.method == IBHTTPNone) {
-        result = YES; code = IBURLErrorMethod; message = @"请求的方法为空";
+        result = YES; code = IBURLErrorMethod; message = @"method is nil";
     }
     
     if ([IBNetworkStatus shareInstance].currentNetworkStatus == IBNetworkStatusNotReachable) {
-        result = YES; code = IBURLErrorBadNet; message = @"当前网络不可用";
+        result = YES; code = IBURLErrorBadNet; message = @"network is currently unavailable";
     }
     
     if (result) {
-        MBLogE(@"#网络请求# 请求失败 %@", message);
+        MBLogE(@"#network# request failed %@", message);
         NSError *error = [NSError errorWithDomain:message code:code userInfo:nil];
         [self requestCompletion:request task:nil resp:nil error:error];
     }
