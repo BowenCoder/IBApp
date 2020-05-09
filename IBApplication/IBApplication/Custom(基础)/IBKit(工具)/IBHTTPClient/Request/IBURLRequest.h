@@ -65,6 +65,8 @@ typedef void (^IBHTTPCompletion)(IBURLErrorCode errorCode, IBURLResponse *respon
 
 - (NSString *)requestKey;
 
+- (NSString *)cacheKey;
+
 - (BOOL)allowsCellularAccess;
 
 - (void)clearHandler;

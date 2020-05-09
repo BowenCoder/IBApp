@@ -202,7 +202,7 @@
     if (!request.cacheTime) {
         return;
     }
-    [[IBHTTPManager sharedManager].cache objectForKey:[request requestKey] withBlock:^(id<NSCoding> object) {
+    [[IBHTTPManager sharedManager].cache objectForKey:[request cacheKey] withBlock:^(id<NSCoding> object) {
         MBLog(@"#network# name:hit.cache url:%@", request.url);
         IBURLResponse *response = [IBURLResponse response];
         response.dict = (NSDictionary *)object;
@@ -215,7 +215,7 @@
     if (!request.cacheTime) {
         return;
     }
-    [[IBHTTPManager sharedManager].cache setObject:dict forKey:[request requestKey] cacheTime:request.cacheTime];
+    [[IBHTTPManager sharedManager].cache setObject:dict forKey:[request cacheKey] cacheTime:request.cacheTime];
 }
 
 @end

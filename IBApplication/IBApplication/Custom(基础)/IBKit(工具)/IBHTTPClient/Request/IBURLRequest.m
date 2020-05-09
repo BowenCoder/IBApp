@@ -87,17 +87,26 @@
         if (![self.url hasPrefix:@"http://"] && ![self.url hasPrefix:@"https://"]) {
             url = [NSString stringWithFormat:@"%@/%@", [self baseUrl], self.url];
         }
-                
         NSString *fullUrl = [IBHelper fullURL:url params:self.params];
-        
         if (self.method == IBHTTPPOST) {
             fullUrl = [IBHelper fullURL:url params:self.body];
         }
-        
         _requestKey = [IBEncode md5WithString:fullUrl];
     }
     return _requestKey;
 }
+
+- (NSString *)cacheKey {
+    if(!_requestKey){
+        NSString *url = self.url;
+        if (![self.url hasPrefix:@"http://"] && ![self.url hasPrefix:@"https://"]) {
+            url = [NSString stringWithFormat:@"%@/%@", [self baseUrl], self.url];
+        }
+        _requestKey = [IBEncode md5WithString:url];
+    }
+    return _requestKey;
+}
+
 
 - (NSString *)description {
     if (self.method == IBHTTPPOST) {
