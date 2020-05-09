@@ -244,7 +244,6 @@
 		4AC21AFC2463B96900DFD301 /* MBPayRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC21AEF2463B96900DFD301 /* MBPayRequest.m */; };
 		4AC21AFD2463B96900DFD301 /* MBPayManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC21AF12463B96900DFD301 /* MBPayManager.m */; };
 		4AC21AFE2463B96900DFD301 /* MBPayOrderIDCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC21AF42463B96900DFD301 /* MBPayOrderIDCache.m */; };
-		4AC21AFF2463B96900DFD301 /* RMStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC21AF72463B96900DFD301 /* RMStore.m */; };
 		4AC21B002463B96900DFD301 /* MBApplePayModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC21AF82463B96900DFD301 /* MBApplePayModel.m */; };
 		4AC29F7A210F04A900F218FE /* UIScrollView+MJRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC29F4C210F04A900F218FE /* UIScrollView+MJRefresh.m */; };
 		4AC29F7B210F04A900F218FE /* MJRefreshConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC29F4D210F04A900F218FE /* MJRefreshConst.m */; };
@@ -849,14 +848,12 @@
 		4AC21AEA2463B96800DFD301 /* MBPayOrderIDCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBPayOrderIDCache.h; sourceTree = "<group>"; };
 		4AC21AEC2463B96800DFD301 /* MBApplePayModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBApplePayModel.h; sourceTree = "<group>"; };
 		4AC21AED2463B96800DFD301 /* MBPayDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBPayDelegate.h; sourceTree = "<group>"; };
-		4AC21AEE2463B96800DFD301 /* RMStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMStore.h; sourceTree = "<group>"; };
 		4AC21AEF2463B96900DFD301 /* MBPayRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBPayRequest.m; sourceTree = "<group>"; };
 		4AC21AF12463B96900DFD301 /* MBPayManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBPayManager.m; sourceTree = "<group>"; };
 		4AC21AF22463B96900DFD301 /* MBPayOrderItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBPayOrderItem.h; sourceTree = "<group>"; };
 		4AC21AF32463B96900DFD301 /* MBAppStorePayLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBAppStorePayLog.h; sourceTree = "<group>"; };
 		4AC21AF42463B96900DFD301 /* MBPayOrderIDCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBPayOrderIDCache.m; sourceTree = "<group>"; };
 		4AC21AF62463B96900DFD301 /* MBPayRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBPayRequest.h; sourceTree = "<group>"; };
-		4AC21AF72463B96900DFD301 /* RMStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMStore.m; sourceTree = "<group>"; };
 		4AC21AF82463B96900DFD301 /* MBApplePayModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBApplePayModel.m; sourceTree = "<group>"; };
 		4AC29F4C210F04A900F218FE /* UIScrollView+MJRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+MJRefresh.m"; sourceTree = "<group>"; };
 		4AC29F4D210F04A900F218FE /* MJRefreshConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshConst.m; sourceTree = "<group>"; };
@@ -2303,8 +2300,6 @@
 				4AC21AEF2463B96900DFD301 /* MBPayRequest.m */,
 				4A87B49D2465A01B00E6B93F /* MBPayVerificator.h */,
 				4A87B49E2465A01B00E6B93F /* MBPayVerificator.m */,
-				4AC21AEE2463B96800DFD301 /* RMStore.h */,
-				4AC21AF72463B96900DFD301 /* RMStore.m */,
 			);
 			path = MBApplePay;
 			sourceTree = "<group>";
@@ -3717,7 +3712,6 @@
 				4A72287B20F20C04008B8815 /* IBNaviBar.m in Sources */,
 				4AC29F85210F04A900F218FE /* MJRefreshAutoNormalFooter.m in Sources */,
 				4AD770B82297CD1300FEB76B /* UIPasteboard+YYText.m in Sources */,
-				4AC21AFF2463B96900DFD301 /* RMStore.m in Sources */,
 				4A89D631228B17490072FB23 /* hmac.m in Sources */,
 				4A89D602228B11C40072FB23 /* MBLogEncryptFormatter.m in Sources */,
 				4AC29F8A210F04A900F218FE /* MJRefreshHeader.m in Sources */,
@@ -3882,9 +3876,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = ZW2AQ67NC5;
+				DEVELOPMENT_TEAM = 7Q62N6S7X8;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/IBApplication/SDKFile(集成)/TencentSDK",
@@ -3919,9 +3913,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = ZW2AQ67NC5;
+				DEVELOPMENT_TEAM = 7Q62N6S7X8;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/IBApplication/SDKFile(集成)/TencentSDK",
@@ -4020,9 +4014,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = ZW2AQ67NC5;
+				DEVELOPMENT_TEAM = 7Q62N6S7X8;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/IBApplication/SDKFile(集成)/TencentSDK",
@@ -4123,7 +4117,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = ZW2AQ67NC5;
+				DEVELOPMENT_TEAM = 7Q62N6S7X8;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/IBApplication/SDKFile(集成)/TencentSDK",
@@ -4218,7 +4212,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = ZW2AQ67NC5;
+				DEVELOPMENT_TEAM = 7Q62N6S7X8;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/IBApplication/SDKFile(集成)/TencentSDK",

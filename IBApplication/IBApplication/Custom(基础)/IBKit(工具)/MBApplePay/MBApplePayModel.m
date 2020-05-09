@@ -7,7 +7,7 @@
 //
 
 #import "MBApplePayModel.h"
-#import "RMStore.h"
+#import "MBApplePay.h"
 #import "MBPayOrderIDCache.h"
 #import "MBLogger.h"
 #import "MBAppStorePayLog.h"
@@ -15,14 +15,13 @@
 #import "MBJailbroken.h"
 #import "MBPayVerificator.h"
 
-NSString * const kVerifyReceiptUrl = @"kApplePayVerifyReceiptUrl";
+@interface MBApplePayModel () <MBApplePayDelegate>
 
-@interface MBApplePayModel ()<RMStoreObserver>
-
+@property (nonatomic, strong) MBApplePay *applePay;
 @property (nonatomic, strong) MBPayVerificator *verificator;
-@property (nonatomic, copy)   NSString *uid;
 @property (nonatomic, strong) MBPayProduct *product;
 @property (nonatomic, assign) BOOL paying;
+@property (nonatomic, assign) BOOL requestProduct;
 
 @end
 
@@ -34,21 +33,19 @@ NSString * const kVerifyReceiptUrl = @"kApplePayVerifyReceiptUrl";
 {
     if (self = [super init]) {
         self.verificator = [[MBPayVerificator alloc] init];
-        [RMStore defaultStore].receiptVerificator = self.verificator;
-        [[RMStore defaultStore] addStoreObserver:self];
+        self.applePay = [[MBApplePay alloc] init];
+        self.applePay.receiptVerifier = self.verificator;
+        self.applePay.delegate = self;
     }
     return self;
 }
 
-- (void)dealloc
-{
-    [[RMStore defaultStore] removeStoreObserver:self];
-}
-
 #pragma mark - public
 
-- (void)prepareAppleProductList:(NSArray<MBPayProduct *> *)products
+- (void)prepareAppleProducts:(NSArray<MBPayProduct *> *)products
 {
+    MBLogI(@"#apple.pay# name:prepare.apple.products");
+
     NSMutableSet *set = [NSMutableSet set];
     
     for (MBPayProduct *product in products) {
@@ -56,14 +53,7 @@ NSString * const kVerifyReceiptUrl = @"kApplePayVerifyReceiptUrl";
         [set addObject:appleProductId];
     }
     
-    [[RMStore defaultStore] requestProducts:set
-                                    success:^(NSArray *products, NSArray *invalidProductIdentifiers) {
-        if (invalidProductIdentifiers.count > 0) {
-            MBLogI(@"#apple.pay# name:prepare invalidProductId:%@", invalidProductIdentifiers);
-        }
-    } failure:^(NSError *error) {
-        MBLogI(@"#apple.pay# name:prepare error:%@", error.debugDescription);
-    }];
+    [self.applePay requestProducts:set];
 }
 
 - (void)createPaymentWithProduct:(MBPayRequest *)request
@@ -71,9 +61,9 @@ NSString * const kVerifyReceiptUrl = @"kApplePayVerifyReceiptUrl";
     __weak typeof(self) weakSelf = self;
     
     NSString *pid = request.product.productId;
-    BOOL hasOneOrder = [MBPayOrderIDCache hasOneOrderWithProductId:pid uid:request.uid];
+    BOOL hasOneOrder = [MBPayOrderIDCache hasOneOrderWithProductId:pid uid:request.product.uid];
     // 检查用户权限
-    if ([RMStore canMakePayments]) {
+    if ([MBApplePay canMakePayments]) {
         [self checkJailbroken:^(BOOL jailbroken) {
             if (jailbroken) {
                 [weakSelf dealWithError:MBPAYERROR_JAILBROKEN msg:nil];
@@ -81,7 +71,7 @@ NSString * const kVerifyReceiptUrl = @"kApplePayVerifyReceiptUrl";
                 if (weakSelf.paying == YES || hasOneOrder) {
                     [weakSelf dealWithError:MBPAYERROR_PAYING msg:nil];
                 } else {
-                    [weakSelf requestServiceForCreatePayment:request];
+                    [weakSelf requestOrderIdForCreatePayment:request];
                 }
             }
         }];
@@ -92,113 +82,115 @@ NSString * const kVerifyReceiptUrl = @"kApplePayVerifyReceiptUrl";
 
 - (void)restoreApplePay
 {
-    [[RMStore defaultStore] restoreTransactions];
     MBLogI(@"#apple.pay# name:restoreTransactions");
+    
+    [self.applePay restoreTransactions];
 }
 
-- (void)requestServiceForCreatePayment:(MBPayRequest *)request
+- (void)requestOrderIdForCreatePayment:(MBPayRequest *)request
 {
-    self.paying      = YES;
-    self.uid         = request.uid;
-    self.product     = request.product;
-    
-    NSString *url = request.url;
-    
-    __weak typeof(self) weakSelf = self;
-    
-    [IBHTTPManager POST:url params:nil body:request.params completion:^(IBURLErrorCode errorCode, IBURLResponse *response) {
-        NSString *orderstr = @"";
+    self.paying = YES;
+
+    [IBHTTPManager POST:request.url params:nil body:request.params completion:^(IBURLErrorCode errorCode, IBURLResponse *response) {
+        NSString *orderId = @"";
         NSString *errMsg = response.message;
         
         if (errorCode == IBURLErrorSuccess) {
-            orderstr = [response.dict valueForKey:@"order_id"];
+            orderId = [response.dict valueForKey:@"order_id"];
         }
         
-        if (orderstr.length > 0) {
-            [weakSelf requestAppleProductInfo:orderstr product:request.product];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                if (weakSelf.delegate && [weakSelf.delegate respondsToSelector:@selector(orderCreated:)]) {
-                    [weakSelf.delegate orderCreated:orderstr];
-                }
-            });
+        if (orderId.length > 0) {
+            request.product.orderId = orderId;
+            [self requestAppleProduct:request.product];
+            if (self.delegate && [self.delegate respondsToSelector:@selector(orderCreated:)]) {
+                [self.delegate orderCreated:orderId];
+            }
         } else {
-            weakSelf.paying = NO;
-            [weakSelf dealWithError:MBPAYERROR_CREATEFAIL msg:errMsg];
+            [self dealWithError:MBPAYERROR_CREATEFAIL msg:errMsg];
         }
         
-        [MBAppStorePayLog trackCreateWithProductId:request.product.productId order:orderstr money:request.product.money errCode:errorCode errMsg:errMsg];
+        [MBAppStorePayLog trackCreateWithProductId:request.product.productId order:orderId money:request.product.money errCode:errorCode errMsg:errMsg];
     }];
 }
 
-- (void)requestAppleProductInfo:(NSString *)orderid product:(MBPayProduct *)mbproduct
+- (void)requestAppleProduct:(MBPayProduct *)product
 {
-    __weak typeof(self) weakSelf = self;
+    self.product = product;
+    self.requestProduct = YES;
+
+    SKProduct *skproduct = [self.applePay productForIdentifier:product.productId];
     
-    NSSet *idSet = [NSSet setWithObject:mbproduct.productId];
-    
-    SKProduct *product = [[RMStore defaultStore] productForIdentifier:mbproduct.productId];
-    
-    if (product != nil && [product isKindOfClass:[SKProduct class]]) {
-        [weakSelf startApplePayWithProduct:product orderid:orderid product:mbproduct];
+    if (skproduct != nil && [skproduct isKindOfClass:[SKProduct class]]) {
+        [self startApplePayWithProduct:product];
     } else {
-        [self retryRequestProducts:idSet orderid:orderid retryCount:maxRetryCount product:mbproduct];
+        [self prepareAppleProducts:@[product]];
     }
 }
 
-- (void)startApplePayWithProduct:(SKProduct *)product orderid:(NSString *)orderid product:(MBPayProduct *)mbproduct
+- (void)startApplePayWithProduct:(MBPayProduct *)product
 {
+    self.requestProduct = NO;
+
     MBPayOrderItem *item = [[MBPayOrderItem alloc] init];
-    item.uid = self.uid;
-    item.orderId = orderid;
-    item.productType = mbproduct.productType;
-    item.productId = product.productIdentifier;
+    item.uid = product.uid;
+    item.orderId = product.orderId;
+    item.productType = product.productType;
+    item.productId = product.productId;
     
     [MBPayOrderIDCache addOrder:item];
     
-    NSString *userIdentifier = [NSString stringWithFormat:@"%@__%@",item.uid,item.orderId];
+    [self.applePay addPayment:product.productId];
     
-    [[RMStore defaultStore] addPayment:mbproduct.productId
-                                  user:userIdentifier
-                           requestData:nil
-                               success:nil
-                               failure:nil];
-    
-    [MBAppStorePayLog trackStartPayWithProductId:product.productIdentifier order:orderid];
+    [MBAppStorePayLog trackStartPayWithProductId:product.productId order:product.orderId];
 }
 
-- (void)retryRequestProducts:(NSSet*)idSet orderid:(NSString *)orderid retryCount:(NSInteger)retryCount product:(MBPayProduct *)mbproduct {
-    __weak typeof(self) weakSelf = self;
-    __block NSInteger retryNum = retryCount;
-    [[RMStore defaultStore] requestProducts:idSet success:^(NSArray *products, NSArray *invalidProductIdentifiers) {
-        __strong typeof(weakSelf) strongSelf = weakSelf;
-        if ([products count] > 0) {
-            for (SKProduct *product in products) {
-                [strongSelf startApplePayWithProduct:product orderid:orderid product:mbproduct];
-            }
-        } else {
-            strongSelf.paying = NO;
-            [strongSelf dealWithError:MBPAYERROR_NOPRODUCT msg:nil];
-            [MBAppStorePayLog trackRequestFailedWithProductId:mbproduct.productId order:orderid errCode:MBPAYERROR_NOPRODUCT errMsg:@"购买商品不存在"];
-        }
-    } failure:^(NSError *error) {
-        __strong typeof(weakSelf) strongSelf = weakSelf;
-        if (retryNum > 0) {
-            retryNum--;
-            [strongSelf retryRequestProducts:idSet orderid:orderid retryCount:retryNum product:mbproduct];
-        } else {
-            strongSelf.paying = NO;
-            [MBAppStorePayLog trackRequestFailedWithProductId:mbproduct.productId order:orderid errCode:error.code errMsg:error.localizedDescription];
-            [strongSelf dealWithError:MBPAYERROR_NOPRODUCT msg:@""];
-        }
-    }];
-}
+#pragma mark - MBApplePayDelegate
 
-#pragma mark - RMStoreObserver
-
-- (void)dealWithApplePaySuccessWithTransaction:(SKPaymentTransaction *)transaction
+/// 商品请求失败
+- (void)applePayProductsRequestFailed:(NSError *)error
 {
-    self.paying = NO;
+    if (self.product && self.requestProduct) {
+        [MBAppStorePayLog trackRequestFailedWithProductId:self.product.productId order:self.product.orderId errCode:MBPAYERROR_NOPRODUCT errMsg:@"商品不存在"];
+        [self dealWithError:MBPAYERROR_NOPRODUCT msg:nil];
+    }
+}
+
+/// 商品请求完成
+- (void)applePayProductsRequestFinished:(NSDictionary *)products
+{
+    if (self.product && self.requestProduct) {
+        [self startApplePayWithProduct:self.product];
+    }
+}
+
+/// 最终状态未确定
+- (void)applePayPaymentTransactionDeferred:(SKPaymentTransaction *)transaction
+{
+    [self dealWithApplePayFailureWithTransaction:transaction error:transaction.error];
+}
+
+/// 支付失败
+- (void)applePayPaymentTransactionFailed:(SKPaymentTransaction *)transaction error:(NSError *)error
+{
+    [self dealWithApplePayFailureWithTransaction:transaction error:error];
+}
+
+/// 支付成功
+- (void)applePayPaymentTransactionPaySuccess:(SKPaymentTransaction *)transaction
+{
+    MBPayOrderItem *item = [MBPayOrderIDCache orderWithProductId:transaction.payment.productIdentifier];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (self.delegate && [self.delegate respondsToSelector:@selector(paymentResult:success:)]) {
+            [self.delegate paymentResult:item success:YES];
+        }
+    });
     
+    [MBAppStorePayLog trackIAPWithProductId:item.productId order:item.orderId transactionId:item.transactionIdentifier errCode:0 errMsg:@"支付成功"];
+}
+
+/// 票据验证成功 && 托管内容下载完成
+- (void)applePayPaymentTransactionFinished:(SKPaymentTransaction *)transaction
+{
     MBPayOrderItem *item = [MBPayOrderIDCache orderWithProductId:transaction.payment.productIdentifier];
     
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -207,26 +199,48 @@ NSString * const kVerifyReceiptUrl = @"kApplePayVerifyReceiptUrl";
         }
     });
     
-    [MBAppStorePayLog trackIAPWithProductId:transaction.payment.productIdentifier order:item.orderId transactionId:transaction.transactionIdentifier errCode:0 errMsg:@"支付成功"];
+    self.paying = NO;
+    self.product = nil;
 }
 
-- (void)dealWithApplePayFailureWithTransaction:(SKPaymentTransaction *)transaction
+/// 恢复购买失败
+- (void)applePayRestoreTransactionsFailed:(NSError *)error
 {
-    self.paying = NO;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (self.delegate && [self.delegate respondsToSelector:@selector(paymentRestoreFailed:)]) {
+            [self.delegate paymentRestoreFailed:error];
+        }
+    });
+}
+
+/// 恢复购买完成
+- (void)applePayRestoreTransactionsFinished:(NSArray<SKPaymentTransaction *> *)transactions
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (self.delegate && [self.delegate respondsToSelector:@selector(paymentRestoreFinished)]) {
+            [self.delegate paymentRestoreFinished];
+        }
+    });
+}
+
+- (void)dealWithApplePayFailureWithTransaction:(SKPaymentTransaction *)transaction error:(NSError *)error
+{
+    MBPayOrderItem *item;
+    if (transaction) {
+        item = [MBPayOrderIDCache orderWithProductId:transaction.payment.productIdentifier];
+    } else {
+        item = [MBPayOrderIDCache orderWithProductId:self.product.productId];
+    }
     
-    MBPayOrderItem *item = [MBPayOrderIDCache orderWithProductId:transaction.payment.productIdentifier];
-    
-    NSInteger errCode = transaction.error.code;
-    NSString *errMsg = transaction.error.localizedDescription;
-    
-    errCode = errCode == SKErrorUnknown ? -1 : errCode;
+    NSInteger errCode = error.code;
+    NSString *errMsg = error.localizedDescription;
     
     if (errCode == SKErrorPaymentCancelled || errCode == -2) {
         [self dealWithError:MBPAYERROR_USERCANCLE msg:nil];
-        [MBAppStorePayLog trackUserCancelWithProductId:transaction.payment.productIdentifier order:item.orderId];
+        [MBAppStorePayLog trackUserCancelWithProductId:item.productId order:item.orderId];
     } else {
         [self dealWithError:MBPAYERROR_APPLECONNECTFAIL msg:nil];
-        [MBAppStorePayLog trackIAPWithProductId:transaction.payment.productIdentifier order:item.orderId transactionId:transaction.transactionIdentifier errCode:errCode errMsg:errMsg];
+        [MBAppStorePayLog trackIAPWithProductId:item.productId order:item.orderId transactionId:item.transactionIdentifier errCode:errCode errMsg:errMsg];
     }
     
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -234,54 +248,6 @@ NSString * const kVerifyReceiptUrl = @"kApplePayVerifyReceiptUrl";
             [self.delegate paymentResult:item success:NO];
         }
     });
-}
-
-- (void)storePaymentTransactionFinished:(NSNotification *)notification
-{
-    SKPaymentTransaction *transaction = [notification rm_transaction];
-
-    // 沙盒环境，平级订阅 1个月升3个月。先回调1个月成功，后回调3个月的失败，过滤掉此种case的成功事件。
-    if (self.product && ![self.product.productId isEqualToString:transaction.payment.productIdentifier]) {
-        return;
-    }
-    
-    if (transaction.transactionState != SKPaymentTransactionStateRestored) {
-        [self dealWithApplePaySuccessWithTransaction:transaction];
-    }
-}
-
-- (void)storePaymentTransactionFailed:(NSNotification *)notification
-{
-    SKPaymentTransaction *transaction = [notification rm_transaction];
-    if (transaction.transactionState != SKPaymentTransactionStateRestored) {
-        [self dealWithApplePayFailureWithTransaction:transaction];
-    }
-}
-
-- (void)storePaymentTransactionDeferred:(NSNotification *)notification
-{
-    SKPaymentTransaction *transaction = [notification rm_transaction];
-    MBLogI(@"#apple.pay# name:transaction.deferred productId:%@", transaction.payment.productIdentifier);
-    if (transaction.transactionState != SKPaymentTransactionStateRestored) {
-        [self dealWithApplePayFailureWithTransaction:transaction];
-    }
-}
-
-- (void)storeRestoreTransactionsFailed:(NSNotification *)notification
-{
-    NSError *error = [notification rm_storeError];
-    MBLogI(@"#apple.pay# name:restore.error value:%@", error);
-    if (self.delegate && [self.delegate respondsToSelector:@selector(paymentRestoreFailed:)]) {
-        [self.delegate paymentRestoreFailed:error];
-    }
-}
-
-- (void)storeRestoreTransactionsFinished:(NSNotification *)notification
-{
-    MBLogI(@"#apple.pay# name:restore.finished");
-    if (self.delegate && [self.delegate respondsToSelector:@selector(paymentRestoreFinished)]) {
-        [self.delegate paymentRestoreFinished];
-    }
 }
 
 #pragma mark - private
@@ -298,6 +264,10 @@ NSString * const kVerifyReceiptUrl = @"kApplePayVerifyReceiptUrl";
 
 - (void)dealWithError:(MBPAYERROR)error msg:(NSString *)msg
 {
+    self.paying = NO;
+    self.product = nil;
+    self.requestProduct = NO;
+    
     switch (error)
     {
         case MBPAYERROR_JAILBROKEN:

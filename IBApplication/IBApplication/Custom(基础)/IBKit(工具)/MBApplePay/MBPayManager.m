@@ -36,7 +36,7 @@
 
 - (void)prepareAppleProductList:(NSArray<MBPayProduct *> *)products
 {
-    [self.applePayModel prepareAppleProductList:products];
+    [self.applePayModel prepareAppleProducts:products];
 }
 
 - (void)createPaymentWithProduct:(MBPayRequest *)request payDelegate:(id<MBPayDelegate>)delegate

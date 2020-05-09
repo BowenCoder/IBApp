@@ -9,13 +9,14 @@
 #import "MBPayVerificator.h"
 #import "MBAppStorePayLog.h"
 #import "MBPayOrderItem.h"
-#import "MBApplePayModel.h"
-#import "IBMacros.h"
-#import "IBHTTPClient.h"
-#import "NSDictionary+Ext.h"
+#import "MBPayOrderIDCache.h"
+#import "MBPayDelegate.h"
 #import "MBUserManager.h"
 #import "MBLogger.h"
-#import "MBPayOrderIDCache.h"
+#import "IBMacros.h"
+#import "IBHTTPClient.h"
+
+NSString * const kVerifyReceiptUrl = @"kApplePayVerifyReceiptUrl";
 
 @implementation MBPayVerificator
 
@@ -88,7 +89,7 @@
             if (errorCode == IBURLErrorService || errorCode == IBURLErrorTimeout ||
                 errorCode == IBURLErrorUnknown || errorCode == IBURLErrorNetworkLost) {
                 error = [NSError errorWithDomain:response.message
-                                            code:RMStoreErrorCodeUnableToCompleteVerification
+                                            code:MBApplePayErrorLaunchRetry
                                         userInfo:nil];
             } else {
                 [weakSelf removeOrder:orderItem];

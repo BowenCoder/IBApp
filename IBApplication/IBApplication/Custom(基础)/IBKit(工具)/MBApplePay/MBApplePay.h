@@ -10,25 +10,13 @@
 #import <StoreKit/StoreKit.h>
 
 typedef NS_ENUM(NSInteger , MBApplePayError){
-    MBApplePayErrorProductId   = 1000,     //未知商品Id
-    MBApplePayErrorLaunchRetry = 1001,     //启动重试
-    MBApplePayDownloadCanceled = 1002,     //下载取消
+    MBApplePayErrorNoProduct   = 10000,     //商品不存在
+    MBApplePayErrorLaunchRetry = 10001,     //启动重试
 };
-
 
 NS_ASSUME_NONNULL_BEGIN
 
-@protocol MBPayContentDownloader <NSObject>
-
-- (void)downloadContentForTransaction:(SKPaymentTransaction*)transaction
-                              success:(void (^)(void))successBlock
-                             progress:(void (^)(float progress))progressBlock
-                              failure:(void (^)(NSError *error))failureBlock;
-
-@end
-
-
-@protocol MBPayReceiptVerificator <NSObject>
+@protocol MBPayReceiptVerifier <NSObject>
 
 - (void)verifyTransaction:(SKPaymentTransaction *)transaction
                   success:(void (^)(void))successBlock
@@ -38,33 +26,67 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol MBApplePayDelegate <NSObject>
 
+@optional
+
+//====================== SKDownload ====================//
+
+/// 托管内容下载取消
 - (void)applePayDownloadCanceled:(SKDownload *)download;
 
+/// 托管内容下载失败
 - (void)applePayDownloadFailed:(SKDownload *)download;
 
+/// 托管内容下载完成
 - (void)applePayDownloadFinished:(SKDownload *)download;
 
+/// 托管内容下载暂停
 - (void)applePayDownloadPaused:(SKDownload *)download;
 
+/// 托管内容下载更新
 - (void)applePayDownloadUpdated:(SKDownload *)download;
 
+//====================== Payment ====================//
+
+/// 最终状态未确定
 - (void)applePayPaymentTransactionDeferred:(SKPaymentTransaction *)transaction;
 
+/// 支付失败
 - (void)applePayPaymentTransactionFailed:(SKPaymentTransaction *)transaction error:(NSError *)error;
 
+/// 支付成功
+- (void)applePayPaymentTransactionPaySuccess:(SKPaymentTransaction *)transaction;
+
+/// 票据验证成功 && 托管内容下载完成
 - (void)applePayPaymentTransactionFinished:(SKPaymentTransaction *)transaction;
 
+//====================== ProductsRequest ====================//
+
+/// 商品请求失败
 - (void)applePayProductsRequestFailed:(NSError *)error;
 
-- (void)applePayProductsRequestFinished:(NSArray<SKProduct *> *)products;
+/// 商品请求完成
+- (void)applePayProductsRequestFinished:(NSDictionary *)products;
 
+//====================== RefreshReceipt ====================//
+
+/// 刷新票据失败
 - (void)applePayRefreshReceiptFailed:(NSError *)error;
 
+/// 刷新票据完成
 - (void)applePayRefreshReceiptFinished:(SKRequest *)request;
 
+//====================== Restore ====================//
+
+/// 恢复购买失败
 - (void)applePayRestoreTransactionsFailed:(NSError *)error;
 
+/// 恢复购买完成
 - (void)applePayRestoreTransactionsFinished:(NSArray<SKPaymentTransaction *> *)transactions;
+
+//====================== shouldAddStorePayment ====================//
+
+/// 自动下单
+- (BOOL)applePayShouldAddStorePayment:(SKPayment *)payment product:(SKProduct *)product;
 
 @end
 
@@ -73,7 +95,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, weak) id<MBApplePayDelegate> delegate;
 
-@property (nonatomic, weak) id<MBPayReceiptVerificator> receiptVerifier;
+@property (nonatomic, weak) id<MBPayReceiptVerifier> receiptVerifier;
 
 + (BOOL)canMakePayments;
 

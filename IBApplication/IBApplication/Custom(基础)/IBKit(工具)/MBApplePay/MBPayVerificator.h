@@ -7,13 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "RMStore.h"
+#import "MBApplePay.h"
 
 static const NSInteger maxRetryCount = 3;
 
+extern NSString * const kVerifyReceiptUrl;
+
 NS_ASSUME_NONNULL_BEGIN
 
-@interface MBPayVerificator : NSObject <RMStoreReceiptVerificator>
+@interface MBPayVerificator : NSObject <MBPayReceiptVerifier>
 
 @end
 

@@ -30,11 +30,6 @@
 - (void)createPaymentWithProduct:(MBPayRequest *)request payDelegate:(id<MBPayDelegate>)delegate;
 
 /**
- * 退出登录等事件 暂停未完成支付的重试
- */
-- (void)stopRetry;
-
-/**
  * 恢复购买，会通知历史所有订单购买成功
  */
 - (void)restoreIAP;

@@ -21,7 +21,7 @@
 + (void)trackCreateWithProductId:(NSString *)productId order:(NSString *)order money:(NSInteger)money errCode:(NSInteger)errCode errMsg:(NSString *)errMsg {
     
     NSString *name = @"order.create";
-
+    
     NSMutableDictionary* dict = [[NSMutableDictionary alloc] init];
     
     [dict setObject:NSStringNONil(productId) forKey:@"product_id"];
@@ -36,7 +36,7 @@
 + (void)trackStartPayWithProductId:(NSString *)productId order:(NSString *)order {
     NSString *name = @"start.pay";
     NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
-
+    
     [dict setObject:NSStringNONil(productId) forKey:@"product_id"];
     [dict setObject:NSStringNONil(order) forKey:@"order"];
     
@@ -59,10 +59,10 @@
 }
 
 + (void)trackIAPWithProductId:(NSString *)productId
-                                order:(NSString *)order
-                        transactionId:(NSString *)transactionId
-                              errCode:(NSInteger)errCode
-                               errMsg:(NSString *)errMsg {
+                        order:(NSString *)order
+                transactionId:(NSString *)transactionId
+                      errCode:(NSInteger)errCode
+                       errMsg:(NSString *)errMsg {
     NSString *name = @"pay.result";
     
     NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];

@@ -15,6 +15,7 @@
 @property (nonatomic, assign) NSInteger restoredTransactionsCount;
 @property (nonatomic, assign) BOOL restoredTransactionsFinished;
 @property (nonatomic, strong) NSMutableArray *restoredTransactions;
+@property (nonatomic, copy) NSString *currrentProductId;
 
 @end
 
@@ -58,10 +59,12 @@
 
 - (void)addPayment:(NSString *)productId
 {
+    self.currrentProductId = productId;
+    
     SKProduct *product = [self productForIdentifier:productId];
     if (!product) {
-        NSError *error = [NSError errorWithDomain:@"pay.error" code:MBApplePayErrorProductId userInfo:@{NSLocalizedDescriptionKey: @"Unknown product identifier"}];
-        [self didFailTransaction:nil queue:nil error:error];
+        NSError *error = [NSError errorWithDomain:@"applepay" code:MBApplePayErrorNoProduct userInfo:@{NSLocalizedDescriptionKey: @"商品不存在"}];
+        [self didFailTransaction:nil queue:[SKPaymentQueue defaultQueue] error:error];
         return;
     }
     SKMutablePayment *payment = [SKMutablePayment paymentWithProduct:product];
@@ -70,12 +73,17 @@
 
 - (void)restoreTransactions
 {
+    self.restoredTransactionsCount = 0;
     self.restoredTransactionsFinished = NO;
+    [self.restoredTransactions removeAllObjects];
     [[SKPaymentQueue defaultQueue] restoreCompletedTransactions];
 }
 
 - (SKProduct *)productForIdentifier:(NSString*)productIdentifier
 {
+    if (!productIdentifier) {
+        return nil;
+    }
     return self.products[productIdentifier];
 }
 
@@ -88,10 +96,8 @@
 
 - (void)paymentQueue:(SKPaymentQueue *)queue updatedTransactions:(NSArray *)transactions
 {
-    for (SKPaymentTransaction *transaction in transactions)
-    {
-        switch (transaction.transactionState)
-        {
+    for (SKPaymentTransaction *transaction in transactions) {
+        switch (transaction.transactionState) {
             case SKPaymentTransactionStatePurchased:
                 [self didPurchaseTransaction:transaction queue:queue];
                 break;
@@ -110,25 +116,10 @@
     }
 }
 
-- (void)paymentQueueRestoreCompletedTransactionsFinished:(SKPaymentQueue *)queue
-{
-    self.restoredTransactionsFinished = YES;
-    [self notifyRestoreTransactionFinished:nil];
-}
-
-- (void)paymentQueue:(SKPaymentQueue *)queue restoreCompletedTransactionsFailedWithError:(NSError *)error
-{
-    if (self.delegate && [self.delegate respondsToSelector:@selector(applePayRestoreTransactionsFailed:)]) {
-        [self.delegate applePayRestoreTransactionsFailed:error];
-    }
-}
-
 - (void)paymentQueue:(SKPaymentQueue *)queue updatedDownloads:(NSArray *)downloads
 {
-    for (SKDownload *download in downloads)
-    {
-        switch (download.downloadState)
-        {
+    for (SKDownload *download in downloads) {
+        switch (download.downloadState) {
             case SKDownloadStateActive:
                 [self didUpdateDownload:download queue:queue];
                 break;
@@ -150,10 +141,40 @@
     }
 }
 
+- (void)paymentQueueRestoreCompletedTransactionsFinished:(SKPaymentQueue *)queue
+{
+    self.restoredTransactionsFinished = YES;
+    [self notifyRestoreTransactionFinished:nil];
+}
+
+- (void)paymentQueue:(SKPaymentQueue *)queue restoreCompletedTransactionsFailedWithError:(NSError *)error
+{
+    if (self.delegate && [self.delegate respondsToSelector:@selector(applePayRestoreTransactionsFailed:)]) {
+        [self.delegate applePayRestoreTransactionsFailed:error];
+    }
+}
+
+- (BOOL)paymentQueue:(SKPaymentQueue *)queue shouldAddStorePayment:(SKPayment *)payment forProduct:(SKProduct *)product
+{
+    if (self.delegate && [self.delegate respondsToSelector:@selector(applePayShouldAddStorePayment:product:)]) {
+        return [self.delegate applePayShouldAddStorePayment:payment product:product];
+    }
+    return NO;
+}
+
 #pragma mark - Transaction State
 
 - (void)didPurchaseTransaction:(SKPaymentTransaction *)transaction queue:(SKPaymentQueue*)queue
 {
+    // 沙盒环境，平级订阅 1个月升3个月。先回调1个月成功，后回调3个月的失败，过滤掉此种case的成功事件。
+    if (![self.currrentProductId isEqualToString:transaction.payment.productIdentifier]) {
+        return;
+    }
+    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(applePayPaymentTransactionPaySuccess:)]) {
+        [self.delegate applePayPaymentTransactionPaySuccess:transaction];
+    }
+    
     if (self.receiptVerifier != nil) {
         [self.receiptVerifier verifyTransaction:transaction success:^{
             [self didDownloadContentForTransaction:transaction queue:queue];
@@ -162,21 +183,6 @@
         }];
     } else {
         [self didDownloadContentForTransaction:transaction queue:queue];
-    }
-}
-
-- (void)didFailTransaction:(SKPaymentTransaction *)transaction queue:(SKPaymentQueue *)queue error:(NSError*)error
-{
-    if (error.code != MBApplePayErrorLaunchRetry && transaction) {
-        [queue finishTransaction:transaction];
-    }
-    
-    if (transaction.transactionState == SKPaymentTransactionStateRestored) {
-        [self notifyRestoreTransactionFinished:transaction];
-    } else {
-        if (self.delegate && [self.delegate respondsToSelector:@selector(applePayPaymentTransactionFailed:error:)]) {
-            [self.delegate applePayPaymentTransactionFailed:transaction error:error];
-        }
     }
 }
 
@@ -211,11 +217,28 @@
     }
 }
 
+- (void)didFailTransaction:(SKPaymentTransaction *)transaction queue:(SKPaymentQueue *)queue error:(NSError*)error
+{
+    if (transaction && error.code != MBApplePayErrorLaunchRetry) {
+        [queue finishTransaction:transaction];
+    }
+    
+    if (transaction && transaction.transactionState == SKPaymentTransactionStateRestored) {
+        [self notifyRestoreTransactionFinished:transaction];
+    } else {
+        if (self.delegate && [self.delegate respondsToSelector:@selector(applePayPaymentTransactionFailed:error:)]) {
+            [self.delegate applePayPaymentTransactionFailed:transaction error:error];
+        }
+    }
+}
+
 - (void)finishTransaction:(SKPaymentTransaction *)transaction queue:(SKPaymentQueue *)queue
 {
-    [queue finishTransaction:transaction];
+    if (transaction) {
+        [queue finishTransaction:transaction];
+    }
     
-    if (transaction.transactionState == SKPaymentTransactionStateRestored) {
+    if (transaction && transaction.transactionState == SKPaymentTransactionStateRestored) {
         [self notifyRestoreTransactionFinished:transaction];
     } else {
         if (self.delegate && [self.delegate respondsToSelector:@selector(applePayPaymentTransactionFinished:)]) {
@@ -324,7 +347,7 @@
     }
     if ([request isKindOfClass:SKProductsRequest.class]) {
         if (self.delegate && [self.delegate respondsToSelector:@selector(applePayProductsRequestFinished:)]) {
-            [self.delegate applePayProductsRequestFinished:self.products.allValues];
+            [self.delegate applePayProductsRequestFinished:self.products];
         }
     }
 }

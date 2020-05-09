@@ -10,15 +10,13 @@
 #import "MBPayRequest.h"
 #import "MBPayDelegate.h"
 
-extern NSString * const kVerifyReceiptUrl;
-
 @interface MBApplePayModel : NSObject
 
 @property (nonatomic, weak) id<MBPayDelegate> delegate;
 
 - (void)createPaymentWithProduct:(MBPayRequest *)request;
 
-- (void)prepareAppleProductList:(NSArray<MBPayProduct *> *)products;
+- (void)prepareAppleProducts:(NSArray<MBPayProduct *> *)products;
 
 - (void)restoreApplePay;
 
