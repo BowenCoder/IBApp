@@ -84,8 +84,8 @@ NSString * const kVerifyReceiptUrl = @"kApplePayVerifyReceiptUrl";
             [weakSelf removeOrder:orderItem];
         } else {
             NSError *error;
-            if (errorCode == IBURLErrorService || errorCode == IBURLErrorTimeout ||
-                errorCode == IBURLErrorUnknown || errorCode == IBURLErrorNetworkLost) {
+            if (errorCode == IBURLErrorService || errorCode == IBURLErrorUnknown ||
+                (errorCode >= NSURLErrorBadServerResponse && errorCode <= NSURLErrorCancelled)) {
                 error = [NSError errorWithDomain:response.message
                                             code:MBApplePayErrorLaunchRetry
                                         userInfo:nil];

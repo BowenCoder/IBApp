@@ -11,13 +11,12 @@
 
 /**
  网络错误参考：NSURLErrorDomain
+ 网络未发送出去：ErrorCode在NSURLErrorBadServerResponse和NSURLErrorCancelled之间
  */
 typedef NS_ENUM(NSInteger, IBURLErrorCode) {
     
     IBURLErrorTimeout = -1001, // 超时
-    
-    IBURLErrorNetworkLost = -1005, // 网络丢失
-    
+        
     IBURLErrorMethod = -6, // 请求method错误
     
     IBURLErrorParameter = -5, // 参数错误
