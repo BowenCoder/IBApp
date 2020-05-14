@@ -29,7 +29,7 @@
 }
 
 + (id)performActionWithUrl:(NSString *)url completion:(void (^)(id _Nullable))completion {
-    return [[self sharedInstance] performActionWithUrl:url completion:completion];
+    return [[MBMediator sharedInstance] performActionWithUrl:url completion:completion];
 }
 
 + (nullable id)performTarget:(NSString *)targetName
@@ -37,11 +37,11 @@
                       params:(NSDictionary *)params
            shouldCacheTarget:(BOOL)shouldCacheTarget
 {
-    return [[self sharedInstance] performTarget:targetName action:actionName params:params shouldCacheTarget:shouldCacheTarget];
+    return [[MBMediator sharedInstance] performTarget:targetName action:actionName params:params shouldCacheTarget:shouldCacheTarget];
 }
 
 + (void)releaseTargetCacheWithTargetName:(NSString *)targetName {
-    [[self sharedInstance] releaseTargetCacheWithTargetName:targetName];
+    [[MBMediator sharedInstance] releaseCachedTargetWithTargetName:targetName];
 }
 
 - (id)performActionWithUrl:(NSString *)url completion:(void (^)(NSDictionary *))completion
