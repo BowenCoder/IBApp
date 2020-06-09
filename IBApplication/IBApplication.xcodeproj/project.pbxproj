@@ -345,6 +345,13 @@
 		4AE9674123A266D700A5C172 /* IBServiceInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE9674023A266D700A5C172 /* IBServiceInfoModel.m */; };
 		4AE9674423A3A3DA00A5C172 /* IBUploader.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE9674323A3A3DA00A5C172 /* IBUploader.m */; };
 		4AE9674723A3A3F100A5C172 /* IBDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE9674623A3A3F100A5C172 /* IBDownloader.m */; };
+		4AEAE620248F362A001F7E45 /* MBSocketTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AEAE61F248F362A001F7E45 /* MBSocketTools.m */; };
+		4AEAE623248F3687001F7E45 /* MBSocketConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AEAE622248F3687001F7E45 /* MBSocketConnection.m */; };
+		4AEAE627248F3925001F7E45 /* MBSocketPacket.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AEAE626248F3925001F7E45 /* MBSocketPacket.m */; };
+		4AEAE62F248F7174001F7E45 /* MBSocketByte.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AEAE62E248F7174001F7E45 /* MBSocketByte.m */; };
+		4AEAE632248F82EB001F7E45 /* MBSocketConnectionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AEAE631248F82EB001F7E45 /* MBSocketConnectionModel.m */; };
+		4AEAF784248FE6E7001F7E45 /* MBSocketPacketEncode.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AEAF783248FE6E7001F7E45 /* MBSocketPacketEncode.m */; };
+		4AEAF787248FE6FE001F7E45 /* MBSocketPacketDecode.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AEAF786248FE6FE001F7E45 /* MBSocketPacketDecode.m */; };
 		4AED556023CD937B00B38F59 /* MBPopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AED555F23CD937B00B38F59 /* MBPopupView.m */; };
 		4AED64C0215378EF0082280F /* MBPopupArrowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AED64BF215378EF0082280F /* MBPopupArrowView.m */; };
 		4AF2091E23978EB800EFB85D /* MBPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AF2091D23978EB800EFB85D /* MBPresenter.m */; };
@@ -1058,6 +1065,22 @@
 		4AE9674323A3A3DA00A5C172 /* IBUploader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBUploader.m; sourceTree = "<group>"; };
 		4AE9674523A3A3F100A5C172 /* IBDownloader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBDownloader.h; sourceTree = "<group>"; };
 		4AE9674623A3A3F100A5C172 /* IBDownloader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBDownloader.m; sourceTree = "<group>"; };
+		4AEAE61E248F362A001F7E45 /* MBSocketTools.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBSocketTools.h; sourceTree = "<group>"; };
+		4AEAE61F248F362A001F7E45 /* MBSocketTools.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBSocketTools.m; sourceTree = "<group>"; };
+		4AEAE621248F3687001F7E45 /* MBSocketConnection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBSocketConnection.h; sourceTree = "<group>"; };
+		4AEAE622248F3687001F7E45 /* MBSocketConnection.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBSocketConnection.m; sourceTree = "<group>"; };
+		4AEAE625248F3925001F7E45 /* MBSocketPacket.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBSocketPacket.h; sourceTree = "<group>"; };
+		4AEAE626248F3925001F7E45 /* MBSocketPacket.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBSocketPacket.m; sourceTree = "<group>"; };
+		4AEAE62B248F7012001F7E45 /* MBSocketEncodeProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBSocketEncodeProtocol.h; sourceTree = "<group>"; };
+		4AEAE62C248F709C001F7E45 /* MBSocketCMDType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBSocketCMDType.h; sourceTree = "<group>"; };
+		4AEAE62D248F7174001F7E45 /* MBSocketByte.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBSocketByte.h; sourceTree = "<group>"; };
+		4AEAE62E248F7174001F7E45 /* MBSocketByte.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBSocketByte.m; sourceTree = "<group>"; };
+		4AEAE630248F82EB001F7E45 /* MBSocketConnectionModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBSocketConnectionModel.h; sourceTree = "<group>"; };
+		4AEAE631248F82EB001F7E45 /* MBSocketConnectionModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBSocketConnectionModel.m; sourceTree = "<group>"; };
+		4AEAF782248FE6E7001F7E45 /* MBSocketPacketEncode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBSocketPacketEncode.h; sourceTree = "<group>"; };
+		4AEAF783248FE6E7001F7E45 /* MBSocketPacketEncode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBSocketPacketEncode.m; sourceTree = "<group>"; };
+		4AEAF785248FE6FE001F7E45 /* MBSocketPacketDecode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBSocketPacketDecode.h; sourceTree = "<group>"; };
+		4AEAF786248FE6FE001F7E45 /* MBSocketPacketDecode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBSocketPacketDecode.m; sourceTree = "<group>"; };
 		4AED555E23CD937B00B38F59 /* MBPopupView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBPopupView.h; sourceTree = "<group>"; };
 		4AED555F23CD937B00B38F59 /* MBPopupView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBPopupView.m; sourceTree = "<group>"; };
 		4AED64BE215378EF0082280F /* MBPopupArrowView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBPopupArrowView.h; sourceTree = "<group>"; };
@@ -1910,7 +1933,6 @@
 			isa = PBXGroup;
 			children = (
 				4A6F199F20E3EECF00EAF1A7 /* Connection */,
-				4A6F19AA20E3F3E900EAF1A7 /* Core */,
 				4A6F199720E3B0FA00EAF1A7 /* Encode */,
 				4A6F199220E3ABC300EAF1A7 /* Service */,
 				4A6F198E20E3AA5B00EAF1A7 /* Packet */,
@@ -2881,6 +2903,7 @@
 		4ACC569C20DF4D9C001352AE /* IBKit(工具) */ = {
 			isa = PBXGroup;
 			children = (
+				4AEACFC3248A52F2001F7E45 /* MBSocket */,
 				4AC21AE62463B96800DFD301 /* MBApplePay */,
 				4AC209AE2463A6BD00DFD301 /* MBJailBroken */,
 				4A1FB09320E7B2F40056A026 /* IBAnimation */,
@@ -3114,6 +3137,62 @@
 				4AA2862D22C8E19E00C34336 /* IBUrlManager.m */,
 			);
 			path = ServiceInfo;
+			sourceTree = "<group>";
+		};
+		4AEACFC3248A52F2001F7E45 /* MBSocket */ = {
+			isa = PBXGroup;
+			children = (
+				4AEAE62A248F6FFD001F7E45 /* Encode */,
+				4AEAE624248F390F001F7E45 /* Packet */,
+				4AEAE61D248F35ED001F7E45 /* Tools */,
+				4AEAE61C248F35E2001F7E45 /* Connection */,
+				4A6F19AA20E3F3E900EAF1A7 /* Core */,
+			);
+			path = MBSocket;
+			sourceTree = "<group>";
+		};
+		4AEAE61C248F35E2001F7E45 /* Connection */ = {
+			isa = PBXGroup;
+			children = (
+				4AEAE621248F3687001F7E45 /* MBSocketConnection.h */,
+				4AEAE622248F3687001F7E45 /* MBSocketConnection.m */,
+				4AEAE630248F82EB001F7E45 /* MBSocketConnectionModel.h */,
+				4AEAE631248F82EB001F7E45 /* MBSocketConnectionModel.m */,
+			);
+			path = Connection;
+			sourceTree = "<group>";
+		};
+		4AEAE61D248F35ED001F7E45 /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				4AEAE61E248F362A001F7E45 /* MBSocketTools.h */,
+				4AEAE61F248F362A001F7E45 /* MBSocketTools.m */,
+			);
+			path = Tools;
+			sourceTree = "<group>";
+		};
+		4AEAE624248F390F001F7E45 /* Packet */ = {
+			isa = PBXGroup;
+			children = (
+				4AEAE62D248F7174001F7E45 /* MBSocketByte.h */,
+				4AEAE62E248F7174001F7E45 /* MBSocketByte.m */,
+				4AEAE62C248F709C001F7E45 /* MBSocketCMDType.h */,
+				4AEAE625248F3925001F7E45 /* MBSocketPacket.h */,
+				4AEAE626248F3925001F7E45 /* MBSocketPacket.m */,
+			);
+			path = Packet;
+			sourceTree = "<group>";
+		};
+		4AEAE62A248F6FFD001F7E45 /* Encode */ = {
+			isa = PBXGroup;
+			children = (
+				4AEAE62B248F7012001F7E45 /* MBSocketEncodeProtocol.h */,
+				4AEAF782248FE6E7001F7E45 /* MBSocketPacketEncode.h */,
+				4AEAF783248FE6E7001F7E45 /* MBSocketPacketEncode.m */,
+				4AEAF785248FE6FE001F7E45 /* MBSocketPacketDecode.h */,
+				4AEAF786248FE6FE001F7E45 /* MBSocketPacketDecode.m */,
+			);
+			path = Encode;
 			sourceTree = "<group>";
 		};
 		4AED555D23CD925100B38F59 /* MBPopupView */ = {
@@ -3511,15 +3590,18 @@
 				4A1FB20A20E92D5E0056A026 /* SDImageCacheConfig.m in Sources */,
 				4A1FB13020E921E90056A026 /* UIImage+MWPhotoBrowser.m in Sources */,
 				4A03B8DC229AEFCE00173765 /* MBLaunchManager.m in Sources */,
+				4AEAE620248F362A001F7E45 /* MBSocketTools.m in Sources */,
 				4ACC567B20DE6679001352AE /* NSNotificationNameManager.m in Sources */,
 				4A1FB21320E92D5E0056A026 /* UIImageView+HighlightedWebCache.m in Sources */,
 				4AD7706D2297C92400FEB76B /* YYCache.m in Sources */,
 				F3FCB42A22A2F9F600C4870B /* RSKInternalUtility.m in Sources */,
 				4A6F197620E26B3800EAF1A7 /* IBCrypto.m in Sources */,
 				4A78076920E9F1BB00E60ACA /* MASConstraint.m in Sources */,
+				4AEAE62F248F7174001F7E45 /* MBSocketByte.m in Sources */,
 				4A22DE20228AF3B500D4CFA6 /* DDASLLogCapture.m in Sources */,
 				F3FCB42C22A2F9F600C4870B /* UIApplication+RSKImageCropper.m in Sources */,
 				4AD770A52297CD1300FEB76B /* YYTextView.m in Sources */,
+				4AEAE623248F3687001F7E45 /* MBSocketConnection.m in Sources */,
 				4A1FB09720E811FA0056A026 /* UIView+draggable.m in Sources */,
 				4A1FB13520E921E90056A026 /* MWGridViewController.m in Sources */,
 				4A89D5F8228B09440072FB23 /* NSThread+SequenceNumber.m in Sources */,
@@ -3540,6 +3622,7 @@
 				4AC21AFA2463B96900DFD301 /* MBPayOrderItem.m in Sources */,
 				F333517B22A2C448005B968E /* MBLibraryCamera.m in Sources */,
 				4A1FB12B20E921E90056A026 /* DALabeledCircularProgressView.m in Sources */,
+				4AEAF787248FE6FE001F7E45 /* MBSocketPacketDecode.m in Sources */,
 				4A1FB22620E92D5E0056A026 /* SDWebImageTransition.m in Sources */,
 				4AE9665823A1F18200A5C172 /* IBAtomInfo.m in Sources */,
 				4A89D5FC228B0E260072FB23 /* MBFilterLogger.m in Sources */,
@@ -3579,6 +3662,7 @@
 				4A89D62E228B17490072FB23 /* mztools.m in Sources */,
 				4A1FB0BF20E8EE6B0056A026 /* AFNetworkReachabilityManager.m in Sources */,
 				4ACC55E320DB5F3E001352AE /* ViewController.m in Sources */,
+				4AEAE627248F3925001F7E45 /* MBSocketPacket.m in Sources */,
 				4A1FB12F20E921E90056A026 /* MWZoomingScrollView.m in Sources */,
 				4A6F199E20E3B56C00EAF1A7 /* IBSocketPacketEncode.m in Sources */,
 				4A1FB21620E92D5E0056A026 /* NSImage+WebCache.m in Sources */,
@@ -3681,6 +3765,7 @@
 				4A03B8D6229ADCCB00173765 /* MBModuleCenter.m in Sources */,
 				4A1FB21120E92D5E0056A026 /* FLAnimatedImageView+WebCache.m in Sources */,
 				4A22DE25228AF3B500D4CFA6 /* DDMultiFormatter.m in Sources */,
+				4AEAE632248F82EB001F7E45 /* MBSocketConnectionModel.m in Sources */,
 				4ACC563C20DD6C62001352AE /* UIBarButtonItem+Ext.m in Sources */,
 				F3FCB42D22A2F9F600C4870B /* RSKImageCropViewController.m in Sources */,
 				4A2E75A32434874300DBA2AB /* MBAssetGroup.m in Sources */,
@@ -3703,6 +3788,7 @@
 				4AE9674423A3A3DA00A5C172 /* IBUploader.m in Sources */,
 				4AD770B62297CD1300FEB76B /* NSParagraphStyle+YYText.m in Sources */,
 				4AAA78F220ECBCB200CF5639 /* MBFPSLabel.m in Sources */,
+				4AEAF784248FE6E7001F7E45 /* MBSocketPacketEncode.m in Sources */,
 				4ABF2FCA22FEF42A00645809 /* MBDeliveryView.m in Sources */,
 				4A6F199120E3AAB200EAF1A7 /* IBSocketByte.m in Sources */,
 				4A6F198C20E3A61400EAF1A7 /* IBString.m in Sources */,

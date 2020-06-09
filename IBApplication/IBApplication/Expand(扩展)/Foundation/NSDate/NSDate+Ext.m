@@ -52,16 +52,12 @@ static const unsigned unitFlags = (NSCalendarUnitYear| NSCalendarUnitMonth| NSCa
 }
 
 //获取时间戳
-- (long)mb_timestamp {
-    
-    //时间戳(到秒)
-    long timespp = [self timeIntervalSince1970];
-    
-    return timespp;
+- (NSTimeInterval)mb_timestamp {
+    return [self timeIntervalSince1970];
 }
 
 //毫秒：时间戳*1000
-- (long)mb_microsecond {
+- (NSTimeInterval)mb_microsecond {
     return [self timeIntervalSince1970] * 1000.f;
 }
 

@@ -36,18 +36,18 @@ typedef NS_ENUM(NSInteger, IBTimeOption) {
 - (IBDateInfo)mb_dateInfo;
 
 /**
- 获取时间戳（秒），建议使用
+ 获取时间戳，建议使用
 
  @return 返回时间戳
  */
-- (long)mb_timestamp;
+- (NSTimeInterval)mb_timestamp;
 
 /**
  获取时间戳（毫秒）
  
  @return 返回时间戳
  */
-- (long)mb_microsecond;
+- (NSTimeInterval)mb_microsecond;
 
 /**
  把一段时间间隔按"时：分：秒"的格式显示
