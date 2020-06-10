@@ -11,7 +11,7 @@
 
 static const NSInteger kSocketVersion = 0x0001;
 
-static const NSInteger kSocketMessageHeaderLength    = 24;
+static const NSInteger kSocketMessageHeaderLength    = 20;
 static const NSInteger kSocketMessageMaxBodyLength   = 20 * 1024;
 static const NSInteger kSocketMessageMaxTailLength   = 1024;
 

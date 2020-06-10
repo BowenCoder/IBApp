@@ -12,40 +12,26 @@
 #import "MBSocketPacket.h"
 
 /**
- *  数据解码后分发协议
- */
-@protocol MBSocketDecoderDispatchProtocol <NSObject>
-
-@required
-
-- (void)didDecode:(MBSocketReceivePacket *)receivePacket;
-
-@end
-
-/**
  *  数据解码协议
  */
 @protocol MBSocketDecoderProtocol <NSObject>
 
 @required
-/**
- *  解码器
- *  @param receiveData 接收到的原始数据
- *  @param dispatch    数据解码后，分发对象
- */
-- (void)decodeReceiveData:(NSData *)receiveData dispatch:(id<MBSocketDecoderDispatchProtocol>)dispatch;
-
-@end
-
 
 /**
- *  数据编码后分发协议
+ *  解码头部数据
  */
-@protocol MBSocketEncoderDispatchProtocol <NSObject>
++ (void)decodeHeaderData:(MBSocketReceivePacket *)packet;
 
-@required
+/**
+ *  解码扩展的头部数据
+ */
++ (void)decodeExtraHeaderData:(MBSocketReceivePacket *)packet;
 
-- (void)didEncode:(NSData *)encodedData;
+/**
+*  解码数据
+*/
++ (void)decodeBodyData:(MBSocketReceivePacket *)packet;
 
 @end
 
@@ -58,9 +44,8 @@
 /**
  *  编码器
  *  @param sendPacket 待发送的数据包
- *  @param dispatch   数据编码后，分发对象
  */
-- (void)encodeSendPacket:(MBSocketSendPacket *)sendPacket dispatch:(id<MBSocketEncoderDispatchProtocol>)dispatch;
++ (void)encodeSendPacket:(MBSocketSendPacket *)sendPacket;
 
 @end
 

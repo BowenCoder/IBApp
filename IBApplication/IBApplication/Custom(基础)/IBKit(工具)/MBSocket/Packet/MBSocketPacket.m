@@ -10,8 +10,8 @@
 #import "MBSocketPacket.h"
 
 static NSInteger kSessionId = 10000;
-static NSInteger kUserId = 0;
-static NSInteger kMark = 0x89;
+static NSInteger kMark = 0x01;
+static NSInteger seq = 0;
 
 @implementation MBSocketPacket
 
@@ -26,14 +26,15 @@ static NSInteger kMark = 0x89;
     if (self = [super init]) {
         self.messageType = messageType;
         self.bodyDict = body;
+        self.mark = kMark;
+        self.sequence = [self generateSequence];
     }
     return self;
 }
 
-+ (void)setSessionId:(NSInteger)sessionId uid:(NSInteger)uid
++ (void)setSessionId:(NSInteger)sessionId
 {
     kSessionId = sessionId;
-    kUserId = uid;
 }
 
 - (void)addExtraHeader:(NSDictionary *)header
@@ -41,24 +42,14 @@ static NSInteger kMark = 0x89;
     self.extraHeaderDict = header;
 }
 
-- (NSInteger)mark
-{
-    return kMark;
-}
-
-- (NSInteger)version
-{
-    return kSocketVersion;
-}
-
 - (NSInteger)sesssionId
 {
     return kSessionId;
 }
 
-- (NSInteger)uid
+- (NSInteger)generateSequence
 {
-    return kUserId;
+    return ++seq;
 }
 
 @end
