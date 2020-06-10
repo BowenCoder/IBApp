@@ -11,14 +11,14 @@
 
 static const NSInteger kSocketVersion = 0x0001;
 
-static const NSInteger kSocketMessageHeaderLength    = 20;
-static const NSInteger kSocketMessageMaxBodyLength   = 20 * 1024;
-static const NSInteger kSocketMessageMaxTailLength   = 1024;
+static const NSInteger kSocketMessageHeaderLength           = 20;
+static const NSInteger kSocketMessageMaxBodyLength          = 20 * 1024;
+static const NSInteger kSocketMessageMaxExtraHeaderLength   = 1024;
 
-static const NSInteger kSocketMessageHeaderTag       = 10001;
-static const NSInteger kSocketMessageBodyTag         = 10002;
-static const NSInteger kSocketMessageTailTag         = 10003;
-static const NSInteger kSocketMessageWriteTag        = 10004;
+static const NSInteger kSocketMessageHeaderTag              = 10001;
+static const NSInteger kSocketMessageExtraHeaderTag         = 10002;
+static const NSInteger kSocketMessageBodyTag                = 10003;
+static const NSInteger kSocketMessageWriteTag               = 10004;
 
 /** 与服务端约定的协议号... */
 typedef NS_ENUM(NSInteger, MBSocketMessageType) {

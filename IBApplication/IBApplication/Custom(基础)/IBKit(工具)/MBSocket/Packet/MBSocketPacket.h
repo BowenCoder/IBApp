@@ -18,15 +18,16 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) MBSocketMessageType messageType;
 @property (nonatomic, assign) NSInteger sequence;
 
+@property (nonatomic, copy) NSData *bodyData;
 @property (nonatomic, assign) NSInteger bodyLength;
 @property (nonatomic, copy) NSDictionary *bodyDict;
-@property (nonatomic, copy) NSData *bodyData;
 
 @property (nonatomic, copy) NSData *headerData;
+@property (nonatomic, assign) NSInteger headerLength;
 
+@property (nonatomic, copy) NSData *extraHeaderData;
 @property (nonatomic, assign) NSInteger extraHeaderLength;
 @property (nonatomic, copy) NSDictionary *extraHeaderDict;
-@property (nonatomic, copy) NSData *extraHeaderData;
 
 @end
 

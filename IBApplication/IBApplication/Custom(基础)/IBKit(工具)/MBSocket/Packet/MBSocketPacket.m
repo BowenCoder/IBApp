@@ -15,6 +15,11 @@ static NSInteger seq = 0;
 
 @implementation MBSocketPacket
 
+- (NSInteger)headerLength
+{
+    return kSocketMessageHeaderLength;
+}
+
 @end
 
 @implementation MBSocketSendPacket

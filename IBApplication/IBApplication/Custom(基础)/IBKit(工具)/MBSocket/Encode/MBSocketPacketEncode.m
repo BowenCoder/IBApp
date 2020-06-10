@@ -19,7 +19,7 @@
     packet.extraHeaderData = [IBSerialization serializeJsonDataWithDict:packet.extraHeaderDict];
     packet.extraHeaderLength = packet.extraHeaderData.length;
     
-    NSMutableData *headerData = [[NSMutableData alloc] initWithLength:kSocketMessageHeaderLength];
+    NSMutableData *headerData = [[NSMutableData alloc] initWithLength:packet.headerLength];
     MBSocketByte *headerBytes = [[MBSocketByte alloc] initWithData:headerData];
     [headerBytes replaceInt16:packet.mark index:0 htons:YES];
     [headerBytes replaceInt16:packet.messageType index:2 htons:YES];
