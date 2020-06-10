@@ -21,17 +21,17 @@
 /**
  *  解码头部数据
  */
-+ (void)decodeHeaderData:(MBSocketReceivePacket *)packet;
++ (void)decodeHeaderData:(MBSocketReceivePacket *)packet data:(NSData *)data;
 
 /**
  *  解码扩展的头部数据
  */
-+ (void)decodeExtraHeaderData:(MBSocketReceivePacket *)packet;
++ (void)decodeExtraHeaderData:(MBSocketReceivePacket *)packet data:(NSData *)data;
 
 /**
 *  解码数据
 */
-+ (void)decodeBodyData:(MBSocketReceivePacket *)packet;
++ (void)decodeBodyData:(MBSocketReceivePacket *)packet data:(NSData *)data;
 
 @end
 

@@ -21,10 +21,6 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic, assign) NSInteger port;
 /**
- token,验证身份,默认@""
- */
-@property (nonatomic, copy) NSString *token;
-/**
  开始连接时间
  */
 @property (nonatomic, assign) NSTimeInterval beginConnectTime;

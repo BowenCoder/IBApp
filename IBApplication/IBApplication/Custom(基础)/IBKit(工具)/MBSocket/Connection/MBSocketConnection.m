@@ -9,8 +9,6 @@
 #import "MBSocketConnection.h"
 #import "GCDAsyncSocket.h"
 #import "MBSocketTools.h"
-#import "MBSocketCMDType.h"
-#import "MBSocketEncodeProtocol.h"
 
 @interface MBSocketConnection () <GCDAsyncSocketDelegate>
 
@@ -67,15 +65,15 @@
     }
 }
 
-- (void)sendMessage:(NSData *)message
+- (void)sendMessage:(NSData *)message tag:(long)tag
 {
-    [self.gcdSocket writeData:[message copy] withTimeout:self.connectModel.messageTimeout tag:kSocketMessageWriteTag];
+    [self.gcdSocket writeData:message withTimeout:self.connectModel.messageTimeout tag:tag];
 }
 
-- (void)readSocket:(GCDAsyncSocket *)socket length:(NSUInteger)length tag:(long)tag
+- (void)readDataToLength:(NSUInteger)length tag:(long)tag;
 {
-    if (socket) {
-        [socket readDataToLength:length withTimeout:-1 tag:tag];
+    if (self.gcdSocket) {
+        [self.gcdSocket readDataToLength:length withTimeout:-1 tag:tag];
     } else {
         NSLog(@"readSocket socket is nil");
     }
@@ -88,7 +86,6 @@
     if (self.delegate && [self.delegate respondsToSelector:@selector(socketConnectionrDidConnect:)]) {
         [self.delegate socketConnectionrDidConnect:self];
     }
-    [self readSocket:sock length:kSocketMessageHeaderLength tag:kSocketMessageHeaderTag];
 }
 
 - (void)socketDidDisconnect:(GCDAsyncSocket *)sock withError:(NSError *)err

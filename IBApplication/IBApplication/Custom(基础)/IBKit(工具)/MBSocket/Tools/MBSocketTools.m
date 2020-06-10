@@ -15,7 +15,7 @@
     static dispatch_queue_t queue = NULL;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        queue = dispatch_queue_create("com.bowen.persistent.socket", NULL);
+        queue = dispatch_queue_create("com.bowen.persistent.socket", DISPATCH_QUEUE_SERIAL);
     });
     return queue;
 }

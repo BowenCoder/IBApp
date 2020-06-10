@@ -44,7 +44,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)connectWithModel:(MBSocketConnectionModel *)model;
 
-- (void)sendMessage:(NSData *)message;
+- (void)sendMessage:(NSData *)message tag:(long)tag;
+
+- (void)readDataToLength:(NSUInteger)length tag:(long)tag;
 
 @end
 

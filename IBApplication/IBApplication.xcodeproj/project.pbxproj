@@ -345,6 +345,7 @@
 		4AE9674123A266D700A5C172 /* IBServiceInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE9674023A266D700A5C172 /* IBServiceInfoModel.m */; };
 		4AE9674423A3A3DA00A5C172 /* IBUploader.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE9674323A3A3DA00A5C172 /* IBUploader.m */; };
 		4AE9674723A3A3F100A5C172 /* IBDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE9674623A3A3F100A5C172 /* IBDownloader.m */; };
+		4AEA042D24910D60001F7E45 /* MBSocketClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AEA042C24910D60001F7E45 /* MBSocketClient.m */; };
 		4AEAE620248F362A001F7E45 /* MBSocketTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AEAE61F248F362A001F7E45 /* MBSocketTools.m */; };
 		4AEAE623248F3687001F7E45 /* MBSocketConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AEAE622248F3687001F7E45 /* MBSocketConnection.m */; };
 		4AEAE627248F3925001F7E45 /* MBSocketPacket.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AEAE626248F3925001F7E45 /* MBSocketPacket.m */; };
@@ -1065,6 +1066,8 @@
 		4AE9674323A3A3DA00A5C172 /* IBUploader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBUploader.m; sourceTree = "<group>"; };
 		4AE9674523A3A3F100A5C172 /* IBDownloader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBDownloader.h; sourceTree = "<group>"; };
 		4AE9674623A3A3F100A5C172 /* IBDownloader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBDownloader.m; sourceTree = "<group>"; };
+		4AEA042B24910D60001F7E45 /* MBSocketClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBSocketClient.h; sourceTree = "<group>"; };
+		4AEA042C24910D60001F7E45 /* MBSocketClient.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBSocketClient.m; sourceTree = "<group>"; };
 		4AEAE61E248F362A001F7E45 /* MBSocketTools.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBSocketTools.h; sourceTree = "<group>"; };
 		4AEAE61F248F362A001F7E45 /* MBSocketTools.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBSocketTools.m; sourceTree = "<group>"; };
 		4AEAE621248F3687001F7E45 /* MBSocketConnection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBSocketConnection.h; sourceTree = "<group>"; };
@@ -3154,6 +3157,8 @@
 		4AEAE61C248F35E2001F7E45 /* Connection */ = {
 			isa = PBXGroup;
 			children = (
+				4AEA042B24910D60001F7E45 /* MBSocketClient.h */,
+				4AEA042C24910D60001F7E45 /* MBSocketClient.m */,
 				4AEAE621248F3687001F7E45 /* MBSocketConnection.h */,
 				4AEAE622248F3687001F7E45 /* MBSocketConnection.m */,
 				4AEAE630248F82EB001F7E45 /* MBSocketConnectionModel.h */,
@@ -3513,6 +3518,7 @@
 				F3FCB43022A2F9F600C4870B /* RSKImageScrollView.m in Sources */,
 				4A1FB20B20E92D5E0056A026 /* UIImage+WebP.m in Sources */,
 				4A06E16F212FDCD300227583 /* IBSocialObject.m in Sources */,
+				4AEA042D24910D60001F7E45 /* MBSocketClient.m in Sources */,
 				4A89D605228B13160072FB23 /* MBLogger.m in Sources */,
 				4AC29F87210F04A900F218FE /* MJRefreshStateHeader.m in Sources */,
 				4AE24BDB214F5470006448DC /* NSDictionary+Ext.m in Sources */,
