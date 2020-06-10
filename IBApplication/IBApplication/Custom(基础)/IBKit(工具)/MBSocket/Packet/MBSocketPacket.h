@@ -12,6 +12,19 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/*
+ One Packet:
+ +-----------------------+
+ | header                |
+ |  ...                  |<-- kSocketMessageHeaderLength
+ |  extra header length  |
+ |  body length          |
+ +-----------------------+ - - - - - - - - - - - -
+ | extra header          | <-- header length      | <-- may not exist
+ +-----------------------+ - - - - - - - - - - - -
+ | body                  | <-- body length
+ +-----------------------+
+ */
 @interface MBSocketPacket : NSObject
 
 @property (nonatomic, assign) NSInteger mark;

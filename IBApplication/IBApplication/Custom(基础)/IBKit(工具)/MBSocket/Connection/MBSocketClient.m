@@ -26,20 +26,6 @@
     
 }
 
-
-/*
- One Packet:
- +-----------------------+
- |header                 |
- |  ...                  |<-- kSocketMessageHeaderLength
- |  extra header length  |
- |  body length          |
- +-----------------------+ - - - - - - - - - - - -
- |  extra header         | <-- header length      | <-- may not exist
- +-----------------------+ - - - - - - - - - - - -
- |body                   | <-- body length
- +-----------------------+
- */
 - (void)handleData:(NSData *)data withTag:(long)tag
 {
     if (!self.connection) {
