@@ -7,10 +7,19 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "MBSocketConnectionModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface MBSocketClient : NSObject
+
+- (BOOL)isConnected;
+
+- (BOOL)isDisconnected;
+
+- (void)disconnect;
+
+- (void)connectWithModel:(MBSocketConnectionModel *)model;
 
 @end
 

@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "MBSocketConnectionModel.h"
 
 @class MBSocketConnection;
 
@@ -27,12 +26,13 @@ NS_ASSUME_NONNULL_BEGIN
 /// 发送成功回调
 - (void)socketConnection:(MBSocketConnection *)connection didWriteDataWithTag:(long)tag;
 
+/// 发生其他错误
+- (void)socketConnection:(MBSocketConnection *)connection fail:(NSError *)error;
+
 @end
 
 /// 对GCDAsyncSocket封装
 @interface MBSocketConnection : NSObject
-
-@property (nonatomic, strong) MBSocketConnectionModel *connectModel;
 
 - (instancetype)initWithDelegate:(id<MBSocketConnectionDelegate>)delegate;
 
@@ -42,11 +42,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)disconnect;
 
-- (void)connectWithModel:(MBSocketConnectionModel *)model;
+- (void)connectWithHost:(NSString *)host timeout:(NSTimeInterval)timeout port:(uint16_t)port;
 
-- (void)sendMessage:(NSData *)message tag:(long)tag;
+- (void)sendMessage:(NSData *)message timeout:(NSTimeInterval)timeout tag:(long)tag;
 
-- (void)readDataToLength:(NSUInteger)length tag:(long)tag;
+- (void)readDataToLength:(NSUInteger)length timeout:(NSTimeInterval)timeout tag:(long)tag;
 
 @end
 

@@ -15,7 +15,6 @@
     if (self = [super init]) {
         self.host = @"";
         self.port = 0;
-        self.token = @"";
         self.connectTimeout = 15;
         self.heartbeatInterval = 30;
         self.messageTimeout = -1;

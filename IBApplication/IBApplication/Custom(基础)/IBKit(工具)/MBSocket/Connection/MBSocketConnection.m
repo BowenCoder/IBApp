@@ -9,6 +9,7 @@
 #import "MBSocketConnection.h"
 #import "GCDAsyncSocket.h"
 #import "MBSocketTools.h"
+#import "MBSocketCMDType.h"
 
 @interface MBSocketConnection () <GCDAsyncSocketDelegate>
 
@@ -34,48 +35,54 @@
 
 - (BOOL)isConnected
 {
-    return [self.gcdSocket isConnected];
+    return [_gcdSocket isConnected];
 }
 
 - (BOOL)isDisconnected
 {
-    return [self.gcdSocket isDisconnected];
+    return [_gcdSocket isDisconnected];
 }
 
 - (void)disconnect
 {
-    if (self.gcdSocket) {
+    if ([self isConnected]) {
         [self.gcdSocket disconnect];
         self.gcdSocket.delegate = nil;
         self.gcdSocket = nil;
     }
 }
 
-- (void)connectWithModel:(MBSocketConnectionModel *)model
+- (void)connectWithHost:(NSString *)host timeout:(NSTimeInterval)timeout port:(uint16_t)port
 {
-    if (!self.gcdSocket) {
-        self.gcdSocket = [[GCDAsyncSocket alloc] initWithDelegate:self delegateQueue:[MBSocketTools socketQueue]];
-        self.gcdSocket.IPv4PreferredOverIPv6 = NO;
-    }
-    if ([self isDisconnected] && !kIsEmptyString(model.host)) {
-        self.connectModel = model;
-        NSError *error = nil;
-        model.beginConnectTime = [[NSDate date] timeIntervalSince1970] * 1000;
-        [self.gcdSocket connectToHost:model.host onPort:model.port withTimeout:model.connectTimeout error:&error];
+    if ([self isDisconnected] && host) {
+        NSError *error;
+        [self.gcdSocket connectToHost:host onPort:port withTimeout:timeout error:&error];
+        [self didFailWithError:error];
     }
 }
 
-- (void)sendMessage:(NSData *)message tag:(long)tag
+- (void)sendMessage:(NSData *)message timeout:(NSTimeInterval)timeout tag:(long)tag
 {
-    [self.gcdSocket writeData:message withTimeout:self.connectModel.messageTimeout tag:tag];
+    [self.gcdSocket writeData:message withTimeout:timeout tag:tag];
 }
 
-- (void)readDataToLength:(NSUInteger)length tag:(long)tag;
+- (void)readDataToLength:(NSUInteger)length timeout:(NSTimeInterval)timeout tag:(long)tag;
 {
-    if (self.gcdSocket) {
-        [self.gcdSocket readDataToLength:length withTimeout:-1 tag:tag];
+    if ([self isConnected]) {
+        [self.gcdSocket readDataToLength:length withTimeout:timeout tag:tag];
     } else {
-        NSLog(@"readSocket socket is nil");
+        NSError *error = [NSError errorWithDomain:@"socket is disconnected" code:MBSocketErrorDisconnected userInfo:nil];
+        [self didFailWithError:error];
+    }
+}
+
+- (void)didFailWithError:(NSError *)error
+{
+    if (!error) {
+        return;
+    }
+    if (self.delegate && [self.delegate respondsToSelector:@selector(socketConnection:fail:)]) {
+        [self.delegate socketConnection:self fail:error];
     }
 }
 
@@ -107,6 +114,16 @@
     if (self.delegate && [self.delegate respondsToSelector:@selector(socketConnection:didWriteDataWithTag:)]) {
         [self.delegate socketConnection:self didWriteDataWithTag:tag];
     }
+}
+
+#pragma mark - getter
+
+- (GCDAsyncSocket *)gcdSocket {
+    if(!_gcdSocket){
+        _gcdSocket = [[GCDAsyncSocket alloc] initWithDelegate:self delegateQueue:[MBSocketTools socketQueue]];
+        _gcdSocket.IPv4PreferredOverIPv6 = NO;
+    }
+    return _gcdSocket;
 }
 
 @end

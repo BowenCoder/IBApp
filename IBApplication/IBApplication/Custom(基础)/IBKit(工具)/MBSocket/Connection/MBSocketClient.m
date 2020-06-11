@@ -10,6 +10,7 @@
 #import "MBSocketConnection.h"
 #import "MBSocketPacketDecode.h"
 #import "MBSocketPacketEncode.h"
+#import "MBLogger.h"
 
 @interface MBSocketClient () <MBSocketConnectionDelegate>
 
@@ -20,61 +21,38 @@
 
 @implementation MBSocketClient
 
+- (BOOL)isConnected
+{
+    return [self.connection isConnected];
+}
 
-- (void)dispatchData
+- (BOOL)isDisconnected
+{
+    return [self.connection isDisconnected];
+}
+
+- (void)disconnect
+{
+    [self.connection disconnect];
+}
+
+- (void)connectWithModel:(MBSocketConnectionModel *)model
+{
+    [self.connection connectWithHost:model.host timeout:15 port:model.port];
+}
+
+#pragma mark - MBSocketConnectionDelegate
+
+/// 发生其他错误
+- (void)socketConnection:(MBSocketConnection *)connection fail:(NSError *)error
 {
     
 }
 
-- (void)handleData:(NSData *)data withTag:(long)tag
-{
-    if (!self.connection) {
-        return;
-    }
-    switch (tag) {
-        case kSocketMessageHeaderTag:
-        {
-            self.receivePacket = [[MBSocketReceivePacket alloc] init];
-            [MBSocketPacketDecode decodeHeaderData:self.receivePacket data:data];
-            if (self.receivePacket.extraHeaderLength > 0) {
-                [self.connection readDataToLength:self.receivePacket.extraHeaderLength tag:kSocketMessageExtraHeaderTag];
-            } else if (self.receivePacket.bodyLength > 0) {
-                [self.connection readDataToLength:self.receivePacket.bodyLength tag:kSocketMessageBodyTag];
-            } else {
-                [self.connection readDataToLength:kSocketMessageHeaderLength tag:kSocketMessageHeaderTag];
-            }
-        }
-            break;
-        case kSocketMessageExtraHeaderTag:
-        {
-            [MBSocketPacketDecode decodeExtraHeaderData:self.receivePacket data:data];
-            if (self.receivePacket.bodyLength > 0) {
-                [self.connection readDataToLength:self.receivePacket.bodyLength tag:kSocketMessageBodyTag];
-            } else {
-                [self.connection readDataToLength:kSocketMessageHeaderLength tag:kSocketMessageHeaderTag];
-            }
-        }
-            break;
-        case kSocketMessageBodyTag:
-        {
-            [MBSocketPacketDecode decodeBodyData:self.receivePacket data:data];
-            [self dispatchData];
-            [self.connection readDataToLength:kSocketMessageHeaderLength tag:kSocketMessageHeaderTag];
-        }
-            break;
-            
-        default:
-            break;
-    }
-}
-
-
-#pragma mark - MBSocketConnectionDelegate
-
 /// 连接成功回调
 - (void)socketConnectionrDidConnect:(MBSocketConnection *)connection
 {
-    [connection readDataToLength:kSocketMessageHeaderLength tag:kSocketMessageHeaderTag];
+    [self readDataToLength:kSocketMessageHeaderLength tag:kSocketMessageHeaderTag];
 }
 
 /// 连接失败回调
@@ -86,7 +64,7 @@
 /// 接收数据回调
 - (void)socketConnection:(MBSocketConnection *)connection receiveData:(NSData *)data tag:(long)tag
 {
-    [self handleData:data withTag:tag];
+    [self receviceData:data tag:tag];
 }
 
 /// 发送成功回调
@@ -94,6 +72,61 @@
 {
     
 }
+
+#pragma mark - 内部
+
+- (void)readDataToLength:(NSUInteger)length tag:(long)tag
+{
+    [self.connection readDataToLength:length timeout:-1 tag:tag];
+}
+
+- (void)receviceData:(NSData *)data tag:(long)tag
+{
+    if (!self.connection) {
+        return;
+    }
+    switch (tag) {
+        case kSocketMessageHeaderTag:
+        {
+            self.receivePacket = [[MBSocketReceivePacket alloc] init];
+            [MBSocketPacketDecode decodeHeaderData:self.receivePacket data:data];
+            if (self.receivePacket.extraHeaderLength > 0) {
+                [self readDataToLength:self.receivePacket.extraHeaderLength tag:kSocketMessageExtraHeaderTag];
+            } else if (self.receivePacket.bodyLength > 0) {
+                [self readDataToLength:self.receivePacket.bodyLength tag:kSocketMessageBodyTag];
+            } else {
+                [self readDataToLength:kSocketMessageHeaderLength tag:kSocketMessageHeaderTag];
+            }
+        }
+            break;
+        case kSocketMessageExtraHeaderTag:
+        {
+            [MBSocketPacketDecode decodeExtraHeaderData:self.receivePacket data:data];
+            if (self.receivePacket.bodyLength > 0) {
+                [self readDataToLength:self.receivePacket.bodyLength tag:kSocketMessageBodyTag];
+            } else {
+                [self readDataToLength:kSocketMessageHeaderLength tag:kSocketMessageHeaderTag];
+            }
+        }
+            break;
+        case kSocketMessageBodyTag:
+        {
+            [MBSocketPacketDecode decodeBodyData:self.receivePacket data:data];
+            [self dispatchData];
+            [self readDataToLength:kSocketMessageHeaderLength tag:kSocketMessageHeaderTag];
+        }
+            break;
+            
+        default:
+            break;
+    }
+}
+
+- (void)dispatchData
+{
+    
+}
+
 
 #pragma mark - getter
 

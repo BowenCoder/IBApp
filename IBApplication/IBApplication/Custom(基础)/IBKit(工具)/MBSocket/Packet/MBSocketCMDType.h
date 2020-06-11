@@ -11,9 +11,9 @@
 
 static const NSInteger kSocketVersion = 0x0001;
 
-static const NSInteger kSocketMessageHeaderLength           = 20;
-static const NSInteger kSocketMessageMaxBodyLength          = 20 * 1024;
-static const NSInteger kSocketMessageMaxExtraHeaderLength   = 1024;
+static const NSInteger kSocketMessageHeaderLength           = 20;        // 20Byte
+static const NSInteger kSocketMessageMaxBodyLength          = 20 * 1024; // 20KB
+static const NSInteger kSocketMessageMaxExtraHeaderLength   = 10 * 1024; // 10KB
 
 static const NSInteger kSocketMessageHeaderTag              = 10001;
 static const NSInteger kSocketMessageExtraHeaderTag         = 10002;
@@ -40,6 +40,7 @@ typedef NS_ENUM(NSInteger, MBSocketErrorCode) {
     MBSocketErrorRC4KeyExpired    = 2006,   //RC4秘钥过期
     MBSocketErrorRSAPubKeyExpired = 2007,   //RSA公钥过期
     MBSocketErrorKicked           = 2008,   //用户被踢出
+    MBSocketErrorDisconnected     = 2009,   //断开连接
 };
 
 
