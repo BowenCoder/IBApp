@@ -46,8 +46,8 @@
 - (void)disconnect
 {
     if ([self isConnected]) {
-        [self.gcdSocket disconnect];
         self.gcdSocket.delegate = nil;
+        [self.gcdSocket disconnect];
         self.gcdSocket = nil;
     }
 }
