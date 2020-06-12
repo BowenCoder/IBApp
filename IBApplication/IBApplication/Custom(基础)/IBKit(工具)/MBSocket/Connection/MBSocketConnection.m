@@ -35,12 +35,12 @@
 
 - (BOOL)isConnected
 {
-    return [_gcdSocket isConnected];
+    return [self.gcdSocket isConnected];
 }
 
 - (BOOL)isDisconnected
 {
-    return [_gcdSocket isDisconnected];
+    return [self.gcdSocket isDisconnected];
 }
 
 - (void)disconnect
@@ -54,6 +54,11 @@
 
 - (void)connectWithHost:(NSString *)host timeout:(NSTimeInterval)timeout port:(uint16_t)port
 {
+    if (!self.gcdSocket) {
+        self.gcdSocket = [[GCDAsyncSocket alloc] initWithDelegate:self delegateQueue:[MBSocketTools socketQueue]];
+        self.gcdSocket.IPv4PreferredOverIPv6 = NO;
+    }
+    
     if ([self isDisconnected] && host) {
         NSError *error;
         [self.gcdSocket connectToHost:host onPort:port withTimeout:timeout error:&error];
@@ -114,16 +119,6 @@
     if (self.delegate && [self.delegate respondsToSelector:@selector(socketConnection:didWriteDataWithTag:)]) {
         [self.delegate socketConnection:self didWriteDataWithTag:tag];
     }
-}
-
-#pragma mark - getter
-
-- (GCDAsyncSocket *)gcdSocket {
-    if(!_gcdSocket){
-        _gcdSocket = [[GCDAsyncSocket alloc] initWithDelegate:self delegateQueue:[MBSocketTools socketQueue]];
-        _gcdSocket.IPv4PreferredOverIPv6 = NO;
-    }
-    return _gcdSocket;
 }
 
 @end
