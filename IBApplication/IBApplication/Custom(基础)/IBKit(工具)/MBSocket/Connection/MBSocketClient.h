@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "MBSocketClientModel.h"
+#import "MBSocketPacket.h"
 
 @class MBSocketClient;
 
@@ -19,7 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)clientClosed:(MBSocketClient *)client error:(NSError *)error;
 
-- (void)client:(MBSocketClient *)client receiveData:(NSDictionary *)content;
+- (void)client:(MBSocketClient *)client receiveData:(MBSocketPacket *)packet;
 
 @end
 
@@ -34,6 +35,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)disconnect;
 
 - (void)connectWithModel:(MBSocketClientModel *)model;
+
+- (void)sendPacket:(MBSocketSendPacket *)packet;
 
 @end
 

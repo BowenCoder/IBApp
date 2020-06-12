@@ -77,8 +77,14 @@
 {
     self.clientModel = model;
     [self.connection connectWithHost:model.host timeout:15 port:model.port];
-    NSString *key = [NSString stringWithFormat:@"%@:%ld", model.host, model.port];
+    NSString *key = [NSString stringWithFormat:@"%@:%ld", model.host, (long)model.port];
     MBLogI(@"#socket# event:connect value: %@", key);
+}
+
+- (void)sendPacket:(MBSocketSendPacket *)packet
+{
+    [MBSocketPacketEncode encodeSendPacket:packet];
+    [self.connection sendMessage:packet.sendData timeout:-1 tag:kSocketMessageWriteTag];
 }
 
 #pragma mark - notification
@@ -138,7 +144,7 @@
 /// 连接失败回调
 - (void)socketConnectionDidDisconnect:(MBSocketConnection *)connection error:(NSError *)error
 {
-    MBLogE(@"#socket# event:delegate.disconnect error:%@ retry:%ld", error.description, self.retryCount);
+    MBLogE(@"#socket# event:delegate.disconnect error:%@ retry:%ld", error.description, (long)self.retryCount);
     
     if (self.retryCount < self.clientModel.retryConnectMaxCount) {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(self.clientModel.retryConnectInterval * NSEC_PER_SEC)), [MBSocketTools socketQueue], ^{
@@ -218,7 +224,7 @@
 {
     dispatch_async(dispatch_get_main_queue(), ^{
         if (self.delegate && [self.delegate respondsToSelector:@selector(client:receiveData:)]) {
-            [self.delegate client:self receiveData:self.receivePacket.bodyDict];
+            [self.delegate client:self receiveData:self.receivePacket];
         }
     });
 }
