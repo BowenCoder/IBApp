@@ -10,6 +10,7 @@
 #import "SSZipArchive.h"
 #import "MBLogFormatter.h"
 #import "MBLogEncryptFormatter.h"
+#import "CocoaLumberjack.h"
 
 #ifdef DEBUG
 const DDLogLevel ddLogLevel = DDLogLevelVerbose;
@@ -39,25 +40,14 @@ const DDLogLevel ddLogLevel = DDLogLevelInfo;
     return instance;
 }
 
-- (NSString *)logsDirectory
-{
-    return [_fileLogger.logFileManager logsDirectory];
-}
-
 - (void)startFileLog
 {
-    // 日志本地化
     _fileLogger = [[DDFileLogger alloc] init];
     [_fileLogger setLogFormatter:[[MBLogEncryptFormatter alloc] initWithEncryptKey:@"bowen"]];
-    [_fileLogger setRollingFrequency: kSeconds1Day];
-    [_fileLogger setMaximumFileSize: 10 * kMegaByte];
+    [_fileLogger setRollingFrequency:kSeconds1Day];
+    [_fileLogger setMaximumFileSize:10 * kMegaByte];
     [_fileLogger.logFileManager setMaximumNumberOfLogFiles:7];
     [DDLog addLogger:_fileLogger withLevel:DDLogLevelInfo];
-    
-    // 日志过滤
-//    _filterLogger = [MBFilterLogger new];
-//    [_filterLogger setLogFormatter:[MBLogFormatter new]];
-//    [DDLog addLogger:_filterLogger withLevel:DDLogLevelInfo];
 }
 
 - (void)startXcodeLog
@@ -73,6 +63,13 @@ const DDLogLevel ddLogLevel = DDLogLevelInfo;
     [[DDASLLogger sharedInstance] setLogFormatter:[MBASLLogFormatter new]];
 }
 
+- (void)startFilter
+{
+    _filterLogger = [MBFilterLogger new];
+    [_filterLogger setLogFormatter:[MBLogFormatter new]];
+    [DDLog addLogger:_filterLogger withLevel:DDLogLevelInfo];
+}
+
 - (void)stop
 {
     [DDLog removeAllLoggers];
@@ -80,58 +77,42 @@ const DDLogLevel ddLogLevel = DDLogLevelInfo;
 
 - (NSString *)zipLogFiles
 {
-    {
-        [DDLog flushLog];
-        
-        // create temp folder
-        NSString* tempLogFolder = [NSTemporaryDirectory() stringByAppendingPathComponent:[self _UUID]];
-        [[NSFileManager defaultManager] createDirectoryAtPath:tempLogFolder withIntermediateDirectories:NO attributes:nil error:nil];
-        MBErrorCheck([[NSFileManager defaultManager] fileExistsAtPath:tempLogFolder isDirectory:nil]);
-        
-        // copy ddlog files
-        NSString *ddLogFolder = [_fileLogger.logFileManager logsDirectory];
-        NSArray *ddLogFiles = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:ddLogFolder error:nil];
-        for (NSString* logFile in ddLogFiles) {
-            NSString* logFilePath = [ddLogFolder stringByAppendingPathComponent:logFile];
-            BOOL isDir;
-            [[NSFileManager defaultManager] fileExistsAtPath:logFilePath isDirectory:&isDir];
-            if (!isDir) {
-                NSString* destPath = [tempLogFolder stringByAppendingPathComponent:logFilePath.lastPathComponent];
-                [[NSFileManager defaultManager] copyItemAtPath:logFilePath toPath:destPath error:nil];
-            }
-        }
-        
-        // copy media sdk log files
-        NSString* mediaSdkLogFolder = NSTemporaryDirectory();
-        NSArray* mediaSdkLogFiles = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:mediaSdkLogFolder error:nil];
-        for (NSString *logFile in mediaSdkLogFiles) {
-            NSString* logFilePath = [mediaSdkLogFolder stringByAppendingPathComponent:logFile];
-            BOOL isDir;
-            [[NSFileManager defaultManager] fileExistsAtPath:logFilePath isDirectory:&isDir];
-            if (!isDir) {
-                if ([logFilePath.pathExtension.lowercaseString isEqualToString:@"txt"]) {
-                    NSString* destPath = [tempLogFolder stringByAppendingPathComponent:logFilePath.lastPathComponent];
-                    [[NSFileManager defaultManager] copyItemAtPath:logFilePath toPath:destPath error:nil];
-                }
-            }
-        }
-        
-        // zip log files
-        NSString* tempZip = [[NSTemporaryDirectory() stringByAppendingPathComponent:[self _UUID]] stringByAppendingPathExtension:@"zip"];
-        BOOL ret = [SSZipArchive createZipFileAtPath:tempZip withContentsOfDirectory:tempLogFolder];
-        MBErrorCheck(ret);
-        
-        // cleanup
-        [[NSFileManager defaultManager] removeItemAtPath:tempLogFolder error:nil];
-        
-        return tempZip;
+    [DDLog flushLog];
+    
+    // create temp folder
+    NSString* tempLogFolder = [NSTemporaryDirectory() stringByAppendingPathComponent:[self _UUID]];
+    [[NSFileManager defaultManager] createDirectoryAtPath:tempLogFolder withIntermediateDirectories:NO attributes:nil error:nil];
+    if (![[NSFileManager defaultManager] fileExistsAtPath:tempLogFolder isDirectory:nil]) {
+        return nil;
     }
     
-MBExit:
-    return nil;
+    // copy ddlog files
+    NSString *ddLogFolder = [_fileLogger.logFileManager logsDirectory];
+    NSArray *ddLogFiles = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:ddLogFolder error:nil];
+    for (NSString* logFile in ddLogFiles) {
+        NSString* logFilePath = [ddLogFolder stringByAppendingPathComponent:logFile];
+        BOOL isDir;
+        [[NSFileManager defaultManager] fileExistsAtPath:logFilePath isDirectory:&isDir];
+        if (!isDir) {
+            NSString* destPath = [tempLogFolder stringByAppendingPathComponent:logFilePath.lastPathComponent];
+            [[NSFileManager defaultManager] copyItemAtPath:logFilePath toPath:destPath error:nil];
+        }
+    }
+    
+    // zip log files
+    NSString* tempZip = [[NSTemporaryDirectory() stringByAppendingPathComponent:[self _UUID]] stringByAppendingPathExtension:@"zip"];
+    
+    BOOL ret = [SSZipArchive createZipFileAtPath:tempZip withContentsOfDirectory:tempLogFolder];
+    if (!ret) {
+        return nil;
+    }
+    
+    // cleanup
+    [[NSFileManager defaultManager] removeItemAtPath:tempLogFolder error:nil];
+    
+    return tempZip;
+    
 }
-
-//--------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 - (NSString *)_UUID
 {

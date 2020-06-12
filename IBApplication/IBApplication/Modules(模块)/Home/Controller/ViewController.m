@@ -14,6 +14,7 @@
 #import "MBTableViewController.h"
 #import "MBSocketPacketDecode.h"
 #import "MBSocketPacketEncode.h"
+#import "MBLogger.h"
 
 @interface ViewController ()<UITableViewDataSource, UITableViewDelegate>
 
@@ -41,8 +42,11 @@
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
-    IBMineController *mine = [[IBMineController alloc] init];
-    [self.navigationController pushViewController:mine animated:YES];
+    MBLogD(@"123");
+    MBLogI(@"456");
+    
+//    IBMineController *mine = [[IBMineController alloc] init];
+//    [self.navigationController pushViewController:mine animated:YES];
     
 }
 

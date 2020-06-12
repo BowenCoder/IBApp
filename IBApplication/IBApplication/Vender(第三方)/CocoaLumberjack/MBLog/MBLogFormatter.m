@@ -38,7 +38,7 @@
                               dateAndTime,
                               logLevel,
                               [[NSProcessInfo processInfo] processIdentifier],
-                              logMessage.threadSequenceNumber,
+                              (long)logMessage.threadSequenceNumber,
                               logMessage.file.lastPathComponent,
                               (unsigned long)logMessage.line,
                               logMessage.function,
@@ -85,11 +85,11 @@
     
     logLevel = [NSString stringWithFormat:@"[%@]", logLevel];
     
-    NSString *formattedLog = [NSString stringWithFormat:@"%@ %@ %d:%ld 🍎 %@(%lu) ⚽️ %@ 🖍 %@",
+    NSString *formattedLog = [NSString stringWithFormat:@"%@ %@%d:%ld 🍎 %@(%lu) ⚽️ %@ 🖍 %@",
                               dateAndTime,
                               logLevel,
                               [[NSProcessInfo processInfo] processIdentifier],
-                              logMessage.threadSequenceNumber,
+                              (long)logMessage.threadSequenceNumber,
                               logMessage.file.lastPathComponent,
                               (unsigned long)logMessage.line,
                               logMessage.function,

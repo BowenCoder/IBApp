@@ -45,7 +45,7 @@
 
 - (void)logMessage:(DDLogMessage *)logMessage;
 {
-    NSString * message = _logFormatter ? [_logFormatter formatLogMessage:logMessage] : logMessage.message;
+    NSString *message = _logFormatter ? [_logFormatter formatLogMessage:logMessage] : logMessage.message;
     if (message.length)
     {
         @synchronized (self)

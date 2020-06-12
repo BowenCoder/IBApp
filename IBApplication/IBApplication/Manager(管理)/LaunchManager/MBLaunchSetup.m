@@ -19,6 +19,7 @@
 {
     [[MBLogger sharedInstance] startFileLog];
     [[MBLogger sharedInstance] startASLLog];
+    [[MBLogger sharedInstance] startFilter];
 //    [[MBLogger sharedInstance] startXcodeLog];
 }
 

@@ -16,13 +16,14 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @protocol MBLogFilterDelegate <NSObject>
+
 @optional
-- (void)onLogMessage:(NSString*)rawMessage;
+- (void)onLogMessage:(NSString *)rawMessage;
 
 @end
 
 
-@interface MBFilterLogger : DDAbstractLogger <DDLogger>
+@interface MBFilterLogger : DDAbstractLogger
 
 - (void)addFilter:(id<MBLogFilterDelegate>)filter;
 - (void)removeFilter:(id<MBLogFilterDelegate>)filter;

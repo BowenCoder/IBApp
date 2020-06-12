@@ -762,7 +762,6 @@
 		4A84CBBE229B98AE00CA4794 /* MBRouterProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBRouterProtocol.h; sourceTree = "<group>"; };
 		4A87B49D2465A01B00E6B93F /* MBPayVerificator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBPayVerificator.h; sourceTree = "<group>"; };
 		4A87B49E2465A01B00E6B93F /* MBPayVerificator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBPayVerificator.m; sourceTree = "<group>"; };
-		4A89D5F5228B07C70072FB23 /* MBErrorCheck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBErrorCheck.h; sourceTree = "<group>"; };
 		4A89D5F6228B09440072FB23 /* NSThread+SequenceNumber.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSThread+SequenceNumber.h"; sourceTree = "<group>"; };
 		4A89D5F7228B09440072FB23 /* NSThread+SequenceNumber.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSThread+SequenceNumber.m"; sourceTree = "<group>"; };
 		4A89D5F9228B0C820072FB23 /* MBLogMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBLogMacros.h; sourceTree = "<group>"; };
@@ -1714,7 +1713,6 @@
 			children = (
 				4A89D63B228BC1530072FB23 /* DDLogMessage+Extension.h */,
 				4A89D63C228BC1530072FB23 /* DDLogMessage+Extension.m */,
-				4A89D5F5228B07C70072FB23 /* MBErrorCheck.h */,
 				4A89D5FA228B0E260072FB23 /* MBFilterLogger.h */,
 				4A89D5FB228B0E260072FB23 /* MBFilterLogger.m */,
 				4A89D600228B11C40072FB23 /* MBLogEncryptFormatter.h */,

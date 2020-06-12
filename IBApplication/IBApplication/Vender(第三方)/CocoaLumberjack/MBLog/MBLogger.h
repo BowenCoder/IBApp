@@ -7,9 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "CocoaLumberjack.h"
 #import "MBFilterLogger.h"
-#import "MBErrorCheck.h"
 #import "MBLogMacros.h"
 
 NS_ASSUME_NONNULL_BEGIN
@@ -18,8 +16,7 @@ extern const DDLogLevel ddLogLevel;
 
 @interface MBLogger : NSObject
 
-@property(nonatomic, readonly) MBFilterLogger *filterLogger;
-@property(nonatomic, readonly) NSString *logsDirectory;
+@property (nonatomic, readonly) MBFilterLogger *filterLogger;
 
 + (instancetype)sharedInstance;
 
@@ -34,10 +31,14 @@ extern const DDLogLevel ddLogLevel;
 /// 苹果的日志系统
 - (void)startASLLog;
 
+/// 日志过滤
+- (void)startFilter;
+
 /// 清除日志
 - (void)stop;
 
 - (NSString *)zipLogFiles;
+
 
 @end
 
@@ -52,7 +53,5 @@ MBLogTraceStack *__MBTraceStack__; \
 if(ddLogLevel != DDLogLevelOff){\
     __MBTraceStack__ = [MBLogTraceStack traceWithFile:__FILE__ Function:__PRETTY_FUNCTION__ Line:__LINE__];\
 }\
-
-
 
 NS_ASSUME_NONNULL_END
