@@ -17,7 +17,7 @@
         self.port = 0;
         self.connectTimeout = 15;
         self.heartbeatInterval = 30;
-        self.messageTimeout = -1;
+        self.messageTimeout = 30;
         self.retryConnectMaxCount = 100;
         self.retryConnectInterval = 5;
     }

@@ -13,11 +13,11 @@
 #import "MBSocketClientModel.h"
 #import "IBNetworkStatus.h"
 #import "MBSocketTools.h"
+#import "MBSocketPacketBuilder.h"
 #import "MBLogger.h"
 
 @interface MBSocketClient () <MBSocketConnectionDelegate>
 
-@property (nonatomic, strong) MBSocketClientModel *clientModel;
 @property (nonatomic, strong) MBSocketConnection *connection;
 @property (nonatomic, strong) MBSocketReceivePacket *receivePacket;
 @property (nonatomic, assign) NSInteger retryCount;
@@ -60,65 +60,28 @@
     MBLogI(@"#socket# event:disconnect");
 }
 
-- (void)reconnect
+- (void)connect
 {
-    if ([self isConnected]) {
+    if (!self.clientModel) {
+        MBLogI(@"#socket# event:params is invalid");
         return;
     }
-    
-    MBLogI(@"#socket# event:reconnect");
-    
-    if (self.clientModel) {
-        [self connectWithModel:self.clientModel];
-    }
+    [self.connection connectWithHost:self.clientModel.host timeout:15 port:self.clientModel.port];
+    NSString *key = [NSString stringWithFormat:@"%@:%ld", self.clientModel.host, (long)self.clientModel.port];
+    MBLogI(@"#socket# event:connect value: %@", key);
 }
 
-- (void)connectWithModel:(MBSocketClientModel *)model
+- (void)reconnect
 {
-    self.clientModel = model;
-    [self.connection connectWithHost:model.host timeout:15 port:model.port];
-    NSString *key = [NSString stringWithFormat:@"%@:%ld", model.host, (long)model.port];
-    MBLogI(@"#socket# event:connect value: %@", key);
+    MBLogI(@"#socket# event:reconnect");
+    [self disconnect];
+    [self connect];
 }
 
 - (void)sendPacket:(MBSocketSendPacket *)packet
 {
     [MBSocketPacketEncode encodeSendPacket:packet];
-    [self.connection sendMessage:packet.sendData timeout:-1 tag:kSocketMessageWriteTag];
-}
-
-#pragma mark - notification
-
-- (void)registerNotification
-{
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(networkStatusChange:)
-                                                 name:kIBReachabilityChangedNotification
-                                               object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(didEnterBackground) name:UIApplicationDidEnterBackgroundNotification
-                                               object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(willEnterForeground) name:UIApplicationWillEnterForegroundNotification
-                                               object:nil];
-}
-
-- (void)networkStatusChange:(NSNotification *)notification
-{
-    if ([self isDisconnected] && [notification.object integerValue] > 0) {
-        MBLogI(@"#socket# event:network.change");
-        [self reconnect];
-    }
-}
-
-- (void)didEnterBackground
-{
-    [self disconnect];
-}
-
-- (void)willEnterForeground
-{
-    [self reconnect];
+    [self.connection sendMessage:packet.sendData timeout:self.clientModel.messageTimeout tag:kSocketMessageWriteTag];
 }
 
 #pragma mark - MBSocketConnectionDelegate
@@ -227,6 +190,40 @@
             [self.delegate client:self receiveData:self.receivePacket];
         }
     });
+}
+
+#pragma mark - notification
+
+- (void)registerNotification
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(networkStatusChange:)
+                                                 name:kIBReachabilityChangedNotification
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didEnterBackground) name:UIApplicationDidEnterBackgroundNotification
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(willEnterForeground) name:UIApplicationWillEnterForegroundNotification
+                                               object:nil];
+}
+
+- (void)networkStatusChange:(NSNotification *)notification
+{
+    if ([self isDisconnected] && [notification.object integerValue] > 0) {
+        MBLogI(@"#socket# event:network.change");
+        [self reconnect];
+    }
+}
+
+- (void)didEnterBackground
+{
+    [self disconnect];
+}
+
+- (void)willEnterForeground
+{
+    [self reconnect];
 }
 
 #pragma mark - getter

@@ -156,6 +156,8 @@
 		4A4443812100797E001B2350 /* MBTabBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A4443802100797E001B2350 /* MBTabBarItem.m */; };
 		4A44438421008BE2001B2350 /* MBTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A44438321008BE2001B2350 /* MBTabBar.m */; };
 		4A5EA8F62493730D006CB209 /* MBSocketManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5EA8F52493730D006CB209 /* MBSocketManager.m */; };
+		4A5EADDA2493907D006CB209 /* MBSocketPacketBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5EADD92493907D006CB209 /* MBSocketPacketBuilder.m */; };
+		4A5EADE02493B1EB006CB209 /* MBSocketCompeletionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5EADDF2493B1EB006CB209 /* MBSocketCompeletionManager.m */; };
 		4A63CB7C23CDC0B700684FC5 /* MBAutoScrollLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A63CB7B23CDC0B700684FC5 /* MBAutoScrollLabel.m */; };
 		4A686D2520EB229000C8328E /* MBEmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A686D2420EB229000C8328E /* MBEmptyView.m */; };
 		4A686D2920EB668A00C8328E /* MBLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A686D2820EB668A00C8328E /* MBLoadingView.m */; };
@@ -665,6 +667,10 @@
 		4A44438321008BE2001B2350 /* MBTabBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBTabBar.m; sourceTree = "<group>"; };
 		4A5EA8F42493730D006CB209 /* MBSocketManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBSocketManager.h; sourceTree = "<group>"; };
 		4A5EA8F52493730D006CB209 /* MBSocketManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBSocketManager.m; sourceTree = "<group>"; };
+		4A5EADD82493907D006CB209 /* MBSocketPacketBuilder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBSocketPacketBuilder.h; sourceTree = "<group>"; };
+		4A5EADD92493907D006CB209 /* MBSocketPacketBuilder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBSocketPacketBuilder.m; sourceTree = "<group>"; };
+		4A5EADDE2493B1EB006CB209 /* MBSocketCompeletionManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBSocketCompeletionManager.h; sourceTree = "<group>"; };
+		4A5EADDF2493B1EB006CB209 /* MBSocketCompeletionManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBSocketCompeletionManager.m; sourceTree = "<group>"; };
 		4A63CB7A23CDC0B700684FC5 /* MBAutoScrollLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBAutoScrollLabel.h; sourceTree = "<group>"; };
 		4A63CB7B23CDC0B700684FC5 /* MBAutoScrollLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBAutoScrollLabel.m; sourceTree = "<group>"; };
 		4A686D2320EB229000C8328E /* MBEmptyView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBEmptyView.h; sourceTree = "<group>"; };
@@ -1857,6 +1863,8 @@
 			children = (
 				4A5EA8F42493730D006CB209 /* MBSocketManager.h */,
 				4A5EA8F52493730D006CB209 /* MBSocketManager.m */,
+				4A5EADDE2493B1EB006CB209 /* MBSocketCompeletionManager.h */,
+				4A5EADDF2493B1EB006CB209 /* MBSocketCompeletionManager.m */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -3195,6 +3203,8 @@
 				4AEAE62C248F709C001F7E45 /* MBSocketCMDType.h */,
 				4AEAE625248F3925001F7E45 /* MBSocketPacket.h */,
 				4AEAE626248F3925001F7E45 /* MBSocketPacket.m */,
+				4A5EADD82493907D006CB209 /* MBSocketPacketBuilder.h */,
+				4A5EADD92493907D006CB209 /* MBSocketPacketBuilder.m */,
 			);
 			path = Packet;
 			sourceTree = "<group>";
@@ -3599,6 +3609,7 @@
 				4A2E741B2433102E00DBA2AB /* MBAlertController.m in Sources */,
 				4ACC55EA20DB5F3E001352AE /* AppDelegate.m in Sources */,
 				4A0D463923D4071C00B5F9DF /* UITableView+TrackData.m in Sources */,
+				4A5EADE02493B1EB006CB209 /* MBSocketCompeletionManager.m in Sources */,
 				4A2E75A92435861200DBA2AB /* MBCommonViewController.m in Sources */,
 				4A6F197B20E3332000EAF1A7 /* IBColor.m in Sources */,
 				4AD770B32297CD1300FEB76B /* YYTextArchiver.m in Sources */,
@@ -3802,6 +3813,7 @@
 				4AC29F82210F04A900F218FE /* MJRefreshBackNormalFooter.m in Sources */,
 				4AE8D63B23025D1700A73011 /* MBPluginCenter.m in Sources */,
 				4AC29F84210F04A900F218FE /* MJRefreshAutoGifFooter.m in Sources */,
+				4A5EADDA2493907D006CB209 /* MBSocketPacketBuilder.m in Sources */,
 				4A1FB13220E921E90056A026 /* MWPhoto.m in Sources */,
 				4AE9674423A3A3DA00A5C172 /* IBUploader.m in Sources */,
 				4AD770B62297CD1300FEB76B /* NSParagraphStyle+YYText.m in Sources */,

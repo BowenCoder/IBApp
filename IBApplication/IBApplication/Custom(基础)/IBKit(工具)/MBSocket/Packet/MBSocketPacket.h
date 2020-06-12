@@ -51,7 +51,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSData *sendData;
 
 - (instancetype)initWithPacketType:(MBSocketMessageType)messageType
-                              body:(NSDictionary *)body;
+                              body:(nullable NSDictionary *)body;
 
 + (void)setSessionId:(NSInteger)sessionId;
 

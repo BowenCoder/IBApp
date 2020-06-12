@@ -28,13 +28,15 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, weak) id<MBSocketClientDelegate> delegate;
 
+@property (nonatomic, strong) MBSocketClientModel *clientModel;
+
 - (BOOL)isConnected;
 
 - (BOOL)isDisconnected;
 
 - (void)disconnect;
 
-- (void)connectWithModel:(MBSocketClientModel *)model;
+- (void)connect;
 
 - (void)sendPacket:(MBSocketSendPacket *)packet;
 
