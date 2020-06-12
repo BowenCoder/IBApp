@@ -1,14 +1,14 @@
 //
-//  MBSocketConnectionModel.m
+//  MBSocketClientModel.m
 //  IBApplication
 //
 //  Created by Bowen on 2020/6/9.
 //  Copyright © 2020 BowenCoder. All rights reserved.
 //
 
-#import "MBSocketConnectionModel.h"
+#import "MBSocketClientModel.h"
 
-@implementation MBSocketConnectionModel
+@implementation MBSocketClientModel
 
 - (instancetype)init
 {

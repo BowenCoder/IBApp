@@ -15,6 +15,7 @@
 #import "MBSocketPacketDecode.h"
 #import "MBSocketPacketEncode.h"
 #import "MBLogger.h"
+#import "IBNetworkStatus.h"
 
 @interface ViewController ()<UITableViewDataSource, UITableViewDelegate>
 
@@ -28,7 +29,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     self.navigationItem.title = @"主界面";
-    
+    [IBNetworkStatus shareInstance];
 }
 
 - (BOOL)prefersStatusBarHidden

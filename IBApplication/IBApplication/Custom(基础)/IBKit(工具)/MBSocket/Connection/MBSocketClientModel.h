@@ -1,5 +1,5 @@
 //
-//  MBSocketConnectionModel.h
+//  MBSocketClientModel.h
 //  IBApplication
 //
 //  Created by Bowen on 2020/6/9.
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface MBSocketConnectionModel : NSObject
+@interface MBSocketClientModel : NSObject
 
 /**
  连接服务器的domain或ip,默认@""

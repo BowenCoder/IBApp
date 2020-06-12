@@ -69,8 +69,8 @@ NSString * const kIBReachabilityChangedNotification = @"kIBReachabilityChangedNo
 }
 
 - (void)receiveReachabilityChangedNotification:(NSNotification *)notification {
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:kIBReachabilityChangedNotification object:nil];
+    NSNumber *net = notification.userInfo[AFNetworkingReachabilityNotificationStatusItem];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kIBReachabilityChangedNotification object:net];
 }
 
 - (IBNetworkModeStatus)currentNetworkStatus {

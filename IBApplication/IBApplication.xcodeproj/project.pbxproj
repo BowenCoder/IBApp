@@ -155,6 +155,7 @@
 		4A44437E21006150001B2350 /* MBTabBarBadge.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A44437D21006150001B2350 /* MBTabBarBadge.m */; };
 		4A4443812100797E001B2350 /* MBTabBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A4443802100797E001B2350 /* MBTabBarItem.m */; };
 		4A44438421008BE2001B2350 /* MBTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A44438321008BE2001B2350 /* MBTabBar.m */; };
+		4A5EA8F62493730D006CB209 /* MBSocketManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5EA8F52493730D006CB209 /* MBSocketManager.m */; };
 		4A63CB7C23CDC0B700684FC5 /* MBAutoScrollLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A63CB7B23CDC0B700684FC5 /* MBAutoScrollLabel.m */; };
 		4A686D2520EB229000C8328E /* MBEmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A686D2420EB229000C8328E /* MBEmptyView.m */; };
 		4A686D2920EB668A00C8328E /* MBLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A686D2820EB668A00C8328E /* MBLoadingView.m */; };
@@ -350,7 +351,7 @@
 		4AEAE623248F3687001F7E45 /* MBSocketConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AEAE622248F3687001F7E45 /* MBSocketConnection.m */; };
 		4AEAE627248F3925001F7E45 /* MBSocketPacket.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AEAE626248F3925001F7E45 /* MBSocketPacket.m */; };
 		4AEAE62F248F7174001F7E45 /* MBSocketByte.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AEAE62E248F7174001F7E45 /* MBSocketByte.m */; };
-		4AEAE632248F82EB001F7E45 /* MBSocketConnectionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AEAE631248F82EB001F7E45 /* MBSocketConnectionModel.m */; };
+		4AEAE632248F82EB001F7E45 /* MBSocketClientModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AEAE631248F82EB001F7E45 /* MBSocketClientModel.m */; };
 		4AEAF784248FE6E7001F7E45 /* MBSocketPacketEncode.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AEAF783248FE6E7001F7E45 /* MBSocketPacketEncode.m */; };
 		4AEAF787248FE6FE001F7E45 /* MBSocketPacketDecode.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AEAF786248FE6FE001F7E45 /* MBSocketPacketDecode.m */; };
 		4AED556023CD937B00B38F59 /* MBPopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AED555F23CD937B00B38F59 /* MBPopupView.m */; };
@@ -662,6 +663,8 @@
 		4A4443802100797E001B2350 /* MBTabBarItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBTabBarItem.m; sourceTree = "<group>"; };
 		4A44438221008BE2001B2350 /* MBTabBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBTabBar.h; sourceTree = "<group>"; };
 		4A44438321008BE2001B2350 /* MBTabBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBTabBar.m; sourceTree = "<group>"; };
+		4A5EA8F42493730D006CB209 /* MBSocketManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBSocketManager.h; sourceTree = "<group>"; };
+		4A5EA8F52493730D006CB209 /* MBSocketManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBSocketManager.m; sourceTree = "<group>"; };
 		4A63CB7A23CDC0B700684FC5 /* MBAutoScrollLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBAutoScrollLabel.h; sourceTree = "<group>"; };
 		4A63CB7B23CDC0B700684FC5 /* MBAutoScrollLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBAutoScrollLabel.m; sourceTree = "<group>"; };
 		4A686D2320EB229000C8328E /* MBEmptyView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBEmptyView.h; sourceTree = "<group>"; };
@@ -1077,8 +1080,8 @@
 		4AEAE62C248F709C001F7E45 /* MBSocketCMDType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBSocketCMDType.h; sourceTree = "<group>"; };
 		4AEAE62D248F7174001F7E45 /* MBSocketByte.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBSocketByte.h; sourceTree = "<group>"; };
 		4AEAE62E248F7174001F7E45 /* MBSocketByte.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBSocketByte.m; sourceTree = "<group>"; };
-		4AEAE630248F82EB001F7E45 /* MBSocketConnectionModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBSocketConnectionModel.h; sourceTree = "<group>"; };
-		4AEAE631248F82EB001F7E45 /* MBSocketConnectionModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBSocketConnectionModel.m; sourceTree = "<group>"; };
+		4AEAE630248F82EB001F7E45 /* MBSocketClientModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBSocketClientModel.h; sourceTree = "<group>"; };
+		4AEAE631248F82EB001F7E45 /* MBSocketClientModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBSocketClientModel.m; sourceTree = "<group>"; };
 		4AEAF782248FE6E7001F7E45 /* MBSocketPacketEncode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBSocketPacketEncode.h; sourceTree = "<group>"; };
 		4AEAF783248FE6E7001F7E45 /* MBSocketPacketEncode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBSocketPacketEncode.m; sourceTree = "<group>"; };
 		4AEAF785248FE6FE001F7E45 /* MBSocketPacketDecode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBSocketPacketDecode.h; sourceTree = "<group>"; };
@@ -1847,6 +1850,15 @@
 				4A44437420F89833001B2350 /* IBPrivacy.m */,
 			);
 			path = IBPrivacy;
+			sourceTree = "<group>";
+		};
+		4A5EA8F3249372F2006CB209 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				4A5EA8F42493730D006CB209 /* MBSocketManager.h */,
+				4A5EA8F52493730D006CB209 /* MBSocketManager.m */,
+			);
+			path = Manager;
 			sourceTree = "<group>";
 		};
 		4A63CB7923CDC08600684FC5 /* MBAutoScrollLabel */ = {
@@ -3143,11 +3155,12 @@
 		4AEACFC3248A52F2001F7E45 /* MBSocket */ = {
 			isa = PBXGroup;
 			children = (
-				4AEAE62A248F6FFD001F7E45 /* Encode */,
-				4AEAE624248F390F001F7E45 /* Packet */,
-				4AEAE61D248F35ED001F7E45 /* Tools */,
 				4AEAE61C248F35E2001F7E45 /* Connection */,
 				4A6F19AA20E3F3E900EAF1A7 /* Core */,
+				4AEAE62A248F6FFD001F7E45 /* Encode */,
+				4A5EA8F3249372F2006CB209 /* Manager */,
+				4AEAE624248F390F001F7E45 /* Packet */,
+				4AEAE61D248F35ED001F7E45 /* Tools */,
 			);
 			path = MBSocket;
 			sourceTree = "<group>";
@@ -3157,10 +3170,10 @@
 			children = (
 				4AEA042B24910D60001F7E45 /* MBSocketClient.h */,
 				4AEA042C24910D60001F7E45 /* MBSocketClient.m */,
+				4AEAE630248F82EB001F7E45 /* MBSocketClientModel.h */,
+				4AEAE631248F82EB001F7E45 /* MBSocketClientModel.m */,
 				4AEAE621248F3687001F7E45 /* MBSocketConnection.h */,
 				4AEAE622248F3687001F7E45 /* MBSocketConnection.m */,
-				4AEAE630248F82EB001F7E45 /* MBSocketConnectionModel.h */,
-				4AEAE631248F82EB001F7E45 /* MBSocketConnectionModel.m */,
 			);
 			path = Connection;
 			sourceTree = "<group>";
@@ -3741,6 +3754,7 @@
 				4AC7AF2D23C35D0500446C03 /* MBMessageBarStyle.m in Sources */,
 				4A89D630228B17490072FB23 /* aeskey.m in Sources */,
 				4AC29F7D210F04A900F218FE /* UIScrollView+MJExtension.m in Sources */,
+				4A5EA8F62493730D006CB209 /* MBSocketManager.m in Sources */,
 				4A63CB7C23CDC0B700684FC5 /* MBAutoScrollLabel.m in Sources */,
 				4A2E74172432E44C00DBA2AB /* MBPopupController.m in Sources */,
 				F3DA12FA2465C48C0047B428 /* RSSwizzle.m in Sources */,
@@ -3769,7 +3783,7 @@
 				4A03B8D6229ADCCB00173765 /* MBModuleCenter.m in Sources */,
 				4A1FB21120E92D5E0056A026 /* FLAnimatedImageView+WebCache.m in Sources */,
 				4A22DE25228AF3B500D4CFA6 /* DDMultiFormatter.m in Sources */,
-				4AEAE632248F82EB001F7E45 /* MBSocketConnectionModel.m in Sources */,
+				4AEAE632248F82EB001F7E45 /* MBSocketClientModel.m in Sources */,
 				4ACC563C20DD6C62001352AE /* UIBarButtonItem+Ext.m in Sources */,
 				F3FCB42D22A2F9F600C4870B /* RSKImageCropViewController.m in Sources */,
 				4A2E75A32434874300DBA2AB /* MBAssetGroup.m in Sources */,

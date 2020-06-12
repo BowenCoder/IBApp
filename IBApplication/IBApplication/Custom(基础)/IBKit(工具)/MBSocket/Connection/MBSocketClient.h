@@ -7,11 +7,25 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "MBSocketConnectionModel.h"
+#import "MBSocketClientModel.h"
+
+@class MBSocketClient;
 
 NS_ASSUME_NONNULL_BEGIN
 
+@protocol MBSocketClientDelegate <NSObject>
+
+- (void)clientOpened:(MBSocketClient *)client host:(NSString *)host port:(NSInteger)port;
+
+- (void)clientClosed:(MBSocketClient *)client error:(NSError *)error;
+
+- (void)client:(MBSocketClient *)client receiveData:(NSDictionary *)content;
+
+@end
+
 @interface MBSocketClient : NSObject
+
+@property (nonatomic, weak) id<MBSocketClientDelegate> delegate;
 
 - (BOOL)isConnected;
 
@@ -19,7 +33,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)disconnect;
 
-- (void)connectWithModel:(MBSocketConnectionModel *)model;
+- (void)connectWithModel:(MBSocketClientModel *)model;
 
 @end
 
