@@ -88,12 +88,14 @@
 
 - (void)sendPacket:(MBSocketSendPacket *)packet compeletion:(MBSocketRspCallback)compeletion
 {
-    if ([self.client isConnected]) {
-        [self.client sendPacket:packet];
-        [self.compeletionManager setCompeletion:compeletion forKey:@(packet.sequence).stringValue];
-    } else {
-        MBLogE(@"#socket# event:sendPacket value:socket is disconnect");
-    }
+    dispatch_async([MBSocketTools socketQueue], ^{
+        if ([self.client isConnected]) {
+            [self.client sendPacket:packet];
+            [self.compeletionManager setCompeletion:compeletion forKey:@(packet.sequence).stringValue];
+        } else {
+            MBLogE(@"#socket# event:sendPacket value:socket is disconnect");
+        }
+    });
 }
 
 - (void)registerMessageWithTarget:(id)target ev:(NSString *)ev tp:(NSString *)tp compeletion:(MBSocketRspCallback)compeletion
@@ -178,7 +180,7 @@
         [self reconnect];
     } else {
         retryCount++;
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(10 * NSEC_PER_SEC)), [MBSocketTools socketQueue], ^{
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(10 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [self login];
         });
     }
