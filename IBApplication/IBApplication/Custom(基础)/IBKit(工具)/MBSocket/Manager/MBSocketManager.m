@@ -259,7 +259,15 @@
 
 - (void)clientClosed:(MBSocketClient *)client error:(NSError *)error
 {
-    [self connect];
+    static NSInteger retryCount = 0;
+    
+    if (retryCount < client.clientModel.retryConnectMaxCount) {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(client.clientModel.retryConnectInterval * NSEC_PER_SEC)), [MBSocketTools socketQueue], ^{
+            [self connect];
+        });
+    }
+    
+    retryCount++;
 }
 
 - (void)client:(MBSocketClient *)client receiveData:(MBSocketReceivePacket *)packet

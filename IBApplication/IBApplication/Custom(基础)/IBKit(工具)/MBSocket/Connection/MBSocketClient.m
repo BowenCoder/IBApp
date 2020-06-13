@@ -19,7 +19,6 @@
 
 @property (nonatomic, strong) MBSocketConnection *connection;
 @property (nonatomic, strong) MBSocketReceivePacket *receivePacket;
-@property (nonatomic, assign) NSInteger retryCount;
 
 @end
 
@@ -111,9 +110,11 @@
 /// 连接失败回调
 - (void)socketConnectionDidDisconnect:(MBSocketConnection *)connection error:(NSError *)error
 {
-    MBLogE(@"#socket# event:delegate.disconnect error:%@ retry:%ld", error.description, (long)self.retryCount);
+    MBLogE(@"#socket# event:delegate.disconnect error:%@", error);
+
+    static NSInteger retryCount = 0;
     
-    if (self.retryCount < self.clientModel.retryConnectMaxCount) {
+    if (retryCount < self.clientModel.retryConnectMaxCount) {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(self.clientModel.retryConnectInterval * NSEC_PER_SEC)), [MBSocketTools socketQueue], ^{
             [self reconnect];
         });
@@ -124,6 +125,8 @@
             }
         });
     }
+    
+    retryCount++;
 }
 
 /// 接收数据回调
