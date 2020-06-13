@@ -17,9 +17,7 @@
 {
     BOOL isJailbroken = NO;
     NSString *msg = @"未越狱";
-    
-    check_svc_integrity();
-        
+            
     if ([self checkFile]) {
         isJailbroken = YES;
         msg = @"fileExistsAtPath方法检测";
@@ -152,35 +150,6 @@ jailbrokend:
         }
     }
     return NO;
-}
-
-// svc 完整性检测-反调试
-static __attribute__((always_inline)) void check_svc_integrity() {
-    int pid;
-    static jmp_buf protectionJMP;
-#ifdef __arm64__
-    __asm__("mov x0, #0\n"
-            "mov w16, #20\n"
-            "svc #0x80\n"
-            "cmp x0, #0\n"
-            "b.ne #24\n"
-            
-            "mov x1, #0\n"
-            "mov sp, x1\n"
-            "mov x29, x1\n"
-            "mov x30, x1\n"
-            "ret\n"
-            
-            "mov %[result], x0\n"
-            : [result] "=r" (pid)
-            :
-            :
-            );
-    
-    if(pid == 0) {
-        longjmp(protectionJMP, 1);
-    }
-#endif
 }
 
 // 检查签名和源码是否被修改
