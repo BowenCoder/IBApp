@@ -169,16 +169,8 @@
 		4A6F197F20E345F500EAF1A7 /* IBHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6F197E20E345F500EAF1A7 /* IBHelper.m */; };
 		4A6F198720E35E3600EAF1A7 /* IBFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6F198620E35E3600EAF1A7 /* IBFile.m */; };
 		4A6F198C20E3A61400EAF1A7 /* IBString.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6F198B20E3A61400EAF1A7 /* IBString.m */; };
-		4A6F199120E3AAB200EAF1A7 /* IBSocketByte.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6F199020E3AAB200EAF1A7 /* IBSocketByte.m */; };
-		4A6F199620E3AC7F00EAF1A7 /* IBSocketPacket.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6F199520E3AC7F00EAF1A7 /* IBSocketPacket.m */; };
-		4A6F199B20E3B37200EAF1A7 /* IBSocketPacketDecode.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6F199A20E3B37200EAF1A7 /* IBSocketPacketDecode.m */; };
-		4A6F199E20E3B56C00EAF1A7 /* IBSocketPacketEncode.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6F199D20E3B56C00EAF1A7 /* IBSocketPacketEncode.m */; };
-		4A6F19A520E3F0D700EAF1A7 /* IBSocketConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6F19A420E3F0D700EAF1A7 /* IBSocketConfig.m */; };
-		4A6F19A920E3F3D700EAF1A7 /* IBSocketConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6F19A820E3F3D700EAF1A7 /* IBSocketConnection.m */; };
 		4A6F19AD20E3F40C00EAF1A7 /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6F19AC20E3F40C00EAF1A7 /* GCDAsyncSocket.m */; };
 		4A6F19B420E3FBDE00EAF1A7 /* IBNetworkStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6F19B320E3FBDE00EAF1A7 /* IBNetworkStatus.m */; };
-		4A6F19B720E3FE9600EAF1A7 /* IBSocketService.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6F19B620E3FE9600EAF1A7 /* IBSocketService.m */; };
-		4A6F19BA20E401CC00EAF1A7 /* IBSocketClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6F19B920E401CC00EAF1A7 /* IBSocketClient.m */; };
 		4A6F19C320E5DD3100EAF1A7 /* IBViewAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6F19C220E5DD3100EAF1A7 /* IBViewAnimation.m */; };
 		4A7179B82463DDCD00D6EA39 /* UICKeyChainStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A7179B52463DDCD00D6EA39 /* UICKeyChainStore.m */; };
 		4A72287420F0CE3D008B8815 /* IBNaviController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A72287320F0CE3D008B8815 /* IBNaviController.m */; };
@@ -694,29 +686,10 @@
 		4A6F198620E35E3600EAF1A7 /* IBFile.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBFile.m; sourceTree = "<group>"; };
 		4A6F198A20E3A61400EAF1A7 /* IBString.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBString.h; sourceTree = "<group>"; };
 		4A6F198B20E3A61400EAF1A7 /* IBString.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBString.m; sourceTree = "<group>"; };
-		4A6F198F20E3AAB200EAF1A7 /* IBSocketByte.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBSocketByte.h; sourceTree = "<group>"; };
-		4A6F199020E3AAB200EAF1A7 /* IBSocketByte.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBSocketByte.m; sourceTree = "<group>"; };
-		4A6F199320E3AC0000EAF1A7 /* IBSocketCMDType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBSocketCMDType.h; sourceTree = "<group>"; };
-		4A6F199420E3AC7F00EAF1A7 /* IBSocketPacket.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBSocketPacket.h; sourceTree = "<group>"; };
-		4A6F199520E3AC7F00EAF1A7 /* IBSocketPacket.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBSocketPacket.m; sourceTree = "<group>"; };
-		4A6F199820E3B15E00EAF1A7 /* IBSocketEncodeProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBSocketEncodeProtocol.h; sourceTree = "<group>"; };
-		4A6F199920E3B37200EAF1A7 /* IBSocketPacketDecode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBSocketPacketDecode.h; sourceTree = "<group>"; };
-		4A6F199A20E3B37200EAF1A7 /* IBSocketPacketDecode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBSocketPacketDecode.m; sourceTree = "<group>"; };
-		4A6F199C20E3B56C00EAF1A7 /* IBSocketPacketEncode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBSocketPacketEncode.h; sourceTree = "<group>"; };
-		4A6F199D20E3B56C00EAF1A7 /* IBSocketPacketEncode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBSocketPacketEncode.m; sourceTree = "<group>"; };
-		4A6F19A320E3F0D700EAF1A7 /* IBSocketConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBSocketConfig.h; sourceTree = "<group>"; };
-		4A6F19A420E3F0D700EAF1A7 /* IBSocketConfig.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBSocketConfig.m; sourceTree = "<group>"; };
-		4A6F19A620E3F30400EAF1A7 /* IBSocketDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBSocketDelegate.h; sourceTree = "<group>"; };
-		4A6F19A720E3F3D700EAF1A7 /* IBSocketConnection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBSocketConnection.h; sourceTree = "<group>"; };
-		4A6F19A820E3F3D700EAF1A7 /* IBSocketConnection.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBSocketConnection.m; sourceTree = "<group>"; };
 		4A6F19AB20E3F40C00EAF1A7 /* GCDAsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDAsyncSocket.h; sourceTree = "<group>"; };
 		4A6F19AC20E3F40C00EAF1A7 /* GCDAsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDAsyncSocket.m; sourceTree = "<group>"; };
 		4A6F19B220E3FBDE00EAF1A7 /* IBNetworkStatus.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBNetworkStatus.h; sourceTree = "<group>"; };
 		4A6F19B320E3FBDE00EAF1A7 /* IBNetworkStatus.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBNetworkStatus.m; sourceTree = "<group>"; };
-		4A6F19B520E3FE9600EAF1A7 /* IBSocketService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBSocketService.h; sourceTree = "<group>"; };
-		4A6F19B620E3FE9600EAF1A7 /* IBSocketService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBSocketService.m; sourceTree = "<group>"; };
-		4A6F19B820E401CB00EAF1A7 /* IBSocketClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBSocketClient.h; sourceTree = "<group>"; };
-		4A6F19B920E401CC00EAF1A7 /* IBSocketClient.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBSocketClient.m; sourceTree = "<group>"; };
 		4A6F19C120E5DD3100EAF1A7 /* IBViewAnimation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IBViewAnimation.h; sourceTree = "<group>"; };
 		4A6F19C220E5DD3100EAF1A7 /* IBViewAnimation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBViewAnimation.m; sourceTree = "<group>"; };
 		4A7179B52463DDCD00D6EA39 /* UICKeyChainStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICKeyChainStore.m; sourceTree = "<group>"; };
@@ -1950,64 +1923,6 @@
 			path = IBString;
 			sourceTree = "<group>";
 		};
-		4A6F198D20E3A84600EAF1A7 /* IBSocket */ = {
-			isa = PBXGroup;
-			children = (
-				4A6F199F20E3EECF00EAF1A7 /* Connection */,
-				4A6F199720E3B0FA00EAF1A7 /* Encode */,
-				4A6F199220E3ABC300EAF1A7 /* Service */,
-				4A6F198E20E3AA5B00EAF1A7 /* Packet */,
-			);
-			path = IBSocket;
-			sourceTree = "<group>";
-		};
-		4A6F198E20E3AA5B00EAF1A7 /* Packet */ = {
-			isa = PBXGroup;
-			children = (
-				4A6F198F20E3AAB200EAF1A7 /* IBSocketByte.h */,
-				4A6F199020E3AAB200EAF1A7 /* IBSocketByte.m */,
-				4A6F199420E3AC7F00EAF1A7 /* IBSocketPacket.h */,
-				4A6F199520E3AC7F00EAF1A7 /* IBSocketPacket.m */,
-			);
-			path = Packet;
-			sourceTree = "<group>";
-		};
-		4A6F199220E3ABC300EAF1A7 /* Service */ = {
-			isa = PBXGroup;
-			children = (
-				4A6F199320E3AC0000EAF1A7 /* IBSocketCMDType.h */,
-				4A6F19B520E3FE9600EAF1A7 /* IBSocketService.h */,
-				4A6F19B620E3FE9600EAF1A7 /* IBSocketService.m */,
-			);
-			path = Service;
-			sourceTree = "<group>";
-		};
-		4A6F199720E3B0FA00EAF1A7 /* Encode */ = {
-			isa = PBXGroup;
-			children = (
-				4A6F199820E3B15E00EAF1A7 /* IBSocketEncodeProtocol.h */,
-				4A6F199920E3B37200EAF1A7 /* IBSocketPacketDecode.h */,
-				4A6F199A20E3B37200EAF1A7 /* IBSocketPacketDecode.m */,
-				4A6F199C20E3B56C00EAF1A7 /* IBSocketPacketEncode.h */,
-				4A6F199D20E3B56C00EAF1A7 /* IBSocketPacketEncode.m */,
-			);
-			path = Encode;
-			sourceTree = "<group>";
-		};
-		4A6F199F20E3EECF00EAF1A7 /* Connection */ = {
-			isa = PBXGroup;
-			children = (
-				4A6F19A620E3F30400EAF1A7 /* IBSocketDelegate.h */,
-				4A6F19A320E3F0D700EAF1A7 /* IBSocketConfig.h */,
-				4A6F19A420E3F0D700EAF1A7 /* IBSocketConfig.m */,
-				4A6F19A720E3F3D700EAF1A7 /* IBSocketConnection.h */,
-				4A6F19A820E3F3D700EAF1A7 /* IBSocketConnection.m */,
-				4A6F19B820E401CB00EAF1A7 /* IBSocketClient.h */,
-				4A6F19B920E401CC00EAF1A7 /* IBSocketClient.m */,
-			);
-			path = Connection;
-			sourceTree = "<group>";
-		};
 		4A6F19AA20E3F3E900EAF1A7 /* Core */ = {
 			isa = PBXGroup;
 			children = (
@@ -2939,7 +2854,6 @@
 				4ACC569320DEC47D001352AE /* IBPassword */,
 				4A44437220F8980A001B2350 /* IBPrivacy */,
 				4A06E16A212FDB9100227583 /* IBSocial */,
-				4A6F198D20E3A84600EAF1A7 /* IBSocket */,
 				4A6F198920E3A5DD00EAF1A7 /* IBString */,
 				4ACC569420DEC59D001352AE /* IBTouchID */,
 				4A2E759D2434860900DBA2AB /* MBAssetLibrary */,
@@ -3637,7 +3551,6 @@
 				4A44437820F9C506001B2350 /* IBNaviConfig.m in Sources */,
 				4A0800F1230414AC00EF25BE /* IBURLRequest.m in Sources */,
 				F3E79EEC20E2A217000AC50A /* IBImage.m in Sources */,
-				4A6F19A520E3F0D700EAF1A7 /* IBSocketConfig.m in Sources */,
 				4AD7706F2297C92400FEB76B /* YYMemoryCache.m in Sources */,
 				4A6F197220E23FB900EAF1A7 /* IBEncode.m in Sources */,
 				4A22DE1C228AF3B500D4CFA6 /* DDLog.m in Sources */,
@@ -3645,7 +3558,6 @@
 				4AD770BB2297CD1300FEB76B /* YYTextAsyncLayer.m in Sources */,
 				4ACC56B020E0001E001352AE /* NSDate+Ext.m in Sources */,
 				F33F610522D0E5E200D6CADA /* IBSerialization.m in Sources */,
-				4A6F19B720E3FE9600EAF1A7 /* IBSocketService.m in Sources */,
 				4A1FB20F20E92D5E0056A026 /* NSData+ImageContentType.m in Sources */,
 				4AC21AFA2463B96900DFD301 /* MBPayOrderItem.m in Sources */,
 				F333517B22A2C448005B968E /* MBLibraryCamera.m in Sources */,
@@ -3692,7 +3604,6 @@
 				4ACC55E320DB5F3E001352AE /* ViewController.m in Sources */,
 				4AEAE627248F3925001F7E45 /* MBSocketPacket.m in Sources */,
 				4A1FB12F20E921E90056A026 /* MWZoomingScrollView.m in Sources */,
-				4A6F199E20E3B56C00EAF1A7 /* IBSocketPacketEncode.m in Sources */,
 				4A1FB21620E92D5E0056A026 /* NSImage+WebCache.m in Sources */,
 				4ACC569B20DEC694001352AE /* IBApp.m in Sources */,
 				4AED64C0215378EF0082280F /* MBPopupArrowView.m in Sources */,
@@ -3760,7 +3671,6 @@
 				4AC29F7B210F04A900F218FE /* MJRefreshConst.m in Sources */,
 				4A78076520E9F1BB00E60ACA /* MASConstraintMaker.m in Sources */,
 				4A1FB22120E92D5E0056A026 /* SDWebImageDownloader.m in Sources */,
-				4A6F199B20E3B37200EAF1A7 /* IBSocketPacketDecode.m in Sources */,
 				4AE95F5323A12C4A00A5C172 /* IBHTTPCache.m in Sources */,
 				4AC7AF2D23C35D0500446C03 /* MBMessageBarStyle.m in Sources */,
 				4A89D630228B17490072FB23 /* aeskey.m in Sources */,
@@ -3772,14 +3682,12 @@
 				4A22DE1E228AF3B500D4CFA6 /* DDAbstractDatabaseLogger.m in Sources */,
 				4AC29F91210F18C700F218FE /* MBTableViewCell.m in Sources */,
 				4A6DFF3523B5EF450002D3BB /* MBAutoHeightTextView.m in Sources */,
-				4A6F199620E3AC7F00EAF1A7 /* IBSocketPacket.m in Sources */,
 				4A89D634228B17490072FB23 /* sha1.m in Sources */,
 				4A6F19B420E3FBDE00EAF1A7 /* IBNetworkStatus.m in Sources */,
 				4A0800F423041C0C00EF25BE /* IBURLResponse.m in Sources */,
 				4AD770BC2297CD1300FEB76B /* YYTextWeakProxy.m in Sources */,
 				F3FCB42B22A2F9F600C4870B /* RSKTouchView.m in Sources */,
 				4A03B8E6229B06A200173765 /* MBUserModel.m in Sources */,
-				4A6F19BA20E401CC00EAF1A7 /* IBSocketClient.m in Sources */,
 				4ACC56A820DFC7AC001352AE /* UITextField+Ext.m in Sources */,
 				4ACC569220DEC463001352AE /* IBPassword.m in Sources */,
 				4AE9674123A266D700A5C172 /* IBServiceInfoModel.m in Sources */,
@@ -3807,7 +3715,6 @@
 				4A87B49F2465A01B00E6B93F /* MBPayVerificator.m in Sources */,
 				4AF2091E23978EB800EFB85D /* MBPresenter.m in Sources */,
 				4AC29F8C210F04A900F218FE /* MJRefreshAutoFooter.m in Sources */,
-				4A6F19A920E3F3D700EAF1A7 /* IBSocketConnection.m in Sources */,
 				4A321DCD243198ED00283EC1 /* NSPointerArray+Ext.m in Sources */,
 				F323F5EB22A4341D008BC303 /* RSKImageCropViewController+Ext.m in Sources */,
 				4AC29F82210F04A900F218FE /* MJRefreshBackNormalFooter.m in Sources */,
@@ -3820,7 +3727,6 @@
 				4AAA78F220ECBCB200CF5639 /* MBFPSLabel.m in Sources */,
 				4AEAF784248FE6E7001F7E45 /* MBSocketPacketEncode.m in Sources */,
 				4ABF2FCA22FEF42A00645809 /* MBDeliveryView.m in Sources */,
-				4A6F199120E3AAB200EAF1A7 /* IBSocketByte.m in Sources */,
 				4A6F198C20E3A61400EAF1A7 /* IBString.m in Sources */,
 				4A89D62D228B17490072FB23 /* ioapi.m in Sources */,
 				4A1FB12E20E921E90056A026 /* MWCaptionView.m in Sources */,
