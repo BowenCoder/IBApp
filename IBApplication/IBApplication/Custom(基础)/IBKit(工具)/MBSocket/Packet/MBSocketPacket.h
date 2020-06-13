@@ -47,13 +47,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface MBSocketSendPacket : MBSocketPacket
 
-@property (nonatomic, assign) NSInteger sesssionId;
-@property (nonatomic, copy) NSData *sendData;
+@property (nonatomic, assign) NSInteger appId; // App的标识
 
 - (instancetype)initWithPacketType:(MBSocketMessageType)messageType
                               body:(nullable NSDictionary *)body;
 
-+ (void)setSessionId:(NSInteger)sessionId;
++ (void)updateAppId:(NSInteger)appId;
+
++ (void)updateSessionId:(NSString *)sessionId;
 
 - (void)addExtraHeader:(NSDictionary *)header;
 

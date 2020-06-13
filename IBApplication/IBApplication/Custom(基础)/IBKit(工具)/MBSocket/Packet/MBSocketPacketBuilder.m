@@ -7,24 +7,37 @@
 //
 
 #import "MBSocketPacketBuilder.h"
+#import "MBSocketTools.h"
 
 @implementation MBSocketPacketBuilder
 
-+ (MBSocketSendPacket *)heartbeatPacket
+- (MBSocketSendPacket *)heartbeatPacket
 {
     MBSocketSendPacket *packet = [[MBSocketSendPacket alloc] initWithPacketType:MBSocketMessageHeartbeat body:nil];
     return packet;
 }
 
-+ (MBSocketSendPacket *)handshakePacket
+- (MBSocketSendPacket *)handshakePacket
 {
-    MBSocketSendPacket *packet = [[MBSocketSendPacket alloc] initWithPacketType:MBSocketMessageHandshake body:nil];
+    NSDictionary *body = @{@"rsaId": @([MBSocketTools rsaPublicKeyId]),
+                           @"rc4Key": [MBSocketTools rc4Key]};
+    MBSocketSendPacket *packet = [[MBSocketSendPacket alloc] initWithPacketType:MBSocketMessageHandshake body:body];
     return packet;
 }
 
-+ (MBSocketSendPacket *)loginPacket:(NSDictionary *)atomDict
+- (MBSocketSendPacket *)loginPacket
 {
-    MBSocketSendPacket *packet = [[MBSocketSendPacket alloc] initWithPacketType:MBSocketMessageLogin body:atomDict];
+    MBSocketSendPacket *packet = [[MBSocketSendPacket alloc] initWithPacketType:MBSocketMessageLogin body:self.atomDict];
+    return packet;
+}
+
+- (MBSocketSendPacket *)commonPacket:(NSDictionary *)body
+{
+    NSMutableDictionary *content = [NSMutableDictionary dictionary];
+    [content setObject:self.sessionId forKey:@"sessionId"];
+    [content setObject:self.atomDict[@"uid"] forKey:@"uid"];
+    [content setObject:body forKey:@"bus"];
+    MBSocketSendPacket *packet = [[MBSocketSendPacket alloc] initWithPacketType:MBSocketMessageCommon body:content];
     return packet;
 }
 

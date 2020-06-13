@@ -96,6 +96,10 @@ void match(IBEncryptOption option,CCAlgorithm *algorithm, size_t *keyLength) {
             *algorithm = kCCAlgorithm3DES;
             *keyLength = kCCKeySize3DES;
             break;
+        case IBEncryptOptionRC4:
+            *algorithm = kCCAlgorithmRC4;
+            *keyLength = kCCKeySizeMaxRC4;
+            break;
         default:
             break;
     }

@@ -12,7 +12,8 @@
 typedef NS_ENUM(NSInteger, IBEncryptOption) {
     IBEncryptOptionAES,
     IBEncryptOptionDES,
-    IBEncryptOption3DES
+    IBEncryptOption3DES,
+    IBEncryptOptionRC4,
 };
 
 //非对称加密(公钥加密，私钥解密；反之亦然)

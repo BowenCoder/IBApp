@@ -72,7 +72,7 @@
 {
     dispatch_semaphore_wait(self.lock, DISPATCH_TIME_FOREVER);
     NSMapTable *mapTable = [self.compeletionDict objectForKey:key];
-    NSArray *compeletions = mapTable.objectEnumerator.allObjects;
+    NSArray *compeletions = NSAllMapTableValues(mapTable);
     dispatch_semaphore_signal(self.lock);
     return compeletions;
 }

@@ -13,11 +13,16 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface MBSocketPacketBuilder : NSObject
 
-+ (MBSocketSendPacket *)heartbeatPacket;
+@property (nonatomic, copy) NSDictionary *atomDict;
+@property (nonatomic, copy) NSString *sessionId;
 
-+ (MBSocketSendPacket *)handshakePacket;
+- (MBSocketSendPacket *)heartbeatPacket;
 
-+ (MBSocketSendPacket *)loginPacket:(NSDictionary *)atomDict;
+- (MBSocketSendPacket *)handshakePacket;
+
+- (MBSocketSendPacket *)loginPacket;
+
+- (MBSocketSendPacket *)commonPacket:(NSDictionary *)body;
 
 @end
 

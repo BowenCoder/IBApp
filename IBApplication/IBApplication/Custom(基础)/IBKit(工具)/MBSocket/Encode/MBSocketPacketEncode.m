@@ -9,12 +9,18 @@
 #import "MBSocketPacketEncode.h"
 #import "MBSocketByte.h"
 #import "IBSerialization.h"
+#import "MBSocketTools.h"
 
 @implementation MBSocketPacketEncode
 
 + (void)encodeSendPacket:(MBSocketSendPacket *)packet
 {
-    packet.bodyData = [IBSerialization serializeJsonDataWithDict:packet.bodyDict];
+    NSData *data = [IBSerialization serializeJsonDataWithDict:packet.bodyDict];
+    if (packet.messageType == MBSocketMessageHandshake) {
+        packet.bodyData = [MBSocketTools encryptRSA:data];
+    } else {
+        packet.bodyData = [MBSocketTools encryptRC4:data];
+    }
     packet.bodyLength = packet.bodyData.length;
     packet.extraHeaderData = [IBSerialization serializeJsonDataWithDict:packet.extraHeaderDict];
     packet.extraHeaderLength = packet.extraHeaderData.length;
@@ -24,18 +30,13 @@
     
     [headerBytes replaceInt16:packet.mark                index:0  htons:YES];
     [headerBytes replaceInt16:packet.messageType         index:2  htons:YES];
-    [headerBytes replaceInt32:(int32_t)packet.sequence   index:4  htonl:YES];
-    [headerBytes replaceInt32:(int32_t)packet.sesssionId index:8  htonl:YES];
-    [headerBytes replaceInt16:packet.extraHeaderLength   index:12 htons:YES];
-    [headerBytes replaceInt16:packet.bodyLength          index:14 htons:YES];
-    
-    NSMutableData *sendData = [NSMutableData data];
-    [sendData appendData:headerBytes.buffer];
-    [sendData appendData:packet.extraHeaderData];
-    [sendData appendData:packet.bodyData];
+    [headerBytes replaceInt16:(int32_t)packet.appId      index:4  htons:YES];
+    [headerBytes replaceInt32:(int32_t)packet.sequence   index:6  htonl:YES];
+    [headerBytes replaceInt16:packet.extraHeaderLength   index:10 htons:YES];
+    [headerBytes replaceInt16:packet.bodyLength          index:12 htons:YES];
     
     packet.headerData = headerBytes.buffer;
-    packet.sendData = sendData;
+    
 }
 
 @end

@@ -9,7 +9,7 @@
 
 #import "MBSocketPacket.h"
 
-static NSInteger kSessionId = 10000;
+static NSInteger kAppId = 10000;
 static NSInteger kMark = 0x01;
 static NSInteger seq = 0;
 
@@ -37,9 +37,9 @@ static NSInteger seq = 0;
     return self;
 }
 
-+ (void)setSessionId:(NSInteger)sessionId
++ (void)updateAppId:(NSInteger)appId;
 {
-    kSessionId = sessionId;
+    kAppId = appId;
 }
 
 - (void)addExtraHeader:(NSDictionary *)header
@@ -47,9 +47,9 @@ static NSInteger seq = 0;
     self.extraHeaderDict = header;
 }
 
-- (NSInteger)sesssionId
+- (NSInteger)appId
 {
-    return kSessionId;
+    return kAppId;
 }
 
 - (NSInteger)generateSequence

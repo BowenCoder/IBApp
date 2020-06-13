@@ -13,7 +13,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface MBSocketManager : NSObject
 
-@property (nonatomic, strong) NSDictionary *atomDict;
+@property (nonatomic, strong) NSDictionary *atomDict; // 原子参数
+@property (nonatomic, assign) NSInteger appId; // App的标志，向服务端申请
+@property (nonatomic, copy) NSString *url; // 请求长链接服务的地址
+
++ (instancetype)sharedManager;
 
 /**
  断开连接

@@ -13,7 +13,6 @@
 #import "MBSocketClientModel.h"
 #import "IBNetworkStatus.h"
 #import "MBSocketTools.h"
-#import "MBSocketPacketBuilder.h"
 #import "MBLogger.h"
 
 @interface MBSocketClient () <MBSocketConnectionDelegate>
@@ -28,6 +27,7 @@
 
 - (void)dealloc
 {
+    [self disconnect];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
@@ -63,7 +63,7 @@
 - (void)connect
 {
     if (!self.clientModel) {
-        MBLogI(@"#socket# event:params is invalid");
+        MBLogE(@"#socket# event:params is invalid");
         return;
     }
     [self.connection connectWithHost:self.clientModel.host timeout:15 port:self.clientModel.port];
@@ -81,7 +81,11 @@
 - (void)sendPacket:(MBSocketSendPacket *)packet
 {
     [MBSocketPacketEncode encodeSendPacket:packet];
-    [self.connection sendMessage:packet.sendData timeout:self.clientModel.messageTimeout tag:kSocketMessageWriteTag];
+    NSMutableData *data = [NSMutableData data];
+    [data appendData:packet.headerData];
+    [data appendData:packet.extraHeaderData];
+    [data appendData:packet.bodyData];
+    [self.connection sendMessage:data timeout:self.clientModel.messageTimeout tag:kSocketMessageWriteTag];
 }
 
 #pragma mark - MBSocketConnectionDelegate
