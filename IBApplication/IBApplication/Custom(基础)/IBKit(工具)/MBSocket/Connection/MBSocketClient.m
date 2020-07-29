@@ -62,7 +62,7 @@
 - (void)connect
 {
     if (!self.clientModel) {
-        MBLogE(@"#socket# event:params is invalid");
+        MBLogE(@"#socket# event:connect errror:params is invalid");
         return;
     }
     [self.connection connectWithHost:self.clientModel.host timeout:15 port:self.clientModel.port];
@@ -84,7 +84,11 @@
     [data appendData:packet.headerData];
     [data appendData:packet.extraHeaderData];
     [data appendData:packet.bodyData];
-    [self.connection sendMessage:data timeout:self.clientModel.messageTimeout tag:kSocketMessageWriteTag];
+    if (self.isConnected) {
+        [self.connection sendMessage:data timeout:self.clientModel.messageTimeout tag:kSocketMessageWriteTag];
+    } else {
+        MBLogE(@"#socket# event:send error:socket is disconnected");
+    }
 }
 
 #pragma mark - MBSocketConnectionDelegate
@@ -98,6 +102,8 @@
 /// 连接成功回调
 - (void)socketConnectionrDidConnect:(MBSocketConnection *)connection
 {
+    MBLogI(@"#socket# event:delegate.connect value:success");
+    
     [self readDataToLength:kSocketMessageHeaderLength tag:kSocketMessageHeaderTag];
     
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -111,15 +117,20 @@
 - (void)socketConnectionDidDisconnect:(MBSocketConnection *)connection error:(NSError *)error
 {
     MBLogE(@"#socket# event:delegate.disconnect error:%@", error);
+    
+    if (![IBNetworkStatus shareInstance].reachable) {
+        return;
+    }
 
     static NSInteger retryCount = 0;
     
     if (retryCount < self.clientModel.retryConnectMaxCount) {
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(self.clientModel.retryConnectInterval * NSEC_PER_SEC)), [MBSocketTools socketQueue], ^{
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(self.clientModel.retryConnectInterval * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [self reconnect];
         });
     } else {
         dispatch_async(dispatch_get_main_queue(), ^{
+            retryCount = 0;
             if (self.delegate && [self.delegate respondsToSelector:@selector(clientClosed:error:)]) {
                 [self.delegate clientClosed:self error:error];
             }
@@ -218,18 +229,20 @@
 - (void)networkStatusChange:(NSNotification *)notification
 {
     if ([self isDisconnected] && [notification.object integerValue] > 0) {
-        MBLogI(@"#socket# event:network.change");
+        MBLogI(@"#socket# event:network.retry");
         [self reconnect];
     }
 }
 
 - (void)didEnterBackground
 {
+    MBLogI(@"#socket# event:background");
     [self disconnect];
 }
 
 - (void)willEnterForeground
 {
+    MBLogI(@"#socket# event:foreground");
     [self reconnect];
 }
 

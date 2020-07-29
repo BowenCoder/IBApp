@@ -62,7 +62,9 @@
     if ([self isDisconnected] && host) {
         NSError *error;
         [self.gcdSocket connectToHost:host onPort:port withTimeout:timeout error:&error];
-        [self socketDidDisconnect:self.gcdSocket withError:error];
+        if (error) {
+            [self socketDidDisconnect:self.gcdSocket withError:error];
+        }
     }
 }
 
