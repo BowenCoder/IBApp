@@ -155,6 +155,7 @@
 		4A44437E21006150001B2350 /* MBTabBarBadge.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A44437D21006150001B2350 /* MBTabBarBadge.m */; };
 		4A4443812100797E001B2350 /* MBTabBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A4443802100797E001B2350 /* MBTabBarItem.m */; };
 		4A44438421008BE2001B2350 /* MBTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A44438321008BE2001B2350 /* MBTabBar.m */; };
+		4A5E9C712500DDD50065745B /* MBDropDownPanelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5E9C702500DDD50065745B /* MBDropDownPanelView.m */; };
 		4A5EA8F62493730D006CB209 /* MBSocketManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5EA8F52493730D006CB209 /* MBSocketManager.m */; };
 		4A5EADDA2493907D006CB209 /* MBSocketPacketBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5EADD92493907D006CB209 /* MBSocketPacketBuilder.m */; };
 		4A5EADE02493B1EB006CB209 /* MBSocketCompeletionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5EADDF2493B1EB006CB209 /* MBSocketCompeletionManager.m */; };
@@ -657,6 +658,8 @@
 		4A4443802100797E001B2350 /* MBTabBarItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBTabBarItem.m; sourceTree = "<group>"; };
 		4A44438221008BE2001B2350 /* MBTabBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBTabBar.h; sourceTree = "<group>"; };
 		4A44438321008BE2001B2350 /* MBTabBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBTabBar.m; sourceTree = "<group>"; };
+		4A5E9C6F2500DDD50065745B /* MBDropDownPanelView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBDropDownPanelView.h; sourceTree = "<group>"; };
+		4A5E9C702500DDD50065745B /* MBDropDownPanelView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBDropDownPanelView.m; sourceTree = "<group>"; };
 		4A5EA8F42493730D006CB209 /* MBSocketManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBSocketManager.h; sourceTree = "<group>"; };
 		4A5EA8F52493730D006CB209 /* MBSocketManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBSocketManager.m; sourceTree = "<group>"; };
 		4A5EADD82493907D006CB209 /* MBSocketPacketBuilder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBSocketPacketBuilder.h; sourceTree = "<group>"; };
@@ -1831,6 +1834,15 @@
 			path = IBPrivacy;
 			sourceTree = "<group>";
 		};
+		4A5E9C6E2500DD930065745B /* MBDropDownPanelView */ = {
+			isa = PBXGroup;
+			children = (
+				4A5E9C6F2500DDD50065745B /* MBDropDownPanelView.h */,
+				4A5E9C702500DDD50065745B /* MBDropDownPanelView.m */,
+			);
+			path = MBDropDownPanelView;
+			sourceTree = "<group>";
+		};
 		4A5EA8F3249372F2006CB209 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
@@ -2569,6 +2581,7 @@
 		4ACC55C620DB5F3E001352AE /* Public(公共) */ = {
 			isa = PBXGroup;
 			children = (
+				4A5E9C6E2500DD930065745B /* MBDropDownPanelView */,
 				4A2E74182433102E00DBA2AB /* MBAlertController */,
 				4AD688FA23014A6600D3A248 /* MBAlignmentLabel */,
 				4A63CB7923CDC08600684FC5 /* MBAutoScrollLabel */,
@@ -3609,6 +3622,7 @@
 				4AED64C0215378EF0082280F /* MBPopupArrowView.m in Sources */,
 				F383B4C72316E03B003E0D4D /* MBTimer.m in Sources */,
 				4AC21AF92463B96900DFD301 /* MBAppStorePayLog.m in Sources */,
+				4A5E9C712500DDD50065745B /* MBDropDownPanelView.m in Sources */,
 				4AC102E4230FFC6300DE39CD /* MBBlurImageView.m in Sources */,
 				4A1FB20C20E92D5E0056A026 /* UIImage+ForceDecode.m in Sources */,
 				4A1FB22220E92D5E0056A026 /* SDWebImageDownloaderOperation.m in Sources */,
