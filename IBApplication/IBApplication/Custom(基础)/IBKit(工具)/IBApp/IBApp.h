@@ -27,6 +27,11 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark - Basic
 
 /**
+ 获取keyWindow
+ */
+- (UIWindow *)keyWindow;
+
+/**
  数字形式的操作系统版本号
  如 10.3.1版本 表示为 103010；根据 iOS 规范，版本号最多可能有3位
  [[[UIDevice currentDevice] systemVersion] doubleValue] 只能获取到二级的版本号
