@@ -76,7 +76,7 @@
             result = [self _registerWechat];
             break;
         case IBSocialPlatformSina:
-            result = [self _registerSina];
+//            result = [self _registerSina];
             break;
         default:
             result = NO;

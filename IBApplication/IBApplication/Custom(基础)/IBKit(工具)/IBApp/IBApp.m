@@ -22,19 +22,22 @@
 
 #pragma mark - Basic
 
-- (UIWindow *)keyWindow
-{
-    UIWindow *visibleWindow;
+- (UIWindow *)keyWindow {
+    UIWindow *keyWindow;
     if (@available(iOS 13.0, *)) {
         for (UIWindowScene *windowScene in [UIApplication sharedApplication].connectedScenes) {
             if (windowScene.activationState == UISceneActivationStateForegroundActive) {
-                visibleWindow = windowScene.windows.firstObject;
+                for (UIWindow *window in windowScene.windows) {
+                    if (window.isKeyWindow) {
+                        return window;
+                    }
+                }
             }
         }
     } else {
-        visibleWindow = [UIApplication sharedApplication].keyWindow;
+        keyWindow = [UIApplication sharedApplication].keyWindow;
     }
-    return visibleWindow;
+    return keyWindow;
 }
 
 + (NSInteger)OSVersion

@@ -36,14 +36,14 @@
     [self rightBarItemWithTitle:@"关注" titleColor:nil imageName:nil action:nil];
     
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    btn.frame= CGRectMake(100, 200, 100, 44);
+    btn.frame= CGRectMake(0, 200, 100, 44);
     btn.backgroundColor = [UIColor redColor];
     [btn addTarget:self action:@selector(test) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:btn];
     self.btn = btn;
     
-    self.schedule = [[MBTimerSchedule alloc] init];
-    [self.schedule registerSchedule:self];
+//    self.schedule = [[MBTimerSchedule alloc] init];
+//    [self.schedule registerSchedule:self];
     
     UIView *line = [[UIView alloc] init];
     line.backgroundColor = [UIColor redColor];
@@ -76,10 +76,11 @@
 }
 
 - (void)test {
-    MBPopupArrowView *pop = [[MBPopupArrowView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
+    MBPopupArrowView *pop = [[MBPopupArrowView alloc] initWithFrame:CGRectMake(0, 0, 250, 100)];
     pop.priority = MBPopupArrowPriorityHorizontal;
     pop.dimBackground = YES;
-    pop.preferredArrowDirection = MBPopupArrowDirectionLeft;
+    pop.offsets = CGPointMake(0, 0);
+    pop.preferredArrowDirection = MBPopupArrowDirectionTop;
     pop.translucent = NO;
     pop.translucentStyle = MBPopupArrowStyleDefault;
     pop.preferredWidth = 300.0;
@@ -88,7 +89,7 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    [self reloadData];
+//    [self reloadData];
 }
 
 - (void)rightBarItemClick:(UIButton *)button {

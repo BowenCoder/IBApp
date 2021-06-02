@@ -46,8 +46,8 @@
     MBLogD(@"123");
     MBLogI(@"456");
     
-//    IBMineController *mine = [[IBMineController alloc] init];
-//    [self.navigationController pushViewController:mine animated:YES];
+    IBMineController *mine = [[IBMineController alloc] init];
+    [self.navigationController pushViewController:mine animated:YES];
     
 }
 
