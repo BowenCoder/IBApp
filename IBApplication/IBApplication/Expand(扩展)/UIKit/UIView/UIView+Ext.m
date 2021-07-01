@@ -257,6 +257,12 @@ const CGFloat MBUIViewSelfSizingHeight = INFINITY;
     self.transform=transform;
 }
 
+- (CGRect)visibleRect {
+    CGRect rect = [self convertRect:self.frame toView:nil];
+    CGRect intersectionRect = CGRectIntersection(rect, [UIScreen mainScreen].bounds);
+    return intersectionRect;
+}
+
 - (CGRect)frameApplyTransform
 {
     return self.frame;

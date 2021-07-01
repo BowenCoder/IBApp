@@ -91,6 +91,11 @@ extern const CGFloat MBUIViewSelfSizingHeight;
 @property (nonatomic) CGFloat tty;
 
 /**
+ 屏幕内可视区域
+ */
+@property (nonatomic) CGRect visibleRect;
+
+/**
  将要设置的 frame 用 CGRectApplyAffineTransformWithAnchorPoint 处理后再设置
  */
 @property (nonatomic) CGRect frameApplyTransform;
